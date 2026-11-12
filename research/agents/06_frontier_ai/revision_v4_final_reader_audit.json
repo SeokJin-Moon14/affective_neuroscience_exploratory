@@ -1,0 +1,92 @@
+{
+  "audit_id": "FINAL06-READER-V4",
+  "scope": "최종 네 문서와 실제 D07/D08 수정본·D08 모형 명세의 제한된 일관성 검토. 새 RQ·설계 요구를 추가하지 않으며 신규성·효과·검정력을 승인하지 않는다.",
+  "recorded_at_utc": "2026-11-12T11:54:24.469485+00:00",
+  "documents_read": [
+    {
+      "path": "proposals/README.md",
+      "sha256": "ac091585fdec9fc68fb481e386d3551e258203f910935619d661f43001ab14bc"
+    },
+    {
+      "path": "synthesis/FINAL_REPORT.md",
+      "sha256": "d0b4338578d94d4c1c094269cbd24ab1fc31b13e4e6b3f118b0a4275dd70f4eb"
+    },
+    {
+      "path": "pilots/v4/EMOTION_BOUNDARIES.md",
+      "sha256": "0e5e7af9e5c144788a88c8aa288d44da3ddf27e796d4d8a4dfffe65b20bb6ad8"
+    },
+    {
+      "path": "pilots/v4/GENERALIZATION_AND_DETAIL.md",
+      "sha256": "97c2839fce82cb3692f468cb94d8de6e9b7602cf95cfe995fd7ae1b84746965e"
+    }
+  ],
+  "references_read": [
+    {
+      "path": "agents/07_geometry_information/revision_v4_revised.json",
+      "sha256": "d79d89cd05f1b9a800611972f6add95e995d566d828694bb837ac633a3959e29"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/revision_v4_revised.json",
+      "sha256": "effa98494f1b64467dc8e31d30781dd1b6d98a7fd67d82fcac98c453be6accf1"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/revision_v4_model_contract.md",
+      "sha256": "14297ae530d06cd1ea3943afd7eea10b7262a90d5684959a67e25b231c02c05f"
+    }
+  ],
+  "overall": "발행을 막을 수준의 과장·논리 충돌·존재하지 않는 관측 주장은 찾지 못했다. 아래는 실행 범위와 단독 문서의 해석을 더 분명히 할 작은 수정이다.",
+  "blockers": [],
+  "verified_consistency": [
+    {
+      "topic": "D07 국소 구조와 모델 설명의 구분",
+      "finding": "proposals/README는 국소 구조의 존재와 연속 모델의 설명 가능성을 별개로 적었다. EMOTION_BOUNDARIES는 연속 모델이 실제 국소 구별 증가를 예측해도 구조가 없다는 뜻은 아니라고 두 차례 명시한다. D07 수정본의 핵심 정정과 일치한다."
+    },
+    {
+      "topic": "D07 관측 범위",
+      "finding": "집계 주석의 우세 전환을 개인의 감정 경계로 해석하지 않고, 비교 가능한 척도를 먼저 확인하며 단일 제시 반응을 잡음 제거 거리로 부르지 않는다. 고정 선형 대비의 국소 변화와 전체 신경 거리·총 정보량도 구별한다."
+    },
+    {
+      "topic": "D08 제한된 공통 관계 모형",
+      "finding": "GENERALIZATION_AND_DETAIL은 정서 대비 간 상대 비중을 공유하는 모형과 그것만 영역별로 바꾸는 대안을 구별한다. 전체 크기·거리 보존 좌표·내용·감도를 달리 허용하며 임의 재가중으로 두 모형을 같게 만들지 않도록 적었다. 모든 common latent나 모든 계층을 부정한다는 문장은 네 문서에서 찾지 못했다. 연결된 모형 명세는 이 제한을 명시한다."
+    },
+    {
+      "topic": "D08 타깃·평가 대상 및 결과 범위",
+      "finding": "같은 최종 평가 영상과 같은 정서 대비를 쓰고 학습 내용만 바꾼다. 여러 대비의 상대적 보존 관계가 필요하며 한 대비의 성능 교차로 넓은 분업을 주장하지 않는다. 실제 저자 수정과 일치한다."
+    },
+    {
+      "topic": "데이터와 실행 상태",
+      "finding": "기존 Horikawa 관측·외부 주석·MC 캡션을 쓰며 새 촬영·행동 오류·시선 조작을 있다고 하지 않는다. MC 최대71은 추가 QC 전 조건부 수로 설명하고, Horikawa에 독립 반복이 있다고 가정하지 않는다. 실제 BOLD·feature 본체 분석 미실행 및 신규성 확인 미완료를 명시한다."
+    },
+    {
+      "topic": "선정과 기여의 표현",
+      "finding": "세 방향을 조건부 파일럿 후보로 설명하며 검증된 발견·최초성 확정으로 쓰지 않는다. B02/B03/B04 보류 이유는 실제 저자 수정과 최종 토론에 맞는다. U001은 사용자 요약, U002는 공식 문서·코드 확인 범위로 제한한다."
+    }
+  ],
+  "smallfix": [
+    {
+      "fix_id": "S06-1",
+      "path": "pilots/v4/EMOTION_BOUNDARIES.md",
+      "location": "마지막 문단의 현재 완료 범위는 입력 연결과 실행 계획이다",
+      "reason": "입력 연결이라는 말이 정서 feature·BOLD 행까지 이미 대조한 것으로 읽힐 수 있다. 본문과 FINAL_REPORT는 이 본체를 아직 확인하지 않았다고 정확히 제한한다. 모순된 분석 결과 주장은 아니지만 완료 범위를 좁혀 쓰면 더 일관된다.",
+      "suggested_text": "현재 완료 범위는 공개 원영상 ID·캡션 연결 검산과 실행 계획이다. 정서 feature·BOLD 본체의 행 연결 및 이 비교는 아직 확인·실행하지 않았다.",
+      "severity": "작은 실행 범위 명료화"
+    },
+    {
+      "fix_id": "S06-2",
+      "path": "pilots/v4/GENERALIZATION_AND_DETAIL.md",
+      "location": "영역별 관계 모형의 지지 결과를 설명한 문단 끝",
+      "reason": "현재 문서가 모든 공통 코드나 계층을 부정하지는 않지만, 단독으로 읽을 때 수정본의 핵심 범위를 한 문장 더 명시하면 좋다. 연결된 모형 명세에는 이미 같은 제한이 있다. 새 설계 조건은 아니다.",
+      "suggested_text": "이 비교는 검사한 정서 대비의 상대적 비중에 관한 것이며, 공통 잠재 정서 코드의 부재나 모든 계층 처리의 부정을 뜻하지 않는다.",
+      "severity": "선택적 해석 범위 명료화"
+    },
+    {
+      "fix_id": "S06-3",
+      "path": "proposals/README.md",
+      "location": "V4-01 및 V4-03의 그 결과가 나온다면 단락",
+      "reason": "굵은 안내 뒤 같은 조건문이 바로 반복된다. 과학적 오류는 아니다.",
+      "suggested_text": "V4-01 본문의 그 결과가 나온다면, 및 V4-03 본문의 그 결과가 나오면, 을 삭제한다.",
+      "severity": "문장 편집"
+    }
+  ],
+  "limitations": "D07/D08의 실제 효과·충분한 표본·모형 구현 완료·직접 선행 대비 최초성을 검증한 작업이 아니다. 공통 파일과 원안·수정본은 수정하지 않았다."
+}

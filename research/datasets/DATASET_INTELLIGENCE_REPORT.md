@@ -12,6 +12,8 @@
 
 주력 RQ는 표의 자료 이름을 붙이는 것으로 성립하지 않는다. **핵심 결론에 필요한 관측이 해당 자료에 있어야 한다.** v3의 기억 정확성·정보 순서 조작·편집 장면 뇌 반응·원 PINES 측정 비교는 이 조건을 충족했다고 확인하지 못했으므로 현재 선정에서 제외했다.
 
-[이번 선정 철회와 기준](../revision_v4/DATA_FIT_REVIEW.md) · [Horikawa·Emo-FilM·Spacetop의 직접 근거](../agents/01_dataset/priority_recheck.md) · [NSD 직접 근거](../agents/03_vision_decoding/dataset_priority_nsd.md) · [MC 직접 근거](mind_captioning/verified_spec.md).
+[이전 선정의 정정과 기준](../revision_v4/DATA_FIT_REVIEW.md) · [Horikawa·Emo-FilM·Spacetop의 직접 근거](../agents/01_dataset/priority_recheck.md) · [NSD 직접 근거](../agents/03_vision_decoding/dataset_priority_nsd.md) · [MC 직접 근거](mind_captioning/verified_spec.md).
 
 Horikawa와 MC의 공통 영상 출처는 연결 가능성의 근거다. 그러나 자극 ID·제외 목록·처리본 대응을 확인하기 전에 자동으로 같은 행으로 합치지 않는다. NSD에서 AI가 만든 정서 점수도 인간 정서 정답으로 취급하지 않는다. 새 주석이나 새 측정이 필요하면 기존 자료로 가능한 것으로 표시하지 않는다.
+
+[MC–Horikawa 원ID 연결과 학습/시험 중복의 실제 검산](../agents/01_dataset/revision_v4_data_bridge.md) · [현재 RQ와 자료 연결](../proposals/README.md).

@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "v4_final_existing_data_rqs_reviews_pilots",
+  "snapshot_id": "f748d02f2564443f2ec3518e1a9245a29a8e6e2ad9f677f98d5703b35adf5b95",
+  "prepared_at_utc": "2026-11-12T11:55:37.490940+00:00",
+  "file_count": 1927,
+  "total_bytes": 212760205,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

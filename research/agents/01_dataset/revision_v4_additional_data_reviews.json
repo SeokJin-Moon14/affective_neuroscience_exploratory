@@ -1,0 +1,75 @@
+[
+  {
+    "review_id": "DATA-V4-D07-A",
+    "candidate_id": "D07-A",
+    "decision": "기존자료로설계가능",
+    "decision_scope": "기존 영상별 주석과 fMRI에 연결되는 설계다. 실제 경계 주변 변이·내용 중첩·모형 식별·검정력·신규성을 확인했다는 판정은 아니다.",
+    "supported_observations": [
+      "Horikawa의 같은 원영상에 category·dimension 특징 벡터와 시청 fMRI가 있다. 공식 코드는 L.feat를 영상 label로 정렬하고 category 34열 중 27열을 선택하는 분석을 제공한다. 기존 집계 주석에서 정한 경계 주변의 새 영상 반응을 예측하는 비교에 새 측정은 필수가 아니다.",
+      "실제 305 events에서 5명 각각 원영상 ID 2,196개가 한 번씩 나타나는 구조와 공식 15개 제외를 확인했다. 원안은 독립 반복이 없음을 명시하고, 반복을 필요로 하는 거리 대신 새 영상의 반응 예측을 주 분석으로 둔다.",
+      "MC의 기존 사람 캡션은 2,196개 원영상 ID마다 20개이며 Horikawa 이벤트 ID와 연결된다. 내용 특징으로 쓸 수 있고 정서 정답을 새로 만드는 관측은 아니다."
+    ],
+    "missing_existing_file_checks": [
+      "공통 P1–P4: agents/01_dataset/revision_v4_data_common.md. 실제 category·dimension 항목명, 원척도·부호·표준화 방식·결측, feature 행과 원영상 ID, 뇌 처리 구간·ROI coverage를 확인해야 한다.",
+      "상대 점수가 같아지는 위치를 경계로 정의할 근거와 범주 간 척도 비교 가능성, 경계 양쪽의 연속 평정·내용 분포 중첩, 경계 안/밖 평가 영상의 실제 수가 미확인이다. 34개 또는 27개 특징의 존재가 이 국소 비교에 필요한 변이를 보장하지 않는다.",
+      "집계 평정의 불확실성이나 평정자별 자료가 보유본에 있는지는 미확인이다. 없다면 기존 집계 값의 정의·경계 위치에 대한 민감도 범위를 보고할 수 있으나, 개인의 범주 판단 경계라고 해석할 수 없다.",
+      "선택적 MC testPerception의 실제 원ID·유효 반복·ROI·자극 편집 일치와 경계 주변 표본을 확인해야 한다. 이 검토에서 실물로 확인한 것은 sub-01의 72개×5회이며 전체 참가자 처리본을 검증한 것은 아니다."
+    ],
+    "missing_new_observations": [],
+    "required_correction": [
+      "원안의 단일 관측·집계 평정·불연속성 해석 제한은 적절하다. score 차이나 argmax로 정한 경계는 기존 주석에서 정의한 경계이며, 기존에 측정된 개인의 categorical judgment 경계가 아니라는 점을 방법에서 명시할 것. 새 범주 판단 행동이 있다는 가정은 넣지 말 것.",
+      "경계 양쪽의 충분한 영상·내용 중첩은 기존 값 확인 조건으로 유지할 것. 실제 조건이 없으면 이 경계는 보류하며, 새로운 연속 자극·평정을 숨겨 넣어 설계를 유지하지 말 것.",
+      "보조 MC 반복의 신뢰도를 Horikawa 참가자·ROI의 신뢰도로 직접 대입하지 말 것. 두 자료는 동일 참가자라는 근거가 없고 관측 구조도 다르다. 공통 영상에서 별도 보조 검증으로만 사용하고, Horikawa 공식 제외를 함께 적용하면 MC test72 중 정책상 최대71이라는 점을 반영할 것."
+    ],
+    "common_review_path": "agents/01_dataset/revision_v4_data_common.md",
+    "evidence_paths": [
+      "agents/07_geometry_information/revision_v4_candidates.json",
+      "agents/01_dataset/revision_v4_data_bridge.md",
+      "agents/01_dataset/evidence/revision_v4/caption_horikawa_join.json",
+      "agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "agents/01_dataset/evidence/repos/horikawa_code/code/sub/perform_encoding_analysis.m",
+      "agents/01_dataset/evidence/repos/horikawa_code/code/sub/draw_figure6AB.m",
+      "datasets/horikawa/annotation_dictionary.csv",
+      "datasets/mind_captioning/evidence/data_README.md"
+    ],
+    "reviewed_source_sha256": "6ce0a0ba7ce049e3f26fe5152c519a997d5ec0490af5bf826a5f910664ea9200",
+    "recorded_on_utc": "2026-11-12"
+  },
+  {
+    "review_id": "DATA-V4-D08-A",
+    "candidate_id": "D08-A",
+    "decision": "기존자료로설계가능",
+    "decision_scope": "기존 영상별 외부 정서 주석과 영역별 시청 반응으로 같은 대비의 내용 안/밖 예측을 비교할 수 있는 설계다. 실제 대비·내용 중첩·측정 감도·분업의 식별·신규성은 확인 전이다.",
+    "supported_observations": [
+      "Horikawa의 기존 category·dimension 특징과 원영상별 시청 fMRI로 같은 연속 정서 대비를 읽도록 학습하고 새 영상에서 평가할 관측 구조가 있다. 내용 안 평가와 내용 밖 평가에 서로 다른 인간 측정을 요구하지 않는다.",
+      "MC 사람 캡션 43,920행과 원영상 ID 연결은 실제 확인됐다. 기존 영상·caption 또는 제공 feature로 내용군을 계산하는 것은 기존 관측의 분석이며 새 사람 주석이나 새 BOLD를 뜻하지 않는다.",
+      "원안과 별도 설계 메모는 Horikawa의 개인 내 독립 반복을 가정하지 않고, MC 지각 반복을 선택적 자료로 분리한다. 개인 정서 경험·정서 판단 행동·심상 정확성을 목표 변수로 쓰지 않는다."
+    ],
+    "missing_existing_file_checks": [
+      "공통 P1–P4: agents/01_dataset/revision_v4_data_common.md. 실제 허용 category명·척도·값, valence/arousal 대응, 정서 대비를 구성할 비교 가능한 척도, 영상별 처리값과 원ID·ROI coverage가 미확인이다.",
+      "같은 정서 대비가 여러 내용군에서 충분히 변하는지, 학습 내용군과 새 내용군의 정서 점수 범위·빈도·내용 중복이 비교 가능한지 확인해야 한다. 전체 영상 수가 내용군별 유효 표본을 대신하지 않는다.",
+      "실제 ROI 마스크·공간·voxel coverage와 영역별 예측 감도, 런·영상 길이·처리 구간의 영향을 확인해야 한다. 반복이 없는 주 자료에서는 잠재 신호와 잡음의 분해가 자동으로 관측되지 않으므로 공통 관계 모형의 잡음 가정을 명시해야 한다.",
+      "선택적 MC 반복 집합에 동일한 정서 대비와 내용 분포가 충분한지, 실제 유효 반복·feature 행·원ID·제외가 맞는지 확인해야 한다. 공식 전체 반복 수와 이번 sub-01 실물 확인 범위를 구별해야 한다."
+    ],
+    "missing_new_observations": [],
+    "required_correction": [
+      "원안의 같은 타깃·같은 지표 비교와 독립 반복 제한은 적절하다. 영역별 잡음을 허용한 공통 관계 설명은 가정을 둔 경쟁 모형이지, 동일 영상 반복으로 참 신호·잡음을 각각 직접 측정한 결과가 아님을 명시할 것. 한 영역의 판독 실패만으로 정보 부재를 말하지 않는 현재 제한을 유지할 것.",
+      "내용군이 달라져도 같은 정서 대비의 평가 범위가 있는지는 기존 주석의 실제 분포 확인 조건이다. 점수 범위·척도 또는 평가 난이도가 달라 생기는 교차를 표현 분업으로 읽지 않도록 학습·평가 분포와 민감도 차이를 함께 확인할 것.",
+      "보조 MC의 신뢰도로 Horikawa ROI 신뢰도를 대체하지 말 것. MC에서는 원ID인 stimID를 사용하고 Horikawa 제외 정책을 적용할 때 최대71을 반영할 것. MC 학습으로 새 영상 평가를 추가한다면 raw trainPerception 마지막 두 런에 test72가 들어 있는 사실과 공식 processed2108 분리를 따라야 한다. 이는 현재 Horikawa 주 분석에 새 자료를 추가하라는 요구가 아니다."
+    ],
+    "common_review_path": "agents/01_dataset/revision_v4_data_common.md",
+    "evidence_paths": [
+      "agents/08_systems_neuroscience/revision_v4_candidates.json",
+      "agents/08_systems_neuroscience/revision_v4_design_notes.md",
+      "agents/01_dataset/revision_v4_data_bridge.md",
+      "agents/01_dataset/evidence/revision_v4/caption_horikawa_join.json",
+      "agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "agents/01_dataset/evidence/horikawa_config.yaml",
+      "agents/01_dataset/evidence/repos/horikawa_code/code/sub/perform_encoding_analysis.m",
+      "datasets/horikawa/annotation_dictionary.csv",
+      "datasets/mind_captioning/evidence/data_README.md"
+    ],
+    "reviewed_source_sha256": "825b42a6206544ff120534646f480bcc5136094fba90d58102ca8d7fecae37b1",
+    "recorded_on_utc": "2026-11-12"
+  }
+]

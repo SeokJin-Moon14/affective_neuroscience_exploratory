@@ -1,6 +1,2055 @@
 {
-  "version": 4,
-  "status": "prior_selection_withdrawn",
-  "current_review": "../revision_v4/DATA_FIT_REVIEW.md",
-  "prior_document_validation": "../revision_v3/VALIDATION.json"
+  "scope": "출처·필드·실제 검토 연결·현재 문서 링크와 공개 메타데이터 검산. 과학적 효과·신규성 승인이 아님.",
+  "candidate_count": 10,
+  "direction_count": 3,
+  "check_count": 409,
+  "local_links_checked": 208,
+  "failed": [],
+  "checks": [
+    {
+      "name": "후보 ID 고유성",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/02_affective_neuroscience/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/03_vision_decoding/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/04_brain_foundation/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/05_multimodal_dynamics/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/06_frontier_ai/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/02_affective_neuroscience/revision_v4_perception_candidate.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/03_vision_decoding/revision_v4_perception_candidate.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/04_brain_foundation/revision_v4_perception_candidate.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/07_geometry_information/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/08_systems_neuroscience/revision_v4_candidates.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/02_affective_neuroscience/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/03_vision_decoding/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/04_brain_foundation/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/05_multimodal_dynamics/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/06_frontier_ai/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/07_geometry_information/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원문 해시 agents/08_systems_neuroscience/revision_v4_revised.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 근거 datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 근거 agents/01_dataset/evidence/repos/horikawa_code/code/sub/draw_figure6AB.m",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 근거 datasets/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D02-B 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 agents/01_dataset/evidence/horikawa_python_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 agents/01_dataset/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 datasets/mind_captioning/evidence/code_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-A 근거 datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 agents/01_dataset/evidence/horikawa_python_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 agents/01_dataset/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 datasets/mind_captioning/evidence/official_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D03-B 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 agents/01_dataset/evidence/horikawa_config.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-A 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 agents/01_dataset/evidence/horikawa_config.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D04-B 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 datasets/horikawa/annotation_dictionary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D05-A 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/evidence/horikawa_config.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/official_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 datasets/mind_captioning/evidence/code_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D06-A 근거 agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 근거 datasets/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 근거 datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D07-A 근거 agents/01_dataset/evidence/repos/horikawa_code/code/sub/perform_clustering_analysis.m",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 필수 원고 필드",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 기존 관측",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 데이터 심사",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 실제 과학 비판에 대한 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 데이터 심사 응답",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 근거 agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 근거 datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D08-A 근거 datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "원안 전체 선정 또는 보류 기록",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "중복 집계 없음",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "V4-01 새 관측 불필요",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "V4-01 네 기여 항목",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "V4-02 새 관측 불필요",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "V4-02 네 기여 항목",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "V4-03 새 관측 불필요",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "V4-03 네 기여 항목",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "공개 메타데이터 실제 검산",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "뇌 분석 미실행 표기",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "선정 방향별 파일럿 계획",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 CHATGPT_PROJECT_BRIEF.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 RESEARCH_STATUS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 RESEARCH_STATUS.md → proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 RESEARCH_STATUS.md → pilots/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 START_HERE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 START_HERE.md → proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 START_HERE.md → pilots/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 START_HERE.md → revision_v4/PRIOR_COMPARISON.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 START_HERE.md → RESEARCH_STATUS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 START_HERE.md → datasets/DATASET_INTELLIGENCE_REPORT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 START_HERE.md → CHATGPT_PROJECT_BRIEF.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../revision_v4/INITIAL_SOURCES.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../revision_v4/PERCEPTION_SOURCES.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../revision_v4/ADDITIONAL_SOURCES.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/01_dataset/revision_v4_data_review.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/01_dataset/revision_v4_additional_data_reviews.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/02_affective_neuroscience/revision_v4_integration_agreement.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/06_frontier_ai/revision_v4_final_contribution_review.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/02_affective_neuroscience/revision_v4_review_D07.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/08_systems_neuroscience/revision_v4_peer_review_D07.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/06_frontier_ai/revision_v4_review_D08.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/07_geometry_information/revision_v4_peer_review_D08.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../revision_v4/FINAL_AUTHOR_SOURCES.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/01_dataset/revision_v4_composition_feasibility.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 discussions/revision_v4/SYNTHESIS.md → ../../agents/02_affective_neuroscience/revision_v4_composition_science_review.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 pilots/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/README.md → v4/GENERALIZATION_AND_DETAIL.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/README.md → v4/EMOTION_BOUNDARIES.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/README.md → v4/MC_IMAGERY.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/README.md → v4/INPUTS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/README.md → v4/metadata_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/README.md → ../proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 pilots/v4/EMOTION_BOUNDARIES.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/v4/EMOTION_BOUNDARIES.md → INPUTS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 pilots/v4/GENERALIZATION_AND_DETAIL.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/v4/GENERALIZATION_AND_DETAIL.md → INPUTS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/v4/GENERALIZATION_AND_DETAIL.md → ../../agents/08_systems_neuroscience/revision_v4_model_contract.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 pilots/v4/INPUTS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/v4/INPUTS.md → metadata_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 pilots/v4/MC_IMAGERY.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 pilots/v4/MC_IMAGERY.md → metadata_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D02-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D02-B.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../agents/01_dataset/evidence/repos/horikawa_code/code/sub/draw_figure6AB.m",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../datasets/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D02-B.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D03-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/evidence/horikawa_python_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../datasets/mind_captioning/evidence/code_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D03-B.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/evidence/horikawa_python_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../datasets/mind_captioning/evidence/official_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D03-B.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D04-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../agents/01_dataset/evidence/horikawa_config.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D04-B.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../agents/01_dataset/evidence/horikawa_config.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D04-B.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D05-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../datasets/horikawa/annotation_dictionary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D05-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D06-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/caption_ck20.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/evidence/horikawa_Tutorials.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/evidence/horikawa_config.yaml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/official_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/bids_README",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../datasets/mind_captioning/evidence/code_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/revision_v4_data_common.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D06-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D07-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → ../datasets/horikawa/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → ../datasets/mind_captioning/evidence/caption_schema_check.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → ../agents/01_dataset/evidence/repos/horikawa_code/code/sub/perform_clustering_analysis.m",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D07-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/D08-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → ../datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → ../datasets/mind_captioning/evidence/data_README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → ../agents/01_dataset/revision_v4_data_bridge.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/D08-A.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D07-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D08-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D02-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D03-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D04-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D05-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → D06-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → ../revision_v4/PRIOR_COMPARISON.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → ../pilots/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 proposals/README.md → ../archive/v3/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 research_questions/LANDSCAPE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D02-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D02-B.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D03-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D03-B.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D04-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D04-B.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D05-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D06-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D07-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/D08-A.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/LANDSCAPE.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 research_questions/RANKINGS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 research_questions/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/README.md → ../proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 research_questions/README.md → LANDSCAPE.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 revision_v4/DATA_FIT_REVIEW.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/DATA_FIT_REVIEW.md → ../proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/DATA_FIT_REVIEW.md → ../datasets/DATASET_INTELLIGENCE_REPORT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/DATA_FIT_REVIEW.md → ../agents/01_dataset/priority_recheck.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/DATA_FIT_REVIEW.md → ../agents/03_vision_decoding/dataset_priority_nsd.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/DATA_FIT_REVIEW.md → ../datasets/mind_captioning/verified_spec.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 revision_v4/PRIOR_COMPARISON.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/PRIOR_COMPARISON.md → REFERENCES.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/PRIOR_COMPARISON.md → ../agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/PRIOR_COMPARISON.md → ../agents/02_affective_neuroscience/evidence/ceko2022_fulltext.txt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 revision_v4/PRIOR_COMPARISON.md → ../agents/06_frontier_ai/revision_v4_final_contribution_review.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 revision_v4/PROTOCOL.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 revision_v4/USER_PRIOR_U001.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 synthesis/DIVERSITY_AUDIT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 synthesis/FINAL_AUDIT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_AUDIT.md → validation_report.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_AUDIT.md → ../revision_v4/DATA_FIT_REVIEW.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_AUDIT.md → ../revision_v4/DECISIONS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 synthesis/FINAL_REPORT.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_REPORT.md → ../proposals/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_REPORT.md → ../revision_v4/PRIOR_COMPARISON.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_REPORT.md → ../pilots/README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_REPORT.md → ../research_questions/RANKINGS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/FINAL_REPORT.md → ../discussions/revision_v4/SYNTHESIS.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "현재 문서 존재 synthesis/OPPORTUNITY_MAP.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/OPPORTUNITY_MAP.md → ../revision_v4/PRIOR_COMPARISON.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "문서 링크 synthesis/OPPORTUNITY_MAP.md → ../pilots/README.md",
+      "passed": true,
+      "detail": ""
+    }
+  ]
 }

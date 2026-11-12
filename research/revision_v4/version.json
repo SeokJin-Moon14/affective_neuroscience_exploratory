@@ -1,7 +1,20 @@
 {
   "version": 4,
-  "status": "additional_candidates_peer_review",
-  "updated_at_utc": "2026-11-12T11:42:22.161645+00:00",
+  "status": "planning_complete_with_explicit_conditions",
+  "updated_at_utc": "2026-11-12T11:55:13.007859+00:00",
+  "raw_candidates": 10,
+  "proposal_roles": 7,
+  "data_review_count": 10,
+  "active_rqs": [
+    "V4-01",
+    "V4-02",
+    "V4-03"
+  ],
+  "held_full_candidates": [
+    "D02-B",
+    "D03-B",
+    "D04-B"
+  ],
   "priority": {
     "1": [
       "Horikawa",
@@ -15,21 +28,8 @@
       "Spacetop"
     ]
   },
-  "previous_commit": "75df2e876de57cd139e1bb0c22a58ae81312a217",
-  "active_rqs": [],
-  "reason": "v3 네 방향은 보유 자료로 핵심 결론을 검증할 수 있는 후보로 선정되지 않았음. 새 신경·행동 실험이 필수인 질문을 현재 목록에서 제외.",
   "experiments_run": false,
-  "user_latest_direction": "중간 승인 없이 에이전트 협업으로 전체 기획 진행. 기존 자료로 검증 가능하며 최신 근접 선행을 넘는 필요성·결론·기여 필수.",
-  "raw_candidates": 10,
-  "data_reviews": 8,
-  "scientific_review_coverage": 8,
-  "first_wave_revised_cards": 8,
-  "additional_agents": [
-    "geometry_v4",
-    "systems_v4"
-  ],
-  "additional_candidates": [
-    "D07-A",
-    "D08-A"
-  ]
+  "public_metadata_checks_run": true,
+  "novelty_fully_verified": false,
+  "reason": "기존 관측에 맞춘 제안·실제 토론·저자 수정·선정·파일럿 계획을 완료했다. 실제 BOLD 분석과 직접 선행 전체 확인은 수행 완료로 표시하지 않는다."
 }

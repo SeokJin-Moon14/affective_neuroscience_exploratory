@@ -1,0 +1,41 @@
+{
+  "recorded_at_utc": "2026-11-12T11:48:07.190860+00:00",
+  "source_candidate": "D08-A",
+  "original_sha256": "825b42a6206544ff120534646f480bcc5136094fba90d58102ca8d7fecae37b1",
+  "revised_path": "agents/08_systems_neuroscience/revision_v4_revised.json",
+  "actual_deliveries": [
+    {
+      "recipient": "/root/frontier_contribution",
+      "review_id": "R06-D08-A",
+      "method": "collaboration.send_message",
+      "status": "실제 전달 완료",
+      "summary": "동일평가영상 및 여러 정서 대비 상대보존, 공통/영역별 관계 모형 계약, 한 대비 gain교차만으로 분업 주장하지 않음."
+    },
+    {
+      "recipient": "/root/geometry_v4",
+      "review_id": "R07-D08-A",
+      "method": "collaboration.send_message",
+      "status": "실제 전달 완료",
+      "summary": "동일 평가영상과 두 학습내용 조건, 상대비중 공유/변경, D07와 독립 관찰의 실제상호 논의."
+    },
+    {
+      "recipient": "/root/dataset_priority",
+      "review_id": "DATA-V4-D08-A",
+      "method": "collaboration.send_message",
+      "status": "실제 전달 완료",
+      "summary": "잡음분해는모형가정, 내용군분포확인, MC신뢰도대입금지/원ID/최대71/선택적새영상학습누수조건."
+    }
+  ],
+  "peer_review_delivery": {
+    "review_id": "R08-D07-A",
+    "recipient": "/root/geometry_v4",
+    "method": "collaboration.send_message",
+    "status": "실제 전달 완료",
+    "file": "agents/08_systems_neuroscience/revision_v4_peer_review_D07.json"
+  },
+  "root_pilot_read": {
+    "path": "pilots/v4/GENERALIZATION_AND_DETAIL.md",
+    "finding": "수정원안과충돌/사실오류없음. 좌표방향을거리보존변환으로명시하는표현정밀화1건실제전달.",
+    "shared_file_modified": false
+  }
+}

@@ -37,14 +37,22 @@
     {
       "role": "07 Geometry & Information",
       "agent": "/root/geometry_v4",
-      "status": "독립 제안 중",
+      "status": "원안·교차 비판·저자 수정 완료",
       "workspace": "agents/07_geometry_information/"
     },
     {
       "role": "08 Systems Neuroscience",
       "agent": "/root/systems_v4",
-      "status": "독립 제안 중",
+      "status": "원안·교차 비판·저자 수정 완료",
       "workspace": "agents/08_systems_neuroscience/"
     }
-  ]
+  ],
+  "v4_completion": {
+    "status": "제안·실제 비판·데이터 심사·저자 수정·선정·파일럿 계획 완료",
+    "proposal_roles": 7,
+    "raw_candidates": 10,
+    "directions": 3,
+    "brain_experiments_run": false,
+    "continuation": "새 세션에서는 역할별 revision_v4 파일과 RESEARCH_STATUS.md를 읽고 이어간다."
+  }
 }

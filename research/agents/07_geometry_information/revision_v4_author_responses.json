@@ -1,0 +1,47 @@
+{
+  "candidate_id": "D07-A",
+  "original_sha256": "6ce0a0ba7ce049e3f26fe5152c519a997d5ec0490af5bf826a5f910664ea9200",
+  "revised_sha256": "d79d89cd05f1b9a800611972f6add95e995d566d828694bb837ac633a3959e29",
+  "delivery": [
+    {
+      "recipient": "/root/affective_reframe",
+      "review_id": "R02-D07-A",
+      "tool": "collaboration.send_message",
+      "status": "수정 내용과 full 카드 경로를 실제 전달 완료",
+      "reviewer_acceptance_assumed": false
+    },
+    {
+      "recipient": "/root/systems_v4",
+      "review_id": "R08-D07-A",
+      "tool": "collaboration.send_message",
+      "status": "수정 내용과 full 카드 경로를 실제 전달 완료",
+      "reviewer_acceptance_assumed": false
+    },
+    {
+      "recipient": "/root/dataset_priority",
+      "review_id": "DATA-V4-D07-A",
+      "tool": "collaboration.send_message",
+      "status": "수정 내용과 full 카드 경로를 실제 전달 완료",
+      "reviewer_acceptance_assumed": false
+    }
+  ],
+  "cross_review": {
+    "candidate": "D08-A",
+    "review_id": "R07-D08-A",
+    "recipient": "/root/systems_v4",
+    "status": "실제 전달 및 저자 수정 회신 수신",
+    "author_reply": "동일 평가영상으로 두 학습조건 비교, 공통 관계 모형의 허용 변환과 추가 자유도 계약 추가, 원안 보존을 저자가 실제 메시지로 회신함. 수정파일 전체의 새 재검토를 완료했다는 뜻은 아님."
+  },
+  "coordinator_pilot_check": {
+    "path": "pilots/v4/EMOTION_BOUNDARIES.md",
+    "read": true,
+    "material_fact_conflicts": [],
+    "wording_recommendation": "특정 내용묶음/밀도에만 의존하는 효과와 풍부한 내용모델이 다른 내용에도 일반화하는 실제 국소구조를 설명하는 성공을 구별하도록 root에게 실제 전달."
+  },
+  "checks": {
+    "json_and_required_fields": true,
+    "original_preserved": true,
+    "data_and_review_paths_exist": true,
+    "brain_experiments_run": false
+  }
+}

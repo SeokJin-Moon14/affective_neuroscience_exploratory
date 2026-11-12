@@ -1,6 +1,28 @@
 {
   "version": 4,
-  "status": "not_selected",
-  "plans": [],
-  "reason": "기존 자료로 핵심 관찰을 검증할 수 있는 질문부터 다시 선정"
+  "pilots": [
+    {
+      "pilot_id": "P4-01",
+      "direction_id": "V4-02",
+      "path": "pilots/v4/GENERALIZATION_AND_DETAIL.md",
+      "status": "계획 완료·뇌 분석 미실행",
+      "existing_data_only": true
+    },
+    {
+      "pilot_id": "P4-02",
+      "direction_id": "V4-01",
+      "path": "pilots/v4/EMOTION_BOUNDARIES.md",
+      "status": "계획 완료·뇌 분석 미실행",
+      "existing_data_only": true
+    },
+    {
+      "pilot_id": "P4-03",
+      "direction_id": "V4-03",
+      "path": "pilots/v4/MC_IMAGERY.md",
+      "status": "계획 완료·공개 ID 검산 일부 실행·뇌 분석 미실행",
+      "existing_data_only": true
+    }
+  ],
+  "metadata_check": "pilots/v4/metadata_check.json",
+  "brain_experiments_run": false
 }

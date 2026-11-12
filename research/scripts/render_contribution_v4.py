@@ -37,6 +37,18 @@ def table(headers, rows):
                      ['| ' + ' | '.join(cell(v) for v in row) + ' |' for row in rows])
 
 
+def source_links(value):
+    entries = value if isinstance(value, list) else value.split(';')
+    linked = []
+    for entry in entries:
+        path = entry.strip().split(': ', 1)[0]
+        if (ROOT / path).is_file():
+            linked.append(f'[{path}](../{path})')
+        else:
+            linked.append(entry.strip())
+    return ' · '.join(linked)
+
+
 def main():
     catalog = read('revision_v4/catalog.json')
     curation = read('revision_v4/curation.json')
@@ -58,8 +70,8 @@ def main():
                  '## 정서신경과학에 대한 기여', prose(c['field_impact']),
                  '기여가 부족한 결과: ' + prose(c['noncontribution_result']),
                  '## 보유 자료로 어떻게 검정하는가', prose(c['primary_data']),
-                 table(['자료', '기존 관측', '검정에서의 역할', '실행 전 확인'],
-                       [[b['dataset'], b['existing_observation'], b['use_in_test'], b['still_to_verify']]
+                 table(['자료', '기존 관측', '검정에서의 역할', '실행 전 확인', '근거'],
+                       [[b['dataset'], b['existing_observation'], b['use_in_test'], b['still_to_verify'], source_links(b['source_path'])]
                         for b in c['data_binding']]),
                  prose(c['analysis_plan']), 'AI의 역할: ' + prose(c['ai_enables']),
                  '선택적 확장: ' + prose(c['secondary_data']),
@@ -86,7 +98,7 @@ def main():
         parts += [f"## {g['question']}", f"{g['direction_id']} · {g['decision']}",
                   '**왜 필요한가.** ' + g['why_short'],
                   '**어떤 결과가 중요한가.** ' + g['result_short'],
-                  '**그 결과가 나온다면.** ' + g['conclusion_short'],
+                  '**Conclusion.** ' + g['conclusion_short'],
                   '**분야 기여.** ' + g['impact_short'],
                   '**쓸 자료.** ' + g['data_short'],
                   '**채택 전 확인.** ' + g['gate_short'],

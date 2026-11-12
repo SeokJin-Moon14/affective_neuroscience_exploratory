@@ -1,0 +1,2 @@
+title,official_source,status,counted,evidence_level,needs_followup,verified_on,origin_agent
+A massive 7T fMRI dataset to bridge cognitive neuroscience and artificial intelligence,https://raw.githubusercontent.com/cvnlab/nsddatapaper/master/README.md,공식 README에서 논문 제목만 확인; 전체 저자/연도/DOI 미검증,아니오,E2(제목·공식 코드 연결만),공식 원문 서지 확보,2026-11-12,Agent01 Dataset & Metadata Forensics

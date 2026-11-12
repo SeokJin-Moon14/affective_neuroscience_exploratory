@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/README.md",
+  "verified_on": "2026-11-12T03:34:56.247658+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/README.md",
+  "bytes": 3844,
+  "sha256": "9963b8f12e33138c495f71934966021a40a86ccb21cb2d98d50462f5ca7440c3",
+  "content_type": "text/plain; charset=utf-8",
+  "source_file": "canlab_metadocs.source"
+}

@@ -1,0 +1,1417 @@
+# Tutorial for the neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions
+
+This notebook provides a tutorial for our paper:  [Horikawa, Cowen, Keltner, and Kamitani (2020) The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions. iScience](https://www.cell.com/iscience/fulltext/S2589-0042\(20\)30245-5?rss=yes).
+
+This tutorial corresponds to the Python version discussed in this paper. It is designed for setting up the environment and verifying computational procedures, hence the computational conditions have been greatly simplified.
+<!--このチュートリアルは，本稿の Python コード実装に対応したものです．環境のセットアップや計算手続きの確認を目的としたものであるため，計算条件が大きく簡易化されています．-->
+
+- [KamitaniLab/EmotionVideoNeuralRepresentationPython](https://github.com/KamitaniLab/EmotionVideoNeuralRepresentationPython)
+
+For the exact reproduction code of Paper (Horikawa et al., 2020), please refer to the Matlab version available on the github repository below. (The Python version is currently being prepared.)
+<!--Paper (Horikawa et al., 2020) の厳密な再現コードについては，下記の Matlab版 github リポジトリに格納されています．（Python版は準備中です．）-->
+
+- [KamitaniLab/EmotionVideoNeuralRepresentation](https://github.com/KamitaniLab/EmotionVideoNeuralRepresentation)
+
+Furthermore, if you wish to learn more about the algorithms for decoding analysis and encoding analysis, please refer to the repositories mentioned below.
+<!--また，decoding analysis および encoding analysis のアルゴリズムの詳細を学びたい場合は，下記のリポジトリを参照してください．-->
+
+- [KamitaniLab/feature-decoding](https://github.com/KamitaniLab/feature-decoding)
+- [KamitaniLab/feature-encoding](https://github.com/KamitaniLab/feature-encoding)
+
+<br/>
+<br/>
+
+## Setup
+
+This tutorial can also be executed on Google Colab and primarily uses Google Colab commands and magic commands to demonstrate the procedures.
+<!--このチュートリアルはGoogle colabでも実行でき，基本的にはGoogle colabのコマンドおよびマジックコマンドで手続きが示されています．-->
+
+**If running on a local machine, it is not necessary to execute all the notebook cells in this Setup section. Please perform the commands shown on the below cells on each machine.**
+<!--**ローカルマシン上で実行する場合，このSetup セクションのノートブックセルは全て実行する必要はありません．** セル上に示されているコマンドライン操作を，各マシンのCUI上で実行してください．-->
+
+### Prepare directory structure (~3min)
+<!--### ディレクトリ構成の準備-->
+
+Clone the repository below and move into the directory. If running on a local machine and have already cloned the repository, skip this step.
+<!--下記のgithubリポジトリをcloneし，ディレクトリを移動してください．ローカルマシンで実行しており，すでにリポジトリをclone済みの人はこの作業をskipしてください-->
+
+!git clone https://github.com/KamitaniLab/EmotionVideoNeuralRepresentationPython.git
+# or git@github.com:KamitaniLab/EmotionVideoNeuralRepresentationPython.git 
+
+%cd EmotionVideoNeuralRepresentationPython
+!ls
+
+Under the directory `EmotionVideoNeuralRepresentationPython`, please clone the following two GitHub repositories.
+<!--ディレクトリ`EmotionVideoNeuralRepresentationPython`の下に，さらに下記の2つの github リポジトリを clone してください．-->
+
+
+!git clone https://github.com/KamitaniLab/feature-decoding.git
+# or git@github.com:KamitaniLab/feature-decoding.git
+!git clone https://github.com/KamitaniLab/feature-encoding.git
+# or git@github.com:KamitaniLab/feature-encoding.git
+
+
+Please confirm that the directory structure is as follows:
+<!--ディレクトリ構成が下記のようになっていることを確認してください．-->
+
+```
+EmotionVideoNeuralRepresentationPython (current directory)
+├── config/
+├── data/
+├── env.yaml
+├── feature-decoding/
+├── feature-encoding/
+├── README.md
+├── requirements.txt
+├── src/
+└── Tutorials.ipynb
+```
+
+!pwd
+!ls -1
+
+### Install libraries and update configurations (~10min or more)
+<!--### 必要なライブラリのインストールと設定の修正-->
+
+Use the environment configuration file `requirements.txt` in `EmotionVideoNeuralRepresentationPython` to set up the environment.
+<!--`EmotionVideoNeuralRepresentationPython` 内の環境設定ファイルを用いて，環境の構築を行います．-->
+
+If running on a local machine, instead of executing the following cell, it is recommended to create a conda environment by executing the command below. **Please note that when creating an environment with conda, it may take several tens of minutes to resolve package dependencies.**
+After setting up the environment, please switch to this `emotional_video_analysis` environment.
+<!--ローカルマシンで実行している場合は，下記のセルを実行する代わりに， 下記のコマンドを実行し， conda 環境を作成することを推奨します． **condaで環境を作成する場合，パッケージの依存関係の解決に数十分かかる可能性があるのでご注意ください．** -->
+<!--環境構築後，この `emotional_video_analysis` の環境に移行してください．-->
+```
+$ conda env create -f env.yaml
+$ conda activate emotional_video_analysis 
+```
+
+!pip install -r ./requirements.txt
+
+\* If the Python version is 3.11 or higher, some libraries will behave inconsistently. If the Python version on Google Colab is 3.12 or higher, please downgrade the version. (August 19, 2024)
+<!--（2024/8/19） Pythonのバージョンが3.11以上の場合，一部のライブラリの挙動に不整合が発生します．もし，Google colab上におけるPythonのバージョンが3.11以上の場合，バージョンを下げる措置をとってください．-->
+
+If you want to visualize the cortical map using [pycortex](https://github.com/gallantlab/pycortex), please install `pycortex` and [Inkscape](https://wiki.inkscape.org/wiki/Installing_Inkscape).
+<!--[pycortex](https://github.com/gallantlab/pycortex)を使用した皮質マップの可視化を行う場合，`pycortex`と[Inkscape](https://wiki.inkscape.org/wiki/Installing_Inkscape)をインストールしてください．-->
+
+If using Google Colab, please run the following cell. If running on a local machine, please install it according to your environment.
+<!--Google colabの場合は下記のセルを実行してください．ローカルマシンで実行している場合は使用している環境に合わせて適宜インストールしてください．-->
+
+!sudo apt-get install -y inkscape
+!pip install pycortex
+
+
+If you are performing visualizations with `pycortex`, you will need to modify the configuration file. Please make the same adjustments if you are running this tutorial on a local machine.
+<!--`pycortex` での可視化を行う場合は， 設定ファイルを書き換えます．このチュートリアルをローカルマシンで実行している場合も，同様に書き換えてください．-->
+
+First, import the `cortex` package.
+<!--まず一度`cortex`パッケージのimportを行います．-->
+
+
+import cortex
+
+This operation will generate `~/.config/pycortex/options.cfg`. Modify the `filestore` path in the `[base]` section of this configuration file to be under `data/pycortex`.
+<!--これにより `~/.config/pycortex/options.cfg` が生成されます．この設定ファイルの `[base]` セクションの `filestore` のパスを `data/pycortex` 以下に修正します．-->
+
+!echo 'Before modification'
+!cat  ~/.config/pycortex/options.cfg | grep filestore
+!cp ~/.config/pycortex/options.cfg ~/.config/pycortex/backup_options.cfg
+!sed -i 's/filestore = \/usr\/share\/pycortex\/db/filestore = .\/data\/pycortex\//' ~/.config/pycortex/options.cfg
+!echo 'After modification'
+!cat  ~/.config/pycortex/options.cfg | grep filestore
+
+
+After updating, **be sure to restart your runtime (session).** The `pycortex` loads the above setting at module import.
+<!--完了後，**必ずランタイム（セッション）を再起動してください．** `pycortex`は import 時に上記の設定の読み込みを行います．-->
+
+After restarting, please move back to `EmotionVideoNeuralRepresentationPython` directory.
+<!--再起動後は再び　`EmotionVideoNeuralRepresentationPython`  の直下に移動してください．-->
+
+# If running on a local machine environment, please correct the `cd` destination as appropriate.
+%cd /content/EmotionVideoNeuralRepresentationPython
+
+### Download Data (~5min)
+<!--### 必要なデータのダウンロード-->
+
+Move to the `data` directory and run `download.py`. This `download.py` allows you to specify the data to be downloaded via arguments. This time, only the files used for this tutorial will be downloaded:
+
+<!--`data` ディレクトリの下に移動し， `download.py` を実行して下さい．`download.py` はダウンロード対象のデータを引数で指定することができます．今回はデモに使用するファイルのみをダウンロードします．-->
+
+- `demo_fmri`: Subject1's fMRI data for tutorial. 
+- `demo_pycortex`: Subject1's pycortex data
+- `feautres`: All emotional scores
+
+If you wish to download data other than that for the tutorial, please refer to [data/README.md](data/README.md).
+<!--チュートリアル用以外のデータをダウンロードする場合は，data/README.mdを参照してください．-->
+
+After downloading, exit the `data` directory and move back to `EmotionVideoNeuralRepresentationPython` directory.
+<!--ダウンロード後は， `data`を抜けて，`EmotionVideoNeuralRepresentationPython`の直下に移動してください．-->
+
+%cd data
+!python download.py demo_fmri
+!python download.py demo_pycortex
+!python download.py features
+%cd ../
+
+This completes the preparation.
+<!--これで準備は完了です．-->
+
+<br/>
+<br/>
+
+## Tutorial for encoding analysis
+
+In this section, we will explain the procedure for encoding analysis. 
+<!--このセクションではencoding analysisの手続きについて説明します．-->
+
+We perform encoding using the following procedure. Furthermore, the decoding analysis described in the next section can be performed using almost the same procedure.
+<!--下記の手順でencodingを実行します．さらに次のセクションで説明するdecoding analysisについてもほぼ同じ手順で実行できます．-->
+
+1. Check the encoding configuration files
+2. Train the encoder models
+3. Predict fMRI signals by using the trained encoder model
+4. Calculate the accuracy of prediction
+5. Visualize encoding accuracy
+
+<!-- 
+1. Encoding 設定ファイルを確認する
+2. Encoderのtrainingを行う
+3. Encoding prediction を行う
+4. Encoding prediction の performance の計算
+5. Encoding performance の可視化 
+-->
+
+
+### Check the encoding configuration files (~5min)
+<!-- ### Encoding 設定ファイルの確認-->
+
+First, make sure you are under `EmotionVideoNeuralRepresentationPython`.
+<!-- まずは `EmotionVideoNeuralRepresentationPython` の直下にいることを確認してください．-->
+
+# If running on a local machine environment, please correct the `cd` destination as appropriate.
+%cd /content/EmotionVideoNeuralRepresentationPython
+!pwd
+
+Next, import the necessary modules.
+<!-- 次に必要なモジュールをimportしてください． -->
+
+import os
+import sys
+from itertools import product
+from pathlib import Path
+import warnings
+import numpy as np
+import matplotlib.pyplot as plt
+from hydra.experimental import initialize_config_dir, compose
+import cortex
+
+import bdpy
+from bdpy.dataform import SQLite3KeyValueStore
+
+sys.path.insert(0, "./src")
+sys.path.insert(0, "./feature-encoding")
+sys.path.insert(0, "./feature-decoding")
+
+# Ignore UserWarning
+warnings.simplefilter('ignore', UserWarning)
+
+Let's confirm the calculation target of encoding analysis in this tutorial.
+<!--それではこのtutorialにおけるencoding analysisの計算対象の確認を行います．-->
+
+In the encoding analysis in our paper, the brain activity of each subject is estimated using the scores of emotional categories (34 categories), affective dimensions (14 dimensions), semantic features (73 feat), and vision features (1000 feat). In reality, 6-fold cross-validation calculations were performed for each of the five subjects. However, since performing all calculations would take time, in this tutorial, the calculations are limited to the following conditions.
+<!--本稿では， encoding anlaysis として， emotional category (34 category)，affective dimension (14 dimension)，semantic feature (73 feat), vision feature (1000 feat) の score を用いて，各被験者の脳活動を推定しています．-->
+<!--実際には5人の被験者に対して，それぞれ6-fold crossvalidationの計算を行っています．しかし，すべての計算を行うと時間がかかるため，ここでは下記の条件に絞り込みます．-->
+
+1. Only perform calculations for one of the five subjects.
+2. Only perform calculations for cortical brain activity. (Not perform calculations for subcortex)
+3. Only perform calculations for category scores and dimension scores.
+4. Only perform calculations for one of the six-fold calculations.
+5. Not optimize parameters (do not optimize parameters by performing nested cross-validation during cross-validation)
+
+<!--
+1. 5subjectのうち，1subjectの計算のみを行う
+2. 皮質脳活動の計算のみを行う（subcortexについて計算しない）
+3. category score と dimension score の計算のみを行う（semantic and vision score の計算を行わない）
+4. 6-fold計算のうち，1-foldの計算のみを行う
+5. 交差検証のfold計算中に，さらにtraining dataset内のfold計算を行ってパラメータの最適化を行うフェーズを実行しない
+-->
+
+Now, let's check the config file for the tutorial we will use this time, `./config/tutorial_encoding_emotion_score_cv_paper2020.yaml`.
+<!--それでは，今回使用する tutorial 用の config ファイル `./config/tutorial_encoding_emotion_score_cv_paper2020.yaml` を確認しましょう．-->
+
+
+# Load config data
+config_file = "./config/tutorial_encoding_emotion_score_cv_paper2020.yaml"
+config_file = Path(config_file)
+config_name = str(config_file.stem)
+config_dir = str(config_file.absolute().parent)
+with initialize_config_dir(config_dir=config_dir):
+    cfg = compose(config_name=config_name)    
+
+# Convert settings to variables
+analysis_name = 'cv_train_encoder_fastl2lir-tutorial_encoding_emotion_score_cv_paper2020'
+fmri = {
+    subject["name"]: subject["paths"]
+    for subject in cfg["encoder"]["fmri"]["subjects"]
+}
+rois = {
+    roi["name"]: roi["select"]
+    for roi in cfg["encoder"]["fmri"]["rois"]
+}
+label_key = cfg["encoder"]["fmri"]["label_key"]
+feature_dir_list = cfg["encoder"]["features"]["paths"]
+features = [feat["name"] for feat in cfg["encoder"]["features"]["layers"]]
+num_unit = {
+    layer["name"]: layer["num"]
+    for layer in cfg["encoder"]["features"]["layers"]
+}
+feature_index_file = cfg.encoder.features.get("index_file", None)
+encoder_dir = cfg["encoder"]["path"]
+encoded_fmri_dir = cfg["encoded_fmri"]["path"]
+cv_folds = cfg.cv.get("folds", None)
+cv_exclusive = cfg.cv.get("exclusive_key", None)
+cv_labels = ['cv-fold{}'.format(icv + 1) for icv in range(len(cv_folds))]
+excluded_labels = cfg.encoded_fmri.fmri.get("exclude_labels", [])
+average_sample = cfg.encoded_fmri.parameters.get("average_sample", True)
+evaluation_rois = {
+    roi["name"]: roi["select"]
+    for roi in cfg["evaluation"]["fmri"]["rois"]
+}
+
+# Show settings
+print("====== Tutorial encoding settings ======")
+print("Subjects: {}".format(list(fmri.keys())))
+print("ROIs:     {}".format(list(rois.keys())))
+print("Features: {}".format(features))
+print("Folds:    {}".format(cv_labels))
+print("")
+print("fMRI data dir:           {}".format(os.path.split(list(fmri.values())[0][0])[0]))
+print("Feature data dir:        {}".format(feature_dir_list[0]))
+print("")
+print("Save encoder dir:        {}".format(encoder_dir))
+print("Save encoded singal dir: {}".format(encoded_fmri_dir))
+print("===============================")
+
+
+You can also check the settings used in the analysis on the paper (`./config/encoding_emotion_score_cv_paper2020.yaml`) by executing the cell below.
+<!--実際の paper の解析で用いられている設定（`./config/encoding_emotion_score_cv_paper2020.yaml`）についても，下記のセルを実行すると確認できます．-->
+
+By specifying this config file, you can change the subsequent training and prediction to conform to the analysis of the paper. However, **please note that the parameters will be fixed conditions.** The phase of optimizing parameters by performing further fold calculations in the training dataset during the fold calculation of cross-validation is not implemented in the Python version. 
+<!--こちらに config file の指定を差し替えることで，以降の training や prediction について，paper の解析に準拠したものに変更することができます．**ただし，パラメータが固定された条件になることにご注意ください．**交差検証のfold計算中に，さらにtraining dataset内のfold計算を行ってパラメータの最適化を行うフェーズについては，Python 版で実装されていません． -->
+In addition, if you calculate all conditions, the required calculation memory will increase, and it may not be possible to run it on Google Colab. 
+Moreover, the calculation time will be long. 
+So please run it in a local machine environment.
+<!--また，すべての条件を計算する場合は，必要な計算メモリが増大し，Google colabでは実行できない可能性があります．加えて，計算が長時間に及ぶため，ローカルマシン環境で実行するようにしてください．-->
+
+
+# Original encoding analysis settings
+
+config_file = "./config/encoding_emotion_score_cv_paper2020.yaml"
+config_file = Path(config_file)
+config_name = str(config_file.stem)
+config_dir = str(config_file.absolute().parent)
+
+with initialize_config_dir(config_dir=config_dir):
+    cfg2 = compose(config_name=config_name)    
+
+# Convert settings
+fmri2 = {
+    subject["name"]: subject["paths"]
+    for subject in cfg2["encoder"]["fmri"]["subjects"]
+}
+rois2 = {
+    roi["name"]: roi["select"]
+    for roi in cfg2["encoder"]["fmri"]["rois"]
+}
+feature_dir_list2 = cfg2["encoder"]["features"]["paths"]
+features2 = [feat["name"] for feat in cfg2["encoder"]["features"]["layers"]]
+encoder_dir2 = cfg2["encoder"]["path"]
+encoded_fmri_dir2 = cfg2["encoded_fmri"]["path"]
+cv_folds2 = cfg2.cv.get("folds", None)
+cv_labels2 = ['cv-fold{}'.format(icv + 1) for icv in range(len(cv_folds2))]
+
+from pprint import pprint
+print("====== Original encoding settings ======")
+print("Subjects: {}".format(list(fmri2.keys())))
+print("ROIs:     {}".format(list(rois2.keys())))
+print("Features: {}".format(features2))
+print("Folds:    {}".format(cv_labels2))
+print("")
+print("fMRI data dir:           {}".format(os.path.split(list(fmri2.values())[0][0])[0]))
+print("Feature data dir:        {}".format(feature_dir_list2[0]))
+print("")
+print("Save encoder dir:        {}".format(encoder_dir2))
+print("Save encoded singal dir: {}".format(encoded_fmri_dir2))
+print("===============================")
+
+Now, let's perform the calculation with the settings of the tutorial above.
+<!--それでは，上記の tutorial のセッティングで計算を行っていきます．-->
+
+### Train the encoder models (~5min)
+
+In this subsection, we will train the encoder model. Please make sure that the current directory is under `EmotionVideoNeuralRepresentationPython`.
+<!--このサブセクションでは，encoder model のtrainingを行います． カレントディレクトリが， `EmotionVideoNeuralRepresentationPython` の直下であることを確認してください．-->
+
+If running on a local machine, you can also perform training the encoder according to the specified config file by executing the command below. This calculation can also be run in parallel across multiple machines. (The current directory and the result storage directory must be shared between those machines). Parallel execution on multiple machines can significantly reduce the calculation time.
+<!--もし，ローカル環境で実行している場合，下記の通りコマンドを実行することで，上記の設定ファイルに準じて encoder の training が開始されます-->
+<!--この計算は，異なるマシン上で並行して実行することが可能です（カレントディレクトリ，および保存先ディレクトリをマシン間で共有している必要があります）．
+特に，全ての条件を計算する場合，複数マシンでの並列実行を推奨します．-->
+
+`$ python feature-encoding/cv_train_encoder_fastl2lir.py config/tutorial_encoding_emotion_score_cv_paper2020.yaml`
+
+
+In this tutorial, we will directly call and execute the main function called by the above script `cv_train_encoder_fastl2lir.py`.
+<!--このチュートリアルでは，　上記のスクリプト `cv_train_encoder_fastl2lir.py` で呼び出されるメイン関数を直接呼び出し，実行します．-->
+
+from cv_train_encoder_fastl2lir import featenc_cv_fastl2lir_train
+
+featenc_cv_fastl2lir_train(
+    fmri,
+    feature_dir_list,
+    output_dir=encoder_dir,
+    rois=rois,
+    label_key=label_key,
+    layers=features,
+    num_unit=num_unit,
+    feature_index_file=feature_index_file,
+    alpha=cfg["encoder"]["parameters"]["alpha"],
+    cv_key=cfg["cv"]["key"],
+    cv_folds=cv_folds,
+    cv_exclusive=cv_exclusive,
+    analysis_name=analysis_name
+)
+
+
+The trained encoder model will be output to the following directory.
+<!--下記のディレクトリに訓練済みencoderモデルが出力されます．-->
+
+`<Save encoder dir>/<feature>/<subject>/<ROI>/<Fold>/model/*.mat`
+- `W.mat`: Weight of encoder model
+- `b.mat`: Bias of encoder model
+- `x_mean.mat`, `x_norm.mat`: Feature normalization parameters. 
+- `y_mean.mat`, `y_norm.mat`: Voxel normalization parameters.
+
+Execute the command below and check the outputs.
+
+!ls ./data/feature_encoders/encoding_emotion_score_cv_paper2020_featall_alpha100/amt/mean_score_concat/category/Subject1/Cortex/cv-fold1/model
+
+After calculating, please run the script below to check that all specified conditions are complete. Be sure to run it if an error occurs during execution or if you are performing parallel calculations.
+<!--計算終了後， 下記のスクリプトを実行することで， 全ての計算が完了していることを確認します．実行途中でエラーが発生したり，並列計算したりした場合は，必ず実行してください．-->
+
+`$ python src/check_training_prediction.py config/tutorial_encoding_emotion_score_cv_paper2020.yaml --override +wash=train`
+
+In this tutorial, directly call and execute the main function called by the above script `check_training_prediction.py`. There is no problem if you get the output below.
+<!--ここでは，　上記のスクリプト `check_training_prediction.py` で呼び出されるメイン関数を直接呼び出し，実行します．下記が出力されれば問題ありません．-->
+
+```
+==========
+No processes were terminated during execution.
+==========
+```
+
+If you are informed that there are unfinished conditions, run the above cell (command) again to ensure that all conditions are completed.
+<!--もし，　未終了の条件があると指示された場合は，再度，上記のセル（コマンド）を実行し，すべての条件を確実に完了させてください．-->
+
+from check_training_prediction import check_training_prediction
+
+target = "train"
+analysis_type = "encoding"
+
+check_training_prediction(
+    encoder_dir,
+    target,
+    analysis_type,
+    analysis_name,
+    list(fmri.keys()),
+    list(rois.keys()),
+    features,
+    cv_folds,
+)
+
+
+This completes encoder training.
+<!-- これで encoder の training は完了です． -->
+
+
+### Predict fMRI signals by using the trained encoder model (~5min)
+
+In this subsection, we will perform prediction using the encoder model trained in the previous section. Please make sure that the current directory is under `EmotionVideoNeuralRepresentationPython`.
+<!--このセクションでは，前セクションで訓練されたencoder modelを用いて，predictionを行います．カレントディレクトリが， `EmotionVideoNeuralRepresentationPython` の直下dであることを確認してください．-->
+
+If running on a local machine, you can also perform predictions according to the specified config file by executing the command below. This calculation can also be performed in parallel across multiple machines.
+<!--もし，ローカル環境で実行している場合，下記の通りコマンドを実行することで，上記の設定ファイルに準じて encoder の prediction が開始されます-->
+<!--この計算も，複数のマシン間で並列実行することが可能です．-->
+
+`$ python feature-encoding/cv_predict_fmri_fastl2lir.py config/tutorial_encoding_emotion_score_cv_paper2020.yaml`
+
+In this tutorial, we will directly call and execute the main function called by the above script `cv_predict_fmri_fastl2lir.py`.
+<!--このでは，　上記のスクリプト `cv_predict_fmri_fastl2lir.py` で呼び出されるメイン関数を直接呼び出し，実行します．-->
+
+from cv_predict_fmri_fastl2lir import featenc_cv_fastl2lir_predict
+
+featenc_cv_fastl2lir_predict(
+    feature_dir_list,
+    fmri,
+    encoder_dir,
+    output_dir=encoded_fmri_dir,
+    subjects=list(fmri.keys()),
+    rois=rois,
+    label_key=label_key,
+    layers=features,
+    feature_index_file=feature_index_file,
+    excluded_labels=excluded_labels,
+    cv_key=cfg["cv"]["key"],
+    cv_folds=cv_folds,
+    cv_exclusive=cv_exclusive,
+    analysis_name=analysis_name
+)
+
+
+
+The predicted fMRI signal for each stimulus will be output to the following directory.
+<!--下記のディレクトリに推定された fMRI signal が各刺激ごとに出力されます．-->
+
+`<Save encoded singal dir>/<feature>/<subject>/<ROI>/<Fold>/encoded_fmri/*.mat`
+
+Execute the command below and check the outputs.
+
+
+!ls ./data/encoded_fmri/encoding_emotion_score_cv_paper2020_featall_alpha100/amt/mean_score_concat/category/Subject1/Cortex/cv-fold1/encoded_fmri/
+
+After calculating, please run the script below to check that all specified conditions are complete. Be sure to run it if an error occurs during execution or if you are performing parallel calculations.
+<!--計算後， 下記のスクリプトを実行することで， 全ての計算が完了していることを確認してください．-->
+
+`$ python src/check_training_prediction.py config/tutorial_encoding_emotion_score_cv_paper2020.yaml --override +wash=predict`
+
+In this tutorial, directly call and execute the main function called by the above script `check_training_prediction.py`. There is no problem if you get the following two outputs.
+
+<!--ここでは，　上記のスクリプトで呼び出されるメイン関数を直接呼び出し，実行します．下記の2つの出力が得られれば問題ありません．-->
+```
+==========
+No processes were terminated during execution.
+==========
+
+==========
+All predicted files exist.
+==========
+```
+
+If you are informed that there are unfinished conditions, run the above cell (command) again to ensure that all conditions are completed.
+<!--もし，未終了の条件があると指示された場合は，再度，上記のセル（コマンド）を実行し，すべての条件を確実に完了させてください．-->
+
+
+from check_training_prediction import check_training_prediction
+
+target = "predict"
+analysis_type = "encoding"
+
+check_training_prediction(
+    encoded_fmri_dir,
+    target,
+    analysis_type,
+    analysis_name,
+    list(fmri.keys()),
+    list(rois.keys()),
+    features,
+    cv_folds,
+)
+
+
+This completes the prediction of the encoding.
+<!--これで encoding の prediction は完了です．-->
+
+### Calculate the accuracy of prediction (~5min)
+<!-- ### Encoding prediction の performance の計算 （~5分） -->
+
+In this sub section, we will calculate the accuracy of the predicted signal. Specifically, we calculate the correlation coefficient for each voxel between the fMRI signal predicted in the previous section and the actual observed fMRI signal.
+The current directory should be under `EmotionVideoNeuralRepresentationPython`.
+<!-- このセクションでは，predicted signal の精度を計算します．具体的には，前セクションで推定されたfMRI signalと，実際に観測されたfMRI singalについて，voxelごとにcorrelation coefficientを計算します．
+カレントディレクトリは， `EmotionVideoNeuralRepresentationPython` の直下としてください． -->
+
+If running on a local machine, you can also evaluate the predicted signal according to the specified config file by executing the command below. This calculation can also be performed in parallel across multiple machines.
+<!-- もし，ローカル環境で実行している場合，下記の通りコマンドを実行することで，上記の設定ファイルに準じて推定signalの評価が開始されます
+-->
+<!-- この計算は，並列実行することが可能です． -->
+
+`$ python src/cv_evaluate_predicted_fmri.py config/tutorial_encoding_emotion_score_cv_paper2020.yaml `
+
+In this tutorial, we will directly call and execute the main function called by the above script `cv_evaluate_predicted_fmri.py`.
+<!-- ここでは，　上記のスクリプト `cv_evaluate_predicted_fmri.py` で呼び出されるメイン関数を直接呼び出し，実行します． -->
+
+from cv_evaluate_predicted_fmri import cv_evaluate_predicted_fmri
+
+cv_evaluate_predicted_fmri(
+    encoded_fmri_dir,
+    encoder_dir,
+    fmri,
+    rois,
+    evaluation_rois,
+    features,
+    cv_folds,
+    label_key,
+    output_file_pooled=os.path.join(encoded_fmri_dir, 'evaluation.db'),
+    output_file_fold=os.path.join(encoded_fmri_dir, 'evaluation_fold.db'),
+    average_sample=average_sample,
+)
+
+
+The `sqlite3` database file containing the evaluation results will be saved in the following directory. For information on how to access the accuracy values, please refer to the description of `Read accuracy` in the code in the next section.
+<!-- 下記のディレクトリに評価結果を格納した `sqlite3` のデータベースファイルが保存されます．アクセス方法については，次セクションにおけるコード中の`Read accuracy`の記述を参考にしてください． -->
+
+`<Save encoded singal dir>/evaluation.db`
+
+
+After calculating, please run the script below to check that all specified conditions are complete. Be sure to run it if an error occurs during execution or if you are performing parallel calculations.
+<!--計算終了後， 下記のスクリプトを実行することで， 全ての計算が完了していることを確認します．-->
+
+`$ python src/check_evaluate_database.py config/tutorial_encoding_emotion_score_cv_paper2020.yaml `
+
+
+In this tutorial, directly call and execute the main function called by the above script `check_evaluate_database.py`. Please confirm that `All conditions are finished` is printed twice. Once indicates that each fold evaluation has been completed, and the other indicates that the pooled evaluation by averaging the fold results, has been completed.
+<!--ここでは，　上記のスクリプトで呼び出されるメイン関数を直接呼び出し，実行します． `All conditions are finished` が二度出力されていることを確認してください．一つは各foldの計算が完了していることを示しており，もう一つはfoldの計算結果を平均したpooledの計算が完了していることを示しています．-->
+```
+==========
+All conditions are finished.
+==========
+
+==========
+All conditions are finished.
+==========
+```
+
+If you are informed that there are unfinished conditions, run the above cell (command) again to ensure that all conditions are completed.
+<!-- もし，　未終了の条件があると指示された場合は，再度，上記のセル（コマンド）を実行し，すべての条件を確実に完了させてください． -->
+
+from check_evaluate_database import check_evaluate_database
+
+analysis_type = "encoding"
+
+check_evaluate_database(
+    encoded_fmri_dir,
+    analysis_type,
+    list(fmri.keys()),
+    list(evaluation_rois.keys()),
+    features,
+    cv_folds,
+    output_file_pooled=os.path.join(encoded_fmri_dir, 'evaluation.db'),
+    output_file_fold=os.path.join(encoded_fmri_dir, 'evaluation_fold.db'),
+)
+
+Now all the calculations for encoding analysis are complete. Finally, we will visualize it.
+<!-- これで encoding analysis の全てのステップが完了しました．最後に可視化を行います．-->
+
+### Visualize encoding accuracy (~10min)
+<!--### Encoding performance の可視化 （~10分）-->
+
+In this sub section, we visualize the encoding accuracy calculated in the previous section.-->
+<!--このセクションでは，前セクションで計算されたencoding accuracyを可視化します．-->
+
+First, we plot the correspondence between the encoding accuracy of each voxel obtained from the category score and dimension score. This corresponds to a simplified version of Fig. 4B in our paper. Please note that the results does not match exactly because the calculation conditions are reduced.
+<!--まずは，category score と dimension score のそれぞれから得られた，各voxel の encoding accuracy の対応関係をplotします．これは本稿の Fig.4B の簡易版に該当します．計算条件が緩和されているため，厳密一致しないことには注意してください．-->
+
+# Fig.4B Prediction accuracies of individual voxels
+
+from scipy.stats import gaussian_kde
+import random
+
+plt.rcParams["font.size"] = 20
+linewidth = 1
+colormap = "summer"
+plotsize = 20
+metric = "profile_correlation"
+
+# Sub function
+def get_density_plot(ax, x, y, limit_datasize = 10000, regression_line = True, diagonal_lines = True, 
+                     linewidth=1, plotsize=3, colormap="jet"):
+    # Remove nan values
+    not_nans = np.logical_not(np.logical_or(np.isnan(x), np.isnan(y)))
+    x = x[not_nans]
+    y = y[not_nans]    
+    # Limit data size
+    if limit_datasize is not None:
+        if len(x) > limit_datasize:
+            selector = random.choices(np.arange(len(x)), k = limit_datasize)
+            x = x[selector]
+            y = y[selector]
+    # Calculater linear regression
+    if regression_line:
+        p = np.polyfit(x, y, 1)
+        ax.axline((0, p[1]),  slope=p[0], color="r", lw = linewidth)
+    # Draw diagonal line
+    if diagonal_lines:
+        ax.axline((0, 0), slope=1, color="black", lw = linewidth)
+        ax.axvline(0, c="k", lw=linewidth)
+        ax.axhline(0, c="k", lw=linewidth)    
+    # KDE probability
+    xy = np.vstack([x, y]) 
+    z = gaussian_kde(xy)(xy)
+    idx = z.argsort() 
+    x, y, z = x[idx], y[idx], z[idx]
+    im = ax.scatter(x, y, c=z, s=plotsize, cmap=colormap)    
+    
+    return ax, im, p[0]
+
+# Connect to accuracy database
+evaluation_filepath = os.path.join(encoded_fmri_dir, "evaluation.db")
+db = SQLite3KeyValueStore(evaluation_filepath)
+
+for subject in fmri.keys():        
+    # Load accuracy
+    category_acc = []
+    dimension_acc = []
+    for roi, evaluation_roi in product(rois.keys(), evaluation_rois.keys()):
+        category_acc.append(db.get(subject=subject, roi=evaluation_roi, layer='category', metric=metric))
+        dimension_acc.append(db.get(subject=subject, roi=evaluation_roi, layer='dimension', metric=metric))
+    category_acc = np.hstack(category_acc)     
+    dimension_acc = np.hstack(dimension_acc)
+    # Draw figure
+    fig, ax = plt.subplots(1, 1, figsize=(6, 6))
+    ax.axvline(0.111, c="gray", ls="dashed", lw = linewidth)
+    ax.axhline(0.111, c="gray", ls="dashed", lw = linewidth)
+    _, _, slope = get_density_plot(ax, category_acc, dimension_acc,
+                                   limit_datasize = 10000, regression_line=True, diagonal_lines = True, 
+                                   linewidth =linewidth, plotsize=plotsize, colormap=colormap)
+    angle = np.arctan(slope)*(180/np.pi)
+    ax.text(0.3, -0.05, "Subject1")
+    ax.text(-0.07, 0.5, "Slope angle = %.1f°" % (angle))
+    ax.set_xlabel("Prediction accuracy(r)\n[category]")
+    ax.set_ylabel("Prediction accuracy(r)\n[dimension]")
+    ax.set_xlim(-0.15, 0.55)
+    ax.set_ylim(-0.15, 0.55)
+    ax.set_aspect("equal")
+
+Next, we use `pycortex` to map the accuracy of each voxel onto the flattend cortex of the subject.
+<!--次に `pycortex`を使用して，各voxelのcorrelation coefficientを被験者の展開された皮質上にマップします．-->
+
+Before doing this, please check the following two points.
+<!--まずは下記の2点を確認してください．-->
+
+1. The `filestore` of `pycortex` is `./data/pycortex`.
+2. `INKSCAPE_VERSION` is not `None`.
+
+If the conditions are not met, please check the Setup section.
+<!--条件が満たされていない場合，Setup sectionを確認してください．-->
+
+import cortex
+print('pycortex filestore:', cortex.config['basic']['filestore'])
+print('INKSCAPE_VERSION:', cortex.testing_utils.INKSCAPE_VERSION)
+
+
+If the above conditions are met, run the cell below to visualize the results.
+The encoding accuracy for each subject's emotion score will be displayed.
+<!--上記の条件が満たされているならば，下記のセルを実行して，結果の可視化を行ってください．
+各被験者のemotion scoreごとのencoding accuracyが表示されます．-->
+
+This corresponds to a simplified version of Fig. 4A in our paper. Please note that the results does not match exactly because the calculation conditions are reduced.
+<!--これは本稿の Fig.4A の簡易版に該当します．計算条件が緩和されているため，厳密一致しないことには注意してください．-->
+
+# Fig.4A Prediction accuracies of emotion encoding models
+
+pycortex_align = 'voxel2mm_fmriprep'
+pycortex_overlay_filepath = './data/pycortex/{}/overlays.svg'
+metric = "profile_correlation"
+vmin = 0.1
+vmax = 0.4
+
+# Connect to accuracy database
+evaluation_filepath = os.path.join(encoded_fmri_dir, "evaluation.db")
+db = SQLite3KeyValueStore(evaluation_filepath)
+
+for subject in fmri.keys():
+    # Load Bdata
+    bdata = bdpy.BData(fmri[subject][0])
+            
+    for feature in features:
+        print("Feature:", feature)
+        # Create emty volume
+        # Colormap (cmap) for visualization is set here. Available cmap is same as Matplotlib 
+        # (See document for matplotlib.pylab.colormaps()).
+        voxel_vol = cortex.Volume.empty(subject, 
+                                        pycortex_align, 
+                                        value=np.nan, cmap='hot')                
+        
+        for roi, evaluation_roi in product(rois.keys(), evaluation_rois.keys()):
+            # Load voxel information
+            #_, encoding_roi_selector = bdata.select(rois[roi], return_index = True)
+            _, visualize_roi_selector = bdata.select(evaluation_rois[evaluation_roi], return_index = True)
+            #voxel_selector = visualize_roi_selector[encoding_roi_selector]
+
+            # Apply voxel selector to voxel_i/j/k array
+            voxel_ijk = np.vstack([
+                bdata.get_metadata('voxel_i')[visualize_roi_selector].astype('int32'),
+                bdata.get_metadata('voxel_j')[visualize_roi_selector].astype('int32'),
+                bdata.get_metadata('voxel_k')[visualize_roi_selector].astype('int32'),
+            ]).astype(int)
+
+            # Read accuracy 
+            acc = db.get(subject=subject, roi=evaluation_roi, layer=feature, metric=metric).copy()
+            
+            # Mapped to each voxel
+            acc[acc < vmin] = np.nan
+            voxel_vol.data[ voxel_ijk[2], voxel_ijk[1], voxel_ijk[0] ] = acc
+
+        # Set vmax and vmin for visualization                    
+        voxel_vol.vmax = vmax
+        voxel_vol.vmin  = 0
+
+        # Set text
+        text_posi_x = 0.5
+        text_posi_y = 0.9
+        show_text = feature
+        
+        # Show
+        fig = cortex.quickshow( 
+                    voxel_vol, with_colorbar=True, with_curvature=True, 
+                    overlay_file=pycortex_overlay_filepath.format(subject),
+                    labelsize=50, linewidth=3,
+            )
+        fig.text(text_posi_x, text_posi_y, show_text, 
+                    horizontalalignment='center', verticalalignment='center', size=50)
+        plt.show()
+        
+
+This completes the encoding analysis tutorial. Congratulations on your hard work!
+<!-- 以上でencoding analysisのtutorialは完了です．お疲れ様でした． -->
+
+If you would like to know more about the encoding calculation procedure, please refer to [01_encoding.ipynb](https://github.com/KamitaniLab/feature-encoding/blob/main/handson/01_encoding.ipynb) in the [feature-encoding](https://github.com/KamitaniLab/feature-encoding) repository.
+<!-- Encoding のより詳細な計算手続きを知りたい場合は，　[feature-encoding](https://github.com/KamitaniLab/feature-encoding) リポジトリ内の handson/02_encoding.ipynb を参照してください． -->
+
+<br/>
+<br/>
+
+## Tutorial for decoding analysis
+
+In this section, we will explain the procedure for decoding analysis. 
+<!--このセクションではdecoding analysisの手続きについて説明します．-->
+
+We perform decoding using the following procedure. The basic flow is the same as in the previous encoding section.
+<!--下記の手順でdecodingを実行します．基本的な流れは前のencodingセクションと同一です．-->
+
+1. Check the decoding configuration files
+2. Train the decoder models
+3. Predict emotional scores by using the trained decoder models
+4. Calculate the accuracy of prediction
+5. Visualize decoding performance
+
+<!--
+1. Decoding 設定ファイルを確認する
+2. Decoderのtrainingを行う
+3. Decoding prediction を行う
+4. Decoding prediction の performance の計算
+5. Decoding performance の可視化 
+-->
+
+
+### Check the decoding configuration files (~5min)
+<!--### Decoding 設定ファイルの確認-->
+
+First, make sure you are under `EmotionVideoNeuralRepresentationPython`.
+<!--まずは `EmotionVideoNeuralRepresentationPython` の直下にいることを確認してください．-->
+
+# If running on a local machine environment, please correct the `cd` destination as appropriate.
+%cd /content/EmotionVideoNeuralRepresentationPython
+!pwd
+
+Next, import the necessary modules.
+<!--次に必要なモジュールをimportしてください．-->
+
+import os
+import sys
+from itertools import product
+from pathlib import Path
+import warnings
+import numpy as np
+from hydra.experimental import initialize_config_dir, compose
+import cortex
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+import bdpy
+from bdpy.dataform import SQLite3KeyValueStore
+
+sys.path.insert(0, "./src")
+sys.path.insert(0, "./feature-encoding")
+sys.path.insert(0, "./feature-decoding")
+
+warnings.simplefilter('ignore', UserWarning)
+
+Let's confirm the calculation target of decoding analysis in this tutorial.
+<!--それではこのチュートリアルにおけるdecoding anlaysisの計算対象の確認を行います．-->
+
+In the decoding analysis in our paper, we estimate scores for emotional categories (34 categories) and affective dimensions (14 dimensions) from each subject's cortical and subcortex brain activity.
+<!--本稿では， decoding anlaysis として， 各被験者の皮質およびsubcortex脳活動から，emotional category (34 category) および affective dimension (14 dimension) の score の推定を行なっています．-->
+
+In reality, 6-fold cross-validation calculations were performed for each of the five subjects. However, since performing all calculations would take time, in this tutorial, the calculations are limited to the following conditions.
+<!--実際には5人の被験者に対して，それぞれ6-fold crossvalidationの計算を行っています．しかし，すべての計算を行うと時間がかかるため，ここでは省略のため，下記の条件に絞り込みます．-->
+
+1. Only perform calculations for one of the five subjects.
+2. Use grouping 22 ROIs instead of 360 ROIs of HCP180 ([Glasser et al., 2016](https://www-nature-com.kyoto-u.idm.oclc.org/articles/nature18933)).
+3. Only perform calculations for category scores. 
+4. Only perform calculations for one of the six-fold calculations.
+5. Not optimize parameters (do not optimize parameters by performing nested cross-validation during cross-validation)
+
+<!--
+1. 5subjectのうち，1subjectの計算のみを行う
+2. HCP180([Glasser et al., 2016](https://www-nature-com.kyoto-u.idm.oclc.org/articles/nature18933), 360 ROIs) の各ROIではなく，grouping ROI (22 ROIs) を用いる
+2. Category score の計算のみを行う
+2. 6-fold計算のうち，1-foldの計算のみを行う
+3. 交差検証のfold計算中に，さらにtraining dataset内のfold計算を行ってパラメータの最適化を行うフェーズを実行しない
+-->
+
+The grouping 22 ROIs are defined in the HCP180 paper. The left and right hemispheres are not treated separately.
+<!--ここで使用する grouping 22 ROIs は HCP180 の paper 中で定義されたものです．左右の半球を分けずに扱います．-->
+
+Now, let's check the config file for the tutorial we will use this time, `./config/tutorial_decoding_emotion_score_cv_paper2020.yaml`.
+<!--それでは，今回使用する tutorial 用の config ファイル `./config/tutorial_decoding_emotion_score_cv_paper2020.yaml` を確認しましょう．-->
+
+# Load config data
+config_file = "./config/tutorial_decoding_emotion_score_cv_paper2020.yaml"
+config_file = Path(config_file)
+config_name = str(config_file.stem)
+config_dir = str(config_file.absolute().parent)
+with initialize_config_dir(config_dir=config_dir):
+    cfg = compose(config_name=config_name)    
+
+# Convert settings to variables
+analysis_name = 'cv_train_decoder_fastl2lir-tutorial_decoding_emotion_score_cv_paper2020'
+fmri = {
+    subject["name"]: subject["paths"]
+    for subject in cfg["decoder"]["fmri"]["subjects"]
+}
+rois = {
+    roi["name"]: roi["select"]
+    for roi in cfg["decoder"]["fmri"]["rois"]
+}
+num_voxel = {
+    roi["name"]: roi["num"]
+    for roi in cfg["decoder"]["fmri"]["rois"]
+}
+label_key = cfg["decoder"]["fmri"]["label_key"]
+feature_dir_list = cfg["decoder"]["features"]["paths"]
+features = cfg["decoder"]["features"]["layers"]
+feature_index_file = cfg.decoder.features.get("index_file", None)
+decoder_dir = cfg["decoder"]["path"]
+decoded_feature_dir = cfg["decoded_feature"]["path"]
+cv_folds = cfg.cv.get("folds", None)
+cv_exclusive = cfg.cv.get("exclusive_key", None)
+cv_labels = ['cv-fold{}'.format(icv + 1) for icv in range(len(cv_folds))]
+excluded_labels = cfg.decoded_feature.fmri.get("exclude_labels", [])
+average_sample = cfg.decoded_feature.parameters.get("average_sample", True)
+
+# Show settings
+print("====== Tutorial decoding settings ======")
+print("Subjects: {}".format(list(fmri.keys())))
+print("ROIs:     {}".format(list(rois.keys())))
+print("Features: {}".format(features))
+print("Folds:    {}".format(cv_labels))
+print("")
+print("fMRI data dir:            {}".format(os.path.split(list(fmri.values())[0][0])[0]))
+print("Feature data dir:         {}".format(feature_dir_list[0]))
+print("")
+print("Save decoder dir:         {}".format(decoder_dir))
+print("Save decoded feature dir: {}".format(decoded_feature_dir))
+print("===============================")
+
+
+You can also check the settings used in the analysis on the paper (`./config/encoding_emotion_score_cv_paper2020.yaml`) by executing the cell below.
+<!--実際に paper の解析で用いられている設定（`./config/decoding_emotion_score_cv_paper2020.yaml`）についても，下記のセルを実行すると確認できます．-->
+
+By specifying this config file, you can change the subsequent training and prediction to conform to the analysis of the paper. However, **please note that the parameters will be fixed conditions.** The phase of optimizing parameters by performing further fold calculations in the training dataset during the fold calculation of cross-validation is not implemented in the Python version. 
+<!--こちらに config file の指定を差し替えることで，以降の training や prediction について，paper の解析に準拠したものに変更することができます．**ただし，パラメータが固定された条件になることにご注意ください．**交差検証のfold計算中に，さらにtraining dataset内のfold計算を行ってパラメータの最適化を行うフェーズについては，Python 版で実装されていません．-->
+In addition, if you calculate all conditions, the required calculation memory will increase, and it may not be possible to run it on Google Colab. 
+Moreover, the calculation time will be very long. 
+So please run it in a local machine environment. 
+<!--また，すべての条件を計算する場合は，必要な計算メモリが増大し，Google colabでは実行できない可能性があります．また，計算時間が長くなるため，ローカルマシン環境で実行するようにしてください．-->
+
+# Load config data
+config_file = "./config/decoding_emotion_score_cv_paper2020.yaml"
+config_file = Path(config_file)
+config_name = str(config_file.stem)
+config_dir = str(config_file.absolute().parent)
+with initialize_config_dir(config_dir=config_dir):
+    cfg2 = compose(config_name=config_name)    
+
+# Convert settings to variables
+fmri2 = {
+    subject["name"]: subject["paths"]
+    for subject in cfg2["decoder"]["fmri"]["subjects"]
+}
+rois2 = {
+    roi["name"]: roi["select"]
+    for roi in cfg2["decoder"]["fmri"]["rois"]
+}
+feature_dir_list2 = cfg2["decoder"]["features"]["paths"]
+features2 = cfg2["decoder"]["features"]["layers"]
+decoder_dir2 = cfg2["decoder"]["path"]
+decoded_feature_dir2 = cfg2["decoded_feature"]["path"]
+cv_folds2 = cfg2.cv.get("folds", None)
+cv_labels2 = ['cv-fold{}'.format(icv + 1) for icv in range(len(cv_folds2))]
+
+# Show settings
+print("====== Original decoding settings ======")
+print("Subjects: {}".format(list(fmri2.keys())))
+print("ROIs:     {}".format(list(rois2.keys())))
+print("Features: {}".format(features2))
+print("Folds:    {}".format(cv_labels2))
+print("")
+print("fMRI data dir:            {}".format(os.path.split(list(fmri2.values())[0][0])[0]))
+print("Feature data dir:         {}".format(feature_dir_list2[0]))
+print("")
+print("Save decoder dir:         {}".format(decoder_dir2))
+print("Save decoded feature dir: {}".format(decoded_feature_dir2))
+print("===============================")
+
+
+Now, let's perform the calculation with the settings of the tutorial above.
+<!--それでは，上記の tutorial のセッティングで計算を行っていきます．-->
+
+### Train the decoder models (~5min)
+<!--### Decoder training を行う (~5分)-->
+
+In this subsection, we will train the decoder model. Please make sure that the current directory is under `EmotionVideoNeuralRepresentationPython`.
+<!--Decoderのtrainingを行います． カレントディレクトリが， `EmotionVideoNeuralRepresentationPython` の直下であることを確認してください．（`!pwd`）-->
+
+
+If running on a local machine, you can also perform training the decoder according to the specified config file by executing the command below. This calculation can also be run in parallel across multiple machines. (The current directory and the result storage directory must be shared between those machines).
+Parallel execution on multiple machines can significantly reduce the calculation time.
+<!--もし，ローカル環境で実行している場合，下記の通りコマンドを実行することで，上記の設定ファイルに準じて encoder の training が開始されます-->
+<!--この計算は，異なるマシン上で並行して実行することが可能です（カレントディレクトリ，および保存先ディレクトリをマシン間で共有している必要があります）．
+特に，全ての条件を計算する場合，複数マシンでの並列実行を推奨します．-->
+
+`$ python feature-decoding/cv_train_decoder_fastl2lir.py config/tutorial_decoding_emotion_score_cv_paper2020.yaml`
+
+
+In this tutorial, we will directly call and execute the main function called by the above script `cv_train_decoder_fastl2lir.py`.
+<!--ここでは，　上記のスクリプト `cv_train_decoder_fastl2lir.py` で呼び出されるメイン関数を直接呼び出し，実行します．-->
+
+from cv_train_decoder_fastl2lir import featdec_cv_fastl2lir_train
+
+print(fmri)
+
+featdec_cv_fastl2lir_train(
+    fmri,
+    feature_dir_list,
+    output_dir=decoder_dir,
+    rois=rois,
+    num_voxel=num_voxel,
+    label_key=label_key,
+    cv_key=cfg["cv"]["key"],
+    cv_folds=cv_folds,
+    cv_exclusive=cv_exclusive,
+    layers=features,
+    feature_index_file=feature_index_file,
+    alpha=cfg["decoder"]["parameters"]["alpha"],
+    chunk_axis=cfg["decoder"]["parameters"]["chunk_axis"],
+    analysis_name=analysis_name
+)
+
+
+The trained decoder model will be output to the following directory.
+<!--下記のディレクトリに訓練済み decoder model が出力されます．-->
+
+`<Save decoder dir>/<feature>/<subject>/<ROI>/<Fold>/model/*.mat`
+- `W.mat`: Weight of encoder model
+- `b.mat`: Bias of encoder model
+- `x_mean.mat`, `x_norm.mat`: Voxel normalization parameters. 
+- `y_mean.mat`, `y_norm.mat`: Feature normalization parameters.
+
+Execute the command below and check the outputs.
+
+!ls ./data/feature_decoders/decoding_emotion_score_dimension_cv_paper2020_voxel500_alpha100/amt/mean_score_concat/category/Subject1/PVC/cv-fold1/model
+
+
+After calculating, please run the script below to check that all specified conditions are complete. Be sure to run it if an error occurs during execution or if you are performing parallel calculations.
+<!--計算終了後， 下記のスクリプトを実行することで， 全ての計算が完了していることを確認します．実行途中でエラーが発生したり，並列計算したりした場合は，必ず実行してください．-->
+
+`$ python src/check_training_prediction.py config/tutorial_decoding_emotion_score_cv_paper2020.yaml --override +wash=train`
+
+In this tutorial, directly call and execute the main function called by the above script `check_training_prediction.py`. There is no problem if you get the output below.
+<!--ここでは，　上記のスクリプト `check_training_prediction.py` で呼び出されるメイン関数を直接呼び出し，実行します．
+下記が出力されれば問題ありません．-->
+
+```
+==========
+No processes were terminated during execution.
+==========
+```
+
+If you are informed that there are unfinished conditions, run the above cell (command) again to ensure that all conditions are completed.
+<!--もし，　未終了の条件があると指示された場合は，再度，上記のセル（コマンド）を実行し，すべての条件を確実に完了させてください．-->
+
+from check_training_prediction import check_training_prediction
+
+target = "train"
+analysis_type = "decoding"
+
+check_training_prediction(
+    decoder_dir,
+    target,
+    analysis_type,
+    analysis_name,
+    list(fmri.keys()),
+    list(rois.keys()),
+    features,
+    cv_folds,
+)
+
+This completes decoder training.
+<!--これで encoder の training は完了です．-->
+
+### Predict emotional scores by using the trained decoder models (~5min)
+<!--### Decoding prediction を行う（~5分）-->
+In this subsection, we will perform prediction using the encoder model trained in the previous section. Please make sure that the current directory is under `EmotionVideoNeuralRepresentationPython`.
+<!--このセクションでは，前セクションでtrainingしたdecoder modelを用いて，predictionを行います．カレントディレクトリは， `EmotionVideoNeuralRepresentationPython` の直下としてください．-->
+
+If running on a local machine, you can also perform predictions according to the specified config file by executing the command below. This calculation can also be performed in parallel across multiple machines. 
+<!--もし，ローカル環境で実行している場合，下記の通りコマンドを実行することで，上記の設定ファイルに準じて encoder の prediction が開始されます-->
+<!--この計算も，並列実行することが可能です．-->
+
+`$ python feature-decoding/cv_predict_feature_fastl2lir.py config/tutorial_decoding_emotion_score_cv_paper2020.yaml`
+
+In this tutorial, we will directly call and execute the main function called by the above script `cv_predict_feature_fastl2lir.py`.
+<!--ここでは，　上記のスクリプト `cv_predict_feature_fastl2lir.py` で呼び出されるメイン関数を直接呼び出し，実行します．-->
+
+from cv_predict_feature_fastl2lir import featdec_cv_fastl2lir_predict
+
+featdec_cv_fastl2lir_predict(
+    fmri,
+    decoder_dir,
+    output_dir=decoded_feature_dir,
+    rois=rois,
+    label_key=label_key,
+    cv_key=cfg["cv"]["key"],
+    cv_folds=cv_folds,
+    cv_exclusive=cv_exclusive,
+    layers=features,
+    feature_index_file=feature_index_file,
+    excluded_labels=excluded_labels,
+    average_sample=average_sample,
+    chunk_axis=cfg["decoder"]["parameters"]["chunk_axis"],
+    analysis_name=analysis_name
+)
+
+The predicted emotional scores for each stimulus will be output to the following directory.
+<!--下記のディレクトリに推定された emotional scores が各刺激ごとに出力されます．-->
+
+`<Save decoded feature dir>/<feature>/<subject>/<ROI>/<Fold>/decoded_features/*.mat`
+
+Execute the command below and check the outputs.
+
+!ls ./data/decoded_features/decoding_emotion_score_dimension_cv_paper2020_voxel500_alpha100/amt/mean_score_concat/category/Subject1/PVC/cv-fold1/decoded_features/
+
+After calculating, please run the script below to check that all specified conditions are complete. Be sure to run it if an error occurs during execution or if you are performing parallel calculations.
+<!--計算終了後， 下記のスクリプトを実行することで， 全ての計算が完了していることを確認します．-->
+
+`$ python src/check_training_prediction.py config/tutorial_decoding_emotion_score_cv_paper2020.yaml --override +wash=predict`
+
+In this tutorial, directly call and execute the main function called by the above script `check_training_prediction.py`. There is no problem if you get the following two outputs.
+<!-- ここでは，　上記のスクリプトで呼び出されるメイン関数を直接呼び出し，実行します．下記の2つの結果が出力されることを確認してください． -->
+```
+==========
+No processes were terminated during execution.
+==========
+
+==========
+All predicted files exist.
+==========
+```
+
+If you are informed that there are unfinished conditions, run the above cell (command) again to ensure that all conditions are completed.
+<!--もし，未終了の条件があると指示された場合は，再度，上記のセル（コマンド）を実行し，すべての条件を確実に完了させてください．-->
+
+
+from check_training_prediction import check_training_prediction
+
+target = "predict"
+analysis_type = "decoding"
+
+check_training_prediction(
+    decoded_feature_dir,
+    target,
+    analysis_type,
+    analysis_name,
+    list(fmri.keys()),
+    list(rois.keys()),
+    features,
+    cv_folds,
+)
+
+
+This completes the prediction of the decoding.
+<!--これで decoder の prediction は完了です．-->
+
+### Calculate the accuracy of prediction (~5min)
+<!--### Decoding prediction の performance の計算 （~5分）-->
+
+In this sub section, we will calculate the accuracy of the predicted scores. 
+<!--Decoding結果の評価を行います．-->
+
+Specifically, we calculate the correlation coefficient for each category between the emotional scores predicted in the previous section and the averaged emotional scores obtained through crowdsourcing.
+The current directory should be under `EmotionVideoNeuralRepresentationPython`.
+<!--具体的には，前セクションで推定されたemotional scoreと，クラウドソーシングで得られた平均scoreについて，categoryごとにcorrelation coefficientを計算します．
+カレントディレクトリは， `EmotionVideoNeuralRepresentationPython` の直下としてください．-->
+
+If running on a local machine, you can also evaluate the predicted scores according to the specified config file by executing the command below. This calculation can also be performed in parallel across multiple machines.
+<!--もし，ローカル環境で実行している場合，下記の通りコマンドを実行することで，上記の設定ファイルに準じて推定scoreの評価が開始されます-->
+<!--この計算は，並列実行することが可能です．
+-->
+
+`$ python src/cv_evaluate_predicted_features.py config/tutorial_decoding_emotion_score_cv_paper2020.yaml `
+
+In this tutorial, we will directly call and execute the main function called by the above script `cv_evaluate_predicted_features.py`.
+<!--ここでは，　上記のスクリプト `cv_evaluate_predicted_features.py` で呼び出されるメイン関数を直接呼び出し，実行します．-->
+
+from cv_evaluate_predicted_features import cv_evaluate_predicted_features
+
+cv_evaluate_predicted_features(
+    decoded_feature_dir,
+    feature_dir_list[0],
+    output_file_pooled=os.path.join(decoded_feature_dir, 'evaluation.db'),
+    output_file_fold=os.path.join(decoded_feature_dir, 'evaluation_fold.db'),
+    subjects=fmri,
+    rois=rois,
+    layers=features,
+    cv_folds=cv_folds,
+    feature_index_file=feature_index_file,
+    feature_decoder_path=decoder_dir,
+    average_sample=average_sample,
+)
+
+The `sqlite3` database file containing the evaluation results will be saved in the following directory. For information on how to access the accuracy values, please refer to the description of `Read accuracy` in the code in the next section.
+<!--下記のディレクトリに評価結果を格納した `sqlite3` のデータベースファイルが保存されます．アクセス方法については，次セクションにおけるコード中の`Read accuracy`の記述を参考にしてください．-->
+
+`<Save decoded feature dir>/evaluation.db`
+
+After calculating, please run the script below to check that all specified conditions are complete. Be sure to run it if an error occurs during execution or if you are performing parallel calculations.
+<!--計算終了後， 下記のスクリプトを実行することで， 全ての計算が完了していることを確認します．-->
+
+`$ python src/check_evaluate_database.py config/tutorial_decoding_emotion_score_cv_paper2020.yaml `
+
+In this tutorial, directly call and execute the main function called by the above script `check_evaluate_database.py`. Please confirm that `All conditions are finished` is printed twice. Once indicates that each fold evaluation has been completed, and the other indicates that the pooled evaluation by averaging the fold results, has been completed.
+<!--ここでは，　上記のスクリプトで呼び出されるメイン関数を直接呼び出し，実行します． `All conditions are finished` が二度出力されていることを確認してください．一つは各foldの計算が完了していることを示しており，もう一つはfoldの計算結果を平均したpooledの計算が完了していることを示しています．-->
+```
+==========
+All conditions are finished.
+==========
+
+==========
+All conditions are finished.
+==========
+```
+
+If you are informed that there are unfinished conditions, run the above cell (command) again to ensure that all conditions are completed.
+<!--もし，　未終了の条件があると指示された場合は，再度，上記のセル（コマンド）を実行し，すべての条件を確実に完了させてください．-->
+
+from check_evaluate_database import check_evaluate_database
+
+analysis_type = "decoding"
+
+check_evaluate_database(
+    decoded_feature_dir,
+    analysis_type,
+    list(fmri.keys()),
+    list(rois.keys()),
+    features,
+    cv_folds,
+    output_file_pooled=os.path.join(decoded_feature_dir, 'evaluation.db'),
+    output_file_fold=os.path.join(decoded_feature_dir, 'evaluation_fold.db'),
+)
+
+
+Now all the calculations for decoding analysis are complete. Finally, we will visualize it.
+<!--これで decoding analysis の全てのステップが完了しました．最後に可視化を行います．-->
+
+### Visualize decoding performance (~10min)
+<!--### Decoding accuracy の可視化 （~10分）-->
+
+In this sub section, we visualize the decoding accuracy calculated in the previous section.
+<!--ここでは前セクションで計算されたcorrelation coefficient，すなわちdecoding accuracyを可視化します．-->
+
+First, we plot the accuracy of each category using a swarmplot with each grouping ROI as a point. This corresponds to a simplified version of Fig. 2A in our paper. Please note that the results does not match exactly because the calculation conditions are reduced.
+<!--まずは，各カテゴリ の accuracy を各grouping ROIをpointとしたswarmplot で描画します．
+これは本稿の Fig.2A の簡易版に該当します．計算条件が緩和されているため，厳密一致しないことには注意してください．-->
+
+# Fig. 2A Decoding accuracy for individual categories.
+
+sns.set_theme(font_scale=2)
+
+feature = "category"
+metric = "profile_correlation"
+category_index_list = {
+    30: 'sexual_desire', 
+    2: 'aesthetic_appreciation', 
+    16: 'entrancement', 
+    14: 'disgust', 
+    3: 'amusement', 
+    19: 'fear', 
+    5: 'anxiety', 
+    22: 'interest', 
+    31: 'surprise', 
+    23: 'joy', 
+    21: 'horror', 
+    1: 'adoration', 
+    9: 'calmness', 
+    27: 'romance', 
+    6: 'awe', 
+    24: 'nostalgia', 
+    12: 'craving', 
+    15: 'empathic_pain', 
+    26: 'relief', 
+    7: 'awkwardness', 
+    18: 'excitement', 
+    28: 'sadness', 
+    8: 'boredom', 
+    33: 'triumph',    
+    0: 'admiration',
+    29: 'satisfaction', 
+    32: 'sympathy', 
+    4: 'anger', 
+    10: 'confusion', 
+    13: 'disappointment', 
+    25: 'pride', 
+    17: 'envy', 
+    11: 'contempt', 
+    20: 'guilt'
+}
+
+# Connect to accuracy database
+evaluation_filepath = os.path.join(decoded_feature_dir, "evaluation.db")
+db = SQLite3KeyValueStore(evaluation_filepath)
+
+dataframe = {"subject": [], "roi": [], "category": [], "accuracy": []}
+for subject, roi, (cat_i, category) in product(fmri.keys(), rois.keys(), category_index_list.items()):                
+    # Read accuracy 
+    acc = db.get(subject=subject, roi=roi, layer=feature, metric=metric)[cat_i]
+    dataframe["subject"].append(subject)
+    dataframe["roi"].append(roi)
+    dataframe["category"].append(category)
+    dataframe["accuracy"].append(acc)
+    
+dataframe = pd.DataFrame.from_dict(dataframe)
+display(dataframe)
+
+fig, ax = plt.subplots(1, 1, figsize=(16, 4))
+ax.axhline(0, c="k")
+for i in [0.2, 0.4, 0.6]:
+    ax.axhline(i, c="lightgray")
+sns.swarmplot(data=dataframe, x="category", y="accuracy", ax=ax)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha="right")
+ax.text(29, 0.4, "1 subject\nn=22")
+ax.set_title("Emotion category")
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+plt.show()
+
+
+
+Next, we use `pycortex` to map the accuracy of each ROI onto the flattend cortex of the subject.
+<!--次に `pycortex`を使用して，各ROIのcorrelation coefficientを被験者の展開された皮質上にマップします．-->
+
+Before doing this, please check the following two points.
+<!--まずは下記の2点を確認してください．-->
+
+1. The `filestore` of `pycortex` is `./data/pycortex`.
+2. `INKSCAPE_VERSION` is not `None`.
+
+If the conditions are not met, please check the Setup section.
+<!--条件が満たされていない場合，Setup sectionを確認してください．-->
+
+import cortex
+print('pycortex filestore:', cortex.config['basic']['filestore'])
+print('INKSCAPE_VERSION:', cortex.testing_utils.INKSCAPE_VERSION)
+
+
+If the above conditions are met, run the cell below to visualize the results.
+The decoding accuracy for each ROI is displayed on a cortical map for the three categories "Sexual desire," "Aesthetic appreciation," and "Entrancement."
+<!--上記の条件が満たされているならば，下記のセルを実行して，結果の可視化を行ってください．ここでは，"Sexual desire"，"Aesthetic appreciation"，および"Entrancement"の3つのカテゴリについて，ROIごとのdecoding accuracyが皮質マップ上に表示されます．-->
+
+This corresponds to a simplified version of Fig. 2D in our paper. Please note that the results does not match exactly because the calculation conditions are reduced.
+<!--これは本稿の Fig.2D の簡易版に該当します．計算条件が緩和されているため，厳密一致しないことには注意してください．-->
+
+# Fig.4A Cortical surface maps of decoding accuracies for individual categories
+
+pycortex_align = 'voxel2mm_fmriprep'
+pycortex_overlay_filepath = './data/pycortex/{}/overlays.svg'
+feature = "category"
+metric = "profile_correlation"
+vmin = 0.0
+vmax = 100.0
+category_index_list = {
+    30: 'sexual_desire', 
+    2: 'aesthetic_appreciation', 
+    16: 'entrancement', 
+}
+
+# Connect to accuracy database
+evaluation_filepath = os.path.join(decoded_feature_dir, "evaluation.db")
+db = SQLite3KeyValueStore(evaluation_filepath)
+
+for subject in fmri.keys():
+    # Load Bdata
+    bdata = bdpy.BData(fmri[subject][0])
+                
+    for cat_i, category in category_index_list.items():
+        print("Category:", category)
+        
+        # Create emty volume
+        # Colormap (cmap) for visualization is set here. Available cmap is same as Matplotlib 
+        # (See document for matplotlib.pylab.colormaps()).
+        voxel_vol = cortex.Volume.empty(subject, 
+                                        pycortex_align, 
+                                        value=np.nan,
+                                        cmap='RdGy_r')
+
+        # Get category accuracy & min-max normalization
+        cat_acc = []
+        for roi in rois.keys():
+            # Read accuracy 
+            acc = db.get(subject=subject, roi=roi, layer=feature, metric=metric) 
+            cat_acc.append(acc[cat_i])
+        cat_acc = np.array(cat_acc)
+        
+        # Min-max normalize
+        cat_acc = (cat_acc - np.nanmin(cat_acc)) / (np.nanmax(cat_acc) - np.nanmin(cat_acc)) * 100
+        
+        for roi_i, roi in enumerate(rois.keys()):
+            # Load voxel information
+            _, voxel_selector = bdata.select(rois[roi], return_index = True)
+
+            # Apply voxel selector to voxel_i/j/k array
+            voxel_ijk = np.vstack([
+                bdata.get_metadata('voxel_i')[voxel_selector].astype('int32'),
+                bdata.get_metadata('voxel_j')[voxel_selector].astype('int32'),
+                bdata.get_metadata('voxel_k')[voxel_selector].astype('int32'),
+            ]).astype(int)
+
+            
+            # Mapped to each voxel
+            voxel_vol.data[ voxel_ijk[2], voxel_ijk[1], voxel_ijk[0] ] = cat_acc[roi_i]
+
+        # Set vmax and vmin for visualization                    
+        voxel_vol.vmax = vmax
+        voxel_vol.vmin = vmin
+
+        # Set text
+        text_posi_x = 0.5
+        text_posi_y = 0.9
+        show_text = category
+        
+        # Show
+        fig = cortex.quickshow( 
+                    voxel_vol, with_colorbar=True, with_curvature=True, 
+                    overlay_file=pycortex_overlay_filepath.format(subject),
+                    labelsize=50, linewidth=3,
+            )
+        fig.text(text_posi_x, text_posi_y, show_text, 
+                    horizontalalignment='center', verticalalignment='center', size=50)
+        plt.show()
+        
+
+This completes the decoding analysis tutorial. Congratulations on your hard work!
+<!--以上でdecoding analysisのtutorialは終了です．お疲れ様でした．-->
+
+If you would like to know more about the encoding calculation procedure, please refer to `01_decoding.ipynb`(In progress) in the [feature-decoding](https://github.com/KamitaniLab/feature-decoding) repository.
+<!--Decoding のより詳細な計算手続きを知りたい場合は，　[feature-decoding](https://github.com/KamitaniLab/feature-decoding) リポジトリ内の handson を参照してください．-->
+
+<br/>
+<br/>

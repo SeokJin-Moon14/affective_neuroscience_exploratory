@@ -1,0 +1,51 @@
+[
+  {
+    "repository_url": "https://github.com/KamitaniLab/EmotionVideoNeuralRepresentation.git",
+    "commit": "8fe23a015c4f4ff11de6fb90fcbf20ebc87994ef",
+    "local_snapshot": "agents/01_dataset/evidence/repos/horikawa_code",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "repository_url": "https://github.com/cvnlab/nsdexamples.git",
+    "commit": "d06ba1aaa5587e05f6b043c48491c4e7a4693278",
+    "local_snapshot": "agents/01_dataset/evidence/repos/nsdexamples",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "repository_url": "https://github.com/OpenNeuroDatasets/ds004892.git",
+    "commit": "cdf68fe448ad180a476fa2371473a1a6ed063774",
+    "local_snapshot": "agents/01_dataset/evidence/repos/ds004892",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "repository_url": "https://github.com/cvnlab/nsddatapaper.git",
+    "commit": "80e891b8bd734a985d3621a0495f2cc91b9d3cfa",
+    "local_snapshot": "agents/01_dataset/evidence/repos/nsddatapaper",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "repository_url": "https://github.com/spatialtopology/ds005256.git",
+    "commit": "a90932e8eb31036b89eeb4488ba1ef705baad2a2",
+    "local_snapshot": "agents/01_dataset/evidence/repos/ds005256",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "repository_url": "https://github.com/OpenNeuroDatasets/ds004872.git",
+    "commit": "e9b1bf0b05975f7815f2924da16e3ff37111739e",
+    "local_snapshot": "agents/01_dataset/evidence/repos/ds004872",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "repository_url": "https://github.com/OpenNeuroDatasets/ds002425.git",
+    "commit": "3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1",
+    "local_snapshot": "agents/01_dataset/evidence/repos/ds002425",
+    "source_scope": "공식 코드/메타데이터; 신경·영상 본체 미다운로드",
+    "verified_on": "2026-11-12"
+  }
+]

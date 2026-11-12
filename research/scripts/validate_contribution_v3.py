@@ -9,6 +9,8 @@ import re
 from urllib.parse import unquote
 
 R = Path(__file__).resolve().parents[1]
+if (R / 'revision_v4/version.json').exists():
+    raise SystemExit('v3 검사는 과거 원고의 구조 검사입니다. 현재 데이터 적합성 판정으로 사용하지 마세요.')
 errors, checks = [], []
 
 def read(name):

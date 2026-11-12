@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "status": "planning_revision_complete",
+  "status": "superseded_selection_withdrawn_for_data_mismatch",
   "previous_commit": "bd56335c91f309620fd37ed2c30b2767c7f98e20",
   "user_direction": "특정 RP 중심이 아닌 다양한 RQ, 실제 agent 토론, 모든 후보에 필요성·중요한 결과·Conclusion·분야 기여 포함",
   "independent_candidate_count": 10,
@@ -11,5 +11,6 @@
   "research_direction_count": 4,
   "experiments_run": false,
   "novelty_verified": false,
-  "updated_at_utc": "2026-11-12T10:38:18.509830+00:00"
+  "updated_at_utc": "2026-11-12T10:38:18.509830+00:00",
+  "superseded_by": "../revision_v4/version.json"
 }

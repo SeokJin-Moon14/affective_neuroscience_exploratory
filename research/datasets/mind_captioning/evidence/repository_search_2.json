@@ -1,0 +1,130 @@
+{
+  "url": "https://github.com/search?q=mindcaptioning&type=repositories",
+  "http_status": 200,
+  "results": [
+    {
+      "results": [
+        {
+          "id": "798755163",
+          "archived": false,
+          "color": "#e16737",
+          "followers": 20,
+          "has_funding_file": false,
+          "hl_name": "horikawa-t/<em>MindCaptioning</em>",
+          "hl_trunc_description": "Demo code for Horikawa, T. (2025) Mind captioning: Evolving descriptive text of mental content from human brain activity. Science Advances <a href=\"https://doi.org/10.1126/sciadv.adw1464\" class=\"Link--inTextBlock\" rel=\"nofollow\">…</a>",
+          "language": "MATLAB",
+          "mirror": false,
+          "owned_by_organization": false,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 798755163,
+              "name": "MindCaptioning",
+              "owner_id": 8360496,
+              "owner_login": "horikawa-t",
+              "updated_at": "2025-11-09T01:23:47.692Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        },
+        {
+          "id": "1421870153",
+          "archived": false,
+          "color": "#3572A5",
+          "followers": 0,
+          "has_funding_file": false,
+          "hl_name": "Eagleseb/<em>MindCaptioning</em>",
+          "hl_trunc_description": "Reproducing Mind Captioning paper results",
+          "language": "Python",
+          "mirror": false,
+          "owned_by_organization": false,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 1421870153,
+              "name": "MindCaptioning",
+              "owner_id": 1732443,
+              "owner_login": "Eagleseb",
+              "updated_at": "2026-10-16T08:36:05.132Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        },
+        {
+          "id": "1097587105",
+          "archived": false,
+          "color": "#3572A5",
+          "followers": 0,
+          "has_funding_file": false,
+          "hl_name": "yooha1003/<em>MindCaptioning</em>_Python",
+          "hl_trunc_description": null,
+          "language": "Python",
+          "mirror": false,
+          "owned_by_organization": false,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 1097587105,
+              "name": "MindCaptioning_Python",
+              "owner_id": 41461509,
+              "owner_login": "yooha1003",
+              "updated_at": "2025-11-16T23:54:45.933Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        },
+        {
+          "id": "971208496",
+          "archived": false,
+          "color": "#e34c26",
+          "followers": 0,
+          "has_funding_file": false,
+          "hl_name": "horikawa-t/<em>MindCaptioningProject</em>",
+          "hl_trunc_description": "Summary page for mind captioning",
+          "language": "HTML",
+          "mirror": false,
+          "owned_by_organization": false,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 971208496,
+              "name": "MindCaptioningProject",
+              "owner_id": 8360496,
+              "owner_login": "horikawa-t",
+              "updated_at": "2025-11-06T02:30:15.118Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        }
+      ],
+      "result_count": 4,
+      "type": "repositories"
+    }
+  ],
+  "download_sha256": "7213d20c6685643965bf884f42a015afb51902118262a50c6217e1bf3346b0b6",
+  "correction": "초기 파서가 중첩 결과를 읽지 못한 값을 대체함. 실제 검색 결과 4개."
+}

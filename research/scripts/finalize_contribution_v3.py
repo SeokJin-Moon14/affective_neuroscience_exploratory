@@ -6,6 +6,8 @@ import hashlib
 import json
 
 R = Path(__file__).resolve().parents[1]
+if (R / 'revision_v4/version.json').exists():
+    raise SystemExit('v3 주력 제안은 데이터 적합성 문제로 철회됐습니다. revision_v4의 최신 제약을 따르세요.')
 roles = ['02_affective_neuroscience', '03_vision_decoding', '04_brain_foundation',
          '05_multimodal_dynamics', '06_frontier_ai']
 

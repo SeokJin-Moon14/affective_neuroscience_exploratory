@@ -1,0 +1,40 @@
+[
+  {
+    "path": "code_README.md",
+    "url": "https://raw.githubusercontent.com/horikawa-t/MindCaptioning/main/code/README.md",
+    "checked_at_utc": "2026-11-12T10:49:15.031174+00:00",
+    "http_status": 200,
+    "bytes": 5440,
+    "sha256": "5318670803143924d7fd6f3d53ff2388990715a3be0cc3435c052bb19595822b"
+  },
+  {
+    "path": "caption_ck20.csv",
+    "url": "https://raw.githubusercontent.com/horikawa-t/MindCaptioning/main/data/caption/caption_ck20.csv",
+    "checked_at_utc": "2026-11-12T10:49:15.031697+00:00",
+    "http_status": 200,
+    "bytes": 3431222,
+    "sha256": "633ae47a361f6116aa6c0c145c013a95d70aad30861c95a420a4a05d9c9e3c39"
+  },
+  {
+    "path": "bids_README",
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/README",
+    "checked_at_utc": "2026-11-12T10:49:15.032216+00:00",
+    "http_status": 200,
+    "bytes": 4019,
+    "sha256": "b5c7fcf475e246b3edcf011cc0c1b262a6693b3704660a2c7ce22a99cb704954"
+  },
+  {
+    "path": "dataset_description.json",
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/dataset_description.json",
+    "checked_at_utc": "2026-11-12T10:49:15.320479+00:00",
+    "http_status": 200,
+    "bytes": 977,
+    "sha256": "49a638264553e4dbcbc3e61b3d6eb6dd66a8d772fba1f58ea69c6d5fac88ad86"
+  },
+  {
+    "path": "participants.tsv",
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/participants.tsv",
+    "checked_at_utc": "2026-11-12T10:49:15.341829+00:00",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

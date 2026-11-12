@@ -1,0 +1,22 @@
+{
+  "version": 4,
+  "status": "data_constraints_corrected_rq_selection_reopened",
+  "updated_at_utc": "2026-11-12T10:56:22.522082+00:00",
+  "priority": {
+    "1": [
+      "Horikawa",
+      "MC",
+      "NSD"
+    ],
+    "2": [
+      "Emo-FilM"
+    ],
+    "3": [
+      "Spacetop"
+    ]
+  },
+  "previous_commit": "75df2e876de57cd139e1bb0c22a58ae81312a217",
+  "active_rqs": [],
+  "reason": "v3 네 방향은 보유 자료로 핵심 결론을 검증할 수 있는 후보로 선정되지 않았음. 새 신경·행동 실험이 필수인 질문을 현재 목록에서 제외.",
+  "experiments_run": false
+}

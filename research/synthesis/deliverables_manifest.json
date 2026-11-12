@@ -1,9 +1,6 @@
 {
-  "version": 3,
-  "catalog": "../revision_v3/catalog.json",
-  "curation": "../revision_v3/curation.json",
-  "author_sources": "../revision_v3/AUTHOR_SOURCES.json",
-  "main": "../proposals/README.md",
-  "report": "FINAL_REPORT.md",
-  "experiments_run": false
+  "version": 4,
+  "active_candidates": [],
+  "data_fit_review": "../revision_v4/DATA_FIT_REVIEW.md",
+  "dataset_report": "../datasets/DATASET_INTELLIGENCE_REPORT.md"
 }

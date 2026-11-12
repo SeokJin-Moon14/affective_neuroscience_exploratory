@@ -1,3 +1,5 @@
+> 최신 정정: 데이터 우선순위는 Horikawa·MC·NSD → Emo-FilM → Spacetop이다. MC 공식 지각·심상·캡션 자료는 [이번 확인](mind_captioning/verified_spec.md)에서 식별했다. 아래의 과거 MC 식별자 미확인 기록은 그 확인 전 상태다. [현재 데이터 적합성 기준](../revision_v4/DATA_FIT_REVIEW.md)을 우선한다.
+
 # 보유 데이터와 Axis 연결
 
 2026-11-12 최신 사용자 진술: **Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 이미 보유**한다. 데이터 확보를 다시 요청하지 않고 Axis를 진행한다. 보유 사실, 현재 클라우드 파일 접근, 정확한 버전·스키마 검증은 서로 다른 상태다.

@@ -1,11 +1,11 @@
 # Affective Neuroscience × AI
 
-현재는 v3 연구 기획이다. 에이전트들의 실제 제안·비판·수정을 거쳐 네 연구 방향으로 정리했다. 각 질문의 첫머리에 **왜 필요한가, 어떤 결과가 중요한가, 그 결과로 무엇을 결론낼 수 있는가, 정서신경과학에서 무엇이 달라지는가**를 설명한다.
+**v3 네 방향의 주력 선정을 철회했습니다.** 특히 기억의 정확성과 오류를 묻는 질문은 현재 보유 자료로 핵심 검정을 할 수 없었습니다. 새 실험이 필요한 질문을 보유 자료 중심의 제안으로 제시한 오류를 정정했습니다.
 
-[연구 질문과 기여](research/proposals/README.md) · [종합 보고서](research/synthesis/FINAL_REPORT.md) · [실제 토론과 수정](research/discussions/revision_v3/SYNTHESIS.md) · [통합·보류 이유](research/revision_v3/DECISIONS.md)
+데이터 우선순위는 **Horikawa·MC·NSD → Emo-FilM → Spacetop**입니다. 새 RQ는 어떤 기존 관측으로 핵심 결론을 검증할 수 있는지부터 대조합니다.
 
-특정 기존 RP를 중심으로 선정하지 않았다. 실제 뇌 분석이나 모델 실험은 아직 수행하지 않았고, 직접 선행과 핵심 자극 비교의 확인이 남아 있다. [현재 상태](research/RESEARCH_STATUS.md)와 [이전 v2](research/archive/v2/README.md)를 구별해 읽는다.
+[왜 이전 제안을 제외했는지](research/revision_v4/DATA_FIT_REVIEW.md) · [현재 제안 상태](research/proposals/README.md) · [데이터 확인 범위](research/datasets/DATASET_INTELLIGENCE_REPORT.md) · [진행 상태](research/RESEARCH_STATUS.md)
 
-[원격 저장 기록](backup/LAST_SUCCESS.json) · [ChatGPT 프로젝트에서 이어가기](research/CHATGPT_PROJECT_BRIEF.md)
+[이전 v3](research/archive/v3/README.md) · [원격 저장 기록](backup/LAST_SUCCESS.json) · [ChatGPT 프로젝트 설정](research/CHATGPT_PROJECT_BRIEF.md)
 
-공개 연구 브랜치에 단계별 저장한다. 사용자 컴퓨터에 전체 자료를 내려받을 필요는 없다.
+새 RQ 선정과 실제 뇌 분석이 완료된 상태는 아닙니다. 공개 연구 브랜치에 저장하며 사용자 컴퓨터에 전체 자료를 내려받을 필요는 없습니다.

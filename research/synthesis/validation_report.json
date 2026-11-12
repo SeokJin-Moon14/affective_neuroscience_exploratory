@@ -1,5 +1,6 @@
 {
-  "version": 3,
-  "current_report": "../revision_v3/VALIDATION.json",
-  "scope": "기술적 문서 검사. 과학적 유효성 판정 아님."
+  "version": 4,
+  "status": "prior_selection_withdrawn",
+  "current_review": "../revision_v4/DATA_FIT_REVIEW.md",
+  "prior_document_validation": "../revision_v3/VALIDATION.json"
 }

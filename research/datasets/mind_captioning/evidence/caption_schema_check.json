@@ -1,0 +1,15 @@
+{
+  "file": "caption_ck20.csv",
+  "columns": [
+    "video_id",
+    "description"
+  ],
+  "rows": 43920,
+  "unique_video_ids": 2196,
+  "captions_per_id_distribution": {
+    "20": 2196
+  },
+  "smallest_id": 1,
+  "largest_id": 2196,
+  "semantic_captions_not_emotion_ground_truth": true
+}

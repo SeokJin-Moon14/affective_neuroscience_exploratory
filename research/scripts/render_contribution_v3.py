@@ -6,6 +6,8 @@ import json
 import re
 
 R = Path(__file__).resolve().parents[1]
+if (R / 'revision_v4/version.json').exists():
+    raise SystemExit('철회한 v3 제안을 현재 목록에 다시 게시할 수 없습니다. revision_v4를 확인하세요.')
 catalog = json.loads((R / 'revision_v3/catalog.json').read_text())
 curation = json.loads((R / 'revision_v3/curation.json').read_text())
 papers = {p['canonical_id']: p for p in csv.DictReader((R / 'literature/papers.csv').open())}

@@ -1,0 +1,10 @@
+{
+  "query": "\"mind captioning\"",
+  "url": "https://github.com/search?q=%22mind%20captioning%22&type=repositories",
+  "http_status": 200,
+  "results": [],
+  "download_sha256": "502844e2e6d0e0fd3f9fd57e3c54dcadd70db6bf508fb65421ef0e4480a9e33b",
+  "scope": "공개 검색 결과만 저장; 원본 HTML·세션 토큰은 보존하지 않음",
+  "results_valid": false,
+  "note": "초기 파서가 중첩 결과를 읽지 못했음. 이 빈 배열을 검색 결과 없음으로 해석하지 말 것."
+}

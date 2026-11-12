@@ -1,5 +1,3 @@
-# 현재 검토할 연구 기회
+# 이전 v3 판단의 정정
 
-현재 판단은 [네 연구 방향의 필요성·조건부 결론·기여](../proposals/README.md)를 따른다. AI의 역할은 각각 관측할 정보 선택을 모델링하기, 기억을 구별할 변형 장면 만들기, 새로운 조작 조합의 신경 변화를 예측하기, 지표가 잘못 해석되는 조건을 찾기다.
-
-새 모델을 적용했다는 사실만으로 신규성을 인정하지 않는다. 직접 선행 대조와 핵심 장면 비교의 실현성이 남아 있다. 이전 기회 지도는 [v2 기록](../archive/v2/synthesis/OPPORTUNITY_MAP.md)에 보존했다.
+[v3 당시 문서](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/75df2e876de57cd139e1bb0c22a58ae81312a217/research/synthesis/OPPORTUNITY_MAP.md)는 이력으로 보존한다. 현재 주력 선정은 철회했으며 [보유 데이터 적합성 판단](../revision_v4/DATA_FIT_REVIEW.md)을 따른다. 문서 구조 검사와 실제 토론 기록은 과학적 기여나 데이터 실행 가능성의 승인이 아니다.

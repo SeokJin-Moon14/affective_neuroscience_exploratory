@@ -1,7 +1,6 @@
 {
-  "version": 3,
-  "status": "no_pilot_selected",
-  "previous_plans": "../archive/v2/pilots/plans.json",
+  "version": 4,
+  "status": "not_selected",
   "plans": [],
-  "reason": "v3 기여 토론에서 특정 연구를 첫 파일럿으로 선택하지 않았다. 각 원고의 최소 설계와 데이터 범위를 구별해 읽는다."
+  "reason": "기존 자료로 핵심 관찰을 검증할 수 있는 질문부터 다시 선정"
 }

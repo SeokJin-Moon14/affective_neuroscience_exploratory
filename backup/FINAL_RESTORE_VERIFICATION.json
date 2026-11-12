@@ -1,0 +1,34 @@
+{
+  "verified_at": "2026-11-12T08:15:57.348293+00:00",
+  "repository": "SeokJin-Moon14/affective_neuroscience_exploratory",
+  "branch": "research/independent-exploration-20261112",
+  "checkpoint_head_verified_on_remote": "901981771de79ed9448c3d8111b95bf80fbc8212",
+  "restoration": {
+    "restored_files": 1516,
+    "snapshot_id": "66342fd329db38feb92790140d5180452ffaecda566bf0de5281a0dc4f6e5433",
+    "all_hashes_verified": true,
+    "verified_data_commit": "5b3081b87082a77dd62b8d3d22a20b68047c5bbb"
+  },
+  "restored_validation": {
+    "roles": 12,
+    "verified_bibliographies": 100,
+    "unique_inventory": 103,
+    "round2_candidates": 60,
+    "round3_reviews": 120,
+    "round3_checks": 960,
+    "round4_responses": 60,
+    "round4_connections": 27,
+    "round4_evaluations": 600,
+    "round5_positions": 30,
+    "round5_rebuttal_responses": 59,
+    "random_combinations": 30,
+    "literature_combinations": 12,
+    "directions": 40,
+    "research_questions": 30,
+    "proposals": 10,
+    "pilots": 3
+  },
+  "final_report_sha256": "52d91137da8c39aa6fc8c60b5f9a4e95b461e96a6c45a37768dbd81a18c4de98",
+  "scope": "GitHub에서 갱신한 별도 clone의 확인서/data commit을 사용해 새 클라우드 폴더로 전체1516파일 복원 및 파일별 SHA256 검산. 실제 뇌 분석/모델 실행 검증은 아님.",
+  "source_snapshot_unchanged": "이 확인서는 백업 메타데이터만 추가하며 검산한 research 스냅샷은 변경하지 않음"
+}

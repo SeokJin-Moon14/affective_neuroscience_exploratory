@@ -1,0 +1,8 @@
+{
+  "source_rows": 111,
+  "unique_candidates": 103,
+  "source_files": 13,
+  "agent_source_files": 12,
+  "issues": [],
+  "note": "고유 후보 수는 검증 완료 문헌 수가 아니다. 수동 검토 후 별도 집계한다."
+}

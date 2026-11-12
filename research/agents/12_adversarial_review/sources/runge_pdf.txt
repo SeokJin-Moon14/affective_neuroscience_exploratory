@@ -1,0 +1,765 @@
+     Conditional independence testing based on a nearest-neighbor
+             estimator of conditional mutual information
+
+
+
+                                                   Jakob Runge
+                   German Aerospace Center                               Grantham Institute
+                   Institute of Data Science                              Imperial College
+                     07745 Jena, Germany                          London SW7 2AZ, United Kingdom
+
+
+                      Abstract                                1    Introduction
+
+    Conditional independence testing is a fun-
+                                                              Conditional independence testing lies at the heart of
+    damental problem in causal discovery and
+                                                              causal discovery (Spirtes et al., 2000) and at the same
+    a particularly challenging task in the pres-
+                                                              time is one of its most challenging tasks. For observed
+    ence of nonlinear dependencies. Here a fully
+                                                              random variables X, Y, Z, measuring that X and Y are
+    non-parametric test for continuous data based
+                                                              independent given Z, denoted as X ⊥     ⊥ Y |Z, implies
+    on conditional mutual information combined
+                                                              that no causal link can exist between X and Y under
+    with a local permutation scheme is presented.
+                                                              the relatively weak assumption of faithfulness (Spirtes
+    Numerical experiments covering sample sizes
+                                                              et al., 2000). A ﬁnding of conditional independence is
+    from 50 to 2, 000 and dimensions up to 10
+                                                              then more pertinent to causal discovery than a ﬁnding
+    demonstrate that the test reliably generates
+                                                              of (conditional) dependence from which a causal link
+    the null distribution. For smooth nonlin-
+                                                              only follows under stronger assumptions (Spirtes et al.,
+    ear dependencies, the test has higher power
+                                                              2000).
+    than kernel-based tests in lower dimensions
+    and similar power in higher dimensions. For               Here the focus is on the diﬃcult case of continuous
+    highly non-smooth densities the data-adaptive             variables (Bergsma, 2004). Various conditional inde-
+    nearest neighbor approach is particularly well-           pendence (CI) tests exist if assumptions such as lin-
+    suited while kernel methods yield much lower              earity or additivity (Daudin, 1980; Peters et al., 2013)
+    power. The experiments also show that kernel              are justiﬁed (for a numerical comparison see Ramsey
+    methods utilizing an analytical approximation             (2014)). However, wrong assumptions can lead to in-
+    of the null distribution are not well-calibrated          correctly detecting CI (type II error, false negative),
+    for sample sizes below 1, 000. Combining the              but also to wrongly concluding on conditional depen-
+    local permutation scheme with these kernel                dence (type I error, false positive). Recent research
+    tests leads to better calibration but lower               has focused on the general case without assuming a
+    power. For smaller sample sizes and lower                 functional form of the dependencies as well as the data
+    dimensions, the proposed test is faster than              distributions, that is, the goal is the general deﬁni-
+    random fourier feature-based kernel tests if              tion of CI implying that the conditional joint density
+    (embarrassingly) parallelized, but the runtime            factorizes: p(X, Y |Z) = p(X|Z)p(Y |Z).
+    increases more sharply with sample size and
+                                                              One approach is to discretize or cluster the variable
+    dimensionality. Thus, more theoretical re-
+                                                              Z and make use of easier unconditional independence
+    search to analytically approximate the null
+                                                              tests X ⊥ ⊥ Y |Z = z (Margaritis, 2005; Huang, 2010).
+    distribution and speed up estimation is de-
+                                                              However, this method suﬀers from the curse of dimen-
+    sirable. As illustrated on real data, the test
+                                                              sionality for clustering high-dimensional conditioning
+    is ideally suited in combination with causal
+                                                              sets Z. On the other hand, kernel-based methods
+    discovery algorithms.
+                                                              are known for their capability to deal with nonlinear-
+                                                              ity and high dimensions (Fukumizu et al., 2008). A
+                                                              popular test is the Kernel Conditional Independence
+Proceedings of the 21st International Conference on Artiﬁ-    Test (KCIT) (Zhang et al., 2011) which essentially
+cial Intelligence and Statistics (AISTATS) 2018, Lanzarote,   tests for zero Hilbert-Schmidt norm of the partial cross-
+Spain. PMLR: Volume 84. Copyright 2018 by the author(s).
+                                                              covariance operator, or the Permutation CI test (Doran
+                                          Conditional independence testing
+
+
+et al., 2014) which solves an optimization problem to          convergence rates are unknown. Hence, the present
+generate a permutation surrogate on which kernel-two           approach relies on a local permutation test that is also
+sample testing can be applied. Kernel methods suﬀer            based on nearest neighbors and data-adaptive.
+from high computational complexity since large ker-
+nel matrices have to be computed. Strobl et al. (2017)         2     Conditional independence test
+present two types of orders of magnitude faster CI tests
+based on approximating kernels using random Fourier            2.1     Conditional mutual information
+features, called Randomized Conditional Correlation
+Test (RCoT) and Randomized Conditional Indepen-                CMI for continuous and possibly multivariate random
+dence Test (RCIT). RCoT can be related to kernelized           variables X, Y, Z is deﬁned as
+two-step conditional independence testing (Zhang et al.,
+2017). Wang et al. (2015) proposed a conditional dis-                IX;Y |Z
+                                                                        ���
+tance correlation (CDC) test based on the correlation                                           p(x, y|z)
+of distance matrices between X, Y, Z which have been                  =      dxdydz p(x, y, z) log                    (1)
+                                                                                            p(x|z) · p(y|z)
+linked to kernel-based approaches (Sejdinovic et al.,
+                                                                     = HXZ + HY Z − HZ − HXY Z ,                      (2)
+2013). Last, very recent work proposes to apply deep
+learning classiﬁers in combination with permutation            where H denotes the Shannon entropy and where we
+tests (Sen et al., 2017).                                      assume that the densities p(·) exist. The task is to
+Testing for independence requires access to the null           test the conditional independence hypothesis versus
+distribution under CI. Strobl et al. (2017) and Wang           the general alternative:
+et al. (2015) derived asymptotic approximations of                                H0 : X ⊥
+                                                                                         ⊥ Y |Z                       (3)
+the theoretical null distributions, but such approxi-
+mations only hold for larger sample sizes. The alter-                             H1 : X ✚
+                                                                                         ⊥
+                                                                                         ⊥ Y | Z.                     (4)
+native are permutation-based approaches, where the             From the deﬁnition of CMI it is immediately clear that
+null-distribution is generated by computing the test           IX;Y |Z = 0 if and only if X ⊥ ⊥ Y |Z, provided that the
+statistic from permuted samples.                               densities are well-deﬁned. Shannon-type conditional
+In the present paper, the proposed approach to testing         mutual information is theoretically well-founded and
+CI is founded in an information-theoretic framework.           its value is well interpretable as the shared information
+The conditional mutual information (CMI) is zero if and        between X and Y not contained in Z. While this does
+only if X ⊥  ⊥ Y |Z. While some kernel-based measures          not immediately matter for a conditional independence
+can also be related to information-theoretic quantities        test, causal discovery algorithms often make use of the
+(see, e.g., Fukumizu et al. (2008)), the idea here is to di-   test statistic’s value, for example to sort the order in
+rectly estimate CMI by combining the well-established          which conditions are tested (Spirtes et al., 2000). CMI
+Kozachenko-Leonenko k-nearest neighbor estimator               here readily allows for an interpretation in terms of
+(Kozachenko and Leonenko, 1987; Kraskov et al., 2004;          the relative importance of one condition over another.
+Frenzel and Pompe, 2007; Vejmelka and Paluš, 2008;            Note that the test statistic values of kernel-based tests
+Póczos and Schneider, 2012; Gao et al., 2017) with a          typically depend on the chosen kernel.
+nearest-neighbor local permutation scheme.
+                                                               2.2     Nearest-neighbor CMI estimator
+Their main advantage is that nearest-neighbor statis-
+tics are locally adaptive (Fig. 1A): The hypercubes            From the nearest-neighbor entropy estimator by
+around each sample point are smaller where more sam-           Kozachenko and Leonenko (1987), Kraskov et al. (2004)
+ples are available. Kernel methods, on the other hand,         developed an estimator for mutual information that
+in general require carefully adjusted bandwidth pa-            was generalized to CMI (Frenzel and Pompe, 2007; Ve-
+rameters that characterize the length scales between           jmelka and Paluš, 2008) based on the CMI deﬁnition
+samples in the diﬀerent subspaces of X, Y, Z. These            in Eq. (2):
+bandwidths are global in each subspace in the sense
+                                                                                    n
+that they are applied on the whole range of values for                           1�
+X, Y, Z, respectively.                                          I�XY |Z = ψ(k) +       [ψ(kiz ) − ψ(kixz ) − ψ(kiyz )] (5)
+                                                                                 n i=1
+Unfortunately, few theoretical results are available for
+                                                               with the Digamma function as the logarithmic deriva-
+the complex mutual information estimator. While the                                                d
+                                                               tive of the Gamma function ψ(x) = dx  ln Γ(x) and sam-
+Kozachenko-Leonenko estimator is asymptotically un-                         1
+                                                               ple length n . The only free parameter k is the number
+biased and consistent (Kozachenko and Leonenko, 1987;
+                                                                  1
+Leonenko et al., 2008), the variance and ﬁnite sample               The estimator is, for example, implemented in Python
+                                                               in https://github.com/jakobrunge/tigramite.
+                                                    Jakob Runge
+
+A                          B                                  Some notes on the implementation: Before estimating
+                                                              CMI, in our implementation the samples are rank-
+                                                              transformed individually in each dimension: Firstly,
+                            Z                                 to avoid points with equal distance, small amplitude
+                                                              random noise is added to break ties. Then, for all n
+                                                              values x1 , . . . , xn , xi is replaced with the transformed
+                                      Y                       value r, where r is deﬁned such that xi is the rth largest
+                                       X                      among all x values. This approach gave good results in
+                                                              our tests, other implementations may only standardize
+                                                              the data beforehand.
+Figure 1: (A) The CMIknn estimator and the local
+permutation test are data-adaptive making them more           The main computational cost comes from searching
+data eﬃcient than ﬁxed bandwidth techniques: The              nearest neighbors in the high dimensional subspaces
+hypercubes around each sample point are smaller where         which is O(n2 ) in the worst case, but can be speed up
+more samples are available. (B) Schematic of local            using KD-tree neighbor search (Maneewongvatana and
+permutation scheme. To destroy the dependencies               Mount, 1999). Hence, the computational complexity
+between x and y, but preserve those between x and             will typically scale less than quadratically with the sam-
+z, each sample point i’s x-value is mapped randomly           ple size. Kernel methods, on the other hand, typically
+to one of its kperm -nearest neighbors (as measured in        scale worse than quadratically in sample size if they
+subspace Z). By keeping track of already ‘used’ indices       are not based on kernel approximations such as via
+j, we approximately achieve a random draw without             random Fourier features (Strobl et al., 2017). Further,
+replacement, see Algorithm 1.                                 the CMI estimator scales roughly linearly in k and D,
+                                                              the total dimension of X, Y, Z.
+
+of nearest neighbors in the joint space of X ⊗ Y ⊗ Z
+which deﬁnes the local length scale (in maximum norm)         2.3    Nearest-neighbor permutation test
+�i around each sample point i. Then kixz , kiyz and kiz
+                                                              Since no theory on ﬁnite sample behavior of the CMI
+are computed by counting the number of points with
+                                                              estimator is available, a permutation-based generation
+distance strictly smaller than �i (including the refer-
+                                                              of the distribution under H0 is utilized.
+ence point i) in the subspace X ⊗ Z to get kixz , in
+the subspace Y ⊗ Z to get kiyz , and in the subspace          Typically in CMI-based independence testing, CMI-
+Z to get kiz . The decisive advantage of this estimator       surrogates to simulate independence are generated
+compared to ﬁxed global bandwidth approaches is its           by randomly permuting all x-values in the data
+local data-adaptiveness (Fig. 1A).                            {xi , yi , zi }ni=1 . The problem is, that this approach
+                                                              not only destroys the dependence between x and y,
+Similar estimators, but for the more general class of
+                                                              as desired, but also destroys all dependence between
+Rényi entropies and divergences, were developed in
+                                                              x and z. Hence, this approach does not actually test
+Wang et al. (2009); Póczos and Schneider (2012). The
+                                                              X ⊥   ⊥ Y | Z. In order to preserve the dependence
+Kozachenko-Leonenko estimator is asymptotically un-
+                                                              between x and z, here a local permutation test uti-
+biased and consistent (Kozachenko and Leonenko, 1987;
+                                                              lizing nearest-neighbor search is proposed. To avoid
+Leonenko et al., 2008). Unfortunately, at present there
+                                                              confusion, the CMI-estimation parameter is denoted
+are no results, neither exact nor asymptotically, on the
+                                                              as kCMI and the permutation-parameter as kperm .
+distribution of the estimator as needed to derive analyt-
+ical signiﬁcance bounds. In Goria and Leonenko (2005),        The goal of the permutation scheme in Algorithm 1
+some numerical experiments indicate that for many dis-        (Fig. 1B) is to create a sample {x∗i , yi , zi }ni=1 , where x∗i
+tributions of X, Y the asymptotic distribution of MI is       are drawn such that (1) marginals are preserved (drawn
+Gaussian. But the important ﬁnite size dependence on          without replacement) and (2) xi is replaced by xj only
+the dimensions DX , DY , DZ , the sample length n and         if zi ≈ zj (local permutation). The proposed scheme
+the parameter k are unknown. Estimator (5) uses the           implements this idea in a straightforward manner that
+approximation that the densities are constant within          is computationally not much slower than a total per-
+the epsilon environment. Therefore, the estimator’s           mutation (see Supplementary Material Fig. S1): x∗i
+bias will grow with k since larger k lead to larger �-balls   are drawn among nearest neighbors of the point i in
+where the assumption of constant density is more likely       subspace Z and a list keeps track of already ‘used’
+violated. The variance, on the other hand, is the more        samples. However, we cannot always assure draws
+important quantity in conditional independence testing        without replacement, e.g., in the extreme case that one
+and it becomes smaller for larger k because ﬂuctuations       neighbor is shared between two points and kperm = 1.
+in the �-balls average out.                                   As described in Algorithm 1, the null distribution is
+                                           Conditional independence testing
+
+
+Algorithm 1 Conditional independence test based on                             H0                                   H1
+nearest-neighbor permutation (Fig. 1B).
+Require: Data {xi , yi , zi }ni=1 , kperm -nearest neighbor
+    parameter, number of permutation surrogates B,
+    conditional mutual information estimator (or other                                         250                                      250
+    conditional dependence measure) I(x;    � y|z)                                            100                                      100
+                                                                                               50                                       50
+                �
+ 1: Estimate I(x; y|z) of original data                                                       25                                       25
+
+
+
+
+                                                                                                kperm
+
+
+
+
+                                                                                                                                         kperm
+                                                                                              10                                       10
+ 2: Compute lists of nearest neighbors for each sample                                        5                                        5
+                                                                        0.00 0.02                       0.00 0.05
+                                                      k                                       2                     0.10 0.15          2
+    point i: Ni = {l ∈ {1, . . . , n} : �zl − zi � ≤ di perm }                    0.04 0.06
+                                                                                                                                0.20
+                                                        k                   CMI                                CMI
+    in maximum norm of subspace of z, where di perm
+    denotes the distance of sample point zi to its kperm -
+                                                   k    =1
+    nearest neighbor (including i itself, i.e., di perm =        Figure 2: Illustrative simulation of multivariate Gaus-
+    0); each list is then of length kperm                        sian to demonstrate the eﬀect of the nearest-neighbor
+ 3: for all b ∈ {1, . . . , B} do                                permutation parameter kperm . The model (6) is de-
+ 4:     Initialize empty list U = {} of used indices             scribed in the text (here only linear dependencies were
+ 5:     Initialize empty array x∗ of length n                    used and DZ = 1, n = 250, c = 1, kCMI = 50). (Left
+ 6:     Shuﬄe lists Ni separately for each i                     panel) Under H0 the true null distribution of CMI is
+ 7:     Create random permutation π of {1, . . . , n}            depicted as the orange surface (same for all kperm ) with
+ 8:     for all i ∈ π do                                         the 95% quantile marked by a red straight line. The
+ 9:         j = Ni (0)                                           black distributions and markers give the permuted null
+10:         m=0                                                  distributions and their 95% quantiles for diﬀerent kperm .
+11:         while j ∈ U and m < kperm − 1 do                     The sample size is n = 250 such that kperm = 250 cor-
+12:             m=m+1                                            responds to a full non-local permutation. (Right panel)
+13:             j = Ni (m)                                       Here the true distribution under H1 is depicted as the
+14:           ∗
+            x i = xj                                             grey surface next to the null distribution and the per-
+15:         Add j to U                                           muted distributions are generated from the dependent
+                                                                 data.
+16:     Compute I�b = I(x  � ∗ ; y|z)
+                                   1
+                                      �B     �      �
+17: Compute p-value by p = B           b=1 1[Ib ≥ I(x; y|z)]
+    where 1 denotes the indicator function                       worst case, but we numerically saw a more moderate
+18: return p and test statistic value I(x; � y|z)                scaling thanks to the use of KD-tree neighbor search
+                                                                 (Maneewongvatana and Mount, 1999). The compu-
+                                                                 tational time mostly depends on whether the nearest
+                                                                 neighbor search and the B-loop in Algorithm 1 are
+estimated by applying the CMI estimator on the per-              (embarrassingly) parallelized, for example on GPUs.
+mutation surrogates and the p-value is derived as the
+fraction of surrogate CMIs larger or equal than the              A theoretical proof that this scheme asymptotically
+CMI of the original data.                                        samples from the null distribution (Type I validity)
+                                                                 is challenging. Recent work (Sen et al., 2017) demon-
+The CMI estimator holds for arbitrary dimensions of              strates a proof for the bootstrap case and kperm = 1,
+all arguments X, Y, Z and also the local permutation             but an extension to the permutation case with larger
+scheme can be used to jointly permute all of X’s di-             kperm is not straightforward. Typically permutations
+mensions. In the following numerical experiments, the            are preferred for signiﬁcance testing for smaller sam-
+focus is on the case of univariate X and Y and uni-              ple sizes which motivated our choice, especially since
+or multivariate Z. Further, the permutation scheme               the CMI nearest-neighbor estimator requires non-tied
+can also be utilized with other conditional dependence           samples. Additionally, larger kperm yield more power
+measures, in the Supplementary Material we show nu-              as illustrated in Figs. 2,3.
+merical results for random-fourier-based kernel tests
+(Strobl et al., 2017).
+                                                                 3     Experiments
+As for the CMI estimator, the worst case computational
+complexity in sample size of this scheme, especially for         3.1   Choosing kCMI and kperm
+very high dimensions, is O(n2 ) for ﬁnding the near-
+est neighbors. The subsequent step of creating the               The approach has two free parameters, kCMI and kperm .
+local permutation is O(n) and the CMI estimate again             The following numerical experiments indicate that re-
+O(n2 ). Hence the computational complexity of the                stricting kperm to only very few nearest neighbors al-
+whole approach is quadratically in sample size in the            ready suﬃces to reliably simulate the null distribution
+                                                                                   Jakob Runge
+
+                typeI - fpr                                     typeII - tpr                                      typeI - fpr                                     typeII - tpr
+          n = 250, DZ = 1, c = 0.0                        n = 250, DZ = 1, c = 1.0                          n = 250, DZ = 8, c = 0.0                        n = 250, DZ = 8, c = 1.0
+
+
+
+1.0                                                1.0                                            1.0                                                1.0
+0.4                                                0.8                                          0.4                                                  0.8
+0.2                                                0.6                                          0.2                                                  0.6
+0.1                                                                                             0.1
+0.05                                               0.4                                          0.05                                                 0.4
+0.02                                               0.2                                                                                               0.2
+                                             250                                            250 0.02                                           250                                            250
+                                                   0.0                                                                                               0.0
+      200100                           25              200100                         25                200100                           25              200100                         25
+             50                      10                         50 25               10                         50                      10                         50 25               10
+                      25 15         5         rm                        1510       5         rm                         25 15         5         rm                        1510       5         rm
+                           10 5   2      k pe                                5   2      k pe                                 10 5   2      k pe                                5   2      k pe
+            kCM                                                 kCM                                           kCM                                                 kCM
+                  I                                                I                                                I                                                I
+
+
+
+
+Figure 3: Choice of kCMI and kperm based on experiments with post-nonlinear noise model (6). The sample size
+is n = 250 and 1, 000 realizations were generated to evaluate false positives (FPR) and true positives (TPR) for
+c = 1 at a 5% signiﬁcance level. Shown are FPR and TPR for DZ = 1 (left panels) and DZ = 8 (right panels).
+False positives are well-calibrated for small kperm and a wide range of kCMI and power is also relatively robust.
+More sample sizes shown in Supplementary Figs. S2,S3.
+
+
+while for kCMI a rule-of-thumb kCMI ≈ 0.1..0.2n is                                                  kCMI and kperm for a sample size n = 250. The re-
+proposed.                                                                                           sults indicate that a value kperm ≈ 5..10 yields well-
+                                                                                                    calibrated tests while not aﬀecting power much. This
+We study a post-nonlinear noise model similar to Zhang
+                                                                                                    holds for a wide range of sample sizes as shown in
+et al. (2011); Strobl et al. (2017) given by
+                                                                                                    Supplementary Figs. S2,S3. Sen et al. (2017) proved
+                                    � DZ                                                            type-I validity for the kperm = 1 bootstrap case in their
+           X = gX (c�b + �X + D1Z          Zi )
+                                       i=1                                                          scheme which may also serve as a very conservative
+                                   � DZ                                                             option with lower power for the CMI test.
+           Y = gY (c�b + �Y + D1Z          Zi ) ,   (6)
+                                                                 i=1
+                                                                                                    Larger kCMI yield more power and even for kCMI ≈ n/2
+where Zi , �b , �X , �Y         have jointly independent                                            the tests are still well calibrated. But power peaks
+standard Gaussian distributions, and gX , gY de-                                                    at some value of kCMI and slowly decreases for too
+note smooth functions uniformly chosen from                                                         large values. Still, the dependency of power on
+(·), (·)2 , (·)3 , tanh(·), exp(|| · ||2 ). Thus, we have                                           kCMI is relatively robust suggesting a rule-of-thumb
+X ⊥   ⊥ Y | Z = (Z1 , Z2 , . . .) for c = 0 (H0 true) and                                           of kCMI ≈ 0.1..0.2n. Note that, as shown in Supple-
+the dependent case X ✚         ⊥ Y | Z for c �= 0 (H1 true).
+                               ⊥                                                                    mentary Fig. S1, runtime increases linearly with kCMI
+Zhang et al. (2011); Strobl et al. (2017) used a setup                                              while kperm does not impact runtime much. Here the
+where Z is independent of X and Y in the dependent                                                  runtime per CMI estimate is computed assuming that
+case. Supplementary Fig. S6 gives results for this                                                  the scheme is (embarrassingly) parallelized.
+model setup, but in causal discovery applications these
+are typically dependent. Model (6) is evaluated for
+diﬀerent sample sizes n and dimensions DZ of the                                                    3.2       Comparison with kernel measures and
+conditioning set. The null distribution for the CMI                                                           distance correlation
+test was generated with B = 1, 000 surrogates in
+all experiments and 1, 000 realizations were used to                                                In Fig. 4 we investigate results comparing the CMI
+evaluate performance metrics.                                                                       test (CMIknn) to a simpler clustering permutation
+                                                                                                    scheme (CMIknnclust), KCIT and the two random-
+Figure 2 illustrates the eﬀect of diﬀerent kperm for a
+                                                                                                    fourier-based approximations RCIT and RCoT intro-
+linear-only version of the model. If kperm is too large
+                                                                                                    duced in Strobl et al. (2017). The Kolmogorov-Smirnov
+or even kperm = n, i.e., a full non-local permutation,
+                                                                                                    (KS) statistic as a metric for type-I errors, as in Strobl
+the permuted distribution under H0 is narrower than
+                                                                                                    et al. (2017), is utilized to quantify how uniform the
+the true null distribution. As illustrated by the black
+                                                                                                    distribution of p-values is. Type-II errors are measured
+markers, this would lead to an increase of false positives
+                                                                                                    by the area under the power curve (AUPC). All metrics
+(type-I errors). On the other hand, for the dependent
+                                                                                                    were evaluated from 1, 000 realizations of the model
+case under H1 , if kperm is very small, the permuted
+                                                                                                    with c = 0.5 and error bars give the bootstrapped
+distribution is positively biased yielding lower power
+                                                                                                    standard errors. Supplementary Figs. S4,S5 depict the
+(more type-II errors). For a range of values of kperm ,
+                                                                                                    results for false and true positive rate metrics. CMIknn
+the permuted distribution perfectly generates the true
+                                                                                                    was run with kperm = 5, B = 1, 000 permutation sur-
+null distribution.
+                                                                                                    rogates, and using the rule-of-thumb kCMI = 0.1n as
+Figure 3 depicts false and true positives for diﬀerent                                              well as a ﬁxed kCMI = 50.
+                                                 Conditional independence testing
+
+                     typeI - ks                                      typeII - aupc                                                  typeII - time
+            kperm = 5, DZ = 1, c = 0.00                       kperm = 5, DZ = 1, c = 0.50                                    kperm = 5, DZ = 1, c = 0.50
+     0.25                                               1.0
+                       KCIT                                                                                                             RCoT
+                       RCoT                                                                                      0.20                   RCIT
+     0.20                                               0.9
+                       RCIT                                                                                                             CMIknn k = 0.1n
+                       CMIknn k = 0.1n                                                                                                  CMIknn k = 50
+
+
+
+
+                                                                                                   Runtime [s]
+                                                                                                                 0.15
+     0.15              CMIknn k = 50                                                                                                    CMIknnclust
+
+
+
+
+                                                 AUPC
+                       CMIknnclust                      0.8
+KS
+
+
+
+
+                                                                          KCIT                                   0.10
+     0.10                                                                 RCoT
+                                                        0.7               RCIT
+                                                                          CMIknn k = 0.1n                        0.05
+     0.05                                                                 CMIknn k = 50
+                                                        0.6               CMIknnclust
+                                                                                                                 0.00
+     0.00
+              500     1000     1500       2000                 500      1000     1500       2000                               500     1000     1500       2000
+                        n                                                 n                                                              n
+
+                     typeI - ks                                      typeII - aupc                                                  typeII - time
+            kperm = 5, DZ = 8, c = 0.00                       kperm = 5, DZ = 8, c = 0.50                                    kperm = 5, DZ = 8, c = 0.50
+     0.25                                               1.0                                                            0.3
+                       KCIT                                          KCIT                                                               RCoT
+     0.20              RCoT                                          RCoT                                                               RCIT
+                       RCIT                             0.9          RCIT                                                               CMIknn k = 0.1n
+                       CMIknn k = 0.1n                               CMIknn k = 0.1n                                                    CMIknn k = 50
+
+
+
+
+                                                                                                         Runtime [s]
+                                                                                                                       0.2
+     0.15              CMIknn k = 50                                 CMIknn k = 50
+                                                 AUPC
+
+
+
+                                                        0.8
+KS
+
+
+
+
+     0.10
+                                                        0.7                                                            0.1
+
+     0.05
+                                                        0.6
+                                                                                                                       0.0
+     0.00
+              500     1000     1500       2000                 500      1000     1500       2000                               500     1000     1500       2000
+                        n                                                 n                                                              n
+
+
+Figure 4: Comparison studies with post-nonlinear noise model (6). Shown are KS (left column), AUPC (center
+column), and runtime (right column) for a sample size experiment with DZ = 1 (top row) and DZ = 8 (bottom
+row). In all experiments kperm = 5 is used together with two choices kCMI = 0.1n and kCMI = 50. Here results
+for the default nﬀ = 25 fourier features for RCIT and RCoT are shown, but calibration (false positive control) is
+relatively sensitive to this parameter (Supplementary Fig. S7). CMIknnclust is based on a simple equi-quantile
+permutation scheme (only for DZ = 1). Supplementary Fig. S6 gives results for an alternative model with
+independent Z.
+
+
+Figure 4 demonstrates that CMIknn is better calibrated                     faster than RCIT or RCoT for not too large sample
+with the lowest KS-values for almost all sample sizes                      sizes due to eﬃcient KD-tree nearest-neighbor search
+tested. A simpler permutation scheme used only for                         procedures (Maneewongvatana and Mount, 1999), es-
+DZ = 1 (orange lines) based on shuﬄing x within                            pecially for smaller kCMI (right column in Fig. 4).
+equi-quantile bins of z (here with 20 bins) becomes ill-                   KCI is not shown here because it is orders of mag-
+calibrated for larger n. While the number of bins can                      nitude slower. A major computational burden of
+be adapted to the sample size, this is diﬃcult for higher                  RCIT and RCoT is the kernel bandwidth computa-
+dimensional Z. KCIT and RCIT (solid red and green                          tion via the median Euclidean distance heuristic. In
+lines) are especially badly calibrated for smaller sample                  https://github.com/ericstrobl/RCIT the median
+sizes or higher dimensions DZ and RCoT (solid blue                         is computed from the ﬁrst 500 samples only, leading to
+line) better approximates the null distribution only for                   the “kink” in the runtime for RCIT and RCoT. The
+n > 500. Note that this is also expected (Strobl et al.,                   runtime of RCIT and RCoT depends quadratically on
+2017) since the analytical approximation of the null                       the number of random Fourier features used (here the
+distribution for RCIT and RCoT requires large sample                       default of 25 for subspace Z and 5 for subspaces X and
+sizes. The power as measured by AUPC is, thus, only                        Y was used), for more results see Fig. S7. CMIknn’s
+comparable for n > 500 and CMIknn has the highest                          runtime increases more sharply with sample size, espe-
+power throughout. For DZ = 8, on the other hand,                           cially for kCMI = 0.1n.
+RCoT has slightly higher power than CMIknn. For
+                                                                           Figure 5 explores more cardinalities of the conditioning
+the model setup with independent Z (Supplementary
+                                                                           set. KCI and RCIT are not well-calibrated for higher di-
+Fig. S6), CMIknn has again similar or higher power.
+                                                                           mensions while RCoT and CMIknn better approximate
+If the computationally expensive scheme of CMIknn                          the null. The power of CMIknn and RCoT decreases
+is (embarrassingly) parallelized, the CMIknn test is                       with dimensionality with CMIknn being more power-
+                                                                  Jakob Runge
+
+                      typeI - ks                                      typeII - aupc                                             typeII - time
+            kperm = 5, n = 1000, c = 0.00                     kperm = 5, n = 1000, c = 0.50                             kperm = 5, n = 1000, c = 0.50
+     0.25                                               1.0
+                KCIT
+     0.20       RCoT                                                                                             0.10
+                RCIT                                    0.9
+
+
+
+
+                                                                                                   Runtime [s]
+                CMIknn k = 0.1n
+     0.15       CMIknn k = 50                                                                                    0.08
+
+
+
+
+                                                 AUPC
+                                                        0.8
+KS
+
+
+
+
+     0.10                                                          KCIT                                          0.06
+                                                        0.7        RCoT                                                              RCoT
+                                                                   RCIT                                          0.04                RCIT
+     0.05                                                          CMIknn k = 0.1n                                                   CMIknn k = 0.1n
+                                                        0.6        CMIknn k = 50                                                     CMIknn k = 50
+                                                                                                                 0.02
+     0.00
+            2      4          6    8        10                2       4         6     8       10                        2      4          6    8        10
+                         DZ                                                DZ                                                        DZ
+
+
+Figure 5: Numerical experiments as in Fig. 4 for diﬀerent condition dimensions DZ with ﬁxed n = 1000.
+Supplementary Fig. S6 gives results for an alternative model with independent Z.
+
+
+ful for smaller dimensions and RCoT more powerful                           discrete Bernoulli random variables while the CMI test
+for larger dimensions. For the model setup with in-                         is designed for continuous variables. For Examples 5–8
+dependent Z (Supplementary Fig. S6), the power of                           CMIknn has competitive power compared to CDC and
+both approaches is rather insensitive to dimensional-                       outperforms KCIT in all and RCoT in all but Exam-
+ity. CMIknn’s runtime starts lower, but increases more                      ple 5 where they reach the same performance. Note
+sharply with DZ than RCIT and RCoT.                                         that the CDC test is based on a computationally ex-
+                                                                            pensive local bootstrap scheme since the asymptotics
+The results indicate that the analytical approximations
+                                                                            break down for small sample sizes.
+of the null distribution utilized in RCIT and RCoT do
+not work well for small sample sizes below n ≈ 1000.
+The dashed blue and green lines in Supplementary                            4       Real data application
+Fig. S6 explore the option to combine the kernel statis-
+tics with the nearest-neighbor permutation test. While                      CMIknn is well suited for large-scale causal discovery in
+then RCIT and RCoT loose their computational ad-                            combination with eﬃcient discovery algorithms (Spirtes
+vantage, the tests are now well-calibrated. Their power                     et al., 2000) avoiding high-dimensional conditioning by
+is still mostly lower than that of CMIknn, especially                       iterative tests. Here we demonstrate CMIknn together
+for RCIT.                                                                   with a time series version of the PC causal discovery
+Until now rather smooth dependencies of X and Y                             algorithm (Runge et al., 2017)2 to investigate dependen-
+on the conditioning variables were considered. Fig-                         cies between hourly averaged concentrations for carbon
+ure 6 depicts a more nonlinear relationship. For                            monoxide (CO), benzene (C6H6), total nitrogen oxides
+an extremely oscillatory sinusoidal dependency like                         (NOx), nitrogen dioxide (NO2), as well as temperature
+X = c�b + sin(λZ) + �X and Y = c�b + sin(λZ) + �Y for                       (T), relative humidity (RH) and absolute humidity
+λ = 30 (all noise terms N (0, 1)), shown in Fig. 6, kperm                   (AH) taken from De Vito et al. (2008)3 . The time se-
+needs to be set to a very small value in order to control                   ries were detrended using a Gaussian kernel smoother
+false positives. CMIknn well detects dependence for                         with bandwidth σ = 1440 hours and the analysis was
+this case (true positives equal 1) while the analytical                     limited to the ﬁrst three months of the dataset (2160
+versions of RCIT and RCoT do not work at all (false                         samples). After accounting for missing values the eﬀec-
+positives are 1) and the permutation-based versions                         tive sample size is n = 1102. The CMIknn parameters
+have much lower power than CMIknn even if we vary                           are kCMI = 200 and kperm = 5 with B = 1, 000 permu-
+the number of Fourier features. Note that higher values                     tation surrogates. The causal discovery algorithm was
+take much longer, see Fig. S7.                                              run including lags from τ = 1 up to τmax = 3 hours.
+                                                                            The resulting graph at a 10% false discovery-level shown
+In Supplementary Tab. S1 the results from Wang et al.                       in Fig. 7 indicates that temperature and relative humid-
+(2015) are repeated proposing the conditional distance                      ity inﬂuence Benzene which in turn aﬀects NO2 and
+correlation (CDC) test together with results from RCoT                      CO concentrations. The edge colors depict the CMI
+and the CMI test. The experiments are described in                          test statistic values which demonstrates another advan-
+Wang et al. (2015). Examples 1–4 correspond to condi-                       tage of information-theoretic measures: The CMI value
+tional independence and Examples 5–8 to dependent
+cases. CMIknn has well-calibrated tests except for                             2
+                                                                                 Software    is     available   online    under
+Example 4 (as well as Example 8) which is based on                          https://github.com/jakobrunge/tigramite.
+                                                                               3
+                                                                                 http://archive.ics.uci.edu/ml/datasets/Air+Quality
+                                                                                                                  Conditional independence testing
+
+
+
+                                                                                                                                                                                   NOx
+                                                                                                                                                                                         1
+                                                                                                                                                                                                         C6H6
+
+                                                                                                                                                                      NO2                                         1
+
+                                                                                                                                                                                                         1
+                                                                                                              Z                                                                                                       CO
+                                                                                                                                                                                     3
+                                                                                                                                                                                                 3
+                                                                                                                                                                       T
+                                                                                                                                                                                                     1       AH
+                                                                                                              Y                                                                    RH        1
+                                                                           X
+
+
+
+
+                                                                                                                                                              0.0    0.1     0.2    0.3 0.00             0.01          0.02
+                               typeI - fpr                                                                    typeII - tpr                                             auto-CMI                          cross-CMI
+                        n = 1000, λ = 30, c = 0.0                                                       n = 1000, λ = 30, c = 0.5
+
+
+
+
+1.0                                                                             1.0
+                                                                                                                                                           Figure 7: Causal discovery with CMIknn and the algo-
+0.4
+0.2
+                                                                                0.8                                                                        rithm proposed in Runge et al. (2017) on time series of
+                                                                                0.6
+0.1
+0.05
+                                                                                 0.4
+                                                                                                                                                           air pollutants and various weather variables. The node
+0.02
+                                                             7
+                                                                      10         0.2
+                                                                                 0.0                                                         7
+                                                                                                                                                      10   color gives the strength of auto-CMI, i.e., the lag-1
+       200                                                                             200
+             100
+                   50
+                        25
+                                   10 7
+                                                        5
+                                                            k pe
+                                                                 rm
+                                                                                             100
+                                                                                                   50
+                                                                                                       25
+                                                                                                                   10 7
+                                                                                                                                        5
+                                                                                                                                            k pe
+                                                                                                                                                 rm        CMI of a variable with itself, and the edge color the
+                     kCM                  5   3   3                                                 kCM                   5   3   3
+                          I
+
+                          typeI - fpr
+                                                                                                          I
+
+                                                                                                    typeII - tpr                                           cross-CMI with the link labels denoting the time lag in
+                   n = 1000, λ = 30, c = 0.0                                                  n = 1000, λ = 30, c = 0.5                                    hours. Signiﬁcance based on 10% false discovery-level.
+       1.0                                                                           1.0
+                               RCoT                                                                       RCoT
+                               RCIT                                                                       RCIT
+       0.4                     RCoTperm                                                                   RCoTperm
+                               RCITperm                                              0.8                  RCITperm
+       0.2                                                                                                                                                 a more conservative option. The power of CMIknn
+                                                                               TPR
+FPR
+
+
+
+
+       0.1
+                                                                                     0.6                                                                   was found higher than advanced kernel based tests
+      0.05
+                                                                                                                                                           such as KCIT or its faster random Fourier feature
+      0.02                                                                           0.4
+                                                                                                                                                           versions RCIT and RCoT for smaller dimensions and
+                              50          100         150          200                                  50           100          150          200
+                                           nff                                                                        nff                                  similar for higher dimensions. CMIknn is preferable
+                                                                                                                                                           especially for highly non-smooth densities due to its
+Figure 6: Example of sinusoidal dependence leading to                                                                                                      local data-adaptiveness. For not too large sample sizes
+strongly oscillatory structure (top panel for λ = 10).                                                                                                     CMIknn has a shorter runtime since eﬃcient nearest-
+The two center panels depict FPR and TPR at α =                                                                                                            neighbor search schemes can be utilized, but its runtime
+0.05 for CMIknn and the two bottom panels for RCIT                                                                                                         increases more sharply with sample size and dimension-
+and RCoT for diﬀerent numbers of random fourier                                                                                                            ality than the fourier-feature based kernel tests. Here
+features nﬀ . Here the analytical versions of RCIT and                                                                                                     approximate nearest-neighbor techniques could speed
+RCoT (solid lines) do not work at all (FPR equal to                                                                                                        up computation. The permutation scheme leads to
+1). If RCIT and RCoT are combined with the local                                                                                                           a higher computational load which, however, can be
+permutation test (dashed lines) for kperm = 5, they                                                                                                        easily parallelized, for example on GPUs. Nevertheless,
+become better calibrated, but still have much lower                                                                                                        more theoretical research is desirable to obtain approx-
+power than CMIknn.                                                                                                                                         imate analytics for the null distribution in the large
+                                                                                                                                                           sample limit. For small sample sizes below n ≈ 1, 000
+                                                                                                                                                           our results demonstrate that a permutation-approach
+is well-interpretable as the magnitude of information                                                                                                      is inevitable also for kernel-based approaches.
+ﬂow between components of the system.
+                                                                                                                                                           Acknowledgments
+5             Conclusion
+                                                                                                                                                           The author thanks Eric Strobl for kindly providing
+                                                                                                                                                           R-code and Dino Sejdinovic for many helpful com-
+The paper presents a novel fully non-parametric condi-
+                                                                                                                                                           ments. The author gratefully acknowledges the Euro-
+tional independence test based on a nearest neighbor
+                                                                                                                                                           pean Regional Development Fund (ERDF), the German
+estimator of conditional mutual information. Its main
+                                                                                                                                                           Federal Ministry of Education and Research and the
+advantage lies in the ability to adapt to highly localized
+                                                                                                                                                           Land Brandenburg for providing resources on the high-
+densities due to nonlinear dependencies. This feature
+                                                                                                                                                           performance computer system at the Potsdam Institute
+results in well-calibrated tests with reliable false pos-
+                                                                                                                                                           for Climate Impact Research.
+itive rates. Numerical experiments for sample sizes
+n = 50 to n = 2, 000 and dimensions of the conditional
+set of DZ = 1..10 were evaluated. The experiments
+suggest that a permutation nearest-neighbor parameter
+of kperm = 5 provides well-calibrated tests while not
+aﬀecting power much, but smaller values can serve as
+                                                  Jakob Runge
+
+
+References                                                   Proceedings of the National Conference on Artiﬁcial
+                                                             Intelligence, 20(2):825.
+Bergsma, W. (2004). Testing conditional independence
+  for continuous random variables. Eurandom technical      Peters, J., Mooij, J., Janzing, D., and Schölkopf, B.
+  report, 48:1–19.                                          (2013). Causal Discovery with Continuous Additive
+                                                             Noise Models. Journal of Machine Learning Research,
+Daudin, J. J. (1980).     Partial association and
+                                                             15(1):2009–2053.
+ an measures to qualitative application regression.
+ Biometrika, 67(3):581–590.                                Póczos, B. and Schneider, J. (2012). Nonparametric es-
+                                                             timation of conditional information and divergences.
+De Vito, S., Massera, E., Piga, M., Martinotto, L., and
+                                                             15th International Conference on Artiﬁcial Intelli-
+  Di Francia, G. (2008). On ﬁeld calibration of an
+                                                             gence and Statistics, XX:914–923.
+  electronic nose for benzene estimation in an urban
+  pollution monitoring scenario. Sensors and Actua-        Ramsey, J. D. (2014). A Scalable Conditional Inde-
+ tors, B: Chemical, 129(2):750–757.                         pendence Test for Nonlinear, Non-Gaussian Data.
+Doran, G., Muandet, K., Zhang, K., and Schölkopf,          https://arxiv.org/abs/1401.5031.
+ B. (2014). A Permutation-Based Kernel Conditional         Runge, J., Sejdinovic, D., and Flaxman, S. (2017).
+ Independence Test. In Proceedings of the Thirtieth         Detecting causal associations in large nonlinear time
+ Conference on Uncertainty in Artiﬁcial Intelligence,       series datasets. http://arxiv.org/abs/1702.07007.
+ pages 132–141.                                            Sejdinovic, D., Sriperumbudur, B., Gretton, A., and
+Frenzel, S. and Pompe, B. (2007). Partial Mutual             Fukumizu, K. (2013). Equivalence of distance-based
+  Information for Coupling Analysis of Multivariate          and RKHS-based statistics in hypothesis testing. An-
+  Time Series. Physical Review Letters, 99(20):204101.       nals of Statistics, 41(5):2263–2291.
+Fukumizu, K., Gretton, A., Sun, X., and Schölkopf, B.     Sen, R., Suresh, A. T., Shanmugam, K., Dimakis, A. G.,
+  (2008). Kernel Measures of Conditional Dependence.         and Shakkottai, S. (2017). Model-Powered Condi-
+  Advances in Neural Information Processing Systems          tional Independence Test. In Advances in Neural
+  21 (2008), 20:1–13.                                        Information Processing Systems 30 (2017), pages
+Gao, W., Oh, S., and Viswanath, P. (2017). Demystify-        2955–2965.
+ ing ﬁxed k-nearest neighbor information estimators.       Spirtes, P., Glymour, C., and Scheines, R. (2000). Cau-
+ In 2017 IEEE International Symposium on Informa-            sation, Prediction, and Search. The MIT Press,
+ tion Theory (ISIT), pages 1267–1271. IEEE.                  Boston.
+Goria, M. N. and Leonenko, N. N. (2005). A new class       Strobl, E. V., Zhang, K., and Visweswaran, S. (2017).
+ of random vector entropy estimators and its applica-        Approximate Kernel-based Conditional Indepen-
+ tions in testing statistical hypotheses. Nonparametric      dence Tests for Fast Non-Parametric Causal Dis-
+ Statistics, 17(3):277–297.                                  covery. http://arxiv.org/abs/1702.03877.
+Huang, T. M. (2010). Testing conditional independence      Vejmelka, M. and Paluš, M. (2008). Inferring the
+ using maximal nonlinear conditional correlation. An-        directionality of coupling with conditional mutual
+ nals of Statistics, 38(4):2047–2091.                        information. Physical Review E, 77(2):026214.
+Kozachenko, L. F. and Leonenko, N. N. (1987). Sample       Wang, Q., Kulkarni, S. R., and Verdú, S. (2009). Diver-
+ estimate of the entropy of a random vector. Problemy       gence Estimation for Multidimensional Densities Via
+ Peredachi Informatsii, 23(2):9–16.                         k -Nearest-Neighbor Distances. IEEE Transactions
+Kraskov, A., Stögbauer, H., and Grassberger, P. (2004).    on Information Theory, 55(5):2392–2405.
+  Estimating mutual information. Physical Review E,        Wang, X., Pan, W., Hu, W., Tian, Y., and Zhang, H.
+  69(6):16.                                                 (2015). Conditional Distance Correlation. Journal of
+Leonenko, N. N., Pronzato, L., and Savani, V. (2008).       the American Statistical Association, 110(512):1726–
+  A class of Rényi information estimators for mul-         1734.
+  tidimensional densities. The Annals of Statistics,       Zhang, K., Peters, J., Janzing, D., and Schölkopf, B.
+  36(5):2153–2182.                                          (2011). Kernel-based Conditional Independence Test
+Maneewongvatana, S. and Mount, D. (1999). It’s okay          and Application in Causal Discovery. Proceedings
+ to be skinny, if your friends are fat. Center for Geo-      of the 27th Conference on Uncertainty in Artiﬁcial
+ metric Computing 4th Annual Workshop on Compu-              Intelligence (UAI 2011), pages 804–813.
+ tational Geometry, pages 1–8.                             Zhang, Q., Filippi, S., Flaxman, S., and Sejdinovic,
+Margaritis, D. (2005). Distribution-free learning of         D. (2017). Feature-to-feature regression for a two-
+ Bayesian network structure in continuous domains.           step conditional independence test. In Proceedings
+                                  Conditional independence testing
+
+
+of the 33rd Conference on Uncertainty in Artiﬁcial
+Intelligence (UAI 2017).
+

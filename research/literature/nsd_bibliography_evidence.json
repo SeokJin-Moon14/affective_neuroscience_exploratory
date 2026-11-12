@@ -1,0 +1,9 @@
+{
+  "source_url": "https://raw.githubusercontent.com/elifesciences/elife-article-xml/master/articles/elife-82566-v1.xml",
+  "source_local": "agents/12_adversarial_review/sources/schutt_xml.txt",
+  "source_sha256": "931a661b069439066e93545579260df041390ba316731357bf577f1169e0af63",
+  "location": "ref id=bib6",
+  "text": "Allen EJ St-Yves G Wu Y Breedlove JL Dowdle LT Caron B Pestilli F Charest I Hutchinson JB Naselaris T Kay K 2021 A Massive 7T fMRI Dataset to Bridge Cognitive and Computational Neuroscience bioRxiv 10.1101/2021.02.22.432340",
+  "scope": "NSD 2021 preprint 서지만 확인. 2022 정식판의 최종 서지·원문은 미확인.",
+  "verified_on": "2026-11-12"
+}

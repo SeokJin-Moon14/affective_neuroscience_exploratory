@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-12",
+  "role_count": 12,
+  "source_rows": 111,
+  "unique_candidates": 103,
+  "bibliographically_verified": 100,
+  "pending": 3,
+  "full_text_or_selected_sections_checked": 27,
+  "discussion_limitations_or_conclusion_checked": 27,
+  "author_future_direction_records": 25,
+  "verification_target": 100,
+  "strict_pending_reasons": {
+    "A01-SPACETOP2024": "공식 Authors 배열과 HowToAcknowledge 저자 표기 충돌; 정식 서지 대조 필요",
+    "G07-P08": "공식 README 본문 저자열과 BibTeX 저자열 충돌; 명단 확정 보류",
+    "BI03": "발표연도·최종 출판연도 미확인"
+  },
+  "notes": "서지 확인 100편은 원문 100편을 읽었다는 뜻이 아니다. 보류 후보는 목표 수에서 제외했다."
+}

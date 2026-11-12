@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-12",
+  "status": "passed",
+  "csv_counts": {
+    "verified_papers.csv": 100,
+    "pending_verification.csv": 3,
+    "papers.csv": 103,
+    "papers_all_evidence.csv": 111
+  },
+  "required_fields": 30,
+  "agent_paper_files": 12,
+  "dataset_required_files": 16,
+  "checked_local_links": 50,
+  "scope": "문서·스키마·집계·로컬 링크 검산. 문헌 내용 전체의 독립 재현이나 뇌 분석 검증이 아님."
+}

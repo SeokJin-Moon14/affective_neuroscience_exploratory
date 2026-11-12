@@ -1,0 +1,35 @@
+{
+  "verification_date": "2026-11-12",
+  "source": "Agent01의 실제 다운로드 이벤트 사본; 동일 사본에 대한 Coordinator 독립 재계산",
+  "subjects": {
+    "sub-05": {
+      "runs": 61,
+      "stimulus_events": 2196,
+      "all_rows": 2318
+    },
+    "sub-02": {
+      "runs": 61,
+      "stimulus_events": 2196,
+      "all_rows": 2318
+    },
+    "sub-01": {
+      "runs": 61,
+      "stimulus_events": 2196,
+      "all_rows": 2318
+    },
+    "sub-03": {
+      "runs": 61,
+      "stimulus_events": 2196,
+      "all_rows": 2318
+    },
+    "sub-04": {
+      "runs": 61,
+      "stimulus_events": 2196,
+      "all_rows": 2318
+    }
+  },
+  "headers": {
+    "onset,duration,trial_type,stimulus_name,stim_index": 305
+  },
+  "note": "새로운 원천 자료 대조가 아니라 파싱 수치 재검산. 영상 내용의 동일성 검증은 아님."
+}

@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-12",
+  "source": "/etc/codex/network-policy.json",
+  "vpn_configured": false,
+  "policy_type": "restricted",
+  "verification": "실제 arXiv/Crossref 요청403; GitHub/raw 요청200",
+  "draft_saved": true,
+  "draft_applied": false,
+  "note": "다음 세션 재시작시 상태 재확인; 초안 저장은 게시/적용 아님"
+}

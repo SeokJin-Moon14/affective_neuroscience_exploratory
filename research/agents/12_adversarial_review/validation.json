@@ -1,0 +1,17 @@
+{
+  "papers": 9,
+  "body_checked": 5,
+  "code_or_doc_only": 3,
+  "metadata_only": 1,
+  "pending": 1,
+  "subaxes": 3,
+  "source_attempts": 53,
+  "source_successes": 42,
+  "required_fields": 30,
+  "actual_fields": 38,
+  "all_required_nonempty": true,
+  "source_files_and_hashes_valid": true,
+  "neural_or_model_experiments_executed": false,
+  "other_agent_reports_read": false,
+  "emobrain_read": false
+}

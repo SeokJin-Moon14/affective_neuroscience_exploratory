@@ -24,6 +24,10 @@ curation = read('revision_v3/curation.json')
 assignments = read('revision_v3/PEER_ASSIGNMENTS.json')
 peers = [x['review'] for x in read('revision_v3/peer_reviews.json')]
 critic = read('agents/12_adversarial_review/revision_v3_contribution_review.json')
+followups = read('agents/12_adversarial_review/revision_v3_response_check.json')
+critic += [{'review_id': r['original_review_id'] + '-followup', 'candidate_id': r['candidate_id']}
+           for r in followups]
+critic += read('revision_v3/COORDINATOR_REVIEW.json')
 original = read('revision_v3/independent_candidates.json')
 papers = {p['canonical_id'] for p in csv.DictReader((R / 'literature/papers.csv').open())}
 ids = [c['candidate_id'] for c in catalog]
@@ -52,6 +56,9 @@ for c in catalog:
 for s in assignments['original_sources']:
     check(hashlib.sha256((R / s['path']).read_bytes()).hexdigest() == s['sha256'],
           s['path'] + ': 독립 제안 원본 보존')
+for s in read('revision_v3/AUTHOR_SOURCES.json'):
+    check(hashlib.sha256((R / s['path']).read_bytes()).hexdigest() == s['sha256'],
+          s['path'] + ': 실제 저자 수정본과 통합 시점 일치')
 for s in read('revision_v3/ADDITIONAL_ASSIGNMENTS.json').get('original_sources', []):
     check(hashlib.sha256((R / s['path']).read_bytes()).hexdigest() == s['sha256'],
           s['path'] + ': 추가 독립 제안 원본 보존')
@@ -80,7 +87,10 @@ for name in paths:
         if re.match(r'^[a-z][a-z0-9+.-]*:', link, re.I) or link.startswith('#'):
             continue
         target = unquote(link.split('#')[0].split('?')[0].strip('<>'))
-        check((p.parent / target).exists(), name + ': 내부 링크 ' + target)
+        resolved = (p.parent / target).resolve()
+        # 이 실행의 마지막에 작성할 검사 보고서 자체의 링크도 허용한다.
+        check(resolved.exists() or resolved == R / 'revision_v3/VALIDATION.json',
+              name + ': 내부 링크 ' + target)
 
 report = {'checked_at_utc': datetime.now(timezone.utc).isoformat(),
           'scope': '문서 구조·참조·원본 보존·실제 검토 응답. 과학적 타당성·최초성·실험 결과의 검증 아님.',

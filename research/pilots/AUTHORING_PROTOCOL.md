@@ -1,5 +1,3 @@
-# 파일럿 작성 기준
+# 이전 파일럿 계획
 
-현재 계획 원고는 `revision_v2/pilots.json`이다. `scripts/render_neuroscience_v2.py`로 문서를 만든다. 파일럿은 과학적 질문, 구별할 결과, 최소 분석, 데이터와 자원을 설명해야 한다. 실행 전 계획과 실제 수행 기록을 구별한다.
-
-이전 파일럿과 감사의 수식·계약은 [v1 기록](../archive/v1/pilots/README.md)에 보존했다. 새 설계에 맞는 부분만 가져오며 이전 검토를 새 계획의 검증 완료로 간주하지 않는다.
+[당시 문서](../archive/v2/pilots/AUTHORING_PROTOCOL.md)를 기록으로 보존한다. 이 순위와 설계를 v3의 확정 계획으로 이어받지 않는다. [현재 상태](README.md)를 따른다.

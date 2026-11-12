@@ -1,0 +1,134 @@
+{
+  "scope": "독자용 사본의 표현 정리. 저자 원본·검토 응답은 보존.",
+  "replacements": {
+    "자연 사진 가족": "실제 사진 묶음",
+    "사진 가족": "사진 묶음",
+    "측정 계약": "문항·자극 제시·측정 조건",
+    "사진의 교차 지지": "두 사진 비교의 실현성",
+    "실측 지원 검증": "실제 측정 자료와 지표 적용 범위의 확인",
+    "원 목표 평정": "원 논문이 예측하려던 평정",
+    "원 목표 문항": "원 논문의 평정 문항",
+    "재적합": "재학습"
+  },
+  "cards": [
+    {
+      "candidate_id": "C02-A",
+      "changed_fields": [],
+      "original_question": "정서 뇌 지표의 점수를 서로 다른 장면 사이에서 비교하려면 무엇이 필요할까?",
+      "reader_question": "정서 뇌 지표의 점수를 서로 다른 장면 사이에서 비교하려면 무엇이 필요할까?"
+    },
+    {
+      "candidate_id": "C02-B",
+      "changed_fields": [],
+      "original_question": "뇌는 새로운 정서 상황을 어떤 공통 요소로 표현할까?",
+      "reader_question": "뇌는 새로운 정서 상황을 어떤 공통 요소로 표현할까?"
+    },
+    {
+      "candidate_id": "C03-A",
+      "changed_fields": [
+        "question",
+        "competing_accounts",
+        "decisive_result",
+        "conclusion_if_supported",
+        "conclusion_if_alternative",
+        "noncontribution_result",
+        "minimum_design",
+        "ai_enables",
+        "nearest_prior",
+        "missing_prior",
+        "data_scope",
+        "strongest_objection",
+        "response_to_objection",
+        "uncertainty"
+      ],
+      "original_question": "칼날이 크게 보이는 사진에서 부정정서 뇌 지표가 높아지면, 원래 목표 평정도 더 높은 것일까?",
+      "reader_question": "정서 뇌 지표는 언제 사진의 차이를 정서의 차이로 잘못 읽을까?"
+    },
+    {
+      "candidate_id": "C03-B",
+      "changed_fields": [
+        "missing_prior"
+      ],
+      "original_question": "위험을 예상할 때 구체적인 미래 내용이 정서 관련 반응을 바꾸는 데 필요한가?",
+      "reader_question": "위험을 예상할 때 구체적인 미래 내용이 정서 관련 반응을 바꾸는 데 필요한가?"
+    },
+    {
+      "candidate_id": "C04-A",
+      "changed_fields": [
+        "missing_prior"
+      ],
+      "original_question": "뇌는 새로운 정서 상황을 어떤 공통 요소로 표현할까?",
+      "reader_question": "뇌는 새로운 정서 상황을 어떤 공통 요소로 표현할까?"
+    },
+    {
+      "candidate_id": "C04-B",
+      "changed_fields": [
+        "question",
+        "premise",
+        "competing_accounts",
+        "decisive_result",
+        "conclusion_if_supported",
+        "noncontribution_result",
+        "minimum_design",
+        "uncertainty",
+        "missing_prior",
+        "integration"
+      ],
+      "original_question": "정서 뇌 지표는 시각 단서에 따라 오판할까?",
+      "reader_question": "정서 뇌 지표가 잘못 해석되는 사진 조건을 미리 찾을 수 있을까?"
+    },
+    {
+      "candidate_id": "C05-A",
+      "changed_fields": [],
+      "original_question": "뇌는 위험의 크기뿐 아니라 피해가 생기는 경로도 구별할까?",
+      "reader_question": "뇌는 위험의 크기뿐 아니라 피해가 생기는 경로도 구별할까?"
+    },
+    {
+      "candidate_id": "C05-B",
+      "changed_fields": [
+        "question",
+        "competing_accounts",
+        "decisive_result",
+        "conclusion_if_supported",
+        "minimum_design",
+        "nearest_prior",
+        "data_scope",
+        "response_to_objection"
+      ],
+      "original_question": "사진 속 칼날 크기 때문에 정서 뇌 지표가 조건 차이를 잘못 나타낼 경우를 미리 찾을 수 있을까?",
+      "reader_question": "정서 뇌 지표의 해석을 시험할 사진을 어떻게 고를까?"
+    },
+    {
+      "candidate_id": "C06-A",
+      "changed_fields": [
+        "question",
+        "competing_accounts",
+        "minimum_design"
+      ],
+      "original_question": "위협이 커질 때 뇌 반응이 달라지는 방식은, 위협의 원인이 달라도 같을까?",
+      "reader_question": "위협의 원인이 달라도 뇌 반응이 바뀌는 방식은 같을까?"
+    },
+    {
+      "candidate_id": "C06-B",
+      "changed_fields": [
+        "question"
+      ],
+      "original_question": "어떤 상황 주석이 빠져 정서 관련 뇌 비교가 실패하는지, 뇌 자료로 후보를 찾을 수 있을까?",
+      "reader_question": "뇌 자료로 새로운 상황 주석을 찾으면 어떤 정서 연구에 도움이 될까?"
+    },
+    {
+      "candidate_id": "C04-C",
+      "changed_fields": [
+        "missing_prior"
+      ],
+      "original_question": "정서적 장면에서 시선은 이미 얻은 정보에 따라 달라질까?",
+      "reader_question": "정서적 장면에서 시선은 이미 얻은 정보에 따라 달라질까?"
+    },
+    {
+      "candidate_id": "C06-C",
+      "changed_fields": [],
+      "original_question": "정서가 강한 장면은 실제 모습대로 기억될까, 그 정서에 더 어울리는 모습으로 기억될까?",
+      "reader_question": "정서가 강한 장면은 실제 모습대로 기억될까, 그 정서에 더 어울리는 모습으로 기억될까?"
+    }
+  ]
+}

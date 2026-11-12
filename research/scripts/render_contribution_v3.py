@@ -55,8 +55,14 @@ for c in catalog:
              '## 정서신경과학에서 무엇이 달라지는가', c['field_impact'],
              '## 무엇을 측정하고, AI는 어디에 쓰나', para(c['minimum_design']), c['ai_enables'], c['data_scope'],
              '## 어떤 결과라면 기여가 부족한가', c['noncontribution_result'],
-             '## 가장 강한 반론과 수정', c['strongest_objection'], c['response_to_objection'],
-             '## 가까운 선행연구와 남은 확인']
+             '## 가장 강한 반론과 수정', c['strongest_objection'], c['response_to_objection']]
+    if c.get('illustrative_scene'):
+        ex = c['illustrative_scene']
+        parts += ['## 구체적인 장면 예시', ex['status'], ex['scene'],
+                  '두 관찰 위치: ' + ' / '.join(k + ': ' + v for k, v in ex['unseen_candidates'].items()),
+                  '첫 관측 1: ' + ex['first_observation_1'], '첫 관측 2: ' + ex['first_observation_2'],
+                  ex['affect_information_prediction'], ex['general_meaning_comparison'], ex['neural_comparison'], ex['scope']]
+    parts += ['## 가까운 선행연구와 남은 확인']
     for ref in c['nearest_prior']:
         p = papers[ref['paper_id']]
         parts += [f"[{ref['paper_id']} · {p['title']}]({paper_url(p)})\n\n알려진 부분: {ref['what_is_known']}\n\n추가로 검토할 부분: {ref['actual_difference']}"]
@@ -69,15 +75,19 @@ for c in catalog:
     write('proposals/' + cid + '.md', '\n\n'.join(parts))
 
 groups = curation['groups']
-rows = []
+rows, summaries = [], []
 for g in groups:
     links = ' · '.join(f"[{cid}]({cid}.md)" for cid in g['candidate_ids'])
-    rows.append([g['question'], g['why_short'], g['conclusion_short'], g['impact_short'], links])
+    rows.append([g['question'], g['conclusion_short'], links])
+    summaries += [f"## {g['question']}", '**왜 필요한가.** ' + g['why_short'],
+                  '**어떤 결과가 중요한가.** ' + g['result_short'],
+                  '**그 결과를 얻었을 때의 Conclusion.** ' + g['conclusion_short'],
+                  '**분야 기여.** ' + g['impact_short'],
+                  '**현재 판단.** ' + g['decision'], '상세 원고: ' + links]
 write('proposals/README.md', '# 왜 필요한지, 어떤 결론을 낼지에서 출발한 연구 질문\n\n'
       '특정 RP를 중심으로 선택하지 않고 다섯 역할이 독립적으로 제안한 뒤 서로 비판하고 수정했다. 아래 질문들은 정서신경과학의 설명을 바꾸는 연구와 측정 방법을 개선하는 연구를 함께 포함한다.\n\n'
       '각 상세 원고에는 연구의 필요성, 중요한 예상 관찰, 조건부 Conclusion, 분야에서 달라질 점을 먼저 적었다. 실제 실험 결과나 신규성이 확인된 제안이라는 뜻은 아니다.\n\n' +
-      table(['연구 질문', '왜 필요한가', '중요한 결과를 얻었을 때의 결론', '분야 기여', '상세 원고'], rows) +
-      '\n\n' + curation['overview'] + '\n\n'
+      curation['overview'] + '\n\n' + '\n\n'.join(summaries) + '\n\n'
       '[기여와 한계 비교](../revision_v3/CONTRIBUTIONS.md) · [선정·통합·보류 이유](../revision_v3/DECISIONS.md) · [실제 토론 기록](../discussions/revision_v3/SYNTHESIS.md)\n\n'
       'v2의 RP06·RP07과 첫 파일럿 순위는 자동으로 이어받지 않았다. [이전 v2](../archive/v2/README.md)와 [이전 v1](../archive/v1/README.md)은 기록으로 보존한다.')
 dump('proposals/cards.json', catalog)
@@ -87,12 +97,13 @@ contrib = ['# 후보별 기여와 판단',
 decisions = ['# 선정·통합·보류 판단', curation['overview']]
 for g in groups:
     contrib += [f"## {g['question']}", '필요성: ' + g['why_short'], '조건부 결론: ' + g['conclusion_short'],
-                '분야 기여: ' + g['impact_short'], '현재 판단: ' + g['decision'],
+                '중요한 예상 관찰: ' + g['result_short'], '분야 기여: ' + g['impact_short'], '현재 판단: ' + g['decision'],
                 ' · '.join(f"[{cid}](../proposals/{cid}.md)" for cid in g['candidate_ids'])]
     decisions += [f"## {g['question']}", g['decision'], g['rationale'],
                   ' · '.join(f"[{cid}](../proposals/{cid}.md)" for cid in g['candidate_ids'])]
 for held in curation.get('not_advanced', []):
-    decisions += [f"## {held['candidate_id']}: {by_id[held['candidate_id']]['question']}", held['decision'], held['reason']]
+    decisions += [f"## {held['candidate_id']}: {by_id[held['candidate_id']]['question']}", held['decision'], held['reason'],
+                  f"[보류한 원고](../proposals/{held['candidate_id']}.md)"]
 write('revision_v3/CONTRIBUTIONS.md', '\n\n'.join(contrib))
 write('revision_v3/DECISIONS.md', '\n\n'.join(decisions))
 
@@ -104,12 +115,15 @@ write('research_questions/README.md', '# 현재 연구 질문\n\n[다양한 질�
 write('research_questions/RANKINGS.md', '# 현재 선정 판단\n\nv2의 순위와 첫 파일럿 순위는 해제했다. 이번에는 [각 질문의 기여와 판단](../revision_v3/CONTRIBUTIONS.md), [통합·보류 이유](../revision_v3/DECISIONS.md)를 함께 본다. 신규성 미확인과 실험 부담은 과학적 잠재력과 구별한다.')
 short = [{'version': 3, 'candidate_id': c['candidate_id'], 'question': c['question'], 'why_needed': c['why_needed'],
           'contribution_type': c['contribution_type'], 'conclusion_if_supported': c['conclusion_if_supported'], 'field_impact': c['field_impact'], 'decision': c['revision_decision']} for c in catalog]
-active_ids = {cid for g in groups for cid in g['candidate_ids']}
 for name in ['landscape', 'shortlist']:
-    selected = short if name == 'landscape' else [c for c in short if c['candidate_id'] in active_ids]
+    selected = short if name == 'landscape' else [
+        {'version': 3, 'direction_id': g['direction_id'], 'question': g['question'],
+         'why_needed': g['why_short'], 'decisive_result': g['result_short'],
+         'conclusion_if_supported': g['conclusion_short'], 'field_impact': g['impact_short'],
+         'decision': g['decision'], 'source_candidates': ', '.join(g['candidate_ids'])} for g in groups]
     dump('research_questions/' + name + '.json', selected)
     with (R / 'research_questions' / (name + '.csv')).open('w', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=list(short[0])); w.writeheader(); w.writerows(selected)
+        w = csv.DictWriter(f, fieldnames=list(selected[0])); w.writeheader(); w.writerows(selected)
 
 used = sorted({ref['paper_id'] for c in catalog for ref in c['nearest_prior']})
 write('literature/REVISION_V3_SOURCES.md', '# v3의 문헌과 실제 확인 범위\n\n'

@@ -1,0 +1,10 @@
+[
+  {
+    "review_id": "ROOT-C04-C-EDITORIAL",
+    "candidate_id": "C04-C",
+    "reviewer": "/root",
+    "request": "위협은 이번 추가 탐색의 편중 회피 조건이며 전역 제외가 아님을 바로잡을 것. 첫 관측에 따른 선택 차이를 설명할 비사회적 장면 예시를 추가하되 실제 관찰처럼 쓰지 않을 것.",
+    "delivery": "/root/foundation_continuation에 collaboration.followup_task로 실제 전달; 원저자가 response_log에 수용·수정 기록.",
+    "scope": "편집 및 연구 범위 명료화. 추가 동료 비판 건수나 별도 과학적 승인으로 세지 않음."
+  }
+]

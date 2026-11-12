@@ -1,0 +1,24 @@
+{
+  "reason": "첫 통합 후 지표·위협에 치우친 탐색을 보완하기 위한 두 번째 제한 탐색. 첫 원안 10개와 구별해 기록한다.",
+  "original_sources": [
+    {
+      "path": "agents/06_frontier_ai/revision_v3_additional_candidate.json",
+      "agent": "/root/frontier_contribution",
+      "sha256": "4dd164a881bd90aa28f718769e19a7c3412cc39a84b1313a10bf8e06518e41e4"
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v3_additional_candidate.json",
+      "agent": "/root/foundation_continuation",
+      "sha256": "6ca9bf54c66c7f1012f2a577ecdbc79897f9489cbfc073fc5a5cfe2d0d792b70"
+    }
+  ],
+  "assignments": {
+    "/root/dynamics_continuation": [
+      "C06-C"
+    ],
+    "/root/affective_reframe": [
+      "C04-C"
+    ]
+  },
+  "coordination_note": "두 추가 저자는 서로의 추가 원안 파일을 읽기 전에 작성했다. 다만 Coordinator는 중복을 피하도록 이미 진행 중인 기억 방향이 있음을 Foundation에 알렸다. 모든 정보가 차단된 맹검 독립 발상이라고 주장하지 않는다."
+}

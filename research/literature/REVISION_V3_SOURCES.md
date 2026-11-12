@@ -1,0 +1,25 @@
+# v3의 문헌과 실제 확인 범위
+
+기존 문헌 장부를 사용하고 일부 지정 원문을 다시 읽었다. 각 후보가 아직 확인하지 못한 가장 가까운 선행은 별도로 적었다. 이 목록은 새 포괄 검색이나 최초성 검증의 완료를 뜻하지 않는다.
+
+| 문헌 | 본문 확인 | Discussion 확인 | 접근한 출처 |
+| --- | --- | --- | --- |
+| [P001 · The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions](https://doi.org/10.1016/j.isci.2020.101060) | 아니오; 프록시 403 | 아니오 | [출처](https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json) |
+| [P004 · Self-report captures 27 distinct categories of emotion bridged by continuous gradients](https://doi.org/10.1073/pnas.1702247114) | 논문 원문 미열람; 공식 코드/데이터 문서 직접 확인 | 아니오 | [출처](https://raw.githubusercontent.com/KamitaniLab/EmotionVideoNeuralRepresentation/master/README.md) |
+| [P005 · A Sensitive and Specific Neural Signature for Picture-Induced Negative Affect](https://doi.org/10.1371/journal.pbio.1002180) | 공식 연구실 PDF 다운로드; 초록과 지정 본문/Discussion/Limitations 직접 검토 | 예: 지정 페이지 직접 검토 | [출처](https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2015_Chang_PLoSBiology_PINES/Chang_2015_PLoSBiol_PINES.pdf) |
+| [P008 · Emotion schemas are embedded in the human visual system](https://doi.org/10.1126/sciadv.aaw4358) | 공식 연구실 PDF 다운로드; 초록과 지정 본문/Discussion/Limitations 직접 검토 | 예: 지정 페이지 직접 검토 | [출처](https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/Kragel_2019_SciAdv_emotion_schemas.pdf) |
+| [P009 · Common and stimulus-type-specific brain representations of negative affect](https://doi.org/10.1038/s41593-022-01082-w) | 공식 연구실 PDF 다운로드; 초록과 지정 본문/Discussion/Limitations 직접 검토 | 예: 지정 페이지 직접 검토 | [출처](https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2021_Ceko_MPA2_multiaversive/Ceko_2022_NatNeurosci_MPA2_negative_affect.pdf) |
+| [P010 · A Bayesian Model of Category-Specific Emotional Brain Responses](https://doi.org/10.1371/journal.pcbi.1004066) | 공식 연구실 PDF 다운로드; 초록과 지정 본문/Discussion/Limitations 직접 검토 | 예: 지정 페이지 직접 검토 | [출처](https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2015_Wager_Kang_etal_Emotion_Meta_BSPP/Wager_2015_PlosCompBiology.PDF) |
+| [P013 · V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning](https://arxiv.org/abs/2506.09985) | 논문 원문 미열람; 공식 코드/데이터 문서 직접 확인 | 아니오 | [출처](https://raw.githubusercontent.com/facebookresearch/vjepa2/main/README.md) |
+| [P015 · MindEye2: Shared-Subject Models Enable fMRI-To-Image With 1 Hour of Data](https://arxiv.org/abs/2403.11207) | 아니오; 공식 코드/README만 직접 확인 | 아니오 | [출처](https://github.com/MedARC-AI/MindEyeV2) |
+| [P024 · Cinematic Mindscapes: High-quality Video Reconstruction from Brain Activity](https://arxiv.org/abs/2305.11675) | 아니오; 공식 코드/README만 직접 확인 | 아니오 | [출처](https://github.com/jqin4749/MindVideo) |
+| [P027 · A foundation model of vision, audition, and language for in-silico neuroscience](https://arxiv.org/abs/2605.04326) | 아니오; 공식 README/코드만 확인 | 아니오 | [출처](https://github.com/facebookresearch/tribev2) |
+| [P048 · Mastering diverse control tasks through world models](https://arxiv.org/abs/2301.04104) | 아니요: 논문 본문 미확인; 공식 README 확인 | 아니요: 저자 Discussion 및 미래 제안 미확인 | [출처](https://arxiv.org/abs/2301.04104) |
+| [P053 · Challenging Common Assumptions in the Unsupervised Learning of Disentangled Representations](https://proceedings.mlr.press/v97/locatello19a.html) | 예; 공식 PDF 직접 열람 | 예; 결론/한계 해당 절 직접 확인 | [출처](https://proceedings.mlr.press/v97/locatello19a.html) |
+| [P066 · Discovering event structure in continuous narrative perception and memory](https://doi.org/10.1016/j.neuron.2017.06.041) | 아니오; 공식 문서/코드만 확인 | 아니오 | [출처](https://github.com/brainiak/brainiak/blob/master/src/brainiak/eventseg/event.py) |
+| [P070 · Prompt-to-Prompt Image Editing with Cross-Attention Control](https://arxiv.org/abs/2208.01626) | 예: 공식 PDF 확보·§1/§3/§4/§5 관련 부분 직접 열람; 전체 정독 아님 | 예: §5 Limitations p.9; §4 평가 논의 p.9 | [출처](https://raw.githubusercontent.com/prompt-to-prompt/prompt-to-prompt.github.io/main/ptp_files/Prompt-to-Prompt_preprint.pdf) |
+| [P077 · Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design](https://arxiv.org/abs/2103.02438) | 예: 공식 PDF 확보; §2–4/§7 직접 열람 | 예: §7 Discussion 및 Limitations and Future Work p.9 | [출처](https://proceedings.mlr.press/v139/foster21a.html) |
+| [P079 · Learning Transferable Visual Models From Natural Language Supervision](https://raw.githubusercontent.com/mlresearch/v139/gh-pages/radford21a/radford21a.pdf) | PDF 접근; 첫 페이지·§6·§8 직접검토; 공식 model.py 열람 | §6 Limitations PDF 8–9쪽 및 §8 Conclusion 9쪽 직접확인 | [출처](https://raw.githubusercontent.com/mlresearch/v139/gh-pages/radford21a/radford21a.pdf) |
+| [P100 · Statistical inference on representational geometries](https://doi.org/10.7554/eLife.82566) | 예: 공식 XML 저장·본문 검토 | 예: Discussion s3-1–s3-6 | [출처](https://elifesciences.org/articles/82566) |
+
+[다시 읽은 핵심 선행과 기여의 경계](../revision_v3/EVIDENCE_NOTES.md) · [전체 문헌 장부](papers.csv)

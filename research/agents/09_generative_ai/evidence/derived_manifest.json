@@ -1,0 +1,30 @@
+[
+  {
+    "path": "evidence/p2p_fulltext.txt",
+    "source": "evidence/p2p_pdf.pdf",
+    "operation": "pdftotext -layout",
+    "sha256": "27e6beacc4cab25a0f6701b922d6ab87926b87c3bb7236923c8a2c79a5784fad",
+    "bytes": 95739
+  },
+  {
+    "path": "evidence/audioldm_fulltext.txt",
+    "source": "evidence/audioldm_pdf.pdf",
+    "operation": "pdftotext -layout",
+    "sha256": "06d481bc586aaf87403070a9dfd981cb3934e4968bf426fc49f2f06bd256cadd",
+    "bytes": 106609
+  },
+  {
+    "path": "evidence/dad_fulltext.txt",
+    "source": "evidence/dad_pdf.pdf",
+    "operation": "pdftotext -layout",
+    "sha256": "f49d258483885058f2b2a30b7fef60f530e72e55cb877384bcfc6c94e345156e",
+    "bytes": 78550
+  },
+  {
+    "path": "evidence/nti_extracted_code.py",
+    "source": "evidence/nti_code.txt",
+    "operation": "JSON notebook의 code cell source 연결; 실행하지 않음",
+    "sha256": "22527c39dcfa9947a4e414c0a01fb7094e5ac80f173a33f1c6665ba405b4a929",
+    "bytes": 29206
+  }
+]

@@ -1,0 +1,1595 @@
+naturemethods
+
+Article                                                                                             https://doi.org/10.1038/s41592-022-01625-w
+
+
+neuromaps: structural and functional
+interpretation of brain maps
+
+Received: 25 January 2022                         Ross D. Markello 1,5, Justine Y. Hansen 1,5, Zhen-Qi Liu 1, Vincent Bazinet                     1
+                                                                                                                                                   ,
+                                                  Golia Shafiei1, Laura E. Suárez1, Nadia Blostein 2, Jakob Seidlitz 3,
+Accepted: 24 August 2022
+                                                  Sylvain Baillet 1, Theodore D. Satterthwaite3, M. Mallar Chakravarty2,
+Published online: xx xx xxxx                      Armin Raznahan4 and Bratislav Misic 1
+
+    Check for updates
+                                                  Imaging technologies are increasingly used to generate high-resolution
+                                                  reference maps of brain structure and function. Comparing experimentally
+                                                  generated maps to these reference maps facilitates cross-disciplinary
+                                                  scientific discovery. Although recent data sharing initiatives increase
+                                                  the accessibility of brain maps, data are often shared in disparate
+                                                  coordinate systems, precluding systematic and accurate comparisons.
+                                                  Here we introduce neuromaps, a toolbox for accessing, transforming and
+                                                  analyzing structural and functional brain annotations. We implement
+                                                  functionalities for generating high-quality transformations between four
+                                                  standard coordinate systems. The toolbox includes curated reference
+                                                  maps and biological ontologies of the human brain, such as molecular,
+                                                  microstructural, electrophysiological, developmental and functional
+                                                  ontologies. Robust quantitative assessment of map-to-map similarity
+                                                  is enabled via a suite of spatial autocorrelation-preserving null models.
+                                                  neuromaps combines open-access data with transparent functionality for
+                                                  standardizing and comparing brain maps, providing a systematic workflow
+                                                  for comprehensive structural and functional annotation enrichment
+                                                  analysis of the human brain.
+
+
+Imaging and recording technologies such as magnetic resonance               restricted to either surface or volumetric data, and do not integrate
+imaging (MRI), electro- and magnetoencephalography (EEG and                 standardized analytic workflows.
+MEG), and positron emission tomography (PET) are used to generate                If researchers generate brain maps in their work, such as task func-
+high-resolution maps of the human brain. These maps offer insights          tional MRI activations or case–control cortical thickness contrasts, how
+into the brain’s structural and functional architecture, including          can they interpret them? Ideally there should be a way to systematically
+gray matter morphometry1,2, myelination3–6, gene expression7,8,             compare and contextualize generated maps with respect to existing
+cytoarchitecture9, metabolism10, neurotransmitter receptors and             structural and functional annotations, using rigorous statistical meth-
+transporters11–14, laminar differentiation15, intrinsic dynamics16–18       ods25. In adjacent fields, such as bioinformatics, multiple widely used
+and evolutionary expansion19–22. Such maps are increasingly shared          computational methods for functional profiling and pathway enrich-
+on open-access repositories such as NeuroVault23 or BALSA24, which,         ment analysis of gene lists already exist26,27. A comparable structural
+collectively, offer a comprehensive multimodal perspective of the           and functional enrichment tool for neuroimaging would have to sup-
+central nervous system. However, these data-sharing platforms are           port three specific capabilities: a method for generating high-quality
+
+
+Montréal Neurological Institute, McGill University, Montréal, Quebec, Canada. 2Cerebral Imaging Center, Douglas Mental Health University Institute,
+1
+
+
+McGill University, Montréal, Quebec, Canada. 3Lifespan Informatics and Neuroimaging Center, Perelman School of Medicine, University of Pennsylvania,
+Philadelphia, PA, USA. 4Section of Developmental Neurogenomics, National Institute of Mental Health, Bethesda, MD, USA. 5These authors contributed
+equally: Ross D. Markello, Justine Y. Hansen.  e-mail: bratislav.misic@mcgill.ca
+
+
+Nature Methods
+Article                                                                                                     https://doi.org/10.1038/s41592-022-01625-w
+
+
+                                           Transformations            Library           Spatial nulls               Enrichment
+
+
+
+
+                                                                                                                                 *
+                                         ra  ge
+                                      ve
+                                   fsa
+
+                                       fsLR
+
+
+
+
+                                                                                                                                 *
+                        User’s map
+                      (e.g. MNI-152) CIV
+                                        ET                                                                                           Empirical
+                                                                                                                                     Null
+                                                                                                                Similarity measure
+
+
+Fig. 1 | The neuromaps toolbox functionality. The neuromaps software              systems, and a method for estimating map-to-map similarity that accounts for
+package features a method for generating high-quality transformations across      spatial autocorrelation.
+multiple coordinate systems, a curated repository of brain maps in their native
+
+
+
+
+transformations across multiple coordinate systems, a curated reposi-             were defined to avoid errors caused by successive interpolation. The
+tory of brain maps in their native space, and a method for estimating             genomic gradient was upsampled to the fsaverage surface with 10,242
+map-to-map similarity that accounts for spatial autocorrelation.                  vertices (10k surface) using a k-nearest neighbors interpolation. Raw
+     In the current report we introduce an open-access Python toolbox,            and processed data from the Allen Human Brain Atlas can be accessed
+neuromaps, to enable researchers to systematically share, transform,              at https://abagen.readthedocs.io/en/stable/28. Collectively, these maps
+and compare brain maps (Fig. 1). First, we generate a set of group-level          represent more than a decade of human brain mapping research and
+transformations between four standard coordinate systems that are                 encompass phenotypes including the first principal component of gene
+widely used in neuroimaging and integrate them via a set of accessible,           expression7, 36 neurotransmitter receptor PET tracer images14, glucose
+uniform interfaces. Next, we curate more than 40 reference brain maps             and oxygen metabolism10, cerebral blood flow and volume10, cortical
+from the literature that have been published during the past decade               thickness29, T1-weighted/T2-weighted MRI ratio30, six canonical MEG
+to facilitate contextualization of brain annotations. Finally, we imple-          frequency bands29,31, intrinsic timescale29,31, evolutionary expansion19,
+ment spatial autocorrelation-preserving null models for statistical               three maps of developmental expansion19,22, the first 10 gradients of
+comparison between brain maps that will help researchers to perform               functional connectivity32, intersubject variability33 and the first prin-
+standardized, reproducible analyses of brain maps. Collectively, this             cipal component of NeuroSynth-derived cognitive activation34. This
+represents a step towards creating systematized knowledge and rapid               data repository is organized by tags and can be downloaded directly
+algorithmic decoding of the multimodal multiscale architecture of                 from neuromaps.
+the brain.                                                                             The neuromaps toolbox enables the contextualization of brain
+                                                                                  maps to a range of molecular, structural, temporal and functional
+Results                                                                           features. This will facilitate an expansion of research questions and
+The neuromaps software toolbox is available at https://github.com/                enable researchers to bridge brain topographies across several spatial
+netneurolab/neuromaps, on PyPi, Zenodo, it exists as a Docker con-                scales and across disciplines outside of their immediate scope25. Impor-
+tainer, and documentation can be found on GitHub pages (https://                  tantly, the included brain maps are only the start of the neuromaps data
+netneurolab.github.io/neuromaps). In the following section we high-               repository. The contribution pipeline lets researchers add vertex- and
+light features available in neuromaps, demonstrate typical workflows              voxel-level brain maps to the toolbox, pending approval from the main-
+enabled by its functionality, and use neuromaps to examine how choice             tainers. The data repository will therefore become an increasingly rich
+of coordinate system can affect statistical analyses of brain maps.               resource of structural and functional brain annotations. As the toolbox
+                                                                                  expands it will become more comprehensive, giving the neuroscience
+The neuromaps data repository                                                     field the power to identify cross-disciplinary associations. Information
+The neuromaps toolbox provides programmatic access to templates                   on contributing brain maps can be found in the online documentation
+for four standard coordinate systems: fsaverage (the default system               for the software (https://netneurolab.github.io/neuromaps/).
+used by FreeSurfer software, based on 40 normative brains), fsLR (a
+symmetric version of fsaverage across the left and right hemispheres),            Transformations between coordinate systems
+CIVET (the default system used by CIVET software) and MNI-152 (devel-             Despite the multiscale, multimodal collection of brain phenotypes in
+oped by the Montreal Neurological Institute using 152 normative MRI               neuromaps, data cannot be readily compared with one another because
+scans). For surface-based coordinate systems we distribute template               they exist in different native coordinate systems. Indeed, a common
+geometry files, sulcal depth maps and average vertex area shape files             challenge when relating neuroimaging data to the broader literature
+(computed from Human Connectome Project participants) in standard                 is finding a common coordinate space or parcellation in which to con-
+GIFTI format. For volumetric coordinate systems we distribute T1-,                duct the analyses. The neuromaps module provides transformations
+T2-, and proton density-weighted MRI template files, a brain mask,                between four supported coordinates systems as well as a standard-
+and probabilistic segmentations of gray matter, white matter and cer-             ized set of functions for their application (Supplementary Table 2).
+ebrospinal fluid in standard gzipped NIFTI format.                                Transformation between volumetric- and surface-based coordinate
+     Beyond template files, the neuromaps toolbox offers access to                systems relies on a registration fusion framework (Fig. 3a; ref. 35),
+a repository of brain maps obtained from the published literature                 whereas transformations between surface-based coordinate systems
+(Fig. 2 and Supplementary Table 1). These maps were generated using               use a multimodal surface matching (MSM) framework (Fig. 3b; refs.
+                                                                                  36,37
+multiple imaging techniques, including MRI, MEG, PET and micro-                        ). We leverage tools from the Connectome Workbench to provide
+array gene expression. All brain maps except for the genomic gra-                 functionality for applying transformations between surface systems;
+dient are provided in the original coordinate system in which they                however, users do not need to interact directly with these Workbench
+
+
+Nature Methods
+Article                                                                                                       https://doi.org/10.1038/s41592-022-01625-w
+
+
+                          Microstructure                      Function                 Electrophysiology                     Receptors
+                           T1w/T2w ratio               Intersubject variability          Delta power                     Carfentanil (MOR)
+
+
+
+
+                                                         PC1 NeuroSynth
+                                                                                         Theta power                     LSN3172176 (M1)
+                         Cortical thickness
+
+
+                                                        Functional gradient
+                                                                                         Alpha power                   WAY100635 (5-HT1a)
+                            Metabolism
+
+                               CBF
+                                                             Expansion
+                                                      Evolutionary expansion              Beta power                     ABP688 (mGluR5)
+
+
+
+                               CBV
+                                                     Developmental expansion          Low gamma power
+
+                                                                                                                             Genomics
+                                                                                                                        PC1 gene expression
+                             CMRO2
+                                                      Allometric scaling (NIH)        High gamma power
+
+
+
+
+                             CMRGlu                   Allometric scaling (PNC)          Intrinsic timescale
+
+
+
+
+Fig. 2 | Brain maps from the published literature. Collection of brain maps       timescale is log-transformed; a selection of four of the 36 neurotransmitter
+obtained from the published literature over the past decade that are currently    receptor maps are shown here14,61–64; and the genomic gradient is upsampled
+available in the neuromaps distribution. The maps capture the normative           to the fsaverage 10k surface (for accessing raw and processed Allen Human
+multiscale structural and functional organization of the brain, including         Brain Atlas data, see https://abagen.readthedocs.io/en/stable/28). 5-HT1a,
+molecular, cellular, metabolic and neurophysiological features. Refer to          5-hydroxytryptamine receptor 1A; CBF, cerebral blood flow; CBV, cerebral
+Supplementary Table 1 for more information on the coordinate system,              blood volume; CMRGlu, glucose metabolism; CMRO2, oxygen metabolism;
+resolution and original publication for each brain map. Colormaps were chosen     M1, muscarinic receptor 1; mGluR5, metabotropic glutamate receptor 5;
+to maximize similarity with how the data were represented in the original         MOR, μ-opioid receptor; NIH, National Institutes of Health; PC1, first principal
+publication. Note that two of the maps (second column: evolutionary and           component; PNC, Philadelphia Neurodevelopmental Cohort; T1w/T2w, T1-
+developmental expansion) have data only for the right hemisphere; the intrinsic   weighted/T2-weighted MRI.
+
+
+
+commands. In addition to transforming individual annotations, the                 neuromaps toolbox and offer a common user interface for each model
+neuromaps software package includes functionalities that receive two              that can be integrated with other aspects of the toolbox. Given the
+brain maps in different spaces as input and return both brain maps in the         computational overhead of these models, our implementations offer
+same space. By default, neuromaps returns the brain maps in the space             mechanisms for caching intermediate results to enable faster re-use
+of the lower-resolution map, which ensures that neuromaps does not                across multiple analyses. Spatial null models are enabled by default in
+artificially create upsampled data. Collectively, the neuromaps toolbox           the primary map comparison workflows to encourage their broader
+implements robust transformations between coordinate systems to                   adoption. Based on prior work that benchmarks the accuracy and
+facilitate the standardization of neuroimaging workflows (Fig. 3c,d).             computational efficiency of these models45, we set the non-parametric
+                                                                                  method as the default for use with surface data38 and the parameter-
+Spatial null models for comparing brain maps                                      ized generative method as the default for use with volumetric data43.
+The primary goal for transforming maps to a common coordinate sys-
+tem is to statistically compare their spatial topographies. The neu-              Demonstrating the neuromaps toolbox
+romaps software package uses a flexible framework for examining                   To demonstrate the utility of neuromaps we applied three separate
+relationships between brain maps, offering researchers the ability to             analytic workflows that offer neuroscientific insights. First, we applied
+provide their own image similarity metric or function, and handles                the neuromaps toolbox to a volumetric map of cortical thinning derived
+any missing data. By default, the primary map comparison workflows                from comparing T1-weighted MRI scans from n = 133 patients with
+use the standard Pearson correlation to test the association between              chronic schizophrenia to the T1-weighted MRI scans from n = 113 con-
+provided maps. The neuromaps comparison workflow also integrates                  trols from the Northwestern University Schizophrenia Data and Soft-
+multiple methods of performing spatial permutations for significance              ware Tool (NUSDAST) dataset46 (Fig. 4a). We estimate cortical thinning
+testing.                                                                          by applying deformation-based morphometry to T1-weighted MRI
+     Multiple spatial null model frameworks enable statistical com-               scans to calculate the extent of gray matter expansion or contraction in
+parison between brain maps while accounting for spatial autocor-                  patients relative to controls47. We used the neuromaps transformation
+relation4,38–44; however, the implementation of these models varies               functions to convert the MNI-152 volumetric schizophrenia brain map
+and, to date, there has been limited effort to provide a standardized             (‘source map’) to the surface space of each of 13 selected brain maps
+interface for their use. We have incorporated nine null models into the           from neuromaps (‘target maps’). Next, we correlate the transformed
+
+
+Nature Methods
+Article                                                                                                              https://doi.org/10.1038/s41592-022-01625-w
+
+
+                                   a                                                         b       CIVET       fsLR      fsaverage
+
+                                       MNI-152
+                                                                                             CIVET
+
+
+
+
+                                                                                                        fsLR
+
+
+
+
+                                                                                                               fsaverage
+
+                                       CIVET             fsLR         fsaverage
+                          c
+                           MNI-152               CIVET                               fsaverage                                         fsLR
+                            2 mm                  41k                 10k               41k            164k                  32k              164k
+
+
+
+
+                          (Original)
+
+                          d
+                           MNI-152               CIVET                               fsaverage                                         fsLR
+                                                  41k                 10k              41k             164k                  32k              164k
+
+
+
+
+                                                                   (Original)
+
+Fig. 3 | Transformations between coordinate systems. a, Registration fusion              first principal component of cognitive terms from NeuroSynth34) that has been
+provides a framework for directly projecting group-level volumetric data onto            transformed to all surface-based coordinate systems using alignments derived
+a surface. Here, a probabilistic atlas for the central sulcus35 has been projected       from registration fusion. d, Example of a surface brain map (the first principal
+independently onto the CIVET (41k), fsLR (32k) and fsaverage (164k) surfaces.            component of gene expression from the Allen Human Brain Atlas7) that has been
+b, MSM provides a framework for aligning spherical surface meshes. Here, we              transformed to all other surface-based coordinate systems using alignments
+show sulcal depth information (originally defined in fsLR space) on spherical            derived from MSM. Note that because the original data are represented on the
+meshes that are aligned across the different coordinate systems, where each              cortical surface, transformation to volumetric space is ill-defined and therefore
+row represents a different coordinate system and each column represents the              not shown here.
+space to which that system is aligned. c, Example of a volumetric brain map (the
+
+
+
+schizophrenia map with each of these 13 target maps (Pearson’s r)                        examples show how the neuromaps toolbox can be used to rigorously
+and test the significance using a spatial autocorrelation-preserving                     generate comprehensive structural and functional annotation enrich-
+null model (‘spin test’)38 and false discovery rate correction48. We find                ment profiles.
+that schizophrenia-related cortical thinning is enriched in areas with                         Finally, we analyzed a sample of 20 brain maps from the pub-
+the greatest neurodevelopmental expansion (rNIH = 0.26, Pspin = 0.001;                   lished literature over the past decade (2011–2021), including two
+rPNC = 0.29, Pspin = 0.001), consistent with the notion that schizophrenia is            microstructural, four metabolic, three functional, four expansion,
+a neurodevelopmental disease that affects adolescent development49,50.                   six band-specific electrophysiological signal power, and one genomic
+By contrast, we find no evidence to support recent claims that schizo-                   map. We then used neuromaps to transform these maps from their orig-
+phrenia targets specific parts of the unimodal–transmodal processing                     inal representation to the space defined by each of four standard coor-
+hierarchy (rfunctional gradient = −0.08, Pspin = 0.35; refs. 51,52).                     dinate systems, for a total of seven different representations (Fig. 2).
+      Next, we applied the same analytic workflow to a surface-based                     Finally, we computed the pairwise correlations between all maps in
+brain map of evolutionary expansion (already included in neuromaps),                     each of the systems and assessed the statistical significance of these
+which represents cortical surface area expansion from macaque to                         relationships using spatial null models. The goal of this analysis was
+human19 (Fig. 4b). Contextualizing this source map with respect to                       twofold. First, we sought to assess the extent to which coordinate
+the other 12 selected target maps from the toolbox, we find that areas                   transforms could influence map-to-map comparisons. Second, given
+with the greatest evolutionary expansion have the greatest interindi-                    the growing interest in how these system-level maps or ‘gradients’ are
+vidual variability of regional functional connectivity profiles (r = 0.58,               related to one another, we sought to assess patterns of relationships
+Pspin = 0.005; ref. 33). This is consistent with the notion that the great-              among them53,55.
+est interindividual differences in brain structure and function are in                         For most map-to-map comparisons the choice of coordinate sys-
+phylogenetically more recent transmodal cortex53. Moreover, we find                      tem has a minimal effect: correlation coefficients on average change
+significant negative correlations with the first principal component                     only by ∣r∣ = 0.018 (variance of absolute difference, 0.0002; range, −0.10
+of gene expression (r = −0.51, Pspin = 0.027) and intracortical myelin                   to 0.079). This is demonstrated by map-to-map correlation matrices
+(r = −0.46, Pspin = 0.005), consistent with the idea that phylogenetically               (Fig. 5a) and the distribution of correlation changes (Δr) between pairs
+newer cortex is characterized by divergence from genomic gradients                       of brain annotations in different coordinate spaces (Fig. 5b). Specifi-
+and canonical stimulus–response circuit configurations54. We also find                   cally, for a given pair of brain annotations we compute their correla-
+that the map is negatively correlated with cerebral blood volume, which                  tion in the six available surface spaces and resolutions. Next, we plot
+suggests that phylogenetic adaptation is concomitant with greater                        the distribution of correlation differences between each space and a
+metabolic efficiency (r = −0.37, Pspin = 0.003). Collectively, these two                 constant space. Each histogram represents the distribution when a
+
+
+Nature Methods
+Article                                                                                                                                    https://doi.org/10.1038/s41592-022-01625-w
+
+
+ a          Source map                              Target maps
+                                                                                                      0.75
+
+                                                                                                       0.5
+                                    Transform to                  Correlate source–
+                                                                                                      0.25
+
+
+
+
+                                                                                      Pearson’s r
+                                 target map space                    target pairs
+                                                                                                          0
+
+                                                                                                     –0.25
+     –5.6               5.6
+             Thinning                                                                                 –0.5
+            (MNI-152)
+                                                                                                     –0.75
+
+
+ b                                                                                                                      Empirical (Pspin ≥ 0.05)     Empirical (Pspin < 0.05)   Spatial null
+            Source map                              Target maps
+                                                                                                      0.75
+
+                                                                                                       0.5
+                                    Transform to                  Correlate source–
+
+
+
+
+                                                                                       Pearson’s r
+                                 target map space                    target pairs                     0.25
+
+                                                                                                          0
+      –2.7                 2.7
+             expansion                                                                               –0.25
+             (fsLR 164k)
+                                                                                                      –0.5
+
+                                                                                                     –0.75
+
+
+
+
+                                                                                                                         tio
+
+
+
+
+                                                                                                                                                                     on
+
+
+
+
+                                                                                                                                                                        e
+
+                                                                                                                                                                    sm
+                                                                                                                                                                        s
+
+
+
+
+                                                                                                                                                                     on
+
+
+
+
+                                                                                                                                                                      m
+                                                                                                                on
+
+
+
+
+                                                                                                                                                                        )
+                                                                                                                                                                        )
+                                                                                                                                                                      w
+                                                                                                                                                                        y
+                                                                                                                                                                        t
+
+
+
+
+                                                                                                                                                                     C
+                                                                                                                                                                   IH
+                                                                                                                                                                  en
+                                                                                                                                                                  es
+
+
+
+
+                                                                                                                                                                   m
+                                                                                                                                                                    lit
+
+                                                                                                                                                                    o
+
+
+
+
+                                                                                                                                                                  is
+                                                                                                                       ra
+
+
+
+
+                                                                                                                                                                si
+
+
+
+
+                                                                                                                                                                N
+                                                                                                                                                                si
+                                                                                                             si
+
+
+
+
+                                                                                                                                                               bi
+
+
+
+
+                                                                                                                                                                  i
+                                                                                                                                                                  l
+
+                                                                                                                                                               lu
+
+
+
+
+                                                                                                                                                              (N
+                                                                                                                                                               di
+
+
+
+
+                                                                                                                                                               ol
+                                                                                                                                                              kn
+
+
+
+
+                                                                                                                                                               ol
+                                                                                                                                                                f
+                                                                                                                                                             an
+
+
+
+
+                                                                                                                                                             (P
+                                                                                                                                                              n
+                                                                                                           es
+
+
+
+
+                                                                                                                                                           ria
+
+                                                                                                                                                           od
+
+                                                                                                                                                           vo
+                                                                                                                   2w
+
+
+
+
+                                                                                                                                                            ra
+
+
+
+
+                                                                                                                                                           ab
+
+                                                                                                                                                           ab
+                                                                                                                                                          pa
+                                                                                                                            ic
+
+
+
+
+                                                                                                                                                           g
+                                                                                                          pr
+
+
+
+
+                                                                                                                                    xp
+
+
+
+
+                                                                                                                                                          g
+                                                                                                                                                        lg
+
+                                                                                                                                                        va
+
+
+                                                                                                                                                        lo
+
+
+
+
+                                                                                                                                                        in
+                                                                                                                         th
+
+
+
+
+                                                                                                                                                        et
+                                                                                                               /T
+
+
+
+
+                                                                                                                                                        et
+                                                                                                                                                      od
+                                                                                                                                                      ex
+
+
+
+
+                                                                                                                                                       in
+                                                                                                      ex
+
+
+
+
+                                                                                                                                 le
+
+
+
+
+                                                                                                                                                    lb
+
+
+
+
+                                                                                                                                                     al
+                                                                                                                                                   na
+
+
+
+
+                                                                                                                                                    m
+
+                                                                                                                                                    m
+                                                                                                               w
+
+
+
+
+                                                                                                                                                    al
+                                                                                                                        al
+
+
+
+
+                                                                                                                                                   ct
+
+
+
+
+                                                                                                                                                   lo
+
+
+
+
+                                                                                                                                                 sc
+                                                                                                                                                  ry
+                                                                                                                               ta
+                                                                                                              T1
+
+
+
+
+                                                                                                                                                 ra
+                                                                                                     ne
+
+
+
+
+                                                                                                                                               sc
+                                                                                                                     tic
+
+
+
+
+                                                                                                                                                je
+                                                                                                                                              tio
+
+
+
+
+                                                                                                                                              lb
+
+
+                                                                                                                                                 n
+
+                                                                                                                                              se
+                                                                                                                                             na
+                                                                                                                            en
+
+
+
+
+                                                                                                                                            ge
+                                                                                                                                            eb
+                                                                                                                                            ub
+
+
+
+
+                                                                                                                                            ric
+                                                                                                                   or
+                                                                                               ge
+
+
+
+
+                                                                                                                                           nc
+
+
+
+
+                                                                                                                                           ra
+
+
+
+
+                                                                                                                                           co
+
+
+
+
+                                                                                                                                          ric
+                                                                                                                                    io
+                                                                                                                           m
+
+
+
+
+                                                                                                                                         xy
+                                                                                                                                         er
+                                                                                                                   C
+
+
+
+
+                                                                                                                                         et
+                                                                                                                                         rs
+
+
+
+
+                                                                                                                                       eb
+                                                                                                                                       Fu
+
+
+
+
+                                                                                                                                        lu
+
+
+
+
+                                                                                                                                       et
+                                                                                                                                 ut
+                                                                                         1
+
+
+
+
+                                                                                                                        op
+
+
+
+
+                                                                                                                                       C
+
+
+
+
+                                                                                                                                      m
+                                                                                                                                      te
+
+
+
+
+                                                                                                                                      O
+                                                                                      PC
+
+
+
+
+                                                                                                                                     G
+
+
+
+
+                                                                                                                                     m
+                                                                                                                                 ol
+
+
+
+
+                                                                                                                                    er
+
+
+
+
+                                                                                                                                   lo
+                                                                                                                                   In
+                                                                                                                       el
+
+                                                                                                                               Ev
+
+
+
+
+                                                                                                                                  lo
+                                                                                                                                 C
+
+
+
+
+                                                                                                                                Al
+                                                                                                                   ev
+
+
+
+
+                                                                                                                               Al
+                                                                                                                   D                               Target maps
+
+Fig. 4 | Use of neuromaps to contextualize two exemplar brain maps.                                       that of macaques, as computed using interspecies surface-based registration19.
+To demonstrate the utility of neuromaps we use the toolbox to transform,                                  Warm colors indicate regions with greater evolutionary expansion. This map
+profile and quantitatively assess structural and functional enrichment                                    (the source map) was transformed to the native space of each brain map to
+for two example brain maps (that is, source maps). a, A volumetric map of                                 which it was correlated. Spatial Pearson’s correlations were assessed against a
+cortical thinning in patients diagnosed with chronic schizophrenia from the                               two-sided spatial autocorrelation-preserving null model (‘spin test’)38. Points
+NUSDAST repository (n = 133 patients versus n = 113 controls46) was estimated                             represent the empirical Pearson’s correlation between source and target maps
+by applying deformation-based morphometry to T1-weighted MRI scans                                        (with significance defined as Pspin < 0.05). In the boxplots the ends of the boxes
+to calculate the extent of gray matter expansion or contraction in patients                               represent the first (25%) and third (75%) quartiles, the center line (median)
+relative to controls47. Warm colors represent regions with greater thinning.                              represents the second quartile of the null distribution (n = 1,000 rotations),
+The map was transformed to the native space of each brain map to which it was                             the whiskers represent the non-outlier end-points of the distribution, and
+correlated (that is, the target maps). b, A surface-based brain map of structural                         open circles represent outliers. All correlations were corrected for multiple
+evolutionary expansion represents the ratio of the surface area in humans to                              comparisons48.
+
+
+
+
+different coordinate space and resolution is defined as the constant                                      Discussion
+space. Although the changes are minimal, there are instances in which                                     Technological and data sharing advances have increasingly moved
+associations between maps are statistically significant in one coordi-                                    neuroscience research towards integrative questions rooted in data
+nate system and not significant in another. For example, the correla-                                     science. Imaging, recording, tracing and sequencing technology offer
+tion between the functional gradient and National Institutes of Health                                    an ability to quantify multiple features of neuroanatomy and function
+(NIH) allometric scaling are significantly correlated in CIVET 41k space                                  with unprecedented detail and depth. Easing the standardization and
+(r = 0.223, two-sided Pspin = 0.049) but non-significantly correlated in                                  computation of such comparisons is necessary to ensure that new data-
+fsLR 32k space (r = 0.217, two-sided Pspin = 0.097) (Fig. 5c). However, in                                sets can be integrated into our broader understanding of the human
+most cases the P value for these relationships was close to the statistical                               brain25. As the neuromaps toolbox is adopted by the community, anno-
+alpha (that is, P ≤ 0.05) such that the actual effect size changed only by                                tations from emerging technologies and datasets can be added by
+r ≤ 0.10. These results are encouraging and suggest that transforming                                     users. This will enable maps to be systematically contextualized with
+brain annotations between different systems generally preserves their                                     respect to multiple canonical annotations from diverse data types
+relationships.                                                                                            and disciplines, resulting in standardized reporting of results, and
+      Across all examined systems we find that the brain maps tend                                        inspiration for mechanistic follow-up. Ultimately, neuromaps is a step
+to form two distinct clusters (Fig. 5d) that largely recapitulate pre-                                    towards integrative analytics for multimodal, multiscale neuroscience.
+viously established relationships involving anterior–posterior and                                             Given the proliferation of such datasets in recent years, a large
+unimodal–transmodal axes of variation17,32,56. One cluster contains                                       body of work has arisen focused on investigating similarities across
+maps including the T1-weighted/T2-weighted MRI ratio57, the principal                                     brain maps17,18,39,41,56,58,59. Indeed, researchers have observed substantial
+component of gene expression4,28, cerebral blood flow and metabolic                                       concordance in the spatial topology of brain maps derived from a wide
+glucose uptake10, whereas the other is composed of maps such as the                                       variety of phenotypes, suggesting that these maps may reflect a fun-
+principal functional gradient32, intersubject functional variability33                                    damental organizational principle of the human brain. The unimodal–
+and developmental and evolutionary expansion19. This suggests that                                        transmodal, or sensory–association, axis is increasingly recognized as
+these brain phenotypes reflect a fundamental organizational principle                                     a low-dimensional representation of brain organization6,53,60. However,
+of the human brain.                                                                                       large-scale analyses will facilitate comprehensive comparisons across
+
+
+Nature Methods
+Article                                                                                                                                                       https://doi.org/10.1038/s41592-022-01625-w
+
+
+   a                                       CIVET                                                   fsaverage                                                                                  fsLR
+                                            41k                          10k                         41k                              164k                                    32k                            164k
+
+
+
+
+   b                                                                                                                                                       120
+                            100                             160                                                                                                                                100
+                                                                                    150                               200
+                             80                             120                                                                                                                                    80
+                                                                                                                      150                                     80
+ Count
+
+
+
+
+                             60                                                     100                                                                                                            60
+                                                             80                                                       100
+                             40                                                                                                                               40                                   40
+                                                             40                      50                                 50
+                             20                                                                                                                                                                    20
+                              0                               0                       0                                    0                                   0                                    0
+                                             0
+
+
+
+
+                                                                                                                                                                            0
+                                                                         0
+
+
+
+
+                                                                                                       0
+
+
+
+
+                                                                                                                                             0
+
+
+
+
+                                                                                                                                                                                         10
+
+
+
+
+                                                                                                                                                                                                             0
+
+
+
+
+                                                                                                                                                                                                                         10
+                                                                               05
+                                  0
+
+
+
+
+                                                                                           5
+
+
+
+
+                                                                                                                05
+                                                                    5
+
+
+
+
+                                                                                                                                                                     5
+
+
+
+                                                                                                                                                                                   05
+                                                                                                                                  5
+                                       5
+
+
+
+                                                   05
+
+
+
+
+                                                                                                                                                                                                                    05
+                                                                                                                                                  05
+
+
+
+
+                                                                                                                                                                                                        5
+                              .1
+
+
+
+
+                                                                                           .0
+                                                                    .0
+
+
+
+
+                                                                                                                                                                    .0
+                                                                                                                                .0
+                                      .0
+
+
+
+
+                                                                                                                                                                                                        .0
+                                                                                                                                                                                        0.
+
+
+
+
+                                                                                                                                                                                                                         0.
+                                                                               0.
+
+
+
+
+                                                                                                                0.
+
+
+
+
+                                                                                                                                                                                 0.
+                                                  0.
+
+
+
+
+                                                                                                                                                                                                                    0.
+                                                                                                                                                 0.
+                             –0
+
+
+
+
+                                                                                          –0
+                                                                  –0
+
+
+
+
+                                                                                                                                                                   –0
+                                                                                                                               –0
+                                   –0
+
+
+
+
+                                                                                                                                                                                                     –0
+                                            ∆r                           ∆r                            ∆r                                ∆r                                   ∆r                               ∆r
+
+
+    c                                                                                          d
+                                                        CIVET 41k
+                            1.50                                                                         More                  Alpha power
+                                                                                                   anterior–posterior
+                                                                                                                                        CMRGlu          PC1 NeuroSynth
+                                                                                                   PC1 gene                    CBF
+                            1.00                                                                   expression                                                        Beta power
+                                                                                                                                        CMRO2
+ Allometric scaling (NIH)
+
+
+
+
+                                                                                                        T1w/T2w
+                                                                                                                     CBV
+                            0.50
+
+
+                                                                                                                                                   Allometric            Allometric
+                            1.50                         fsLR 32k                                                                                  scaling (NIH)         scaling (PNC)
+                                                                                                                                                                                    Intersubject
+                                                                                                                                                                                    variability
+                                                                                                                                              Developmental
+                                                                                                                                                  expansion                   Theta power
+                            1.00                                                                                                                                        Evolutionary expansion
+
+                                                                                                                                Delta power                          Low gamma power
+
+                                                                                                                                                           Functional gradient
+                            0.50                                                                                  High gamma power
+                                                                                                                                                                                          More
+                                                                                                                                                                                   unimodal–transmodal
+                                      −5           0            5                                                                                             Cortical thickness
+                                            Functional gradient
+Fig. 5 | Application of neuromaps to 20 brain maps. a, Correlation matrices for                                         c, An example of two brain maps (the principal functional gradient from ref. 32
+20 brain maps in the neuromaps toolbox for each of the surface-based coordinate                                         and allometric scaling from ref. 22), the association between which is significant
+systems. Because transformations from surface-based to volumetric systems are                                           in one system (CIVET 41k; Pearson’s r = 0.223, two-sided Pspin = 0.049) and
+ill-defined for continuous data we omit those associations. The 20 brain maps                                           not in another (fsLR 32k; Pearson’s r = 0.217, two-sided Pspin = 0.097). d,
+are shown in panel d. b, For each coordinate space and resolution, we show the                                          A spring-embedded representation of the correlation matrix for the 20 brain
+distribution of correlation changes (Δr) when two brain maps (across all pairs of                                       maps, shown here for the fsLR 32k system.
+brain maps) are correlated in the given coordinate space versus all other spaces.
+
+
+
+
+multiple brain systems. The question of how gradients represent-                                                        the functionalities of neuromaps. For example, subject-level data
+ing multiple scales of structural and functional organization interact                                                  can be contextualized against the neuromaps library to produce a
+is an exciting new area of research that can now be addressed using                                                     subject-specific ‘fingerprint’ of how the individual expresses different
+neuromaps.                                                                                                              structural and functional brain phenotypes. As new frameworks arise
+     One consideration that researchers must be aware of when                                                           for mapping between coordinate systems we will endeavor to provide
+using the neuromaps toolbox is that the provided transformations                                                        updated transformations when possible.
+between coordinate systems are meant to be applied to group-level                                                            Altogether, the current report introduces an open-source Python
+data; however, in general, when subject-level data are available it is                                                  package, neuromaps, for use in human brain mapping research. As the
+better to reprocess them in the desired coordinate system rather than                                                   rate at which new brain maps are generated in the field continues to
+transforming group-level aggregate data. Unfortunately, in practice,                                                    grow, we hope that neuromaps will provide researchers with a set of
+subject-level data for many commonly used brain maps are not avail-                                                     standardized workflows to better understand what these data can tell
+able to researchers, and therefore having high-quality transformations                                                  us about the human brain.
+between systems is critical to ensuring that analyses are performed
+in the most accurate manner possible. We have based the provided                                                        Online content
+transformations on state-of-the-art frameworks (that is, registration                                                   Any methods, additional references, Nature Research reporting
+fusion and multimodal surface matching), which have been rigorously                                                     summaries, source data, extended data, supplementary informa-
+assessed and validated on other datasets35–37. Nonetheless, subject-level                                               tion, acknowledgements, peer review information; details of
+data that have been registered to a template space can benefit from                                                     author contributions and competing interests; and statements of
+
+
+Nature Methods
+Article                                                                                            https://doi.org/10.1038/s41592-022-01625-w
+
+data and code availability are available at https://doi.org/10.1038/      24. Van Essen, D. C. et al. The Brain Analysis Library of Spatial maps
+s41592-022-01625-w.                                                           and Atlases (BALSA) database. Neuroimage 144, 270–274 (2017).
+                                                                          25. Voytek, J. B. & Voytek, B. Automated cognome construction and
+References                                                                    semi-automated hypothesis generation. J. Neurosci. Methods
+1.  Bethlehem, R. A. et al. Brain charts for the human lifespan. Nature       208, 92–100 (2012).
+    604, 525–533 (2022).                                                  26. Reimand, J. et al. Pathway enrichment analysis and visualization
+2. Dale, A. M., Fischl, B. & Sereno, M. I. Cortical surface-based             of omics data using g:Profiler, GSEA, Cytoscape and
+    analysis: I. Segmentation and surface reconstruction. Neuroimage          EnrichmentMap. Nat. Protoc. 14, 482–517 (2019).
+    9, 179–194 (1999).                                                    27. Baryshnikova, A. Systematic functional annotation and
+3. Glasser, M. F. & Van Essen, D. C. Mapping human cortical                   visualization of biological networks. Cell Syst. 2, 412–421 (2016).
+    areas in vivo based on myelin content as revealed by T1- and          28. Markello, R. D. et al. Standardizing workflows in imaging
+    T2-weighted MRI. J. Neurosci. 31, 11597–11616 (2011).                     transcriptomics with the abagen toolbox. Elife 10, e72129 (2021).
+4. Burt, J. B. et al. Hierarchy of transcriptomic specialization across   29. Van Essen, D. C. et al. The WU-Minn Human Connectome Project:
+    human cortex captured by structural neuroimaging topography.              an overview. Neuroimage 80, 62–79 (2013).
+    Nat. Neurosci. 21, 1251–1259 (2018).                                  30. Glasser, M. F. et al. A multi-modal parcellation of human cerebral
+5. Whitaker, K. J. et al. Adolescence is associated with genomically          cortex. Nature 536, 171–178 (2016).
+    patterned consolidation of the hubs of the human brain                31. Tadel, F., Baillet, S., Mosher, J. C., Pantazis, D. & Leahy, R. M.
+    connectome. Proc. Natl Acad. Sci. USA 113, 9105–9110 (2016).              Brainstorm: a user-friendly application for MEG/EEG analysis.
+6. Huntenburg, J. M. et al. A systematic relationship between                 Comput. Intell. Neurosci. 2011, 879716 (2011).
+    functional connectivity and intracortical myelin in the human         32. Margulies, D. S. et al. Situating the default-mode network along a
+    cerebral cortex. Cereb. Cortex 27, 981–997 (2017).                        principal gradient of macroscale cortical organization. Proc. Natl
+7. Hawrylycz, M. et al. An anatomically comprehensive atlas of the            Acad. Sci. USA 113, 12574–12579 (2016).
+    adult human brain transcriptome. Nature 489, 391–399 (2012).          33. Mueller, S. et al. Individual variability in functional connectivity
+8. Akbarian, S. et al. The PsychENCODE project. Nat. Neurosci. 18,            architecture of the human brain. Neuron 77, 586–595 (2013).
+    1707–1712 (2015).                                                     34. Yarkoni, T., Poldrack, R. A., Nichols, T. E., Van Essen, D. C. & Wager,
+9. Scholtens, L. H., de Reus, M. A., de Lange, S. C., Schmidt, R.             T. D. Large-scale automated synthesis of human functional
+    & van den Heuvel, M. P. An MRI Von Economo–Koskinas atlas.                neuroimaging data. Nat. Methods 8, 665–670 (2011).
+    Neuroimage 170, 249–256 (2018).                                       35. Wu, J. et al. Accurate nonlinear mapping between MNI volumetric
+10. Vaishnavi, S. N. et al. Regional aerobic glycolysis in the human          and FreeSurfer surface coordinate systems. Hum. Brain Mapp. 39,
+    brain. Proc. Natl Acad. Sci. USA 107, 17757–17762 (2010).                 3793–3808 (2018).
+11. Zilles, K. & Palomero-Gallagher, N. Multiple transmitter receptors    36. Robinson, E. C. et al. MSM: a new flexible framework for
+    in regions and layers of the human cerebral cortex. Front.                multimodal surface matching. Neuroimage 100, 414–426 (2014).
+    Neuroanat. 11, 78 (2017).                                             37. Robinson, E. C. et al. Multimodal surface matching with
+12. Beliveau, V. et al. A high-resolution in vivo atlas of the human          higher-order smoothness constraints. Neuroimage 167,
+    brain’s serotonin system. J. Neurosci. 37, 120–128 (2017).                453–465 (2018).
+13. Nørgaard, M. et al. A high-resolution in vivo atlas of the human      38. Alexander-Bloch, A. F. et al. On testing for spatial correspondence
+    brain’s benzodiazepine binding site of GABAA receptors.                   between maps of human brain structure and function.
+    Neuroimage 232, 117878 (2021).                                            Neuroimage 178, 540–551 (2018).
+14. Hansen, J. Y. et al. Mapping neurotransmitter systems to the          39. Vázquez-Rodríguez, B. et al. Gradients of structure–function
+    structural and functional organization of the human neocortex.            tethering across neocortex. Proc. Natl Acad. Sci. USA 116,
+    Preprint at https://doi.org/10.1101/2021.10.28.466336 (2021).             21219–21227 (2019).
+15. Wagstyl, K. et al. Bigbrain 3D atlas of cortical layers: cortical     40. Váša, F. et al. Adolescent tuning of association cortex in
+    and laminar thickness gradients diverge in sensory and motor              human structural brain networks. Cereb. Cortex 28,
+    cortices. PLoS Biol. 18, e3000678 (2020).                                 281–294 (2018).
+16. Murray, J. D. et al. A hierarchy of intrinsic timescales across       41. Baum, G. L. et al. Development of structure–function coupling in
+    primate cortex. Nat. Neurosci. 17, 1661–1663 (2014).                      human brain networks during youth. Proc. Natl Acad. Sci. USA 117,
+17. Shafiei, G. et al. Topographic gradients of intrinsic dynamics            771–778 (2020).
+    across neocortex. Elife 9, e62116 (2020).                             42. Cornblath, E. J. et al. Temporal sequences of brain activity at rest
+18. Gao, R., van den Brink, R. L., Pfeffer, T. & Voytek, B. Neuronal          are constrained by white matter structure and modulated by
+    timescales are functionally dynamic and shaped by cortical                cognitive demands. Commun. Biol. 3, 261 (2020).
+    microarchitecture. Elife 9, e61277 (2020).                            43. Burt, J. B., Helmer, M., Shinn, M., Anticevic, A. & Murray, J. D.
+19. Hill, J. et al. Similar patterns of cortical expansion during human       Generative modeling of brain maps with spatial autocorrelation.
+    development and evolution. Proc. Natl Acad. Sci. USA 107,                 Neuroimage 220, 117038 (2020).
+    13135–13140 (2010).                                                   44. Vos de Wael, R. et al. BrainSpace: a toolbox for the analysis
+20. Wei, Y. et al. Genetic mapping and evolutionary analysis of               of macroscale gradients in neuroimaging and connectomics
+    human-expanded cognitive networks. Nat. Commun. 10, 4839                  datasets. Commun. Biol. 3, 103 (2020).
+    (2019).                                                               45. Markello, R. D. & Misic, B. Comparing spatial null models for brain
+21. Xu, T. et al. Cross-species functional alignment reveals                  maps. Neuroimage 236, 118052 (2021).
+    evolutionary hierarchy within the connectome. Neuroimage 223,         46. Kogan, A., Alpert, K., Ambite, J. L., Marcus, D. S. & Wang,
+    117346 (2020).                                                            L. Northwestern University schizophrenia data sharing for
+22. Reardon, P. et al. Normative brain size variation and brain shape         SchizConnect: a longitudinal dataset for large-scale integration.
+    diversity in humans. Science 360, 1222–1227 (2018).                       Neuroimage 124, 1196–1201 (2016).
+23. Gorgolewski, K. J. et al. NeuroVault.org: a repository for sharing    47. Shafiei, G. et al. Spatial patterning of tissue volume loss in
+    unthresholded statistical maps, parcellations, and atlases of the         schizophrenia reflects brain network architecture. Biol. Psychiatry
+    human brain. Neuroimage 124, 1242–1244 (2016).                            87, 727–735 (2020).
+
+
+Nature Methods
+Article                                                                                           https://doi.org/10.1038/s41592-022-01625-w
+
+48. Benjamini, Y. & Hochberg, Y. Controlling the false discovery rate:    60. Hilgetag, C. C., Goulas, A. & Changeux, J.-P. A natural cortical
+    a practical and powerful approach to multiple testing. J. R. Stat.        axis connecting the outside and inside of the human brain.
+    Soc. B 57, 289–300 (1995).                                                Network Neuroscience https://doi.org/10.1162/netn_a_00256
+49. Murray, R. M. & Lewis, S. W. Is schizophrenia a                           (2022).
+    neurodevelopmental disorder?. Br. Med. J. (Clin. Res. Ed.) 295,       61. Kantonen, T. et al. Interindividual variability and lateralization of
+    681–682 (1987).                                                           μ-opioid receptors in the human brain. Neuroimage 217, 116922
+50. Rapoport, J., Giedd, J. & Gogtay, N. Neurodevelopmental model             (2020).
+    of schizophrenia: update 2012. Mol. Psychiatry 17, 1228–1238          62. Naganawa, M. et al. First-in-human assessment of 11C-LSN3172176,
+    (2012).                                                                   an M1 muscarinic acetylcholine receptor PET radiotracer. J. Nucl.
+51. Dong, D. et al. Compressed sensorimotor-to-transmodal                     Med. 62, 553–560 (2021).
+    hierarchical organization in schizophrenia. Psychol. Med., https://   63. Savli, M. et al. Normative database of the serotonergic system in
+    doi.org/10.1017/S0033291721002129 (2021).                                 healthy subjects using multi-tracer PET. Neuroimage 63, 447–459
+52. Dong, D. et al. Compression of cerebellar functional gradients in         (2012).
+    schizophrenia. Schizophr. Bull. 46, 1282–1295 (2020).                 64. Smart, K. et al. Sex differences in [11C] ABP688 binding: a positron
+53. Sydnor, V. J. et al. Neurodevelopment of the association cortices:        emission tomography study of mGlu5 receptors. Eur. J. Nucl. Med.
+    patterns, mechanisms, and implications for psychopathology.               Mol. Imaging 46, 1179–1183 (2019).
+    Neuron 109, 2820–2846 (2021).
+54. Buckner, R. L. & Krienen, F. M. The evolution of distributed          Publisher’s note Springer Nature remains neutral with regard to
+    association networks in the human brain. Trends Cogn. Sci. 17,        jurisdictional claims in published maps and institutional affiliations.
+    648–665 (2013).
+55. Huntenburg, J. M., Bazin, P.-L. & Margulies, D. S. Large-scale        Open Access This article is licensed under a Creative Commons
+    gradients in human cortical organization. Trends Cogn. Sci. 22,       Attribution 4.0 International License, which permits use, sharing,
+    21–31 (2018).                                                         adaptation, distribution and reproduction in any medium or format,
+56. Hansen, J. Y. et al. Mapping gene transcription and                   as long as you give appropriate credit to the original author(s) and the
+    neurocognition across human neocortex. Nat. Hum. Behav. 5,            source, provide a link to the Creative Commons license, and indicate
+    1240–1250 (2021).                                                     if changes were made. The images or other third party material in this
+57. Glasser, M. F., Goyal, M. S., Preuss, T. M., Raichle, M. E. & Van     article are included in the article’s Creative Commons license, unless
+    Essen, D. C. Trends and properties of human cerebral cortex:          indicated otherwise in a credit line to the material. If material is not
+    correlations with cortical myelin content. Neuroimage 93,             included in the article’s Creative Commons license and your intended
+    165–175 (2014).                                                       use is not permitted by statutory regulation or exceeds the permitted
+58. Wang, P. et al. Inversion of a large-scale circuit model reveals a    use, you will need to obtain permission directly from the copyright
+    cortical hierarchy in the dynamic resting human brain. Sci. Adv. 5,   holder. To view a copy of this license, visit http://creativecommons.
+    eaat7854 (2019).                                                      org/licenses/by/4.0/.
+59. Demirtaş, M. et al. Hierarchical heterogeneity across human cortex
+    shapes large-scale neural dynamics. Neuron 101, 1181–1194 (2019).     © The Author(s) 2022
+
+
+
+
+Nature Methods
+Article                                                                                               https://doi.org/10.1038/s41592-022-01625-w
+
+Methods                                                                     when data cannot be registered to the HCP MNI-152 template and if it
+Human Connectome Project                                                    suits the specific research aim.
+Generating transformations between coordinate systems requires
+high-quality data from a large cohort of individuals; for the trans-        The fsaverage system. The fsaverage system, used by FreeSurfer,
+formations in the neuromaps toolbox we use data from the Human              represents data on the fsaverage template, a triangular surface mesh
+Connectome Project (HCP29). Raw T1- and T2-weighted structural              created via the spherical registration of 40 individuals using an energy
+MRI data were downloaded for n = 1,113 subjects (507 male, age              minimization algorithm to align surface-based features (for example,
+22–35 years) from the HCP S1200 release, for which informed con-            convexity; refs. 66,71). In current distributions of FreeSurfer there are
+sent was obtained. After data processing and omission of subjects           five scales of the fsaverage template (fsaverage and fsaverage3–6),
+whose data were not successfully processed using the CIVET pipeline,        ranging in density from 642 to 163,842 vertices per hemisphere. The
+n = 1,045 subjects remained.                                                fsaverage system is roughly aligned to the space of the MNI-305 volu-
+                                                                            metric system, which was the precursor of the MNI-152 template72,73.
+Human Connectome Project processing pipeline. All structural data
+were preprocessed using the HCP minimal preprocessing pipelines29,65.       The fsLR system. The fsLR coordinate system was created to overcome
+In brief, T1- and T2-weighted MRI scans were corrected for gradient         perceived shortcomings of the fsaverage system: namely, hemispheric
+non-linearity and, when available, images were co-registered and aver-      asymmetry74. That is, the left and right hemispheres of the fsaverage
+aged across repeated scans for each individual. Corrected T1-weighted       surface are not in geographic correspondence, such that vertex A in
+and T2-weighted images were co-registered and cortical surfaces were        the left hemisphere does not correspond to the same brain region as
+extracted using FreeSurfer 5.3.0-HCP2,66. Subject-level surfaces were       vertex A in the right hemisphere. The fsLR atlas was created by aligning
+aligned to one another using an MSM procedure (MSMAll)30.                   the two hemispheres of the fsaverage surface into a common hybrid
+                                                                            surface, using landmark surface-based registration (originally called
+CIVET processing pipeline. Images were separately processed                 the ‘fs_LR hybrid atlas’). fsLR templates are available in densities rang-
+with the minc-bpipe-library (https://github.com/CoBrALab/                   ing from 32,492 to 163,842 vertices per hemisphere.
+minc-bpipe-library), which performs N4 bias correction, crop-
+ping of the neck region, and brain mask generation. Outputs of              The CIVET system. The coordinate system used by the CIVET software
+minc-bpipe-library were then processed through the CIVET pipeline           is a group-averaged surface reconstruction of the individual-participant
+(v2.1.0, ref. 67), which performs non-linear registration to the MNI        volumes comprising the volumetric MNI ICBM 152 non-linear sixth
+International Consortium for Brain Mapping (ICBM) 152 volumetric            generation template75,76. In its most commonly used format each hemi-
+template, cortical surface extraction, and registration of subject          sphere is represented by 41,962 vertices; a high-resolution version
+surface meshes to the MNI ICBM 152 surface template. Due to CIVET           with 163,842 vertices per hemisphere is also available. Because this
+processing failures the data for n = 68 subjects were omitted from          system is derived from the volumetric MNI template, it ensures that
+further analysis.                                                           aligned surfaces have good correspondence with volumetric images
+                                                                            in the MNI-152 system.
+Standard coordinate systems
+Here, we describe in brief the four standard coordinate systems             Generating transformations between systems
+(one volumetric and three surface) considered in the current report.        Transformation of individual data to a common coordinate system is
+Although other coordinate systems are used in neuroimaging research,        often performed to account for anatomical differences between indi-
+these four arguably represent the most commonly used systems in the         vidual subjects prior to group aggregation, and makes derived maps
+published literature.                                                       more comparable across datasets72,77. Data collected from MRI are tradi-
+                                                                            tionally represented as volumetric images and are therefore commonly
+The MNI-152 system. A significant body of work has been dedicated           transformed to a standard ‘population’ image in volumetric space (for
+to explaining what is meant when researchers refer to ‘MNI-152 space’,      example, the MNI ICBM 152 template; refs. 78,79); however, standardized
+given that several variations of this space exist depending on the choice   triangular (that is, ‘surface’) meshes are increasingly used to represent
+of template68. In addition to variations on the MNI-152 template, there     data as well (for example, the fsaverage, fsLR and CIVET surfaces66,71,74,76).
+exist many other MNI spaces that differ from one another sufficiently       Transforming individual, subject-level data between different represen-
+to affect downstream analyses69. Here, we use the MNI-152 space as          tations and coordinate systems is non-trivial and has been the focus of
+defined by the template from the University of Minnesota–Washington         substantial research over the past several decades36,80–87.
+University Human Connectome Project group29, which is a variation                Although there are numerous methods for transforming
+of the MNI ICBM 152 non-linear sixth generation symmetric template          data between coordinate systems, high-quality mappings for
+(identical to the MNI template provided with the FSL distribution70).       group-averaged data are limited35,88,89. In creating the neuromaps tool-
+This template was selected because it is the default template in HCP        box, we used two previously validated frameworks to generate transfor-
+processing pipelines, of which some were used to generate transfor-         mations between all four standard coordinate systems described above
+mations between coordinate systems. This template was created by            (Fig. 3). All of the transformations were generated using unsmoothed
+averaging the T1-weighted MRI scans of 152 healthy young adults that        anatomical data and are therefore not biased against data that have
+had been linearly and non-linearly (over six iterations) transformed to     been smoothed.
+a symmetric model in Talairach space.
+     Note, however, that volumetric data are often available in other       Registration fusion framework. Registration fusion is a framework
+MNI-152 templates. neuromaps does not currently host functions for          for projecting data between volumetric and surface coordinate sys-
+transforming between MNI-152 templates (but see https://figshare.           tems35,90. In its most well-known implementation, researchers used data
+com/articles/dataset/MNI_T1_6thGen_NLIN_to_MNI_2009b_NLIN_                  from the Brain Genomics Superstruct Project91 to generate non-linear
+ANTs_transform/3502238 for transformations between the MNI-152              mappings between MNI-152 space and the 164k fsaverage surface35.
+sixth generation template and the MNI-152 2009b non-linear template).            Registration fusion works by generating two sets of mappings for a
+Nonetheless, the transformation functionalities can be applied to data      group of subjects: a mapping between each subject’s native image and
+in other MNI-152 templates. These transformations ignore the differ-        MNI-152 space, and a mapping between each subject’s native image and
+ences between MNI-152 templates and should therefore be used only           fsaverage space. These mappings are concatenated (MNI-152 to native
+
+
+Nature Methods
+Article                                                                                            https://doi.org/10.1038/s41592-022-01625-w
+
+to fsaverage) and then averaged across subjects, yielding a single,        defined in separate left–right GIFTI files for which the same identifi-
+high-fidelity mapping that can be applied to new datasets.                 cation numbers are used across both hemispheres, even though each
+     Here, we generated mappings via registration fusion between the       hemisphere has unique parcels. In this case, the user can relabel the
+MNI-152 volumetric and the fsaverage, fsLR and CIVET surface-based         parcellation identification numbers such that they are consecutive
+coordinate systems using data from the HCP. All mappings used func-        across hemispheres. This default format was selected to keep surface
+tionality from the Connectome Workbench92 rather than FreeSurfer           and volumetric parcellations consistent, and to avoid confusion when
+to ensure standardization of methodology irrespective of the target        hemispheres are not symmetric.
+coordinate systems.
+MNI-152 to CIVET. Unlike for the fsaverage and fsLR surfaces, CIVET        Published brain maps
+surfaces are extracted from subject T1-weighted MRI volumes after the      We curated a selection of brain maps from the published literature of
+images have been transformed to the standard MNI-152 system. As such,      the past decade (Fig. 2). Maps were obtained in their original coordi-
+there is no need to generate composite mappings for CIVET surfaces         nate system, with the exception of the genomic gradient derived from
+as for the other coordinate systems. Instead, we simply computed the       the Allen Human Brain Atlas. The Allen Human Brain Atlas samples
+mapping from each subject’s MNI-152-transformed T1-weighted MRI            across the surface were upsampled to the fsaverage 10k surface using
+volume to the subject’s native CIVET surface, and then applied the         a k-nearest neighbors interpolation before applying principal compo-
+CIVET-generated surface resampling to register the mapping to the          nent analysis. A complete list of maps and their coordinate systems is
+CIVET standard template system. These mappings were then averaged          given in Supplementary Table 1. Some of these maps were originally
+across subjects to generate a single, group-level transformation.          defined in coordinate systems that are no longer used. In brief, we
+fsaverage, fsLR or CIVET to MNI-152. Although every surface vertex has     describe the transformations we used to project these maps to one of
+a corresponding voxel representation in volumetric space, not every        the current standard coordinate systems.
+voxel has a corresponding vertex representation in surface space. As
+such, generating transformations from the surface coordinate systems       PALS-TA24 to fsLR. Data obtained from ref. 19 were originally aligned
+to the MNI-152 volumetric system cannot yield a dense output map.          to a study-specific PALS-TA24 template (derived using a similar
+When the current registration fusion framework was proposed35, a           landmark-based procedure to the PALS-B12 template93), which has
+nearest neighbors, ribbon-filling approach was adopted to handle this      been supplanted by the fsLR coordinate system. To project data from
+shortcoming; however, this is a viable approach only when applied to       the PALS-TA24 template to the fsLR system we applied the deforma-
+label data (that is, integer-based parcellation images). We reproduce      tion map provided by the original researchers for transforming data
+this approach for completeness but caution against the application         between these spaces using nearest neighbors interpolation.
+of surface-to-volume projections for continuous data and omit such
+projections from our analyses.                                             CIVET v1 to v2. The maps obtained from ref. 22 were originally created
+                                                                           using surface templates from CIVET v1.1.12; however, with the release
+Multimodal surface matching framework. The MSM framework36,37              of CIVET v2.0.0 in 2014 the population surface templates provided
+aims to align surfaces defined on different meshes using information       with the CIVET distribution were updated, effectively rendering the
+from various descriptors of brain structure and function. This pro-        older templates redundant. To project data from the CIVET v1.1.12
+cedure has been previously used to generate mappings between the           templates to the CIVET v2.0.0 templates we used a nearest neighbors
+fsaverage and fsLR coordinate systems.                                     interpolation, matching vertex coordinates in the newer template to
+     Here, we used MSM to generate a mapping between the CIVET             coordinates in the older template and assigning the value correspond-
+and fsLR systems by aligning HCP subject data processed through the        ing to the closest vertex22.
+CIVET pipeline with the same data processed through the HCP pro-
+cessing pipeline. Given that MSM requires that input data be provided      Spatial null frameworks
+on spherical surface meshes (a representation not produced in the          Recent research has consistently highlighted the importance of spa-
+standard CIVET pipeline) we used FreeSurfer functionality to generate      tially constrained null models when statistically comparing brain
+spherical mesh representations and sulcal depth information for each       maps38,43,45. The neuromaps software package integrates nine differ-
+subject’s CIVET-derived white matter surfaces. We used these spherical     ent spatial null frameworks45. These include six spatial permutation
+meshes and sulcal depth measurements to drive alignment between the        models and three parametrized data models, which, collectively, can be
+CIVET and fsLR systems via two rounds of the MSM procedure. The first      constructed for surface-based, volumetric and parcellated data4,38–44.
+round was used to generate a rotational affine transform to align gross    Note that four of the null models are adaptations of the original spatial
+features of the CIVET and fsLR systems; the generated affines were         permutation framework38 when applied to parcellated data39–42. These
+averaged across all subjects and used to seed a second round of finer      frameworks differ in how they reassign the medial wall (for which most
+resolution alignment, similar to the procedure previously described37.     brain maps contain no data), whether that be by discarding missing
+The final, aligned subject-level spherical surfaces defined in the CIVET   data41,42, ignoring the medial wall entirely40 or reassigning missing data
+system were averaged to create a single, group-level surface that could    to the nearest parcel39. The three parametrized data models circumvent
+be used in future transformations.                                         spatial rotations by applying generative frameworks such as a spatial
+     The CIVET-to-fsaverage mapping was generated as the com-              lag model4, spectral randomization44 or variogram matching43.
+posite of the transformations between the CIVET-and-fsLR and                    For analyses in the current report using surface-based coordi-
+fsLR-and-fsaverage systems.                                                nate systems, we apply the original spatial permutation framework
+                                                                           procedure38; for analyses using volumetric systems we apply the
+Parcellations. Performing analyses at the voxel or vertex level can be     variogram-matching method43. Null distributions were systemati-
+computationally intensive. The neuromaps software package can be           cally derived from 1,000 null maps generated by each framework. The
+extended to parcellated data and also integrates tools for parcellat-      mechanism for each null framework used for analyses in the present
+ing volumetric and surface-based data. The base parcellating func-         work is described in brief in the following sections.
+tion assumes that the given parcellation indexes each region with
+a unique value, where values of 0 are considered background and            Spatial permutation null model. The spatial permutation procedure
+ignored. Helper functions are provided to flexibly handle alternative      used in the present report generates spatially constrained null distribu-
+parcellation formats. For example, surface parcellations are often         tions by applying random rotations to spherical projections of a cortical
+
+
+Nature Methods
+Article                                                                                                      https://doi.org/10.1038/s41592-022-01625-w
+
+surface38. A rotation matrix (R) is applied to the three-dimensional                licenses/by-nc-sa/4.0/). We have integrated neuromaps with Zenodo,
+coordinates of the cortex (V) to generate a set of rotated coordinates              which generates unique digital object identifiers (DOIs) for each new
+(Vrot = VR). The permutation is constructed by replacing the original               release of the toolbox. Researchers can install neuromaps as a Python
+values at each coordinate with those of the closest rotated coordinate.             package via the PyPi repository (https://pypi.org/project/neuromaps)
+Rotations are generated independently for one hemisphere and then                   and can access comprehensive online documentation via GitHub Pages
+mirrored across the anterior–posterior axis for the other.                          (https://netneurolab.github.io/neuromaps). The neuromaps toolbox
+                                                                                    is also available as a Docker container (https://hub.docker.com/r/net-
+Variogram estimation null model. The parametric model used in the                   neurolab/neuromaps/tags), which ensures that the toolbox remains
+present report operates in two main steps: first the values in a given              functional even as dependencies are updated and changed. Finally, as
+image are randomly permuted, then the permuted values are smoothed                  an open-source toolbox, neuromaps is open to user suggestions and
+and re-scaled to reintroduce spatial autocorrelation characteristic of              improvements, ensuring that it remains an evolving resource.
+the original, non-permuted data43. Reintroduction of spatial autocor-
+relation onto the permuted data is achieved via the transformation                  References
+y = |β|1/2 x′ + |α|1/2 z, where x′ is the permuted data, z ∼ 𝒩𝒩𝒩0, 1) is a vector   65. Glasser, M. F. et al. The minimal preprocessing pipelines for the
+of random Gaussian noise, and α and β are estimated via a least-squares                 Human Connectome Project. Neuroimage 80, 105–124 (2013).
+optimization between variograms of the original and permuted data.                  66. Fischl, B., Sereno, M. I. & Dale, A. M. Cortical surface-based
+                                                                                        analysis: II: inflation, flattening, and a surface-based coordinate
+Assessing the impact of coordinate system                                               system. Neuroimage 9, 195–207 (1999).
+When transforming two datasets (that is, a source and target dataset)               67. Ad-Dab’bagh, Y. et al. The CIVET image-processing environment:
+defined in distinct coordinate spaces to a common system there are                      a fully automated comprehensive pipeline for anatomical
+at least three options available: transform the source dataset to the                   neuroimaging research. In Proceedings of the 12th Annual Meeting
+system of the target, transform the target dataset to the system of the                 of the Organization for Human Brain Mapping, Vol. 2266 (2006).
+source, or transform both source and target datasets to an alternate                68. Brett, M., Johnsrude, I. S. & Owen, A. M. The problem of functional
+system. If comparisons are being made across several pairs of datasets                  localization in the human brain. Nat. Rev. Neurosci. 3,
+a fourth option becomes available: always transform the higher resolu-                  243–249 (2002).
+tion dataset to the system of the lower-resolution dataset.                         69. Li, X. et al. Moving beyond processing and analysis-related
+      To examine whether the choice of coordinate system affects sta-                   variation in neuroscience. Preprint at https://doi.
+tistical relationships estimated between brain maps we performed                        org/10.1101/2021.12.01.470790 (2021).
+several analyses. First, we transformed a selection of 20 brain maps into           70. Jenkinson, M., Beckmann, C. F., Behrens, T. E., Woolrich, M. W. &
+every other coordinate system (for example, fsaverage → fsLR, CIVET                     Smith, S. M. FSL. Neuroimage 62, 782–790 (2012).
+and MNI-152, fsLR → fsaverage, CIVET and MNI-152, and so on). We then               71. Fischl, B., Sereno, M. I., Tootell, R. B. & Dale, A. M. High-resolution
+correlated every pair of these brain maps according to each of the four                 intersubject averaging and a coordinate system for the cortical
+possible resampling options described above. When transforming both                     surface. Hum. Brain Mapp. 8, 272–284 (1999).
+source and target datasets to an alternate system (option 3 above),                 72. Evans, A. C. et al. 3D statistical neuroanatomical models from 305
+we comprehensively tested every target coordinate system and data                       MRI volumes. In 1993 IEEE Conference Record Nuclear Science
+resolution. Spatial null models were used to assess the significance of                 Symposium and Medical Imaging Conference 1813–1817 (IEEE,
+all of the correlations.                                                                1993).
+                                                                                    73. Evans, A. C., Janke, A. L., Collins, D. L. & Baillet, S. Brain templates
+Reporting summary                                                                       and atlases. Neuroimage 62, 911–922 (2012).
+Further information on research design is available in the Nature                   74. Van Essen, D. C., Glasser, M. F., Dierker, D. L., Harwell, J. & Coalson,
+Research Reporting Summary linked to this article.                                      T. Parcellations and hemispheric asymmetries of human cerebral
+                                                                                        cortex analyzed on surface-based atlases. Cereb. Cortex 22,
+Data availability                                                                       2241–2262 (2012).
+Data used in the present analyses are publicly available on GitHub                  75. Lyttelton, O., Boucher, M., Robbins, S. & Evans, A. An unbiased
+(https://github.com/netneurolab/neuromaps). The schizophrenia                           iterative group registration template for cortical surface analysis.
+deformation-based morphometry map used in Fig. 4 is derived from                        Neuroimage 34, 1535–1544 (2007).
+the Northwestern University Schizophrenia Data and Software Tool                    76. Fonov, V. S., Evans, A. C., McKinstry, R. C., Almli, C. & Collins, D.
+dataset available at https://central.xnat.org/. The Human Connectome                    Unbiased nonlinear average age-appropriate brain templates
+Project database is available at https://db.humanconnectome.org/                        from birth to adulthood. Neuroimage 47, S102 (2009).
+data/projects/HCP_1200.                                                             77. Van Essen, D. C. Windows on the brain: the emerging role of
+                                                                                        atlases and databases in neuroscience. Curr. Opin. Neurobiol. 12,
+Code availability                                                                       574–579 (2002).
+All code used for data processing, analysis and figure generation                   78. Fonov, V. et al. Unbiased average age-appropriate atlases for
+directly relies on the following open-source Python packages: BrainS-                   pediatric studies. Neuroimage 54, 313–327 (2011).
+MASH43, BrainSpace44, IPython94, Jupyter95, Matplotlib96, NiBabel97,                79. Mazziotta, J. et al. A probabilistic atlas and reference system for the
+Nilearn98, NumPy99,100, Pandas101, PySurfer102, Scikit-learn103, SciPy104,              human brain: International Consortium for Brain Mapping (ICBM).
+Seaborn105 and SurfPlot (https://github.com/danjgale/surfplot106).                      Philos. Trans. R. Soc. Lond. B Biol. Sci. 356, 1293–1322 (2001).
+Additional software used in the reported analyses includes CIVET (v2.1.1,           80. Ashburner, J. & Friston, K. J. Nonlinear spatial normalization using
+http://www.bic.mni.mcgill.ca/ServicesSoftware/CIVET63), FreeSurfer                      basis functions. Hum. Brain Mapp. 7, 254–266 (1999).
+(v6.0.0, http://surfer.nmr.mgh.harvard.edu/67) and the Connectome                   81. Collins, D. L., Neelin, P., Peters, T. M. & Evans, A. C. Automatic 3D
+Workbench (v1.5.0, https://www.humanconnectome.org/software/                            intersubject registration of MR volumetric data in standardized
+connectome-workbench88). Source code for neuromaps is available on                      Talairach space. J. Comput. Assist. Tomogr. 18, 192–205 (1994).
+GitHub (https://github.com/netneurolab/neuromaps) and is provided                   82. Hamm, J., Ye, D. H., Verma, R. & Davatzikos, C. GRAM: a framework
+under the Creative Commons Attribution-NonCommercial-ShareAlike                         for geodesic registration on anatomical manifolds. Med. Image
+4.0 International License (CC-BY-NC-SA; https://creativecommons.org/                    Anal. 14, 633–642 (2010).
+
+
+Nature Methods
+Article                                                                                                   https://doi.org/10.1038/s41592-022-01625-w
+
+83. Nenning, K.-H. et al. Diffeomorphic functional brain surface                104. Virtanen, F. et al. Scipy 1.0: fundamental algorithms for scientific
+     alignment: functional demons. Neuroimage 156, 456–465 (2017).                   computing in Python. Nat. Methods 17, 261–272 (2020).
+84. Rueckert, D. et al. Nonrigid registration using free-form                   105. Waskom, M. et al. mwaskom/seaborn. Zenodo https://doi.
+     deformations: application to breast MR images. IEEE Trans. Med.                 org/10.5281/zenodo.592845 (2020).
+     Imaging 18, 712–721 (1999).                                                106. Gale, D. J., Vos de Wael, R., Benkarim, O. & Bernhardt, B. Surfplot:
+85. Tong, T., Aganj, I., Ge, T., Polimeni, J. R. & Fischl, B. Functional             publication-ready brain surface figures (v0.1.0). Zenodo https://
+     density and edge maps: characterizing functional architecture in                doi.org/10.5281/zenodo.5567926 (2021).
+     individuals and improving cross-subject registration. Neuroimage
+     158, 346–355 (2017).                                                       Acknowledgements
+86. Woods, R. P., Grafton, S. T., Holmes, C. J., Cherry, S. R. & Mazziotta,     R.D.M. acknowledges support from the Fonds de Recherche
+     J. C. Automated image registration: I. General methods and                 du Québec – Nature et Technologies and the Canadian Open
+     intrasubject, intramodality validation. J. Comput. Assist. Tomogr.         Neuroscience Platform. J.Y.H. acknowledges support from the
+     22, 139–152 (1998).                                                        Helmholtz International BigBrain Analytics and Learning Laboratory,
+87. Yushkevich, P. A., Wang, H., Pluta, J. & Avants, B. B. From label           the Natural Sciences and Engineering Research Council of Canada
+     fusion to correspondence fusion: a new approach to unbiased                and the Fonds de Reserche du Québec – Nature et Technologies.
+     groupwise registration. In 2012 IEEE Conference on Computer                S.B. acknowledges support from the National Institutes of Health
+     Vision and Pattern Recognition 956–963 (IEEE, 2012).                       (NIH) (R01 EB026299), a Discovery Grant from the Natural Science
+88. Lancaster, J. L. et al. Bias between MNI and Talairach coordinates          and Engineering Research Council of Canada (436355-13) and the
+     analyzed using the ICBM-152 brain template. Hum. Brain Mapp.               Canadian Institutes of Health Research (CIHR) Canada Research
+     28, 1194–1205 (2007).                                                      Chair in Neural Dynamics of Brain Systems. T.D.S. acknowledges
+89. Laird, A. R. et al. Comparison of the disparity between Talairach           support from the NIH (R01 MH112847 and R01 MH120482). M.M.C.
+     and MNI coordinates in functional neuroimaging data: validation            acknowledges support from the Natural Sciences and Engineering
+     of the Lancaster transform. Neuroimage 51, 677–683 (2010).                 Research Council of Canada, the Canada Research Chairs Program,
+90. Buckner, R. L., Krienen, F. M., Castellanos, A., Diaz, J. C. & Yeo, B. T.   Healthy Brains for Healthy Lives, and the Fonds du Recherche
+     The organization of the human cerebellum estimated by intrinsic            Québec – Nature et Technologies. B.M. acknowledges support from
+     functional connectivity. J. Neurophysiol. 106, 2322–2345 (2011).           the Natural Sciences and Engineering Research Council of Canada
+91. Holmes, A. J. et al. Brain Genomics Superstruct Project initial data        (NSERC Discovery Grant RGPIN 017-04265), CIHR, the Canada
+     release with structural, functional, and behavioral measures. Sci.         Research Chairs Program, the Healthy Brains for Healthy Lives initiative
+     Data 2, 150031 (2015).                                                     (HBHL), the Brain Canada Future Leaders Fund and the Michael J. Fox
+92. Marcus, D. et al. Informatics and data mining tools and strategies          Foundation.
+     for the human connectome project. Front. Neuroinform. 5, 4
+     (2011).                                                                    Author contributions
+93. Van Essen, D. C. A Population-Average, Landmark- and                        R.D.M., J.Y.H. and B.M. conceived the study and wrote the manuscript,
+     Surface-based (PALS) atlas of human cerebral cortex. Neuroimage            with valuable revision from all of the authors. R.D.M. developed the
+     28, 635–662 (2005).                                                        software toolbox with help from J.Y.H., Z.-Q.L., V.B., G.S. and L.E.S.
+94. Pérez, F. & Granger, B. E. IPython: a system for interactive                J.Y.H. performed the analyses. J.Y.H., G.S., N.B., J.S., S.B., T.D.S., M.M.C.
+     scientific computing. Computing in Science and Engineering 9,              and A.R. contributed data. B.M. was the project administrator.
+     21–29 (2007).
+95. Kluyver, T. et al. Jupyter Notebooks: A publishing format for               Competing interests
+     reproducible computational workflows. In Positioning and                   R.D.M. is currently employed by Octave Bioscience. The work in
+     Power in Academic Publishing: Players, Agents and Agendas (eds             this study was performed as part of his graduate studies at McGill
+     Loizides, F. & Schmidt, B.) 87–90 (IOS Press, 2016).                       University and is in no way related to his employment at Octave
+96. Hunter, J. D. Matplotlib: a 2D graphics environment. Computing in           Bioscience. All other authors have no competing interests.
+     Science and Engineering 9, 90–95 (2007).
+97. Brett, M. et al. nipy/nibabel. Zenodo https://doi.org/10.5281/              Additional information
+     zenodo.591597 (2019).                                                      Supplementary information The online version contains
+98. Abraham, A. et al. Machine learning for neuroimaging with                   supplementary material available at
+     scikit-learn. Front. Neuroinform. 8, 14 (2014).                            https://doi.org/10.1038/s41592-022-01625-w.
+99. Oliphant, T. E. A Guide to NumPy Vol. 1 (Trelgol Publishing USA,
+     2006).                                                                     Correspondence and requests for materials should be addressed to
+100. Van Der Walt, S., Colbert, S. C. & Varoquaux, G. The NumPy array:          Bratislav Misic.
+     a structure for efficient numerical computation. Computing in
+     Science and Engineering 13, 22–30 (2011).                                  Peer review information Nature Methods thanks Camille Maumet,
+101. McKinney, W. et al. Data structures for statistical computing in           Tehila Nugiel and Bradley Voytek for their contribution to the peer
+     Python. In Proceedings of the 9th Python in Science Conference             review of this work. Peer reviewer reports are available. are available.
+     (eds van der Walt, S. & Millman, J.) Vol. 445, 56–61 (2010).               Primary Handling Editor: Nina Vogt, in collaboration with the Nature
+102. Waskom, M. et al. nipy/pysurfer. Zenodo https://doi.org/10.5281/           Methods team.
+     zenodo.592515 (2020).
+103. Pedregosa, F. et al. Scikit-learn: machine learning in Python.             Reprints and permissions information is available at
+     Journal of Machine Learning Research 12, 2825–2830 (2011).                 www.nature.com/reprints.
+
+
+
+
+Nature Methods
+                                                                                                                                                                                         nature research | reporting summary
+                                                                                                     Corresponding author(s): Bratislav Misic
+                                                                                                     Last updated by author(s): Jun 14, 2022
+
+
+
+Reporting Summary
+Nature Research wishes to improve the reproducibility of the work that we publish. This form provides structure for consistency and transparency
+in reporting. For further information on Nature Research policies, see our Editorial Policies and the Editorial Policy Checklist.
+
+
+
+
+Statistics
+For all statistical analyses, confirm that the following items are present in the figure legend, table legend, main text, or Methods section.
+n/a Confirmed
+           The exact sample size (n) for each experimental group/condition, given as a discrete number and unit of measurement
+           A statement on whether measurements were taken from distinct samples or whether the same sample was measured repeatedly
+           The statistical test(s) used AND whether they are one- or two-sided
+           Only common tests should be described solely by name; describe more complex techniques in the Methods section.
+
+           A description of all covariates tested
+           A description of any assumptions or corrections, such as tests of normality and adjustment for multiple comparisons
+           A full description of the statistical parameters including central tendency (e.g. means) or other basic estimates (e.g. regression coefficient)
+           AND variation (e.g. standard deviation) or associated estimates of uncertainty (e.g. confidence intervals)
+
+           For null hypothesis testing, the test statistic (e.g. F, t, r) with confidence intervals, effect sizes, degrees of freedom and P value noted
+           Give P values as exact values whenever suitable.
+
+           For Bayesian analysis, information on the choice of priors and Markov chain Monte Carlo settings
+           For hierarchical and complex designs, identification of the appropriate level for tests and full reporting of outcomes
+           Estimates of effect sizes (e.g. Cohen's d, Pearson's r), indicating how they were calculated
+                                                Our web collection on statistics for biologists contains articles on many of the points above.
+
+
+Software and code
+Policy information about availability of computer code
+  Data collection        Data collection software includes the Connectome Workbench (v1.5.0, https://www.humanconnectome.org/software/connectome-
+                         workbench).
+
+  Data analysis          All code used for data processing, analysis, and figure generation directly relies on the following open-source Python packages: BrainSMASH
+                         (v0.11.0), BrainSpace (v0.1.2), IPython, Jupyter, Matplotlib (v3.5.0), NiBabel (v3.2.1), Nilearn (v0.8.1), NumPy (v1.21.5), Pandas (v1.3.3),
+                         PySurfer, Scikit-learn (v1.1.1), SciPy (v1.6.2), Seaborn (v0.11.2), and SurfPlot (v0.1.0; https://github.com/danjgale/surfplot). Additional
+                         software used in the reported analyses includes CIVET (v1.1.12 and v2.1.1, http://www.bic.mni.mcgill.ca/ServicesSoftware/CIVET), FreeSurfer
+                         (v6.0.0 and v5.3.0, http://surfer.nmr.mgh.harvard.edu/), and the Connectome Workbench (v1.5.0, https://www.humanconnectome.org/
+                         software/connectome-workbench, which is used in HCP's minimal preprocessing pipeline).
+For manuscripts utilizing custom algorithms or software that are central to the research but not yet described in published literature, software must be made available to editors and
+reviewers. We strongly encourage code deposition in a community repository (e.g. GitHub). See the Nature Research guidelines for submitting code & software for further information.
+
+
+
+Data
+                                                                                                                                                                                         April 2020
+
+
+
+
+Policy information about availability of data
+ All manuscripts must include a data availability statement. This statement should provide the following information, where applicable:
+    - Accession codes, unique identifiers, or web links for publicly available datasets
+    - A list of figures that have associated raw data
+    - A description of any restrictions on data availability
+
+Data used in the present analyses are publicly available on GitHub (https://github.com/netneurolab/neuromaps).The schizophrenia deformation-based
+
+
+
+                                                                                                                                                                                               1
+morphometry map used in Fig. 4 is derived from the NUSDAST dataset available at https://central.xnat.org/.The Human Connectome Project database is openly
+available at https://db.humanconnectome.org/data/projects/HCP_1200.
+
+
+
+
+                                                                                                                                                                            nature research | reporting summary
+Field-specific reporting
+Please select the one below that is the best fit for your research. If you are not sure, read the appropriate sections before making your selection.
+    Life sciences                       Behavioural & social sciences                   Ecological, evolutionary & environmental sciences
+For a reference copy of the document with all sections, see nature.com/documents/nr-reporting-summary-flat.pdf
+
+
+
+
+Life sciences study design
+All studies must disclose on these points even when the disclosure is negative.
+  Sample size              Transformations in the present software toolbox were generated on a cohort of 1045 HCP subjects. Sample size was not chosen, rather, all
+                           subjects in the HCP dataset were used.
+
+  Data exclusions          HCP subjects that did not successfully complete the CIVET processing pipeline were omitted.
+
+  Replication              The present manuscript proposes a software toolbox and is not experimental. Nonetheless, results are fully replicable using our open code
+                           and data. Analyses in Figure 5 were repeated across different coordinate systems.
+
+  Randomization            The present manuscript proposes a software toolbox and is not experimental. There were no experimental groups and therefore there was no
+                           randomization. Each brain map is averaged across all subjects in the sample.
+
+  Blinding                 The present manuscript proposes a software toolbox and is not experimental. There were no experimenal groups and therefore there was no
+                           blinding. Each brain map is averaged across all subjects in the sample.
+
+
+
+
+Reporting for specific materials, systems and methods
+We require information from authors about some types of materials, experimental systems and methods used in many studies. Here, indicate whether each material,
+system or method listed is relevant to your study. If you are not sure if a list item applies to your research, read the appropriate section before selecting a response.
+
+Materials & experimental systems                                  Methods
+n/a Involved in the study                                         n/a Involved in the study
+           Antibodies                                                        ChIP-seq
+           Eukaryotic cell lines                                             Flow cytometry
+           Palaeontology and archaeology                                     MRI-based neuroimaging
+           Animals and other organisms
+           Human research participants
+           Clinical data
+           Dual use research of concern
+
+
+
+Magnetic resonance imaging
+Experimental design
+  Design type                                    Structural MRI
+
+  Design specifications                          No trials
+
+  Behavioral performance measures                No behavioural measures
+
+
+Acquisition
+                                                                                                                                                                            April 2020
+
+
+
+
+  Imaging type(s)                                Structural MRI
+
+  Field strength                                 3T
+
+  Sequence & imaging parameters                  Structural modalities were acquired on a Siemens Skyra 3T scanner and included a T1-weighted MPRAGE sequence at
+                                                 an isotropic resolution of 0.7mm, and a T2-weighted SPACE at an isotropic resolution of 0.7mm. More details on
+                                                 imaging protocols and procedures are available at http://protocols.humanconnectome.org/HCP/3T/imaging-
+
+
+                                                                                                                                                                                  2
+                                            protocols.html.
+
+
+
+
+                                                                                                                                                                       nature research | reporting summary
+ Area of acquisition                        Whole-brain
+
+ Diffusion MRI               Used              Not used
+
+Preprocessing
+ Preprocessing software               Preprocessing was done using FSL 5.0.6, FreeSurfer 5.3.0-HCP, and Connectome Workbench v1.1.1.
+
+ Normalization                        Image processing includes correcting for gradient distortion caused by non-linearities, correcting for bias field distortions,
+                                      and registering the images to a standard reference space.
+
+ Normalization template               fs_LR_32k surface mesh
+
+ Noise and artifact removal           No artifact removal was preformed outside of the preprocessing and normalization.
+
+ Volume censoring                     No volume censoring was performed.
+
+
+Statistical modeling & inference
+ Model type and settings              No model was applied
+
+ Effect(s) tested                     No effect was tested
+
+ Specify type of analysis:         Whole brain            ROI-based             Both
+ Statistic type for inference         NA
+ (See Eklund et al. 2016)
+
+ Correction                           NA
+
+
+Models & analysis
+ n/a Involved in the study
+           Functional and/or effective connectivity
+           Graph analysis
+           Multivariate modeling or predictive analysis
+
+
+
+
+                                                                                                                                                                       April 2020
+
+
+
+
+                                                                                                                                                                             3
+

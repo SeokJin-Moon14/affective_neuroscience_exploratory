@@ -1,0 +1,1313 @@
+         AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+
+                 Haohe Liu * 1 Zehua Chen * 2 Yi Yuan 1 Xinhao Mei 1 Xubo Liu 1 Danilo Mandic 2
+                                      Wenwu Wang 1 Mark D. Plumbley 1
+
+
+                          Abstract                                    ative models (Oord et al., 2016; Ho et al., 2020; Song
+                                                                      et al., 2021; Tan et al., 2022), either unconditional or condi-
+      Text-to-audio (TTA) systems have recently gained
+                                                                      tioned on other modalities (Kreuk et al., 2022; Żelaszczyk
+      attention for their ability to synthesize general au-
+                                                                      & MaÂndziuk, 2022), have revolutionized this task. Previ-
+      dio based on text descriptions. However, previ-
+                                                                      ous studies primarily worked on the label-to-sound setting
+      ous studies in TTA have limited generation qual-
+                                                                      with a small set of labels (Liu et al., 2021b; Pascual et al.,
+      ity with high computational costs. In this study,
+                                                                      2022) such as the ten sound classes in the UrbanSound8K
+      we propose AudioLDM, a TTA system that is
+                                                                      dataset (Salamon et al., 2014). In comparison, natural lan-
+      built on a latent space to learn continuous audio
+                                                                      guage is considerably more flexible than labels as they can
+      representations from contrastive language-audio
+                                                                      include fine-grained descriptions of audio signals, such as
+      pretraining (CLAP) embeddings. The pretrained
+                                                                      pitch, acoustic environment, and temporal order. The task
+      CLAP models enable us to train LDMs with au-
+                                                                      of generating audio prompted with natural language descrip-
+      dio embeddings while providing text embeddings
+                                                                      tions is known as text-to-audio (TTA) generation.
+      as the condition during sampling. By learning
+      the latent representations of audio signals with-               TTA systems are designed to generate a wide range of high-
+      out modelling the cross-modal relationship, Au-                 dimensional audio signals. To efficiently model the data, we
+      dioLDM improves both generation quality and                     adopt a similar approach as DiffSound (Yang et al., 2022)
+      computational efficiency. Trained on AudioCaps                  by employing a learned discrete representation to efficiently
+      with a single GPU, AudioLDM achieves state-                     model high-dimensional audio signals. We also draw in-
+      of-the-art TTA performance compared to other                    spiration from the recent advancements in autoregressive
+      open-sourced systems, measured by both objec-                   modelling of discrete representation learnt on the waveform,
+      tive and subjective metrics. AudioLDM is also                   such as AudioGen (Kreuk et al., 2022), which has surpassed
+      the first TTA system that enables various text-                 the capabilities of DiffSound. Building on the success of
+      guided audio manipulations (e.g., style transfer)               StableDiffusion (Rombach et al., 2022), which uses latent
+      in a zero-shot fashion. Our implementation and                  diffusion models (LDMs) for high-quality image genera-
+      demos are available at https://audioldm.                        tion, we extend previous TTA approaches to continuous
+      github.io.                                                      latent representations, instead of learning discrete represen-
+                                                                      tations. Additionally, as audio manipulations, such as style
+                                                                      transfer (Engel et al., 2020; Pascual et al., 2022), are de-
+1. Introduction                                                       sired for some applications such as games, we explore and
+                                                                      achieve various zero-shot text-guided audio manipulations
+Generating sound effects, music, or speech according to per-          with LDMs, which have not been demonstrated before.
+sonalized requirements is important for applications such
+as augmented and virtual reality, game development, and               For previous TTA works, a potential limitation for genera-
+video editing. Traditionally, audio generation has been               tion quality is the requirement of large-scale high-quality
+achieved through signal processing techniques (Andresen,              audio-text data pairs, which are usually not readily avail-
+1979; Karplus & Strong, 1983). In recent years, gener-                able, and where they are available, are of limited quality and
+                                                                      quantity (Liu et al., 2022f). To better utilize the low-quality
+  *
+    Equal contribution 1 Centre for Vision, Speech and Sig-           data, several methods for text preprocessing have been pro-
+nal Processing (CVSSP), University of Surrey, Guildford, UK           posed (Kreuk et al., 2022; Yang et al., 2022). However,
+2
+  Department of Electrical and Electronic Engineering, Imperial
+College London, London, UK. Correspondence to: Haohe Liu              these preprocessing steps limit generation performances by
+<haohe.liu@surrey.ac.uk>.                                             overlooking the relations of sound events (e.g., a dog is
+                                                                      barking at the bark is transformed into dog bark park). By
+Proceedings of the 40 th International Conference on Machine          comparison, our proposed method only requires audio data
+Learning, Honolulu, Hawaii, USA. PMLR 202, 2023. Copyright            for generative model training, circumvents the challenge of
+2023 by the author(s).
+
+                                                                  1
+                                         AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+                     STFT+MelFB                                                   Text prompt 𝒚 : “Flying insects. Mosquito”         Text
+                                                                                                                                    Encoder
+                        Audio                                VAE                                                 VAE                                         VAE
+                                        𝑬( ϵ 𝑅 )                                                                                                 𝑬* ϵ 𝑅 )
+                       Encoder                              Encoder                                             Encoder                                     Decoder
+    Audio data 𝒙                                                                         𝑿𝒐𝒃 ϵ 𝑅%×'                                 Latent                                   + ϵ 𝑅%×'
+                                                                                                                                                                             𝑿
+                                              𝒛! ~𝑁(0, 𝑰)
+                                                                                                                        % '        Diffusion                        % '
+                                                                                                               𝒛12 ϵ 𝑅#× & × &                              𝒛1 ϵ 𝑅#× & × &
+                      Contrastive              Latent                                                                              𝒛! ~𝑁(0, 𝑰)
+                                                                           % '
+                       objective              Diffusion          𝒛𝟎 ϵ 𝑅#× & × &                                     (b) Audio inpainting with AudioLDM
+  “A cat meowing
+ then screaming as
+     a young boy                                             VAE
+                        Text            𝑬* ϵ 𝑅 )
+   talking with no                                                                Text prompt 𝒚 : “Flying insects. Mosquito”
+                       Encoder                              Decoder                                                                 Text
+ background noise”
+                                                                                                                                   Encoder
+    Text prompt 𝒚                                                                                                VAE                                         VAE
+                                                                                                                Encoder                          𝑬* ϵ 𝑅 )   Decoder
+                                    Vocoder                                              𝑿𝒔𝒓𝒄 ϵ 𝑅%×'                                Latent                                   + ϵ 𝑅%×'
+                                                                                                                                                                             𝑿
+                                                                                                             % '
+                                                                                                 𝒛𝒔𝒓𝒄 ϵ 𝑅#× & × &                  Diffusion                        % '
+Generated audio 𝒙0                                          + ϵ 𝑅%×'
+                                                            𝑿                                                                                               𝒛1 ϵ 𝑅#× & × &
+                                                                                                                Forward
+                 Training                          Sampling                                                     Diffusion             𝒛𝒏 𝟎
+
+         (a) Training and sampling process of AudioLDM                                                         (c) Audio style transfer with AudioLDM
+
+
+Figure 1. Overview of the AudioLDM system for text-to-audio generation (a). During training, latent diffusion models (LDMs) are
+conditioned on an audio embedding E x and trained in a continuous space z 0 learned by VAE. The sampling process uses text embedding
+E y as the condition. Given a pretrained LDM, zero-shot audio inpainting (b) and style transfer (c) are realized in the reverse diffusion
+process of LDM. The block Forward Diffusion denotes the process that corrupt data with gaussian noise (see Equation 2).
+
+
+text preprocessing, and performs better than using audio-text                                   without using language-audio pairs to train LDMs.
+paired data, as we will discuss later.                                                        • We experimentally show that using audio only data in
+                                                                                                LDM training can obtain a high-quality and computation-
+In this work, we present a TTA system, AudioLDM,
+                                                                                                ally efficient TTA system.
+which achieves high generation quality with continuous
+LDMs, with good computational efficiency and enables                                          • We show that our proposed TTA system can perform
+text-conditional audio manipulations. The overview of                                           text-guided audio styles manipulation, such as audio style
+AudioLDM design for TTA generation and text-guided                                              transfer, super-resolution, and inpainting, without fine-
+audio manipulation is shown in Figure 1. Specifically,                                          tuning the model on a specific task.
+AudioLDM learns to generate the representation in a la-
+tent space encoded by a mel-spectrogram-based variational                                    2. Related Work
+auto-encoder (VAE). An LDM conditioned on a contrastive
+language-audio pretraining (CLAP) embedding is developed                                     Text-to-Audio Generation has gained a lot of attention re-
+for VAE latent generation. By leveraging the audio-text-                                     cently. Two works (Yang et al., 2022; Kreuk et al., 2022)
+aligned embedding space in CLAP, we remove the require-                                      explore how to learn audio representations in a discrete
+ment for paired audio-text data during training LDM, as                                      space given a natural language description, and then decode
+the condition for VAE latent generation can directly come                                    the representations to the audio waveform. Since both works
+from the audio itself. We demonstrate that training an LDM                                   require audio-text paired data for training the latent genera-
+with audio only can be even better than training with audio-                                 tion model, they have both proposed methods to address the
+text data pairs. The proposed AudioLDM achieves leading                                      issues of low quality and scarcity of paired data.
+TTA performance on the AudioCaps dataset with a Freshet                                      DiffSound (Yang et al., 2022) consists of a text encoder, a
+distance (FD) of 23.31, outperforming the DiffSound base-                                    decoder, a vector-quantized variational autoencoder (VQ-
+line (FD of 47.68) by a large margin. Our system also en-                                    VAE), and a vocoder. To alleviate the scarcity of audio-
+ables zero-shot audio manipulations in the sampling process.                                 text paired data, they propose a mask-based text generation
+In summary, our contributions are as follows:                                                strategy (MBTG) for generating text descriptions from audio
+                                                                                             labels. For example, the label dog bark, a man speaking
+• We demonstrate the first attempt to develop a continuous                                   will be represented as [M] [M] dog bark [M] man speaking
+  LDM for TTA generation. Our AudioLDM method out-                                           [M], where [M] represent the mask token. However, the text
+  performs existing methods in both subjective evaluation                                    generated by MBTG still only includes the label information,
+  and objective metrics.                                                                     which might potentially limit model performance.
+• We utilize CLAP embeddings to enable TTA generation
+
+                                                                                         2
+                              AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+AudioGen (Kreuk et al., 2022) uses a Transformer-based                embedding E x ∈ RL respectively, where L is the dimen-
+decoder to learn to generate the target discrete tokens that          sion of CLAP embedding. A recent study (Wu et al., 2022)
+are directly compressed from the waveform. AudioGen is                has explored different architectures for both the text encoder
+trained on 10 datasets and proposes data augmentation meth-           and the audio encoder when training the CLAP model. We
+ods to enhance the diversity of training data. When creating          follow their result to build an audio encoder based on HT-
+the language-audio pairs, they pre-process the language de-           SAT (Chen et al., 2022a), and built a text encoder based
+scriptions to labels to better match the class-label annotation       on RoBERTa (Liu et al., 2019). We use a symmetric cross-
+distribution and simplify the task. For example, the text de-         entropy loss as the training objective (Radford et al., 2021;
+scription a dog is barking at the park is transformed to dog          Wu et al., 2022). For details of the training process and the
+bark park. For data augmentation, they mix audio samples              language-audio datasets see Appendix A.
+according to various signal-to-noise ratios and concatenate
+                                                                      After training the CLAP model, an audio sample x can be
+the transformed language descriptions. This means that the
+                                                                      transformed into an embedding E x within an aligned audio
+detailed text descriptions showing the spatial and temporal
+                                                                      and text embedding space. The generalization ability of
+relationships are discarded.
+                                                                      CLAP model has been demonstrated by various downstream
+Diffusion Models (Ho et al., 2020; Song et al., 2021) have            tasks such as the zero-shot audio classification (Wu et al.,
+achieved state-of-the-art sample quality in tasks such as im-         2022). Then, for unseen language or audio samples, CLAP
+age generation (Dhariwal & Nichol, 2021; Ramesh et al.,               embeddings also provide cross-modal information.
+2022; Saharia et al., 2022), image restoration (Saharia et al.,
+2021), speech generation (Chen et al., 2021; Kong et al.,             3.2. Conditional Latent Diffusion Models
+2021b; Leng et al., 2022), and video generation (Singer et al.,
+2022; Ho et al., 2022). For speech or audio synthesis, dif-           The TTA system can generate an audio sample x̂ given
+fusion models have been studied for both mel-spectrogram              text description y. With probabilistic generative model
+generation (Popov et al., 2021; Chen et al., 2022c) and wave-         LDMs, we estimate the true conditional data distribution
+form generation (Lam et al., 2022; Lee et al., 2022; Chen             q(z 0 |E y ) with a model distribution pθ (z 0 |E y ), where
+                                                                                   T   F
+et al., 2022b).                                                       z 0 ∈ RC× r × r is the prior of an audio sample x in the
+                                                                      space formed from the compressed representation of the
+A major concern with diffusion models is that the iterative           mel-spectrogram X ∈ RT ×F , and E y is the text embed-
+generation process in a high-dimensional data space will              ding obtained by pretrained text encoder ftext (·) in CLAP.
+result in a low inference speed. One of the solutions is to em-       Here, r denotes the compression level, C denotes the chan-
+ploy diffusion models in a small latent space, an approach            nel of the compressed representation, T and F denote the
+used, for example, in image generation (Vahdat et al., 2021;          time-frequency dimensions in the mel-spectrogram X. With
+Sinha et al., 2021; Rombach et al., 2022). For TTA gener-             pretrained CLAP to jointly embed the audio and text infor-
+ation, the audio waveform has redundant information (Liu              mation, the audio embedding E x and the text embedding
+et al., 2022e;c) that increases modeling complexity and de-           E y share a joint cross-modal space. This allows us to pro-
+creases inference speed. To overcome this, DiffSound (Yang            vide E x for training the LDMs, while providing E y for
+et al., 2022) uses text-conditional discrete diffusion models         TTA generation.
+to generate discrete tokens as a compressed representation
+of mel-spectrograms. However, the quality of the sound                Diffusion models (Ho et al., 2020; Song et al., 2021) consist
+generated by their method is limited. In addition, audio              of two processes: i) a forward process to transform the data
+manipulation methods are not explored.                                distribution into a standard Gaussian distribution with a pre-
+                                                                      defined noise schedule 0 < β1 < · · · < βn < . . . βN < 1,
+                                                                      and ii) a reverse process to gradually generate data samples
+3. Text-Conditional Audio Generation                                  from the noise according to an inference noise schedule.
+3.1. Contrastive Language-Audio Pretraining                           In the forward process, at each time step n ∈ [1, . . . , N ],
+Text-to-image generation models have shown stunning sam-              the transition probability is given by:
+ple quality by utilizing Contrastive Language-Image Pre-                                                p
+training (CLIP) (Radford et al., 2021) for generating the                     q(z n |z n−1 ) = N (z n ; 1 − βn z n−1 , βn I),    (1)
+                                                                                                        √
+image prior. Inspired by this, we leverage Contrastive                           q(z n |z 0 ) = N (z n ; ᾱn z 0 , (1 − ᾱn )ϵ), (2)
+Language-Audio Pretraining (CLAP) (Wu et al., 2022) to
+facilitate TTA generation.                                            where ϵ ∼ N (0, I) denotes injected Qnoise, αn is a repa-
+                                                                                                             n
+                                                                      rameterization of 1 − βn and ᾱn := s=1 αs represents
+We denote audio samples as x and the text description as              the noise level at each step. At the final time step N ,
+y. A text encoder ftext (·) and an audio encoder faudio (·) are       z N ∼ N (0, I) has a standard isotropic Gaussian distri-
+used to extract a text embedding E y ∈ RL and an audio                bution. For model optimization, we employ the reweighted
+
+                                                                  3
+                                AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+noise estimation training objective (Ho et al., 2020; Kong                  of needing to augment language-audio pairs. Specifically,
+et al., 2021b; Rombach et al., 2022):                                       we perform mixup augmentation on audio x1 and x2 by:
+                                                         2                                     x1,2 = λx1 + (1 − λ)x2 ,                       (8)
+          Ln (θ) = Ez0 ,ϵ,n ∥ϵ − ϵθ (z n , n, E x )∥2 ,          (3)
+                                                                            where λ is a scaling factor varying between [0, 1] sampled
+where E x is the embedding of the audio waveform x pro-                     from a Beta distribution B(5, 5) (Gong et al., 2021). Here
+duced by the pretrained audio encoder faudio (·) in CLAP.                   we do not need to consider the corresponding text descrip-
+In the reverse process, starting from Gaussian noise distri-                tion y1,2 , since text information is not needed during LDM
+bution p(z N ) ∼ N (0, I) and the text embedding E y , a                    training. By mixing audio pairs, we increase the number of
+denoising process conditioned on E y gradually generates                    training data pairs (z 0 , E x ) for LDMs, which makes LDMs
+the audio prior z 0 by the following process:                               robust to CLAP embeddings. In the sampling process, given
+                                                                            the text embedding E y from unseen language descriptions,
+                                  N
+                   y
+                                  Y                                         LDMs are expected to generate the corresponding audio
+      pθ (z 0:N |E ) = p(z N )          pθ (z n−1 |z n , E y )   (4)        prior z 0 .
+                                  t=n
+ pθ (z n−1 |z n , E y ) = N (z n−1 ; µθ (z n , n, E y ), σ 2n I). (5)       3.4. Classifier-free Guidance
+The mean and variance are parameterized as (Ho et al.,
+2020):
+
+                        1           βn
+ µθ (z n , n, E y ) = √ (z n − √           ϵθ (z n , n, E y ))
+                        αn         1 − ᾱn
+                                                                               ( = 1.0           ( = 2.0          ( = 3.0           ( = 4.0
+                                                             (6)
+                      1 − ᾱn−1                                             Figure 2. The samples generated with different scales of the
+               σ 2n =           βn                           (7)            classifier-free guidance. The text prompt is ªA cat is meowingº.
+                       1 − ᾱn
+
+where ϵθ (z n , n, E y ) is the predicted generation noise, and             For diffusion models, controllable generation can be
+σ 21 = β1 . In the training stage, we learn the generation of               achieved by introducing guidance at each sampling step.
+an audio prior z 0 given the cross-modal representation E x                 After classifier guidance (Song et al., 2021; Nichol & Dhari-
+of an audio sample x. Then, in TTA generation, we provide                   wal, 2021), classifier-free guidance (Ho & Salimans, 2021;
+the text embeddings E y to predict the noise ϵθ (z n , n, E y ).            Nichol et al., 2021) (CFG) has been the state-of-the-art tech-
+Built on the CLAP embeddings, our LDM realizes TTA                          nique for guiding diffusion models. During training, we
+generation without text supervision in the training stage. We               randomly discard our condition E x with a fixed probability,
+provide the details of network architecture in Appendix B.                  e.g., 10% to train both the conditional LDMs ϵθ (z n , n, E x )
+                                                                            and the unconditional LDMs ϵθ (z n , n). In generation, we
+3.3. Conditioning Augmentation                                              use text embedding E y as condition and perform sampling
+                                                                            with a modified noise estimation ϵ̂θ (z n , n, E y ):
+In text-to-image generation, diffusion-based models have
+demonstrated an ability to capture the fine-grained details                   ϵ̂θ (z n , n, E y ) = wϵθ (z n , n) + (1 − w)ϵθ (z n , n, E y ),
+between objects and backgrounds (Ramesh et al., 2022;                                                                                        (9)
+Saharia et al., 2022; Liu et al., 2022d). One of the reasons                where w determines the guidance scale. Compared with Au-
+for this success is the large-scale language-image training                 dioGen (Kreuk et al., 2022), we have two differences. First,
+pairs, such as 400 million image-text pairs in the LAION                    they leverage CFG on a transformer-based auto-regressive
+dataset (Schuhmann et al., 2021). For TTA generation,                       model, while our LDMs retain the theoretical formulation
+it is also desired to generate compositional audio signals                  behind the CFG (Ho & Salimans, 2021). Second, our text
+whose relationships are consistent with natural language                    embedding E y is extracted from unprocessed natural lan-
+descriptions. However, the scale of available language-                     guage and therefore enables CFG to make use of the detailed
+audio datasets is not comparable to that of language-image                  text descriptions as guidance for audio generation. How-
+datasets. For data augmentation, AudioGen (Kreuk et al.,                    ever, AudioGen removed the text details showing spatial or
+2022) use a mixup strategy which mixes pairs of audio                       temporal relationships with text preprocessing methods.
+samples and concatenates their respective processed text
+captions to form new paired data. In our work, as shown
+                                                                            3.5. Decoder
+in Equation 3, we provide the audio only embedding E x
+as conditioning information when training LDMs, we can                      We use VAE to compress the mel-spectrogram X ∈ RT ×F
+                                                                                                              T   F
+implement data augmentation on audio only signals instead                   into a small latent space z ∈ RC× r × r , where r is the
+
+                                                                        4
+                                   AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+                                                                              z ob into the generated latent representation z. Specifically,
+                                                                              in reverse process, starting from p(z N ) ∼ N (0, I), after
+                                                                              each inference step shown in Equation 5, we modify the
+                                                                              generated z n−1 with:
+
+      Original      𝑛0 = 𝑁/4             𝑛0 = 𝑁/2         𝑛0 = 3𝑁/4                    z ′n−1 = (1 − m) ⊙ z n−1 + m ⊙ z ob
+                                                                                                                        n−1 ,          (11)
+                                                                                                                                      T   F
+                                                                              where z ′ is the modified latent representation, m ∈ R  r × r
+Figure 3. The manipulation result with different starting points n0
+                                                                              denotes an observation mask in latent space, z ob n−1 is ob-
+of the shallow reverse process. The original signal is Trumpet, and
+the text prompt for style transfer is Children Singing.                       tained by adding noise on z ob with the forward process
+                                                                              shown by Equation 2.
+
+compression level of the latent space. Our VAE is composed                    The values of observation mask m depend on the observed
+of an encoder and a decoder with stacked convolutional                        part of a mel-spectrogram X. As we adopt a convolu-
+modules. In the training objective, we adopt a reconstruction                 tional structure in VAE to learn the latent representation
+loss, an adversarial loss, and a Gaussian constraint loss.                    z, we can roughly retain the spatial correspondency in mel-
+We provide the detailed architecture and training methods                     spectrogram, as it is shown in Figure 7 in Appendix C.
+in Appendix C. In the sampling process, the decoder is                        Therefore, if a time-frequency bin X t,f is observed, we set
+used to reconstruct the mel-spectrogram X̂ from the audio                     the observation mask m t , f in latent space as 1. By using
+                                                                                                        r r
+
+prior ẑ o generated from LDMs. To explore a compression                      m to denote the generation part and observation part in z,
+level r that achieves a small latent space for LDMs without                   according to Equation 11, we can generate the missing in-
+sacrificing sample quality, we test a group of values r ∈                     formation conditioned on the text prompt with TTA models,
+[1, 2, 4, 8, 16], and take r=4 as our default setting because                 while retaining the ground-truth observation z ob .
+of its high computational efficiency and generation quality.
+Moreover, as we conduct conditioning augmentation for                         5. Experiments
+LDMs, we implement data augmentation with Equation 9
+for VAE as well in order to guarantee the reconstruction                      Training dataset The datasets we used in this paper in-
+quality of generated compositional samples. For vocoder,                      cludes AudioSet (AS) (Gemmeke et al., 2017), Audio-
+we employ HiFi-GAN (Kong et al., 2020a) to generate the                       Caps (AC) (Kim et al., 2019), Freesound (FS)1 , and BBC
+audio sample x̂ from the reconstructed mel-spectrogram X̂.                    Sound Effect library (SFX)2 . AS is currently the largest au-
+The training details are shown in Appendix D.                                 dio dataset, with 527 labels and over 5, 000 hours of audio
+                                                                              data. AC is a much smaller dataset with around 49, 000 au-
+                                                                              dio clips and text descriptions. Most of the data in AudioSet
+4. Text-Guided Audio Manipulation                                             and AudioCaps are in-the-wild audio from YouTube, so the
+Style Transfer Given a source audio sample xsrc , we can                      quality of the audio is not guaranteed. To expand the dataset,
+calculate its noisy latent representation z n0 with a prede-                  especially with high-quality audio data, we crawl the data
+fined time step n0 ≤ N according to the forward process                       from the FreeSound and BBC SFX datasets, which have a
+shown in Equation 2. By utilizing z n0 as the starting point                  wide range of categories such as music, speech, and sound
+of the reverse process of a pretrained AudioLDM model, we                     effects. We show our detailed data processing methods and
+enable the manipulation of audio xsrc with text input y with                  training configuration in Appendix E.
+a shallow reverse process pθ (z 0:n0 |E y ):                                  Evaluation dataset We evaluate the model on both AC and
+                                   n0
+                                   Y                                          AS. Each audio clip in AC has 5 text captions. We generate
+    pθ (z 0:n0 |E y ) = p(z n0 )         pθ (z n−1 |z n , E y ),   (10)       the evaluation set by randomly selecting one of them as text
+                                   n=1                                        condition. Because the authors of AC intentionally remove
+where n0 controls the manipulation results. If we define                      the audio with the label related to music (Kim et al., 2019),
+a n0 ≈ N , the information provided by source audio will                      to evaluate model performance with a wider range of sound,
+not be retained and the manipulation would be similar to                      we randomly select 10% audio samples from AS as another
+TTA generation. We show the effect of n0 in Figure 3,                         evaluation set. Since AS does not contain text descriptions,
+where larger manipulations can be seen in the setting of                      we use the concatenation of labels as text descriptions, such
+n0 = 3N/4.                                                                    as Speech, hip hop music, and crowd cheering.
+
+Inpainting and Super-Resolution Both audio inpainting                         Evaluation methods We perform both objective evaluation
+and audio super-resolution refer to generating the missing                       1
+                                                                                 https://freesound.org/
+part given the observed part xob . We explore these tasks                        2
+                                                                                 https://sound-effects.bbcrewind.co.uk/
+by incorporating the observed part in latent representation                   search
+
+                                                                          5
+                                    AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+              Model                 Text Data   Use CLAP   Params   Duration (h)    FD ↓     IS ↑   KL ↓   FAD ↓     OVL ↑       REL ↑
+           Ground truth                -           -         -           -           -         -      -      -     83.61±1.1   80.11±1.2
+   DiffSound† (Yang et al., 2022)      ✓           ✗       400M        5420        47.68     4.01   2.52   7.75    45.00±2.6   43.83±2.3
+   AudioGen† (Kreuk et al., 2022)      ✓           ✗       285M        8067          -         -    2.09   3.13        -           -
+    AudioLDM-S-Full-RoBERTa            ✓           ✗       181M         145        32.13     4.02   3.25   5.89        -           -
+          AudioLDM-S                   ✗           ✓       181M         145        29.48     6.90   1.97   2.43    63.41±1.4   64.83±0.9
+          AudioLDM-L                   ✗           ✓       739M         145        27.12     7.51   1.86   2.08    64.30±1.6   64.72±1.6
+        AudioLDM-S-Full                ✗           ✓       181M        8886        23.47     7.57   1.98   2.32        -           -
+        AudioLDM-L-Full                ✗           ✓       739M        8886        23.31     8.13   1.59   1.96    65.91±1.0   65.97±1.6
+
+
+Table 1. The comparison between AudioLDM and baseline TTA generation models. Evaluation is conducted on AudioCaps test set.
+The symbol † marks industry-level computation. DiffSound is trained on 32 V100 GPUs and AudioGen is trained on 64 A100 GPUs,
+while AudioLDM models are trained on a single GPU, RTX 3090 or A100. The AS and AC stand for AudioSet and AudioCaps datasets
+respectively. The results of AudioGen are employed from (Kreuk et al., 2022) since their implementation has been not publicly available.
+
+
+and human subjective evaluation. The main metrics we                          the scale of training data, we develop an AudioLDM-L-Full
+use for objective evaluation include frechet distance (FD),                   model which is trained on AC, AS, FreeSound, and BBC
+inception score (IS), and kullback±leibler (KL) diver-                        SFX datasets.
+gence. Similar to the frechet inception distance in image
+generation, the FD in audio indicates the similarity between                  5.1. Results
+generated samples and target samples. IS is effective in eval-
+uating both sample quality and diversity. KL is measured                    We show the main evaluation results on the AC test set in
+at a paired sample level and averaged as the final result.                  Table 1. Given the single training dataset AC, AudioLDM-
+All of these three metrics are built upon a state-of-the-art                S can achieve better generation results than the baseline
+audio classifier PANNs (Kong et al., 2020b). To compare                     models on both objective and subjective evaluations, even
+with (Kreuk et al., 2022), we also adopt the frechet audio                  with smaller model size. By expanding model capacity with
+distance (FAD) (Kilgour et al., 2019). FAD has a similar                    AudioLDM-L, we further improve the overall results. Then,
+idea to FD but it uses VGGish (Hershey et al., 2017) as a                   by incorporating AS and the two other datasets into train-
+classifier which may have inferior performance than PANNs.                  ing, our model AudioLDM-L-Full achieves the best quality,
+To better measure the generation quality, we choose FD as                   with an FD of 23.31. Although RoBERTa and CLAP have
+the main evaluation metric in this paper. For subjective                    the same text encoder structure, CLAP has an advantage
+evaluation, we recruit six audio professionals to carry on                  in that it decouples audio-text relationship learning from
+a rating process following (Kreuk et al., 2022; Yang et al.,                generative model training. This decoupling is intuitive as
+2022). Specifically, the generated samples are rated based                  CLAP has already modelled the relationship between au-
+on i) overall quality (OVL); and ii) relevance to the input                 dio and text by aligning their embedding spaces. On the
+text (REL) between a scale of 1 to 100. We include the                      other hand, AudioLDM-S-Full-RoBERTa, in which the text
+details of human evaluation in Appendix E. We open-source                   encoder only represents textual information, requires the
+our evaluation pipeline to facilitate reproducibility3 .                    model to learn the text-audio relationships while simultane-
+                                                                            ously learning the audio generation process. Additionally,
+Models We employ two recently proposed TTA systems,                         our CLAP-based method allows for model training using
+DiffSound (Yang et al., 2022) and AudioGen (Kreuk et al.,                   audio-only data. Therefore, using Roberta without pretrain-
+2022) as our baseline models. DiffSound is trained on AS                    ing with CLAP may increase the difficulty of training.
+and AC datasets with around 400M parameters. AudioGen
+is trained on AS, AC, and eight other datasets with around                    Our human evaluation shows a similar trend as other evalu-
+285M parameters. Since AudioGen has not released pub-                         ation metrics. Our proposed methods have OVL and REL
+licly available implementation, we reuse the KL and FAD                       of around 64, outperforming DiffSound with OVL of 45.00
+results reported in their paper. We train two AudioLDM                        and REL of 43.83 by a large margin. On the AudioLDM
+models. One is a small model named AudioLDM-S, which                          model size, we notice that the larger model is advantageous
+has 181M parameters, and the other is a large model named                     for the overall audio qualities. After scaling up the training
+AudioLDM-L with 739M parameters. We describe the de-                          data, both OVL and REL show significant improvements.
+tails of UNet architecture in Appendix B. To demonstrate the                  Figure 4 shows the score statistic of different models aver-
+advantage of our method, we simply train these two models                     aged between all the raters. We notice our model is more
+only with the AC dataset. Moreover, to explore the effect of                  concentrated on the higher scores compared with DiffSound.
+                                                                              Our spam cases, which are randomly selected real record-
+  3
+    https://github.com/haoheliu/audioldm_                                     ings, show high scores, indicating the rating result is reli-
+eval                                                                          able.
+
+
+                                                                        6
+                               AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+
+
+
+Figure 4. The histogram of the human evaluation result. The horizontal axis and vertical axis represent the rating score and frequency,
+respectively. OVL denotes the overall quality of audio files and REL denotes the relation between text and generated audio. Both OVL and
+REL are scored on a scale of 1 to 100. Scores on each evaluation file are averaged among all the raters.
+
+
+                                                                              Model           Text    Audio     FD ↓      IS ↑    KL ↓
+                                                                          AudioLDM-S           ✓        ✓      31.26     6.35     2.01
+                                                                          AudioLDM-S           ✗        ✓      29.48     6.90     1.97
+                                                                        AudioLDM-S-Full        ✓        ✓      27.20     7.52     2.38
+                                                                        AudioLDM-S-Full        ✗        ✓      23.47     7.57     1.98
+                                                                        AudioLDM-L-Full        ✓        ✓      25.79     7.95     2.26
+                                                                        AudioLDM-L-Full        ✗        ✓      23.31     8.13     1.59
+
+Figure 5. The comparison of various evaluation metrics evalu-          Table 3. The comparison between text embedding and audio em-
+ated in the training process of i) AudioLDM-S trained with text        bedding as conditioning information on the training of LDMs.
+embedding (S-Text+Audio) ii) AudioLDM-S (S-Audio), and iii)
+AudioLDM-L (L-Audio).
+
+                                                                       as good as audio embedding. Firstly, due to the ambiguity
+To perform the evaluation on audio data that could include
+                                                                       and complexity of sound, the text caption is difficult to be
+music, we further evaluate our model on the AS evaluation
+                                                                       accurate and comprehensive. Different human annotators
+set. We compare our method with DiffSound and show the
+                                                                       may have different perceptions and descriptions over the
+results in Table 2. Our three AudioLDM models show a
+                                                                       same audio, which make training with text-audio pair less
+similar trend as they perform on the AC test set. We can
+                                                                       stable than with audio only. Moreover, some of the captions
+outperform the DiffSound baseline by a large margin on all
+                                                                       are at a highly-abstracted level and cannot correctly describe
+the metrics.
+                                                                       the audio content. For example, there is an audio in the BBC
+                Model            FD ↓     IS ↑     KL ↓
+                                                                       SFX dataset with caption Boats: Battleships-5.25 conveyor
+                                                                       space, which is even difficult for humans to imagine how
+            DiffSound           50.40     4.19     3.63                it sounds. This quality of language-audio pairs may hinder
+           AudioLDM-S           28.08     6.78     2.51
+           AudioLDM-L           27.51     7.18     2.49                model optimization. By comparison, if we use E x from
+         AudioLDM-L-Full        24.26     7.67     2.07                CLAP latents as a condition, it is extracted directly from
+                                                                       the audio signal and is aligned with ideally the best text
+Table 2. The evaluation results on the AudioSet evaluation set.        caption, which enables us to provide strong conditioning
+                                                                       information to LDMs without considering the noisy labeled
+Conditioning Information As we train LDMs conditioned                  text description. Figure 5 shows sample quality as a function
+on the audio embedding E x but provide the text embed-                 of training progress. We notice that i) training with audio
+ding E y to LDMs in TTA generation, a natural concern                  embedding can lead to significantly better results than text
+is that if stronger results could be achieved by directly us-          embedding throughout the entire training process; and ii)
+ing the text embedding as training condition. We conduct               larger models may converge more slowly but can achieve
+experiments and show the results in Table 3. For a fair com-           better final performance.
+parison, we also conduct data augmentation and we adopt
+                                                                       Compression Level We study the effect of compression
+the strategy from AudioGen. Specifically, we use the same
+                                                                       level r on generation quality. Table 4 shows the performance
+mixing method for audio pairs shown in Section 3.3, and
+                                                                       comparison with r=4, 8, 16. We observe a decreasing trend
+concatenate two text captions as conditioning information.
+                                                                       with the increase of compression levels. Nevertheless, in
+Table 3 shows by training LDMs on E x , we can achieve
+                                                                       the setting of r=16 where we compress the 64-band mel-
+better results than training with E y .
+                                                                       spectrogram into only 4 dimensions in the frequency axis,
+We believe the primary reason for the result in Table 3 is             our performance is still on par with AudioGen on KL, and
+that text embedding cannot represent the generation target             better than DiffSound on all the metrics.
+
+                                                                   7
+                                AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+            Model         r       FD ↓     IS ↑   KL ↓                  We provide several samples of our results in Appendix I.
+         AudioLDM-S       4      29.48     6.90   1.97
+         AudioLDM-S       8      33.50     6.13   2.04                  5.2. Ablation Study
+         AudioLDM-S       16     34.32     5.68   2.09
+                                                                        Table 6 shows the result of our ablation study on AudioLDM-
+Table 4. The effect of the compression level on AudioLDM.               S. By simplifying the attention mechanism in UNet into a
+                                                                        one-layer multi-head self-attention (w. Simple attn), the per-
+                                                                        formance in each metric will have a notable decrease, which
+          Task                 Super-resolution     Inpainting
+                                                                        indicates complex attention mechanism is preferred. Also,
+         Dataset           AudioCaps      VCTK     AudioCaps            we notice the widely used balanced sampling strategy (Gong
+     Unprocessed               2.76        2.15       10.86             et al., 2021; Liu et al., 2022b) in audio classification does not
+ Kuleshov et al. (2017)          -         1.32          -              show improvement in TTA (w. Balance samp). Conditional
+   Liu et al. (2022a)            -         0.78          -              augmentation (see Section 3.3) shows improvement in the
+    AudioLDM-S                 1.59        1.12        2.33
+    AudioLDM-L                 1.43        0.98       1.92
+                                                                        subjective evaluation, but it does not show improvement in
+                                                                        the objective evaluation metrics (w. Cond aug). The reason
+Table 5. Performance comparisons on zero-shot super-resolution          could be that conditioning augmentation generates training
+and inpainting, which are evaluated by LSD and FAD, respectively.       data that is not representative of the AudioCaps dataset, re-
+                                                                        sulting in model outputs that are not well-aligned with the
+                                                                        evaluation data, ultimately leading to lower metric scores.
+If we set the compression level as r=1, which means we                  Nevertheless, conditioning augmentation can improve two
+directly generate mel-spectrogram from CLAP embeddings,                 subjective metrics and we still recommend using it as a data
+the training process is difficult to implement on a single              augmentation technique.
+RTX 3090 GPU. Similar results happen on r=2. Moreover,
+the inference speed will be low with r=1, 2. In our studies,             Setting              FD↓         IS↑     KL↓      OVL ↑    REL ↑
+r=4 achieves high generation quality while reducing the                  AudioLDM-S          29.48     6.90       1.97     63.41    64.83
+computational load to a reasonable level. Hence, we use it               w. Simple attn      33.12     6.15       2.09       -        -
+as the default setting in our experiments.                               w. Balance samp     34.05     6.21       2.16       -        -
+                                                                         w. Cond aug         31.88     6.25       2.02     64.49    65.01
+Text-Guided Audio Manipulation We show the perfor-
+mance of our text-guided audio manipulation methods on                  Table 6. The ablation study on the attention mechanism, the bal-
+two tasks: super-resolution and inpainting. Specifically,               ance sampling technique for training data, and the conditioning
+for super-resolution, we upsample the audio signal from                 augmentation algorithm.
+8 kHz to 16 kHz sampling rate. For the inpainting task, we
+remove the audio signal between 2.5 and 7.5 seconds and                 DDIM Sampling Step The number of inference steps in the
+refill this part by inpainting. Since most studies on audio             reverse process of DDPMs can directly affect the generation
+super-resolution work on speech signal (Liu et al., 2021a;              quality (Ho et al., 2020; Song et al., 2021). Generally, the
+2022a), we demonstrate our results on both AudioCaps, and               sample quality can be improved with an increase in the
+a speech dataset VCTK (Yamagishi et al., 2019), which is                number of sampling steps and computational load at the
+a multi-speaker speech dataset. For super-resolution, we                same time. We explore the effect of the DDIM (Song et al.,
+employ two models AudioUNet (Kuleshov et al., 2017) and                 2020) sampling steps on our latent diffusion model. Table 7
+NVSR (Liu et al., 2022a) as baseline models, and employ                 shows that more sampling steps lead to better quality. With
+log-spectral distance (LSD) (Wang & Wang, 2021) as the                  enough sampling steps such as 100, the gain of adding
+evaluation metric for comparison. For the inpainting task,              sampling steps becomes less significant. The result of 200
+we use FAD as a metric and establish a baseline for this                steps is only slightly better than that of 100 steps.
+task. Table 5 shows that AudioLDM can outperform the
+strong AudioUNet baseline, but the result is not as good                Guidance Scale represents a trade-off between conditional
+as NVSR (Liu et al., 2022a). Recall that AudioLDM is a                  generation quality and sample diversity. A suitable guidance
+model trained on a diverse set of audio signals, including              scale can improve the consistency between generated sam-
+those with heavy background noise. This can lead to the                 ples and conditioning information at an acceptable cost of
+presence of white noise or other non-speech sound events
+in the output of our super-resolution process, potentially
+                                                                           DDIM steps       10       25          50      100       200
+reducing performance. Nevertheless, our contribution could
+open the door to achieving text-guided audio manipulation                      FD          55.84    42.84       35.71    30.17   29.48
+                                                                               IS          4.21      5.91        6.51     6.85   6.90
+with the TTA system in a zero-shot way. Further improve-                       KL          2.47      2.12        2.01    1.94     1.97
+ments could be expected based on our benchmark results.
+                                                                        Table 7. Effect of sampling steps of LDMs with a DDIM sampler.
+                                                                    8
+                              AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+                                                                       neering and Physical Sciences Research Council (EPSRC)
+                                                                       Grant EP/T019751/1 ªAI for Soundº, and a PhD scholar-
+                                                                       ship from the Centre for Vision, Speech and Signal Process-
+                                                                       ing (CVSSP), Faculty of Engineering and Physical Science
+                                                                       (FEPS), University of Surrey. For the purpose of open
+                                                                       access, the authors have applied a Creative Commons Attri-
+                                                                       bution (CC BY) license to any Author Accepted Manuscript
+                                                                       version arising.
+
+                                                                       References
+Figure 6. The comparison between different classifier-free guid-       Andresen, U. A new way in sound synthesis. In Audio
+ance scales (on the horizontal axis) for the AudioLDM-S model           Engineering Society. Audio Engineering Society, 1979.
+trained on AudioCaps.
+                                                                       Chen, K., Du, X., Zhu, B., Ma, Z., Berg-Kirkpatrick, T.,
+                                                                         and Dubnov, S. HTS-AT: A hierarchical token-semantic
+generation diversity. We show the effect of guidance scale               audio transformer for sound classification and detection.
+w on TTA in Figure 6. When w = 3, we achieve the best                    In IEEE International Conference on Acoustics, Speech
+results in both FD and KL, but not in FAD. We suppose the                and Signal Processing, 2022a.
+reason is the audio classifier in FAD is not as good as FD,
+as mentioned in Section 5. In this case, the improvement in            Chen, N., Zhang, Y., Zen, H., Weiss, R., Norouzi, M., and
+the adherence to detailed language description may become                Chan, W. Wavegrad: Estimating gradients for waveform
+misleading information to the classifier in FAD. Consider-               generation. In International Conference on Learning
+ing previous studies report FAD results instead of FD, we                Representations, 2021.
+set w = 2 for comparison, but also provide detailed effects
+of w on FAD, FD, IS, and KL, respectively.                             Chen, Z., Tan, X., Wang, K., Pan, S., Mandic, D., He, L.,
+                                                                         and Zhao, S. Infergrad: Improving diffusion models for
+Case Study We conduct case study and show the generated                  vocoder by considering inference in training. In IEEE In-
+results in Appendix I, including style transfer (see Figure 9-           ternational Conference on Acoustics, Speech and Signal
+11), super-resolution (see Figure 12), inpainting (see Fig-              Processing, 2022b.
+ure 13-14), and text-to-audio generation (see Figure 15-22).
+Specifically, for text-to-audio, we demonstrate the controlla-         Chen, Z., Wu, Y., Leng, Y., Chen, J., Liu, H., Tan, X., Cui,
+bility of AudioLDM, including the control of the acoustic                Y., Wang, K., He, L., Zhao, S., Bian, J., and Mandic,
+environment, material, sound event, pitch, musical genres,               D. Resgrad: Residual denoising diffusion probabilistic
+and temporal orders.                                                     models for text to speech. arXiv preprint:2212.14518,
+                                                                         2022c.
+6. Conclusions
+                                                                       Dhariwal, P. and Nichol, A. Diffusion models beat gans on
+We have presented a new method AudioLDM for text-                        image synthesis. In Conference on Neural Information
+to-audio (TTA) generation, with contrastive language-                    Processing Systems, 2021.
+audio pretraining (CLAP) models and latent diffusion mod-
+els (LDMs). Our method is advantageous in generation                   Drossos, K., Lipping, S., and Virtanen, T. Clotho: an audio
+quality, computational efficiency, and audio manipulations.              captioning dataset. In IEEE International Conference on
+With a single training dataset AudioCaps and a single GPU,               Acoustics, Speech and Signal Processing, 2020.
+AudioLDM achieves SOTA generation quality evaluated
+by both subjective and objective metrics. Moreover, Audi-              Engel, J., Hantrakul, L., Gu, C., and Roberts, A.
+oLDM enables zero-shot text-guided audio style transfer,                 Ddsp: Differentiable digital signal processing. arXiv
+super-resolution, and inpainting.                                        preprint:2001.04643, 2020.
+
+7. Acknowledgement                                                     Gemmeke, J. F., Ellis, D. P., Freedman, D., Jansen, A.,
+                                                                         Lawrence, W., Moore, R. C., Plakal, M., and Ritter, M.
+We would like to thank James King and Jinhua Liang for                   AudioSet: An ontology and human-labeled dataset for
+the useful discussion on the latent diffusion model. This                audio events. In IEEE International Conference on Acous-
+research was partly supported by the British Broadcasting                tics, Speech and Signal Processing, pp. 776±780. IEEE,
+Corporation Research and Development (BBC R&D), Engi-                    2017.
+
+                                                                   9
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Gong, Y., Chung, Y.-A., and Glass, J. PSLA: Improving                Kong, Q., Cao, Y., Iqbal, T., Wang, Y., Wang, W., and
+  audio tagging with pretraining, sampling, labeling, and              Plumbley, M. D. PANNs: Large-scale pretrained audio
+  aggregation. IEEE/ACM Transactions on Audio, Speech,                 neural networks for audio pattern recognition. IEEE/ACM
+  and Language Processing, 29:3292±3306, 2021.                        Transactions on Audio, Speech, and Language Process-
+                                                                       ing, 28:2880±2894, 2020b.
+Hershey, S., Chaudhuri, S., Ellis, D. P., Gemmeke, J. F.,
+  Jansen, A., Moore, R. C., Plakal, M., Platt, D., Saurous,          Kong, Q., Cao, Y., Liu, H., Choi, K., and Wang, Y. Decou-
+  R. A., Seybold, B., et al. CNN architectures for large-              pling magnitude and phase estimation with deep resunet
+  scale audio classification. In 2017 IEEE International               for music source separation. arXiv preprint:2109.05418,
+  Conference on Acoustics, Speech and Signal Processing,               2021a.
+  pp. 131±135. IEEE, 2017.
+                                                                     Kong, Z., Ping, W., Huang, J., Zhao, K., and Catanzaro, B.
+Ho, J. and Salimans, T. Classifier-free diffusion guidance.            Diffwave: A versatile diffusion model for audio synthesis.
+  In NeurIPS Workshop on Deep Generative Models and                    In International Conference on Learning Representations,
+ Downstream Applications, 2021.                                        2021b.
+Ho, J., Jain, A., and Abbeel, P. Denoising diffusion prob-           Kreuk, F., Synnaeve, G., Polyak, A., Singer, U., DÂefossez,
+  abilistic models. In Conference on Neural Information                A., Copet, J., Parikh, D., Taigman, Y., and Adi, Y.
+ Processing Systems, 2020.                                             Audiogen: Textually guided audio generation. arXiv
+                                                                       preprint:2209.15352, 2022.
+Ho, J., Chan, W., Saharia, C., Whang, J., Gao, R., Grit-
+  senko, A., Kingma, D. P., Poole, B., Norouzi, M., Fleet,           Kuleshov, V., Enam, S. Z., and Ermon, S. Audio super reso-
+  D. J., and Salimans, T. Imagen video: High defini-                   lution using neural networks. arXiv:1708.00853, 2017.
+  tion video generation with diffusion models. arXiv
+  preprint:2210.02303, 2022.                                         Lam, M., Wang, J., Huang, R., Su, D., and Yu, D. Bilateral
+                                                                       denoising diffusion models. In International Conference
+Isola, P., Zhu, J.-Y., Zhou, T., and Efros, A. A. Image-to-
+                                                                       on Learning Representations, 2022.
+   image translation with conditional adversarial networks.
+   In Proceedings of the IEEE/CVF Conference on Com-                 Lee, S., Kim, H., Shin, C., Tan, X., Liu, C., Meng, Q., Qin,
+   puter Vision and Pattern Recognition, pp. 1125±1134,                T., Chen, W., Yoon, S., and Liu, T. Priorgrad: Improving
+   2017.                                                               conditional denoising diffusion models with data-driven
+                                                                       adaptive prior. In International Conference on Learning
+Karplus, K. and Strong, A. Digital synthesis of plucked-
+                                                                       Representations, 2022.
+  string and drum timbres. Computer Music Journal, 7(2):
+  43±55, 1983.                                                       Leng, Y., Chen, Z., Guo, J., Liu, H., Chen, J., Tan, X.,
+Kilgour, K., Zuluaga, M., Roblek, D., and Sharifi, M.                  Mandic, D., He, L., Li, X.-Y., Qin, T., et al. Binauralgrad:
+  FrÂechet audio distance: A reference-free metric for evalu-          A two-stage conditional diffusion probabilistic model
+  ating music enhancement algorithms. In INTERSPEECH,                  for binaural audio synthesis. arXiv preprint:2205.14807,
+  pp. 2350±2354, 2019.                                                 2022.
+
+Kim, C. D., Kim, B., Lee, H., and Kim, G. Audiocaps: Gen-            Liu, H., Kong, Q., Tian, Q., Zhao, Y., Wang, D., Huang, C.,
+  erating captions for audios in the wild. In Proceedings of           and Wang, Y. Voicefixer: Toward general speech restora-
+  the 2019 Conference of the North American Chapter of                 tion with neural vocoder. arXiv preprint:2109.13731,
+  the Association for Computational Linguistics: Human                 2021a.
+  Language Technologies, pp. 119±132, 2019.
+                                                                     Liu, H., Choi, W., Liu, X., Kong, Q., Tian, Q., and Wang,
+Kingma, D. P. and Ba, J. Adam: A method for stochastic                 D. Neural vocoder is all you need for speech super-
+  optimization. arXiv preprint:1412.6980, 2014.                        resolution. arXiv preprint:2203.14941, 2022a.
+
+Kingma, D. P. and Welling, M. Auto-encoding variational              Liu, H., Kong, Q., Liu, X., Mei, X., Wang, W., and Plumbley,
+  bayes. arXiv preprint:1312.6114, 2013.                               M. D. Ontology-aware learning and evaluation for audio
+                                                                       tagging. arXiv preprint:2211.12195, 2022b.
+Kong, J., Kim, J., and Bae, J. Hifi-gan: Generative ad-
+  versarial networks for efficient and high fidelity speech          Liu, H., Liu, X., Kong, Q., Wang, W., and Plumbley, M. D.
+  synthesis. Advances in Neural Information Processing                 Learning the spectrogram temporal resolution for audio
+  Systems, 33:17022±17033, 2020a.                                      classification. arXiv preprint:2210.01719, 2022c.
+
+                                                                10
+                             AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Liu, N., Li, S., Du, Y., Torralba, A., and Tenenbaum, J. B.            Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S.,
+  Compositional visual generation with composable dif-                   Matena, M., Zhou, Y., Li, W., and Liu, P. J. Exploring
+  fusion models. In European Conference on Computer                      the limits of transfer learning with a unified text-to-text
+  Vision, 2022d.                                                         transformer. Journal of Machine Learning Research,
+                                                                         2020.
+Liu, X., Iqbal, T., Zhao, J., Huang, Q., Plumbley, M. D.,
+  and Wang, W. Conditional sound generation using neural               Ramesh, A., Dhariwal, P., Nichol, A., Chu, C., and Chen,
+  discrete time-frequency representation learning. In IEEE               M. Hierarchical text-conditional image generation with
+  International Workshop on Machine Learning for Signal                  clip latents. arXiv preprint:2204.06125, 2022.
+  Processing, pp. 1±6. IEEE, 2021b.
+                                                                       Rombach, R., Blattmann, A., Lorenz, D., Esser, P., and
+Liu, X., Liu, H., Kong, Q., Mei, X., Plumbley, M. D., and
+                                                                         Ommer, B. High-resolution image synthesis with latent
+  Wang, W. Simple pooling front-ends for efficient audio
+                                                                         diffusion models. In Proceedings of the IEEE/CVF Con-
+  classification. arXiv preprint:2210.00943, 2022e.
+                                                                         ference on Computer Vision and Pattern Recognition, pp.
+Liu, X., Liu, H., Kong, Q., Mei, X., Zhao, J., Huang, Q.,               10684±10695, 2022.
+  Plumbley, M. D., and Wang, W. Separate what you de-
+  scribe: language-queried audio source separation. arXiv              Saharia, C., Ho, J., Chan, W., Salimans, T., Fleet, D. J.,
+  preprint:2203.15147, 2022f.                                            and Norouzi, M. Image super-resolution via iterative
+                                                                         refinement. arXiv preprint:2104.07636, 2021.
+Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy,
+  O., Lewis, M., Zettlemoyer, L., and Stoyanov, V. Roberta:            Saharia, C., Chan, W., Saxena, S., Li, L., Whang, J.,
+  A robustly optimized BERT pretraining approach. arXiv                  Denton, E., Ghasemipour, S. K. S., Ayan, B. K., Mah-
+  preprint:1907.11692, 2019.                                             davi, S. S., Lopes, R. G., Salimans, T., Ho, J., Fleet,
+                                                                         D. J., and Norouzi, M. Photorealistic text-to-image dif-
+Nichol, A. and Dhariwal, P. Improved denoising diffusion
+                                                                         fusion models with deep language understanding. arXiv
+  probabilistic models. In International Conference on
+                                                                         preprint:2205.11487, 2022.
+  Machine Learning, 2021.
+Nichol, A., Dhariwal, P., Ramesh, A., Shyam, P., Mishkin,              Salamon, J., Jacoby, C., and Bello, J. P. A dataset and
+  P., McGrew, B., Sutskever, I., and Chen, M. Glide: To-                 taxonomy for urban sound research. In Proceedings of
+  wards photorealistic image generation and editing with                 the 22nd ACM international conference on Multimedia,
+  text-guided diffusion models. arXiv preprint:2112.10741,               pp. 1041±1044, 2014.
+  2021.
+                                                                       Schuhmann, C., Vencu, R., Beaumont, R., Kaczmarczyk,
+Oord, A. v. d., Dieleman, S., Zen, H., Simonyan, K.,                     R., Mullis, C., Katta, A., Coombes, T., Jitsev, J., and Ko-
+ Vinyals, O., Graves, A., Kalchbrenner, N., Senior, A.,                  matsuzaki, A. Laion-400m: Open dataset of clip-filtered
+  and Kavukcuoglu, K. WaveNet: A generative model for                    400 million image-text pairs. arXiv preprint:2111.02114,
+  raw audio. arXiv preprint:1609.03499, 2016.                            2021.
+Pascual, S., Bhattacharya, G., Yeh, C., Pons, J., and Serrà,          Singer, U., Polyak, A., Hayes, T., Yin, X., An, J., Zhang,
+  J. Full-band general audio synthesis with score-based                  S., Hu, Q., Yang, H., Ashual, O., Gafni, O., Parikh,
+  diffusion. arXiv preprint:2210.14661, 2022.                            D., Gupta, S., and Taigman, Y. Make-a-video: Text-
+Perez, E., Strub, F., De Vries, H., Dumoulin, V., and                    to-video generation without text-video data. arXiv
+  Courville, A. Film: Visual reasoning with a general con-               preprint:2209.14792, 2022.
+  ditioning layer. In Proceedings of the AAAI Conference
+                                                                       Sinha, A., Song, J., Meng, C., and Ermon, S. D2c:
+  on Artificial Intelligence, volume 32, 2018.
+                                                                         Diffusion-decoding models for few-shot conditional gen-
+Popov, V., Vovk, I., Gogoryan, V., Sadekova, T., and Kudi-               eration. In Conference on Neural Information Processing
+  nov, M. Grad-tts: A diffusion probabilistic model for                  Systems, 2021.
+  text-to-speech. In International Conference on Machine
+  Learning, 2021.                                                      Song, J., Meng, C., and Ermon, S. Denoising diffusion
+                                                                         implicit models. arXiv preprint:2010.02502, 2020.
+Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G.,
+  Agarwal, S., Sastry, G., Askell, A., Mishkin, P., Clark,             Song, Y., Sohl-Dickstein, J., Kingma, D., Kumar, A., Er-
+  J., Krueger, G., and Sutskever, I. Learning transferable               mon, S., and Poole, B. Score-based generative modeling
+  visual models from natural language supervision. In                    through stochastic differential equations. In International
+  International Conference on Machine Learning, 2021.                    Conference on Learning Representations, 2021.
+
+                                                                  11
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Tan, X., Chen, J., Liu, H., Cong, J., Zhang, C., Liu, Y.,
+  Wang, X., Leng, Y., Yi, Y., He, L., et al. NaturalSpeech:
+  End-to-end text to speech synthesis with human-level
+  quality. arXiv preprint:2205.04421, 2022.
+Vahdat, A., Kreis, K., and Kautz, J. Lsgm: Score-based
+  generative modeling in latent space. In Conference on
+  Neural Information Processing Systems, 2021.
+
+Wang, H. and Wang, D. Towards robust speech super-
+ resolution. IEEE/ACM Transactions on Audio, Speech,
+ and Language Processing, 29:2058±2066, 2021.
+Wu, Y., Chen, K., Zhang, T., Hui, Y., Berg-Kirkpatrick, T.,
+ and Dubnov, S. Large-scale contrastive language-audio
+ pretraining with feature fusion and keyword-to-caption
+ augmentation. arXiv preprint:2211:06687, 2022.
+Yamagishi, J., Veaux, C., MacDonald, K., et al. CSTR
+  VCTK corpus: English multi-speaker corpus for cstr
+  voice cloning toolkit. 2019.
+
+Yang, D., Yu, J., Wang, H., Wang, W., Weng, C., Zou, Y.,
+  and Yu, D. Diffsound: Discrete diffusion model for text-
+  to-sound generation. arXiv preprint:2207.09983, 2022.
+
+Żelaszczyk, M. and MaÂndziuk, J. Audio-to-image cross-
+   modal generation. In International Joint Conference on
+   Neural Networks, pp. 1±8. IEEE, 2022.
+
+
+
+
+                                                              12
+                             AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Appendix
+A. Contrastive Language-Audio Pretraining
+We follow the pipeline of the contrastive language-audio pretraining (CLAP) models proposed by (Wu et al., 2022) to
+capture the similarity between text and audio, and project them into joint latent space. The training dataset includes the
+currently largest public dataset LAION-Audio-630K, the AudioSet dataset whose text caption is augmented with keyword-
+to-caption4 by T5 model (Raffel et al., 2020), the AudioCaps dataset and the Clotho dataset (Drossos et al., 2020). The
+LAION-Audio-630K dataset contains 633, 526 language-audio pairs and 4325.39 hours of audio samples. The AudioSet
+dataset contains 1, 912, 024 pairs and 463.48 hours of audio samples. The AudioCaps dataset contains 49, 274 pairs and
+136.87 hours of audio samples. The Clotho dataset contains 3, 839 pairs and 23.99 hours of audio samples. These datasets
+contain various natural sounds, audio effects, music and human activity.
+Given the audio sample x and the text data y, we use an audio encoder and a text encoder to extract their embedding
+E x ∈ RL and E y ∈ RL respectively, where L is set as 512. We build the audio encoder based on HTSAT (Chen et al.,
+2022a) and the text encoder based on RoBERTa (Liu et al., 2019). The symmetric cross-entropy loss used to train these
+contrastive encoders is:
+                                                         D
+                                                     1 X
+                                             Ls =          (l1 + l2 ),                                                    (12)
+                                                    2D i=1
+                                                        exp(E xi · E yi /τ )
+                                             l1 = log PN           x      y
+                                                                              ,                                           (13)
+                                                       i=1 exp(E i · E j /τ )
+                                                        exp(E yi · E xi /τ )
+                                             l2 = log PN           y      x
+                                                                              ),                                          (14)
+                                                       i=1 exp(E i · E j /τ )
+
+where τ is a learnable temperature parameter and D is the batch size.
+
+B. Latent Diffusion Model
+We adopt the UNet backbone of StableDiffusion (Rombach et al., 2022) as the basic architecture of LDM for AudioLDM.
+As shown in Equation 5, the UNet model is conditioned on both the time step t and the CLAP embedding E. We map
+the time step into a one-dimensional embedding and then concatenate it with E as conditioning information. Since our
+condition vector is only one-dimensional, we do not use the cross-attention mechanism in StableDiffusion for conditioning.
+Instead, we directly use the feature-wise linear modulation layer (Perez et al., 2018) to merge conditioning information with
+the feature map of the UNet convolution block. The UNet backbone we use has four encoder blocks, a middle block, and
+four decoder blocks. With a basic channel number of cu , the channel dimensions of encoder blocks are [cu , 2cu , 3cu , 5cu ].
+The channel dimensions of decoder blocks are the reverse of encoder blocks, and the channel of the middle block has 5cu
+dimensions. We add an attention block in the last three encoder blocks and the first three decoder blocks. Specifically, we
+add two multi-head self-attention layers with a fully-connected layer in the middle as the attention block. The number of
+heads is determined by dividing the embedding dimension of the attention block with a parameter ch . We set AudioLDM-S
+and AudioLDM-L with cu =128, ch =32, and cu =256, ch =64, respectively. In the forward process, we use N = 1000 steps.
+A linear noise schedule from β1 = 0.0015 to βN = 0.0195 is used. In sampling, we employ the DDIM (Song et al., 2020)
+sampler with 200 sampling steps. For classifier-free guidance, a guidance scale w of 2.0 is used in Equation 9.
+
+C. Variational Autoencoder
+                                                                                                  T   F
+We compress the mel-spectrogram X ∈ RT ×F of x into a small continuous space z ∈ RC× r × r with a convolutional
+VAE, where T and F is the time and frequency dimension size respectively, C is the channel number of the latent encoding,
+and r is the compression level (downsampling ratio) of latent space. Both the encoder E(·) and the decoder D(·) are
+composed of stacked convolutional modules. In this way, VAE encoder could preserve the spatial correspondancy between
+mel-spectrogram and latent space, as it is shown in Figure 7. Each module is formed by ResNet blocks (Kong et al., 2021a)
+which are made up of convolutional layers and residual connections. The encoding z will be evenly split into two parts,
+z µ and z σ , with shape ( C2 , Tr , Fr ), representing the mean and variance of the VAE latent space. The input of the decoder
+is a stochastic encoding ẑ = ẑ µ + ẑ σ · ϵ, ϵ ∼ N (0, I). During generation, the decoder will be used to reconstruct the
+   4
+       https://github.com/gagan3012/keytotext
+
+                                                              13
+                              AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+mel-spectrogram given the generated latent representations.
+We employ three loss functions in our training objective: the mel-spectrogram reconstruction loss, adversarial losses, and a
+gaussian constraint loss. The reconstruction loss calculates the mean absolute error between the input sample X ∈ RT ×F
+and the reconstructed mel-spectrogram X̂ ∈ RT ×F . The adversarial losses are employed to enhance the reconstruction
+quality. Specifically, we adopt the PatchGAN (Isola et al., 2017) as our discriminator, which will divide the input image into
+small patches and predict whether each patch is real or fake by outputting a matrix of logits. The PatchGAN discriminator is
+trained to maximize the logits of correctly identifying real patches while minimizing the logits of incorrectly identifying
+fake patches. We also apply the gaussian constraint on the latent space of VAE. By enforcing a gaussian constraint on the
+latent space, the VAE is encouraged to learn a continuous, structured latent space, rather than a disorganized one. This
+can help the VAE to better capture the underlying structure of the data, which can result in more stabilized and accurate
+reconstructions (Kingma & Welling, 2013).
+We train our VAE using the Adam optimizer (Kingma & Ba, 2014) with a learning rate of 4.5 × 10−6 and a batch size
+of six. The audio data we use includes AudioSet, AudioCaps, Freesound, and BBC SFX. We perform experiments with
+three compression-level settings r=4, 8, 16, for which the latent channels are C = 8, 16, 32, respectively. VAEs in all three
+settings are trained with at least 1.5M steps on a single NVIDIA RTX 3090 GPU. To stabilize training, we do not apply the
+adversarial loss in the first 50K training steps. We apply the mixup (Kong et al., 2020b) strategy for data augmentation.
+Table 8 shows the reconstruction performance of our VAE model with different values of r. All three settings achieve
+comparable metrics score with the GT Mel + Vocoder setting, indicating the autoencoder can perform reliable mel-
+spectrogram encoding and decoding.
+
+                                        Setting         PSNR↑      SSIM↑        FD↓      IS↑    KL↓
+                                  GT Mel + Vocoder       25.41        0.86      8.76    10.71   0.23
+                                   Compressionr=4        25.38        0.86      9.02    10.67   0.23
+                                   Compressionr=8        25.14        0.84      9.68    10.50   0.25
+                                   Compressionr=16       24.87        0.82      9.90     9.84   0.29
+
+Table 8. The objective metrics of VAE reconstruction performance with different compression level r on the AudioSet evaluation set.
+
+
+
+
+                                                  Time-masked mel-spectrogram          Frequency-masked mel-spectrogram
+
+
+
+                   Original mel-spectrogram
+
+
+
+
+                                                     Corresponding VAE latent              Corresponding VAE latent
+
+Figure 7. Visualization of the time-frequency-masked spectrogram and their corresponding VAE latent. This figure shows VAE encoder
+roughly preserves the spatial correspondancy between the spectrogram and the latent.
+
+
+D. Vocoder
+In this work, we employ HiFi-GAN (Kong et al., 2020a) as a vocoder, which is widely used for speech waveform generation.
+It contains two sets of discriminators, a multi-period discriminator, and a multi-scale discriminator, to enhance the perceptual
+quality. To synthesize the audio waveform, we train it on the AudioSet dataset. For the input samples at the sampling rate of
+16, 000Hz, we extract 64 bands mel-spectrogram. Then we follow the default settings of HiFi-GAN V1. The window, FFT,
+and hop size are set to 1024, 1024, and 160. The fmin and fmax are set as 0 and 8000. We use the AdamW optimizer with
+
+                                                                 14
+                                 AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+0.8 and 0.99. The learning rate starts from 2 × 10−4 and a learning rate decay of 0.999 is used. We use a batch size of 96
+and train the model with 6 NVIDIA 3090 GPUs. We release this pretrained vocoder in our open-source implementation.
+
+E. Experiment Details
+Data Processing The duration of the audio samples in AudioSet and AudioCaps is 10 seconds, while it is much longer in
+FreeSound and BBC SFX datasets. To avoid overusing the data from long audio, which usually have repeated sound, we
+only use the first thirty seconds of the audio in both the FreeSound and BBC SFX datasets and segment them into ten-second
+long audio files. Finally, we have in total 3, 302, 553 ten-seconds audio samples for model training. It should be noted that
+even if some datasets, e.g., AudioCaps and BBC SFX, have text captions for the audio, we do not utilize them during the
+training of LDMs. We only use the audio samples for training. We resample all the datasets into 16kHz sampling rate and
+mono format, and all samples are padded to 10 seconds.
+Configuration For each LDM model, we use the compression level r=4 as the default setting. Then, we train AudioLDM-S
+and AudioLDM-L for 0.6M steps on a single GPU, NVIDIA RTX 3090, with the batch size of 5 and 8, respectively. The
+learning rate is set as 3 × 10−5 . The AudioLDM-L-Full is trained for 1.5M steps on one NVIDIA A100 with a batch size of
+8. The learning rate is 10−5 . For better performance on AudioCaps, we further fine-tune AudioLDM-L-Full on AudioCaps
+for 0.25M steps before evaluation. It should be noted that we limit our batch size because of the scarcity of GPU. However,
+this potentially restricts the performance of AudioLDM models. In comparison, DiffSound uses 32 NVIDIA V100 GPUs
+for model training with a batch size of 16 on each GPU. AudioGen utilizes 64 A100 GPUs with a batch size of 256.
+Human evaluation We construct the dataset for human subjective evaluation with 70 randomly selected samples where 30
+audios are from AudioCaps, 30 audios are from AudioSet, and 10 randomly selected real recordings, which we will refer to
+as spam cases. Therefore, each model should generate 60 audio samples given the corresponding text descriptions. We
+gather the output from models in one folder and anonymize them with random identifiers. An example questionnaire is
+shown in Table 9. The participant will need to fill in the last two columns for each audio file given the text description. Our
+final result shows that all the human raters have an average score above 90 on the spam cases. Hence, their evaluation result
+is considered reliable.
+
+       File name                                  Text description                          Overall impression (1-100)   Relation to the text description (1-100)
+ random name 108029.wav    A man talking followed by lights scrapping on a wooden surface              80                                  90
+ random name 108436.wav                  Bicycle Music Skateboard Vehicle                              70                                  80
+ random name 116883.wav               A power tool drilling as rock music plays                        90                                  95
+           ...                                           ...                                            ...                                 ...
+
+
+             Table 9. Example questionnaire for human evaluation. The participant will need to fill in the last two columns.
+
+
+F. The Effect of Finetuning
+Table 10 compares the results obtained with and without fine-tuning on the evaluation set. We observe an improvement in
+various evaluation metrics, which is expected since the training set of AudioCaps has a distribution that is similar to the
+evaluation set. However, it is important to note that higher performance on the limited distribution of the evaluation set may
+not necessarily indicate better performance overall. A model that can generate broader distributions of audio may perform
+worse on the evaluation set, even though it may have better generalization capabilities. Future work in audio generation can
+focus on building an evaluation protocal that is more aligned with human perceptions.
+
+
+                            Model                   Text Data        Use CLAP         Finetuned      FD ↓        IS ↑    KL ↓       FAD ↓
+                  AudioLDM-S-Full-Roberta                ✓                 ✗                ✗        34.28      3.53     3.44         6.96
+                  AudioLDM-S-Full-Roberta                ✓                 ✗                ✓        32.13      4.02     3.25         5.89
+                     AudioLDM-S-Full                     ✗                 ✓                ✗        24.13      6.68     2.36         4.94
+                     AudioLDM-S-Full                     ✗                 ✓                ✓        23.47      7.57     1.98         2.32
+                     AudioLDM-L-Full                     ✗                 ✓                ✗        23.51      7.11     2.19         4.19
+                     AudioLDM-L-Full                     ✗                 ✓                ✓        23.31      8.13     1.59         1.96
+
+                 Table 10. The comparison between fine-tuned and non-finetuned models on the AudioCaps evaluation set.
+
+                                                                               15
+                              AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+G. Computation Efficiency Comparison
+
+
+
+
+             (a) Different batch sizes            (b) Different sampling steps      (c) With/Without classifier-free guidance
+
+      Figure 8. These three figures show the time cost when generating ten seconds of audio, measured on a single A100 GPU.
+
+As shown in Figure 8(a), AudioLDM-S can generate eight ten-second-long audios within ten seconds without classifier-free
+guidance. With classifier-free guidance, AudioLDM-Small can generate eight ten-second-long audios with 150 DDIM
+steps. Figure 8(c) shows our model is faster than the DiffSound on different batch sizes. Our model can generate eight
+ten-second-long audios with 20 seconds while DiffSound needs more than 40 seconds. Since AudioGen has not been
+open-sourced yet, we did not perform a speed comparison with AudioGen.
+
+H. Limitations
+There are several limitations to our study that warrant further investigation in future work. For example, the sampling rate of
+our model is still insufficient, especially for the generation of music. Exploring higher-fidelity sampling rates such as 32
+kHz or 48 kHz could improve the quality of the generated audio. Also, all the modules in AudioLDM are trained separately,
+which may result in misalignment between different modules. For instance, the latent space learned by VAE may not be
+optimal for the latent diffusion model. Future work can explore approaches to better align the different modules, such as
+end-to-end fine-tuning.
+The possible negative impact of our method might be the abuse of our technology or released models, e.g., generating fake
+audio effects to provide misleading information. Moreover, sensitive text content should be restricted in future work to
+prevent the creation of harmful audio content.
+
+
+
+
+                                                               16
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+I. Demos
+Audio Style Transfer
+We show three examples of zero-shot audio style transfer with AudioLDM-S, using the developed shallow reverse process (see
+Equation 10). In Figure 9, we show the transfer from drum beats to ambient music. From left to right, we show the source
+audio sample drum beats, and the six generated samples guided by text prompt ambient music with different starting points
+n0 . Given a smaller n0 (i.e., the left part of the figure), the generated sample is similar to drum beats, while when we set
+n0 = 0.8 × N for the last sample, the generated sample will be aligned with the text input ambient music. Similarly, we
+show the source audio trumpt, and the seven generated samples guided by text prompt children singing in Figure 10. We
+show the source audio sheep vocalization, and the five generated samples guided by text prompt narration, monologue in
+Figure 11.
+
+
+
+
+                               Figure 9. Audio style transfer from drum beats to ambient music.
+
+
+
+
+                               Figure 10. Audio style transfer from trumpet to children singing.
+
+
+
+
+                        Figure 11. Audio style transfer from sheep vocalization to narration, monologue.
+
+
+
+
+                                                              17
+                             AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Audio Super-Resolution
+In Figure 12, we show four cases of zero-shot audio super-resolution with AudioLDM-S: 1) violin, 2) sneezing sound from
+a woman, 3) baby crying, and 4) female speech. The sampling rate of input samples (left) is 8 kHz, and that of generated
+samples (middle) and ground-truth samples (right) is 16 kHz. Our visualization shows we can retain the ground-truth
+observation in the low-frequency part (below 8 kHz), while generating the high-frequency missing part (from 8 kHz to
+16 kHz) with pretrained AudioLDM-S. The generated high-frequency information is consistent with the low-frequency
+observation.
+
+
+                                         Original                      Processed
+          Text description                                                                              Ground Truth
+                                       Low resolution                High resolution
+
+
+
+          Violin
+
+
+
+
+         Sneezing sound
+         from a woman.
+
+
+
+
+         Baby Crying
+
+
+
+
+         Female Speech
+
+
+
+
+                         Figure 12. The examples of zero-shot audio super-resolution with AudioLDM-S.
+
+
+
+
+                                                             18
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Audio Inpainting
+In Figure 13, we show four samples of zero-shot audio inpainting with AudioLDM-S. The time length of each audio sample
+is 10 seconds. In the unprocessed part, we remove the content between 2.5 and 7.5 seconds from the ground-truth sample
+as the input of inpainting. In the inpainting result part, we show the generated samples guided by the same text prompt of
+the ground-truth sample. In the ground truth part, we show the ground-truth sample for comparison.
+
+
+
+
+  Unprocessed
+
+
+
+
+Inpainting result
+
+
+
+
+ Ground truth
+
+
+
+
+                              A young woman is talking.                                         Orchestra
+
+
+
+  Unprocessed
+
+
+
+
+Inpainting result
+
+
+
+
+ Ground truth
+
+
+
+
+                                Organ, hammond organ.                                 Air horn, truck horn, speech
+
+                           Figure 13. The examples of zero-shot audio inpainting with AudioLDM-S.
+
+
+
+In Figure 14, we use one sample to demonstrate the audio inpainting guided by different text prompts. Given the observed
+audio signal shown in the top row, we guide the inpainting process with four different text prompts: 1) ambient music; 2) a
+man is speaking with bird calls in the background; 3) a cat is meowing; 4) raining with wind blowing. As can be seen,
+the observed audio signal is preserved in each generated sample, while the generated content can be controlled by text input.
+
+
+
+
+                                                            19
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+
+
+
+                     Ambient music.                                          A man is speaking with bird calls in the background.
+
+
+
+
+                    A cat is meowing.                                                    Raining with wind blowing.
+
+
+              Figure 14. The example of zero-shot audio inpainting with AudioLDM-S given different text prompts.
+
+
+
+
+Environment Control
+In Figure 15, we demonstrate that AudioLDM can control the acoustic environment of generated samples with a text
+description. The four samples are generated with the same random seed, but with different text prompts. Their common
+text information is ªA man is speaking inº, while the specific text information describes the acoustic environment as ªa
+small roomº, ªa huge roomº, ªa huge room without background noiseº, and ªa studioº. These samples show the ability
+of AudioLDM to capture the fine-grained text description about the acoustic environment, and control the corresponding
+effects on audio samples, such as reverberation or background noise.
+
+
+
+
+     A man is speaking in                                              A man is speaking in               A man is speaking in
+                                        A man is speaking in
+        a small room.                                                     a huge room                          a studio.
+                                           a huge room.
+                                                                    without background noise.
+
+                       Figure 15. The examples of controlling acoustic environment with AudioLDM-S.
+
+
+
+
+                                                               20
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Music Control
+In Figure 16, we show the generated music samples when we control the music characteristics with text input. The first
+sample is generated by ªTheme music with bass drumº. Then, we add specific text information ªfluteº, ªfast, fluteº, or
+ªflute in the backgroundº, to change the text input. The corresponding variations can be seen in generated mel-spectrograms.
+We use these samples to demonstrate the ability of AudioLDM to add new musical instruments to music samples, tune the
+speed of music, and control the foreground-background relations.
+
+
+
+
+                                              Theme music with bass drum.
+
+
+
+
+                                         Theme music with flute and bass drum.
+
+
+
+
+                                      Fast theme music with flute and bass drum.
+
+
+
+
+                                       Theme music with flute in the background
+                                                  and bass drum.
+
+                         Figure 16. The examples of controlling music characteristics with AudioLDM-S.
+
+
+
+
+                                                              21
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Pitch Control
+In Figure 17, we show the ability of AudioLDM to control the pitch of generated samples. Pitch is an important characteristic
+of sound effects, music and speech. Here, we set the common text information as ªSine wave with · · · pitchº, and input the
+specific text information ªlowº, ªmediumº, and ªhighº. The text-controlled pitch variation can be seen from the three
+generated samples.
+
+
+
+
+                                               Sine wave with low pitch
+
+
+
+
+                                             Sine wave with medium pitch
+
+
+
+
+                                               Sine wave with high pitch
+
+                     Figure 17. The examples of pitch controlling on generating samples with AudioLDM-S.
+
+
+
+
+                                                             22
+                             AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Material Control
+In Figure 18, we show the ability of AudioLDM to control the materials which generate audio samples. We show four
+samples generated by the common action ªhitº between different materials, e.g., wooden object and wooden environment,
+or metal object and wooden environment.
+
+
+
+
+     Wooden object is hitting the wooden surface                         Metal object is hitting the wooden surface
+
+
+
+
+ Two small plastic balls hit and drop on the ground                Two small wooden balls hit and drop on the ground
+
+                Figure 18. The examples of controlling the materials of generated audio samples with AudioLDM-S.
+
+
+
+
+Temporal Order Control
+In Figure 19, we show the ability of AudioLDM to control the temporal order between generated compositional audio
+signals. When the text description includes multiple sound effects, AudioLDM can generate the audio signals, and the
+temporal order between them is consistent with the text input.
+
+
+
+
+   Cat is purring followed by slow and tender meowing.                    A female is speaking followed by footstep sound
+
+
+
+
+        A racing car is passing by and disappear                            A man is speaking followed by music playing
+
+Figure 19. The examples of controlling the temporal order between generated compositional audio samples with AudioLDM-S.
+
+
+
+                                                              23
+                           AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Text-to-Audio Generation
+In Figure 20, we show four text-to-audio generation results with AudioLDM-S. They include sound effects in natural
+environment, human speech, human activity, and sound from objects interaction.
+
+
+
+
+           Large thunder storm in the ocean                                   A group of people is cheering.
+
+
+
+
+             Rubbing the paper into a ball                                   Two metal objects hitting sound.
+
+                            Figure 20. The examples of text-to-audio generation with AudioLDM-S.
+
+
+
+
+Novel Audio Generation
+In Figure 21, we show four novel audio samples generated with AudioLDM-S. Their text description is rarely seen, e.g., ªA
+wolf is singing a beautiful song.º. We use them to exhibit the generalization ability of AudioLDM.
+
+
+
+
+       A music played by dog barking sounds.                                   A music played by car horns
+
+
+
+
+         A music played by finger snapping.                                 A wolf is singing a beautiful song.
+
+                            Figure 21. The examples of novel audio generation with AudioLDM-S.
+
+
+
+
+                                                            24
+                            AudioLDM: Text-to-Audio Generation with Latent Diffusion Models
+
+Music Generation
+In Figure 22, we show four music samples generated with AudioLDM-S. Here, we are using the labels of AudioSet as text
+description for music generation, and we are able to specify the music genres of generated samples such as Classical music.
+
+
+
+
+                     Swing music                                                       A cappella
+
+
+
+
+                        Afrobeat                                                     Classical music
+
+                               Figure 22. The examples of music generation with AudioLDM-S.
+
+
+
+
+                                                            25
+

@@ -1,0 +1,787 @@
+ Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+
+                           Adam Foster * 1 Desi R. Ivanova * 1 Ilyas Malik 2 Tom Rainforth 1
+
+
+                         Abstract                                  using a likelihood p(y|θ, ξ) and a prior p(θ), where ξ is
+      We introduce Deep Adaptive Design (DAD),                     our controllable design and θ is the set of parameters we
+      a method for amortizing the cost of adaptive                 wish to learn about. We then optimize ξ to maximize the ex-
+      Bayesian experimental design that allows exper-              pected information gained about θ (equivalently the mutual
+      iments to be run in real-time. Traditional se-               information between y and θ):
+      quential Bayesian optimal experimental design ap-
+                                                                      I(ξ) := Ep(θ)p(y|θ,ξ) [log p(y|θ, ξ) − log p(y|ξ)] .      (1)
+      proaches require substantial computation at each
+      stage of the experiment. This makes them un-                 The true power of BOED is realized when it is used to design
+      suitable for most real-world applications, where             a sequence of experiments ξ1 , ..., ξT , wherein it allows us
+      decisions must typically be made quickly. DAD                to construct adaptive strategies which utilize information
+      addresses this restriction by learning an amor-              gathered from past data to tailor each successive design ξt
+      tized design network upfront and then using this             during the progress of the experiment. The conventional,
+      to rapidly run (multiple) adaptive experiments               iterative, approach for selecting each ξt is to fit the posterior
+      at deployment time. This network represents a                p(θ|ξ1:t−1 , y1:t−1 ) representing the updated beliefs about θ
+      design policy which takes as input the data from             after t−1 iterations have been conducted, and then substitute
+      previous steps, and outputs the next design using a          this for the prior in (1) (Ryan et al., 2016; Rainforth, 2017;
+      single forward pass; these design decisions can be           Kleinegesse et al., 2020). The design ξt is then chosen as
+      made in milliseconds during the live experiment.             the one which maximizes the resulting objective.
+      To train the network, we introduce contrastive in-
+      formation bounds that are suitable objectives for            Unfortunately, this approach necessitates significant com-
+      the sequential setting, and propose a customized             putational time to be expended between each step of the
+      network architecture that exploits key symmetries.           experiment in order to update the posterior and compute the
+      We demonstrate that DAD successfully amortizes               next optimal design. In particular, I(ξ) is doubly intractable
+      the process of experimental design, outperforming            (Rainforth et al., 2018; Zheng et al., 2018) and its optimiza-
+      alternative strategies on a number of problems.              tion constitutes a significant computational bottleneck. This
+                                                                   can be prohibitive to the practical application of sequential
+                                                                   BOED as design decisions usually need to be made quickly
+1. Introduction                                                    for the approach to be useful (Evans & Mathur, 2005).
+
+A key challenge across disciplines as diverse as psychology        To give a concrete example, consider running an adaptive
+(Myung et al., 2013), bioinformatics (Vanlier et al., 2012),       survey to understand political opinions (Pasek & Krosnick,
+pharmacology (Lyu et al., 2019) and physics (Dushenko              2010). A question ξt is put to a participant who gives their
+et al., 2020) is to design experiments so that the outcomes        answer yt and this data is used to update an underlying
+will be as informative as possible about the underlying pro-       model with latent variables θ. Here sequential BOED is of
+cess. Bayesian optimal experimental design (BOED) is a             immense value because previous answers can be used to
+powerful mathematical framework for tackling this prob-            guide future questions, ensuring that they are pertinent to
+lem (Lindley, 1956; Chaloner & Verdinelli, 1995).                  the particular participant. However, it is not acceptable to
+                                                                   have lengthy delays between questions to compute the next
+In the BOED framework, outcomes y are modeled in a                 design, precluding existing approaches from being used.
+Bayesian manner (Gelman et al., 2013; Kruschke, 2014)
+                                                                   To alleviate this problem, we propose amortizing the cost of
+  *
+   Equal contribution 1 Department of Statistics, University of    sequential experimental design, performing upfront training
+Oxford, UK 2 Work undertaken whilst at the University of Oxford.   before the start of the experiment to allow very fast design
+Correspondence to: Adam Foster <adam.foster@stats.ox.ac.uk>.
+                                                                   decisions at deployment, when time is at a premium. This
+Proceedings of the 38 th International Conference on Machine       amortization is particularly useful in the common scenario
+Learning, PMLR 139, 2021. Copyright 2021 by the author(s).         where the same adaptive experimental framework will be
+                         Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+deployed numerous times (e.g. having multiple participants        the amount of information garnered. The BOED framework,
+in a survey). Here amortization not only removes the com-         pioneered by Lindley (1956), provides a powerful means of
+putational burden from the live experiment, it also allows        doing this in a principled manner. Its key idea is to optimize
+for sharing computation across multiple experiments, analo-       the experimental design ξ to maximize the expected amount
+gous to inference amortization that allows one to deal with       of information that will be gained about the latent variables
+multiple datasets (Stuhlmüller et al., 2013).                    of interest, θ, upon observing the experiment outcome y.
+Our approach, called Deep Adaptive Design (DAD), con-             To implement this approach, we begin with the standard
+structs a single design network which takes as input the          Bayesian modelling set-up consisting of an explicit likeli-
+designs and observations from previous stages, and outputs        hood model p(y|θ, ξ) for the experiment, and a prior p(θ)
+the design to use for the next experiment. The network is         representing our initial beliefs about the unknown latent.
+learned by simulating hypothetical experimental trajectories      After running a hypothetical experiment with design ξ and
+and then using these to train the network to make near-           observing y, our updated beliefs are the posterior p(θ|ξ, y).
+optimal design decisions automatically. That is, it learns a      The amount of information that has been gained about θ
+design policy which makes decisions as a function of the          can be mathematically described by the reduction in entropy
+past data, and we optimize the parameters of this policy          from the prior to the posterior
+rather than an individual design. Once learned, the network
+eliminates the computational bottleneck at each iteration of                  IG(ξ, y) = H [p(θ)] − H [p(θ|ξ, y)] .             (2)
+the experiment, enabling it to be run both adaptively and         The expected information gain (EIG) is formed by taking
+quickly; it can also be used repeatedly for different instanti-   the expectation over possible outcomes y, using the model
+ations of the experiment (e.g. different human participants).     itself to simulate these. Namely we take an expectation with
+To allow for efficient, effective, and simple training, we        respect to y ∼ p(y|ξ) = Ep(θ) [p(y|θ, ξ)], yielding
+show how DAD networks can be learned without any direct
+                                                                        I(ξ) := Ep(y|ξ) [IG(ξ, y)]
+posterior or marginal likelihood estimation. This is achieved
+by reformulating the sequential BOED problem from its                         = Ep(θ)p(y|θ,ξ) [log p(θ|ξ, y) − log p(θ)]
+conventional iterative form, to a single holistic objective                   = Ep(θ)p(y|θ,ξ) [log p(y|θ, ξ) − log p(y|ξ)]
+based on the overall expected information gained from the
+entire experiment when using a policy to make each design         which is the mutual information between y and θ un-
+decision deterministically given previous design outcome          der design ξ. The optimal design is defined as ξ ∗ =
+pairs. We then derive contrastive bounds on this objective        arg maxξ∈Ξ I(ξ), where Ξ is the space of feasible designs.
+that allow for end-to-end training of the policy parameters       It is common in BOED settings to be able to run multiple
+with stochastic gradient ascent, thereby sidestepping both        experiment iterations with designs ξ1 , ..., ξT , observing re-
+the need for inference and the double intractability of the       spective outcomes y1 , ..., yT . One simple strategy for this
+EIG objective. This approach has the further substantial          case is static design, also called fixed or batch design, which
+benefit of allowing non-myopic adaptive strategies to be          selects all ξ1 , ..., ξT before making any observation. The de-
+learned, that is strategies which take account of their own       signs are optimized to maximize the EIG, with y1:T in place
+future decisions, unlike conventional approaches.                 of y and ξ1:T in place of ξ, effectively treating the whole
+We further demonstrate a key permutation symmetry prop-           sequence of experiments as one experiment with enlarged
+erty of the optimal design policy, and use this to propose        observation and design spaces.
+a customized architecture for the experimental design net-
+work. This is critical to allowing effective amortization         2.1. Conventional adaptive BOED
+across time steps. The overall result of the theoretical for-     This static design approach is generally sub-optimal as it
+mulation, novel contrastive bounds, and neural architecture       ignores the fact that information from previous iterations can
+is a methodology which enables us to bring the power of           substantially aid in the design decisions at future iterations.
+deep learning to bear on adaptive experimental design.            The power of the BOED framework can thus be significantly
+We apply DAD to a range of problems relevant to applica-          increased by using an adaptive design strategy that chooses
+tions such as epidemiology, physics and psychology. We            each ξt dependent upon ξ1:t−1 , y1:t−1 . This enables us to
+find that DAD is able to accurately amortize experiments,         use what has already been learned in previous experiments
+opening the door to running adaptive BOED in real time.           to design the next one optimally, resulting in a virtuous cycle
+                                                                  of refining beliefs and using our updated beliefs to design
+2. Background                                                     good experiments for future iterations.
+Because experimentation is a potentially costly endeavour, it     The conventional approach to computing designs adaptively
+is essential to design experiments in manner that maximizes       is to fit the posterior distribution p(θ|ξ1:t−1 , y1:t−1 ) at each
+                            Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+step, and then optimize the EIG objective that uses this               a θ ∼ p(θ), then, for each t = 1, ..., T , fixing ξt = π(ht−1 )
+posterior in place of the prior (Ryan et al., 2016)                    (where h0 = ∅) and sampling yt ∼ p(y|θ, ξt ). The density
+                                                                     of this generative process can be written as
+                                                 p(yt |θ, ξt )
+  I(ξt ) = Ep(θ|ξ1:t−1 ,y1:t−1 )p(yt |θ,ξt ) log                 (3)                                    YT
+                                                  p(yt |ξt )                    p(θ)p(hT |θ, π) = p(θ)            p(yt |θ, ξt ).  (5)
+                                                                                                                 t=1
+where p(yt |ξt ) = Ep(θ|ξ1:t−1 ,y1:t−1 ) [p(yt |θ, ξt )].
+                                                                       The standard sequential BOED approach described in § 2.1
+Despite the great potential of the adaptive BOED frame-                now corresponds to a costly implicit policy πs , that per-
+work, this conventional approach is very computationally               forms posterior estimation followed by EIG optimization to
+expensive. At each stage t of the experiment we must com-              choose each design. By contrast, in DAD, we will learn a
+pute the posterior p(θ|ξ1:t−1 , y1:t−1 ), which is costly and          deterministic π that chooses designs directly.
+cannot be done in advance as it depends on y1:t−1 . Further-
+more, the posterior is then used to obtain ξt by maximizing            Another way to think about πs is that it is the policy which
+the objective in (3), which is computationally even more               piecewise optimizes the following objective for ξt |ht−1
+demanding as it involves the optimization of a doubly in-
+                                                                                                                                    
+                                                                                                                     p(yt |θ, ξt )
+tractable quantity (Rainforth et al., 2018; Foster et al., 2019).       Iht−1 (ξt ) := Ep(θ|ht−1 )p(yt |θ,ξt ) log                     (6)
+                                                                                                                   p(yt |ht−1 , ξt )
+Both of these steps must be done during the experiment,
+meaning it is infeasible to run adaptive BOED in real time             where p(yt |ht−1 , ξt ) = Ep(θ|ht−1 ) [p(yt |θ, ξt )]. It is thus
+experiment settings unless the model is unusually simple.              the optimal myopic policy—that is a policy which fails to
+                                                                       reason about its own future actions—for an objective given
+2.2. Contrastive information bounds                                    by the sum of EIGs from each experiment iteration. Note
+                                                                       that this is not the optimal overall policy as it fails to account
+In Foster et al. (2020), the authors noted that if ξ ∈ Ξ is con-       for future decision making: some designs may allow better
+tinuous, approximate optimization of the EIG at each stage             future design decisions than others than others (González
+of the experiment can be achieved in a single unified stochas-         et al., 2016; Jiang et al., 2020).1
+tic gradient procedure that both estimates and optimizes the
+EIG simultaneously. A key component of this approach is                Trying to learn an efficient policy that directly mimics πs
+the derivation of several contrastive lower bounds on the              would be very computationally challenging because of the
+EIG, inspired by work in representation learning (van den              difficulties of dealing with both inference and EIG estima-
+Oord et al., 2018; Poole et al., 2019). One such bound is the          tion at each iteration of the training. Indeed, the natural way
+Prior Contrastive Estimation (PCE) bound, given by                     to do this involves running a full, very expensive, simulated
+                      "                             #                  sequential BOED process to generate each training example.
+                                  p(y|θ0 , ξ)                          We instead propose a novel strategy that reformulates the
+           I(ξ) ≥ E log 1 PL                                 (4)
+                             L+1    `=0 p(y|θ` , ξ)                    sequential decision problem in a way that completely elimi-
+                                                                       nates the need for calculating either posterior distributions
+where θ0 ∼ p(θ) is the sample used to generate y ∼
+                                                                       or intermediate EIGs, while also allowing for non-myopic
+p(y|θ, ξ) and θ1:L are L contrastive samples drawn inde-
+                                                                       policies to be learned. This is done by exploiting an im-
+pendently from p(θ); as L → ∞ the bound becomes tight.
+                                                                       portant property of the EIG: the total EIG of a sequential
+The PCE bound can be maximized by stochastic gradient
+                                                                       experiment is the sum of the (conditional) EIGs for each ex-
+ascent (SGA) (Robbins & Monro, 1951) to approximate the
+                                                                       periment iteration. This is formalized in the following result,
+optimal design ξ. As discussed previously, in a sequential
+                                                                       which provides a single expression for the expected infor-
+setting this stochastic gradient optimization is repeated T
+                                                                       mation gained from the entire sequence of T experiments.
+times, with p(θ) replaced by p(θ|ξ1,t−1 , y1:t−1 ) at step t.
+                                                                       Theorem 1. The total expected information gain for policy
+3. Rethinking Sequential BOED                                          π over a sequence of T experiments is
+                                                                                                   X               
+                                                                                                     T
+To enable adaptive BOED to be deployed in settings where                 IT (π) := Ep(θ)p(hT |θ,π)       Iht−1 (ξt )         (7)
+                                                                                                           t=1
+design decisions must be taken quickly, we first need to
+rethink the traditional iterative approach to produce a formu-                = Ep(θ)p(hT |θ,π) [log p(hT |θ, π) − log p(hT |π)] (8)
+lation which considers the entire design process holistically.
+                                                                       where p(hT |π) = Ep(θ) [p(hT |θ, π)].
+To this end, we introduce the concept of a design function,
+or policy, π that maps from the set of all previous design–               1
+                                                                            To give an intuitive example, consider the problem of placing
+observation pairs to the next chosen design.                           two breakpoints on the line [0, 1] to produce the most evenly sized
+                                                                       segments. The optimal myopic policy places its first design at 1/2
+Let ht denote the experimental history (ξ1 , y1 ), ..., (ξt , yt ).    and its second at either 1/4 or 3/4. This is suboptimal since the
+We can simulate histories for a given policy π, by sampling            best strategy is to place the two breakpoints at 1/3 and 2/3.
+                         Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+The proof is given in Appendix A. Intuitively, IT (π) is the     Algorithm 1 Deep Adaptive Design (DAD)
+expected reduction in entropy from the prior p(θ) to the fi-     Input: Prior p(θ), likelihood p(y|θ, ξ), number of steps T
+nal posterior p(θ|hT ), without considering the intermediate     Output: Design network πφ
+posteriors at all. Note here a critical change from previous     while training compute budget not exceeded do
+BOED formulations: IT (π) is a function of the policy, not          Sample θ0 ∼ p(θ) and set h0 = ∅
+the designs themselves, with the latter now being random            for t = 1, ..., T do
+variables (due to their dependence on previous outcomes)                 Compute ξt = πφ (ht−1 )
+that we take an expectation over. This is actually a strict              Sample yt ∼ p(y|θ0 , ξt )
+generalization of conventional BOED frameworks: static                   Set ht = {(ξ1 , y1 ), ..., (ξt , yt )}
+design corresponds to policy that consists of T fixed designs       end
+with no adaptivity, for which (8) coincides with I(ξ1:T ),          Compute estimate for dLT /dφ as per § 4.2
+while conventional adaptive BOED approximates πs .                  Update φ using stochastic gradient ascent scheme
+                                                                 end
+By reformulating our objective in terms of a policy, we have
+                                                                 At deployment, πφ is fixed, we take ξt = πφ (ht−1 ), and
+constructed a single end-to-end objective for adaptive, non-
+                                                                  each yt is obtained by running an experiment with ξt .
+myopic design and which requires negligible computation
+at deployment time: once π is learned, it can just be directly
+evaluated during the experiment itself.                          from histories to designs, we require an effective architec-
+                                                                 ture. As we show later, the optimal policy is invariant to
+4. Deep Adaptive Design                                          the order of the history, and we use this key symmetry to
+                                                                 architect an effective design network.
+Theorem 1 showed that the optimal design function π ∗ =
+arg maxπ IT (π) is the one which maximizes the mutual in-        4.1. Contrastive bounds for sequential experiments
+formation between the unknown latent θ and the full rollout
+of histories produced using that policy, hT . DAD looks to       Our high-level aim is to train πφ to maximize the mutual
+approximate π ∗ explicitly using a neural network, which         information IT (πφ ). In contrast to most machine learn-
+we now refer to as the design network πφ , with trainable        ing tasks, this objective is doubly intractable and cannot
+parameters φ. This policy-based approach marks a major           be directly evaluated or even estimated with a conventional
+break from existing methods, which do not represent de-          Monte Carlo estimator, except in very special cases (Rain-
+sign decisions explicitly as a function, but instead optimize    forth et al., 2018). In fact, it is extremely challenging and
+designs on the fly during the experiment.                        costly to derive any unbiased estimate for it or its gradi-
+                                                                 ents. To train πφ with stochastic gradient methods, we will
+DAD amortizes the cost of experimental design—by train-          therefore introduce and optimize lower bounds on IT (πφ ),
+ing the network parameters φ, the design network is taught       building on the ideas of § 2.2.
+to make correct design decisions across a wide range of
+possible experimental outcomes. This removes the cost of         Equation (8) shows that the objective function is the ex-
+adaptation for the live experiment itself: during deployment     pected logarithm of a ratio of two terms. The first is the like-
+the design network will select the next design nearly in-        lihood of the history, p(hT |θ, π), and can be directly evalu-
+stantaneously with a single forward pass of the network.         ated using (5). The second term is an intractable marginal
+Further, it offers a simplification and streamlining of the      p(hT |π) that is different for each sample of the outer expec-
+sequential BOED process: it only requires the upfront end-       tation and must thus be estimated separately each time.
+to-end training of a single neural network and thus negates      Given a sample θ0 , hT ∼ p(θ, hT |π), we can perform this
+the need to set up complex automated inference and opti-         estimation by introducing L independent contrastive sam-
+mization schemes that would otherwise have to run in the         ples θ1:L ∼ p(θ). We can then approximate the log-ratio in
+background during a live experiment. A high-level summary        two different ways, depending on whether or not we include
+of the DAD approach is given in Algorithm 1.                     θ0 in our estimate for p(hT |π):
+Two key technical challenges still stand in the way of re-                                             p(hT |θ0 , π)
+alizing the potential of adaptive BOED in real time. First,              gL (θ0:L , hT ) = log    1
+                                                                                                       PL                     (9)
+                                                                                                 L+1     `=0 p(hT |θ` , π)
+whilst the unified objective IT (π) does not require the com-
+putation of intermediate posterior distributions, it remains                                      p(hT |θ0 , π)
+                                                                         fL (θ0:L , hT ) = log 1 PL                  .       (10)
+an intractable objective due to the presence of p(hT |π). To                                   L   `=1 p(hT |θ` , π)
+deal with this, we derive a family of lower bounds that are      These functions can both be evaluated by recomputing the
+appropriate for the policy-based setting and use them to con-    likelihood of the history under each of the contrastive sam-
+struct stochastic gradient training schemes for φ. Second,       ples θ1:L . We note that g cannot exceed log(L+1), whereas
+to ensure that this network can efficiently learn a mapping      f is potentially unbounded (see Appendix A for a proof).
+                          Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+We now show that using g to approximate the integrand               Ba, 2014). Such methods require us to compute unbiased
+leads to a lower bound on the overall objective IT (π), whilst      gradient estimates of the sPCE objective (11). Throughout,
+using f leads to an upper bound. During training, we focus          we assume that the design space Ξ is continuous.
+on the lower bound, because it does not lead to unbounded
+                                                                    We first consider the case when the observation space Y is
+ratio estimates and is therefore more numerically stable. We
+                                                                    also continuous and the likelihood p(y|θ, ξ) is reparametriz-
+refer to this new lower bound as sequential PCE (sPCE).
+                                                                    able. This means that we can introduce random variables
+Theorem 2 (Sequential PCE). For a design function π and             1:T ∼ p(), which are independent of ξ1:T and θ0:L ,
+a number of contrastive samples L ≥ 0, let                          such that yt = y(θ0 , ξt , t ). As we already have that
+     LT (π, L) = Ep(θ0 ,hT |π)p(θ1:L ) [gL (θ0:L , hT )]    (11)    ξt = πφ (ht−1 ), we see that ht becomes a deterministic
+                                                                    function of ht−1 given t and θ0 . Under these assumptions
+where gL (θ0:L , hT ) is as per (9), and θ0 , hT ∼ p(θ, hT |π),     we can take the gradient operator inside the expectation and
+and θ1:L ∼ p(θ) independently. Given minor technical                apply the law of the unconscious statistician to write3
+assumptions discussed in the proof, we have2
+                                                                                                                       
+             LT (π, L) ↑ IT (π) as L → ∞                    (12)          dLT                          d
+                                                                                = Ep(θ0:L )p(1:T )      gL (θ0:L , hT ) .  (14)
+                                                                           dφ                         dφ
+at a rate O L−1 .
+               
+
+                                                                    We can now construct unbiased gradient estimates
+The proof is presented in Appendix A. For evaluation pur-           by sampling from p(θ0:L )p(1:T ) and evaluating,
+poses, it is helpful to pair sPCE with an upper bound, which        dgL (θ0:L , hT )/dφ. This gradient can be easily com-
+we obtain by using f as our estimate of the integrand               puted via an automatic differentiation framework (Baydin
+    UT (π, L) = Ep(θ0 ,hT |π)p(θ1:L ) [fL (θ0:L , hT )] .   (13)    et al., 2018; Paszke et al., 2019).
+We refer to this bound as sequential Nested Monte Carlo             For the case of discrete observations y ∈ Y, first note that
+(sNMC). Theorem 4 in Appendix A shows that UT (π, L) sat-           given a policy πφ , the only randomness in the history hT
+isfies complementary properties to LT (π, L). In particular,        comes from the observations y1 , . . . , yT , since the designs
+LT (π, L) ≤ IT (π) ≤ UT (π, L) and both bounds become               are computed deterministically from past histories. One
+monotonically tighter as L increases, becoming exact as             approach to computing the gradient of (11) in this case is
+L → ∞ at a rate O (1/L). We can thus directly control               to sum over all possible histories hT , integrating out the
+the trade-off between bias in our objective and the computa-        variables y1:T , and take gradients with respect to φ to give
+tional cost of training. Note that increasing L has no impact                       "                                    #
+on the cost at deployment time. Critically, as we will see              dLT           X d                             
+                                                                              =E              p(hT |θ0 )gL (θ0:L , hT ) , (15)
+in our experiments, we tend to only need relatively modest               dφ               dφ
+                                                                                      hT
+values of L for LT (π, L) to be an effective objective.
+If using a sufficiently large L proves problematic (e.g. our        where the expectation is over θ0:L ∼ p(θ). Unbiased gradi-
+available training time is strictly limited), one can further       ent estimates can be computed using samples from the prior.
+tighten these bounds for a fixed L by introducing an amor-          Unfortunately, this gradient estimator has a computational
+tized proposal, q(θ; hT ), for the contrastive samples θ1:L ,       cost O(|Y|T ) and is therefore only applicable when both
+rather than drawing them from the prior, as in Foster et al.        the number of experiments T and the number of possible
+(2020). By appropriately adapting LT (π, L), the proposal           outcomes |Y| are relatively small.
+and the design network can then be trained simultaneously           To deal with the cases when it is either impractical to enu-
+with a single unified objective, in a manner similar to a vari-     merate all possible histories, or Y is continuous but the
+ational autoencoder (Kingma & Welling, 2014), allowing              likelihood p(hT |θ, πφ ) is non-reparametrizable, we propose
+the bound itself to get tighter during training. The result-        using the score function gradient estimator, which is also
+ing more general class of bounds are described in detail in         known as the REINFORCE estimator (Williams, 1992). The
+Appendix B and may offer further improvements for the               score function gradient, is given by
+DAD approach. We focus on training with sPCE here in the
+                                                                              "                              !
+interest of simplicity of both exposition and implementation.       dLT                  p(hT |θ0 , πφ )         d
+                                                                          = E log PL                               log p(hT |θ0 , πφ )
+                                                                      dφ                `=0 p(hT |θ` , πφ )
+                                                                                                                dφ
+4.2. Gradient estimation                                                                                         #
+                                                                                             L
+                                                                                    d      X
+The design network parameters φ can be optimized using a                         −     log       p(hT |θ` , πφ )                 (16)
+stochastic optimization scheme such as Adam (Kingma &                              dφ
+                                                                                            `=0
+
+    2                                                                   3
+      xL ↑ x means that xL is a monotonically increasing sequence         We use ∂a/∂b and da/db to represent the Jacobian matrices
+in L with limit x.                                                  of partial and total derivatives respectively for vectors a and b.
+                           Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+where the expectation is over θ0 , hT ∼ p(θ, hT |π) and                                       (a) DAD                                 (b) Fixed
+                                                                         3
+θ1:L ∼ p(θ), and unbiased estimates may again be obtained
+                                                                         2
+using samples. This gradient is amenable to the wide range               1
+of existing variance reduction methods such as control vari-             0
+ates (Tucker et al., 2017; Mohamed et al., 2020). In our                -1
+experiments, however, we found the standard score function              -2
+gradient to be sufficiently low variance. For complete deriva-          -3
+                                                                             -3     -2   -1      0      1   2     3    -3   -2   -1      0        1        2        3
+tions of the gradients estimators we use, see Appendix C.
+                                                                                  Signal intensity                     Experiment order
+                                                                                                     low        high                         1        15       30
+4.3. Architecture
+Finally, we discuss the deep learning architecture used for            Figure 1. An example of the designs learnt by (a) the DAD network
+πφ . To allow efficient and effective training, we take into ac-       and (b) the fixed baseline for a given θ sampled from the prior.
+count a key permutation invariance of the BOED problem as
+highlighted by the following result (proved in Appendix A).
+                                                                       5. Related Work
+Theorem 3 (Permutation invariance). Consider a permu-
+tation σ ∈ Sk acting on a history h1k , yielding h2k =                 Existing approaches to sequential BOED typically follow
+(ξσ(1) , yσ(1) ), ..., (ξσ(k) , yσ(k) ). For all such σ, we have       the path outlined in § 2.1. The posterior inference per-
+  " T                              #      " T                      #   formed at each stage of the conventional approach has been
+    X
+                                 1
+                                           X
+                                                                 2     done using sequential Monte Carlo (Del Moral et al., 2006;
+E         Iht−1 (ξt ) hk = hk = E              Iht−1 (ξt ) hk = hk     Drovandi et al., 2014), population Monte Carlo (Rainforth,
+    t=1                                t=1
+                                                                       2017), variational inference (Foster et al., 2019; 2020), and
+such that the EIG is unchanged under permutation. Further,             Laplace approximation (Lewi et al., 2009; Long et al., 2013).
+the optimal policies starting in h1k and h2k are the same.
+                                                                       The estimation of the mutual information objective at each
+This permutation invariance is an important and well-studied           step has been performed by nested Monte Carlo (Myung
+property of many machine learning problems (Bloem-Reddy                et al., 2013; Vincent & Rainforth, 2017), variational bounds
+& Teh, 2019). The knowledge that a system exhibits per-                (Foster et al., 2019; 2020), Laplace approximation (Lewi
+mutation invariance can be exploited in neural architecture            et al., 2009), ratio estimation (Kleinegesse et al., 2020), and
+design to enable significant weight sharing. One common                hybrid methods (Senarathne et al., 2020). The optimization
+approach is pooling (Edwards & Storkey, 2016; Zaheer et al.,           over designs has been performed by Bayesian optimization
+2017; Garnelo et al., 2018a;b). This involves summing or               (Foster et al., 2019; Kleinegesse et al., 2020), interacting
+otherwise combining representations of multiple inputs into            particle systems (Amzal et al., 2006), simulated annealing
+a single representation that is invariant to their order.              (Müller, 2005), utilizing regret bounds (Zheng et al., 2020),
+                                                                       or bandit methods (Rainforth, 2017).
+Using this idea, we represent the history ht with a fixed
+dimensional representation that is formed by pooling repre-            There are approaches that simultaneously estimate the mu-
+sentations of the distinct design-outcome pairs of the history         tual information and optimize it, using a single stochastic
+                           Xt                                          gradient procedure. Examples include perturbation analysis
+               R(ht ) :=          Eφ1 (ξk , yk ),         (17)         (Huan & Marzouk, 2014), variational lower bounds (Foster
+                                k=1
+                                                                       et al., 2020), or multi-level Monte Carlo (Goda et al., 2020).
+where Eφ1 is a neural network encoder with parameters φ1
+                                                                       Some recent work has focused specifically on models with
+to be learned. Note that this pooled representation is the
+                                                                       intractable likelihoods (Hainy et al., 2016; Kleinegesse &
+same if we reorder the labels 1, ..., t. By convention, the
+                                                                       Gutmann, 2020; Kleinegesse et al., 2020). Other work has
+sum of an empty sequence is 0.
+                                                                       sought to learn a non-myopic strategy focusing on specific
+We then construct our design network to make deci-                     tractable cases (Huan & Marzouk, 2016; Jiang et al., 2020).
+sions based on the pooled representation R(ht ) by setting
+πφ (ht ) = Fφ2 (R(ht )), where Fφ2 is a learned emitter net-           6. Experiments
+work. The trainable parameters are φ = {φ1 , φ2 }. By
+combining simple networks in a way that is sensitive to the            We now compare DAD to a number of baselines across a
+permutation invariance of the problem, we facilitate param-            range of experimental design problems. We implement
+eter sharing in which the network Eφ1 is re-used for each              DAD by extending PyTorch (Paszke et al., 2019) and
+input pair and for each time step t. This results in signif-           Pyro (Bingham et al., 2018) to provide an implementation
+icantly improved performance compared to networks that                 that is abstracted from the specific problem. Code is publicly
+are forced to learn the relevant symmetries of the problem.            available at https://github.com/ae-foster/dad.
+                           Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+                                                                                                        11.5
+
+
+
+
+                                                                       Mutual information lower bound
+ Method          Lower bound, L30         Upper bound, U30                                                      DAD       Random
+                                                                                                                Fixed     Variational
+ Random             8.303 ± 0.043           8.322 ± 0.045
+                                                                                                        10.5
+ Fixed              8.838 ± 0.039           8.914 ± 0.038
+ DAD               10.926 ± 0.036          12.382 ± 0.095
+                                                                                                         9.5
+ Variational        8.776 ± 0.143           9.064 ± 0.187
+Table 1. Upper and lower bounds on the total EIG, I30 (π), for the                                       8.5
+
+location finding experiment. Errors indicate ±1 s.e. estimated over
+256 (variational) or 2048 (others) rollouts.                                                             7.5
+                                                                                                               25   26   27   28    29   30   31   32   33   34   35
+                                                                                                                          Experiment sequence length, T '
+As our aim is to adapt designs in real-time, we primarily
+compare to strategies that are fast at deployment time. The           Figure 2. Generalizing sequence length for the location finding
+simplest baseline is random design, which selects designs             experiment. The DAD network and the fixed strategy were trained
+uniformly at random. The fixed baseline completely ignores            to perform T = 30 experiments, whilst other strategies do not
+                                                                      require pre-training. The fixed strategy cannot be generalized
+the opportunity for adaptation and uses static design to learn
+                                                                      to sequences longer than its training regime. We present sPCE
+a fixed ξ1 , ..., ξT before the experiment. We use the SG-
+                                                                      estimates with error bars computed as in Table 1.
+BOED approach of Foster et al. (2020) with the PCE bound
+to optimize the fixed design ξ1:T . We also compare to tailor-
+made heuristics for particular models as appropriate.                 visualized in Figure 1(a). Here our network learns a complex
+Similarly to the notion of the amortization gap in amortized          strategy that initially explores in a spiral pattern. Once it
+inference (Cremer et al., 2018), one might initially expect           detects a strong signal, multiple experiments are performed
+to a drop in performance of DAD compared to conventional              close together to refine knowledge of that location (note
+(non-amortized) BOED methods that use the traditional iter-           the high density of evaluations near the sources). The fixed
+ative approach of § 2.1. To assess this we also consider using        design strategy, displayed in Figure 1(b) must choose all
+the SG-BOED approach of Foster et al. (2020) in a tradi-              design locations up front, leading to an evenly dispersed
+tional iterative manner to approximate πs , referring to this as      strategy that cannot “hone in” on the critical areas, thus
+the variational baseline, noting this requires significant run-       gathering less information.
+time computation. We also look at several iterative BOED              Table 1 reports upper and lower bounds on IT (π) for each
+baselines that are specifically tailored to the examples that         strategy and confirms that DAD significantly outperforms
+we choose (Vincent & Rainforth, 2017; Kleinegesse et al.,             all the considered baselines. DAD is also orders of mag-
+2020). Perhaps surprisingly, we find that DAD is not only             nitude faster to deploy than the variational baseline, the
+competitive compared to these non-amortized methods, but              other adaptive method, with DAD taking 0.0474 ± 0.0003
+often outperforms them. This is discussed in § 7.                     secs to make all 30 design decisions on a lightweight CPU,
+The first performance metric that we focus on is total EIG,           compared to 8963 secs for the variational method.
+IT (π). When no direct estimate of IT (π) is available,
+we estimate both the sPCE lower bound and sNMC up-                    Varying the Design Horizon In practical situations the
+per bound. We also present the standard error to indicate             exact number of experiments to perform may be unknown.
+how the performance varies between different experiment               Figure 2 indicates that our DAD network that is pretrained
+realizations (rollouts). We further consider the deployment           to perform T = 30 experiments can generalize well to
+time (i.e. the time to run the experiment itself, after pre-          perform T 0 6= 30 experiments at deployment time, still
+training); a critical metric for our aims. Full experiment            outperforming the baselines, indicating that DAD is robust
+details are given in Appendix D.                                      to the length of training sequences.
+
+6.1. Location finding in 2D                                           Training Stability To assess the stability between differ-
+                                                                      ent training runs, we trained 16 different DAD networks.
+Inspired by the acoustic energy attenuation model of Sheng
+                                                                      Computing the mean and standard error of the lower bound
+& Hu (2005), we consider the problem of finding the loca-
+                                                                      on IT (π) over these 16 runs gave 10.91 ± 0.014, and the
+tions of multiple hidden sources which each emits a signal
+                                                                      matching upper bounds were 12.47 ± 0.046. We see that the
+whose intensity attenuates according to the inverse-square
+                                                                      variance across different training seeds is modest, indicating
+law. The total intensity is a superposition of these signals.
+                                                                      that DAD reaches designs of a similar quality each time.
+The design problem is to choose where to make observations
+                                                                      Comparing with Table 1, we see that the natural variability
+of the total signal to learn the locations of the sources.
+                                                                      across rollouts (i.e. different θ) with a single DAD network
+We train a DAD network to perform T = 30 experiments                  tends to be larger than the variance between the average
+with K = 2 sources. The designs learned by DAD are                    performance of different DAD networks.
+                          Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+          Method                Deployment time (s)
+
+
+
+
+                                                                      Difference in perceived value
+                                                                                                                (a) Frye            (b) Badapted            (c) DAD
+          Frye et al. (2016)       0.0902 ± 0.0003                                                                                                         Response
+                                                                                                                                                              £R today
+          Kirby (2009)                         N/A                                                    25                                                      £100 in D days
+
+          Fixed                                N/A
+          DAD                      0.0901 ± 0.0007                                                     0
+
+          Badapted                25.2679 ± 0.1854
+                                                                                                      -25
+                                                                                                            1     10       20 1          10         20 1      10          20
+Table 2. Deployment times for Hyperbolic Temporal Discounting                                                                     Question number, t
+methods. We present the total design time for T = 20 questions,
+taking the mean and ±1 s.e. over 10 realizations. Tests were         Figure 3. An example of the designs learnt by two of the problem-
+conducted on a lightweight CPU (see Appendix D).                     specific baselines and DAD. We plot the difference in perceived
+                                                                     value of the two propositions “£R today” and “£100 in D days”
+   Method                  Lower bound         Upper bound           for a certain participant, represented by a specific value of the
+   Frye et al. (2016)     3.500 ± 0.029       3.513 ± 0.029          latent variable θ. A difference of 0 indicates that the participant is
+                                                                     indifferent between the two offers.
+   Kirby (2009)           1.861 ± 0.008       1.864 ± 0.009
+   Fixed                  2.518 ± 0.007       2.524 ± 0.007
+   DAD                    5.021 ± 0.013       5.123 ± 0.015          Table 3 shows the performance of each method. We see that
+   Badapted               4.454 ± 0.016       4.536 ± 0.018          DAD performs best, surpassing bespoke design methods that
+                                                                     have been proposed for this problem, including Badapted
+Table 3. Final lower and upper bounds on the total information       which has a considerably larger computation budget. Figure
+IT (π) for the Hyperbolic Temporal Discounting experiment. The       3 demonstrates how the designs learnt by DAD compare
+bounds are finite sample estimates of LT (π, L) and UT (π, L) with
+                                                                     qualitatively with the two most competitive problem-specific
+L = 5000. The errors indicate ±1 s.e. over the sampled histories.
+                                                                     baselines. As with Badapted, DAD designs rapidly cluster
+                                                                     near the indifference point.
+6.2. Hyperbolic temporal discounting
+                                                                     This experiment demonstrates that DAD can successfully
+In psychology, temporal discounting is the phenomenon that           amortize the process of experimental design in a real appli-
+the utility people attribute to a reward typically decreases         cation setting. It outperforms some of the most successful
+the longer they have to wait to receive it (Critchfield &            non-amortized and highly problem-specific approaches with
+Kollins, 2001; Green & Myerson, 2004). For example, a                a fraction of the cost during the real experiment.
+participant might be willing to trade £90 today for £100
+in a month’s time, but not for £100 in a year. A common
+                                                                     6.3. Death process
+parametric model for temporal discounting in humans is the
+hyperbolic model (Mazur, 1987); we study a specific form             We conclude with an example from epidemiology (Cook
+of this model proposed by Vincent (2016).                            et al., 2008) in which healthy individuals become infected
+                                                                     at rate θ. The design problem is to choose observations
+We design a sequence of T = 20 experiments, each tak-
+                                                                     times ξ > 0 at which to observe the number of infected
+ing the form of a binary question “Would you prefer £R
+                                                                     individuals: we select T = 4 designs sequentially with an
+today, or £100 in D days?” with design ξ = (R, D) that
+                                                                     independent stochastic process observed at each iteration.
+must be chosen at each stage. As real applications of this
+                                                                     We compare to our fixed and variational baselines, along
+model would involve human participants, the available time
+                                                                     with the adaptive SeqBED approach of Kleinegesse et al.
+to choose designs is strictly limited. We consider DAD,
+                                                                     (2020).
+the aforementioned fixed design policy, and strategies that
+have been used specifically for experiments of this kind:            First, we examine the compute time required to deploy each
+Kirby (2009), a human constructed fixed set of designs;              method for a single run of the sequential experiment. The
+Frye et al. (2016), a problem-specific adaptive strategy; and        times illustrated in Table 4 show that the adaptive strategy
+Vincent & Rainforth (2017), a partially customized sequen-           learned by DAD can be deployed in under 0.01 seconds,
+tial BOED method, called Badapted, that uses population              many orders of magnitude faster than the non-amortized
+Monte Carlo (Cappé et al., 2004) to approximate the pos-            methods, with SeqBED taking hours for one rollout.
+terior distribution at each step and a bandit approach to
+                                                                     Next, we estimate the objective IT (π) by averaging the
+optimize the EIG over possible designs.
+                                                                     information gain over simulated rollouts. The results in
+We begin by investigating the time required to deploy each           Table 4 reveal that DAD designs are superior to both fixed
+of these methods. As shown in Table 2, the non-amortized             design and variational adaptive design, tending to uncover
+Badapted method takes the longest time, while for DAD,               more information about the latent θ across many possible
+the total deployment time is less than 0.1 seconds—totally           experimental trajectories. For comparison with SeqBED, we
+imperceptible to a participant.                                      were unable to perform sufficient rollouts to obtain a high
+                         Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+                                                                                                                                          2.80
+   Method         Deployment time (s)              IT (π)
+
+
+
+
+                                                                                                               Total mutual information
+                                                                                  ξ1     DAD         Myopic
+                                                                             2
+                                                                                  ξ2
+   Fixed                        N/A         2.023 ± 0.007                    1
+                                                                                         DAD         Myopic                               2.75
+
+
+
+
+                                                                    Design
+   DAD                 0.0051 ± 12%         2.113 ± 0.008                    0                                                            2.70
+   Variational      1935.0    ± 2%          2.076 ± 0.034                    -1                                                           2.65
+   SeqBED*         25911.0                  1.590                            -2
+                                                                                                                                          2.60
+                                                                                  0          5            10                                     DAD   Myopic
+Table 4. Total EIG IT (π) and deployment times for the Death                       Observation, y1
+Process. We present the EIG ±1 s.e. over 10,000 rollouts (fixed
+and DAD), 500 rollouts (variational) or *1 rollout (SeqBED). The   Figure 4. 1D location finding with 1 source, T = 2. [Left] the
+IG can be efficiently evaluated in this case (see Appendix D).     design function, dashed lines correspond to the first design ξ1 ,
+Runtimes computed as per Table 2.                                  which is independent of y1 . [Right] I2 (π), the total EIG ±1 s.e.
+
+
+quality estimate of IT (π). Instead, we conducted a single         for T = 1 in isolation, but leads to a better overall design
+rollout of each method with θ = 1.5 fixed. The resulting           strategy that focuses on searching the positive regime ξ2 >
+information gains for this one rollout were: 1.590 (SeqBED),       ξ1 in the second experiment. Figure 4 [Right] confirms that
+1.719 (Variational), 1.678 (Fixed), 1.779 (DAD).                   the policy learned by DAD achieves higher total EIG from
+                                                                   the two step experiment than the exact myopic approach.
+7. Discussion
+In this paper we introduced DAD—a new method utilizing             Limitations and Future Work The present form of DAD
+the power of deep learning to amortize the cost of sequential      still possesses some restrictions that future work might look
+BOED and allow adaptive experiments to be run in real              to address. Firstly, it requires the likelihood model to be
+time. In all experiments DAD performed significantly better        explicit, i.e. that we can evaluate the density p(yt |θ, ξt ).
+than baselines with a comparable deployment time. Further,         Secondly, it requires the experiments to beQ  conditionally in-
+                                                                                                                  T
+DAD showed competitive performance against conventional            dependent given θ, i.e. p(y1:T |θ, ξ1:T ) = t=1 p(yt |θ, ξt ),
+BOED approaches that do not use amortization, but make             which may not be the case for, e.g. time series models.
+costly computations at each stage of the experiment.               Thirdly, it requires the designs themselves, ξt , to be contin-
+                                                                   uous to allow for gradient-based optimization. On another
+Surprisingly, we found DAD was often able to outperform            note, DAD’s use of a policy to make design decisions es-
+these non-amortized approaches despite using a tiny fraction       tablishes a critical link between experimental design and
+of the resources at deployment time. We suggest two reasons        model-based reinforcement learning (Sekar et al., 2020).
+for this. Firstly, conventional methods must approximate           Though DAD is distinct in several important ways (e.g. the
+the posterior p(θ|ht ) at each stage. If this approximation        lack of observed rewards), investigating these links further
+is poor, the resulting design optimization will yield poor         might provide an interesting avenue for future work.
+results regardless of the EIG optimization approach chosen.
+Careful tuning of the posterior approximation could alleviate
+                                                                   Conclusions DAD represents a new conception of adap-
+this, but would increase computational time further and it is
+                                                                   tive experimentation that focuses on learning a design policy
+difficult to do this in the required automated manner. DAD
+                                                                   network offline, then deploying it during the live experiment
+sidesteps this problem altogether by eliminating the need
+                                                                   to quickly make adaptive design decisions. This marks a de-
+for directly approximating a posterior distribution.
+                                                                   parture from the well-worn path of myopic adaptive BOED
+Secondly, the policy learnt by DAD has the potential to be         (Sec. 2), eliminating the need to estimate intermediate pos-
+non-myopic: it does not choose a design that is optimal for        terior distributions or optimize over designs during the live
+the current experiment in isolation, but takes into account        experiment itself; it represents the first approach to allow
+the fact that there are more experiments to be performed in        adaptive BOED to be run in real-time for general problems.
+the future. We can see this in practice in a simple experiment     As such, we believe it may be beneficial to practitioners in
+using the location finding example with one source in 1D           a number of fields, from online surveys to clinical trials.
+with prior θ ∼ N (0, 1) and with T = 2 steps. This setting
+is simple enough to compute the exact one-step optimal             Acknowledgements
+design via numerical integration. Figure 4 [Left] shows the
+design function learnt by DAD alongside the exact optimal          AF gratefully acknowledges funding from EPSRC grant
+myopic design. The optimal myopic strategy for t = 1 is            no. EP/N509711/1. DRI is supported by EPSRC through
+to sample at the prior mean ξ1 = 0. At time t = 2 the              the Modern Statistics and Statistical Machine Learning
+myopic strategy selects a positive or negative design with         (StatML) CDT programme, grant no. EP/S023151/1. AF
+equal probability. In contrast, the policy learnt by DAD is        would like to thank Martin Jankowiak and Adam Golinski
+to sample at ξ1 ≈ −0.4, which does not optimize the EIG            for helpful discussions about amortizing BOED.
+                        Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+References                                                      Edwards, H. and Storkey, A. Towards a neural statistician.
+                                                                  arXiv preprint arXiv:1606.02185, 2016.
+Amzal, B., Bois, F. Y., Parent, E., and Robert, C. P.
+ Bayesian-optimal design via interacting particle sys-          Evans, J. R. and Mathur, A. The value of online surveys.
+ tems. Journal of the American Statistical association,           Internet research, 2005.
+ 101(474):773–785, 2006.
+                                                                Foster, A., Jankowiak, M., Bingham, E., Horsfall, P., Teh,
+Angelova, J. A. On moments of sample mean and variance.           Y. W., Rainforth, T., and Goodman, N. Variational
+  Int. J. Pure Appl. Math, 79(1):67–85, 2012.                     Bayesian Optimal Experimental Design. In Advances in
+                                                                  Neural Information Processing Systems 32, pp. 14036–
+Baydin, A. G., Pearlmutter, B. A., Radul, A. A., and Siskind,     14047. Curran Associates, Inc., 2019.
+  J. M. Automatic differentiation in machine learning: a
+  survey. Journal of machine learning research, 18, 2018.       Foster, A., Jankowiak, M., O’Meara, M., Teh, Y. W., and
+                                                                  Rainforth, T. A unified stochastic gradient approach to
+Bingham, E., Chen, J. P., Jankowiak, M., Obermeyer, F.,           designing bayesian-optimal experiments. volume 108 of
+  Pradhan, N., Karaletsos, T., Singh, R., Szerlip, P., Hors-      Proceedings of Machine Learning Research, pp. 2959–
+  fall, P., and Goodman, N. D. Pyro: Deep universal prob-         2969, Online, 26–28 Aug 2020. PMLR.
+  abilistic programming. Journal of Machine Learning
+  Research, 2018.                                               Frye, C. C., Galizio, A., Friedel, J. E., DeHart, W. B., and
+                                                                  Odum, A. L. Measuring delay discounting in humans
+Bloem-Reddy, B. and Teh, Y. W. Probabilistic sym-                 using an adjusting amount task. JoVE (Journal of Visu-
+  metry and invariant neural networks. arXiv preprint             alized Experiments), (107):e53584, 2016.
+  arXiv:1901.06082, 2019.
+                                                                Garnelo, M., Rosenbaum, D., Maddison, C. J., Ramalho, T.,
+Cappé, O., Guillin, A., Marin, J.-M., and Robert, C. P.          Saxton, D., Shanahan, M., Teh, Y. W., Rezende, D. J., and
+  Population monte carlo. Journal of Computational and            Eslami, S. Conditional neural processes. arXiv preprint
+  Graphical Statistics, 13(4):907–929, 2004.                      arXiv:1807.01613, 2018a.
+Chaloner, K. and Verdinelli, I. Bayesian experimental de-       Garnelo, M., Schwarz, J., Rosenbaum, D., Viola, F.,
+  sign: A review. Statistical Science, pp. 273–304, 1995.         Rezende, D. J., Eslami, S., and Teh, Y. W. Neural pro-
+Cook, A. R., Gibson, G. J., and Gilligan, C. A. Optimal           cesses. arXiv preprint arXiv:1807.01622, 2018b.
+  observation times in experimental epidemic processes.         Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B.,
+  Biometrics, 64(3):860–868, 2008.                                Vehtari, A., and Rubin, D. B. Bayesian data analysis.
+                                                                  Chapman and Hall/CRC, 2013.
+Cremer, C., Li, X., and Duvenaud, D. Inference subopti-
+  mality in variational autoencoders. In Proceedings of         Goda, T., Hironaka, T., and Kitade, W. Unbiased mlmc
+  the 35th International Conference on Machine Learn-             stochastic gradient-based optimization of bayesian exper-
+  ing, volume 80 of Proceedings of Machine Learning Re-           imental designs. arXiv preprint arXiv:2005.08414, 2020.
+  search, pp. 1078–1086. PMLR, 2018.
+                                                                González, J., Osborne, M., and Lawrence, N. Glasses: Re-
+Critchfield, T. S. and Kollins, S. H. Temporal discount-          lieving the myopia of bayesian optimisation. In Artificial
+  ing: Basic research and the analysis of socially important      Intelligence and Statistics, pp. 790–799. PMLR, 2016.
+  behavior. Journal of applied behavior analysis, 34(1):
+  101–122, 2001.                                                Green, L. and Myerson, J. A discounting framework for
+                                                                  choice with delayed and probabilistic rewards. Psycho-
+Del Moral, P., Doucet, A., and Jasra, A. Sequential monte         logical bulletin, 130(5):769, 2004.
+  carlo samplers. Journal of the Royal Statistical Society:
+  Series B (Statistical Methodology), 68(3):411–436, 2006.      Hainy, M., Drovandi, C. C., and McGree, J. M. Likelihood-
+                                                                  free extensions for bayesian sequentially designed experi-
+Drovandi, C. C., McGree, J. M., and Pettitt, A. N. A se-          ments. In Kunert, J., Müller, C. H., and Atkinson, A. C.
+  quential monte carlo algorithm to incorporate model un-         (eds.), mODa 11 - Advances in Model-Oriented Design
+  certainty in bayesian sequential design. Journal of Com-        and Analysis, pp. 153–161. Springer International Pub-
+  putational and Graphical Statistics, 23(1):3–24, 2014.          lishing, 2016.
+Dushenko, S., Ambal, K., and McMichael, R. D. Sequential        Huan, X. and Marzouk, Y. Gradient-based stochastic opti-
+  bayesian experiment design for optically detected mag-          mization methods in bayesian experimental design. In-
+  netic resonance of nitrogen-vacancy centers. Physical           ternational Journal for Uncertainty Quantification, 4(6),
+  Review Applied, 14(5):054036, 2020.                             2014.
+                         Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+Huan, X. and Marzouk, Y. M. Sequential bayesian optimal          Mohamed, S., Rosca, M., Figurnov, M., and Mnih, A.
+  experimental design via approximate dynamic program-            Monte carlo gradient estimation in machine learning.
+  ming. arXiv preprint arXiv:1604.08320, 2016.                    Journal of Machine Learning Research, 21(132):1–62,
+                                                                  2020.
+Jiang, S., Chai, H., Gonzalez, J., and Garnett, R. Binoculars
+   for efficient, nonmyopic sequential experimental design.      Müller, P. Simulation based optimal design. Handbook of
+   In International Conference on Machine Learning, pp.           Statistics, 25:509–518, 2005.
+   4794–4803. PMLR, 2020.
+                                                                 Myung, J. I., Cavagnaro, D. R., and Pitt, M. A. A tutorial on
+Kingma, D. P. and Ba, J. Adam: A method for stochastic            adaptive design optimization. Journal of mathematical
+  optimization. arXiv preprint arXiv:1412.6980, 2014.             psychology, 57(3-4):53–67, 2013.
+
+Kingma, D. P. and Welling, M. Auto-encoding variational          Nowozin, S. Debiasing evidence approximations: On
+  Bayes. In ICLR, 2014.                                            importance-weighted autoencoders and jackknife vari-
+                                                                   ational inference. In International Conference on Learn-
+Kirby, K. N. One-year temporal stability of delay-discount         ing Representations, 2018.
+  rates. Psychonomic bulletin & review, 16(3):457–462,
+  2009.                                                          Pasek, J. and Krosnick, J. A. Optimizing survey question-
+                                                                   naire design in political science. In The Oxford handbook
+Kleinegesse, S. and Gutmann, M. Bayesian experimental              of American elections and political behavior. 2010.
+  design for implicit models by mutual information neu-
+  ral estimation. In Proceedings of the 37th International       Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J.,
+  Conference on Machine Learning, Proceedings of Ma-               Chanan, G., Killeen, T., Lin, Z., Gimelshein, N., Antiga,
+  chine Learning Research, pp. 5316–5326. PMLR, 2020.              L., Desmaison, A., Kopf, A., Yang, E., DeVito, Z., Raison,
+  URL http://proceedings.mlr.press/v119/                           M., Tejani, A., Chilamkurthy, S., Steiner, B., Fang, L.,
+  kleinegesse20a.html.                                             Bai, J., and Chintala, S. Pytorch: An imperative style,
+                                                                   high-performance deep learning library. In Advances
+Kleinegesse, S., Drovandi, C., and Gutmann, M. U. Sequen-          in Neural Information Processing Systems 32, pp. 8024–
+  tial bayesian experimental design for implicit models via        8035. Curran Associates, Inc., 2019.
+  mutual information. arXiv preprint arXiv:2003.09379,
+  2020.                                                          Poole, B., Ozair, S., van den Oord, A., Alemi, A., and
+                                                                   Tucker, G. On variational bounds of mutual information.
+Kruschke, J. Doing bayesian data analysis: A tutorial with         In International Conference on Machine Learning, pp.
+  r, jags, and stan. 2014.                                         5171–5180, 2019.
+
+Lewi, J., Butera, R., and Paninski, L. Sequential optimal        Rainforth, T. Automating Inference, Learning, and Design
+  design of neurophysiology experiments. Neural Compu-             using Probabilistic Programming. PhD thesis, University
+  tation, 21(3):619–687, 2009.                                     of Oxford, 2017.
+
+Lindley, D. V. On a measure of the information provided          Rainforth, T., Cornish, R., Yang, H., Warrington, A., and
+  by an experiment. The Annals of Mathematical Statistics,         Wood, F. On nesting monte carlo estimators. In Interna-
+  pp. 986–1005, 1956.                                              tional Conference on Machine Learning, pp. 4267–4276.
+                                                                   PMLR, 2018.
+Long, Q., Scavino, M., Tempone, R., and Wang, S. Fast
+  estimation of expected information gains for Bayesian          Robbins, H. and Monro, S. A stochastic approximation
+  experimental designs based on Laplace approximations.            method. The annals of mathematical statistics, pp. 400–
+  Computer Methods in Applied Mechanics and Engineer-              407, 1951.
+  ing, 259:24–39, 2013.
+                                                                 Ryan, E. G., Drovandi, C. C., McGree, J. M., and Pettitt,
+Lyu, J., Wang, S., Balius, T. E., Singh, I., Levit, A., Moroz,     A. N. A review of modern computational algorithms for
+  Y. S., OMeara, M. J., Che, T., Algaa, E., Tolmachova,            bayesian optimal design. International Statistical Review,
+  K., et al. Ultra-large library docking for discovering new       84(1):128–154, 2016.
+  chemotypes. Nature, 566(7743):224, 2019.
+                                                                 Sekar, R., Rybkin, O., Daniilidis, K., Abbeel, P., Hafner, D.,
+Mazur, J. E. An adjusting procedure for studying delayed           and Pathak, D. Planning to explore via self-supervised
+ reinforcement. Commons, ML.; Mazur, JE.; Nevin, JA,               world models. In International Conference on Machine
+ pp. 55–73, 1987.                                                  Learning, pp. 8583–8592. PMLR, 2020.
+                        Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design
+
+Senarathne, S., Drovandi, C., and McGree, J. A laplace-
+  based algorithm for bayesian adaptive design. Statistics
+  and Computing, 30(5):1183–1208, 2020.
+Sheng, X. and Hu, Y. H. Maximum likelihood multiple-
+  source localization using acoustic energy measurements
+  with wireless sensor networks. IEEE Transactions on
+  Signal Processing, 2005. ISSN 1053587X. doi: 10.1109/
+  TSP.2004.838930.
+Stuhlmüller, A., Taylor, J., and Goodman, N. Learning
+  stochastic inverses. In Advances in neural information
+  processing systems, pp. 3048–3056, 2013.
+
+Tucker, G., Mnih, A., Maddison, C. J., Lawson, D., and
+  Sohl-Dickstein, J. Rebar: Low-variance, unbiased gradi-
+  ent estimates for discrete latent variable models. arXiv
+  preprint arXiv:1703.07370, 2017.
+van den Oord, A., Li, Y., and Vinyals, O. Representa-
+  tion learning with contrastive predictive coding. arXiv
+  preprint arXiv:1807.03748, 2018.
+Vanlier, J., Tiemann, C. A., Hilbers, P. A., and van Riel,
+  N. A. A Bayesian approach to targeted experiment design.
+  Bioinformatics, 28(8):1136–1142, 2012.
+
+Vincent, B. T. Hierarchical bayesian estimation and hy-
+  pothesis testing for delay discounting tasks. Behavior
+  research methods, 48(4):1608–1620, 2016.
+Vincent, B. T. and Rainforth, T. The DARC toolbox: au-
+  tomated, flexible, and efficient delayed and risky choice
+  experiments using bayesian adaptive design. 2017.
+Williams, R. J. Simple statistical gradient-following al-
+ gorithms for connectionist reinforcement learning. Ma-
+ chine Learning, 1992. ISSN 0885-6125. doi: 10.1007/
+ bf00992696.
+
+Zaheer, M., Kottur, S., Ravanbakhsh, S., Poczos, B.,
+  Salakhutdinov, R., and Smola, A. Deep sets. arXiv
+  preprint arXiv:1703.06114, 2017.
+Zheng, S., Pacheco, J., and Fisher, J. A robust approach
+  to sequential information theoretic planning. In Interna-
+  tional Conference on Machine Learning, pp. 5941–5949,
+  2018.
+Zheng, S., Hayden, D., Pacheco, J., and Fisher III, J. W. Se-
+  quential bayesian experimental design with variable cost
+  structure. Advances in Neural Information Processing
+  Systems, 33, 2020.
+

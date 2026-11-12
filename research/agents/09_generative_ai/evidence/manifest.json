@@ -1,0 +1,224 @@
+[
+  {
+    "id": "sdedit_readme",
+    "url": "https://raw.githubusercontent.com/ermongroup/SDEdit/main/README.md",
+    "status": 200,
+    "bytes": 5747,
+    "sha256": "497b6f9e3fa7a552d8a67f235175110406dea607b72dc6ea2f0bffccb3e3b8de",
+    "path": "agents/09_generative_ai/evidence/sdedit_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "p2p_readme",
+    "url": "https://raw.githubusercontent.com/google/prompt-to-prompt/main/README.md",
+    "status": 200,
+    "bytes": 5080,
+    "sha256": "f1678226006ba240be85cb346a8fe501da32e73eb5d64726ab4e53e42666b4ef",
+    "path": "agents/09_generative_ai/evidence/p2p_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "nti_readme",
+    "url": "https://raw.githubusercontent.com/google/null-text-inversion/main/README.md",
+    "error": "HTTP Error 404: Not Found",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "ip2p_readme",
+    "url": "https://raw.githubusercontent.com/timothybrooks/instruct-pix2pix/main/README.md",
+    "status": 200,
+    "bytes": 16763,
+    "sha256": "08dd246d434086c1738591053636e702c318782ffd8b32ade008857494e89f45",
+    "path": "agents/09_generative_ai/evidence/ip2p_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "fatezero_readme",
+    "url": "https://raw.githubusercontent.com/ChenyangQiQi/FateZero/main/README.md",
+    "status": 200,
+    "bytes": 21579,
+    "sha256": "d384c840700a52cde9aa6ba438220c5087d45d9e6b08f8cdebd2522462af943c",
+    "path": "agents/09_generative_ai/evidence/fatezero_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "audioldm_readme",
+    "url": "https://raw.githubusercontent.com/haoheliu/AudioLDM/main/README.md",
+    "status": 200,
+    "bytes": 11905,
+    "sha256": "a90b4e7850ce8fa308360528114ec5598e2f2ac1f58ca985aa83b2c5364da6fc",
+    "path": "agents/09_generative_ai/evidence/audioldm_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "fm_readme",
+    "url": "https://raw.githubusercontent.com/facebookresearch/flow_matching/main/README.md",
+    "status": 200,
+    "bytes": 3808,
+    "sha256": "80a4a7c6bdcd2bf718770dff3c06048a473f2123bee55df426c5ea59a6910fb0",
+    "path": "agents/09_generative_ai/evidence/fm_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "dps_readme",
+    "url": "https://raw.githubusercontent.com/DPS2022/diffusion-posterior-sampling/main/README.md",
+    "status": 200,
+    "bytes": 4098,
+    "sha256": "86f0e655892e84af6cee46a601789f61f33adb3ff5d65aa19800939c3473ef7e",
+    "path": "agents/09_generative_ai/evidence/dps_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "dad_readme",
+    "url": "https://raw.githubusercontent.com/ae-foster/dad/main/README.md",
+    "status": 200,
+    "bytes": 9038,
+    "sha256": "cd3c0802cd928765b1dce5c4a29b7c6444969b147536245aedb58fa3f675ad81",
+    "path": "agents/09_generative_ai/evidence/dad_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "flowedit_readme",
+    "url": "https://raw.githubusercontent.com/fallenshock/FlowEdit/main/README.md",
+    "status": 200,
+    "bytes": 4627,
+    "sha256": "dd88453ca8b01e179f7aaf3d0cffe25d8bf7e1475ebdac45ad1464f45d3cf01a",
+    "path": "agents/09_generative_ai/evidence/flowedit_readme.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "audioldm_pmlr",
+    "url": "https://raw.githubusercontent.com/mlresearch/v202/gh-pages/_posts/2023-07-03-liu23f.md",
+    "status": 200,
+    "bytes": 2312,
+    "sha256": "710300b71bc74e609327a40d5b54422deee324ca31dc91efe756e21e12e82d5d",
+    "path": "agents/09_generative_ai/evidence/audioldm_pmlr.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "dad_pmlr",
+    "url": "https://raw.githubusercontent.com/mlresearch/v139/gh-pages/_posts/2021-07-01-foster21a.md",
+    "status": 200,
+    "bytes": 2238,
+    "sha256": "cd3a9a4bd6edf678afeec0c490f68354652a9cbea77854371c582b4316c692be",
+    "path": "agents/09_generative_ai/evidence/dad_pmlr.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "audioldm_pdf",
+    "url": "https://raw.githubusercontent.com/mlresearch/v202/gh-pages/assets/liu23f/liu23f.pdf",
+    "error": "HTTP Error 404: Not Found",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "dad_pdf",
+    "url": "https://raw.githubusercontent.com/mlresearch/v139/gh-pages/assets/foster21a/foster21a.pdf",
+    "error": "HTTP Error 404: Not Found",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "p2p_pdf",
+    "url": "https://raw.githubusercontent.com/prompt-to-prompt/prompt-to-prompt.github.io/main/ptp_files/Prompt-to-Prompt_preprint.pdf",
+    "status": 200,
+    "bytes": 49479398,
+    "sha256": "5680119615c4d3759b451f66c23b4766e55474b7398bd33519d1583116c8c207",
+    "path": "agents/09_generative_ai/evidence/p2p_pdf.pdf",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "flowedit_pdf",
+    "url": "https://raw.githubusercontent.com/fallenshock/FlowEdit/main/assets/FlowEdit.pdf",
+    "error": "HTTP Error 404: Not Found",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "fm_code",
+    "url": "https://raw.githubusercontent.com/facebookresearch/flow_matching/main/examples/image/training/train_loop.py",
+    "status": 200,
+    "bytes": 4686,
+    "sha256": "91f49428d8ae53eb1c14374dc494e99888319898bede1b63e797d3912a22e573",
+    "path": "agents/09_generative_ai/evidence/fm_code.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "flowedit_code",
+    "url": "https://raw.githubusercontent.com/fallenshock/FlowEdit/main/FlowEdit_utils.py",
+    "status": 200,
+    "bytes": 13930,
+    "sha256": "9115a12b872d8dc46e099fac7d9fa946f31e65a170a5829662c9c99554004ac3",
+    "path": "agents/09_generative_ai/evidence/flowedit_code.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "nti_code",
+    "url": "https://raw.githubusercontent.com/google/prompt-to-prompt/main/null_text_w_ptp.ipynb",
+    "status": 200,
+    "bytes": 5331997,
+    "sha256": "3796c4277dccf3f1b93826b7c4ce36acfe4e5a3afc8985cac4363053cfa75be3",
+    "path": "agents/09_generative_ai/evidence/nti_code.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "dps_code",
+    "url": "https://raw.githubusercontent.com/DPS2022/diffusion-posterior-sampling/main/guided_diffusion/condition_methods.py",
+    "status": 200,
+    "bytes": 4193,
+    "sha256": "8738434de01dc16684551cb1bc7038ba544a3af80e144ac2875693fdfaf8d1bd",
+    "path": "agents/09_generative_ai/evidence/dps_code.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "audioldm_pdf",
+    "url": "https://raw.githubusercontent.com/mlresearch/v202/gh-pages/liu23f/liu23f.pdf",
+    "status": 200,
+    "bytes": 10461118,
+    "sha256": "c2afdd668528dc063d8d4599c10558b3e1179e6f2ee12a0302747fee7267b247",
+    "path": "agents/09_generative_ai/evidence/audioldm_pdf.pdf",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "dad_pdf",
+    "url": "https://raw.githubusercontent.com/mlresearch/v139/gh-pages/foster21a/foster21a.pdf",
+    "status": 200,
+    "bytes": 563169,
+    "sha256": "e3173328c1f72c1737168440db0ddd49850d1367762b162f41c8af99b71fb262",
+    "path": "agents/09_generative_ai/evidence/dad_pdf.pdf",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "flowedit_page",
+    "url": "https://raw.githubusercontent.com/matankleiner/matankleiner.github.io/main/flowedit/index.html",
+    "status": 200,
+    "bytes": 42015,
+    "sha256": "e346379b10ad8011d11ea380a8d4a96027aa279ad8847c9ce6f95a5c16d4a1b5",
+    "path": "agents/09_generative_ai/evidence/flowedit_page.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "nti_page",
+    "url": "https://raw.githubusercontent.com/null-text-inversion/null-text-inversion.github.io/main/index.html",
+    "status": 200,
+    "bytes": 6595,
+    "sha256": "eef7c2ea3f646c3ebc095204965fcdcb0839564368b4035e268d22b821d592e5",
+    "path": "agents/09_generative_ai/evidence/nti_page.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "fm_path",
+    "url": "https://raw.githubusercontent.com/facebookresearch/flow_matching/main/flow_matching/path/affine.py",
+    "status": 200,
+    "bytes": 8832,
+    "sha256": "420be3d2e2e84924b9c5b689887cb75ea1451e2ecde9b36ba93366bb4f1e009d",
+    "path": "agents/09_generative_ai/evidence/fm_path.txt",
+    "accessed": "2026-11-12"
+  },
+  {
+    "id": "fatezero_guidance",
+    "url": "https://raw.githubusercontent.com/ChenyangQiQi/FateZero/main/docs/EditingGuidance.md",
+    "status": 200,
+    "bytes": 4703,
+    "sha256": "d7f17609e8e82b1ea64da1fa8fe8c56cc9948dc28786a779a49c1154266092ee",
+    "path": "agents/09_generative_ai/evidence/fatezero_guidance.txt",
+    "accessed": "2026-11-12"
+  }
+]

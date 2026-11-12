@@ -1,16 +1,22 @@
 {
   "format": 1,
-  "stage": "stage02-independent-discovery",
-  "snapshot_id": "38243aa97351dbc049d8afb42367c5e2b8b170660e6e2608fd0608743c566332",
-  "prepared_at_utc": "2026-11-12T04:25:31.288224+00:00",
-  "file_count": 1239,
-  "total_bytes": 193099090,
+  "stage": "stage02-backup-ready",
+  "snapshot_id": "3a5919c0f0c2c36678af33b671064ad195a83e5a7a510941501dd1a224dee743",
+  "prepared_at_utc": "2026-11-12T04:28:24.730132+00:00",
+  "file_count": 1240,
+  "total_bytes": 193100638,
   "files": [
     {
       "path": "AGENTS.md",
       "size": 9598,
       "sha256": "7db568f0d91ef0b0b6e4d0d6fcf56820e37963bdc32f437333cd388aa59dbd01",
       "stored_path": "research/AGENTS.md"
+    },
+    {
+      "path": "BACKUP_STATUS.md",
+      "size": 1548,
+      "sha256": "0f0bb339196e47d563f326f5cdf4b1f1ea5595866d32bb499a67dd3c89f3aec4",
+      "stored_path": "research/BACKUP_STATUS.md"
     },
     {
       "path": "BUNDLE_CONTENTS.md",

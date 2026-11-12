@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "stage": "neuroscience_reframe_v2",
-  "snapshot_id": "8472821e30eeafc59925900afb6a06efa71e742a2339fb2e9e3320bff65d8f0f",
-  "prepared_at_utc": "2026-11-12T08:58:05.128233+00:00",
-  "file_count": 1583,
-  "total_bytes": 205528509,
+  "stage": "neuroscience_v2_remote_verification",
+  "snapshot_id": "2ed5a78da8f2728614c2b67851f6c5c5c06db0b3ea05ed7f1d14332c48f0827c",
+  "prepared_at_utc": "2026-11-12T08:59:11.740731+00:00",
+  "file_count": 1584,
+  "total_bytes": 205535222,
   "files": [
     {
       "path": "AGENTS.md",
@@ -9303,6 +9303,12 @@
       "size": 7693,
       "sha256": "d3538d2fbad0ff882c8cf43a3c881a88727702b34dfdf8392ad53eeeff31b211",
       "stored_path": "research/revision_v2/CHANGELOG.md"
+    },
+    {
+      "path": "revision_v2/REMOTE_VERIFICATION.json",
+      "size": 6713,
+      "sha256": "da4e42c3e2b05265194bc47e086346646b32a7d132804c5d2bcb54c040181354",
+      "stored_path": "research/revision_v2/REMOTE_VERIFICATION.json"
     },
     {
       "path": "revision_v2/WORK_LOG.json",

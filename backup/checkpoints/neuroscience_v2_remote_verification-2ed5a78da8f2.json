@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "neuroscience_v2_remote_verification",
+  "snapshot_id": "2ed5a78da8f2728614c2b67851f6c5c5c06db0b3ea05ed7f1d14332c48f0827c",
+  "prepared_at_utc": "2026-11-12T08:59:11.740731+00:00",
+  "file_count": 1584,
+  "total_bytes": 205535222,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

@@ -1,0 +1,682 @@
+                                            Concept Bottleneck Models
+
+
+                                 Pang Wei Koh * 1 Thao Nguyen * 1 2 Yew Siang Tang * 1
+                            Stephen Mussmann 1 Emma Pierson 1 Been Kim 2 Percy Liang 1
+
+
+                          Abstract
+     We seek to learn models that we can interact with
+     using high-level concepts: if the model did not
+     think there was a bone spur in the x-ray, would
+     it still predict severe arthritis? State-of-the-art
+     models today do not typically support the manip-
+     ulation of concepts like “the existence of bone
+     spurs”, as they are trained end-to-end to go di-
+     rectly from raw input (e.g., pixels) to output (e.g.,
+     arthritis severity). We revisit the classic idea of
+     first predicting concepts that are provided at train-
+     ing time, and then using these concepts to predict
+     the label. By construction, we can intervene on
+     these concept bottleneck models by editing their
+     predicted concept values and propagating these
+     changes to the final prediction. On x-ray grading
+     and bird identification, concept bottleneck mod-
+     els achieve competitive accuracy with standard                  Figure 1. We study concept bottleneck models that first predict
+     end-to-end models, while enabling interpretation                an intermediate set of human-specified concepts c, then use c to
+     in terms of high-level clinical concepts (“bone                 predict the final output y. We illustrate the two applications we
+     spurs”) or bird attributes (“wing color”). These                consider: knee x-ray grading and bird identification.
+     models also allow for richer human-model inter-
+     action: accuracy improves significantly if we can               and we cannot easily interact with them using the same
+     correct model mistakes on concepts at test time.                high-level concepts that practitioners reason with, like “joint
+                                                                     space narrowing” or “bone spurs”.
+1. Introduction                                                      We approach this problem by revisiting the simple, clas-
+                                                                     sic idea of first predicting an intermediate set of human-
+Suppose that a radiologist is collaborating with a machine
+                                                                     specified concepts c like “joint space narrowing” and “bone
+learning model to grade the severity of knee osteoarthritis.
+                                                                     spurs”, then using c to predict the target y. In this paper, we
+She might ask why the model made its prediction—did it
+                                                                     refer to such models as concept bottleneck models. These
+deem the space between the knee joints too narrow? Or she
+                                                                     models are trained on data points (x, c, y), where the input
+might seek to intervene on the model—if she told it that the
+                                                                     x is annotated with both concepts c and target y. At test
+x-ray showed a bone spur, would its prediction change?
+                                                                     time, they take in an input x, predict concepts ĉ, and then
+State-of-the-art models today do not typically support such          use those concepts to predict the target ŷ (Figure 1).
+queries: they are end-to-end models that go directly from
+                                                                     Earlier versions of concept bottleneck models were over-
+raw input x (e.g., pixels) to target y (e.g., arthritis severity),
+                                                                     taken in predictive accuracy by end-to-end neural networks
+  *
+    Equal contribution 1 Stanford University 2 Google Research.      (e.g., Kumar et al. (2009) for face recognition and Lam-
+Correspondence to: Pang Wei Koh <pangwei@cs.stanford.edu>,           pert et al. (2009) for animal identification), leading to a
+Been Kim <beenkim@google.com>, Percy Liang <pli-                     perceived tradeoff between accuracy and interpretability in
+ang@cs.stanford.edu>.                                                terms of concepts. In this paper, we propose a straightfor-
+Proceedings of the 37 th International Conference on Machine         ward method for turning any end-to-end neural network
+Learning, Online, PMLR 119, 2020. Copyright 2020 by the au-          into a concept bottleneck model, given concept annota-
+thor(s).                                                             tions at training time: we simply resize one of the layers
+                                                       Concept Bottleneck Models
+
+to match the number of concepts provided, and add an in-               interventions at test time help model accuracy, and is con-
+termediate loss that encourages the neurons in that layer to           cept accuracy a good indicator of the ability to effectively
+align component-wise to the provided concepts. We show                 intervene? Do different ways of training bottleneck models
+that concept bottleneck models trained in this manner can              lead to significantly different outcomes in intervention?
+achieve task accuracies competitive with or even higher than
+                                                                       We evaluate concept bottleneck models on the two appli-
+standard models. We emphasize that concept annotations
+                                                                       cations in Figure 1: the osteoarthritis grading task (Nevitt
+are not needed at test time; the model predicts the concepts,
+                                                                       et al., 2006) and a fine-grained bird species identification
+then uses the predicted concepts to make a final prediction.
+                                                                       task (Wah et al., 2011). On these tasks, we show that bot-
+Importantly—and unlike standard end-to-end models—                     tleneck models are competitive with standard end-to-end
+these bottleneck models support interventions on concepts:             models while also attaining high concept accuracies. In con-
+we can edit the concept predictions ĉ and propagate those             trast, the concepts cannot be predicted with high accuracy
+changes to the target prediction ŷ. Interventions enable              from linear combinations of neurons in a standard black-box
+richer human-model interaction: e.g., if the radiologist real-         model, making it difficult to do post-hoc interpretation in
+izes that what the model thinks is a bone spur is actually an          terms of concepts like in Kim et al. (2018). We demonstrate
+artifact, she can update the model’s prediction by directly            that we can substantially improve model accuracy by inter-
+changing the corresponding value of ĉ. When we simulate               vening on these bottleneck models at test time to correct
+this injection of human knowledge by partially correcting              model mistakes on concepts. Finally, we show that bottle-
+concept mistakes that the model makes at test time, we                 neck models guided to learn the right concepts can also be
+find that accuracy improves substantially beyond that of a             more robust to covariate shifts.
+standard model.
+Interventions also make concept bottleneck models inter-               2. Related work
+pretable in terms of high-level concepts: by manipulating
+                                                                       Concept bottleneck models. Models that bottleneck on
+concepts ĉ and observing the model’s response, we can ob-
+                                                                       human-specified concepts—where the model first predicts
+tain counterfactual explanations like “if the model did not
+                                                                       the concepts, then uses only those predicted concepts to
+think the joint space was too narrow for this patient, then it
+                                                                       make a final prediction—have been previously used for
+would not have predicted severe arthritis”. In contrast, prior
+                                                                       specific applications (Kumar et al., 2009; Lampert et al.,
+work on explaining end-to-end models in terms of high-level
+                                                                       2009). Early versions did not use end-to-end neural net-
+concepts has been restricted to post-hoc interpretation of
+                                                                       works, which soon overtook them in predictive accuracy.
+already-trained end-to-end models: for example, predicting
+                                                                       Consequently, bottleneck models have historically been
+concepts from hidden layers (Kim et al., 2018) or measuring
+                                                                       more popular for few-shot learning settings, where shared
+the correlation of individual neurons with concepts (Bau
+                                                                       concepts might allow generalization to unseen contexts,
+et al., 2017).
+                                                                       rather than the standard supervised setting we consider here.
+The validity of interventions on a model depends on the
+                                                                       More recently, deep neural networks with concept bottle-
+alignment between its predicted concepts ĉ and the true
+                                                                       necks have re-emerged as targeted tools for solving par-
+concepts c. We can estimate this alignment by measuring
+                                                                       ticular tasks, e.g., Fauw et al. (2018) for retinal disease
+the model’s concept accuracy on a held-out validation set
+                                                                       diagnosis, Yi et al. (2018) for visual question-answering,
+(Fong & Vedaldi, 2017).1 A model with perfect concept
+                                                                       and Bucher et al. (2018) for content-based image retrieval.
+accuracy across all possible inputs makes predictions ĉ that
+                                                                       Losch et al. (2019) and Chen et al. (2020) also explore
+align with the true concepts c. Conversely, if a model has
+                                                                       learning concept-based models via auxiliary datasets.
+low concept accuracy, then the model’s predictions ĉ need
+not match with the true concepts, and we would not expect              Concept bottlenecks differ from traditional feature engi-
+interventions to lead to meaningful results.                           neering: we learn mappings from raw input to high-level
+                                                                       concepts, whereas feature engineering constructs low-level
+Contributions. We systematically study variants of con-
+                                                                       features that can be computed by handwritten functions.
+cept bottleneck models and contrast them with standard
+end-to-end models in different settings, with a focus on the           Concepts as auxiliary losses or features. Non-bottleneck
+previously-unexplored ability of concept bottleneck models             models that use human-specified concepts commonly use
+to support concept interventions. Our goal is to characterize          them in auxiliary objectives in a multi-task setup, or as aux-
+concept bottleneck models more fully: Is there a tradeoff              iliary features; examples include using object parts (Huang
+between task accuracy and concept interpretability? Do                 et al., 2016; Zhou et al., 2018), parse trees (Zelenko et al.,
+    1
+                                                                       2003; Bunescu & Mooney, 2005), or natural language ex-
+      With the usual caveats of measuring accuracy: in practice, the
+validation set might be skewed such that models that learn spurious
+                                                                       planations (Murty et al., 2020). However, these models do
+correlations can still achieve high concept accuracy.                  not support intervention on concepts. For instance, consider
+                                                   Concept Bottleneck Models
+
+a multi-task model c ← x → y, with the concepts c used             tion later. We observe training points {(x(i) , y (i) , c(i) )}ni=1 ,
+in an auxiliary loss; simply intervening on ĉ at test time        where c ∈ Rk is a vector of k concepts. We consider bot-
+will not affect the model’s prediction of y. Interventions do      tleneck models of the form f (g(x)), where g : Rd → Rk
+affect models that use c as auxiliary features by first predict-   maps an input x into the concept space (“bone spurs”, etc.),
+ing x → c and then predicting (x, c) → y (e.g., Sutton &           and f : Rk → R maps concepts into a final prediction
+McCallum (2005)), but we cannot intervene in isolation on          (“arthritis severity”). We call these concept bottleneck mod-
+a single concept because of the side channel from x → y.           els because their prediction ŷ = f (g(x)) relies on the input
+                                                                   x entirely through the bottleneck ĉ = g(x), which we train
+Causal models. There has been extensive work on learning
+                                                                   to align component-wise to the concepts c. We define task
+models of causal relationships in the world (Pearl, 2000).
+                                                                   accuracy as how accurately f (g(x)) predicts y, and concept
+While concept bottleneck models can represent causal re-
+                                                                   accuracy as how accurately g(x) predicts c (averaged over
+lationships between x → c → y if the set of concepts c is
+                                                                   each concept). We will refer to g(·) as predicting x → c,
+chosen appropriately, they are flexible and do not require
+                                                                   and to f (·) as predicting c → y.
+c to cause y. This is an advantage in settings where it is
+difficult to fully specify the causal c → y graph. For ex-         In our work, we systematically study different ways of learn-
+ample, imagine that arthritis grade (y) is highly correlated       ing concept bottleneck models. Let LCj : R × R → R+ be
+with swelling (c). In this case, c does not cause y (hypothet-     a loss function that measures the discrepancy between the
+ically, if one could directly induce swelling in the patient, it   predicted and true j-th concept, and let LY : R × R → R+
+would not affect whether they had osteoarthritis). However,        measure the discrepancy between predicted and true targets.
+concept bottleneck models can still exploit the fact that c        We consider the following ways to learn a model (fˆ, ĝ):
+is highly predictive for y, and intervening on the model by
+replacing the predicted concept value ĉ with the true value c       1. The independent bottleneck       learns fˆ and ĝ indepen-
+can still improve accuracy, even if c does not cause y.                          ˆ
+                                                                        dently: f = arg minf i LY (f (c(i) ); y (i) ), and ĝ =
+                                                                                                  P
+                                                                                                          (i)
+                                                                        arg ming i,j LCj (gj (x(i) ); cj ). While fˆ is trained
+                                                                                  P
+A central claim of this paper is that we can intervene on
+concept bottleneck models. Intervention is a standard notion            using the true c, at test time it still takes ĝ(x) as input.
+in causal inference, and we emphasize that we intervene on
+the value of a predicted concept within the model, not on            2. The sequential bottleneck first learns ĝ in the same way
+that concept in reality. In other words, we are interested in           as above. It then uses the concept predictions ĝ(x) to
+                                                                        learn fˆ = arg minf i LY (f (ĝ(x(i) )); y (i) ).
+                                                                                             P
+how changing the model’s predicted concept values ĉ would
+affect its final prediction ŷ, and not whether intervening on
+the true concept value c in reality (e.g., by inducing swelling)     3. The joint bottleneck minimizes  the weighted sum
+                                                                        fˆ, ĝ
+                                                                                                  P
+would affect the true label y. See, e.g., Goyal et al. (2019);                  =      arg minf,g i LY (f (g(x(i) )); y (i) ) +
+O’Shaughnessy et al. (2020) for discussions on causality in             P              (i)  (i)
+                                                                                                
+                                                                            j λLCj (g(x ); c ) for some λ > 0.
+the context of interpreting models with concepts.
+Post-hoc concept analysis. Many methods have been de-                4. The standard model ignoresPconcepts and directly min-
+veloped to interpret models post-hoc, including recent work             imizes fˆ, ĝ = arg minf,g i LY (f (g(x(i) )); y (i) ).
+on using human-specified concepts to generate explana-
+tions (Bau et al., 2017; Kim et al., 2018; Zhou et al., 2018;      The hyperparameter λ in the joint bottleneck controls the
+Ghorbani et al., 2019). These techniques rely on models            tradeoff between concept vs. task loss. The standard model
+automatically learning those concepts despite not having           is equivalent to taking λ → 0, while the sequential bottle-
+explicit knowledge of them, and can be particularly useful         neck can be viewed as taking λ → ∞.
+when paired with models that attempt to learn more inter-          We propose a simple scheme to turn an end-to-end neural
+pretable representations (Bengio et al., 2013; Chen et al.,        network into a concept bottleneck model: simply resize
+2016; Higgins et al., 2017; Melis & Jaakkola, 2018). How-          one of its layers to have k neurons to match the number of
+ever, post-hoc methods can fail when the models do not             concepts k, then choose one of the training schemes above.
+learn these concepts, and also do not admit straightforward
+interventions on concepts. In this work, we instead directly       Classification. In classification, f and g compute real-
+guide models to learn these concepts at training time.             valued scores (e.g., concept logits `ˆ = ĝ(x) ∈ Rk ) that we
+                                                                   then turn into a probabilistic prediction (e.g., P (ĉj = 1) =
+                                                                   σ(`ˆj ) for logistic regression). This does not change the in-
+3. Setup                                                           dependent bottleneck, since f (the c → y model) is directly
+Consider predicting a target y ∈ R from input x ∈ Rd ; for         trained on the binary-valued c. For the sequential and joint
+simplicity, we present regression first and discuss classifica-    bottlenecks, we connect c → y to the logits `, ˆ i.e., we com-
+                                                                   pute P (ĉj = 1) = σ(ĝj (x)) and P (ŷ = 1) = σ(fˆ(ĝ(x))).
+                                                     Concept Bottleneck Models
+
+
+Table 1. Task errors with ±2SD over random seeds. Overall, con-      Table 2. Average concept errors. Bottleneck models have lower
+cept bottleneck models are competitive with standard models.         error than linear probes on standard and SENN models.
+
+  M ODEL                 y RMSE (OAI)        y E RROR (CUB)           M ODEL                  c RMSE (OAI)        c E RROR (CUB)
+  I NDEPENDENT           0.435± 0.024         0.240±0.012             I NDEPENDENT             0.529±0.004         0.034±0.002
+  S EQUENTIAL            0.418± 0.004         0.243±0.006             S EQUENTIAL              0.527±0.004         0.034±0.002
+  J OINT                 0.418± 0.004         0.199±0.006             J OINT                   0.543±0.014         0.031±0.000
+  S TANDARD              0.441± 0.006         0.175±0.008             S TANDARD [ PROBE ]      0.680±0.038         0.093±0.004
+   NO BOTTLENECK         0.443 ± 0.008        0.173±0.003             SENN [ PROBE ]           0.676±0.026              -
+  M ULTITASK             0.425± 0.010         0.162±0.002
+
+                                                                     Models. For each task, we construct concept bottleneck
+4. Benchmarking bottleneck model accuracy                            models by adopting model architectures and hyperparam-
+We start by showing that concept bottleneck models achieve           eters from previous high-performing approaches; see Ap-
+both competitive task accuracy and high concept accuracy.            pendix B for experimental details. For the joint bottleneck
+While this is necessary for bottleneck models to be viable in        model, we search over the task-concept tradeoff hyperpa-
+practice, their strength is that we can interpret and intervene      rameter λ and report results for the model that has the high-
+on them; we explore those aspects in Sections 5 and 6.               est task accuracy while maintaining high concept accuracy
+                                                                     on the validation set (λ = 1 for OAI and λ = 0.01 for
+                                                                     CUB). We model x-ray grading as a regression problem
+4.1. Applications
+                                                                     (minimizing mean squared error) on both the KLG target
+We consider an x-ray grading and a bird identification task.         y and concepts c, following Pierson et al. (2019); we fine-
+Their corresponding datasets are annotated with high-level           tune a pretrained ResNet-18 model to predict x → c (He
+concepts that practitioners (radiologists/birders) use to rea-       et al., 2016), and use a small 3-layer MLP for c → y. We
+son about their decisions. (Dataset details in Appendix A.)          model bird identification as multi-class classification for
+                                                                     the species y and binary classification for the concepts c.
+X-ray grading (OAI). We use knee x-rays from the Os-
+                                                                     Following Cui et al. (2018), we fine-tune an Inception-v3
+teoarthritis Initiative (OAI) (Nevitt et al., 2006), which com-
+                                                                     network (Szegedy et al., 2016) to predict x → c, and use a
+piles radiological and clinical data on patients at risk of
+                                                                     single linear layer (logistic regression) to predict c → y.
+knee osteoarthritis (Figure 1-Top; n = 36, 369 data points).
+Given an x-ray, the task is to predict the Kellgren-Lawrence
+grade (KLG), a 4-level ordinal variable assessed by radiolo-         4.2. Task and concept accuracies
+gists that measures the severity of osteoarthritis, with higher      Table 1 shows that concept bottleneck models achieve com-
+scores denoting more severe disease.2 As concepts, we use            petitive task accuracy with standard black-box models on
+k = 10 ordinal variables describing joint space narrow-              both tasks, despite the bottleneck constraint (all numbers
+ing, bone spurs, calcification, etc.; these clinical concepts        reported are on a held-out test set). On OAI, joint and se-
+are also assessed by radiologists and used directly in the           quential bottlenecks are actually slightly better in root mean
+assessment of KLG (Kellgren & Lawrence, 1957).                       square error (RMSE) than the standard model,3 and on CUB,
+Bird identification (CUB). We use the Caltech-UCSD                   sequential and independent bottlenecks are slightly worse
+Birds-200-2011 (CUB) dataset (Wah et al., 2011), which               in 0-1 error; all other models perform similarly. From Ta-
+comprises n = 11, 788 bird photographs (Figure 1-Bot).               ble 1, joint bottlenecks can do slightly better than sequential
+The task is to classify the correct bird species out of 200          bottlenecks, which in turn can do better than independent
+possible options. As concepts, we use k = 112 binary bird            bottlenecks, though this difference is not consistent. Com-
+attributes representing wing color, beak shape, etc. Because         pared to independent bottlenecks, sequential bottlenecks
+the provided concepts are noisy (see Appendix A), we de-             allow the c → y part of the model to adapt to how well it
+noise them by majority voting, e.g., if more than 50% of             can predict x → c; and joint bottlenecks further allow the
+crows have black wings in the data, then we set all crows            model’s version of the concepts to be refined to improve
+to have black wings. In other words, we use class-level              predictive performance.
+concepts and assume that all birds of the same species in the        At the same time, the bottleneck models are able to accu-
+training data share the same concept annotations. In contrast,       rately predict each concept well (Figure 2), and they achieve
+the OAI dataset uses instance-level concepts: examples with          low average error across all concepts (Table 2). As discussed
+the same y can have different concept annotations c.
+                                                                        3
+                                                                         To contextualize RMSE, our modified KLG ranges from 0-3,
+   2
+   Due to technicalities in the data collection protocol, we use a   and average Pearson correlations between each predicted and true
+modified version of KLG where the first two grades are combined.     concept are ≥0.87 for all bottleneck models.
+                                                     Concept Bottleneck Models
+
+
+
+
+Figure 2. Left: The shaded regions show the optimal frontier between task vs. concept error. We find little trade-off; models can do well
+on both task and concept prediction. For standard models, we plot the concept error of the mean predictor (OAI) or random predictor
+(CUB). Mid: Histograms of how accurate individual concepts are, averaged over multiple random seeds. In our tasks, each individual
+concept can be accurately predicted by bottleneck models. Right: Data efficiency curves. Especially on OAI, bottleneck models can
+achieve the same task accuracy as standard models with many fewer training points.
+
+
+in Section 1, low concept error suggests that the model’s              Data efficiency. Another way to benchmark different mod-
+concepts are aligned with the true concepts, which in turn             els is by measuring data efficiency, i.e., how many training
+suggests that we might intervene effectively on them; we               points they need for a desired level of accuracy. To study
+will explore this in Section 6.                                        this, we subsampled the training and validation data and
+                                                                       retrained each model (details in Appendix B.4). Concept
+Overall, we do not observe a tradeoff between high task
+                                                                       bottleneck models are particularly effective on OAI: the
+accuracy and high concept accuracy: pulling the bottleneck
+                                                                       sequential bottleneck model with ≈ 25% of the full dataset
+layer towards the concepts c does not substantially affect
+                                                                       performs similarly to the standard model. On CUB, the joint
+the model’s ability to predict y in our tasks, even when the
+                                                                       bottleneck and standard models are more accurate through-
+bottleneck is trained jointly. We illustrate this in Figure 2-
+                                                                       out, with the joint model slightly more accurate in lower
+Left, which plots the task vs. concept errors of each model.
+                                                                       data regimes (Figure 2-Right).
+Additional baselines. We ran two further baselines to de-
+                                                                      A drawback of concept bottleneck models is that they re-
+termine if the bottleneck architecture impacted model per-
+                                                                      quire annotated concepts at training time. However, if the
+formance. First, standard models in the literature do not
+                                                                      set of concepts are good enough, then fewer training exam-
+use concept bottlenecks, so we trained a variant of the stan-
+                                                                      ples might be required to achieve a desired accuracy level
+dard model without the bottleneck layer (directly using a
+                                                                      (as in OAI). This allows model developers to trade off the
+ResNet-18 or Inception-v3 model to predict x → y); this
+                                                                      cost of acquiring more detailed annotations against the cost
+performed similarly to the standard bottleneck model (“Stan-
+                                                                      of acquiring new training examples, which can be helpful
+dard, no bottleneck” in Table 1). Second, we tested a typical
+                                                                      when new training examples are expensive to acquire, e.g.,
+multi-task setup using an auxiliary loss to encourage the
+                                                                      in medical settings where adding training points might entail
+activations of the last layer to be predictive of the concepts
+                                                                      invasive/expensive procedures on patients, but the incremen-
+c, hyperparameter searching across different weightings of
+                                                                      tal cost in asking a doctor to add annotations to data points
+this auxiliary loss. These models also performed compara-
+                                                                      that they already need to look at might be low.
+bly (“Multitask” in Table 1), but since they do not support
+concept interventions, we focus on comparing standard vs.
+concept bottleneck models in the rest of the paper.
+                                                  Concept Bottleneck Models
+
+5. Benchmarking post-hoc concept analysis                        The comparative difficulty in predicting concepts post-hoc
+                                                                 suggests that if we have prior knowledge of what concepts
+Concept bottleneck models are trained to have a bottleneck       practitioners would use, then it helps to directly train models
+layer that aligns component-wise with the human-specified        with these concepts instead of hoping to recover them from
+concepts c. For any test input x, we can read out predicted      a model trained without knowledge of these concepts. See
+concepts directly from the bottleneck layer, as well as inter-   Chen et al. (2020) for a related discussion.
+vene on concepts by manipulating the predicted concepts
+ĉ and inspecting how the final prediction ŷ changes. This
+enables explanations like “if the model did not think the        6. Test-time intervention
+joint space was too narrow for this patient, then it would not   The ability to intervene on concept bottleneck models en-
+have predicted severe arthritis”. An alternative approach to     ables human users to have richer interactions with them. For
+interpreting models in terms of concepts is post-hoc analy-      example, if a radiologist disagrees with a model’s prediction,
+sis: take an existing model trained to directly predict x → y    she would not only be able to inspect the predicted concepts,
+without any concepts, and use a probe to recover the known       but also simulate how the model would respond to changes
+concepts from the model’s activations. For example, Bau          in those predicted concepts. This kind of test-time interven-
+et al. (2017) measure the correlation of individual neurons      tion can be particularly useful in high-stakes settings like
+with concepts, while Kim et al. (2018) use a linear probe to     medicine, or in other settings where it is easier for users to
+predict concepts with linear combinations of neurons.            identify the concepts c (e.g., wing color) than the target y
+Post-hoc analysis does not enable interventions on concepts:     (exact species of bird).
+even if we find a linear combination of neurons that predicts    We envision that in practice, domain experts interacting
+a concept well, it is unclear how to modify the model’s          with the model could intervene to “fix” potentially incorrect
+activations to change what it thinks of that concept alone.      concepts. To study this setting, we use an oracle that can
+Without this ability to intervene, interpretations in terms of   query the true value of any concept for a test input. Figure 3
+concepts is suggestive but fraught: even if we can say that      shows several examples of interventions that lead to the
+“the model thinks the joint space is narrow”, it is hard to      model making a correct prediction.
+test if that actually affects its final prediction. This is an
+important limitation of post-hoc interpretation. Nonetheless,
+                                                                 6.1. Intervening on OAI
+setting this point aside for a moment, post-hoc interpreta-
+tions require high concept accuracy. We therefore evaluate       On OAI, we intervene on a concept by simply replacing
+how accurately probes can predict concepts post-hoc.             the model’s corresponding predicted concept ĉj with its
+                                                                 true value cj (Figure 3-Left). To simplify testing multiple
+Following Kim et al. (2018), we trained a linear probe to
+                                                                 interventions, we use an input-independent ordering over
+predict each concept from the layers of the standard model
+                                                                 concepts computed from the held-out validation set (i.e., we
+(see Appendix B). We found that these linear probes have
+                                                                 always intervene on some concept ci1 first, followed by ci2 ,
+lower concept accuracy compared to simply reading con-
+                                                                 etc.; see Appendix B).
+cepts out from a bottleneck model (Table 2). On OAI, the
+best-performing linear probe achieved an average concept         Test-time intervention on OAI significantly improved task
+RMSE of 0.68, vs. 0.53 in the bottleneck models; average         accuracy: e.g., querying for just 2 concepts reduces task
+Pearson correlation dropped to 0.72 from 0.84. On CUB,           RMSE from >0.4 to ≈0.3 (Figure 4-Left). Neural networks
+the linear probe achieved an average concept error of 0.09       similar to ours have been previously noted to be compa-
+instead of 0.03; average F1 score dropped to 0.77 from 0.92.     rable with individual radiologist performance on grading
+                                                                 KLG (compared to the consensus grade, which we use as
+We also tested if we could predict concepts post-hoc from
+                                                                 ground truth; see Tiulpin et al. (2018); Pierson et al. (2019)).
+models designed to learn an interpretable mapping from
+                                                                 As the concept values used for intervention mostly come
+x → y. Specifically, we evaluated self-explaining neu-
+                                                                 from a single radiologist instead of a consensus reading
+ral networks (SENN) (Melis & Jaakkola, 2018). As with
+                                                                 (see Appendix A), these results hint that a single radiologist
+standard models, SENN does not use any pre-specified con-
+                                                                 collaborating with bottleneck models might be able to out-
+cepts; it learns an input representation encouraged to be
+                                                                 perform either the radiologist or model alone, though more
+interpretable through diversity and smoothness constraints.
+                                                                 careful human studies would be needed to evaluate that.
+However, linear probes on SENN also had lower concept
+accuracy on OAI (0.68 concept RMSE; see Appendix B).4            The independent bottleneck achieved better test error when
+   4                                                             all k = 10 concepts are replaced than the sequential or joint
+     We were unable to run SENN on CUB because the default
+implementation was too memory-intensive; CUB has many more       bottlenecks (Figure 4-Left). This is expected; when all con-
+classes/concepts than the tasks SENN was originally used for.    cepts are replaced, the x → c part of the model is irrelevant,
+                                                                 and all that matters is the c → y part. Recall that in the
+                                                    Concept Bottleneck Models
+
+
+
+
+Figure 3. Successful examples of test-time intervention, where intervening on a single concept corrects the model prediction. Here, we
+show examples from independent bottleneck models. Right: For CUB, we intervene on concept groups instead of individual binary
+concepts. The sample birds on the right illustrate how the intervened concept distinguishes between the original and new predictions.
+
+
+
+
+Figure 4. Test-time intervention results. Left: Intervention substantially improves task accuracy, except for the control model, which
+is a joint model that heavily prioritizes label accuracy over concept accuracy. Mid: Replacing c → y with a linear model degrades
+effectiveness. Right: Intervention improves task accuracy except for the joint model. Connecting c → y to probabilities rescues
+intervention but degrades normal accuracy.
+
+
+independent bottleneck, c → y is trained using the true c,           3-layer MLP used throughout the paper to a single linear
+which is what we replace the predicted concepts ĉ with. In          layer. Test-time intervention was less effective here com-
+contrast, in the sequential and joint models, c → y is trained       pared to the non-linear counterparts (Figure 4-Mid), even
+using the predicted ĉ, which in general will have a differ-         though task and concept accuracies were similar before inter-
+ent distribution from the true c. This example illustrates a         vention (concept RMSEs of the sequential and independent
+trade-off between intervenability and task accuracy: the in-         models are not even affected by the change in c → y).
+dependent bottleneck performs worse without interventions
+                                                                     Altogether, these results suggest that task and concept accu-
+(Table 1), but better with interventions.
+                                                                     racies alone are insufficient for determining how effective
+To better understand what influences intervention effective-         test-time intervention will be on a model. Different induc-
+ness, we ran two ablations. First, we found that intervention        tive biases in different models control how effectively they
+can fail in joint models when λ is too small (recall that the        can handle distribution shifts from ĉ → y (pre-intervention)
+smaller λ is, the more we prioritize fitting y over c in train-      to c → y (post-intervention). Even without this distribution
+ing). Specifically, the joint model with λ = 0.01 learned            shift, as in the case of the linear vs. non-linear independent
+a concept representation that was not as well-aligned with           bottlenecks, the expressivity of c → y has a large effect on
+the true concepts, and replacing ĉ with the true c at test          intervention effectiveness. Moreover, it is possible that the
+time slightly increased test error (“control” model in Fig-          average concept accuracy masks differences in individual
+ure 4-Left). Second, we changed the c → y model from the             concept accuracies that influence these results.
+                                                    Concept Bottleneck Models
+
+6.2. Intervening on CUB
+Intervention on CUB is complicated by the fact that it is clas-
+sification instead of regression. Recall from Section 3 that
+for sequential and joint bottleneck classifiers, we connect
+c → y to the logits `ˆ = ĝ(x). To intervene on a concept ĉj ,
+we therefore cannot directly copy over the true cj . Instead,
+we need to alter the logits `ˆj such that P (ĉj = 1) = σ(`ˆj )
+is close to the true cj . Concretely, we intervene on ĉj by
+setting `ˆj to the 5th (if cj = 0) or 95th (if cj = 1) percentile
+of `ˆj over the training distribution.
+Another difference is that for CUB, we group related con-
+cepts and intervene on them together. This is because many
+of the concepts encode the same underlying property, e.g.,
+                                                                    Figure 5. We change the image backgrounds associated with each
+c1 = 1 if the wing is red, c2 = 1 if the wing is black, etc.
+                                                                    class from train to test time (illustrated above for a single class).
+We assume that the human (oracle) returns the true wing
+color in a single query, instead of only answering yes/no
+questions about the wing color; see Figure 4-Right.                 Table 3. Task and concept error with background shifts. Bottleneck
+An important caveat is that we use denoised class-level con-        models have substantially lower task error than the standard model.
+cepts in the CUB dataset (Section 4.1). To avoid unrealistic
+                                                                           M ODEL                y E RROR           c E RROR
+scenarios where a bird part is not visible in the image but
+we still ‘intervene’ on it, we only replace a concept value                S TANDARD           0.627±0.013            -
+with the true concept value if that concept is actually vis-               J OINT              0.482±0.018       0.069±0.002
+                                                                           S EQUENTIAL         0.496±0.009       0.072±0.002
+ible in the image (visibility information is included in the               I NDEPENDENT        0.482±0.008       0.072±0.002
+dataset). The results here are nonetheless still optimistic, be-
+cause they assume that human experts do not make mistakes
+in identifying concepts and that birds of the same species          7. Robustness to background shifts
+always share the same concept values.
+                                                                    Finally, we investigate if concept bottleneck models can be
+Test-time intervention substantially improved accuracy on           more robust than standard models to spurious correlations
+CUB bottleneck models (Figure 4-Right), though it took              (e.g., the background) that hold in the training distribution
+intervention on several concept groups to see a large gain.         but not the test distribution. Whether bottleneck models are
+For simplicity, we queried concept groups in random order,          more robust depends on the choice of the set of concepts c
+which means that many queries were probably irrelevant for          and the shifts considered; a priori, we do not expect that an
+any given test example.                                             arbitrary set of concepts c will lead to a more robust model.
+Test-time intervention was more effective on independent            We constructed a variant of the CUB dataset where the
+bottleneck models than on the sequential and joint mod-             target y is spuriously correlated with image background in
+els (Figure 4-Right). We hypothesize that this is partially         the training set. Specifically, we cropped each bird out of
+due to the ad hoc fashion in which we set logits to the             its original background (using segmentation masks from the
+5th or 95th percentiles for the latter models. To study this,       original dataset) and onto a new background from the Places
+we trained a joint bottleneck with the same task-concept            dataset (Zhou et al., 2017), with each bird class (species)
+tradeoff λ but with c → y connected to the probabilities            assigned to a unique and randomly-selected category of
+P (cˆj = 1) = σ(`ˆj ) instead of the logits `ˆj . This model        places. At test time, we shuffle this mapping, so each class is
+had a higher task error of 0.224 vs. 0.199 with the normal          associated with a different category of places. For example,
+joint model; we suspect that the squashing from the sigmoid         at training time, all robins might be pictured against the sky,
+makes optimization harder. However, test-time interven-             but at test time they might all be on grassy plains (Figure 5).
+tion worked better (“Joint, from sigmoid” vs. “Joint” in
+                                                                    As images from each class now share common background
+Figure 4-Right), and it is more straightforward as we can
+                                                                    features, standard models leverage this spurious correla-
+directly edit ĉ. This poses the question of how to effectively
+                                                                    tion and consequently fail on the shifted test set (Table 3).
+intervene in the classification setting while maintaining the
+                                                                    Concept models do better as they rely less on background
+computational advantages of avoiding the sigmoid in the
+                                                                    features, since each concept is shared among multiple bird
+c → y connection.
+                                                                    classes and thus appears in training data points that span mul-
+                                                                    tiple background types, reducing the correlation between
+                                                    Concept Bottleneck Models
+
+the concept and the background. This toy experiment shows           that the input x ∈ Rd is normally distributed, and that the
+that concept bottleneck models can be more robust to spuri-         concepts c ∈ Rk and the target y ∈ R are noisy linear
+ous correlations when the target y is more correlated with          transformations of x and c respectively. We compared an
+training data artifacts compared to the concepts c.                 independent bottleneck model (two linear regression prob-
+                                                                    lems for x → c and c → y) to a standard model (a single
+8. Discussion                                                       linear regression problem) by deriving the ratio of their ex-
+                                                                    cess mean-squared-errors as the number of training points
+Concept bottleneck models can compete on task accuracy              n goes to infinity:
+while supporting intervention and interpretation, allowing
+                                                                                                               k 2     2
+practitioners to reason about these models in terms of high-          Excess error for indp bottleneck model     σ + σC
+                                                                                                             ≤ d 2Y   2 ,
+level concepts they are familiar with, and enabling more                 Excess error for standard model        σY + σC
+effective human-model collaboration through test-time in-
+                                                                             2
+tervention. We believe that these models can be promising           where σC    and σY2 are the variances of the noise in the con-
+in settings like medicine, where the high stakes incentivize        cepts c and target y, respectively. See Appendix C for a
+human experts to collaborate with models at test time, and          formal statement and proof. Note that the asymptotic rela-
+where the tasks are often normatively defined with respect to       tive excess error is small when kd is small and σY2  σC    2
+                                                                                                                                  ,
+a set of standard concepts (e.g., “osteoarthritis is marked by      suggesting that concept bottleneck models can be particu-
+the presence of bone spurs”). A flurry of recent papers have        larly effective when the number of concepts is much smaller
+used similar human concepts for post-hoc interpretation of          than the input dimension and when the concepts have rela-
+medical and other scientific ML models, e.g., Graziani et al.       tively low noise compared to the target.
+(2018) for breast cancer histopathology; Clough et al. (2019)       Intervention effectiveness. Our exploration of the design
+for cardiac MRIs; and Sprague et al. (2019) for meteorol-           space of concept bottleneck models showed that the training
+ogy (storm prediction). We expect that concept bottleneck           method (independent, sequential, joint) and choice of archi-
+models can be applied directly to similar settings. Below,          tecture have a large influence not just on task and concept
+we discuss several directions for future work.                      accuracies, but also on how effective interventions are. This
+Learning concepts. In tasks that are not normatively de-            poses several open questions, for example: What factors
+fined, we can learn the right concepts by interactively query-      drive the effectiveness of test-time interventions? Does con-
+ing humans. For example, Cheng & Bernstein (2015) asked             cept accuracy suffice for comparing the interpretability of
+crowdworkers to generate concepts to differentiate between          concept bottleneck models, or is intervention effectiveness
+adaptively-chosen pairs of examples, and used those con-            more important? Could adaptive strategies that query for
+cepts to train models to recognize the artist of a painting, tell   the concepts that maximize expected information gain on a
+honest from deceptive reviews, and identify popular jokes.          particular test example make interventions more effective?
+Similar methods can also be used to refine existing concepts        Finally, how might we have models learn from interventions
+and make them more discriminative (Duan et al., 2012).              to avoid making similar mistakes in the future?
+Side channel from x → y. We can also account for having
+an incomplete set of concepts by adding a direct side chan-         Reproducibility
+nel from x → y to a bottleneck model. This is equivalent            The code for replicating our experiments is available
+to using the concepts as auxiliary features, and as discussed       on GitHub at https://github.com/yewsiang/
+in Section 2, has the drawback that we cannot cleanly in-           ConceptBottleneck. An executable version of the
+tervene on a single concept, since the x → y connection             CUB experiments in this paper is on CodaLab at https:
+might also be implicitly reasoning about that concept. De-          //worksheets.codalab.org/worksheets/
+vising approaches to mitigate this issue would allow concept        0x362911581fcd4e048ddfd84f47203fd2. The
+models to have high task accuracy even with an incomplete           post-processed CUB+Places dataset can also be downloaded
+set of concepts; for example, one might consider carefully          at that link. While we are unable to release the OAI dataset
+regularizing the x → y connection or using some sort of             publicly, an application to access the data can be made at
+adversarial loss to prevent it from using existing concepts.        https://nda.nih.gov/oai/.
+Theoretically analyzing concept bottlenecks. A better un-
+derstanding of when and why concept bottlenecks improve
+task accuracy can inform how we collect concepts or design
+the architecture of bottleneck models. As an example of
+what this could entail, we sketch an analysis of a simple
+well-specified linear regression setting, where we assume
+                                                   Concept Bottleneck Models
+
+Acknowledgements                                                   Cui, Y., Song, Y., Sun, C., Howard, A., and Belongie,
+                                                                     S. Large scale fine-grained categorization and domain-
+We are grateful to Jesse Mu, Justin Cheng, Kensen Shi,               specific transfer learning. In Computer Vision and Pattern
+Michael Bernstein, Rui Shu, Sendhil Mullainathan, Shyamal            Recognition (CVPR), pp. 4109–4118, 2018.
+Buch, Yair Carmon, Ziad Obermeyer, and our anonymous
+reviewers for helpful advice. PWK was supported by a               Duan, K., Parikh, D., Crandall, D., and Grauman, K. Dis-
+Facebook PhD Fellowship. YST was supposed by an IMDA                 covering localized attributes for fine-grained recognition.
+Singapore Digital Scholarship. SM was supported by an                In Computer Vision and Pattern Recognition (CVPR), pp.
+NSF Graduate Fellowship. EP was supported by a Hertz                 3474–3481, 2012.
+Fellowship. Other funding came from the PECASE Award.
+Toyota Research Institute (“TRI”) provided funds to assist         Fauw, J. D., Ledsam, J. R., Romera-Paredes, B., Nikolov,
+the authors with their research but this article solely reflects     S., Tomasev, N., Blackwell, S., Askham, H., Glorot, X.,
+the opinions and conclusions of its authors and not TRI or           O’Donoghue, B., Visentin, D., et al. Clinically applicable
+any other Toyota entity.                                             deep learning for diagnosis and referral in retinal disease.
+                                                                     Nature Medicine, 24(9):1342–1350, 2018.
+
+References                                                         Fong, R. C. and Vedaldi, A. Interpretable explanations of
+                                                                     black boxes by meaningful perturbation. In International
+Bau, D., Zhou, B., Khosla, A., Oliva, A., and Torralba, A.
+                                                                     Conference on Computer Vision (ICCV), pp. 3429–3437,
+  Network dissection: Quantifying interpretability of deep
+                                                                     2017.
+  visual representations. In Computer Vision and Pattern
+  Recognition (CVPR), pp. 6541–6549, 2017.                         Ghorbani, A., Wexler, J., Zou, J. Y., and Kim, B. Towards
+                                                                     automatic concept-based explanations. In Advances in
+Bengio, Y., Courville, A., and Vincent, P. Representation           Neural Information Processing Systems (NeurIPS), pp.
+  learning: A review and new perspectives. IEEE Transac-             9277–9286, 2019.
+  tions on Pattern Analysis and Machine Intelligence, 35
+  (8):1798–1828, 2013.                                             Goyal, Y., Shalit, U., and Kim, B. Explaining classi-
+                                                                     fiers with causal concept effect (CaCE). arXiv preprint
+Bucher, M., Herbin, S., and Jurie, F. Semantic bottleneck for        arXiv:1907.07165, 2019.
+  computer vision tasks. In Asian Conference on Computer
+  Vision, pp. 695–712, 2018.                                       Graziani, M., Andrearczyk, V., and Müller, H. Regres-
+                                                                     sion concept vectors for bidirectional explanations in
+Bunescu, R. C. and Mooney, R. J. A shortest path de-                 histopathology. In Understanding and Interpreting Ma-
+  pendency kernel for relation extraction. In Empirical              chine Learning in Medical Image Computing Applica-
+  Methods in Natural Language Processing (EMNLP), pp.                tions, pp. 124–132, 2018.
+  724–731, 2005.
+                                                                   He, K., Zhang, X., Ren, S., and Sun, J. Deep residual
+Chen, X., Duan, Y., Houthooft, R., Schulman, J., Sutskever,          learning for image recognition. In Computer Vision and
+  I., and Abbeel, P. InfoGAN: Interpretable representation           Pattern Recognition (CVPR), 2016.
+  learning by information maximizing generative adversar-
+                                                                   Higgins, I., Matthey, L., Pal, A., Burgess, C., Glorot, X.,
+  ial nets. In Advances in Neural Information Processing
+                                                                     Botvinick, M., Mohamed, S., and Lerchner, A. beta-
+  Systems (NeurIPS), 2016.
+                                                                     vae: Learning basic visual concepts with a constrained
+Chen, Z., Bei, Y., and Rudin, C. Concept whitening                   variational framework. In International Conference on
+  for interpretable image recognition. arXiv preprint                Learning Representations (ICLR), 2017.
+  arXiv:2002.01650, 2020.                                          Huang, S., Xu, Z., Tao, D., and Zhang, Y. Part-stacked
+                                                                     CNN for fine-grained visual categorization. In Computer
+Cheng, J. and Bernstein, M. S. Flock: Hybrid Crowd-
+                                                                    Vision and Pattern Recognition (CVPR), pp. 1173–1182,
+  Machine learning classifiers. In Proceedings of the 18th
+                                                                     2016.
+  ACM Conference on Computer Supported Cooperative
+ Work & Social Computing, pp. 600–611, 2015.                       Kellgren, J. and Lawrence, J. Radiological assessment of
+                                                                     osteo-arthrosis. Annals of the Rheumatic Diseases, 16(4),
+Clough, J. R., Oksuz, I., Puyol-Antón, E., Ruijsink, B.,           1957.
+  King, A. P., and Schnabel, J. A. Global and local inter-
+  pretability for cardiac MRI classification. In International     Kim, B., Wattenberg, M., Gilmer, J., Cai, C., Wexler, J.,
+  Conference on Medical Image Computing and Computer-                Viegas, F., et al. Interpretability beyond feature attribu-
+  Assisted Intervention, pp. 656–664, 2019.                          tion: Quantitative testing with concept activation vectors
+                                                 Concept Bottleneck Models
+
+  (tcav). In International Conference on Machine Learning       Wah, C., Branson, S., Welinder, P., Perona, P., and Belongie,
+  (ICML), pp. 2668–2677, 2018.                                   S. The Caltech-UCSD Birds-200-2011 dataset. Technical
+                                                                 report, California Institute of Technology, 2011.
+Kumar, N., Berg, A. C., Belhumeur, P. N., and Nayar, S. K.
+  Attribute and simile classifiers for face verification. In    Yi, K., Wu, J., Gan, C., Torralba, A., Kohli, P., and Tenen-
+  International Conference on Computer Vision (ICCV), pp.         baum, J. Neural-symbolic vqa: Disentangling reasoning
+  365–372, 2009.                                                  from vision and language understanding. In Advances
+                                                                  in Neural Information Processing Systems (NeurIPS), pp.
+Lampert, C. H., Nickisch, H., and Harmeling, S. Learning          1031–1042, 2018.
+  to detect unseen object classes by between-class attribute
+  transfer. In Computer Vision and Pattern Recognition          Zelenko, D., Aone, C., and Richardella, A. Kernel methods
+  (CVPR), pp. 951–958, 2009.                                      for relation extraction. Journal of Machine Learning
+                                                                  Research, 3(0):1083–1106, 2003.
+Losch, M., Fritz, M., and Schiele, B. Interpretability be-
+  yond classification output: Semantic bottleneck networks.     Zhou, B., Lapedriza, A., Khosla, A., Oliva, A., and Tor-
+  arXiv preprint arXiv:1907.10882, 2019.                          ralba, A. Places: A 10 million image database for scene
+                                                                  recognition. IEEE Transactions on Pattern Analysis and
+Melis, D. A. and Jaakkola, T. Towards robust interpretability
+                                                                  Machine Intelligence, 40(6):1452–1464, 2017.
+ with self-explaining neural networks. In Advances in
+ Neural Information Processing Systems (NeurIPS), pp.           Zhou, B., Sun, Y., Bau, D., and Torralba, A. Interpretable
+ 7775–7784, 2018.                                                 basis decomposition for visual explanation. In European
+                                                                  Conference on Computer Vision (ECCV), pp. 119–134,
+Murty, S., Koh, P. W., and Liang, P. ExpBERT: Representa-
+                                                                  2018.
+ tion engineering with natural language explanations. In
+ Association for Computational Linguistics (ACL), 2020.
+Nevitt, M., Felson, D. T., and Lester, G. The Osteoarthritis
+  Initiative. Cohort study protocol, 2006.
+O’Shaughnessy, M., Canal, G., Connor, M., Davenport, M.,
+  and Rozell, C. Generative causal explanations of black-
+  box classifiers. arXiv preprint arXiv:2006.13913, 2020.
+Pearl, J. Causality: Models, Reasoning and Inference, vol-
+  ume 29. Springer, 2000.
+Pierson, E., Cutler, D., Leskovec, J., Mullainathan, S., and
+  Obermeyer, Z. Using machine learning to understand
+  racial and socioeconomic differences in knee pain. NBER
+  Machine Learning and Healthcare Conference, 2019.
+Sprague, C., Wendoloski, E. B., and Guch, I. Interpretable
+  AI for deep learning-based meteorological applications.
+  In 99th American Meteorological Society Annual Meet-
+  ing, 2019.
+Sutton, C. and McCallum, A. Joint parsing and seman-
+  tic role labeling. In Computational Natural Language
+  Learning (CoNLL), 2005.
+Szegedy, C., Vanhoucke, V., Ioffe, S., Shlens, J., and Wo-
+  jna, Z. Rethinking the Inception architecture for com-
+  puter vision. In Computer Vision and Pattern Recognition
+  (CVPR), pp. 2818–2826, 2016.
+Tiulpin, A., Thevenot, J., Rahtu, E., Lehenkari, P., and
+  Saarakkala, S. Automatic knee osteoarthritis diagnosis
+  from plain radiographs: A deep learning-based approach.
+  Scientific Reports, 8(1):1–10, 2018.
+

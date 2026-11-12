@@ -1,0 +1,238 @@
+[
+  {
+    "source_id": "clip_readme",
+    "url": "https://raw.githubusercontent.com/openai/CLIP/main/README.md",
+    "http_status": 200,
+    "bytes": 7306,
+    "local_path": "agents/10_llm_semantics/sources/clip_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "lavis_readme",
+    "url": "https://raw.githubusercontent.com/salesforce/LAVIS/main/README.md",
+    "http_status": 200,
+    "bytes": 20118,
+    "local_path": "agents/10_llm_semantics/sources/lavis_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "llava_readme",
+    "url": "https://raw.githubusercontent.com/haotian-liu/LLaVA/main/README.md",
+    "http_status": 200,
+    "bytes": 30172,
+    "local_path": "agents/10_llm_semantics/sources/llava_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "semantic_decoding_readme",
+    "url": "https://raw.githubusercontent.com/HuthLab/semantic-decoding/main/README.md",
+    "http_status": 200,
+    "bytes": 2909,
+    "local_path": "agents/10_llm_semantics/sources/semantic_decoding_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "neural_nlp_readme",
+    "url": "https://raw.githubusercontent.com/mschrimpf/neural-nlp/master/README.md",
+    "http_status": 200,
+    "bytes": 3460,
+    "local_path": "agents/10_llm_semantics/sources/neural_nlp_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "scaling_readme",
+    "url": "https://raw.githubusercontent.com/HuthLab/encoding-model-scaling-laws/main/README.md",
+    "http_status": 200,
+    "bytes": 4647,
+    "local_path": "agents/10_llm_semantics/sources/scaling_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "context_readme",
+    "url": "https://raw.githubusercontent.com/HuthLab/deep-fMRI-dataset/master/README.md",
+    "http_status": 200,
+    "bytes": 2629,
+    "local_path": "agents/10_llm_semantics/sources/context_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "cbm_readme",
+    "url": "https://raw.githubusercontent.com/yewsiang/ConceptBottleneck/master/README.md",
+    "http_status": 200,
+    "bytes": 3595,
+    "local_path": "agents/10_llm_semantics/sources/cbm_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "lfcbm_readme",
+    "url": "https://raw.githubusercontent.com/Trustworthy-ML-Lab/Label-free-CBM/main/README.md",
+    "http_status": 200,
+    "bytes": 3630,
+    "local_path": "agents/10_llm_semantics/sources/lfcbm_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "clip_paper",
+    "url": "https://raw.githubusercontent.com/mlresearch/v139/gh-pages/radford21a/radford21a.pdf",
+    "http_status": 200,
+    "bytes": 3526772,
+    "local_path": "agents/10_llm_semantics/sources/clip_paper.pdf",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "blip_paper",
+    "url": "https://raw.githubusercontent.com/mlresearch/v162/gh-pages/li22n/li22n.pdf",
+    "http_status": 200,
+    "bytes": 1235427,
+    "local_path": "agents/10_llm_semantics/sources/blip_paper.pdf",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "blip2_paper",
+    "url": "https://raw.githubusercontent.com/mlresearch/v202/gh-pages/li23q/li23q.pdf",
+    "http_status": 200,
+    "bytes": 6663910,
+    "local_path": "agents/10_llm_semantics/sources/blip2_paper.pdf",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "cbm_paper",
+    "url": "https://raw.githubusercontent.com/mlresearch/v119/gh-pages/koh20a/koh20a.pdf",
+    "http_status": 200,
+    "bytes": 6106178,
+    "local_path": "agents/10_llm_semantics/sources/cbm_paper.pdf",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "jain_readme",
+    "url": "https://raw.githubusercontent.com/HuthLab/deep-fMRI/master/README.md",
+    "error": "HTTP Error 404: Not Found",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "caucheteux_readme",
+    "url": "https://raw.githubusercontent.com/facebookresearch/brain-score/main/README.md",
+    "error": "HTTP Error 404: Not Found",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "jerry_home",
+    "url": "https://raw.githubusercontent.com/jerry-tang/jerry-tang.github.io/master/index.html",
+    "error": "HTTP Error 404: Not Found",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "clip_code",
+    "url": "https://raw.githubusercontent.com/openai/CLIP/main/clip/model.py",
+    "http_status": 200,
+    "bytes": 17374,
+    "local_path": "agents/10_llm_semantics/sources/clip_code.py",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "blip2_code",
+    "url": "https://raw.githubusercontent.com/salesforce/LAVIS/main/lavis/models/blip2_models/blip2.py",
+    "http_status": 200,
+    "bytes": 11260,
+    "local_path": "agents/10_llm_semantics/sources/blip2_code.py",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "lfcbm_code",
+    "url": "https://raw.githubusercontent.com/Trustworthy-ML-Lab/Label-free-CBM/main/train_cbm.py",
+    "http_status": 200,
+    "bytes": 11495,
+    "local_path": "agents/10_llm_semantics/sources/lfcbm_code.py",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "semantic_code",
+    "url": "https://raw.githubusercontent.com/HuthLab/semantic-decoding/main/decoding/train_EM.py",
+    "http_status": 200,
+    "bytes": 2903,
+    "local_path": "agents/10_llm_semantics/sources/semantic_code.py",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "scaling_features",
+    "url": "https://raw.githubusercontent.com/HuthLab/encoding-model-scaling-laws/main/feature_extraction.py",
+    "error": "HTTP Error 404: Not Found",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "semantic_repo_page",
+    "url": "https://github.com/HuthLab/semantic-decoding",
+    "http_status": 200,
+    "bytes": 198917,
+    "local_path": "agents/10_llm_semantics/sources/semantic_repo_page.html",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "semantic_dataset_description",
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds004510/master/dataset_description.json",
+    "http_status": 200,
+    "bytes": 503,
+    "local_path": "agents/10_llm_semantics/sources/semantic_dataset_description.json",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "jerry_home_main",
+    "url": "https://raw.githubusercontent.com/jerry-tang/jerry-tang.github.io/main/index.html",
+    "error": "HTTP Error 404: Not Found",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "lfcbm_paper",
+    "url": "https://raw.githubusercontent.com/Trustworthy-ML-Lab/Label-free-CBM/main/paper.pdf",
+    "error": "HTTP Error 404: Not Found",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "neural_code",
+    "url": "https://raw.githubusercontent.com/mschrimpf/neural-nlp/master/neural_nlp/benchmarks/neural.py",
+    "http_status": 200,
+    "bytes": 44544,
+    "local_path": "agents/10_llm_semantics/sources/neural_code.py",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "scaling_repo_page",
+    "url": "https://github.com/HuthLab/encoding-model-scaling-laws",
+    "http_status": 200,
+    "bytes": 225322,
+    "local_path": "agents/10_llm_semantics/sources/scaling_repo_page.html",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "semantic_dataset_readme",
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds004510/master/README",
+    "http_status": 200,
+    "bytes": 632,
+    "local_path": "agents/10_llm_semantics/sources/semantic_dataset_readme.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "scaling_notebook",
+    "url": "https://raw.githubusercontent.com/HuthLab/encoding-model-scaling-laws/main/Scaling_Law_Tutorial.ipynb",
+    "http_status": 200,
+    "bytes": 8426474,
+    "local_path": "agents/10_llm_semantics/sources/scaling_notebook.ipynb",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "blip2_project",
+    "url": "https://raw.githubusercontent.com/salesforce/LAVIS/main/projects/blip2/README.md",
+    "http_status": 200,
+    "bytes": 7629,
+    "local_path": "agents/10_llm_semantics/sources/blip2_project.md",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "source_id": "llava_model_code",
+    "url": "https://raw.githubusercontent.com/haotian-liu/LLaVA/main/llava/model/llava_arch.py",
+    "http_status": 200,
+    "bytes": 18110,
+    "local_path": "agents/10_llm_semantics/sources/llava_model_code.py",
+    "verified_on": "2026-11-12"
+  }
+]

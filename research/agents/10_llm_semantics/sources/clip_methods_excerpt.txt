@@ -1,0 +1,242 @@
+PAGE 2
+                                   Learning Transferable Visual Models From Natural Language Supervision
+
+(1) Contrastive pre-training                                                        (2) Create dataset classiﬁer from label text
+
+                                                                                      plane
+
+                                                                                       car
+  Pepper
+   Pepper the
+           the
+    Pepper
+  aussie    the
+          pup              Text                                                                       A photo of             Text
+     Pepper
+   aussie    the
+           pup                                                                         dog
+    aussie               Encoder
+     aussie pup
+             pup                                                        …                             a {object}.          Encoder
+                                                                                        ⋮      ⋮                                                                …
+                                                 T1      T2      T3     …    TN
+                                                                                      bird
+
+                                           I1   I1·T1   I1·T2   I1·T3   …   I1·TN
+                                                                                    (3) Use for zero-shot prediction
+                                           I2   I2·T1   I2·T2   I2·T3   …   I2·TN                                                        T1      T2      T3     …    TN
+
+                          Image            I3   I3·T1   I3·T2   I3·T3   …   I3·TN
+                         Encoder                                                                                 Image             I1   I1·T1   I1·T2   I1·T3   …   I1·TN
+                                                                                                                Encoder
+                                       ⋮   ⋮      ⋮       ⋮       ⋮     ⋱     ⋮
+
+
+                                           IN   IN·T1   IN·T2   IN·T3       IN·TN                                                                  A photo of
+                                                                        …
+                                                                                                                                                      a dog.
+
+
+
+Figure 1. Summary of our approach. While standard image models jointly train an image feature extractor and a linear classifier to predict
+some label, CLIP jointly trains an image encoder and a text encoder to predict the correct pairings of a batch of (image, text) training
+examples. At test time the learned text encoder synthesizes a zero-shot linear classifier by embedding the names or descriptions of the
+target dataset’s classes.
+
+
+
+CLIP learns to perform a wide set of tasks during pre-                               large quantities of data of this form available publicly on
+training including OCR, geo-localization, action recogni-                            the internet. To test this we constructed a new dataset of
+tion, and outperforms the best publicly available ImageNet                           400 million (image, text) pairs collected form a variety of
+model while being more computationally efficient. We also                            publicly available sources on the Internet. To attempt to
+find that zero-shot CLIP models are much more robust than                            cover as broad a set of visual concepts as possible, we
+equivalent accuracy supervised ImageNet models.                                      search for (image, text) pairs as part of the construction
+                                                                                     process whose text includes one of a set of 500,000 queries.
+2. Approach                                                                          We approximately class balance the results by including
+                                                                                     up to 20,000 (image, text) pairs per query. The resulting
+At the core of our work is the idea of learning perception                           dataset has a similar total word count as the WebText dataset
+from the supervision contained in natural language paired                            used to train GPT-2. We refer to this dataset as WIT for
+with images. In the following subsections we detail our                              WebImageText. 1
+specific approach.
+                                                                                     2.2. Selecting an Efficient Pre-Training Method
+2.1. Creating a Sufficiently Large Dataset
+                                                                                     Our initial approach, similar to VirTex, jointly trained an
+Existing work has mainly used three datasets, MS-COCO                                image CNN and text transformer from scratch to predict
+(Lin et al., 2014), Visual Genome (Krishna et al., 2017), and                        the caption of an image. However, we encountered difficul-
+YFCC100M (Thomee et al., 2016). While MS-COCO and                                    ties efficiently scaling this method. In Figure 2 we show
+Visual Genome are high quality crowd-labeled datasets, they                          that a 63 million parameter transformer language model,
+are small by modern standards with approximately 100,000                             which already uses twice the compute of its ResNet50 im-
+training photos each. By comparison, other computer vision                           age encoder, learns to recognize ImageNet classes three
+systems are trained on up to 3.5 billion Instagram photos                            times slower than an approach similar to Joulin et al. (2016)
+(Mahajan et al., 2018). YFCC100M, at 100 million photos,                             that predicts a bag-of-words encoding of the same text.
+is a possible alternative, but the metadata for each image is
+                                                                                     Recent work in contrastive representation learning has found
+sparse and of varying quality. Many images use automati-
+                                                                                     that contrastive objectives can outperform the equivalent
+cally generated filenames like 20160716 113957.JPG
+                                                                                     predictive objective (Tian et al., 2019). Noting this finding,
+as “titles” or contain “descriptions” of camera exposure
+settings. After filtering to keep only images with natural                               1
+                                                                                           The base query list is all words occurring at least 100 times in
+language titles and/or descriptions in English, the dataset                          the English version of Wikipedia. This is augmented with bi-grams
+shrunk by a factor of 6 to only 15 million photos. This is                           with high pointwise mutual information for the pair (Church &
+                                                                                     Hanks, 1990) as well as the names of all Wikipedia articles above a
+approximately the same size as ImageNet.                                             certain search volume. Finally all WordNet (Miller, 1995) synsets
+A major motivation for natural language supervision is the                           not already in the query list are added.
+
+PAGE 3
+                                                          Learning Transferable Visual Models From Natural Language Supervision
+
+                              40
+                                                                                                       # image_encoder - ResNet or Vision Transformer
+                                                                                                       # text_encoder - CBOW or Text Transformer
+                              35
+                                                                                                       # I[n, h, w, c] - minibatch of aligned images
+                                                                                                       # T[n, l]       - minibatch of aligned texts
+Zero-Shot ImageNet Accuracy
+
+
+
+
+                              30
+                                                                                                       # W_i[d_i, d_e] - learned proj of image to embed
+                                                                                                       # W_t[d_t, d_e] - learned proj of text to embed
+                              25
+                                                                                                       # t             - learned temperature parameter
+
+                                                                                                       # extract feature representations of each modality
+                              20
+                                                                                                       I_f = image_encoder(I) #[n, d_i]
+                                         4X efficiency                3X efficiency
+                                                                                                       T_f = text_encoder(T) #[n, d_t]
+                              15
+
+                                                                                                       # joint multimodal embedding [n, d_e]
+                              10
+                                                                                                       I_e = l2_normalize(np.dot(I_f, W_i), axis=1)
+                                                                  Bag of Words Contrastive (CLIP)      T_e = l2_normalize(np.dot(T_f, W_t), axis=1)
+                              5                                   Bag of Words Prediction
+                                                                  Transformer Language Model
+                                                                                                       # scaled pairwise cosine similarities [n, n]
+                              0
+                                   2M 33M 67M        134M                 268M                  400M   logits = np.dot(I_e, T_e.T) * np.exp(t)
+                                                       # of images processed
+                                                                                                       # symmetric loss function
+                                                                                                       labels = np.arange(n)
+Figure 2. CLIP is much more efficient at zero-shot transfer                                            loss_i = cross_entropy_loss(logits, labels, axis=0)
+than our image caption baseline. Although highly expressive,                                           loss_t = cross_entropy_loss(logits, labels, axis=1)
+we found that transformer-based language models are relatively                                         loss   = (loss_i + loss_t)/2
+weak at zero-shot ImageNet classification. Here, we see that it
+learns 3x slower than a baseline which predicts a bag-of-words                                         Figure 3. Numpy-like pseudocode for the core of an implementa-
+(BoW) encoding of the text (Joulin et al., 2016). Swapping the                                         tion of CLIP.
+prediction objective for the contrastive objective of CLIP further
+improves efficiency another 4x.
+
+                                                                                                       We also remove the text transformation function tu which
+we explored training a system to solve the potentially eas-                                            samples a single sentence at uniform from the text since
+ier proxy task of predicting only which text as a whole is                                             many of the (image, text) pairs in CLIP’s pre-training dataset
+paired with which image and not the exact words of that text.                                          are only a single sentence. We also simplify the image trans-
+Starting with the same bag-of-words encoding baseline, we                                              formation function tv . A random square crop from resized
+swapped the predictive objective for a contrastive objective                                           images is the only data augmentation used during training.
+in Figure 2, observed a further 4x efficiency improvement                                              Finally, the temperature parameter which controls the range
+in the rate of zero-shot transfer to ImageNet.                                                         of the logits in the softmax, τ , is directly optimized during
+  Given a batch of N (image, text) pairs, CLIP is trained to                                           training as a log-parameterized multiplicative scalar to avoid
+  predict which of the N × N possible (image, text) pairings                                           turning as a hyper-parameter.
+  across a batch actually occurred. To do this, CLIP learns a
+  multi-modal embedding space by jointly training an image                                             2.3. Choosing and Scaling a Model
+  encoder and text encoder to maximize the cosine similar-
+                                                                                                       We consider two different architectures for the image en-
+  ity of the image and text embeddings of the N real pairs
+                                                                                                       coder. For the first, we use ResNet50 (He et al., 2016a)
+  in the batch while minimizing the cosine similarity of the
+                                                                                                       as the base architecture for the image encoder due to its
+  embeddings of the N 2 − N incorrect pairings. We optimize
+                                                                                                       widespread adoption and proven performance. We make sev-
+  a symmetric cross entropy loss over these similarity scores.
+                                                                                                       eral modifications to the original version using the ResNetD
+  In Figure 3 we include pseudocode for the core of an imple-
+                                                                                                       improvements from He et al. (2019) and the antialiased
+  mentation of CLIP. This batch construction technique and
+                                                                                                       rect-2 blur pooling from Zhang (2019). We also replace
+  objective was first introduced as the multi-class N-pair loss
+                                                                                                       the global average pooling layer with an attention pooling
+  Sohn (2016) and was recently adapted for contrastive (text,
+                                                                                                       mechanism. The attention pooling is implemented as a sin-
+  image) representation learning in the domain of medical
+                                                                                                       gle layer of “transformer-style” multi-head QKV attention
+  imaging by Zhang et al. (2020).
+                                                                                                       where the query is conditioned on the global average-pooled
+Since over-fitting is not a major concern, the details of train-                                       representation of the image. For the second architecture, we
+ing CLIP are simplified compared to Zhang et al. (2020).                                               experiment with the recently introduced Vision Transformer
+We train CLIP from scratch instead of initializing with pre-                                           (ViT) (Dosovitskiy et al., 2020). We closely follow their
+trained weights. We remove the non-linear projection be-                                               implementation with only the minor modification of adding
+tween the representation and the contrastive embedding                                                 an additional layer normalization to the combined patch
+space. We use only a linear projection to map from each en-                                            and position embeddings before the transformer and use a
+coder’s representation to the multi-modal embedding space.                                             slightly different initialization scheme.
+
+PAGE 4
+                          Learning Transferable Visual Models From Natural Language Supervision
+
+The text encoder is a Transformer (Vaswani et al., 2017)
+with the architecture modifications described in Radford                                   aYahoo     ImageNet      SUN
+et al. (2019). As a base size we use a 12-layer 512-wide
+                                                                     Visual N-Grams         72.4         11.5        23.0
+model with 8 attention heads. The transformer operates on a
+                                                                     CLIP                   98.4         76.2        58.5
+lower-cased byte pair encoding (BPE) representation of the
+text (Sennrich et al., 2015). The text sequence is bracketed
+                                                                Table 1. Comparing CLIP to prior zero-shot transfer image classi-
+with [SOS] and [EOS] tokens and the activations of the          fication work. CLIP improves performance on all three datasets by
+highest layer of the transformer at the [EOS] token are         a large amount. This improvement reflects many differences since
+used as the feature representation of the text which is layer   the development of Visual N-Grams (Li et al., 2017).
+normalized and then linearly projected into the multi-modal
+embedding space. Masked self-attention was used in the text
+encoder to preserve the ability to add language modeling as
+an auxiliary objective, though exploration of this is left as
+future work.                                                    this as a way of measuring the task learning capability of a
+                                                                system (as opposed to its representation learning capability).
+While previous computer vision research has often scaled        For each dataset, we use the names of all the classes in the
+models by increasing the width (Mahajan et al., 2018) or        dataset as the set of potential text pairings and predict the
+depth (He et al., 2016a) in isolation, for the ResNet image     most probable (image, text) pair according to CLIP. We addi-
+encoders we adapt the approach of Tan & Le (2019) which         tionally experiment with providing CLIP with text prompts
+found that allocating additional compute across all of width,   to help specify the task as well as ensembling multiple of
+depth, and resolution outperforms allocating it to only one     these templates in order to boost performance. However,
+dimension. We use a simple variant which allocates addi-        since the vast majority of unsupervised and self-supervised
+tional compute equally to increasing the width, depth, and      computer vision research focuses on representation learning,
+resolution of the model. For the text encoder, we only scale    we also investigate this for CLIP using the common linear
+the width of the model to be proportional to the calculated     probe protocol.
+increase in width of the ResNet and do not scale the depth
+at all, as we found CLIP’s performance to be less sensitive
+to the text encoder.                                            3. Analysis
+                                                                3.1. Initial Comparison to Visual N-Grams
+2.4. Pre-training
+                                                                To our knowledge, Visual N-Grams (Li et al., 2017) first
+We train a series of 5 ResNets and 3 Vision Transformers.       studied zero-shot transfer to existing image classification
+For the ResNets we train a ResNet50, a ResNet101, and           datasets in the manner described above. It is also the only
+then 3 more which follow EfficientNet-style model scaling       other work we are aware of that has studied zero-shot trans-
+and use approximately 4x, 16x, and 64x the compute of a         fer to standard image classification datasets using a task
+ResNet50. They are denoted as RN50x4, RN50x16, and              agnostic pre-trained model. In Table 1 we compare Visual
+RN50x64 respectively. For the Vision Transformers we            N-Grams to CLIP. The best CLIP model improves accuracy
+train a ViT-B/32, a ViT-B/16, and a ViT-L/14. The largest       on ImageNet from a proof of concept 11.5% to 76.2% and
+ResNet model, RN50x64, took 18 days to train on 592 V100        matches the performance of the original ResNet50 despite
+GPUs while the largest Vision Transformer took 12 days on       using none of the 1.28 million crowd-labeled training exam-
+256 V100 GPUs. For the ViT-L/14 we also pre-train at a          ples. Additionally, the top-5 accuracy of CLIP models are
+higher 336 pixel resolution for one additional epoch to boost   noticeably higher and this model has a 95% top-5 accuracy,
+performance similar to FixRes (Touvron et al., 2019). We        matching Inception-V4 (Szegedy et al., 2016). The abil-
+denote this model as ViT-L/14@336px. Unless otherwise           ity to match the performance of a strong, fully supervised
+specified, all results reported in this paper as “CLIP” use     baseline in a zero-shot setting suggests CLIP is a signifi-
+this model which we found to perform best. Full model           cant step towards flexible and practical zero-shot computer
+hyperparameters and details are in supplementary material.      vision classifiers. This comparison is not direct because
+                                                                many differences between CLIP and Visual N-Grams were
+2.5. Using CLIP                                                 not controlled for. As a closer comparison, we trained a
+                                                                CLIP ResNet50 on the same YFCC100M dataset that Vi-
+CLIP is pre-trained to predict if an image and a text snip-
+                                                                sual N-Grams was trained on and found it matched their
+pet are paired together in WIT. To apply CLIP to down-
+                                                                reported ImageNet performance within a V100 GPU day.
+stream tasks, we reuse this capability and study the zero-
+                                                                This baseline was also trained from scratch instead of being
+shot transfer performance of CLIP on standard computer
+                                                                initialized from pre-trained ImageNet weights as in Visual
+vision datasets. Similar to Radford et al. (2019) we motivate
+                                                                N-Grams.

@@ -1,0 +1,282 @@
+[
+  {
+    "id": "emopathway_search",
+    "url": "https://github.com/search?q=EmoPathway&type=repositories",
+    "status": 200,
+    "bytes": 132960,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/emopathway_search.html",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "prednet_readme",
+    "url": "https://raw.githubusercontent.com/coxlab/prednet/master/README.md",
+    "status": 200,
+    "bytes": 4223,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/prednet_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "cornet_readme",
+    "url": "https://raw.githubusercontent.com/dicarlolab/CORnet/master/README.md",
+    "status": 200,
+    "bytes": 10632,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/cornet_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "eprop_readme",
+    "url": "https://raw.githubusercontent.com/IGITUGraz/eligibility_propagation/master/README.md",
+    "status": 200,
+    "bytes": 2911,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/eprop_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "spytorch_readme",
+    "url": "https://raw.githubusercontent.com/fzenke/spytorch/main/README.md",
+    "status": 200,
+    "bytes": 1151,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spytorch_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "equilibrium_readme",
+    "url": "https://raw.githubusercontent.com/bscellier/Equilibrium-Propagation/master/README.md",
+    "status": 404,
+    "bytes": 14,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/equilibrium_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "vmoe_readme",
+    "url": "https://raw.githubusercontent.com/google-research/vmoe/main/README.md",
+    "status": 200,
+    "bytes": 3553,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/vmoe_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "spikformer_readme",
+    "url": "https://raw.githubusercontent.com/ZK-Zhou/spikformer/main/README.md",
+    "status": 200,
+    "bytes": 2148,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spikformer_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "switch_jmlr",
+    "url": "https://jmlr.org/papers/v23/21-0998.html",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "id": "rao_nature",
+    "url": "https://www.nature.com/articles/nn0199_79",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "id": "search_equilibrium",
+    "url": "https://github.com/search?q=equilibrium+propagation+bscellier&type=repositories",
+    "status": 200,
+    "bytes": 133390,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/search_equilibrium.html",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "search_predictive",
+    "url": "https://github.com/search?q=predictive+coding+Millidge&type=repositories",
+    "status": 200,
+    "bytes": 133264,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/search_predictive.html",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "search_emopathway_variant",
+    "url": "https://github.com/search?q=%22Emo+Pathway%22&type=repositories",
+    "status": 200,
+    "bytes": 161939,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/search_emopathway_variant.html",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "spikev2_readme",
+    "url": "https://raw.githubusercontent.com/BICLab/Spike-driven-Transformer-V2/main/README.md",
+    "status": 200,
+    "bytes": 5472,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spikev2_readme.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "switch_mlresearch",
+    "url": "https://raw.githubusercontent.com/mlresearch/v23/gh-pages/_posts/2022-01-01-21-0998.md",
+    "status": 404,
+    "bytes": 14,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/switch_mlresearch.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "mlresearch_repo",
+    "url": "https://github.com/mlresearch/v23",
+    "status": 503,
+    "bytes": 100,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/mlresearch_repo.txt",
+    "content_type": "text/plain"
+  },
+  {
+    "id": "prednet_code",
+    "url": "https://raw.githubusercontent.com/coxlab/prednet/master/prednet.py",
+    "status": 200,
+    "bytes": 16959,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/prednet_code.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "cornet_code",
+    "url": "https://raw.githubusercontent.com/dicarlolab/CORnet/master/cornet/cornet_s.py",
+    "status": 200,
+    "bytes": 4155,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/cornet_code.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "vmoe_code",
+    "url": "https://raw.githubusercontent.com/google-research/vmoe/main/vmoe/nn/routing.py",
+    "status": 200,
+    "bytes": 11480,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/vmoe_code.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "spikformer_code",
+    "url": "https://raw.githubusercontent.com/ZK-Zhou/spikformer/main/imagenet/model.py",
+    "status": 200,
+    "bytes": 11239,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spikformer_code.txt",
+    "content_type": "text/plain; charset=utf-8"
+  },
+  {
+    "id": "pcbackprop_readme",
+    "url": "https://raw.githubusercontent.com/BerenMillidge/PredictiveCodingBackprop/master/README.md",
+    "status": 200,
+    "bytes": 1250,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/pcbackprop_readme.txt"
+  },
+  {
+    "id": "equilibrium2_readme",
+    "url": "https://raw.githubusercontent.com/bscellier/EquilibriumPropagation/master/README.md",
+    "status": 404,
+    "bytes": 14,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/equilibrium2_readme.txt"
+  },
+  {
+    "id": "equilibrium3_readme",
+    "url": "https://raw.githubusercontent.com/bscellier/Equilibrium-Propagation/main/README.md",
+    "status": 404,
+    "bytes": 14,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/equilibrium3_readme.txt"
+  },
+  {
+    "id": "switch_mesh_readme",
+    "url": "https://raw.githubusercontent.com/tensorflow/mesh/master/README.md",
+    "status": 200,
+    "bytes": 21577,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/switch_mesh_readme.txt"
+  },
+  {
+    "id": "search_eqprop",
+    "url": "https://github.com/search?q=equilibrium-propagation&type=repositories",
+    "status": 200,
+    "bytes": 218205,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/search_eqprop.html"
+  },
+  {
+    "id": "spikev2_code",
+    "url": "https://raw.githubusercontent.com/BICLab/Spike-driven-Transformer-V2/main/classification/models.py",
+    "status": 200,
+    "bytes": 17936,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spikev2_code.txt"
+  },
+  {
+    "id": "holomorphic_readme",
+    "url": "https://raw.githubusercontent.com/Laborieux-Axel/holomorphic_eqprop/main/README.md",
+    "status": 200,
+    "bytes": 3376,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/holomorphic_readme.txt"
+  },
+  {
+    "id": "holomorphic_repo",
+    "url": "https://github.com/Laborieux-Axel/holomorphic_eqprop",
+    "status": 200,
+    "bytes": 248219,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/holomorphic_repo.html"
+  },
+  {
+    "id": "eprop_code",
+    "url": "https://raw.githubusercontent.com/IGITUGraz/eligibility_propagation/master/numerical_verification_eprop_factorization_vs_BPTT.py",
+    "status": 200,
+    "bytes": 6292,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/eprop_code.txt"
+  },
+  {
+    "id": "pcbackprop_code",
+    "url": "https://raw.githubusercontent.com/BerenMillidge/PredictiveCodingBackprop/master/cnn.py",
+    "status": 200,
+    "bytes": 13390,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/pcbackprop_code.txt"
+  },
+  {
+    "id": "spytorch_notebook",
+    "url": "https://raw.githubusercontent.com/fzenke/spytorch/main/notebooks/SpyTorchTutorial1.ipynb",
+    "status": 200,
+    "bytes": 584647,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spytorch_notebook.txt"
+  },
+  {
+    "id": "prednet_paper_repo",
+    "url": "https://github.com/coxlab/prednet",
+    "status": 200,
+    "bytes": 247051,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/prednet_paper_repo.html"
+  },
+  {
+    "id": "eprop_repo",
+    "url": "https://github.com/IGITUGraz/eligibility_propagation",
+    "status": 200,
+    "bytes": 221059,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/eprop_repo.html"
+  },
+  {
+    "id": "vmoe_repo",
+    "url": "https://github.com/google-research/vmoe",
+    "status": 200,
+    "bytes": 216967,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/vmoe_repo.html"
+  },
+  {
+    "id": "eprop_tutorial",
+    "url": "https://raw.githubusercontent.com/IGITUGraz/eligibility_propagation/master/Figure_3_and_S7_e_prop_tutorials/tutorial_evidence_accumulation_with_alif.py",
+    "status": 200,
+    "bytes": 17992,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/eprop_tutorial.txt"
+  },
+  {
+    "id": "prednet_train",
+    "url": "https://raw.githubusercontent.com/coxlab/prednet/master/kitti_train.py",
+    "status": 200,
+    "bytes": 3525,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/prednet_train.txt"
+  },
+  {
+    "id": "spikformer_train",
+    "url": "https://raw.githubusercontent.com/ZK-Zhou/spikformer/main/imagenet/train.py",
+    "status": 200,
+    "bytes": 39127,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spikformer_train.txt"
+  },
+  {
+    "id": "spikev2_train",
+    "url": "https://raw.githubusercontent.com/BICLab/Spike-driven-Transformer-V2/main/classification/main_finetune.py",
+    "status": 200,
+    "bytes": 18912,
+    "path": "/workspace/Affective-Research-Exploration/agents/11_brain_inspired/sources/spikev2_train.txt"
+  }
+]

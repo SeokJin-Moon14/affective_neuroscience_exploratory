@@ -1,0 +1,13 @@
+[
+  {
+    "name": "snoek_pubs",
+    "url": "https://raw.githubusercontent.com/lukassnoek/lukassnoek.github.io/master/_pages/publications.md",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "snoek_research",
+    "url": "https://raw.githubusercontent.com/lukassnoek/lukassnoek.github.io/master/_pages/research.md",
+    "status": 200,
+    "bytes": 2242
+  }
+]

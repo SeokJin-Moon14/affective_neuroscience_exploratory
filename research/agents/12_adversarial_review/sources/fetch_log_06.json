@@ -1,0 +1,24 @@
+[
+  {
+    "name": "schutt_xml",
+    "url": "https://raw.githubusercontent.com/elifesciences/elife-article-xml/master/articles/elife-82566-v1.xml",
+    "status": 200,
+    "bytes": 400548
+  },
+  {
+    "name": "schutt_xml2",
+    "url": "https://raw.githubusercontent.com/elifesciences/elife-article-xml/master/articles/elife-82566-v2.xml",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "confound_poster",
+    "url": "https://github.com/lukassnoek/MVCA/tree/master/poster",
+    "status": 200,
+    "bytes": 193690
+  },
+  {
+    "name": "domainbed_cite",
+    "url": "https://raw.githubusercontent.com/facebookresearch/DomainBed/main/CITATION.cff",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

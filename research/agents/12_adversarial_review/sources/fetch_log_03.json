@@ -1,0 +1,67 @@
+[
+  {
+    "name": "rsa_cite",
+    "url": "https://raw.githubusercontent.com/rsagroup/rsatoolbox/main/CITATION.cff",
+    "status": 200,
+    "bytes": 1820
+  },
+  {
+    "name": "rsa_model_readme",
+    "url": "https://raw.githubusercontent.com/rsagroup/rsaModelComparison/master/README.md",
+    "status": 200,
+    "bytes": 2800
+  },
+  {
+    "name": "rsa_matlab_readme",
+    "url": "https://raw.githubusercontent.com/rsagroup/rsatoolbox_matlab/master/README.md",
+    "status": 200,
+    "bytes": 71
+  },
+  {
+    "name": "rsa_docs_index",
+    "url": "https://raw.githubusercontent.com/rsagroup/rsatoolbox/main/docs/source/index.rst",
+    "status": 200,
+    "bytes": 1015
+  },
+  {
+    "name": "varoq_repo",
+    "url": "https://github.com/gaelvaroquaux/cross_validation_failure",
+    "status": 200,
+    "bytes": 207962
+  },
+  {
+    "name": "varoq_site",
+    "url": "https://github.com/gaelvaroquaux/gaelvaroquaux.github.io",
+    "status": 200,
+    "bytes": 273313
+  },
+  {
+    "name": "confounds_code",
+    "url": "https://raw.githubusercontent.com/lukassnoek/MVCA/master/analyses/confounds.py",
+    "status": 200,
+    "bytes": 5376
+  },
+  {
+    "name": "confound_repo",
+    "url": "https://github.com/lukassnoek/MVCA",
+    "status": 200,
+    "bytes": 228357
+  },
+  {
+    "name": "locatello_meta",
+    "url": "https://raw.githubusercontent.com/mlresearch/v97/gh-pages/_posts/2019-05-24-locatello19a.md",
+    "status": 200,
+    "bytes": 3013
+  },
+  {
+    "name": "locatello_pdf",
+    "url": "https://raw.githubusercontent.com/mlresearch/v97/gh-pages/locatello19a/locatello19a.pdf",
+    "status": 200,
+    "bytes": 1143382
+  },
+  {
+    "name": "leakage_repo",
+    "url": "https://github.com/pni-lab/ConfoundLeakage",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

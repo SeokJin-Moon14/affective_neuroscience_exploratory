@@ -1,0 +1,170 @@
+                                     A universal method of controlling for confounds in MVPA
+                                                                             Steven Miletić, Lukas Snoek, & H. Steven Scholte
+                                                                                        University of Amsterdam
+
+
+                                       Introduction                                                                                                                                                            What’s going on?
+• Contrary to mass-univariate analyses, where                                                              Let’s simplify the                                                 After regressing out c                                                                         Due to random
+  confounds are often controlled for, it is                                Brain size                      problem and suppose                                                from X, correlation                                                           c                sampling, it may be
+  unclear how to handle confounds in MVPA1,2                                                               y = c; thus: ρ(y, c) = 1                                           ρ(X, y) = 0                                                                                    that:
+                                                                               c
+
+
+
+
+                                                                                                                                                                                                                                                             ρ=
+                                                                                                                                                                                                                                                       0
+                                                                                                                                                                                                                                                      ρ>
+
+
+                                                                                                                                                                                                                                                                 0
+• This poses a serious threat to the
+                                                                                                                                                                                                                                                   X       ρ>0
+                                                                                                                                                                                                                                                                     y            ρ(Xtrain, ytrain) > 0
+  generalizability of MVPA results in both                                                                                                c                                                             c                                              train set             but, because
+  clinical and fundamental research - especially
+                                                                                                                                                                                                                                                            c
+
+
+
+
+                                                                                                                                            ρ=
+
+
+
+
+                                                                                                                                                                                                           ρ=
+                                                                                                                                                                                             0
+                                                                                                                                   ?
+  because MVPA is arguably more sensitive to                                                                                                                                                                                                                                       ρ(Xfull, yfull) = 0
+
+
+
+
+                                                                                                                             ρ=
+
+
+
+
+                                                                                                                                                                                          ρ=
+                                                                                                                                                 1
+
+
+
+
+                                                                                                                                                                                                               1
+                                                                                                                                                           y                                                                y
+
+
+
+
+                                                                       )
+
+
+                                                                                         ρ(c
+                                                                                                                X                         ρ=?
+                                                                                                                                                                                   X                ρ=0
+
+
+
+
+                                                                     ,c
+  confounds3                                                                                                                                                                                                                                                                 often:
+
+
+
+
+                                                                  ρ(X
+
+
+
+
+                                                                                                                                                                                                                                                             ρ=
+                                                                                            ,y
+
+
+
+
+                                                                                                                                                                                                                                                       0
+                                                                                                                                                                                                                                                      ρ<
+• Here, we show how a previously proposed1
+
+
+
+
+                                                                                              )
+
+
+
+
+                                                                                                                                                                                                                                                                 0
+                                                                                                                                                                                                                                                                                   ρ(Xtest, ytest) < 0
+  method of dealing with confounds (“confound                                                                                                                                                                                                      X       ρ<0
+                                                                                                                                                                                                                                                                     y
+  regression”) leads to bias and causes below-
+  chance accuracy4
+                                                         X                  ρ(X, y)
+                                                                                                    y                                                                                                                                                   test set
+                                                                                                                       0.6
+
+• We introduce a universal and unbiased                                                                                                                                                                                                         Simulations5 show how the strength of the bias
+                                                   VBM/TBSS                                       Gender                                                                                                               ρ(confound, y)
+                                                                                                                                                                                                                                                depends on:
+
+
+
+
+                                                                                                            F1-score
+  method of dealing with confounds in MVPA
+                                                                                                                       0.4                                                                                                          0.1
+                                                                                                                                                                                                                                    0.2
+
+                                                                                                                       0.2
+                                                                                                                                                                                                                                    0.3
+                                                                                                                                                                                                                                    0.4
+                                                                                                                                                                                                                                                • the number of independent variables
+                                                                                                                                                                                                                                    0.5
+                                                                                                                                                                                                                                    0.6         • the correlation coefficient between the
+                                                                                                                                                                                                                                                  confound and y
+                                                                                                                       0.0
+                                                                                                                                                                                                                                    0.7
+                                                                                                                                     10         25         100         250         1000          2500       10000
+                                                                                                                                            Number of independent variables
+                                 What’s the problem?
+Following the example to predict gender (y) from VBM and TBSS-data (X) in the face of the
+“confound” brain size (c)...
+                                                                                                                                                                       Solution                                                                                          Conclusion
+We know that brain size truly confounds            So, ρ(X, y)uncorrected is biased...                     The problem can easily be solved by regressing out                                                                                               • Confound regression introduces
+ρ(c, y)...2                                                                                                c from X within each fold! In simulations without a                                                                                                bias in cross-validated MVPA
+                                                                                                           correlation ρ(X, y)...                                                                                                                             pipelines4, especially when many
+                                                                                                                                   1.00                                                                                                                       voxels are used
+                                                                                                                                                                                                                                ρ(confound, y)
+                                                                                                                                   0.75
+                                                                                                                                                                                                                                                            • Regressing out confounds foldwise
+
+                                                                                                                        F1-score
+                                                                                                                                                                                                                                          0.1
+                                                                                                                                                                                                                                          0.2
+                                                                                                                                                                                                                                                              is a universal and easy method,
+                                                                                                                                   0.50
+                                                                                                                                                                                                                                          0.3
+                                                                                                                                   0.25                                                                                                   0.4
+
+                                                                                                                                   0.00
+                                                                                                                                                                                                                                          0.5
+                                                                                                                                                                                                                                          0.6
+                                                                                                                                                                                                                                                              improving the generalizability of
+                                                                                                                                                                                                                                                              MVPA results
+                                                                                                                                           10         25         100         250          1000          2500        10000
+                                                                                                                                                                                                                                          0.7
+                                                                                                                                                     Number of independent variables
+
+…and is related to our data...                     Yet, ρ(X, y)corrected < chance (50%)                    ...and in our empirical example, where there is a
+                                                                                                           relation, ρ(X, y)corrected foldwise
+                                                                                                                                                                                                                                                                           References
+                                                                                                                                                                                                                                                            1 Todd et al., NeuroImage, 2013
+                                                                                                                                                                                                                                                            2 Woolgar et al., NeuroImage, 2014
+                                                                                                                                                                                                                                                            3 Naselaris & Kay, TICS, 2015
+                                                                                                                                                                                                                                                            4 Hebart & Baker, Arxiv, 2017
+                                                                                                                                                                                                                                                            5 github.com/lukassnoek/MVCA
+

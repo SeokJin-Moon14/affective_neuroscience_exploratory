@@ -145,7 +145,7 @@
       "Structure / Dynamics"
     ],
     "scientific_construct": "사전 정의한 자극모형 S에 신경 문맥 N을 추가할 때, 독립 반복 간에 전달되는 A 관련 신경 대비의 예측 이득이 같은 반복 잡음 공유와 구별되는가?",
-    "external_field_concept": "조건부 예측과 정보원 비교; 자극으로 설명되는 변동과 과거 신경으로 설명되는 변동을 같은 test에서 경쟁",
+    "external_field_concept": "조건부 예측과 정보원 비교; 자극 설명과 독립 반복의 동시 신경 문맥을 같은 test에서 경쟁. 과거→미래 관측 분기는 별도로 구분",
     "ai_model_or_method": "TRIBE v2의 video/audio/text→평균 fsaverage5 피질 출력을 target 공간에 맞추고 train-only 개인 보정을 적용한다. CortexMAE/Brain-JEPA latent를 사용한 N→Y head는 별도 구현이다. masking을 normalization·smoothing·tokenization보다 앞에 적용하며 pretrained 모델이 그 mask를 처리하는지 단위 실행 검증을 요구한다. 미지원이면 masked raw-context ridge로 축소한다.",
     "neural_target": "공통 피질 mask의 target 공간 블록 Y와 독립 A 가중 신경 대비. 우선 동시 공간완성으로 한정하며 과거 예측은 별도 후속 가지다.",
     "available_dataset": {
@@ -533,7 +533,7 @@
       "Structure / Dynamics"
     ],
     "scientific_construct": "같은 현재 probe에 도달하는 과거 순서·지연을 교차했을 때, prefix-only 상태 모형은 명시적 자극이력+HRF 모형과 다른 독립 정서 신경 대비를 예측하는가?",
-    "external_field_concept": "모형 불일치와 능동 설계; 기존 관측에서 동등한 모형의 차이가 가장 큰 안전한 자극 대비를 찾음",
+    "external_field_concept": "모형 불일치와 후속 관측; 이력 상태와 HRF 설명이 복수 후속 사건의 반응에 서로 다른 예측을 하는 대비를 찾음",
     "ai_model_or_method": "정해진 표적·자극분포에서 예측위험 차이의 CI가 사전 허용오차 안에 있는 현재내용/상태 모델을 발견자료로 선정한다. 이는 국소적 위험동등성이다. 과거 전체+HRF 계열을 넣고 별도 자극에서 최소 pairwise 예측차이가 큰 대비를 선택한다.",
     "neural_target": "동일/근접 현재 내용에서 선행 이력과 가능한 후속 상태에 따른 독립 정서주석 관련 neural contrast; 현재 BOLD 평균과 후속 구간을 사전 분리",
     "available_dataset": "보유 Emo-FilM은 기존 자연 자료에서 두 모델의 동등성과 자연적 이력 대비를 찾는 경로다. 동일 현재내용/다른 이력의 식별 가능한 대비가 없으면 새로운 통제 영상 제시·신경 측정이 필요한 제안으로 보존한다. Spacetop clip 후 평정을 영상 내 연속 궤적으로 사용하지 않는다. Horikawa는 기존 visual schema 기준과 비교하는 정적 가지로 제한한다.",

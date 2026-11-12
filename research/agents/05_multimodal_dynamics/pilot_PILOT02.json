@@ -20,8 +20,8 @@
       "https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json"
     ],
     "actual_known": "외부 consensus14영화/50열/1Hz, Fear high/low 정의 및 annotation StartTime=0, fMRI30명/주석44명은 기존 감사 범위다. 실제 TR·coverage·척도·반복은 아직 확인하지 않았다.",
-    "planned_subset": "단계A: QC로 선택한1영화의 warm-up 이후 유효120TR로 shape/timebase/exact-control만 확인. 단계B: valid onset·stimulus·Fear 존재를 기준으로 최대6영화×8참가자; 먼저 coverage가 넓은 영화, 동률이면 film ID, 참가자는 coverage 후 ID로 선정한다. Y–Fear 상관·모델 성능으로 선정하지 않는다. 관측된 participant×film 셀만 사용하고 없는 셀을 만들지 않는다.",
-    "minimum_support": "6영화 중 outer test1·inner validation1·train4의 구조가 불가능하면 단계A/합성복구까지만 수행한다. 참가자는 해당 fold train/dev/test가 실제 있는 경우만 포함한다. 검정력 부족은 더 큰 모델보다 데이터/관측계약 문제로 보고한다.",
+    "planned_subset": "단계A: QC로 선택한1영화의 warm-up 이후 유효120TR로 shape/timebase/exact-control만 확인. 단계B: valid onset·stimulus·Fear 존재를 기준으로 최대6영화×8참가자; 먼저 coverage가 넓은 영화, 동률이면 film ID, 참가자는 coverage 후 ID로 선정한다. Y–Fear 상관·모델 성능으로 선정하지 않는다. 관측된 participant×film 셀만 사용하고 없는 셀을 만들지 않는다. 단계A는 shape-only로 로그를 남기며, noise/recovery/effect 조정에 사용했다면 execution_contract.fit_scope의 전역개발 제외 규칙을 적용한다.",
+    "minimum_support": "6영화의 test1·validation1·train4 구조와 실제 관측 coverage를 확인한다. S_f 및 공통 TR 마스크는 execution_contract의 규칙으로 고정하고 모든 head에 같은 셀을 쓴다. 빈 셀을 보간하지 않으며 영화 하나의 S_f가 비면6영화 비교를 강행하지 않는다. 조건 미충족 시 계약/합성 검증까지만 수행한다.",
     "new_manifest": "source_path/hash, subject/film/run, scanner_onset_s, TR_s, observed_modality, feature support, time_available_s, b_source/available_s, split를 검증해 만드는 분석계약이다. 실제 원컬럼처럼 가장하지 않는다.",
     "repetition_limit": "동일영화 개인 내 독립반복은 현재 미확인이고 요구된 기본가정이 아니다. 원평정이 있을 때만 평정자분할 신뢰도. 개인 반복 noise ceiling과 참가자 간 일치는 구별한다.",
     "audio": "첫 시간검정은 실제 시각입력으로 가능하다. audio를 추가하려면 음원 존재와 스캐너 내 실제 청각 제시를 별도 확인하며 미제시 오디오는 배제한다. Speech Features는 제외.",
@@ -41,9 +41,9 @@
       "expected_output": "공식 구조상 ViT-B/32 image embedding 512차원을 예상하되 smoke test로 확인; state model이나 audio encoder가 아니다."
     },
     "extraction": "계획은 1Hz 시점 t의 현재 프레임 한 장→ViT-B/32 embedding. decoder/frame sampling이 t 이후 프레임을 고르지 않게 한다. 연속 prefix head가 시간정보를 담당한다. d_X=512를 예상하되 실제 smoke test shape로 계약을 고정한다.",
-    "heads": "train PCA≤32, state64 tanh RNN을 첫 신규 head로 구현할 계획이다. 같은 x_t,b_t로 next-feature MSE 학습; train epochs cap50, validation patience5, seeds[0,1,2]를 초기 제한으로 둔다. 모든 후보의 동일예산 검토 후 test 전 동결한다. h0/rho 선택은 inner split만. checkpoint는 새로 학습할 예정이며 현재 존재하지 않는다.",
+    "heads": "train PCA≤32, state64 tanh RNN을 첫 신규 head로 구현할 계획이다. 같은 x_t,b_t로 next-feature MSE 학습; train epochs cap50, validation patience5, seeds[0,1,2]를 초기 제한으로 둔다. 모든 후보의 동일예산 검토 후 test 전 동결한다. h0/rho 선택은 inner split만. checkpoint는 새로 학습할 예정이며 현재 존재하지 않는다. 학습은 execution_contract.training_runtime_budget의 TBPTT64스텝·batch1·state carry/detach를 사용하며 full-film BPTT는 하지 않는다.",
     "state_readout_separation": "state는 비정서 자극 예측만으로 학습하고 neural readout은 별도 inner fitting이다. next feature는 학습 target으로만 쓰고 test state input은 x_≤t다.",
-    "memory": "가령 T=20,000 float32일 때512차원 feature≈39.06MiB,64차원 state≈4.88MiB. 원본·voxel·복사·autograd·model weights 제외다. actual peak를 단계A에서 측정한다. GPU VRAM·벽시계시간은 미확인.",
+    "memory": "가령 T=20,000 float32일 때512차원 feature≈39.06MiB,64차원 state≈4.88MiB. 원본·voxel·복사·autograd·model weights 제외다. actual peak를 단계A에서 측정한다. GPU VRAM·벽시계시간은 미확인. 학습 autograd/optimizer peak는 별도 대표 chunk에서 측정한다. 전체 cgroup24GiB 상한·8GiB 여유, thread≤4, fold/seed/model 순차 실행과 공통 unroll 축소 규칙은 execution_contract에 따른다.",
     "expansion": "Mamba/PredNet/VideoPrism은 공식코드 근거만 있는 확장경로이며 첫파일럿에 필수 아니다. cache/작은head로 복구가 실패하면 대형모델로 자동확장하지 않는다."
   },
   "inputs_outputs": {
@@ -51,14 +51,14 @@
     "target": {
       "annotation": "Fear: high=Fearful, low=Not Fearful; 1초 consensus 포함은 공식 JSON/기존 사전에서 확인. 숫자 범위·개별 평정수·신뢰도는 미확인.",
       "annotation_source": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json",
-      "primary_contrast": "원숫자 확인 후 train mean/SD로 표준화한 Fear의 뒤쪽 3초 차분 d_A(t)=A(t)−A(t−3s)를 하나의 전이 방향으로 고정한다. 처음3초와 결측은 마스킹하며 50개 항목 중 test 최적 항목을 고르지 않는다. Fear가 상수/불량이면 이 파일럿을 축소하고 다른 라벨로 사후 교체하지 않는다.",
-      "neural": "개별 참가자 outer-train에서만 공통 parcel 신호 Y_s와 고정 d_A를 이용해 ridge projection u_A,s를 적합한다. inner train에서 target 방향 적합, inner validation에서 규제·주석 lag 규칙을 정한 뒤 outer train 재적합, test에서는 고정한다. 모든 head에 같은 z_A,s=u_A,sᵀY_s와 train 표준화를 사용한다.",
-      "time_contract": "d_A는 별도 평정 관측으로 모형 입력이 아니다. 평정 lag는 개발에서 정하고 stimulus/brain 시간으로 매핑한다. 그 사후 관측을 causal stimulus model의 입력에 넣지 않는다. HRF는 원물리시간의 feature/state에 적용한다.",
-      "validity": "held-out z_A와 외부 d_A의 관계를 별도로 확인하되 그 결과로 projection/라벨을 다시 고르지 않는다. 현재 동일 영화 개인 내 반복은 미확인이다. 반복 신뢰도·noise ceiling은 가정하지 않으며, 원평정이 있을 때만 평정자 split 신뢰도를 추정한다."
+      "primary_contrast": "원 film-time 1Hz에서 먼저 d[n]=A[n]−A[n−3]의 3초 차분을 계산한다. 초기3초·결측은 무효이며 3TR 차분이 아니다. 이후 train-only 표준화·ell 이동·공통 H_ref·TR-bin 적분을 execution_contract.observation_operator 순서대로 적용한다. Fear가 상수/불량이면 다른 라벨로 test 최적 교체하지 않는다.",
+      "neural": "outer train의 공통 Y와 q_A,j=R_j[H_ref*e_ell]로 u_A를 적합한다. z_raw,j=u_AᵀY_j로 계산한 뒤 z_A,j=(z_raw,j−mu_outer_train)/sd_outer_train으로 표준화한다. 평균과 SD는 outer-train에서만 적합해 모든 head와 test에 같은 변환으로 고정하며 train SD=0이면 보류한다. δ=.01은 이 train 분산1 target의 MSE 단위다. inner selection→outer refit의 범위는 execution_contract.fit_scope에 따른다. z_A/Y에 HRF를 다시 적용하지 않는다.",
+      "time_contract": "원1Hz 차분→평정지연 ell(양수는 늦은 평정을 앞선 자극으로 매핑)→공통 H_ref 1회→scanner/TR-bin 적분으로 q_A를 만든다. state 예측은 별도 H_m/FIR 1회 경로다. 각 경로에 HRF/lag를 중복 적용하지 않고 모든 head에 같은 유효 TR 마스크를 쓴다. 상세 식·부호·범위는 execution_contract.observation_operator에 고정했다.",
+      "validity": "동일 공통 유효 TR 마스크 M_sf에서 z_A와 TR 관측목표 q_A의 held-out 관계를 별도로 확인하되 그 결과로 projection/라벨을 다시 고르지 않는다. raw 1Hz d_A와 z_A를 직접 비교하지 않는다. 현재 동일 영화 개인 내 반복은 미확인이다. 반복 신뢰도·noise ceiling은 가정하지 않으며 원평정이 있을 때만 평정자 split 신뢰도를 추정한다."
     },
     "output_arrays": "head H_mf[T_feat,64]→원시간 HRF/FIR→Zhat_m,sfr[T_TR,1]; 고정 Z_sfr[T_TR,1]와 paired loss[T_TR,1]. 전체Y 예측은 보조.",
-    "alignment": "film onset+실제 TR로 scanner time을 구성한다. annotation StartTime0은 film time이며 그대로 scanner time이 아니다. 주석 lag·HRF는 개발에서 별도 선택하고 모든head에 같은 target 규칙을 적용한다.",
-    "causal_boundary": "독립 prefix 경계 annotation/비정서 causal detector가 있으면 b를 사용한다. full-film 사후 boundary만 있으면 online branch는 착수하지 않고 retrospective로 분리한다. 단순 임베딩 변화 detector를 쓰는 fallback은 representation-change 경계 방법검정이며 인간 사건경계로 이름 바꾸지 않는다.",
+    "alignment": "execution_contract.observation_operator의 tau_j/TR-bin·film onset·zero-order hold·0.1초 적분 규칙을 적용한다. volume 대표시각 계약을 확인할 수 없으면 임의 정렬하지 않는다. target와 prediction 경로는 각각 한 번의 관측 연산이며 이중 HRF/lag 보정은 금지한다.",
+    "causal_boundary": "독립 prefix 경계 annotation/비정서 causal detector가 있으면 b를 사용한다. full-film 사후 boundary만 있으면 online branch는 착수하지 않고 retrospective로 분리한다. 단순 임베딩 변화 detector를 쓰는 fallback은 representation-change 경계 방법검정이며 인간 사건경계로 이름 바꾸지 않는다. matching/schedule도 execution_contract.prefix_only_matching의 available_time≤t 제약을 만족해야 한다. 완료 사건 duration과 영화 전체 밀도는 online schedule에 쓰지 않는다.",
     "buffer": "feature 최대과거 support+HRF/FIR support+boundary 검출지연의 합으로 경계buffer를 계산한다. run초기화·인위적 clip 경계와 자연경계를 분리한다."
   },
   "experiment_sequence": [
@@ -70,12 +70,12 @@
     {
       "step": 2,
       "action": "작은120TR 계약·체크포인트 검사",
-      "output": "cache provenance 또는 CLIP 공식weight SHA256·1입력 finite/shape·peak 확인. 실패시 다운로드/모델 실행 성공을 보고하지 않음."
+      "output": "cache provenance/공식 weight hash·한 입력 shape/finite 검사와 합성 입력 최대 chunk의 forward/backward/optimizer peak를 확인한다. TBPTT·순차 실행·24GiB 중단선은 execution_contract를 따른다. 실측·load 성공은 아직 미확인."
     },
     {
       "step": 3,
       "action": "target와 split 고정",
-      "output": "Fear3초 차분·u_A/규칙·causal 경계available·6영화 outer schedule 및 inner tuning 계약. 원평정/반복 없음은 명시."
+      "output": "execution_contract의 원1Hz 차분·ell 부호·HRF/TR 연산·공통mask 및 fold fit-scope를 고정한다. shape-only 단계A와 수치개발 자료를 분리한다."
     },
     {
       "step": 4,
@@ -90,7 +90,7 @@
     {
       "step": 6,
       "action": "HRF 이후 복구·거짓양성 calibration",
-      "output": "reset/연속/finitewindow 생성세계×boundary 지연[0,2,4]초×사전HRF family폭을 실제 자극구조·개발노이즈에 적용. 모든경쟁모형 nuisance 재적합. exact쌍과 실제구별쌍을 분리한 복구표."
+      "output": "각 outer-train 안에서만 상태/경계지연/HRF 복구와 noise calibration을 시행할 계획이다. 전역 조정 영화는 test에서 제외하거나 fold 안에서 재적합한다. 실제 결과는 없다."
     },
     {
       "step": 7,
@@ -110,16 +110,16 @@
   ],
   "evaluation": {
     "loss_and_effect": {
-      "primary": "동일 test 행의 공통 표준화 z_A에서 d_i=(z_Ai−pred_boundary_input_no_explicit_i)^2−(z_Ai−pred_explicit_forgetting_i)^2. 참가자×영화 안에서 평균 후 영화에 동일 가중을 주는 D가 주효과다. 관측 수가 많은 영화가 결론을 지배하지 않게 한다.",
+      "primary": "d_sft=(z_sft−pred_no_explicit_sft)^2−(z_sft−pred_forgetting_sft)^2; D=(1/F)Σ_f[(1/|S_f|)Σ_{s∈S_f}(1/|M_sf|)Σ_{t∈M_sf}d_sft]. 영화는 동일 가중, 영화 안 관측 참가자는 동일 가중, 셀 안 공통 TR은 동일 가중이다. 모든 영화의 S_f·유효 TR 수를 공개한다.",
       "secondary": "matched-random forgetting 대비 위치특이 손실차, 전체 Y 손실, 비정서 z_C 대비는 별도 보고. 같은 함수 exact control은 독립 모델 증거로 세지 않는다.",
       "minimum_effect": "계획용 δ=0.01: train에서 분산1로 표준화한 z_A의 MSE를 0.01 줄이는 효과, 즉 train target variance 1%에 해당한다. 생리적 임계치나 알려진 임상효과가 아닌 사전 의사결정 해상도다. δ=0.005/0.02 민감도를 함께 고정한다. test 전 개발 신뢰도·복구로 이 해상도를 판정할 수 없으면 확증/동등성 판단을 보류한다.",
-      "decision": "95% 계층 CI 하한>δ일 때만 효과 확대 근거로 삼고, 보수적으로 전체95% CI가 [−δ,+δ] 안에 있을 때만 실용 동등성이라 한다. 그 사이 또는 넓은 CI는 미결정이다. 실제6영화 파일럿은 정밀도/복구·계약 검증을 우선하며 p값으로 최종 기전을 결정하지 않는다."
+      "decision": "95% 조건부 cluster 구간 하한>δ이면 고정 적합모형 범위의 확대 검토 근거, 전체 구간이 [−δ,+δ] 안이면 해당 범위의 실용 동등성으로만 해석한다. 이는 전체 학습절차 불확실성이 아니다. execution_contract의 coverage/재표집 안정성 게이트가 실패하면 동등성·확대 판정을 보류한다."
     },
-    "split": "6-film outer leave-one-film-out, 나머지5 중 ID 규칙으로1 inner validation·4 train. 개발-only 선택 후 outer5로 재적합 가능하나 사전 절차를 동일 적용. test 영화/인접구간은 어떤 학습에도 사용하지 않는다.",
-    "reliability": "raw ratings 존재시 평가자분할로 Fear전이 안정성을 추정; consensus만 있으면 lag/평활도오차 민감도를 보고0오차로 두지 않는다. 개인 반복 미확인으로 repeat noise ceiling을 만들지 않는다. 외부 d_A와 고정 z_A 관계가 성립하지 않으면 정서 해석중단.",
-    "uncertainty": "참가자×영화 교차구조 재표집을 계획하며 영화별원효과와 leave-one-film 영향도를 함께보고한다. 적은영화에서 bootstrap 안정성·CI범위가 부족하면 최종동등성 판정 금지. 시간점 독립가정 금지.",
+    "split": "execution_contract.fit_scope의 shape-only 전역 QC와 fold별 수치적합을 분리한다. 6-film LOFO는 train4/validation1/test1, 선택 후 outer train5 refit이다. 전역 noise/recovery 조정에 사용한 영화는 독립 test에서 제외하거나 해당 조정을 fold train 안에서 다시 수행한다.",
+    "reliability": "raw ratings 존재 시 평가자 분할로 Fear 전이 안정성을 추정한다. consensus만 있으면 lag/평활도 오차 민감도를 보고하고 측정오차를0으로 두지 않는다. 개인 반복 미확인으로 repeat noise ceiling을 만들지 않는다. 동일 M_sf에서 고정 z_A와 TR 관측목표 q_A의 held-out 관계가 성립하지 않으면 정서 해석을 중단한다. raw 1Hz d_A와 z_A를 직접 비교하지 않는다.",
+    "uncertainty": "execution_contract.cell_weighting_and_conditional_CI의 실제 셀 가중·2,000회 crossed cluster 재표집·빈 셀 처리·95% percentile을 적용한다. 고정 OOF loss이므로 fitted models/targets에 조건부인 CI다. 전체 학습절차 불확실성을 포함했다고 하지 않으며 소수 영화 불안정 시 동등성 판단을 보류한다.",
     "multiplicity": "주비교1개·Fear1개·u_A target1개. random위치·HRF민감도·비정서/ROI분석은 사전 부차family로 나누고 필요시 Holm보정. 여러 관측모형 중 유리한 결과만 제시하지 않는다.",
-    "recovery_decisions": "개발생성세계에서 exact통제 오검출은0이어야 하며 수치오차게이트를 통과해야 한다. 후보δ 신호의 검출·영효과의false positive를 최소200개의 개발seed 계획으로 추정하고95%이항구간까지 보고한다. 기준안은 검출률80%이상 및 false positive 5%목표이나 유한복구의CI가 넓으면 달성확정 대신 추가복구/범위축소한다. 이는 실제power 결과가 아니다."
+    "recovery_decisions": "복구·noise calibration은 각 outer fold의 train/inner-validation 안에서만 수행한다. exact control은 수치 동등해야 한다. 최소200개 개발 seed에서 δ 신호의 검출률·영효과 false positive와 이항구간을 보고한다. 검출률80%/false positive5%는 목표이며 실제 결과가 아니다. 전역 개발 영화의 test 제외와 조건부 CI 범위를 execution_contract에 따른다."
   },
   "ablations_controls": {
     "exact_function": {
@@ -128,7 +128,7 @@
       "interpretation": "exact control은 기전 검증이 아니라 구현 감사다. 통과하면 하나의 관측 동치류로 묶고, 이 둘의 신경 점수 차이는 과학결과로 쓰지 않는다. 제한된 별도 학습 no-explicit-reset 함수족과의 차이는 parameterization/최적화/자료효율을 포함한 유한예산 효용이다."
     },
     "same_information": "주비교의 모든 모형에 state update와 readout 양쪽으로 x_t, b_t, 같은 초기 시점을 제공한다. readout-only 2×2는 보조 ablation이며 모형 전체의 경계정보 유무로 명명하지 않는다.",
-    "reference_matching": "공통 비개입 reference의 사전 norm/age, 이미 도착한 과거 오차, 컷·음향 onset, duration·경계밀도로 random 위치를 맞춘다. treatment 이후 state와 test Fear/Y를 사용하지 않는다.",
+    "reference_matching": "execution_contract.prefix_only_matching에 따라 비개입 reference 사전 state, 현재까지 경과시간, 과거60초 가용 경계밀도와 이미 도착한 오차만 사용한다. 처리 후 state·test Fear/Y·완료 사건길이·미래 전체 통계는 online matching에서 제외한다.",
     "observation": "단일 고정 HRF 결과와 동일 family 안에서 각 후보의 train nuisance를 최적화한 결과를 모두 보존한다. zero-phase 필터·미래 caption·미래 clip 특징은 causal 모형에서 금지한다.",
     "function_budget": "같은 state 폭·학습목적·자료·seed·탐색 예산을 적용하고 train-fit h0·soft rho·reset exposure를 표로 남긴다. exact 동치류는 한 모형으로 집계한다.",
     "sensory_semantic": "현재 장면·motion·cuts·비정서 사건 의미·경계밀도와 유한창 기준을 비교한다. audio를 포함하면 실제 제시된 음악·환경음만 사용한다."
@@ -154,7 +154,7 @@
     },
     {
       "gate": "실자료",
-      "expand": "D의 95% CI 하한>δ이며 영화별 방향이 견고하고 고정 정서 대비가 검증되면 전체 가용 영화로 확대",
+      "expand": "고정 fitted model에 조건부인 D의95% cluster CI 하한>δ, 영화별 방향 견고성 및 고정 정서대비 검증이 있을 때만 확대를 검토한다. 전체 학습절차 확증으로 해석하지 않는다.",
       "revise": "전체 Y만 개선되면 일반 경계모형; HRF 재적합 후 소멸하면 관측필터 설명",
       "stop": "95% CI 전체가 ±δ 안이면 explicit 좌표의 우선성을 낮춤. 넓은 CI는 기각이 아닌 미결정"
     }
@@ -189,5 +189,62 @@
     "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
     "https://github.com/openai/CLIP/blob/main/LICENSE",
     "https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json"
-  ]
+  ],
+  "execution_contract": {
+    "version": "FPA2-01-final-20261112",
+    "execution_status": "문서 계약만 수정; 실제 자료·모델·검정 미실행",
+    "observation_operator": {
+      "audit_id": "FPA2-01-01",
+      "native_difference": "원 film-time 1Hz의 A[n]에서 d[n]=A[n]−A[n−3]을 먼저 계산한다. 3은 3초이며 3TR이 아니다. n<3 및 어느 원소든 결측이면 무효다. 표준화 계수는 outer-train에서만 적합한다.",
+      "lag_sign": "평정지연 ell∈{0,2,4}초를 inner train/validation에서 선택한다. 양의 ell은 평정이 자극보다 늦었다는 뜻으로, 자극시간 s의 주석은 e_ell(s)=d(s+ell)에 대응한다. 이는 사후 평가주석 매핑이며 모형 입력이나 경계 검출에 주지 않는다.",
+      "continuous_time": "d[n]은 [n,n+1)에서 값을 유지하는 zero-order hold로 연속화한다. 0.1초 공통 격자에서 아래 인과 convolution 및 TR-bin 적분을 계산한다. 결측을 보간하거나 미래 값으로 채우지 않는다.",
+      "scanner_TR_operator": "실제 preprocessing의 volume 대표시각 tau_j와 TR_j, 실제 film onset o를 확인한다. 대표시각 계약이 없으면 정렬을 추정하지 않고 중단한다. B_j=[tau_j−TR_j/2,tau_j+TR_j/2), R_j[g]=(1/TR_j)∫_{B_j}g(v−o)dv로 고정한다. boxcar 적분은 명시한 관측 근사이며 별도 zero-phase 필터를 추가하지 않는다. 예측 관측값의 available time은 bin 끝으로 표기하고 midpoint 실시간 예측이라고 주장하지 않는다.",
+      "target_path": "q_A,j=R_j[H_ref*e_ell]. H_ref는 인과 double-gamma [Gamma(shape6,scale1)−Gamma(shape16,scale1)/6]를 0–32초에서 면적1로 정규화한 공통 고정 kernel이다. 이것은 분석계약이며 실측 HRF 사실이 아니다. u_A는 훈련 Y→q_A의 ridge로 정하고 z_raw,j=u_A^T Y_j에서 train-only 표준화한 z_A,j를 모든 head의 같은 신경 표적으로 쓴다. z_A 또는 Y에 HRF를 다시 적용하지 않는다. z_raw,j=u_AᵀY_j로 계산한 뒤 z_A,j=(z_raw,j−mu_outer_train)/sd_outer_train으로 표준화한다. 평균과 SD는 outer-train에서만 적합해 모든 head와 test에 같은 변환으로 고정하며 train SD=0이면 보류한다. δ=.01은 이 train 분산1 target의 MSE 단위다.",
+      "prediction_path": "각 causal head의 h_m(s)는 s까지의 자극만 사용한다. p_m,j=readout_m(R_j[H_m*h_m])로 feature/state 경로에서 HRF/FIR를 정확히 한 번만 적용한다. H_m의 family·최대 support32초·선택 예산은 동일하며 각 outer train에서만 적합한다. FIR가 선택되면 HRF convolution 대신 사용하고 둘을 직렬로 적용하지 않는다. annotation ell을 feature/state 경로에 재적용하지 않는다.",
+      "common_mask": "모든 head·허용 ell·관측 kernel의 최대 support에 대해 원주석·feature·Y QC가 유효한 TR 교집합 M_sf를 fitting 전에 만든다. 초기3초, 필요한 convolution support, 영화 끝의 ell 확보, run/boundary buffer를 반영한다. 같은 M_sf를 모든 loss에 적용하고 head별로 유리한 TR을 제거하지 않는다.",
+      "index_example": "가상 예: 원주석 n=10의 차분은 A[10]−A[7]. ell=2이면 film s=8에 대응하고 onset100이면 scanner108이다. 이후 H_ref의 6초 지연 성분은 scanner114에 기여한다. TR2초·대표시각114라면 [113,115) bin에 적분한다. 실제 TR이나 효과를 측정한 예가 아니다."
+    },
+    "prefix_only_matching": {
+      "audit_id": "FPA2-01-02",
+      "allowed_covariates": "online matching에는 현재까지 run 경과초, 마지막으로 가용해진 경계 이후 경과초, [t−60,t) 고정 과거창의 가용 경계 수/실제 관찰 창길이, 공통 비개입 reference의 사전 state norm·age, t까지 도착한 예측오차, 현재 관찰 가능한 cut/motion/onset만 쓴다. duration은 완료 사건길이가 아니라 경과시간이다.",
+      "availability": "공변량·reference state·matching/schedule 출력마다 time_available을 저장하고 online 가지에서는 모두 ≤t인지 확인한다. treatment 이후 state와 test Fear/Y는 사용하지 않는다.",
+      "schedule": "훈련 영화의 prefix 공변량으로만 random schedule의 hazard/층별 발생률을 적합하고 test에서는 고정된 규칙과 사전 seed의 순차 Bernoulli draw로 위치를 정한다. test 영화의 미래 경계 총수·전체 길이를 보고 횟수를 정확히 맞추거나 schedule을 사후 재선택하지 않는다. 실현 횟수/겹침 차이는 진단으로 보고한다.",
+      "retrospective_limit": "완료 사건길이·영화 전체 경계밀도·전체 경계 수에 맞춘 일정은 retrospective로 표기하며 online 위치특이 주검정에 포함하지 않는다. 현재 계약에서 이를 추가 연구로 확장하지 않는다."
+    },
+    "cell_weighting_and_conditional_CI": {
+      "audit_id": "FPA2-01-03",
+      "cell_set": "S_f는 해당 outer fold의 train/validation/test coverage와 사전 QC·공통 유효 TR M_sf를 충족하는 실제 참가자 집합이다. 없는 셀은 보간하지 않는다. 모든 비교 head에 동일 S_f,M_sf를 적용한다. 수치 실패 head는 비교를 중단/수정하며 해당 head에 유리하게 셀을 제외하지 않는다.",
+      "estimand": "d_sft=(z_sft−pred_no_explicit_sft)^2−(z_sft−pred_forgetting_sft)^2; D=(1/F)Σ_f[(1/|S_f|)Σ_{s∈S_f}(1/|M_sf|)Σ_{t∈M_sf}d_sft]. 영화는 동일 가중, 영화 안 관측 참가자는 동일 가중, 셀 안 공통 TR은 동일 가중이다. 모든 영화의 S_f·유효 TR 수를 공개한다.",
+      "bootstrap": "고정 OOF cell loss에 대해 영화 F개와 전체 관측 참가자 집합의 ID를 각각 독립 복원추출하는 crossed cluster bootstrap을 2,000회 계획한다(seed20261112). 참가자 중복수로 각 영화의 관측 셀 가중을 계산하고 영화 중복수로 평균한다. 선택 영화에서 관측 참가자 가중 합이0이면 그 replicate 전체를 다시 뽑으며 빈 셀을 만들지 않는다. 최대20,000회 시도와 무효 비율을 기록한다.",
+      "interval_scope": "유효 replicate의 2.5/97.5 percentile을 95% 구간으로 보고한다. u_A/PCA/state/readout/lag/HRF/선택·schedule을 재적합하지 않으므로 이는 이미 적합된 fold별 모형과 target에 조건부인 cluster 구간이다. 겹친 outer-train의 학습절차 변동이나 전체 procedure 불확실성을 포함했다고 하지 않는다.",
+      "instability": "유효2,000회 미달, 무효 replicate>5%, 단일 영화 영향으로 결론 변경 등 소표본 불안정이면 CI 기반 동등성/확대 판정을 보류하고 영화별 효과만 보고한다. 6영화의 한계를 반복시점 수로 보충하지 않는다. 전체 학습절차의 추론에는 모든 적합단계 재실행 또는 독립 holdout이 필요하지만 이번 문서 수정에서는 새 분석으로 추가하지 않는다."
+    },
+    "training_runtime_budget": {
+      "audit_id": "FPA2-01-04",
+      "unroll": "full-film BPTT 대신 TBPTT를 고정한다. 1Hz feature 기준 최대 unroll64스텝, batch1 영화 chunk, 마지막 짧은 chunk 허용. 동일 영화/run 안에서는 수치 state를 다음 chunk로 carry하되 chunk 경계에서 autograd만 detach한다. detach는 state를0으로 만드는 reset이 아니다. 영화/run 시작에서만 공통 초기화하고 명시적 forgetting은 각 모형 정의대로 적용한다.",
+      "execution": "동결 backbone 특징은 autograd 없이 cache한다. optimizer/gradient graph는 chunk 단위로 해제한다. fold·seed·모형은 순차 실행하며 동시에 학습하지 않는다. torch/BLAS intra-op thread≤4, inter-op1, DataLoader worker0으로 제한한다.",
+      "measurement": "합성 입력의 대표 최대64스텝 chunk에서 forward+backward+optimizer step의 process 및 cgroup memory peak를 측정한 뒤 전체 학습 여부를 정한다. feature/state 저장량 산술은 학습 peak 검증이 아니다. 입력 shape 외 실제 test 수치로 자원 설정을 튜닝하지 않는다.",
+      "stop_line": "32GiB cgroup에서 전체 사용량 peak24GiB 이하와 최소8GiB headroom을 요구한다. 측정/실행 중24GiB 도달 또는 OOM이면 학습을 중단한다. CPU4분량을 넘는 병렬 fold/seed를 허용하지 않는다. watchdog/step 경계 관측은 순간 peak를 완전 보장하지 못하므로 실제 peak 기록을 남긴다.",
+      "fallback": "자원 실패 시 test 평가 전에 모든 head 공통으로 unroll32, 이후16 순으로만 낮춰 대표 chunk를 재측정한다.16에서도 실패하면 RNN 비교를 중단하고 계약/cache 단계만 남긴다. 선택된 unroll·batch·detach 규칙은 모든 비교 head와 fold에서 같게 동결하며 memory를 지운 것으로 해석하지 않는다."
+    },
+    "fit_scope": {
+      "audit_id": "FPA2-01-05",
+      "global_shape_only": "공통 QC는 파일/ID·shape·TR/onset·결측 존재·제시 modality·체크포인트 hash·한 입력 finite/shape 및 합성입력 exact-function 단위검사까지만 허용한다. 단계A120TR이 나중 test 영화에 속해도 effect·라벨 관계·noise·lag·threshold·모형 선택에 쓰지 않으면 shape-only 로그로 남긴다.",
+      "outer_fold": "6영화 LOFO에서 test1을 완전히 잠그고 outer train5 중 ID 규칙으로 validation1/train4를 정한다. 표준화·PCA·u_A·annotation ell·boundary threshold/hazard·noise/recovery calibration·state/readout·HRF 선택은 이 train4/validation1 안에서 수행한다. 선택규칙 고정 후 outer train5로 재적합하고 test 영화에서는 한 번 평가한다.",
+      "scope_ledger": "모든 fit 객체에 source_film_ids, subject_ids, stage(shape_only/inner_train/inner_validation/outer_refit/test), target_used, config_hash를 기록한다. held-out 영화가 다른 outer fold에서 training인 일반 LOFO와 같은 fold의 test 누수를 구별한다.",
+      "global_development": "기본 계획에는 전역 수치 조정용 영화를 두지 않는다. 한 영화를 전역 noise/recovery/threshold/effect 조정에 사용했다면 그 영화는 모든 독립 test 집계에서 제외해 외부개발로 표시하거나 그 조정을 각 outer train 안에서 처음부터 다시 수행한다. 단계A라는 이름만으로 개발 사용을 면제하지 않는다.",
+      "no_post_test_revision": "δ·수치 tolerance·TBPTT 및 절차는 test 전 고정한다. test 결과 뒤 변경이 필요하면 해당 결과는 탐색으로 표시하고 같은 test를 독립 확증으로 재사용하지 않는다."
+    }
+  },
+  "final_audit_revision": {
+    "source": "agents/01_dataset/final_pilot_audit_round2.json",
+    "audit_ids": [
+      "FPA2-01-01",
+      "FPA2-01-02",
+      "FPA2-01-03",
+      "FPA2-01-04",
+      "FPA2-01-05"
+    ],
+    "scope": "다섯 실행 계약의 문서 구체화; 과학 질문 확장·실험 실행 없음"
+  }
 }

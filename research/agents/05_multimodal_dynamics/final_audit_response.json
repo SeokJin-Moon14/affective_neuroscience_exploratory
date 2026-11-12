@@ -1,0 +1,96 @@
+{
+  "role": "05_multimodal_dynamics",
+  "source_audit": "agents/01_dataset/final_pilot_audit_round2.json",
+  "responses": [
+    {
+      "audit_id": "FPA2-01-01",
+      "decision": "수용·문서 반영 완료",
+      "revision": "원1Hz 3초 차분, ell의 부호/범위, 공통 target HRF와 후보 state 관측 경로, scanner/TR-bin 적분·공통mask를 고정했다. 최종 재확인: validity/reliability 비교를 동일 M_sf의 z_A와 q_A로 통일하고 raw1Hz d_A 직접 비교를 제외했다. z_raw→outer-train 평균/SD 표준화의 위치·공통 변환·SD0 보류를 명시해 δ=.01 단위를 연결했다.",
+      "locations": [
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/execution_contract/observation_operator",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/execution_contract/observation_operator",
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/neural_target/neural",
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/neural_target/validity",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/inputs_outputs/target",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/evaluation/reliability"
+      ],
+      "remaining_conditions": "실제 TR 대표시각·onset·숫자 annotation·결측 및 연산자 구현은 미검증이다. target/HRF 매핑은 계약이며 실측 생리 사실이 아니다.",
+      "verification": "두 문서의 execution_contract 동일성 및 JSON 파싱만 검사; 실제 데이터/모델 검증 미실행"
+    },
+    {
+      "audit_id": "FPA2-01-02",
+      "decision": "수용·문서 반영 완료",
+      "revision": "duration을 prefix 경과시간으로 제한하고 과거60초 밀도·available time 및 순차 schedule을 명시했다. 미래 전체 통계 matching은 online에서 제외했다.",
+      "locations": [
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/execution_contract/prefix_only_matching",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/execution_contract/prefix_only_matching"
+      ],
+      "remaining_conditions": "실제 경계/공변량 available time과 schedule calibration은 실행 때 확인해야 한다.",
+      "verification": "두 문서의 execution_contract 동일성 및 JSON 파싱만 검사; 실제 데이터/모델 검증 미실행"
+    },
+    {
+      "audit_id": "FPA2-01-03",
+      "decision": "수용·문서 반영 완료",
+      "revision": "실제 S_f/M_sf 셀의 영화·참가자·TR 가중, crossed bootstrap2,000회·빈 셀·95%조건부구간과 소표본 중단을 고정했다.",
+      "locations": [
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/execution_contract/cell_weighting_and_conditional_CI",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/execution_contract/cell_weighting_and_conditional_CI"
+      ],
+      "remaining_conditions": "실제 coverage·조건부 bootstrap 안정성은 미검증이다. 전체 학습절차의 CI와 개인 내 반복 신뢰도는 제공하지 않는다.",
+      "verification": "두 문서의 execution_contract 동일성 및 JSON 파싱만 검사; 실제 데이터/모델 검증 미실행"
+    },
+    {
+      "audit_id": "FPA2-01-04",
+      "decision": "수용·문서 반영 완료",
+      "revision": "TBPTT64·batch1·state carry/gradient detach·4thread·순차실행·대표 backward peak 및24GiB 중단선을 고정했다.",
+      "locations": [
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/execution_contract/training_runtime_budget",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/execution_contract/training_runtime_budget"
+      ],
+      "remaining_conditions": "대표 chunk peak·모델load·실행시간은 아직 측정하지 않았다.24GiB는 사전 중단선이며 실행 성공 보장이 아니다.",
+      "verification": "두 문서의 execution_contract 동일성 및 JSON 파싱만 검사; 실제 데이터/모델 검증 미실행"
+    },
+    {
+      "audit_id": "FPA2-01-05",
+      "decision": "수용·문서 반영 완료",
+      "revision": "전역 shape-only QC와 outer train4/validation1/refit5/test1 수치선택을 나누고 전역개발 영화의 제외/재적합 규칙을 명시했다.",
+      "locations": [
+        "agents/05_multimodal_dynamics/proposal_RP03.json#/execution_contract/fit_scope",
+        "agents/05_multimodal_dynamics/pilot_PILOT02.json#/execution_contract/fit_scope"
+      ],
+      "remaining_conditions": "실제 fit ledger와 각 fold의 자료 접근은 코드 실행 시 검증해야 한다. test를 본 뒤 조정하면 독립 확증으로 재사용하지 않는다.",
+      "verification": "두 문서의 execution_contract 동일성 및 JSON 파싱만 검사; 실제 데이터/모델 검증 미실행"
+    }
+  ],
+  "validation": {
+    "json_parse": "PASS",
+    "execution_contract_equality": "PASS",
+    "duplicated_target_equality": "PASS",
+    "duplicated_primary_loss_equality": "PASS",
+    "protected_files_unchanged": "PASS",
+    "contract_sha256": "3c0b911e10f8c15c1813d38d9c03725a55657bc87997261b640926278ddf9f93",
+    "actual_data_or_model_execution": false,
+    "final_target_summary_consistency": "PASS: q_A 비교 및 outer-train 표준화 대응 사본 일치"
+  },
+  "modified_files": [
+    "agents/05_multimodal_dynamics/proposal_RP03.json",
+    "agents/05_multimodal_dynamics/pilot_PILOT02.json"
+  ],
+  "before_sha256": {
+    "agents/05_multimodal_dynamics/proposal_RP03.json": "98e5b98f5852668fc8b02ab4ffde362880846e5dd10683f3ef33f4b035d8a06a",
+    "agents/05_multimodal_dynamics/pilot_PILOT02.json": "b8bd238b6e70095770725a6d559cff6db756781d33ec6ba382bad5c49e9de3de"
+  },
+  "after_sha256": {
+    "agents/05_multimodal_dynamics/proposal_RP03.json": "2414fb026cce2d48f6d7e2e0d2759fff595d910f14c38c8c5a19237dc080550d",
+    "agents/05_multimodal_dynamics/pilot_PILOT02.json": "d676b1874cd19e4b8870d2daf04aeb0b94c32df03212729076e770ecd0b12062"
+  },
+  "preserved_files": {
+    "agents/05_multimodal_dynamics/proposal_RP04.json": "15344864d5d1e535a72420abdaf5322412b367e1b73bd2ebdb46a61b3a5a038f",
+    "agents/05_multimodal_dynamics/round05_debate.json": "44e9732ebb02ea7f4632550931a7b2b4114021505ad2a907d247c53e364c75ed",
+    "agents/05_multimodal_dynamics/round05_debate.md": "47650a178494f3288688cb3f52c5e92650999863218f00c18d6b4855844ea93b",
+    "agents/05_multimodal_dynamics/round05_rebuttal.json": "0e0ecf845d805fabc3f29be8cf3d382bbc25da5e7a656dd8c1b27b4cd3bcac57",
+    "agents/05_multimodal_dynamics/round05_rebuttal.md": "4140aa0ff1b7b613537c369b7defa98666e464a949b3cd089a42295ad8d1274a"
+  },
+  "status": "다섯 기존 지적의 문서 반영 완료; Agent01 재확인 전 감사 통과를 선포하지 않음",
+  "execution_ready": false
+}

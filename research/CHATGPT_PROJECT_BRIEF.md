@@ -23,7 +23,7 @@ GitHub 보고서를 컴퓨터에 다운로드해서 프로젝트에 다시 올�
 
 사용자는 Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 이미 보유한다. 정확한 버전·스키마 확인은 분석 착수 조건으로 기록하고 Axis·개념 조합을 중단하는 이유로 사용하지 않는다. Mind Captioning의 태스크·텍스트 생성 출처·정서 주석을 이름으로 추정하지 않는다.
 
-현재 연구 상태는 Stage3 Axis 통합 v1 완료다. A–X24축, 12역할36개 제안, 8묶음, 수동 교차연결8개를 등록했다. 36개는 고유 RQ 수가 아니다. 고유 문헌100편은 서지·출처 확인이며 그중27편만 본문 또는 지정 절 확인이다. 다음은 실제 Round2–5 토론과 조합·RQ 구성이다. 최종30개 RQ·10개 제안·3개 파일럿은 미완료다. 최신 상태는 항상 RESEARCH_STATUS.md를 다시 읽는다.
+현재 문헌 기반 연구 기획 산출물은 완료했다. A–X24축, 방향40개, 독립 RQ30개, 상세제안10개, 파일럿 계획3개와 실제12역할·5라운드 토론이 있다. 최종 보고서는 research/synthesis/FINAL_REPORT.md이며, 첫 파일럿은 RP01 정렬 접근성·RP03 경계 상태 갱신·RP08 공간 null-space다. 서지확인100편 중 지정본문/한계 직접 확인은27편이다. 실제 뇌 분석·모델 실험은 실행하지 않았고, 보유본의 경로·스키마·모델 load와 전역 신규성은 미확인 조건으로 남긴다. RQ30은 RQ25에 병합했고 RQ22는 방법후보로 옮겼으므로 남은 ID의 최댓값32를 질문 수로 세지 않는다. 최신 상태는 항상 RESEARCH_STATUS.md를 다시 읽는다.
 
 연구 단계가 끝나거나 중단되기 전에 상태 파일을 갱신하고, 실행 도구와 GitHub 쓰기 권한이 있는 에이전트가 단계별 커밋·푸시·원격 HEAD 검증을 수행한다. 일반 ChatGPT 대화나 프로젝트 지침만으로 GitHub 파일이 자동 저장되거나 백그라운드 연구가 계속되는 것은 아니다.
 
@@ -42,3 +42,5 @@ Axis: https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/
 ## 이 채팅을 옮길 때
 
 현재 ChatGPT 채팅 메뉴에 '프로젝트로 이동'이 제공되면 생성한 프로젝트를 선택한다. 이 대화가 별도 Codex 화면에 있어 이동 메뉴가 없다면, ChatGPT 프로젝트에 새 채팅을 만들고 위 안내를 붙여 넣어 연결한다. 현재 도구에는 ChatGPT 프로젝트 생성·채팅 이동 기능이 없으므로 이동 완료를 자동으로 확인할 수 없다.
+
+최종 보고서: https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/research/independent-exploration-20261112/research/synthesis/FINAL_REPORT.md

@@ -1,0 +1,208 @@
+{
+  "role": "01_dataset",
+  "audit_round": 3,
+  "scope": "RP08 / PILOT03 최종 자료·통계·자원 계약 감사",
+  "read_files": [
+    "agents/04_brain_foundation/proposal_RP08.json",
+    "agents/04_brain_foundation/pilot_PILOT03.json",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md"
+  ],
+  "artifact_snapshots": [
+    {
+      "path": "agents/04_brain_foundation/proposal_RP08.json",
+      "sha256": "041d91c972651d79fc22b3a200dcb94026d3f332a59865685852d2b3063633bb"
+    },
+    {
+      "path": "agents/04_brain_foundation/pilot_PILOT03.json",
+      "sha256": "26cf97dfb2de4cd05de193f9ea5287e5045894ebb8737768039af696da65a81a"
+    }
+  ],
+  "overall": {
+    "verdict": "계획의 핵심은 적절하며 실행 계약 수정 후 조건부 착수",
+    "critical": 0,
+    "high": 0,
+    "medium": 3,
+    "low": 1,
+    "passed_checks": 6,
+    "execution_readiness": "실제 보유 배열·학습·신경 평가 미실행. 감사 통과 항목은 문서/공식 메타데이터/명시된 작은 합성 산술 범위이다.",
+    "pass": false
+  },
+  "findings": [
+    {
+      "audit_id": "FPA3-01-01",
+      "severity": "medium",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/inputs_outputs/input_shapes",
+        "pilot:/evaluation/primary_loss",
+        "proposal:/neural_target"
+      ],
+      "issue": "실제 A 헤더/척도를 확인한다고 명시했지만 어떤 척도에서 squared error와 train mean/SD가 허용되는지 착수 gate가 완결되지 않았다. category/dimension 경로 이름만으로 모든 열이 연속 등간척도인 것은 아니다.",
+      "required_fix": "A0의 실제 정의·수치 범위·극성·집계 방식·결측/상수 여부를 확인하고 squared loss가 의미 있는 정량 target일 때만 현재 계약으로 착수한다. nominal/ordinal-only 값이면 임의 등간 변환하지 말고 문서화된 정량 열을 사전 선택하거나 해당 loss/δ를 test 전 재정의한다. H3의 B도 같은 절차를 적용하고 단순 z-score가 난이도·신뢰도 비교가능성을 보장하지 않는다는 기존 제한을 유지한다.",
+      "basis": "확인되지 않은 원스키마를 추정하라는 요구가 아니다. 실제 자료를 열었을 때 무엇을 허용/중단할지 정하는 실행 gate이다.",
+      "pass": false
+    },
+    {
+      "audit_id": "FPA3-01-02",
+      "severity": "medium",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/data_and_access/planned_subset",
+        "pilot:/inputs_outputs/projection",
+        "pilot:/ablations_controls"
+      ],
+      "issue": "완전8/32 parcel 선택은 적절하지만 참가자 공통 coverage와 H2 random atlas에서 동일한 dense support Ω를 유지하는 구체 규칙은 미정이다. 복셀 교집합이 parcel을 자르거나 random atlas가 다른 뇌 영역을 포함하면 비교가 평균화 연산자 차이만을 뜻하지 않는다.",
+      "required_fix": "선택한 Ω 안에서 각 복셀/vertex가 정확히 한 비어 있지 않은 parcel에 속하고 W>0임을 검사한다. 공통 coverage 부족은 완전 parcel 단위로 제외하거나 부분-support 관측으로 명시하며 완전 parcel이라 부르지 않는다. H2의 실제/random atlas는 동일 Ω와 같은 y/W를 완전히 분할하고 parcel 수·가중 면적/크기·공간 제약을 맞춘다. 이 제약이 불가능하면 H2만 보류한다. 배경/미할당 복셀이 residual에 섞이지 않게 제외한다.",
+      "basis": "G 정의는 비어 있는 열이 없고 의도한 지지집합을 완전히 덮을 때 parcel 내 잔차 해석을 갖는다. 현재 weighted algebra 자체의 오류는 아니다.",
+      "pass": false
+    },
+    {
+      "audit_id": "FPA3-01-03",
+      "severity": "medium",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/evaluation/statistics",
+        "pilot:/evaluation/conditional_null",
+        "pilot:/evaluation/minimum_effect_and_equivalence"
+      ],
+      "issue": "null 재표본화의 pipeline 재적합은 명시되었지만 일반 효과 CI의 수준·재표집 단위·고정 적합에 대한 조건부 범위는 정해지지 않았다. 5명의 결과/공유 outer-train으로부터 사람 모집단 CI를 자동 확보할 수 없다.",
+      "required_fix": "주효과 CI를 예컨대 95%로 고정하고 각 참가자 새 자극 조건부 및 사람 간 변동의 범위를 별도로 선언한다. OOF loss만 재표집하는 경우 fitted pipeline에 조건부인 CI라 명시하고 run/content cluster를 유지한다. 전체 학습절차 불확실성이 목적이면 PCA·k·readout 선택/적합을 포함하는 재적합 규칙을 쓴다. null calibration용 재적합과 효과 CI용 재적합을 구분한다. n=5의 한계·비유의≠동등성 제한을 유지한다.",
+      "basis": "양측 exact sign-flip 최소 p=.0625와 pseudo-replication 금지는 이미 정확하다. 미실행 CI를 유효한 것으로 간주하지 않도록 계약을 보완한다.",
+      "pass": false
+    },
+    {
+      "audit_id": "FPA3-01-04",
+      "severity": "low",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/model_and_environment/memory_plan",
+        "pilot:/model_and_environment/compute_gate"
+      ],
+      "issue": "순차 참가자/블록 처리와 V×V P 금지는 적절하다. 다만 안전 메모리 상한·CPU thread 및 공간블록을 나누면서 G/P를 바꾸지 않는 조건은 아직 수치/운영 규칙으로 고정되지 않았다.",
+      "required_fix": "첫 대표 블록 계측 후 32GiB 아래 실제 여유를 둔 peak 상한·중단 기준, CPU thread≤4와 순차 model/fold 실행을 config에 기록한다. 공간블록 처리는 완전 parcel 또는 정확한 누적 weighted sum으로 같은 G/P를 보존한다. PCA workspace가 크면 동일 train support의 incremental solver를 사용하며 블록마다 별도 관측계약을 만들지 않는다.",
+      "basis": "512×20000 float32=39.0625MiB 산술은 맞고 P를 물리적으로 만들지 않는 계획은 적절하다. 실행 측정은 아직 없다.",
+      "pass": false
+    },
+    {
+      "audit_id": "FPA3-P01",
+      "severity": "pass",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/inputs_outputs/projection"
+      ],
+      "issue": "C,W→G=(CᵀWC)⁻¹CᵀW, P=CG, m=Py,r=y−m 및 weighted residual PCA는 일관된다. 실제 voxel-volume/vertex-area와 없을 때의 W=I 경로도 구분한다.",
+      "required_fix": "없음. 실제 공간 mapping과 dtype tolerance 검증은 별도 실행 gate이다.",
+      "basis": "감사자가 작은 합성 C,W,y로 직접 확인: max|P²−P|=0, max|Gr|=2.20e−17, max|CᵀWr|=1.39e−16, 재구성오차=0. 실제 신경자료 검증은 아니다.",
+      "pass": true
+    },
+    {
+      "audit_id": "FPA3-P02",
+      "severity": "pass",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/data_and_access/contracts",
+        "pilot:/data_and_access/planned_subset"
+      ],
+      "issue": "공식 event 필드, 공식 코드 HDF5/좌표/경로 계약, 사용자 실제 미확인 보유본, 신규 분석필드를 구분한다. 512자극·12런·32parcel은 계획 목표로 표시한다.",
+      "required_fix": "없음. 실제 필드/좌표를 읽기 전 확정하지 않는다.",
+      "basis": "dense y가 없으면 H1 불가와 NSD 방법 대조의 제한도 명시되어 있다.",
+      "pass": true
+    },
+    {
+      "audit_id": "FPA3-P03",
+      "severity": "pass",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/evaluation/reliability",
+        "pilot:/evaluation/statistics"
+      ],
+      "issue": "Horikawa 5명과 독립 반복 미확인을 유지하며 dupidx/타인을 반복으로 바꾸지 않는다. repeat ceiling/crossnobis를 계산하지 않고 NSD 신뢰도를 이식하지 않는다.",
+      "required_fix": "없음. 실제 반복이 확인되면 별도 근거를 기록한다.",
+      "basis": "반복 없는 predictive first pass와 반복 의존 주장 범위를 구분한다.",
+      "pass": true
+    },
+    {
+      "audit_id": "FPA3-P04",
+      "severity": "pass",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/hypotheses",
+        "pilot:/decision_points"
+      ],
+      "issue": "H1 일반 잔차 예측 가치, H2 실제 공간분할 특이성, H3 정서 비교 특이성을 분리한다. H2/H3 실패를 H1 실패로 만들거나 H1만으로 정서 선택성을 주장하지 않는다.",
+      "required_fix": "없음. H3 비교가능성이 없으면 보류한다.",
+      "basis": "strong nonlinear mean-only와 차원/규제/noise 대조도 적절하다.",
+      "pass": true
+    },
+    {
+      "audit_id": "FPA3-P05",
+      "severity": "pass",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/evaluation/minimum_effect_and_equivalence",
+        "pilot:/decision_points/equivalence"
+      ],
+      "issue": "같은 target의 mean/plus에 공통 squared loss를 쓰고 δ=.01은 실용 계획값으로 제한한다. 큰 음수 효과, 상한<δ, ±δ 안 동등성, 넓은 CI를 구분한다.",
+      "required_fix": "없음. FPA3-01-01의 실제 척도 gate 및 CI 계약을 추가한다.",
+      "basis": "subset cap를 충분한 검정력이나 생물학적 최소효과로 주장하지 않는다.",
+      "pass": true
+    },
+    {
+      "audit_id": "FPA3-P06",
+      "severity": "pass",
+      "artifact": [
+        "agents/04_brain_foundation/proposal_RP08.json",
+        "agents/04_brain_foundation/pilot_PILOT03.json"
+      ],
+      "location": [
+        "pilot:/model_and_environment",
+        "pilot:/decision_points/stop"
+      ],
+      "issue": "첫 projection baseline에 foundation checkpoint는 필요하지 않다. optional CLIP의 정확한 ID/해시와 미load 범위를 구분하고 dense/A/mapping/split/수렴/메모리 실패 중단을 둔다.",
+      "required_fix": "없음. 현재 실제 모델 실행/신경 결과는 없음으로 유지한다.",
+      "basis": "4CPU·32GiB와 cache/신규 추출 비용 분리도 공통 자원 보고서와 일치한다.",
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "자료 보유와 실제 workspace 배열·스키마 확인은 별개이다. 확인되지 않은 필드를 채우지 않았다.",
+    "과학적 확대 요구가 아니라 현 계획의 모순·구현상 서로 다른 해석·중요 실행 누락을 점검했다.",
+    "사용자 원자료/개인별 숫자자료를 읽거나 공개 업로드하지 않았고 공유 파일과 Git을 수정하지 않았다."
+  ],
+  "performed_checks": {
+    "kind": "감사자가 실행한 작은 합성 대수·저장량 산술 검사; 신경 분석 아님",
+    "max_abs_P2_minus_P": 0.0,
+    "max_abs_G_r": 2.1977884365028608e-17,
+    "max_abs_CtW_r": 1.3877787807814457e-16,
+    "reconstruction_error": 0.0,
+    "float32_N512_V20000_MiB": 39.0625
+  }
+}

@@ -38,3 +38,5 @@
 | RQ32 | brain guided learning semantic predicted neural targets cross subject generalization | P050, P049 | P054, P024, P071 | 접근 실패 |
 
 각 차별점·중복 반론은 [질문 지도](../../research_questions/LANDSCAPE.md)와 Top10 카드에 기록했다. 원 질의·시각·점수·응답 파일은 reverse_search_records.json에 보존한다.
+
+최종 범위를 수정한 RQ07/RQ20/RQ25는 기존103편 코퍼스에 새 영어질의를 실제 실행했다. [추가 기록](final_curation_addendum.json)은 로컬 역대조이며 새 외부 검색으로 세지 않는다. RQ25의 gate/error 원 질의는 RQ25와옛RQ30 기록에 함께 보존한다.

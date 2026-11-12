@@ -1,0 +1,499 @@
+{
+  "role": "01_dataset",
+  "scope": "기존 14개 지적의 일관 반영 및 수정으로 생긴 모순만 확인. 추가 연구 확장/신경 실험 없음.",
+  "status": "기존 14건 모두 문서상 해소 확인; 최종 자료·통계 계약 감사 종료",
+  "overall": {
+    "document_audit_closed": true,
+    "resolved_count": 14,
+    "pending_count": 0,
+    "unresolved_findings": [],
+    "new_unresolved_contradictions": [],
+    "experiment_success": false,
+    "execution_readiness": "문서 계약 기준 조건부 실행 준비. 실제 보유 배열/척도/시간·공간 mapping/모델 load/학습/CI coverage/메모리 gate의 성공을 뜻하지 않는다."
+  },
+  "closure_records": [
+    {
+      "audit_id": "FPA1-01-01",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/hypotheses/H1",
+          "verified_value": "일차 대립가설은 |I|>δ_I인 양측 차등 접근성이다. I>δ_I는 contrastive가 regression보다 A에서 C 대비 상대적으로 더 나쁜 방향, I<−δ_I는 상대적으로 더 좋은 방향이다. 방향을 결과 후 선택하지 않는다."
+        },
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/evaluation/statistics/outcome_partition",
+          "verified_value": {
+            "relative_general_change": "D_A,D_C가 같은 부호이고 I의90%구간이 [−δ_I,+δ_I] 안이면 두 목표의 차이가 두 대비에 대체로 공통인 결과다. D_A,D_C>0은 contrastive의 공통 상대 손상, 둘다<0은 공통 상대 이득이다.",
+            "mixed": "D_A,D_C>0이면서 I의 구간이 +δ_I 초과 또는 −δ_I 미만이면 공통 상대 손상과 차등 접근성이 공존한다. 둘 다 악화라는 이유만으로 선택성 대비를 자동 폐기하지 않는다. 둘 다<0과 큰 |I|도 공통 이득+차등 접근성으로 표시한다.",
+            "opposite": "D_A,D_C 부호가 다르면 두 대비의 목표 선호가 반대인 패턴이며 I의 크기·불확실성을 별도 판단한다.",
+            "inconclusive": "같은 부호만으로 일반손상을 확정하지 않는다. I 구간이 임계를 가로지르면 동등성/차등성 미판정이다. 범위가 다른 OOF/독립 holdout 구간은 아래 계약대로 구분한다."
+          }
+        },
+        {
+          "artifact": "agents/03_vision_decoding/proposal_RP01.json",
+          "json_pointer": "/falsifiable_outcomes/mixed",
+          "verified_value": "선형 차이가 정확 역변환/유연 probe에서 회복되면 재부호화 설명을 지지한다. D_A,D_C가 같은 방향이고 I가 ±δ_I와 동등할 때 공통 상대 손상/이득으로 해석한다. D_A,D_C>0이지만 I가 임계 밖이면 공통 상대 손상+차등 접근성이 공존하는 혼합 결과로 보존한다. 두 D의 같은 부호만으로 선택성을 폐기하지 않는다. 의미조건화 후 감소는 공유 설명 및 누락 의미 대안과 함께 보고한다."
+        }
+      ],
+      "remaining_execution_conditions": "실제 D_A,D_C,I와 불확실성은 미계산이며 양측 차등성/동등성의 실증 판정은 남는다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA1-01-02",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/evaluation/statistics/effect_threshold",
+          "verified_value": "δ_I=0.02 nats/이진 쌍을 차이의 차이 I의 계획상 실용 임계로 제안한다. g_o,t=exp(mean log p_o,t(true label))라 두면 exp(D_t)=g_regression,t/g_contrastive,t이고 exp(I)=(g_regression,A/g_contrastive,A)/(g_regression,C/g_contrastive,C)이다. 따라서 exp(δ_I)≈1.0202는 I에서는 비의비 임계이며 단일 타깃의 확률 비가 아니다. 원뇌 신호 gate는 별도 δ_signal=0.02 nats/쌍(계획 제안)을 사용해 L_label-prior,A−L_rawbrain,A와 비교한다. 숫자가 같아도 서로 다른 용도이며 생물학적 최소효과가 아니다. 두 값은 개발 신뢰도·비용 근거와 함께 test 전 각각 잠그며 결과를 보고 변경하지 않는다."
+        }
+      ],
+      "remaining_execution_conditions": "0.02는 개발 후 test전 각각 잠글 제안값이다. 생물학적 최소효과의 검증이 아니다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA1-01-03",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/03_vision_decoding/proposal_RP01.json",
+          "json_pointer": "/computational_framework/model_selection",
+          "verified_value": "일차 hyperparameter는 D에서 잠근다. probe 또는 추가 grid를 선택하는 inner 검증에서는 각 후보마다 encoder를 포함한 전체 pipeline을 F_inner에서만 fit하고 C_inner에서 calibration한 뒤 V_inner에서 평가한다. outer-train으로 먼저 학습한 encoder를 inner validation에 재사용하는 probe-only 경로는 이 파일럿에서 사용하지 않는다. 동일 후보 수·총 compute 예산을 objective쌍에 적용하며 inner encoder 재학습 비용도 포함한다. 최종 outer pipeline은 선택 후 F_outer/C_outer로 새로 fit/calibrate한다."
+        },
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/evaluation/statistics/learning_curves",
+          "verified_value": "25/50/100% 축은 probe-only가 아닌 전체 pipeline 학습량이다. 각 outer-train에서 nested family subset T_q를 만들고 전처리·PCA·encoder·probe·calibration 모두 해당 T_q 내부의 fit/calibration IDs로 다시 적합한다. inner 검증도 각 T_q의 inner-fit에서 encoder부터 새로 학습한다. 100% encoder를 낮은 fraction이나 inner fold에 재사용하지 않는다. 동일 fraction·fold·seed의 두 objective는 동일 IDs·초기화·batch순서·update예산을 공유한다. 일차100%와 보조25/50%의 계산비용을 각각 기록한다."
+        },
+        {
+          "artifact": "agents/03_vision_decoding/proposal_RP01.json",
+          "json_pointer": "/computational_framework/fit_scope",
+          "verified_value": [
+            {
+              "component": "frozen CLIP feature 추출",
+              "fit_ids": "외부 사전학습 checkpoint 고정; 현 연구 ID로 backbone을 적합하지 않음",
+              "validation_ids": "고정 변환의 실행만 D/R/H에서 허용; H feature를 목표나 선택에 사용하지 않음",
+              "rule": "모델/추출 규칙은 D에서 잠금; 캐시를 모든 행에 계산했다는 사실과 encoder가 그 target을 학습했다는 사실을 구분."
+            },
+            {
+              "component": "inner 전처리·PCA",
+              "fit_ids": "T_q의 inner-train을 다시 나눈 F_inner(80% 계획)",
+              "validation_ids": "C_inner(20% calibration)와 V_inner에는 transform만",
+              "rule": "평균·scale·voxel선택·PCA의 모든 fitted state는 F_inner만 사용."
+            },
+            {
+              "component": "inner 뇌→시각 encoder",
+              "fit_ids": "F_inner의 X와 같은 ID의 V만",
+              "validation_ids": "C_inner/V_inner의 X·V는 parameter fit/early stopping에 쓰지 않음",
+              "rule": "각 fraction·inner fold·objective·seed마다 초기화부터 재학습; 고정 update 이후 validation scoring만 허용."
+            },
+            {
+              "component": "inner probe",
+              "fit_ids": "F_inner 내부에서 만든 쌍의 neural/content 특징과 label",
+              "validation_ids": "C_inner에는 calibration용 prediction, V_inner에는 평가용 prediction만",
+              "rule": "probe hyperparameter 후보도 같은 F_inner에서 fit; 전체 pipeline 후보 선택 점수는 V_inner."
+            },
+            {
+              "component": "inner probability calibration",
+              "fit_ids": "C_inner의 고정 encoder/probe out-of-sample 예측과 label",
+              "validation_ids": "V_inner로 보정된 전체 pipeline 평가",
+              "rule": "C_inner는 encoder/probe fit에 포함하지 않으며 calibration을 V_inner label에 적합하지 않음."
+            },
+            {
+              "component": "outer 최종 적합",
+              "fit_ids": "선택 뒤 T_q를 고정 group split한 F_outer(80%)/C_outer(20%)",
+              "validation_ids": "outer test O_k에는 고정 pipeline 적용만",
+              "rule": "전처리/PCA/encoder/probe를 F_outer에서 재학습하고 calibration은 C_outer만 사용. calibration 이후 F_outer+C_outer로 재학습하지 않음."
+            },
+            {
+              "component": "독립 H 평가용 최종 모형",
+              "fit_ids": "R의 선택된 fraction을 F_R/C_R로 고정 분리; 일차는100% R 분할",
+              "validation_ids": "H는 한 번의 최종 평가만",
+              "rule": "R 안에서 잠근 hyperparameter로 F_R 전체 pipeline을 fit하고 C_R로 calibration. H를 본 뒤 재선택·재보정하지 않음."
+            }
+          ]
+        }
+      ],
+      "remaining_execution_conditions": "실제 family 수로 inner fit/calibration/validation과 학습분율이 성립하는지 확인 필요. 비용 때문에 encoder 재학습을 생략하지 않는다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA1-01-04",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/evaluation/statistics/uncertainty",
+          "verified_value": "첫 OOF 분석은 이미 적합·선택된 fold별 모형과 현재 OOF 예측을 고정한 채 독립 family-pair block을 재표집하는 조건부 기술 구간이다(계획2000회, 같은 쌍의 두 타깃·5명 관측을 함께 유지). 95% 차이 구간/90% 실용동등성 구간은 평가쌍 구성의 변동만 반영하며 encoder/probe 재학습·선택·겹치는 outer training sets의 학습절차 불확실성을 포함하지 않는다. OOF를 단일 독립 test 표본처럼 취급한 엄밀한95%/90% coverage나 학습알고리즘의 일반화·동등성을 주장하지 않는다. 참가자 고정·run/time-purge 의존성의 기존 제한도 유지한다. 참가자별 효과와 fold/seed 민감도를 별도 표시한다."
+        },
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/evaluation/statistics/independent_confirmation",
+          "verified_value": "OOF 결과는 G4의 다음 단계 선택용이다. 사전 잠근 H에서, R로만 적합·선택·보정한 최종 pipeline을 한 번 평가하는 경로를 추가한다. 충분한 독립 family-pair/run blocks가 있을 때 H의95% 차이 및90% 동등성 구간을 계산해 고정 최종 모형이 새로운 선정 자극쌍에서 보이는 성능을 추론한다. 이는 관측5명과 해당 학습자료/적합모형에 조건부이며 새 training sample의 재학습 변동은 포함하지 않는다. 전체 학습절차의 일반화/동등성 주장은 현재 범위 밖이고, 필요하면 학습/선택/보정까지 재실행하는 사전 설계된 재표집 또는 독립 반복 연구를 별도 수행한다. H 지지가 부족하거나 이미 사용됐으면 확인 결과를 내지 않고 탐색으로 남긴다."
+        },
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/evaluation/statistics/equivalence",
+          "verified_value": "OOF의90% 조건부 재표집 구간이 [−δ_I,+δ_I] 안이면 현재 고정 OOF 예측의 실용동등성 신호로만 표시한다. formal 전체 pipeline 동등성이나 학습절차 일반화 결론은 내리지 않는다. 잠근 독립 H에서 같은 범위를 충족하고 원뇌 신호·대조·독립 block 지지가 충분하면 관측5명·고정 최종 모형·선정 자극 모집단에 제한된 실용동등성으로 해석한다. 비유의/넓은 구간은 미식별이며 90%와95% 구간 모두 학습 재적합 불확실성을 포함하지 않는다."
+        }
+      ],
+      "remaining_execution_conditions": "OOF는 학습절차 CI가 아니다. H지지·독립성·실제 conditional interval 계산이 미검증이고 사람5명 및 training sample 변동 한계가 남는다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA1-01-05",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+          "json_pointer": "/model_and_environment/resource_execution_contract",
+          "verified_value": {
+            "concurrency": "첫 전체 실행은 단일 작업 프로세스에서 참가자→outer fold→fraction→inner fold/후보→seed→objective를 순차 처리한다. DataLoader workers=0, joblib n_jobs=1, OMP_NUM_THREADS=MKL_NUM_THREADS=OPENBLAS_NUM_THREADS=1, torch intra/inter-op thread=1을 실행 전에 고정하고 라이브 thread 수를 기록한다. 4 CPU quota 안에서의 의도적 보수 설정이며 병렬 fold/seed를 띄우지 않는다.",
+            "ridge_solver": "실제 N,V를 확인해 V×V dense normal matrix를 생성하지 않는다. N_fit×N_fit dual Gram이 예산 안이면 voxel chunk로 Gram을 누적한 dual ridge를 사용한다. 그조차 예산을 넘으면 LinearOperator 기반 LSQR/iterative ridge를 사용하고 tolerance·수렴·iteration cap을 D에서 잠근다. 선형 logistic도 feature-block/iterative 경로로 Hessian V×V를 만들지 않는다. solver 변경은 두 objective/기준에 같은 규칙으로 적용한다.",
+            "pca_solver": "train-only streaming mean/scale과 block 또는 randomized truncated SVD의 D=128이하 경로를 사용한다. 원행렬은 실제 저장형식이 허용하면 mmap/voxel chunk로 읽고 fold별 전체 dense 복사본을 동시에 만들지 않는다. N,V,D별 workspace·dtype·temporary 배열 상한과 solver 품질을 기술 smoke에서 확인한다.",
+            "stage_measurement": "전처리·PCA·시각 cache 생성/읽기·최대 한 fold의 inner/outer encoder+probe+calibration·평가·bootstrap 각각 예상 working arrays와 실측 process-tree RSS peak·cgroup memory.current·시간을 기록한다. 한 batch peak만으로 전체 peak를 대체하지 않는다.",
+            "memory_budget": "실행 직전 M=memory.max, C0=memory.current, R0=작업 process-tree RSS, A=M−C0를 측정한다. reserve=max(4GiB,0.2M); A≤reserve이면 시작하지 않는다. 계획 RSS상한 B_RSS=min(16GiB,R0+0.6A)을 manifest에 잠근다. 각 단계 예상 RSS가0.8B_RSS를 넘으면 시작 전 chunk/solver/범위를 수정한다. 실행 중 RSS≥B_RSS 또는 memory.current≥M−reserve이면 다음 allocation/step을 중단하고 안전한 checkpoint·로그만 남긴다. 1초 간격과 큰 allocation 전 확인한다. 외부 작업의 순간 메모리 사용에 대해 OOM 부재를 보장하는 것은 아니다.",
+            "time_budget": "각 단계 기술 smoke의 단위시간×실제 참가자/fold/fraction/inner후보/seed/objective 재적합 횟수로 총 예측 T_est를 계산한다. 첫 전체 run의 계획 wall budget은 B_time=min(8시간,ceil(2*T_est))로 manifest에 고정한다. 2*T_est>8시간이면 test 개봉 전 필수 일차100%만의 비용 또는 명시적 여러 순차 run 일정으로 재계획하며 encoder 재적합을 생략하지 않는다. run budget 초과 시 기록된 step에서 중단/재개하고 실패한 학습을 완료로 세지 않는다. 실제 수치 T_est·RSS·벽시계는 현재 미측정이다.",
+            "claim_boundary": "이는 실행 계약과 제안한 운영 상한이며 현재 자원 측정/실행 성공이 아니다. 예산·solver 변경은 test 전 공통 규칙으로 잠그고 사후 성능에 따라 바꾸지 않는다."
+          }
+        }
+      ],
+      "remaining_execution_conditions": "당시 cgroup 잔여량·shape·solver수렴·단계별 peakRSS/시간이 미측정이다. guard도 외부 순간 allocation의 OOM 부재를 보증하지 않는다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA2-01-01",
+      "resolved": true,
+      "resolution_scope": "기존 시간관측 계약과 중복 요약/손실 단위의 문서 일관성 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/05_multimodal_dynamics/proposal_RP03.json",
+          "json_pointer": "/execution_contract/observation_operator",
+          "verified_value": {
+            "audit_id": "FPA2-01-01",
+            "native_difference": "원 film-time 1Hz의 A[n]에서 d[n]=A[n]−A[n−3]을 먼저 계산한다. 3은 3초이며 3TR이 아니다. n<3 및 어느 원소든 결측이면 무효다. 표준화 계수는 outer-train에서만 적합한다.",
+            "lag_sign": "평정지연 ell∈{0,2,4}초를 inner train/validation에서 선택한다. 양의 ell은 평정이 자극보다 늦었다는 뜻으로, 자극시간 s의 주석은 e_ell(s)=d(s+ell)에 대응한다. 이는 사후 평가주석 매핑이며 모형 입력이나 경계 검출에 주지 않는다.",
+            "continuous_time": "d[n]은 [n,n+1)에서 값을 유지하는 zero-order hold로 연속화한다. 0.1초 공통 격자에서 아래 인과 convolution 및 TR-bin 적분을 계산한다. 결측을 보간하거나 미래 값으로 채우지 않는다.",
+            "scanner_TR_operator": "실제 preprocessing의 volume 대표시각 tau_j와 TR_j, 실제 film onset o를 확인한다. 대표시각 계약이 없으면 정렬을 추정하지 않고 중단한다. B_j=[tau_j−TR_j/2,tau_j+TR_j/2), R_j[g]=(1/TR_j)∫_{B_j}g(v−o)dv로 고정한다. boxcar 적분은 명시한 관측 근사이며 별도 zero-phase 필터를 추가하지 않는다. 예측 관측값의 available time은 bin 끝으로 표기하고 midpoint 실시간 예측이라고 주장하지 않는다.",
+            "target_path": "q_A,j=R_j[H_ref*e_ell]. H_ref는 인과 double-gamma [Gamma(shape6,scale1)−Gamma(shape16,scale1)/6]를 0–32초에서 면적1로 정규화한 공통 고정 kernel이다. 이것은 분석계약이며 실측 HRF 사실이 아니다. u_A는 훈련 Y→q_A의 ridge로 정하고 z_raw,j=u_A^T Y_j에서 train-only 표준화한 z_A,j를 모든 head의 같은 신경 표적으로 쓴다. z_A 또는 Y에 HRF를 다시 적용하지 않는다. z_raw,j=u_AᵀY_j로 계산한 뒤 z_A,j=(z_raw,j−mu_outer_train)/sd_outer_train으로 표준화한다. 평균과 SD는 outer-train에서만 적합해 모든 head와 test에 같은 변환으로 고정하며 train SD=0이면 보류한다. δ=.01은 이 train 분산1 target의 MSE 단위다.",
+            "prediction_path": "각 causal head의 h_m(s)는 s까지의 자극만 사용한다. p_m,j=readout_m(R_j[H_m*h_m])로 feature/state 경로에서 HRF/FIR를 정확히 한 번만 적용한다. H_m의 family·최대 support32초·선택 예산은 동일하며 각 outer train에서만 적합한다. FIR가 선택되면 HRF convolution 대신 사용하고 둘을 직렬로 적용하지 않는다. annotation ell을 feature/state 경로에 재적용하지 않는다.",
+            "common_mask": "모든 head·허용 ell·관측 kernel의 최대 support에 대해 원주석·feature·Y QC가 유효한 TR 교집합 M_sf를 fitting 전에 만든다. 초기3초, 필요한 convolution support, 영화 끝의 ell 확보, run/boundary buffer를 반영한다. 같은 M_sf를 모든 loss에 적용하고 head별로 유리한 TR을 제거하지 않는다.",
+            "index_example": "가상 예: 원주석 n=10의 차분은 A[10]−A[7]. ell=2이면 film s=8에 대응하고 onset100이면 scanner108이다. 이후 H_ref의 6초 지연 성분은 scanner114에 기여한다. TR2초·대표시각114라면 [113,115) bin에 적분한다. 실제 TR이나 효과를 측정한 예가 아니다."
+          }
+        },
+        {
+          "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+          "json_pointer": "/inputs_outputs/target",
+          "verified_value": {
+            "annotation": "Fear: high=Fearful, low=Not Fearful; 1초 consensus 포함은 공식 JSON/기존 사전에서 확인. 숫자 범위·개별 평정수·신뢰도는 미확인.",
+            "annotation_source": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json",
+            "primary_contrast": "원 film-time 1Hz에서 먼저 d[n]=A[n]−A[n−3]의 3초 차분을 계산한다. 초기3초·결측은 무효이며 3TR 차분이 아니다. 이후 train-only 표준화·ell 이동·공통 H_ref·TR-bin 적분을 execution_contract.observation_operator 순서대로 적용한다. Fear가 상수/불량이면 다른 라벨로 test 최적 교체하지 않는다.",
+            "neural": "outer train의 공통 Y와 q_A,j=R_j[H_ref*e_ell]로 u_A를 적합한다. z_raw,j=u_AᵀY_j로 계산한 뒤 z_A,j=(z_raw,j−mu_outer_train)/sd_outer_train으로 표준화한다. 평균과 SD는 outer-train에서만 적합해 모든 head와 test에 같은 변환으로 고정하며 train SD=0이면 보류한다. δ=.01은 이 train 분산1 target의 MSE 단위다. inner selection→outer refit의 범위는 execution_contract.fit_scope에 따른다. z_A/Y에 HRF를 다시 적용하지 않는다.",
+            "time_contract": "원1Hz 차분→평정지연 ell(양수는 늦은 평정을 앞선 자극으로 매핑)→공통 H_ref 1회→scanner/TR-bin 적분으로 q_A를 만든다. state 예측은 별도 H_m/FIR 1회 경로다. 각 경로에 HRF/lag를 중복 적용하지 않고 모든 head에 같은 유효 TR 마스크를 쓴다. 상세 식·부호·범위는 execution_contract.observation_operator에 고정했다.",
+            "validity": "동일 공통 유효 TR 마스크 M_sf에서 z_A와 TR 관측목표 q_A의 held-out 관계를 별도로 확인하되 그 결과로 projection/라벨을 다시 고르지 않는다. raw 1Hz d_A와 z_A를 직접 비교하지 않는다. 현재 동일 영화 개인 내 반복은 미확인이다. 반복 신뢰도·noise ceiling은 가정하지 않으며 원평정이 있을 때만 평정자 split 신뢰도를 추정한다."
+          }
+        },
+        {
+          "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+          "json_pointer": "/evaluation/reliability",
+          "verified_value": "raw ratings 존재 시 평가자 분할로 Fear 전이 안정성을 추정한다. consensus만 있으면 lag/평활도 오차 민감도를 보고하고 측정오차를0으로 두지 않는다. 개인 반복 미확인으로 repeat noise ceiling을 만들지 않는다. 동일 M_sf에서 고정 z_A와 TR 관측목표 q_A의 held-out 관계가 성립하지 않으면 정서 해석을 중단한다. raw 1Hz d_A와 z_A를 직접 비교하지 않는다."
+        }
+      ],
+      "remaining_execution_conditions": "실제 TR 대표시각·onset·숫자 annotation·결측 및 연산자 구현은 미검증이다. target/HRF 매핑은 계약이며 실측 생리 사실이 아니다. 실제 training target SD 및 같은 변환 적용·q_A/z_A held-out 관계는 미검증이다.",
+      "new_contradiction_found": false,
+      "closure_followup": "첫 수정본의 raw d_A 검증 문구와 z 표준화 누락을 같은 audit_id 안에서 수정 요청했고, 최종 두 문서에서 동일 M_sf의 q_A 비교 및 train-only 표준화를 직접 재확인했다."
+    },
+    {
+      "audit_id": "FPA2-01-02",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/05_multimodal_dynamics/proposal_RP03.json",
+          "json_pointer": "/execution_contract/prefix_only_matching",
+          "verified_value": {
+            "audit_id": "FPA2-01-02",
+            "allowed_covariates": "online matching에는 현재까지 run 경과초, 마지막으로 가용해진 경계 이후 경과초, [t−60,t) 고정 과거창의 가용 경계 수/실제 관찰 창길이, 공통 비개입 reference의 사전 state norm·age, t까지 도착한 예측오차, 현재 관찰 가능한 cut/motion/onset만 쓴다. duration은 완료 사건길이가 아니라 경과시간이다.",
+            "availability": "공변량·reference state·matching/schedule 출력마다 time_available을 저장하고 online 가지에서는 모두 ≤t인지 확인한다. treatment 이후 state와 test Fear/Y는 사용하지 않는다.",
+            "schedule": "훈련 영화의 prefix 공변량으로만 random schedule의 hazard/층별 발생률을 적합하고 test에서는 고정된 규칙과 사전 seed의 순차 Bernoulli draw로 위치를 정한다. test 영화의 미래 경계 총수·전체 길이를 보고 횟수를 정확히 맞추거나 schedule을 사후 재선택하지 않는다. 실현 횟수/겹침 차이는 진단으로 보고한다.",
+            "retrospective_limit": "완료 사건길이·영화 전체 경계밀도·전체 경계 수에 맞춘 일정은 retrospective로 표기하며 online 위치특이 주검정에 포함하지 않는다. 현재 계약에서 이를 추가 연구로 확장하지 않는다."
+          }
+        },
+        {
+          "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+          "json_pointer": "/execution_contract/prefix_only_matching",
+          "corresponding_value_equal": true
+        }
+      ],
+      "remaining_execution_conditions": "실제 경계/공변량 available time과 schedule calibration은 실행 때 확인해야 한다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA2-01-03",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/05_multimodal_dynamics/proposal_RP03.json",
+          "json_pointer": "/execution_contract/cell_weighting_and_conditional_CI",
+          "verified_value": {
+            "audit_id": "FPA2-01-03",
+            "cell_set": "S_f는 해당 outer fold의 train/validation/test coverage와 사전 QC·공통 유효 TR M_sf를 충족하는 실제 참가자 집합이다. 없는 셀은 보간하지 않는다. 모든 비교 head에 동일 S_f,M_sf를 적용한다. 수치 실패 head는 비교를 중단/수정하며 해당 head에 유리하게 셀을 제외하지 않는다.",
+            "estimand": "d_sft=(z_sft−pred_no_explicit_sft)^2−(z_sft−pred_forgetting_sft)^2; D=(1/F)Σ_f[(1/|S_f|)Σ_{s∈S_f}(1/|M_sf|)Σ_{t∈M_sf}d_sft]. 영화는 동일 가중, 영화 안 관측 참가자는 동일 가중, 셀 안 공통 TR은 동일 가중이다. 모든 영화의 S_f·유효 TR 수를 공개한다.",
+            "bootstrap": "고정 OOF cell loss에 대해 영화 F개와 전체 관측 참가자 집합의 ID를 각각 독립 복원추출하는 crossed cluster bootstrap을 2,000회 계획한다(seed20261112). 참가자 중복수로 각 영화의 관측 셀 가중을 계산하고 영화 중복수로 평균한다. 선택 영화에서 관측 참가자 가중 합이0이면 그 replicate 전체를 다시 뽑으며 빈 셀을 만들지 않는다. 최대20,000회 시도와 무효 비율을 기록한다.",
+            "interval_scope": "유효 replicate의 2.5/97.5 percentile을 95% 구간으로 보고한다. u_A/PCA/state/readout/lag/HRF/선택·schedule을 재적합하지 않으므로 이는 이미 적합된 fold별 모형과 target에 조건부인 cluster 구간이다. 겹친 outer-train의 학습절차 변동이나 전체 procedure 불확실성을 포함했다고 하지 않는다.",
+            "instability": "유효2,000회 미달, 무효 replicate>5%, 단일 영화 영향으로 결론 변경 등 소표본 불안정이면 CI 기반 동등성/확대 판정을 보류하고 영화별 효과만 보고한다. 6영화의 한계를 반복시점 수로 보충하지 않는다. 전체 학습절차의 추론에는 모든 적합단계 재실행 또는 독립 holdout이 필요하지만 이번 문서 수정에서는 새 분석으로 추가하지 않는다."
+          }
+        },
+        {
+          "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+          "json_pointer": "/execution_contract/cell_weighting_and_conditional_CI",
+          "corresponding_value_equal": true
+        }
+      ],
+      "remaining_execution_conditions": "실제 coverage·조건부 bootstrap 안정성은 미검증이다. 전체 학습절차의 CI와 개인 내 반복 신뢰도는 제공하지 않는다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA2-01-04",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/05_multimodal_dynamics/proposal_RP03.json",
+          "json_pointer": "/execution_contract/training_runtime_budget",
+          "verified_value": {
+            "audit_id": "FPA2-01-04",
+            "unroll": "full-film BPTT 대신 TBPTT를 고정한다. 1Hz feature 기준 최대 unroll64스텝, batch1 영화 chunk, 마지막 짧은 chunk 허용. 동일 영화/run 안에서는 수치 state를 다음 chunk로 carry하되 chunk 경계에서 autograd만 detach한다. detach는 state를0으로 만드는 reset이 아니다. 영화/run 시작에서만 공통 초기화하고 명시적 forgetting은 각 모형 정의대로 적용한다.",
+            "execution": "동결 backbone 특징은 autograd 없이 cache한다. optimizer/gradient graph는 chunk 단위로 해제한다. fold·seed·모형은 순차 실행하며 동시에 학습하지 않는다. torch/BLAS intra-op thread≤4, inter-op1, DataLoader worker0으로 제한한다.",
+            "measurement": "합성 입력의 대표 최대64스텝 chunk에서 forward+backward+optimizer step의 process 및 cgroup memory peak를 측정한 뒤 전체 학습 여부를 정한다. feature/state 저장량 산술은 학습 peak 검증이 아니다. 입력 shape 외 실제 test 수치로 자원 설정을 튜닝하지 않는다.",
+            "stop_line": "32GiB cgroup에서 전체 사용량 peak24GiB 이하와 최소8GiB headroom을 요구한다. 측정/실행 중24GiB 도달 또는 OOM이면 학습을 중단한다. CPU4분량을 넘는 병렬 fold/seed를 허용하지 않는다. watchdog/step 경계 관측은 순간 peak를 완전 보장하지 못하므로 실제 peak 기록을 남긴다.",
+            "fallback": "자원 실패 시 test 평가 전에 모든 head 공통으로 unroll32, 이후16 순으로만 낮춰 대표 chunk를 재측정한다.16에서도 실패하면 RNN 비교를 중단하고 계약/cache 단계만 남긴다. 선택된 unroll·batch·detach 규칙은 모든 비교 head와 fold에서 같게 동결하며 memory를 지운 것으로 해석하지 않는다."
+          }
+        },
+        {
+          "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+          "json_pointer": "/execution_contract/training_runtime_budget",
+          "corresponding_value_equal": true
+        }
+      ],
+      "remaining_execution_conditions": "대표 chunk peak·모델load·실행시간은 아직 측정하지 않았다.24GiB는 사전 중단선이며 실행 성공 보장이 아니다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA2-01-05",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/05_multimodal_dynamics/proposal_RP03.json",
+          "json_pointer": "/execution_contract/fit_scope",
+          "verified_value": {
+            "audit_id": "FPA2-01-05",
+            "global_shape_only": "공통 QC는 파일/ID·shape·TR/onset·결측 존재·제시 modality·체크포인트 hash·한 입력 finite/shape 및 합성입력 exact-function 단위검사까지만 허용한다. 단계A120TR이 나중 test 영화에 속해도 effect·라벨 관계·noise·lag·threshold·모형 선택에 쓰지 않으면 shape-only 로그로 남긴다.",
+            "outer_fold": "6영화 LOFO에서 test1을 완전히 잠그고 outer train5 중 ID 규칙으로 validation1/train4를 정한다. 표준화·PCA·u_A·annotation ell·boundary threshold/hazard·noise/recovery calibration·state/readout·HRF 선택은 이 train4/validation1 안에서 수행한다. 선택규칙 고정 후 outer train5로 재적합하고 test 영화에서는 한 번 평가한다.",
+            "scope_ledger": "모든 fit 객체에 source_film_ids, subject_ids, stage(shape_only/inner_train/inner_validation/outer_refit/test), target_used, config_hash를 기록한다. held-out 영화가 다른 outer fold에서 training인 일반 LOFO와 같은 fold의 test 누수를 구별한다.",
+            "global_development": "기본 계획에는 전역 수치 조정용 영화를 두지 않는다. 한 영화를 전역 noise/recovery/threshold/effect 조정에 사용했다면 그 영화는 모든 독립 test 집계에서 제외해 외부개발로 표시하거나 그 조정을 각 outer train 안에서 처음부터 다시 수행한다. 단계A라는 이름만으로 개발 사용을 면제하지 않는다.",
+            "no_post_test_revision": "δ·수치 tolerance·TBPTT 및 절차는 test 전 고정한다. test 결과 뒤 변경이 필요하면 해당 결과는 탐색으로 표시하고 같은 test를 독립 확증으로 재사용하지 않는다."
+          }
+        },
+        {
+          "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+          "json_pointer": "/execution_contract/fit_scope",
+          "corresponding_value_equal": true
+        }
+      ],
+      "remaining_execution_conditions": "실제 fit ledger와 각 fold의 자료 접근은 코드 실행 시 검증해야 한다. test를 본 뒤 조정하면 독립 확증으로 재사용하지 않는다.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA3-01-01",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/04_brain_foundation/proposal_RP08.json",
+          "json_pointer": "/execution_contract/A_B_target_scale_gate",
+          "verified_value": {
+            "audit_id": "FPA3-01-01",
+            "required_metadata": "A0와 H3의 B 각각에 실제 header·정의·원 단위·수치 범위·극성·평정/집계 방식·척도 유형·결측 코딩·결측률·상수 여부를 확인해 manifest에 기록한다. category/dimension 경로명이나 숫자 dtype만으로 등간 정량 표적을 추정하지 않는다.",
+            "MSE_go": "값 간 차이의 크기와 squared-error가 해당 정량 표적에서 의미 있다고 문서화할 수 있을 때만 현재 MSE 계약을 적용한다. 집계평균도 원 평정척도와 집계 의미를 확인한다. train mean/SD는 허용된 정량척도의 수치 단위 조정이며 척도 타당성을 만들어 주지 않는다.",
+            "nominal_ordinal": "명목 범주 또는 순서만 정의된 값에 임의 숫자 간격을 부여하지 않는다. 문서화된 정량 열을 뇌효과와 test 성능을 보지 않고 사전 선택하거나, 현 MSE 분석을 보류하고 loss·δ·비교모형을 test 개봉 전에 다시 고정한다. loss 변경 시 현재 δ=.01 및 MSE 기반 H3 계약은 자동 승계하지 않는다.",
+            "missing_constant": "A/B 결측 처리와 공통 평가행 선택을 모든 mean/plus 조건에 동일하게 적용한다. target 결측을 test 뇌값으로 대체하지 않는다. training target가 상수 또는 사전 수치허용범위 이하 SD이면 ε를 넣어 진행하지 않고 해당 fold/target의 분석을 보류하거나 test 이전 계획을 수정한다.",
+            "H3_go": "B도 같은 척도 gate를 통과하고 개발자료의 scale·난도·신뢰도 비교가능성이 별도로 뒷받침될 때만 H3를 수행한다. 단순 z-score와 같은 loss 이름만으로 비교가능하다고 하지 않는다. B gate 실패는 H3만 보류하며 A/H1 게이트 통과 여부와 분리한다.",
+            "status": "실제 A/B 실물척도 미확인. 현재는 실행 규칙 작성이며 MSE 착수 허용 판정이 아니다."
+          }
+        },
+        {
+          "artifact": "agents/04_brain_foundation/pilot_PILOT03.json",
+          "json_pointer": "/decision_points/start",
+          "verified_value": "실제 정량 A0의 squared-loss gate·dense y·완전 Ω/W/비중첩 partition·내용군 split·projection 수치검사 및 계측 후 자원 cap가 통과하면 제한된 H1 파일럿을 착수한다. 반복은 H1 predictive first pass의 필수조건이 아니지만 반복주장의 필수조건이다. H2/B-H3의 추가 gate 실패는 각각 해당 이차가설만 보류한다."
+        }
+      ],
+      "remaining_execution_conditions": "실제 주석 스키마와 정량적 loss 의미 미확인; H3 scale/난도/신뢰도 비교가능성 미검증.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA3-01-02",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/04_brain_foundation/proposal_RP08.json",
+          "json_pointer": "/execution_contract/fixed_spatial_support",
+          "verified_value": {
+            "audit_id": "FPA3-01-02",
+            "omega_definition": "Ω는 보존할 실제 dense cortical 좌표/voxel/vertex ID의 고정 목록이다. 좌표변환·coverage·atlas membership·W의 출처를 기록하고 배경·미할당·중복할당·비유한 y/weight는 관측범위 결정 단계에서 제외한다. 결과/label 효과로 Ω를 고르지 않는다.",
+            "complete_parcels": "공통 공간 좌표가 검증된 경우 참가자 coverage 교집합에 완전히 포함되는 기준 atlas parcel만 parcel 단위로 유지하고 그 합집합을 Ω로 정한다. 교집합이 parcel을 자르면 주계획에서는 그 parcel 전체를 제외한다. 8/32 parcel은 상한 목표이며 완전한 parcel 수가 부족하면 수를 줄여 기록한다. 부분-support를 별도로 허용할 경우 새 관측계약으로 명시하고 완전 parcel 또는 원 atlas와 같은 연산이라고 부르지 않는다.",
+            "participant_boundary": "native 좌표의 공통 매핑이 없으면 사람 간 voxel 교집합을 만들지 않는다. 참가자별 Ω_s에서 H1을 수행하고 공간범위가 다른 조건부 결과로 표시한다. 이 경우 동일 Ω의 사람 공통 분석이라고 부르지 않는다.",
+            "partition_checks": "각 고정 Ω(또는 Ω_s)에서 C의 각 행 합=1, 각 열의 가중합>0, 모든 W_v>0 및 유한값, y/W/coordinate 순서 일치를 검사한다. 빈 parcel 열은 허용하지 않는다. 모든 mean/plus 조건과 fold에 같은 y지원·W·G를 적용한다.",
+            "H2_same_support": "실제 atlas와 각 random atlas는 동일 Ω와 동일 y/W를 빠짐없이 정확히 한 번 분할한다. J·가중 면적/크기 분포·연속성/거리 및 사전 공간대역 허용범위를 개발 단계에서 고정해 맞춘다. 실제/random의 Ω 좌표해시와 W해시가 같음을 검사하며 배경을 residual에 더하지 않는다.",
+            "H2_failure": "동일 Ω의 비어 있지 않은 분할과 공간/크기 제약을 충족한 random atlas를 만들 수 없으면 H2만 보류한다. 다른 뇌영역을 포함하거나 Ω를 random atlas마다 바꿔 결과를 채우지 않는다.",
+            "status": "실제 coverage·완전parcel·random atlas 제약은 미실행. 공간계약 검증 후에만 G/P를 적용한다."
+          }
+        }
+      ],
+      "remaining_execution_conditions": "실제 좌표·coverage·W·공통 mapping·공간제약 충족 여부 미검증; native 매핑 없으면 참가자별 Ω_s 범위.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA3-01-03",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/04_brain_foundation/pilot_PILOT03.json",
+          "json_pointer": "/evaluation/effect_CI_contract",
+          "verified_value": {
+            "audit_id": "FPA3-01-03",
+            "primary_scope": "일차 효과구간은 각 참가자의 사전 고정 outer-fold OOF paired-loss에 대해, 그 fold별 이미 적합된 pipeline 집합에 조건부인 새 자극 접근성의 95% 구간으로 계획한다. 전체 학습절차의 재현 불확실성 또는 새 사람 모집단 CI가 아니다.",
+            "resampling_rule": "원영상/content family와 run/GLM 공통오차를 함께 보존하도록 연결된 의존 블록을 개발/metadata에서 고정한다. 동일 블록의 모든 paired losses와 model조건을 함께 재표집하고 fold별 test 규모를 유지하는 계층/층화 bootstrap을 계획한다. 블록이 여러 fold를 연결하면 연결관계를 보존한 하나의 단위로 처리한다. 유효 독립블록이 부족하거나 연결구조가 퇴화하면 CI를 산출 가능한 유효 구간으로 보고하지 않고 기술효과만 남긴다.",
+            "reported_interval": "2,000회 paired cluster bootstrap의 2.5/97.5 percentile을 계획상 95% 구간으로 지정한다. 단위·가중·fold구조·seed와 성공 resample 수를 기록하고 개발 simulation으로 CI coverage를 먼저 점검한다. 이 횟수는 실행 결과가 아니며 bootstrap 횟수가 유효표본수를 늘리지 않는다. OOF fold 간 shared-training 의존성은 loss-only resampling으로 제거되지 않으므로 이를 정확한 finite-sample coverage라고 주장하지 않는다.",
+            "fixed_fit_boundary": "PCA·k·readout·규제 선택을 고정한 loss 재표집은 그 선택/학습 불확실성을 포함하지 않는다. primary 제목과 표에 fitted-pipeline conditional이라고 명시하고 학습자료 일반화·학습절차 전체 CI라고 쓰지 않는다.",
+            "full_learning_rule": "전체 학습절차 불확실성을 주장하도록 범위를 변경하려면 test 이전 별도 규칙으로 training/evaluation 의존블록을 재표집하고 매 replicate에서 normalization·PCA·k·readout/alpha의 nested 선택과 최종 적합·OOF평가를 다시 수행해야 한다. 같은 원 블록의 복제본이 train/test를 가로지르지 않게 묶는다. 이번 계약의 일차분석은 이 재적합 CI를 수행한 것으로 간주하지 않는다.",
+            "null_vs_effect": "known-null calibration 및 reduced-model null의 pipeline 재적합은 영가설하 오류율 점검이다. 그것을 효과크기 CI의 전체 학습 불확실성을 계산한 것으로 대체하지 않는다. 효과 CI와 null 절차의 목적·단위·재적합 여부를 각각 보고한다.",
+            "five_subjects": "5명 개인별 효과/conditional 95% 구간과 사람 간 관측 범위(min/max 등 기술량)를 분리한다. 공통 자극의 다섯 명 평균을 기술할 때 같은 자극 블록에 동일 bootstrap multiplicity를 적용하며 이 평균 역시 관측된 5명에 조건부다. 사람5명의 shared outer-train이나 많은 자극으로 사람 모집단 CI를 자동 얻지 않는다. 양측 exact sign-flip 최소 p=.0625와 비유의≠동등성 제한을 유지한다.",
+            "equivalence_scope": "사전 δ와 같은 단위의 conditional 95% 구간을 사용한다. CI상한<δ는 추가 이득이 작다는 제한적 판단, CI전체⊂[-δ,δ]는 지정 fitted pipeline·표적·참가자 조건의 실용 동등성이다. coverage 검증 실패/넓은 구간은 미결정이며 일반 학습절차나 사람 모집단으로 확대하지 않는다.",
+            "status": "실제 OOF예측·bootstrap·coverage·효과 CI 미실행. 구간 수준과 계산 범위만 고정했다."
+          }
+        },
+        {
+          "artifact": "agents/04_brain_foundation/pilot_PILOT03.json",
+          "json_pointer": "/evaluation/conditional_null",
+          "verified_value": "무조건 A permutation은 m의 실제 신호까지 제거하므로 H1의 정확 conditional null이라고 하지 않는다. known m-only 자료에 공간상관 noise를 주입한 null과, reduced-model 적합 및 exchangeability가 검증된 경우의 residual resampling을 비교한다. null 재표본화는 pipeline 재적합을 포함한다. 이 null calibration 재적합은 효과 CI의 전체 학습 불확실성을 계산한 것이 아니다. 일차 효과구간은 별도 고정 적합 조건부 규칙을 따른다."
+        },
+        {
+          "artifact": "agents/04_brain_foundation/pilot_PILOT03.json",
+          "json_pointer": "/decision_points/equivalence",
+          "verified_value": "척도 gate를 통과한 동일 loss·사전δ에 대해 고정 fitted-pipeline 조건부 95% CI 전체가[-δ,δ]안이면 관측한 참가자·표적·함수족 조건의 실용 동등성이다. CI상한<δ와 동등성은 구별한다. coverage 미확인·넓은 CI는 미결정이며 사람 모집단/전체 학습절차 동등성으로 확대하지 않는다."
+        }
+      ],
+      "remaining_execution_conditions": "실제 independent cluster 수·OOF prediction·coverage 미확인. 사람5명 모집단 및 전체학습절차 CI는 제공하지 않음.",
+      "new_contradiction_found": false
+    },
+    {
+      "audit_id": "FPA3-01-04",
+      "resolved": true,
+      "resolution_scope": "기존 지적의 문서 계약 해소; 실험 성공/실행 gate 통과 아님",
+      "verified_fields": [
+        {
+          "artifact": "agents/04_brain_foundation/pilot_PILOT03.json",
+          "json_pointer": "/model_and_environment/resource_execution_contract",
+          "verified_value": {
+            "audit_id": "FPA3-01-04",
+            "first_measurement": "첫 대표 QC 블록에서 실제 cgroup limit L, 시작 total memory.current B, 전체 실행 peak memory·solver workspace·wall time을 측정하고 실행 config에 기록한다. 보고된 L=32GiB는 시작값이며 실행시 재확인한다.",
+            "cap_rule": "계측 후 명시적인 total peak 상한 M_cap≤min(0.75L,L−8GiB)를 config에 고정한다. L=32GiB이면 상한은 최대24GiB이고 최소8GiB를 남긴다. B와 대표 block workspace/복사본/solver를 합친 projected total peak가 이 상한에 맞지 않으면 full fit를 시작하지 않는다. 기존 부하가 상한을 넘으면 해당 실행을 보류한다. 실제 측정 없이는 맞는다고 선언하지 않는다.",
+            "warning_stop": "경고선=0.9M_cap, 계획/측정 total peak≥M_cap이면 새 할당·후속 fit를 중단하고 정리한다. 경고선 도달 시 다음 block 확대를 금지하고 block/solver 설정을 재계측한다. 예기치 않은 OOM 또는 monitor overshoot는 실패로 기록하며 상한을 지켰다고 소급 주장하지 않는다.",
+            "cpu_concurrency": "총 thread budget≤4이며 CPU quota가 더 작으면 그 값 이하로 낮춘다. BLAS/MKL/OpenBLAS/OMP 및 sklearn worker를 한 예산 안에 고정하고 nested parallelism을 금지한다. 참가자·model·outer/inner fold·bootstrap fit는 순차 실행한다. 실제 thread/env 설정을 config에 기록한다.",
+            "preserve_G_P": "공간블록은 완전 parcel 단위로 처리하거나, parcel이 block을 가로지르면 모든 해당 block의 정확한 누적 Σw_v y_v와 Σw_v를 먼저 계산한 뒤 같은 전체 parcel 평균을 두 번째 pass에서 broadcast한다. block 내부만의 평균/분모로 G/P를 바꾸지 않는다. Ω·W·parcel membership hash는 block 크기를 바꿔도 동일해야 한다.",
+            "PCA_workspace": "workspace가 크면 같은 전체 training rows와 같은 Ω의 residual을 사용하는 incremental/randomized solver로 바꾸고 solver·순서·수치허용오차를 기록한다. block별 별도 PCA/서로 다른 feature공간을 이어 붙이지 않는다. 작은 training subset에서 기존 solver와 subspace/예측 수치 민감도를 점검하며 test로 solver를 선택하지 않는다.",
+            "no_silent_scope_change": "메모리 문제를 해결하려고 원래 Ω에서 일부 voxel을 잘라 다른 관측을 같은 H1이라고 보고하지 않는다. block/out-of-core로 같은 연산을 유지할 수 없으면 해당 fit를 보류하고 test 이전 계약 변경으로 기록한다. V×V P 물리행렬은 만들지 않는다.",
+            "status": "상한 공식·thread/순차 규칙 작성 완료; 대표 block 계측·config 설정·실제 G/P 보존검사는 아직 수행하지 않았다."
+          }
+        }
+      ],
+      "remaining_execution_conditions": "실제 baseline memory/workspace/peak·config·projection보존 수치계측 미실행. cap 초과시 scope를 조용히 바꾸지 않고 실행 보류.",
+      "new_contradiction_found": false
+    }
+  ],
+  "consistency_checks": {
+    "PILOT01_framework_statistics_sequence_gates_resource_equal": true,
+    "PILOT03_execution_contract_projection_target_support_loss_CI_inference_resource_equal": true,
+    "PILOT02_execution_contract_equal": true,
+    "PILOT02_target_equal": true,
+    "PILOT02_primary_loss_equal": true,
+    "PILOT02_final_q_A_validity_and_train_standardization_consistent": true,
+    "response_after_hash_matches_current": {
+      "agents/03_vision_decoding/proposal_RP01.json": true,
+      "agents/03_vision_decoding/pilot_PILOT01.json": true,
+      "agents/05_multimodal_dynamics/proposal_RP03.json": true,
+      "agents/05_multimodal_dynamics/pilot_PILOT02.json": true,
+      "agents/04_brain_foundation/proposal_RP08.json": true,
+      "agents/04_brain_foundation/pilot_PILOT03.json": true
+    }
+  },
+  "artifact_snapshots": [
+    {
+      "path": "agents/03_vision_decoding/proposal_RP01.json",
+      "sha256": "950d132d7dc287779a2f3e2f974a8905498625f5d16b127b0ad4196928ad77a0"
+    },
+    {
+      "path": "agents/03_vision_decoding/pilot_PILOT01.json",
+      "sha256": "055e7dc79eb4ff0569aa667a0c4c94a5bf8dfc2efbd3031250430f3584cc6720"
+    },
+    {
+      "path": "agents/03_vision_decoding/final_audit_response.json",
+      "sha256": "9fb7a2290fe45246bc626a89b76b0da6a88fb2ac9e241f595de54fbad343ada1"
+    },
+    {
+      "path": "agents/03_vision_decoding/final_audit_response.md",
+      "sha256": "8776bef0b57c302dc566e88a6dc56a1302c662304d61635c924c32e7714c1e7f"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/proposal_RP03.json",
+      "sha256": "2414fb026cce2d48f6d7e2e0d2759fff595d910f14c38c8c5a19237dc080550d"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+      "sha256": "d676b1874cd19e4b8870d2daf04aeb0b94c32df03212729076e770ecd0b12062"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/final_audit_response.json",
+      "sha256": "b61b3f8e7a1b0d86ff530ad0b500d4bffcc3d90490732c461ddea2b217327f42"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/final_audit_response.md",
+      "sha256": "72590f2ae0ed68edd39b423427806b16c197f2873c7aea1a2243dd11e0dcd7c8"
+    },
+    {
+      "path": "agents/04_brain_foundation/proposal_RP08.json",
+      "sha256": "721f60e6782b8a99cac733c744d94ae46b42a6fb570993c9eb4f6352113ccc7d"
+    },
+    {
+      "path": "agents/04_brain_foundation/pilot_PILOT03.json",
+      "sha256": "14ff407a4a1e79618ba772de5160dedcd9103272d2776659b29f08207ee55436"
+    },
+    {
+      "path": "agents/04_brain_foundation/final_audit_response.json",
+      "sha256": "bbc56b66e98b28cb4659232a600a2de190f13b3b4524911105e03591dfb782c3"
+    },
+    {
+      "path": "agents/04_brain_foundation/final_audit_response.md",
+      "sha256": "88ab3d806f99e03f6b892b5d2901df4407b292cadc0e1190c582ab2ceeb3bf80"
+    }
+  ],
+  "reviewed_at_utc": "2026-11-12T08:12:00.578655+00:00",
+  "verification_boundary": [
+    "제안서·파일럿 실제 JSON 필드와 응답 JSON/Markdown을 직접 읽고 대응 블록 동일성과 현재 SHA256을 확인했다. 응답자의 완료 주장만으로 통과시키지 않았다.",
+    "PILOT01 5건, PILOT02 5건, PILOT03 4건만 재검토했다. 새 연구 확장이나 추가 감사 목록은 만들지 않았다.",
+    "실제 뇌/annotation 수치 배열·checkpoint load·model fit·효과/CI·자원 peak 실행 없음. 이전 작은 합성 대수 확인은 실제 신경 검정과 구별되어 있다.",
+    "각 행의 남은 실행 조건은 문서상 미해소 지적이 아니라 실제 실행 때 확인할 gate이다. 공유 문서와 Git은 수정하지 않았다."
+  ]
+}

@@ -1,5 +1,7 @@
-# 보고서 묶음 안내
+# 보고서 묶음과 전체 백업의 차이
 
-이 압축파일은 연구 보고서·CSV·JSON 색인·출처 목록·검증 스크립트를 포함한다. 논문 PDF, 원본 HTML, 저장소 snapshot, 이벤트 원본 등 큰 원증거는 전체 작업 폴더의 agents/*/evidence 또는 sources에 보존했고 이 묶음에는 포함하지 않았다. 따라서 증거 원본 경로를 여는 작업은 공유 작업공간에서 수행해야 한다. 출처 URL·검증 범위는 보고서와 manifest에 있다.
+이 문서의 초기 경량 압축 묶음은 당시 보고서·CSV·JSON·검증 스크립트만 포함하고 큰 PDF·HTML·원 이벤트 증거를 제외했다. 그 초기 묶음의 범위를 최신 전체 백업과 혼동하지 않는다.
 
-먼저 START_HERE.md 또는 synthesis/initial_report.md를 읽는다. 전체 미션은 미완료이며 데이터·원문 접근을 재개해야 한다.
+현재 정본은 GitHub 연구 브랜치다. 보고서와 공개 원문 증거·원 이벤트·코드 snapshot을 포함하고 큰 파일은 해시가 있는 조각으로 보존한다. scripts/restore_backup.py로 전체를 새 클라우드에 복원할 수 있다. 사용자 컴퓨터에 다운로드할 필요는 없다.
+
+최신 시작점은 [START_HERE.md](START_HERE.md)와 [최종 종합 보고서](synthesis/FINAL_REPORT.md)다. 실제 사용자 데이터 본체·모델 가중치가 이 저장소에 새로 포함됐다고 뜻하지 않는다. 파일별 범위는 backup/current_snapshot.json, 원격 저장 성공은 backup/LAST_SUCCESS.json을 확인한다.

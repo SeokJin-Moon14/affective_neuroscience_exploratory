@@ -1,0 +1,121 @@
+[
+  {
+    "rq_id": "RQ07",
+    "query_en": "history context subsequent event interaction predictive state fMRI hemodynamic convolution neural response",
+    "executed_at": "2026-11-12T07:43:27.200633+00:00",
+    "method": "최종 범위 수정 후 동일103편 코퍼스 전수 IDF 토큰검색",
+    "top5": [
+      {
+        "paper_id": "P033",
+        "title": "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture",
+        "score": 10.9447
+      },
+      {
+        "paper_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "score": 7.8899
+      },
+      {
+        "paper_id": "P099",
+        "title": "In Search of Lost Domain Generalization",
+        "score": 7.7549
+      },
+      {
+        "paper_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "score": 6.457
+      },
+      {
+        "paper_id": "P054",
+        "title": "Nonlinear ICA Using Auxiliary Variables and Generalized Contrastive Learning",
+        "score": 6.3622
+      }
+    ],
+    "scope": "실제 로컬 재검색. 새 외부 학술검색/원문열람 아님; 전역신규성 미확정",
+    "closest_prior_ids": [
+      "P008",
+      "P013",
+      "P048"
+    ],
+    "coordinator_interpretation": "기존 상태/학습목표/좌표 접근성 문헌의 원리와 중복한다. 차별성은 명시한 정서 신경 대비의 조건부 검정이며 새로운 알고리즘 발명이나 세계최초를 주장하지 않음"
+  },
+  {
+    "rq_id": "RQ20",
+    "query_en": "future prediction versus past reconstruction training objective neural affect representation matched inputs",
+    "executed_at": "2026-11-12T07:43:27.201095+00:00",
+    "method": "최종 범위 수정 후 동일103편 코퍼스 전수 IDF 토큰검색",
+    "top5": [
+      {
+        "paper_id": "P046",
+        "title": "Revisiting Feature Prediction for Learning Visual Representations from Video",
+        "score": 12.0445
+      },
+      {
+        "paper_id": "P075",
+        "title": "Flow Matching Guide and Code",
+        "score": 9.5609
+      },
+      {
+        "paper_id": "P020",
+        "title": "Improving visual image reconstruction from human brain activity using latent diffusion models via multiple decoded inputs",
+        "score": 7.5356
+      },
+      {
+        "paper_id": "P052",
+        "title": "Position: The Platonic Representation Hypothesis",
+        "score": 6.7083
+      },
+      {
+        "paper_id": "P018",
+        "title": "The Wisdom of a Crowd of Brains: A Universal Brain Encoder",
+        "score": 6.4712
+      }
+    ],
+    "scope": "실제 로컬 재검색. 새 외부 학술검색/원문열람 아님; 전역신규성 미확정",
+    "closest_prior_ids": [
+      "P008",
+      "P046",
+      "P066"
+    ],
+    "coordinator_interpretation": "기존 상태/학습목표/좌표 접근성 문헌의 원리와 중복한다. 차별성은 명시한 정서 신경 대비의 조건부 검정이며 새로운 알고리즘 발명이나 세계최초를 주장하지 않음"
+  },
+  {
+    "rq_id": "RQ25",
+    "query_en": "deterministic error gating coordinates identical information limited readout affective neural sample efficiency",
+    "executed_at": "2026-11-12T07:43:27.201601+00:00",
+    "method": "최종 범위 수정 후 동일103편 코퍼스 전수 IDF 토큰검색",
+    "top5": [
+      {
+        "paper_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "score": 14.0111
+      },
+      {
+        "paper_id": "P075",
+        "title": "Flow Matching Guide and Code",
+        "score": 10.0071
+      },
+      {
+        "paper_id": "P093",
+        "title": "Scaling Vision with Sparse Mixture of Experts",
+        "score": 9.8098
+      },
+      {
+        "paper_id": "P051",
+        "title": "Similarity of Neural Network Representations Revisited",
+        "score": 7.7215
+      },
+      {
+        "paper_id": "P024",
+        "title": "Cinematic Mindscapes: High-quality Video Reconstruction from Brain Activity",
+        "score": 7.1466
+      }
+    ],
+    "scope": "실제 로컬 재검색. 새 외부 학술검색/원문열람 아님; 전역신규성 미확정",
+    "closest_prior_ids": [
+      "P093",
+      "P037"
+    ],
+    "coordinator_interpretation": "기존 상태/학습목표/좌표 접근성 문헌의 원리와 중복한다. 차별성은 명시한 정서 신경 대비의 조건부 검정이며 새로운 알고리즘 발명이나 세계최초를 주장하지 않음"
+  }
+]

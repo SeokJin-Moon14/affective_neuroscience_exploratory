@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "final-research-planning",
+  "snapshot_id": "66342fd329db38feb92790140d5180452ffaecda566bf0de5281a0dc4f6e5433",
+  "prepared_at_utc": "2026-11-12T08:13:46.581777+00:00",
+  "file_count": 1516,
+  "total_bytes": 204868038,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

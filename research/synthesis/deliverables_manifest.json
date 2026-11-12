@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-12",
+  "counts": {
+    "roles": 12,
+    "verified_bibliographies": 100,
+    "unique_inventory": 103,
+    "round2_candidates": 60,
+    "round3_reviews": 120,
+    "round3_checks": 960,
+    "round4_responses": 60,
+    "round4_connections": 27,
+    "round4_evaluations": 600,
+    "round5_positions": 30,
+    "round5_rebuttal_responses": 59,
+    "random_combinations": 30,
+    "literature_combinations": 12,
+    "directions": 40,
+    "research_questions": 30,
+    "proposals": 10,
+    "pilots": 3
+  },
+  "deliverables": [
+    {
+      "deliverable": "A",
+      "name": "Dataset Intelligence Report",
+      "path": "datasets/DATASET_INTELLIGENCE_REPORT.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "공식4종 감사와 사용자 보유5종의 실제 확인/미확인 구분"
+    },
+    {
+      "deliverable": "B",
+      "name": "Research Axis Encyclopedia",
+      "path": "axis_map/AXIS_ENCYCLOPEDIA.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "24축·36원제안·8묶음"
+    },
+    {
+      "deliverable": "C",
+      "name": "Verified Literature Database",
+      "path": "literature/verified_papers.csv",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "고유 서지확인100편; 전체103편과보류별도"
+    },
+    {
+      "deliverable": "D",
+      "name": "Discussion Mining",
+      "path": "literature/discussion_mining.csv",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "직접지정본문27편·저자후속25편; E3와구별"
+    },
+    {
+      "deliverable": "E",
+      "name": "Cross-Disciplinary Opportunity Map",
+      "path": "synthesis/OPPORTUNITY_MAP.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "문헌생성12전략·실제Round4새연결27개"
+    },
+    {
+      "deliverable": "F",
+      "name": "Actual Agent Discussion Records",
+      "path": "discussions/round_05/SYNTHESIS.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "12역할·실제Round1–5·제안자후속응답·소수의견"
+    },
+    {
+      "deliverable": "G",
+      "name": "Research Combination Matrix",
+      "path": "combinations/combination_matrix.csv",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "문헌12+실제랜덤30=42"
+    },
+    {
+      "deliverable": "H",
+      "name": "Research Question Landscape",
+      "path": "research_questions/LANDSCAPE.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "방향40·독립RQ30·방법보류중복10"
+    },
+    {
+      "deliverable": "I",
+      "name": "Top 10 Proposals",
+      "path": "proposals/README.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "각16본문항목·관련문헌≥5·실제반론응답"
+    },
+    {
+      "deliverable": "J",
+      "name": "Top 3 Pilot Plans",
+      "path": "pilots/README.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "각9실행항목·자료/모델조건·실험미실행"
+    },
+    {
+      "deliverable": "K",
+      "name": "Coordinator Final Synthesis",
+      "path": "synthesis/FINAL_REPORT.md",
+      "status": "문헌·토론·설계 산출물 완료",
+      "verified_scope": "최종10질문·8탐색질문·우선순위·미해결조건"
+    }
+  ],
+  "execution_status": "실제 사용자 뇌 분석·모델 실험 미실행; 착수 조건은 개별 계획"
+}

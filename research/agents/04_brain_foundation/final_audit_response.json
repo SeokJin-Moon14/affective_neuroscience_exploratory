@@ -1,0 +1,111 @@
+{
+  "role": "04_brain_foundation",
+  "audit_source": "agents/01_dataset/final_pilot_audit_round3.json",
+  "read_files": [
+    "agents/01_dataset/final_pilot_audit_round3.json",
+    "agents/01_dataset/final_pilot_audit_round3.md",
+    "agents/04_brain_foundation/proposal_RP08.json",
+    "agents/04_brain_foundation/pilot_PILOT03.json"
+  ],
+  "scope": "RP08/PILOT03 기존 실행 계약 보완만 수행; 추가 연구 확장 없음. 실제 자료·모델·CI 실행은 없음.",
+  "responses": [
+    {
+      "audit_id": "FPA3-01-01",
+      "decision": "수용·문서 계약 수정",
+      "changes": "A0와 B의 정의·범위·극성·집계·척도·결측/상수를 검사하는 MSE 착수 gate를 공통화했다. nominal/ordinal 임의간격을 금지하고 loss 변경 시δ/H3 재고정을 요구한다.",
+      "locations": [
+        "proposal:/execution_contract/A_B_target_scale_gate",
+        "proposal:/dataset_and_metadata/target_scale_gate",
+        "proposal:/neural_target",
+        "proposal:/proposed_analyses/estimand",
+        "pilot:/execution_contract/A_B_target_scale_gate",
+        "pilot:/data_and_access/target_scale_gate",
+        "pilot:/inputs_outputs/input_shapes",
+        "pilot:/evaluation/primary_loss",
+        "pilot:/decision_points/start"
+      ],
+      "remaining_conditions": "실제 주석 스키마와 정량적 loss 의미 미확인; H3 scale/난도/신뢰도 비교가능성 미검증.",
+      "execution_pass": false
+    },
+    {
+      "audit_id": "FPA3-01-02",
+      "decision": "수용·문서 계약 수정",
+      "changes": "완전 parcel 단위 coverage와 고정Ω·W·빈 parcel/중복/미할당 검사를 추가했다. H2 실제/random은 동일Ω/y/W 완전분할만 허용하고 제약 불가능 시 H2만 보류한다.",
+      "locations": [
+        "proposal:/execution_contract/fixed_spatial_support",
+        "proposal:/computational_framework/projection/support_contract",
+        "proposal:/dataset_and_metadata/fixed_support",
+        "pilot:/execution_contract/fixed_spatial_support",
+        "pilot:/data_and_access/planned_subset/fixed_support",
+        "pilot:/inputs_outputs/projection/support_contract",
+        "pilot:/ablations_controls"
+      ],
+      "remaining_conditions": "실제 좌표·coverage·W·공통 mapping·공간제약 충족 여부 미검증; native 매핑 없으면 참가자별 Ω_s 범위.",
+      "execution_pass": false
+    },
+    {
+      "audit_id": "FPA3-01-03",
+      "decision": "수용·문서 계약 수정",
+      "changes": "일차95% fixed-fitted-pipeline conditional CI와 연결 run/content cluster·2,000회 planned bootstrap을 명시했다. shared training과 학습선택 불확실성 미포함, null재적합과 전체학습재적합의 차이를 기록했다.",
+      "locations": [
+        "proposal:/execution_contract/conditional_CI_and_learning_uncertainty",
+        "proposal:/proposed_analyses/effect_CI_contract",
+        "proposal:/proposed_analyses/inference",
+        "pilot:/execution_contract/conditional_CI_and_learning_uncertainty",
+        "pilot:/evaluation/effect_CI_contract",
+        "pilot:/evaluation/statistics",
+        "pilot:/evaluation/conditional_null",
+        "pilot:/evaluation/minimum_effect_and_equivalence",
+        "pilot:/decision_points/equivalence"
+      ],
+      "remaining_conditions": "실제 independent cluster 수·OOF prediction·coverage 미확인. 사람5명 모집단 및 전체학습절차 CI는 제공하지 않음.",
+      "execution_pass": false
+    },
+    {
+      "audit_id": "FPA3-01-04",
+      "decision": "수용·문서 계약 수정",
+      "changes": "대표block 계측 후 totalpeak≤min(.75L,L−8GiB), 현재32GiB일 때최대24GiB·경고90%·thread총합≤4·순차fit를 정했다. exact whole-parcel weighted accumulation과 동일Ω train PCA로 G/P를 보존한다.",
+      "locations": [
+        "proposal:/execution_contract/measured_resource_and_operator_preservation",
+        "proposal:/computational_framework/resource_execution_contract",
+        "pilot:/execution_contract/measured_resource_and_operator_preservation",
+        "pilot:/model_and_environment/resource_execution_contract",
+        "pilot:/model_and_environment/compute_gate",
+        "pilot:/model_and_environment/memory_plan",
+        "pilot:/inputs_outputs/projection/block_preservation"
+      ],
+      "remaining_conditions": "실제 baseline memory/workspace/peak·config·projection보존 수치계측 미실행. cap 초과시 scope를 조용히 바꾸지 않고 실행 보류.",
+      "execution_pass": false
+    }
+  ],
+  "before_sha256": {
+    "agents/04_brain_foundation/proposal_RP08.json": "041d91c972651d79fc22b3a200dcb94026d3f332a59865685852d2b3063633bb",
+    "agents/04_brain_foundation/pilot_PILOT03.json": "26cf97dfb2de4cd05de193f9ea5287e5045894ebb8737768039af696da65a81a"
+  },
+  "after_sha256": {
+    "agents/04_brain_foundation/proposal_RP08.json": "721f60e6782b8a99cac733c744d94ae46b42a6fb570993c9eb4f6352113ccc7d",
+    "agents/04_brain_foundation/pilot_PILOT03.json": "14ff407a4a1e79618ba772de5160dedcd9103272d2776659b29f08207ee55436"
+  },
+  "protected_file_sha256": {
+    "proposal_RP05.json": "6704a3249f9ec60586da707d3f5a04d0b0cce0fd5e40efce4f7a2a9ded718e9b",
+    "round05_debate.json": "a5a2764c4e825a15532715715c1e594ce7b5122994389550595053ba599bcd35",
+    "round05_debate.md": "d488b6476b46190a51e7c7980cbd06900d2ea5d7b5983d6c4fcd72bb4e323824",
+    "round05_rebuttal.json": "c3c83b1570f361141015100d6c75e6505373543fb4d3ef7eb922f256be6286fa",
+    "round05_rebuttal.md": "2cc214b244d7ed92bb3556ff02a61ac1b5a50e1b4c06d03636723b248b3033fb"
+  },
+  "consistency_checks": {
+    "execution_contract_equal": true,
+    "weighted_projection_equal": true,
+    "A_B_gate_equal": true,
+    "fixed_support_equal": true,
+    "paired_loss_equal": true,
+    "effect_CI_equal": true,
+    "statistics_equal": true,
+    "null_scope_equal": true,
+    "delta_scope_equal": true,
+    "resource_rule_equal": true,
+    "protected_files_unchanged": true
+  },
+  "overall": "네 지적을 카드/파일럿 동일계약으로 반영하고 11개 일치/보존 검사를 통과했다. 감사자의 재감사 통과나 실행 준비완료는 주장하지 않는다.",
+  "round5_history": "RP05와 실제 Round5 최초 발언·rebuttal 파일은 SHA256으로 변경 없음을 확인했다. 본 로그는 후속 감사에 대한 별도 기록이다."
+}

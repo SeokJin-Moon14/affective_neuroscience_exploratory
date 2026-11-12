@@ -72,6 +72,27 @@ for c in cards:
  assert all(p['paper_id'] in refids and p['contribution'] and p['limitation'] and p['access_scope'] for p in c['prior_literature'])
  assert c['debate_response'] and c['falsifiable_outcomes'] and c['limitations_and_risks']
 for p in pilots:assert p['readiness'] and p['failure_modes_and_claim_limits'] and p['decision_points']
+closure=read('agents/01_dataset/final_pilot_audit_closure.json')
+assert closure['overall']['document_audit_closed'] and closure['overall']['pending_count']==0
+assert len(closure['closure_records'])==14 and all(c['resolved'] for c in closure['closure_records'])
+for snapshot in closure['artifact_snapshots']:
+ assert hashlib.sha256((r/snapshot['path']).read_bytes()).hexdigest()==snapshot['sha256'],snapshot['path']
+for entry in closure['closure_records']:
+ for field in entry['verified_fields']:
+  value=read(field['artifact'])
+  for token in field['json_pointer'].lstrip('/').split('/'):
+   token=token.replace('~1','/').replace('~0','~')
+   value=value[int(token)] if isinstance(value,list) else value[token]
+  if 'verified_value' in field:
+   assert value==field['verified_value'],(entry['audit_id'],field['json_pointer'])
+  else:
+   assert field.get('corresponding_value_equal') is True
+   pilot=read(field['artifact'])
+   other=json.loads(((r/field['artifact']).parent/f"proposal_{pilot['proposal_id']}.json").read_text())
+   for token in field['json_pointer'].lstrip('/').split('/'):
+    token=token.replace('~1','/').replace('~0','~')
+    other=other[int(token)] if isinstance(other,list) else other[token]
+   assert value==other,(entry['audit_id'],field['json_pointer'])
 verified=rows('literature/verified_papers.csv');assert len(verified)>=100
 report={'checked_at':datetime.now(timezone.utc).isoformat(),'result':'PASS', 'scope':'산출물 구조·실제 역할 추적·참조ID·수량 검사; 뇌 분석/모델 성능/전역 신규성 검증 아님',
 'mission_quantity_targets_met':len(qs)>=30 and len(dirs)>=40,

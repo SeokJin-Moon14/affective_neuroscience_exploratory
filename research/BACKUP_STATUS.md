@@ -6,7 +6,7 @@
 - 브랜치: research/independent-exploration-20261112
 - 원본 연구 폴더: /workspace/Affective-Research-Exploration
 - Git 작업 폴더: /workspace/affective_research_backup
-- 원문 PDF·HTML·메타데이터·보고서·코드 약193MB를 포함한다. 사용자 컴퓨터에는 다운로드하지 않는다.
+- 원문 PDF·HTML·메타데이터·보고서·코드를 포함한다. 현재 파일 수·정확한 바이트 수는 저장소 backup/current_snapshot.json에 있다. 사용자 컴퓨터에는 다운로드하지 않는다.
 - 큰 파일 분할 저장과 전체 복원·SHA-256 검사를 수행했고, 중단된 다음 업로드가 있어도 이전 성공 커밋에서 복구하는 시험을 통과했다.
 
 **실제 원격 저장 성공의 정본은 백업 브랜치 backup/LAST_SUCCESS.json이다.** 그 파일의 data_commit·snapshot_id·원격 HEAD 검증 기록을 확인한다. 로컬 커밋만으로 원격 보존을 주장하지 않는다. 단계별 저장 및 복구는 저장소의 BACKUP_OPERATIONS.md를 따른다.

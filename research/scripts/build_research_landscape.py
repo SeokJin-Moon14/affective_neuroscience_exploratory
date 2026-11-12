@@ -118,7 +118,9 @@ if curation_path.exists():
             q['pre_final_audit_fields']={key:q[key] for key in overrides}
             q.update(overrides)
     (out/'retired_questions.json').write_text(json.dumps(retired,ensure_ascii=False,indent=2)+'\n')
-for d in directions:d['status']='Round4·Round5 및 최종 독립 감사 반영'
+for d in directions:
+    d['origin_status']=d.get('status','원 통합계획의 초기 상태')
+    d['status']='Round4·Round5 및 최종 독립 감사 반영'
 (out/'landscape.json').write_text(json.dumps(landscape,ensure_ascii=False,indent=2)+'\n')
 write_csv(out/'landscape.csv',landscape);write_csv(out/'directions.csv',directions);write_csv(out/'candidate_crosswalk.csv',trace)
 (out/'direction_aliases.json').write_text(json.dumps(merges,ensure_ascii=False,indent=2)+'\n')

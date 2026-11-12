@@ -638,8 +638,8 @@ layer·ROI·거리·readout 선택 전체를 평가해 경쟁 계산의 독립 �
 - **근거:** [P041 Audio-Visual Event Localization in Unconstrained Videos](https://github.com/YapengTian/AVE-ECCV18); [P042 Temporal Cycle-Consistency Learning](https://github.com/google-research/google-research/tree/master/tcc); [P044 VideoPrism: A Foundational Visual Encoder for Video Understanding](https://github.com/google-deepmind/videoprism)
 - **추적:** [05_multimodal_dynamics / C-D-05c](../agents/05_multimodal_dynamics/report.md); 원 제안 2026-11-12, 통합 2026-11-12. 가설 E3; 역할: 경쟁 계산·표상 가설; 중복군: DG36.
 
-## 다음 단계
+## 후속 수행 결과
 
-이 지도에서 경쟁 설명을 실제로 교환·수정하는 Round2–5를 수행하고, 문헌 연결 및 실제 무작위 조합을 거쳐 RQ 후보를 만든다. 세부 데이터·모델 검증은 후보의 분석 조건을 확인할 때 진행한다. Axis 통합 검토를 미실행 토론 라운드로 계산하지 않는다.
+이 Axis v1 이후 실제 Round2–5 교환·비판·수정을 완료했다. 문헌12개 전략과 실제 무작위30개를 검토했고 최종 독립 감사 후 고유 RQ30개·상세 제안10개·파일럿 계획3개로 연결했다. Axis 통합 검토 자체를 토론 라운드로 계산하지 않았다. 현재 결과는 [최종 보고서](../synthesis/FINAL_REPORT.md)와 [전체 질문](../research_questions/LANDSCAPE.md)을 읽는다. 세부 데이터·모델 확인은 각 실제 분석의 착수 조건으로 남는다.
 
 기계 판독본: [통합 하위축](integrated_subaxes.json), [전체 출처 목록](reference_catalog.csv), [원본 대응표](source_crosswalk.csv), [상위축](taxonomy.csv), [교차연결](cross_connections.csv), [검토 판정](integration_review.md).

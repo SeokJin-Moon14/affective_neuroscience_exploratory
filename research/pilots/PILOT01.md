@@ -499,14 +499,14 @@
 
 ## 근거
 
-- [P001 The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions](https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json)
-- [P008 Emotion schemas are embedded in the human visual system](https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/Kragel_2019_SciAdv_emotion_schemas.pdf)
-- [P015 MindEye2: Shared-Subject Models Enable fMRI-To-Image With 1 Hour of Data](https://github.com/MedARC-AI/MindEyeV2)
-- [P016 Reconstructing the Mind's Eye: fMRI-to-Image with Contrastive Learning and Diffusion Priors](https://github.com/MedARC-AI/fMRI-reconstruction-NSD)
+- [P001 The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions](https://doi.org/10.1016/j.isci.2020.101060) · [실제 확인 출처](https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json)
+- [P008 Emotion schemas are embedded in the human visual system](https://doi.org/10.1126/sciadv.aaw4358) · [실제 확인 출처](https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2019_Kragel_Emotion_Schemas/Kragel_2019_SciAdv_emotion_schemas.pdf)
+- [P015 MindEye2: Shared-Subject Models Enable fMRI-To-Image With 1 Hour of Data](https://arxiv.org/abs/2403.11207) · [실제 확인 출처](https://github.com/MedARC-AI/MindEyeV2)
+- [P016 Reconstructing the Mind's Eye: fMRI-to-Image with Contrastive Learning and Diffusion Priors](https://arxiv.org/abs/2305.18274) · [실제 확인 출처](https://github.com/MedARC-AI/fMRI-reconstruction-NSD)
 - [P022 Seeing Beyond the Brain: Masked Modeling Conditioned Diffusion Model for Human Vision Decoding](https://github.com/zjc062/mind-vis)
 - [P051 Similarity of Neural Network Representations Revisited](https://proceedings.mlr.press/v97/kornblith19a.html)
 - [P079 Learning Transferable Visual Models From Natural Language Supervision](https://raw.githubusercontent.com/mlresearch/v139/gh-pages/radford21a/radford21a.pdf)
-- [P100 Statistical inference on representational geometries](https://elifesciences.org/articles/82566)
+- [P100 Statistical inference on representational geometries](https://doi.org/10.7554/eLife.82566) · [실제 확인 출처](https://elifesciences.org/articles/82566)
 - https://github.com/OpenNeuroDatasets/ds002425
 - https://github.com/KamitaniLab/EmotionVideoNeuralRepresentation
 - https://github.com/KamitaniLab/EmotionVideoNeuralRepresentationPython

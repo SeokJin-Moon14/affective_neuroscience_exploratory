@@ -4,7 +4,8 @@ import csv,json,re
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 papers={r['canonical_id']:r for r in csv.DictReader((root/'literature/papers.csv').open())}
-papers.update({r['reference_id']:r for r in csv.DictReader((root/'axis_map/reference_catalog.csv').open())})
+for entry in csv.DictReader((root/'axis_map/reference_catalog.csv').open()):
+    papers.setdefault(entry['reference_id'],entry)
 short={r['proposal_id']:r for r in json.loads((root/'research_questions/shortlist.json').read_text())}
 def render(value,level=0):
     if isinstance(value,str):return value+'\n'
@@ -44,14 +45,20 @@ for file in proposal_files:
                 assert entry['paper_id'] in papers
                 lines += [f"- {link(entry['paper_id'])}: {entry['contribution']} 한계: {entry['limitation']} 확인 범위: {entry['access_scope']}",'']
         else:lines += [render(c[key]),'']
+    if c.get('execution_contract'):
+        lines += ['## 최종 감사로 확정한 실행 계약','',render(c['execution_contract']),'']
     lines += ['## 실제 토론에 대한 응답','',render(c['debate_response']),'',
               f"작성 원본: [{file.parent.name}](../{file.relative_to(root).as_posix()}). [Round5 기록](../discussions/round_05/SYNTHESIS.md).",'']
     dest=root/'proposals'/f'{pid}.md';dest.write_text('\n'.join(lines))
     c['author_source']=file.relative_to(root).as_posix();cards.append(c)
+cards.sort(key=lambda c:c['proposal_id'])
 (root/'proposals/cards.json').write_text(json.dumps(cards,ensure_ascii=False,indent=2)+'\n')
 lines=['# 상세 연구 제안 10개','', '각 제안은 미션의16개 본문 항목과 실제 Round5 비판 응답을 포함한다. 우선5와 확장5를 구별하며, 순위는 가중합 자동선정이 아니라 경쟁 설명·다양성·착수 조건에 대한 Coordinator 판단이다.','',
-       '| 우선 | 제안 | RQ | 선정 이유 |','|---|---|---|---|']
-for pid,s in sorted(short.items()):lines.append(f"| {s['priority_group']} | [{pid} {s['title']}]({pid}.md) | {s['rq_id']} | {s['coordinator_selection_reason']} |")
+       '우선5는 종합 검토 순서이며 즉시 실행 순서가 아니다. 실제 첫 파일럿은 RP01·RP03·RP08이다.','',
+       '| 우선 | 제안 | RQ | 최종 추진 범위 | 선정 이유 |','|---|---|---|---|---|']
+vp=root/'discussions/round_05/coordinator_verdicts.json'
+verdicts={v['proposal_id']:v['coordinator_decision'] for v in json.loads(vp.read_text())} if vp.exists() else {}
+for pid,s in sorted(short.items()):lines.append(f"| {s['priority_group']} | [{pid} {s['title']}]({pid}.md) | {s['rq_id']} | {verdicts.get(pid,'명시한 자료 조건부')} | {s['coordinator_selection_reason']} |")
 lines+=['','[세 파일럿](../pilots/README.md) / [질문 전체 지도](../research_questions/LANDSCAPE.md) / [네 가지 순위](../research_questions/rankings.csv).','']
 (root/'proposals/README.md').write_text('\n'.join(lines))
 
@@ -68,12 +75,15 @@ if pilot_files:
         lines=[f"# {p['pilot_id']}. {p['title']}",'',f"연결: [{p['proposal_id']}](../proposals/{p['proposal_id']}.md), {p['rq_id']}.",'',
                '**준비 상태:** '+render(p['readiness']),'','이 문서는 파일럿 실행 계획이다. 실험·모델 추론·뇌 분석 결과를 보고하는 문서가 아니다.','']
         for i,(key,label) in enumerate(pilot_fields,1):lines += [f'## {i}. {label}','',render(p[key]),'']
+        if p.get('execution_contract'):
+            lines += ['## 최종 감사로 확정한 실행 계약','',render(p['execution_contract']),'']
         lines+=['## 근거','']
         for ref in p['references']:
             if ref in papers:lines += ['- '+link(ref)]
             else:lines += ['- '+str(ref)]
         lines+=['',f"작성 원본: [{file.parent.name}](../{file.relative_to(root).as_posix()}). [공통 자원·모델 근거](RESOURCE_AND_MODEL_PLAN.md).",'']
         (root/'pilots'/f"{p['pilot_id']}.md").write_text('\n'.join(lines));p['author_source']=file.relative_to(root).as_posix();plans.append(p)
+    plans.sort(key=lambda p:p['pilot_id'])
     (root/'pilots/plans.json').write_text(json.dumps(plans,ensure_ascii=False,indent=2)+'\n')
     lines=['# 세 가지 파일럿 구현 계획','', '서로 다른 과학 대비를 대표하는 계획3개다. 현재 확보한 공식 경로·체크포인트 식별과 실행 성공을 구별한다. 사용자의 데이터 보유를 전제하되 보유본의 실제 필드·정렬·신뢰도 확인은 착수 조건으로 남긴다.','']
     for p in plans:lines+=['- '+f"[{p['pilot_id']} — {p['title']}]({p['pilot_id']}.md): {p['proposal_id']} / {p['rq_id']}"]

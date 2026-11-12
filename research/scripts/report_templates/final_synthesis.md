@@ -38,7 +38,7 @@
 | 선형 투영의 null-space | parcel 평균에 남지 않은 공간 대비가 정서 예측에 필요한가 | 일반적인 pooling 손실·해부학·신뢰도 |
 | 합성적 일반화·anchor 선택 | 관측하지 않은 내용–정서 조합이나 자료 간 의미 대응을 식별할 수 있는가 | 내용 ID·간접 정서 감독·공통 지지집합 부재 |
 
-이 연결은 원 논문의 저자가 모두 제안한 것이 아니다. 실제 저자 제안은 [Discussion 표](../literature/discussion_mining.csv), 새 전이는 [기회 지도](OPPORTUNITY_MAP.md)와 [미해결 문제60개](../literature/unresolved_problems.csv)에 별도로 표시했다.
+이 연결은 원 논문의 저자가 모두 제안한 것이 아니다. 실제 저자 제안은 [Discussion 표](../literature/discussion_mining.csv), 새 전이는 [기회 지도](OPPORTUNITY_MAP.md)와 [원 후보별 미해결 문제60행](../literature/unresolved_problems.csv)에 별도로 표시했다.
 
 ## 3. Discussion에서 지금 다시 다룰 문제
 

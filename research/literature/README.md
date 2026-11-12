@@ -23,3 +23,5 @@ DOI/arXiv 또는 정규화 제목으로 병합하고 유사 제목도 검사했�
 원문 전체 정독을 주장하지 않는다. 지정 본문·한계 절만 읽은 경우를 포함한다. E1 공식 코드 검증과 논문 본문 접근은 다르다. 최신성·신규성 전수 검색은 수행되지 않았고 GitHub 접근 가능한 자료로 편중되어 있다.
 
 재병합은 scripts/merge_literature.py 다음 scripts/finalize_inventory.py 순서로 실행한다. 새 근거가 생기면 보류 사유와 수동 판정을 먼저 갱신해야 한다.
+
+최종 탐색 연결: [영역·연도 편중과 공백](COVERAGE_AND_GAPS.md), [문헌 기반 E3 원 후보별 미해결 문제60행](unresolved_problems.csv), [실제 후보별 역검색과 접근 한계](novelty/README.md), [Top10 중복 반론](novelty/TOP10_REVIEW.md). 로컬103편의 실제 전수 역대조와 세계 문헌 전체의 전수 검색을 구분한다.

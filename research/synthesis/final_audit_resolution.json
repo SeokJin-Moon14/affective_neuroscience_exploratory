@@ -1,0 +1,33 @@
+{
+  "assembled_at": "2026-11-12T08:12:42.752803+00:00",
+  "status": "문서 감사 지적의 수정 확인 완료",
+  "scope": "원문 확인 범위·과학 질문 중복/주장·자료/통계/자원 실행 계약. 실제 신경효과·모델 실행·전역 신규성 인증 아님",
+  "scientific_audit_source": "agents/12_adversarial_review/final_audit_round2.json",
+  "scientific_audit_judgment": "추가7카드의 명시한 핵심 범위에서 새 high/critical 결함을 발견하지 못했다. 1차6건과 2차의 본문/가설 문구2건은 실제 수정 반영을 확인했다. RQ07은 복수 후속 사건 상호작용·미관측 사건군 전이를 필수화하여 RQ29 순서 대비와 구별했고 RQ20은 미래 목표 대 복원 목표만 일차로 고정했다. 확인 범위의 미해결 high/medium/low 수정요청은 없다; 데이터·원문·실험 성공은 여전히 조건부다.",
+  "pilot_closure_source": "agents/01_dataset/final_pilot_audit_closure.json",
+  "pilot_closure": {
+    "document_audit_closed": true,
+    "resolved_count": 14,
+    "pending_count": 0,
+    "unresolved_findings": [],
+    "new_unresolved_contradictions": [],
+    "experiment_success": false,
+    "execution_readiness": "문서 계약 기준 조건부 실행 준비. 실제 보유 배열/척도/시간·공간 mapping/모델 load/학습/CI coverage/메모리 gate의 성공을 뜻하지 않는다."
+  },
+  "final_question_curation": "research_questions/final_curation.json",
+  "artifact_hashes": {
+    "agents/02_affective_neuroscience/proposal_RP06.json": "79142e56f614e5ac427a915bbf82f031107e2acb7d47c5db4bc9b2855f7074ac",
+    "agents/03_vision_decoding/proposal_RP01.json": "950d132d7dc287779a2f3e2f974a8905498625f5d16b127b0ad4196928ad77a0",
+    "agents/04_brain_foundation/proposal_RP05.json": "6704a3249f9ec60586da707d3f5a04d0b0cce0fd5e40efce4f7a2a9ded718e9b",
+    "agents/04_brain_foundation/proposal_RP08.json": "721f60e6782b8a99cac733c744d94ae46b42a6fb570993c9eb4f6352113ccc7d",
+    "agents/05_multimodal_dynamics/proposal_RP03.json": "2414fb026cce2d48f6d7e2e0d2759fff595d910f14c38c8c5a19237dc080550d",
+    "agents/05_multimodal_dynamics/proposal_RP04.json": "15344864d5d1e535a72420abdaf5322412b367e1b73bd2ebdb46a61b3a5a038f",
+    "agents/07_geometry_information/proposal_RP09.json": "ef2d8aa9625e51d56721b69b365c25dd9897f8f2dbefd0fa8ba57f8376ff0bba",
+    "agents/09_generative_ai/proposal_RP07.json": "1965a3cda64c09b765b31e4df8e83739cd59042b5e374fde32b10b2065e10987",
+    "agents/09_generative_ai/proposal_RP10.json": "cdc56c81f119714d0b0f830fc4fb1036c1f50e0b6fbcb8c76d81c665a8dbe251",
+    "agents/10_llm_semantics/proposal_RP02.json": "839a18110d581af5464b91b149a2771147726130647aa4d59da28a475f4e4255",
+    "agents/03_vision_decoding/pilot_PILOT01.json": "055e7dc79eb4ff0569aa667a0c4c94a5bf8dfc2efbd3031250430f3584cc6720",
+    "agents/04_brain_foundation/pilot_PILOT03.json": "14ff407a4a1e79618ba772de5160dedcd9103272d2776659b29f08207ee55436",
+    "agents/05_multimodal_dynamics/pilot_PILOT02.json": "d676b1874cd19e4b8870d2daf04aeb0b94c32df03212729076e770ecd0b12062"
+  }
+}

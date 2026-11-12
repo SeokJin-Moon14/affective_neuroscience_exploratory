@@ -10,3 +10,5 @@
 - [교차 데이터 비교](cross_dataset_matrix.md): 공유 변수와 직접 비교가 불가능한 항목.
 
 기존 네 감사 폴더에 metadata_inventory.csv, annotation_dictionary.csv, modeling_opportunities.md를 포함한다. Mind Captioning의 미확인 필드를 임의로 채우지 않았다. 확인 불가능한 라벨·척도·실물 접근은 미확인으로 남겼으며 Axis 진행의 선행 차단 조건은 아니다. 원증거는 agents/01_dataset/evidence/와 다운로드 로그·해시에 보존했다.
+
+제안·파일럿과 연결한 현재 종합은 [Dataset Intelligence Report](DATASET_INTELLIGENCE_REPORT.md)를 읽는다. 보유 사실과 실제 분석 준비를 구별한다.

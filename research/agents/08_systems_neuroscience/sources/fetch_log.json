@@ -1,0 +1,380 @@
+[
+  {
+    "id": "brainspace_readme",
+    "url": "https://raw.githubusercontent.com/MICA-MNI/BrainSpace/master/README.rst",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainspace_readme.txt",
+    "bytes": 3331,
+    "sha256": "5e5912760f6a86e062bd3dad524d932abe9043b6a16b77eb4d1b0fae43e4de85",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "neuromaps_readme",
+    "url": "https://raw.githubusercontent.com/netneurolab/neuromaps/main/README.rst",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/neuromaps_readme.txt",
+    "bytes": 4618,
+    "sha256": "2e0620acb51fe5db791992c9703d2905cefe99acc12a3b25ab1001cf880708bc",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "netneurotools_readme",
+    "url": "https://raw.githubusercontent.com/netneurolab/netneurotools/main/README.rst",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/netneurotools_readme.txt",
+    "bytes": 3764,
+    "sha256": "33d714c2408ba4b1dd2ad0925b20f6c706e3d7b113d701dda49d4e8fe10aa708",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainsmash_readme",
+    "url": "https://raw.githubusercontent.com/murraylab/brainsmash/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainsmash_readme.txt",
+    "bytes": 3822,
+    "sha256": "f7e41d64fe6f3b6d5f6c4e962cf205d3bf8d098ea545c278e157ecbc71e2b232",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "spatialnulls_readme",
+    "url": "https://raw.githubusercontent.com/netneurolab/markello_spatialnulls/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/spatialnulls_readme.txt",
+    "bytes": 1984,
+    "sha256": "ac27f7ab5a7f5fdebb3ec9a3c150032bf13bbcc09b358c34a488739d25d03f1b",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainiak_readme",
+    "url": "https://raw.githubusercontent.com/brainiak/brainiak/master/README.md",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/brainiak_readme.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "hmmmar_readme",
+    "url": "https://raw.githubusercontent.com/OHBA-analysis/HMM-MAR/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/hmmmar_readme.txt",
+    "bytes": 4479,
+    "sha256": "6eef5c5a4e46208ec3870291e71ee134d0af9547e3e7c8db3f31223c05bb336b",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "edge_ts_readme",
+    "url": "https://raw.githubusercontent.com/faskowit/edge_ts/master/README.md",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/edge_ts_readme.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "integration_readme",
+    "url": "https://raw.githubusercontent.com/macshine/integration/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/integration_readme.txt",
+    "bytes": 275,
+    "sha256": "fdaec3f79474a5c9074bdd070d10400f7fe12d6e9811a9ada8b161aaad91b11c",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "neuromaps_postprint",
+    "url": "https://raw.githubusercontent.com/netneurolab/neuromaps/main/markello2022natmethods.pdf",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/neuromaps_postprint.pdf",
+    "bytes": 2321138,
+    "sha256": "f592c2cdfc8df9952ad8e4adce9a8bce51a5b3f85e412c1c95451bfa6f3e3506",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainspace_index",
+    "url": "https://github.com/MICA-MNI/BrainSpace",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainspace_index.txt",
+    "bytes": 278221,
+    "sha256": "59272c0f5c7e2b9d5ccd6adbb12833378f0d248043171858b534eb9616f351b3",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainspace_bib",
+    "url": "https://raw.githubusercontent.com/MICA-MNI/BrainSpace/master/docs/references.bib",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/brainspace_bib.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "neuromaps_bib",
+    "url": "https://raw.githubusercontent.com/netneurolab/neuromaps/main/neuromaps/datasets/references.bib",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/neuromaps_bib.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "spatialnulls_index",
+    "url": "https://github.com/netneurolab/markello_spatialnulls",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/spatialnulls_index.txt",
+    "bytes": 250177,
+    "sha256": "c3e503bfbf52f1183115221e44b8de7376c7e042a307d05f8b89eb1057bd7b2a",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "netneurotools_citation",
+    "url": "https://raw.githubusercontent.com/netneurolab/netneurotools/main/CITATION.cff",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/netneurotools_citation.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainiak_readme2",
+    "url": "https://raw.githubusercontent.com/brainiak/brainiak/master/README.rst",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainiak_readme2.txt",
+    "bytes": 3813,
+    "sha256": "806f99d7d2fa1257ac07eae7687af9bc798197ede3d02b726d4ad072b5233392",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "eventseg_code",
+    "url": "https://raw.githubusercontent.com/brainiak/brainiak/master/brainiak/eventseg/event.py",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/eventseg_code.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "edge_fc_readme",
+    "url": "https://raw.githubusercontent.com/faskowit/edge-centric_net/master/README.md",
+    "status": 404,
+    "local": "agents/08_systems_neuroscience/sources/edge_fc_readme.txt",
+    "bytes": 14,
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "esfahlani_readme",
+    "url": "https://raw.githubusercontent.com/brain-networks/edge-ts/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/esfahlani_readme.txt",
+    "bytes": 386,
+    "sha256": "0a969a6c426a1500b01048022dcdf57f25115f8ea5e93d017a5cd4b58a8158fc",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "gradient_readme",
+    "url": "https://raw.githubusercontent.com/NeuroanatomyAndConnectivity/gradient_analysis/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/gradient_readme.txt",
+    "bytes": 1088,
+    "sha256": "ed36d6784c07afe550399d5249157d069fae80fa3029a111ac1a65899dbac99a",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "integration_index",
+    "url": "https://github.com/macshine/integration",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/integration_index.txt",
+    "bytes": 224546,
+    "sha256": "fc44f70ea825d8e0266575c1cad1cc700ea509e26065713c22216f6f06bc8085",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "spatialnulls_manuscript_index",
+    "url": "https://github.com/netneurolab/markello_spatialnulls/tree/master/manuscript",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/spatialnulls_manuscript_index.txt",
+    "bytes": 167421,
+    "sha256": "454a7276ca436071b8f1182f3e2ef2d9f6c809e2f3a043ca5326bb633a34c7ce",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainspace_citation",
+    "url": "https://raw.githubusercontent.com/MICA-MNI/BrainSpace/master/CITATION.cff",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainspace_citation.txt",
+    "bytes": 3643,
+    "sha256": "97725e42e417fb79e04c6b374c3f3c25054aa970f1a4be8a205fff44eae00815",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainspace_docs_index",
+    "url": "https://github.com/MICA-MNI/BrainSpace/tree/master/docs",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainspace_docs_index.txt",
+    "bytes": 178436,
+    "sha256": "7b71d9fc1a1e70abfc902327051bed2da608eedd1813643a5a860b55cc4b9bcc",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "netneurotools_index",
+    "url": "https://github.com/netneurolab/netneurotools",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/netneurotools_index.txt",
+    "bytes": 260419,
+    "sha256": "39407e9f671e6ab0edcf316b45617c271db9bf31ce70a6f518775802d33de472",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "eventseg_code2",
+    "url": "https://raw.githubusercontent.com/brainiak/brainiak/master/src/brainiak/eventseg/event.py",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/eventseg_code2.txt",
+    "bytes": 26617,
+    "sha256": "b1184cfad8372f3fd18ae93f581a44880009f0c0561b07e0582de4919c4e2abd",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainiak_events_index",
+    "url": "https://github.com/brainiak/brainiak/tree/master/examples/eventseg",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainiak_events_index.txt",
+    "bytes": 169173,
+    "sha256": "dcc10f7aaebc6c0d7b2441883e36fbeb4e3539632b7ba2d2ac8f133e7c3ecae4",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "hmmmar_example",
+    "url": "https://raw.githubusercontent.com/OHBA-analysis/HMM-MAR/master/examples/run_HMMMAR_2.m",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/hmmmar_example.txt",
+    "bytes": 5565,
+    "sha256": "ec4298d5852df97c41575f54c520e91e895e15c8c9c874f82b8dd2649e676471",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "gradient_index",
+    "url": "https://github.com/NeuroanatomyAndConnectivity/gradient_analysis",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/gradient_index.txt",
+    "bytes": 236477,
+    "sha256": "de1c3f34de71adc435b4a61e3e7952a8d80f7d9baacf27eb6801fd2ddd85a33f",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "integration_code",
+    "url": "https://raw.githubusercontent.com/macshine/integration/master/integration_expt.m",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/integration_code.txt",
+    "bytes": 2548,
+    "sha256": "30dbabd51a3f6d49d7ac65c68a8104dd7c2a09634b3ccec4b583865d667b0c08",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "spatialnulls_main",
+    "url": "https://raw.githubusercontent.com/netneurolab/markello_spatialnulls/master/manuscript/main.tex",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/spatialnulls_main.txt",
+    "bytes": 112066,
+    "sha256": "e268571c15114fc6f2138b86b8d5062929aa4a954d7769dcd6906a0ebf6b5a82",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "spatialnulls_refs",
+    "url": "https://raw.githubusercontent.com/netneurolab/markello_spatialnulls/master/manuscript/refs.bib",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/spatialnulls_refs.txt",
+    "bytes": 50392,
+    "sha256": "71d77af36dab75d31032021e4bac394eff66af705ccca9bfc78325bf8662af65",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "gradient_embed",
+    "url": "https://raw.githubusercontent.com/NeuroanatomyAndConnectivity/gradient_analysis/master/02_embed_connectomes.ipynb",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/gradient_embed.ipynb",
+    "bytes": 5475,
+    "sha256": "e158055f3bcacdb4a46d77b683b32ceeae4644f2ffb9e1e401941ff95192dcfe",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainspace_gradient_code",
+    "url": "https://raw.githubusercontent.com/MICA-MNI/BrainSpace/master/brainspace/gradient/gradient.py",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainspace_gradient_code.txt",
+    "bytes": 13544,
+    "sha256": "4eef356caa261aeccccf4187278d01da1aeab82e36db0387930da9fccd3089c7",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainsmash_base",
+    "url": "https://raw.githubusercontent.com/murraylab/brainsmash/master/brainsmash/mapgen/base.py",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainsmash_base.txt",
+    "bytes": 13694,
+    "sha256": "d587b761ba8c821601ea5fa6bc9642a52063faf25bf6efece2174bd646fa108b",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "shafiei_readme",
+    "url": "https://raw.githubusercontent.com/netneurolab/shafiei_megdynamics/master/README.md",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/shafiei_readme.txt",
+    "bytes": 4278,
+    "sha256": "e1366f6e4e709bdb7a3e66da2237b13bcc470017955a2425a92f61246922234d",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "netneurotools_docs_index",
+    "url": "https://github.com/netneurolab/netneurotools/tree/main/docs",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/netneurotools_docs_index.txt",
+    "bytes": 181757,
+    "sha256": "08ebaecf089d3ae509f548d2e78f60283f3e7c71698498ffee95bec4beb183b5",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "brainiak_events_notebook",
+    "url": "https://raw.githubusercontent.com/brainiak/brainiak/master/examples/eventseg/HiddenMarkovModels.ipynb",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/brainiak_events_notebook.ipynb",
+    "bytes": 3440958,
+    "sha256": "540ad13f582d51b0215ff5731e5703c59e6772736a033e86baf77058b0cc0747",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "shafiei_index",
+    "url": "https://github.com/netneurolab/shafiei_megdynamics",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/shafiei_index.txt",
+    "bytes": 215255,
+    "sha256": "17d7738d7f5cb500caf65c4148ff50942a688f762458c74ed517800523441122",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "shafiei_analysis_index",
+    "url": "https://github.com/netneurolab/shafiei_megdynamics/tree/master/code/analysis",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/shafiei_analysis_index.txt",
+    "bytes": 175320,
+    "sha256": "9564be0b12c0171d49ea5760270036a64068be03e4a50ab4cf1f5f7364911e66",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "netneurotools_refs",
+    "url": "https://raw.githubusercontent.com/netneurolab/netneurotools/main/docs/index.rst",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/netneurotools_refs.txt",
+    "bytes": 172,
+    "sha256": "eee2b8ef3ec45ec5a27a114eec700f31b55bb0ac54114fe0b8cacf7c474de241",
+    "verified_on": "2026-11-12"
+  },
+  {
+    "id": "shafiei_pls",
+    "url": "https://raw.githubusercontent.com/netneurolab/shafiei_megdynamics/master/code/analysis/scpt_pls.py",
+    "status": 200,
+    "local": "agents/08_systems_neuroscience/sources/shafiei_pls.txt",
+    "bytes": 13272,
+    "sha256": "72a595339afa7157875573a44b850f8ccf85f59d60140118509867feba488208",
+    "verified_on": "2026-11-12"
+  }
+]

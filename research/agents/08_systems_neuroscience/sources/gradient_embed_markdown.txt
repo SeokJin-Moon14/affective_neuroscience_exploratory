@@ -1,0 +1,5 @@
+# Human connectivity embedding
+
+## Export to cifti space
+
+# Macaque connectivity embedding

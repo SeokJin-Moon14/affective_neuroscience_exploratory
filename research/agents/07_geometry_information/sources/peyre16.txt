@@ -1,0 +1,635 @@
+           Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+
+Gabriel Peyré                                                      GABRIEL . PEYRE @ CEREMADE . DAUPHINE . FR
+CNRS and Univ. Paris-Dauphine, Pl. du M. De Lattre De Tassigny, 75775 Paris 16, FRANCE
+Marco Cuturi                                                                              MCUTURI @ I . KYOTO - U . AC . JP
+Kyoto University, 36-1 Yoshida-Honmachi, Sakyo-ku, Kyoto 606-8501, JAPAN
+Justin Solomon                                                                                    JSOLOMON @ MIT. EDU
+Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+
+
+
+                        Abstract                               wise distances between atoms rather than by their abso-
+                                                               lute positions. Kernel and covariance matrices from differ-
+     This paper presents a new technique for comput-
+                                                               ent datasets exhibit similar structure, since they define data
+     ing the barycenter of a set of distance or kernel
+                                                               points by their roles relative to the rest of a dataset rather
+     matrices. These matrices, which define the inter-
+                                                               than in any absolute sense.
+     relationships between points sampled from indi-
+     vidual domains, are not required to have the same         A major difficulty with this representation is that in
+     size or to be in row-by-row correspondence. We            many applications these matrices are not “registered” or
+     compare these matrices using the softassign cri-          “aligned,” meaning that there is no explicit correspondence
+     terion, which measures the minimum distortion             between their rows and columns. This is the case for shapes
+     induced by a probabilistic map from the rows              that undergo pose variation, articulation or deformation.
+     of one similarity matrix to the rows of another;          Even worse, in some cases, similarities are not defined over
+     this criterion amounts to a regularized version of        the same ground space. For example, different molecules
+     the Gromov-Wasserstein (GW) distance between              may have varying numbers of atoms. This inconsistency
+     metric-measure spaces. The barycenter is then             yields matrices of varying dimensions.
+     defined as a Fréchet mean of the input matri-
+                                                               In this paper, we propose a theoretical and computa-
+     ces with respect to this criterion, minimizing a
+                                                               tional framework for summarizing collections of unaligned
+     weighted sum of softassign values. We provide a
+                                                               distance or kernel matrices. Building upon the notion
+     fast iterative algorithm for the resulting noncon-
+                                                               of Gromov-Wasserstein (GW) distances between metric-
+     vex optimization problem, built upon state-of-
+                                                               measure spaces (Mémoli, 2007), we provide machinery for
+     the-art tools for regularized optimal transporta-
+                                                               registering matrices of varying sizes while building inter-
+     tion. We demonstrate its application to the com-
+                                                               polants and barycenters inheriting structure from the in-
+     putation of shape barycenters and to the predic-
+                                                               puts. We also derive a fast regularized approximation
+     tion of energy levels from molecular configura-
+                                                               scheme providing a practical and efficient way to recover
+     tions in quantum chemistry.
+                                                               these barycenters in practice.
+
+                                                               1.1. Previous Work
+1. Introduction
+                                                               Countless techniques leverage matrices of distances or ker-
+Many classes of input data encountered in machine learn-       nels to describe a dataset. While distances and kernels
+ing are best expressed using either pairwise distance ma-      have opposite ordering—a large distance indicates small
+trices or kernels. For instance, the atoms making up pro-      similarity—unless it is necessary to distinguish we will use
+teins and other molecules have no canonical orientation and    the term “similarity matrix” to refer to any matrix contain-
+hence are only known up to rigid motion; so, the geom-         ing pairwise relationships.
+etry of a molecule might be better described by the pair-
+
+Proceedings of the 33 rd International Conference on Machine   Aligning similarity matrices. Comparison of similar-
+Learning, New York, NY, USA, 2016. JMLR: W&CP volume           ity matrices is challenging due to a lack of alignment.
+48. Copyright 2016 by the author(s).
+                                                               Mathematically, they only define the intrinsic structure
+                               Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+of a dataset, which remains unchanged e.g. under rota-          to define what it means to compute a barycenter.
+tion, translation, and isometric motion. More concretely,
+                                                                Even when similarity matrices are the same size and reg-
+there is unlikely to be a canonical ordering of the rows or
+                                                                istered, it may not make sense to average them arithmeti-
+columns of similarity matrices, and removing or adding a
+                                                                cally. One natural way to define a mean
+                                                                                                     P or barycenter of
+few rows/columns may not significantly affect the struc-
+                                                                inputs (Cs )s is to minimize the sum s λs d2 (C, Cs ) over
+ture. Automatic computation of a map aligning two sim-
+                                                                all possible C, where d is some notion of distance. This
+ilarity matrices is itself a challenging problem; our work
+                                                                generalized notion of a mean is known as the Karcher or
+is fairly unique in that we simultaneously compute such an
+                                                                Fréchet mean, which generalizes the notion of an average
+alignment while solving an optimization problem over such
+                                                                to a wide class of metric spaces (Nielsen & Bhatia, 2012).
+matrices.
+                                                                Fréchet barycenters in Wasserstein space were proposed
+Matching rows of similarity matrices usually becomes a
+                                                                in (Agueh & Carlier, 2011). Several algorithms for
+quadratic assignment problem (Loiola et al., 2007), which
+                                                                their computation have been proposed including (Cuturi
+is NP-hard. For the specific case of aligning similarity ma-
+                                                                & Doucet, 2014; Benamou et al., 2015); these assume a
+trices derived from pairwise distances in a metric space
+                                                                fixed ground distance metric. Our method, however, finds
+(e.g., geodesic distances along a surface), a well-known
+                                                                more commonality with algorithms that compute Fréchet
+instance of this matching problem is computation of the
+                                                                means in the space of covariance or metric matrices. (Dry-
+Gromov-Hausdorff distance (Gromov, 2001), which was
+                                                                den et al., 2009) considers several simple options for co-
+applied to matching in (Mémoli, 2007).
+                                                                variance matrices, mostly with fixed alignment; their “Pro-
+To relax the matching problem to a continuous—but               crustes” mean provides one rudimentary strategy for align-
+still non-convex—optimization problem, the seminal work         ment. (Sra, 2011) defines a metric on registered positive
+of Mémoli considers matching between metric-measure            definite kernel matrices that can be used for computing
+spaces, incorporating a probability distribution on the         Fréchet means.
+ground space that can account for some form of uncer-
+                                                                Barycenter computation is a building block for many learn-
+tainty (Mémoli, 2011). The geodesic properties of this
+                                                                ing methods. For instance, k-means clustering alter-
+“space of metric spaces” are considered in (Sturm, 2012).
+                                                                nates between distances and barycenter computation. The
+The recent work (Hendrikson, 2016) showcases the appli-
+                                                                nearest-centroid classifier provides a similar approach to
+cation of the corresponding Gromov-Wasserstein distance
+                                                                classification (Manning et al., 2008).
+to clustering of biological and social networks. It is possi-
+ble to further relax this formulation to a quadratic (Aflalo
+et al., 2015) or semidefinite (Kezurer et al., 2015) convex
+program, although this relaxation can fail if the input simi-
+larity matrices exhibit symmetries.                             Optimal transport (OT). OT (Villani, 2003) is a way to
+                                                                compare probability distributions (histograms in the finite-
+Rather than mixing the possible symmetric maps, we em-          dimensional case) defined over either the same ground
+brace the nonconvexity of the original problem and opti-        space or multiple pre-registered ground spaces. The
+mize quadratic matching objectives directly. After regu-        means of comparison is a convex linear program optimiz-
+larization, our matching subroutine resembles “softassign       ing for a matching that moves the mass from one dis-
+quadratic assignment” (Rangarajan et al., 1999; Gold &          tribution to the other with minimal cost. OT has been
+Rangarajan, 1996). We extend their iterations to gen-           applied to machine learning problems including compar-
+eral loss functions and to more advanced machine learn-         ison of descriptors (Cuturi, 2013), k-means (Cuturi &
+ing problems than nearest-neighbor search, in particular        Doucet, 2014), semi-supervised learning (Solomon et al.,
+barycenter computation. We additionally leverage the fact       2014), domain adaptation (Courty et al., 2014), designing
+that GW can compare arbitrary matrices, not just pairwise       loss functions (Frogner et al., 2015), low-rank approxima-
+distances, making our machinery applicable to a broader         tion (Seguy & Cuturi, 2015), and dictionary learning (Rolet
+range of tasks. The mapping component of our algorithm          et al., 2016).
+can be considered a generalized version of the method re-
+cently proposed in (Solomon et al., 2016).                      As highlighted above, GW-style matching extends OT to
+                                                                the case when the ground spaces are not pre-registered,
+                                                                yielding a non-convex quadratic program to compute the
+Averaging similarity matrices. The design of an “aver-          transport. The resulting transportation matrix can be un-
+age” or barycenter of similarity matrices is informed by two    derstood is a soft registration from one domain to the other.
+primary factors: A measure of discrepancy between simi-         Our algorithm solves a entropically-regularized version of
+larity matrices and a definition of a mean. We will GW          this quadratic program by extending recent advances in the
+distances to define discrepancies, so our remaining task is     computation of OT (Cuturi, 2013; Benamou et al., 2015).
+                                  Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+1.2. Contributions                                                  space, or at least on spaces that have previously registered.
+                                                                                                   N1 ×N2
+                                                                    Given some cost matrix c ∈ R+         , where ci,j represents
+Our first contribution is the definition of a new discrep-
+                                                                    the transportation cost between position indexed by i and j,
+ancy between similarity matrices. It extends the “Gromov-
+                                                                    we define the solution of entropically-regularized optimal
+Wasserstein” distance between metric-measure spaces to
+                                                                    transport between these two histograms as
+arbitrary matrices, using a generic loss functions to com-
+pare pairwise similarities and entropic regularization. It                               def.
+                                                                              T (c, p, q) = argmin hc, T i − εH(T ),                         (2)
+can be defined over different ground measured spaces (i.e.                                      T ∈Cp,q
+each point is equipped with a measure), which are not re-
+quired to be registered a priori. Entropic regularization en-       which is a strictly convex optimization problem.
+ables the design of a fast iterative algorithm to compute a         As shown in (Cuturi, 2013), the solution reads T (c, p, q) =
+stationary point of the non-convex energy defining the dis-                                      def.
+                                                                    diag(a)K diag(b) where K = e− ε ∈ R+
+                                                                                                         c      N1 ×N2
+                                                                                                                       is the so-
+crepancy.
+                                                                    called Gibbs kernel associated to c, and (a, b) ∈ RN
+                                                                                                                       + ×R+
+                                                                                                                         1    N2
+
+Our second contribution is a new notion of the barycen-             can be computed using Sinkhorn iterations
+ter of a set of unregistered similarity matrices, defined as                             p                               q
+a Fréchet mean with respect to the GW discrepancy. We                             a←             and          b←            ,               (3)
+                                                                                         Kb                             K >a
+propose a block coordinate relaxation algorithm to com-
+pute a stationary point of the objective function defining          where here ·· denotes component-wise division.
+our barycenter.
+                                                                    2.2. Gromov-Wasserstein Discrepancy
+We showcase applications of our method to the computa-
+tion of barycenters between shapes. We also exemplify               Following the pioneering work of Mémoli, we consider
+how the GW discrepancy can be used to predict energy                input data expressed as metric-measure spaces (Mémoli,
+levels in quantum chemistry, where molecules are natu-              2011). This corresponds to pairs of the form (C, p) ∈
+rally represented using their Coulomb interaction matrices,         RN ×N × ΣN , where N is an arbitrary integer (the number
+a perfect fit for our unregistered dissimilarity matrix for-        of elements in the underlying space). Here, C is a matrix
+malism.                                                             representing either similarities or distances between these
+The code to reproduce the results of this paper is available        elements, and p is an histogram, which can account either
+online.1                                                            for some uncertainty or relative importance between these
+                                                                    elements. In case no prior information is known about a
+                                                                    space, one can set p = N1 1N to the uniform distribution.
+1.3. Notation
+                                                                    In our setting, since we target a wide range of machine-
+                                                             def.
+The         P of histograms with N bins is ΣNN×N =
+      simplex                                                       learning problems, we do not restrict the matrices C to be
+  p ∈ R+
+
+        N ;   i pi = 1 . The entropy of T ∈ R+         is           distance matrices, i.e., they are not necessarily positive and
+                  def. PN
+defined as H(T ) = − i,j=1 Ti,j (log(Ti,j ) − 1). The set           does not necessarily satisfy the triangle inequality.
+of couplings between histograms p ∈ ΣN1 and q ∈ ΣN2 is              We define the Gromov-Wasserstein discrepancy between
+                                                                    two measured similarity matrices (C, p) ∈ RN1 ×N1 × ΣN1
+      def. 
+ Cp,q = T ∈ (R+ )N1 ×N2 ; T 1N2 = p, T > 1N1 = q .                  and (C̄, q) ∈ RN2 ×N2 × ΣN2 as follows:
+            def.                                                                                       def.
+Here, 1N = (1, . . . , 1)> ∈ RN . For any tensor L =                            GW(C, C̄, p, q) = min EC,C̄ (T )                             (4)
+                                                                                                              T ∈Cp,q
+(Li,j,k,` )i,j,k,` and matrix (Ti,j )i,j , we define the tensor-
+matrix multiplication as                                                   where    EC,C̄ (T ) =
+                                                                                                def.
+                                                                                                        X
+                                                                                                                 L(Ci,k , C̄j,` )Ti,j Tk,`
+                       def.
+                            X                                                                        i,j,k,`
+                 L⊗T =          Li,j,k,` Tk,`     .          (1)
+                                              i,j                   The matrix T is a coupling between the two spaces on
+                            k,`
+                                                                    which the similarity matrices C and C̄ are defined. Here
+                                                                    L is some loss function to account for the misfit between
+2. Gromov-Wasserstein Discrepancy                                   the similarity matrices. Typical choices of loss include
+                                                                                                            def.
+2.1. Entropic Optimal Transport                                     the quadratic loss L(a, b) = L2 (a, b) = 21 |a − b|2 and
+                                                                                                                                             def.
+                                                                    the Kullback-Leibler divergence L(a, b) = KL(a|b) =
+Optimal transport distances are useful to compare two his-
+                                                                    a log(a/b) − a + b (which is not symmetric). This def-
+tograms (p, q) ∈ ΣN1 × ΣN2 defined on the same metric
+                                                                    inition (4) of GW extends slightly the one considered
+  1
+    https://github.com/gpeyre/                                      by (Mémoli, 2011), since we consider an arbitrary loss
+2016-ICML-gromov-wasserstein                                        L (rather than just the L2 squared loss). In the case
+                                        Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+L = L2 , (Mémoli, 2011) proves that GW1/2 defines a dis-                This is a non-convex optimization problem. We propose
+tance on the space of metric measure spaces quotiented by                to use projected gradient descent, where both the gradient
+measure-preserving isometries.                                           step and the projection are computed according to the KL
+                                                                         metric.
+Introducing the 4-way tensor
+                                                                         Iterations of this algorithm are given by
+                           def.
+               L(C, C̄) = (L(Ci,k , C̄j,` ))i,j,k,` ,                                                                       
+                                                                              T ← ProjKL Cp,q T     e−τ (∇EC,C̄ (T )−ε∇H(T )) ,    (8)
+we notice that
+
+                EC,C̄ (T ) = hL(C, C̄) ⊗ T, T i,                         where τ > 0 is a small enough step size, and the KL pro-
+                                                                         jector of any matrix K is
+where ⊗ denotes the tensor-matrix multiplication (1).                                             def.        0
+                                                                                    ProjKL
+                                                                                        Cp,q (K) = argmin KL(T |K).
+The following proposition shows how to compute                                                           T 0 ∈Cp,q
+L(C, C̄) ⊗ T efficiently for a general class of loss func-
+tions:                                                                   Proposition 2. In the special case τ = 1/ε, iteration (8)
+                                                                         reads
+Proposition 1. If the loss can be written as
+                                                                                       T ← T (L(C, C̄) ⊗ T, p, q).             (9)
+           L(a, b) = f1 (a) + f2 (b) − h1 (a)h2 (b)                (5)
+                                                                         Proof. As shown in (Benamou et al., 2015), the projection
+for functions (f1 , f2 , h1 , h2 ), then, for any T ∈ Cp,q ,             is nothing else than the solution to the regularized transport
+                                                                         problem (2), hence
+         L(C, C̄) ⊗ T = cC,C̄ − h1 (C)T h2 (C̄)> .                 (6)
+                                                                                    ProjKL
+                                                                                        Cp,q (K) = T (−ε log(K), p, q).
+             def.
+where cC,C̄ = f1 (C)p1>        >       >
+                      N2 +1N1 q f2 (C̄) is independent
+of T .                                                                   One also has
+
+Proof. Under hypothesis (5), formula (1) shows that one                     ∇EC,C̄ (T ) − ε∇H(T ) = L(C, C̄) ⊗ T + ε log(T ).
+has the decomposition L(C, C̄) ⊗ T = A + B + C where
+                                                                         Re-arranging the terms in (8), one obtains, in the special
+             X            X                                              case τ ε = 1, the desired formula.
+      Ai,j =   f1 (Ci,k )   Tk,` = (f1 (C)(T 1))i
+                 k                  `
+               X                   X                                     Iteration (9) defines a surprisingly simple algorithm, in
+      Bi,j =         f2 (C̄j,` )        Tk,` = (f2 (C̄)(T > 1))j         which each update of T involves a Sinkhorn projection.
+                 `                  k
+               X                   X                                     Remark 3 (Convergence). Using (Boţ et al., 2015) (see
+      Ci,j =         h1 (Ci,k )         h2 (C̄j,` )Tk,`                  Theorem 12), iterations (8) are guaranteed to converge pro-
+                 k                  `                                    vided that τ is chosen small enough, τ < τmax . Unfor-
+                                                                         tunately, in general, one does not have τmax > 1/ε, so
+which is equal to (h1 (C)(h1 (C̄)T > )> )i,j .
+                                                                         that the step size τ = 1/ε advocated by Proposition 2 is
+Remark 1 (Computational complexity). Formula (6) shows                   not covered by the theory. However, we found that using
+that for this class of losses, one can compute L(C, C̄) ⊗ T              τ = 1/ε always leads to a converging sequence of T , and
+efficiently in O(N12 N2 +N22 N1 ) operations, using only ma-             that this works well in practice. Note that when L = L2 ,
+trix/matrix multiplications, instead of the O(N12 N22 ) com-             this recovers the “softassign quadratic assignement” algo-
+plexity of the naı̈ve implementation of formula (1).                     rithms defined in (Rangarajan et al., 1999; Gold & Ran-
+Remark 2 (Special cases). The square loss L = L2 sat-                    garajan, 1996). The convergence proof (Rangarajan et al.,
+isfies (5) for f1 (a) = a2 , f2 (b) = b2 , h1 (a) = a and                1999), however, only ensures convergence of the functional
+h2 (b) = 2b. The KL loss L = KL satisfies (5) for f1 (a) =               values (not of the iterates) and also only applies when the
+a log(a) − a, f2 (b) = b, h1 (a) = a and h2 (b) = log(b).                function being minimized in (7) is convex, which is not the
+                                                                         case for arbitrary matrices (C, Cs ).
+2.3. Entropic Gromov-Wasserstein Discrepancy
+We consider the following entropic approximation of the
+                                                                         3. Gromov-Wasserstein Barycenters
+initial GW formulation (4)                                               3.1. Gromov-Wasserstein Barycenters
+                           def.
+    GWε (C, C̄, p, q) = min EC,C̄ (T ) − εH(T ).                   (7)   We define Gromov-Wasserstein barycenters of measured
+                                  T ∈Cp,q                                similarity matrices (Cs )Ss=1 , where Cs ∈ RNs ×Ns , using
+                                     Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+a Fréchet mean formulation:                                         Proof. Using relation (6), the functional to be minimized
+                    X                                                reads
+             min        λs GWε (C, Cs , p, ps ).            (10)
+            C∈RN ×N
+                                                                     X
+                             s                                           λs hf1 (C)p1> + 1p>                              >
+                                                                                            s f2 (Cs ) − h1 (C)Ts h2 (Cs ) , Ts i.
+                                                                      s
+In this section, for simplicity, we assume that the base
+histograms (ps )s and the histogram p associated to the              The first order optimality condition for this optimiza-
+                                                                                                   0
+barycenter are known and fixed. Note in particular that              P problem thus> reads f1 (C)
+                                                                     tion                                   (pp> ) = h01 (C)
+the size (N, N ) of the targeted barycenter matrix should               s λs Ts h2 (Cs )Ts , which gives the desired formula.
+be fixed by the user. It is straightforward to extend the ex-
+position as well as the optimization algorithm to the setting        The intuition underlying formula (13) is clear: Each
+where p is unknown and included as an optimization vari-             Ts> h2 (Cs )Ts is a “realigned” matrix where Ts acts as
+able.                                                                a fuzzy permutation (optimal transportation coupling) of
+This barycenter can be reformulated by re-introducing cou-           both rows and columns of the distance matrix Cs . These
+plings                                                               realigned metric are then averaged, where the precise no-
+                                                                     tion of “averaging” depends on the loss L.
+                  X
+           min        λs (EC,Cs (Ts ) − εH(Ts ))      (11)
+           C,(Ts )s
+                        s                                            Barycenters of PSD kernels using L2 loss. For the
+                                                                     square loss L = L2 , the update (13) becomes
+subject to the constraints that for all s, Ts ∈ Cp,ps ⊂
+RN  ×Ns
+        .                                                                                   1 X
+  +                                                                                  C←          λs Ts> Cs Ts .              (14)
+                                                                                           pp> s
+Note that if L is convex with respect to its first variable, this
+problem is convex with respect to C but not with respect to          This formula highlights an important property of the
+(Ts )s (it is a quadratic but not necessarily positive problem       method:
+with respect to the (Ts )s ).
+                                                                     Proposition 4. For L = L2 , if the (Cs )s are positive
+We propose to minimize (11) using a block coordinate re-             semidefinite (PSD) matrices, the iterates C produced by the
+laxation, i.e. iteratively minimizing with respect to the cou-       algorithm are also PSD.
+plings (Ts )s and to the metric C.
+                                                                     Proof. Formula (14) shows that the update of C
+Minimization with respect to (Ts )s . The optimization               corresponds to a linear averaging of the matrices
+problem (10) over (Ts )s alone decouples as S independent            (diag(1/p)Ts> Cs Ts diag(1/p))s , which are all PSD since
+GWε optimizations                                                    the matrices (Cs )s are.
+           ∀ s,         min       EC,Cs (Ts ) − εH(Ts ).
+                      Ts ∈Cp,ps                                      This proposition implies, since the SDP cone is a closed set,
+                                                                     that the output of our barycenter algorithm at convergence
+A stationary point of this optimization problem can be com-          is an SDP kernel.
+puted using the optimization algorithm detailed in Sec-
+tion 2.3.                                                            Barycenters of infinitely divisible kernels using KL loss.
+                                                                     For the KL loss L = KL, the update (13) similar, but with
+Minimization with respect to C. For given (Ts ), the                 a geometric mean in place of an arithmetic mean
+minimization with respect to C reads                                                                                !
+                 X                                                                         1 X         >
+            min       λs hL(C, Cs ) ⊗ T, T i.   (12)                         C ← exp               λs Ts log(Cs )Ts .      (15)
+                  C                                                                      pp> s
+                         s
+
+The following proposition shows, for a large class of losses,        The following proposition shows that this loss is partic-
+how to compute the global minimizer in closed form.                  ularly attractive for averaging infinitely divisible kernels.
+                                                                     Recall that C ∈ RN ×N is infinitely divisible if and only if
+Proposition 3. If L satisfies (5) and f10 /h01 is invertible,
+                                                                     U = log(C) is a conditionally positive semidefinite ker-
+then the solution to (12) reads
+                                                                     nel, i.e. for all x ∈ RN such that hx, 1N i = 0, then
+                0 −1  P          >
+                                                                    hU x, xi ⩾ 0.
+                 f1           s λs Ts h2 (Cs )Ts
+         C=                                        ,    (13)         Proposition 5. For L = KL, if the (Cs )s are infinitely
+                 h01                pp>
+                                      P                              divisible kernels, the iterates C produced by the algorithm
+where we assume the normalization s λs = 1.                          are also infinitely divisible.
+                               Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+Algorithm 1 Computation of GWε barycenters.
+  Input: (Cs , ps )s , p
+  Initialize C.
+  repeat
+     // minimize over (Ts )s
+     for s = 1 to S do
+        Initialize Ts .
+        repeat
+           // compute cs = L(C, Cs ) ⊗ Ts using (6).
+          cs ← f1 (C)+ f2 (Cs )> − h1 (C)Ts h2 (Cs )>
+          // Sinkhorn iterations (3) to compute T (cs , p, q)
+          Initialize a ← 1, set K ← e−cs /ε .                    Figure 1. Barycenters of point clouds from MNIST digits; sample
+          repeat                                                 input data clouds are shown on the left, and an MDS embedding
+                    p
+             a ← Kb   , b ← Kq> a .                              of the barycenter distance matrix is shown on the right.
+          until convergence
+          Update Ts ← diag(a)K diag(b).
+       until convergence
+    end for
+    // minimize over C using (13).
+            0 −1  P          >
+                                             
+              f           s λs Ts h2 (Cs )Ts
+    C ← h10                     pp>
+                1
+  until convergence
+
+                                                                 Figure 2. Barycenter example for shape data from (Thakoor et al.,
+Proof. According to formula (15), one has to show that           2007).
+   def. P
+U = s λs diag(1/p)Ts> Us Ts diag(1/p) is conditionally
+PSD prodived that the Us matrices are. This is indeed            4. Experiments
+the case, because, for any x such that hx, 1N i = 0, one
+                                                 def.            4.1. Point Clouds
+has hU x, xi = s λs hUs xs , xs i where xs = Ts xp , and
+                 P
+
+since hxs , 1Ns i = h xp , Ts> 1Ns i = h xp , pi = 0, one has    Embedded barycenters. Figure 1 provides an example
+hUs xs , xs i ⩾ 0 so that hU x, xi ⩾ 0, which proves the         illustrating the behavior of our GW barycenter approxima-
+result.                                                          tion. In this experiment, we extract 500 point clouds of
+                                                                 handwritten digits from the dataset (LeCun et al., 1998),
+                                                                 rotated arbitrarily in the plane. We represent each digit as
+This proposition implies, since the cone of infinitely divisi-   a symmetric Euclidean distance matrix and optimize for a
+ble kernels is a closed set, that the output of our barycenter   500 × 500 barycenter using Algorithm 1 (uniform weights,
+algorithm at convergence is infinitely divisible.                ε = 1 × 10−3 ); notice that most of the input point clouds
+A important example of infinitely divisible kernels is given     consist of fewer than 500 points. We then visualize the
+                     D2                                          barycenter matrix as a point cloud in the plane using multi-
+by the form C = e− σ2 , where Di,j = ||xi − xj || is the Eu-
+                                                                 dimensional scaling (MDS). Each digit is colored by trans-
+clidean distance matrix between points (xi )i , and σ > 0
+                                                                 ferring RGB values from the barycenter point cloud using
+is a bandwidth parameter that controls the “locality” of
+                                                D2      D̄ 2     the computed map T .
+the resulting kernel. One verifies that KL(e− σ2 |e− σ2 ) =
+  1     2      2 2          4                                    This experiment illustrates a few properties of our algo-
+2σ 4 ||D − D̄ || + o(1/σ ), so that in the regime of large
+bandwidth σ → +∞, using the KL loss in conjunction               rithm. Most prominently, note that the input digits are ro-
+with this class of kernels becomes equivalent to using the       tated arbitrarily, which—unlike tools based on classical
+L2 loss between squared Euclidean matrices. A similar re-        optimal transportation—does not affect the computation of
+sult in fact holds for any smooth Bregman divergence loss.       the barycenter. Also, to avoid bias in this experiment we
+                                                                 initialize C as a random matrix, and yet our nonconvex op-
+                                                                 timization algorithm still reaches a meaningful barycenter.
+Pseudocode. Algorithm 1 details the steps of the opti-
+mization technique. Note that it makes use of three nested       Figure 2 illustrates a similar experiment on the 2D shape
+iterations: (i) blockwise coordinate descent on (Ts )s and       data from (Thakoor et al., 2007). This second experiment
+C, (ii) projected gradient descent on each Ts , and (iii)        illustrates some additional properties of our barycenters.
+Sinkhorn iterations to compute the projection.                   Interestingly, even though we do not impose curve topol-
+                                   Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+
+
+
+Figure 3. Progressive interpolation (x̄t )1t=0 between two shapes
+(x0 , x1 ) using GW barycenters.
+                                                                         Figure 4. Upper part: comparison between interpolation using L2
+                                                                         loss and KL loss. Lower part: comparison between interpolation
+                                                                         using pairwise Euclidean and inner geodesic distances.
+ogy on the barycenter, the final MDS embedding has one-
+dimensional structure. The barycenter is also resilient to
+noise in the computed map from individual examples, e.g.
+the bones in the first row.                                              rectly. Digits 2 and 4 are mixed considerably in the com-
+                                                                         puted clustering, reflecting the wide variety of handwritten
+Regularization. Figure bellow illustrates the de-                        styles for these two digits.
+pendence of our barycenter on the regularizer ε.
+                                                                         Shape interpolation. Figure 3 shows an application of
+                                                                         the computation of GW barycenters between S = 2 input
+ε = 1.5 × 10−3 ε = 4 × 10−3 ε = 8 × 10−3 ε = 1.6 × 10−2 ε = 3.2 × 10−2   matrices two perform shape interpolation. The input matri-
+It shows the barycenter from a test in Figure 2 for increas-             ces (C1 , C2 ) ∈ (RN ×N )2 are Euclidean distance matrices
+ing values of ε. When ε is small, the embedded barycenter                of two input planar clouds (xs,i )i for s ∈ {1, 2} uniformly
+most closely resembles the input data. As ε increases,                   sampled inside a shape, so that we use p1 = p2 N1 1N .
+the barycenters become smoother, with the advantage of                                            def.
+                                                                         This means that Cs,i,j = ||xs,i − xs,j || for s ∈ {1, 2} and
+higher resilience to noise and fewer iterations needed for               i, j = 1, . . . , N . The interpolation is achieved by first com-
+optimization.                                                            puting a barycenter matrix Ct minimizing (10) with our
+Clustering. The figure on                                                optimization algorithm, for λ = (t, 1 − t), t ∈ [0, 1], us-
+the right illustrates the in-                                            ing the Euclidean loss L = L2 . A barycentric point cloud
+                                                                    50
+corporation of our barycenter          0                                 x̄t = (x̄t,i )N
+                                                                                       i=1 is then reconstructed using SMACOF multi-
+technique into a larger ma-                                              dimensional scaling (MDS),        which amounts to computing
+                                       1
+                                                                         a local minimizer of i,j |Ct,i,j − ||x̄t,i − x̄t,j |||2 with re-
+                                                                                                  P
+chine learning pipeline. It
+                                       2                                 spect to (x̄t,i )i . This local minimizer x̄t is computed by a
+shows results of a k-means
+unsupervised clustering of             3                                 gradient descent scheme, initialized with x1 .
+250 handwritten characters.            4                            0
+
+In this example, we construct a dataset with 50 point clouds
+                                                                         L2 vs. KL losses. Figure 4, upper part, shows a compar-
+from each of digits 0 to 4 from the example in Figure 1. We
+                                                                         ison of the same interpolation as those computed in Fig-
+then cluster the point clouds by representing them as pair-
+                                                                         ure 3, computed with two different losses. Row #1 shows
+wise distance matrices and applying the k-means algorithm
+                                                                         barycenters of the distance matrices Cs,i,j = ||xs,i − xs,j ||,
+(k = 5), with k-means++ initialization (Arthur & Vassilvit-
+                                                                         for s ∈ {1, 2}, using the squared Euclidean loss L = L2
+skii, 2007). We underscore that each handwritten character
+                                                                         as in the previous paragraph. The display is obtained
+is represented using an unaligned point cloud with varying
+                                                                         by applying SMACOF MDS to the barycenter matrix Ct .
+numbers of points.
+                                                                         Row #2 shows barycenter of the infinitely divisible kernels
+Each row in the figure corresponds to a different character,             Cs,i,j = exp(−||xs,i − xs,j ||2 /σ 2 ), for s = {1, 2}, using
+and each column corresponds to a different cluster center                the Kullback-Leibler loss L =KL, and a bandwidth σ = 1
+(MDS embedding shown above the table). Color is propor-                  (for point clouds in the unit square). The display
+                                                                                                                        p      is then
+tional to the number of data points assigned to each clus-               obtained by applying SMACOF MDS to −σ log(Ct ).
+ter. Even without supervision, this rudimentary technique                The KL interpolation produces less regular interpolation
+for clustering finds meaningful clusters of handwritten dig-             because it imposes only local constraints at the scale of the
+its from the dataset. All the “1” digits are clustered cor-              bandwidth.
+                                Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+Euclidean vs. Geodesic distance matrices. Euclidean                             Algorithm                      MAE      RMSE
+pairwise distance, though simple to compute and to ma-                     k-nearest neighbors                 71.54    95.97
+nipulate, fail to capture the intrinsic geometry of shapes,                 Linear regression                  20.72    27.22
+and thus leads to physically unrealistic shape interpolation,        Gaussian kernel ridge regression           8.57    12.26
+that ignore in particular articulation. Figure 4, lower part,      Laplacian kernel ridge regression (8)        3.07     4.84
+shows how this issue can be in large part alleviated by re-         Multilayer Neural Network (1000)            3.51     5.96
+placing the extrinsic Euclidean distance Cs,i,j = ||xs,i −              GW 3-nearest neighbors                 10.83    29.27
+xs,j || for s ∈ {1, 2} by the inner geodesic distance (i.e. the
+length of the shortest path joining xs,i to xs,j while staying    Table 1. Mean-Absolute and Root Mean Squared errors for the
+                                                                  atomization energy prediction in the qm7 database of 7165
+inside the shape). Note that, because the corresponding dis-
+                                                                  molecules. All results quoted from (Hansen et al., 2013, Table
+tance is not Euclidean anymore, the SMACOF MDS only
+                                                                  3) except ours. Number in between parenthesis stand for random
+produces an approximate embedding, the so-called bending          copies used in the algorithm. Although the GW distance is not
+invariant (Elad & Kimmel, 2003) used to perform isomeric-         directly competitive performance-wise, this result shows that an
+invariant shape recognition.                                      acceptable performance on this task can be recovered exclusively
+                                                                  using simple metric tools.
+4.2. Quantum chemistry
+To demonstrate the interest of the Gromov-Wasserstein dis-
+crepancy, we consider its application to a regression prob-
+lem on molecules. Several recent works (Rupp et al., 2012;        Our approach. We propose to use the original Ns ×
+Hansen et al., 2013) have proposed to predict atomiza-            Ns Coulomb matrices Cs directly as inputs for our
+tion energies for molecules using descriptors of labeled          GW distances.          Namely, we compute a discrep-
+molecules, rather than estimating them through expensive          ancy between two molecules s, s0 that is exactly
+numerical simulations. (Rupp et al., 2012) proposed in par-       GW(Cs , Cs0 , 1Ns /Ns , 1Ns0 /Ns0 ), using L = L2 and a
+ticular to represent each molecule in the qm7 dataset of or-      regularization strength ε tuned heuristically on a subset
+ganic 7165 molecules through its so-called “Coulomb ma-           of 500 points of the database. Using a 3-nearest neigh-
+trix,” which we describe next.                                    bor regression approach we obtain a MAE of 10.83 which,
+                                                                  although not directly competitive with the best approach
+                                                                  recorded in (Hansen et al., 2013), it remarkable in the sense
+Coulomb matrices. For a molecule s with Ns atoms,                 that it is obtained with an extremely simple classifier. Our
+each described by a relative location ri ∈ R3 in space            result contradicts thus the observation made by Hansen
+and a nuclear charge Zi , Rupp et al. proposed to form the        et al., p.3414, that This [poor performance of k-nn] indi-
+Ns × Ns matrix Cs with off-diagonal terms Zi Zj /||ri − rj ||     cates that there are meaningful linear relations between
+for 1 ⩽ i 6= j ⩽ Ns , and diagonal terms 12 Zi2.4 . Al-           physical quantities in the system and that it is insufficient
+though this plays no major role in our analysis, we found         to simply look up the most similar molecules (as k- nearest
+that these 7165 Coulomb matrices are all infinitely divisible     neighbors does). The k-nearest neighbors approach fails to
+positive definite kernel matrices. Rupp et al. argue that the     create a smooth mapping to the energies.
+Coulomb matrix is a convenient descriptor for molecules
+in the sense that it is invariant with respect to translations
+and rotations by construction. It has, however, an important      5. Conclusion
+weakness: Cs has an arbitrary ordering of the Ns atoms in         The Gromov-Wasserstein discrepancy measure is relevant
+s. As we explain next, this was addressed by Rupp et al. by       to countless problems in machine learning for which the
+creating randomly permuted copies of these matrices.              primary role of a given data point is defined relative to other
+                                                                  members of the dataset. After introducing an entropic reg-
+Previous work. Because their approach requires manipu-            ularizer to the problem, we in particular find that GW is not
+lating matrices of the same size, Rupp et al. pad all Ns ×Ns      only theoretically attractive but also a practical tool with an
+Coulomb matrices Cs with zeros to obtain 23×23 matrices           efficient and easily-implemented non-convex optimization
+(23 is the maximal number of atoms in a molecule in the           scheme. Our approach highlights the fact that using un-
+qm7 database). To cope with the ordering problem, they            registered similarity matrices as features in machine learn-
+also propose, as a representation for each molecule, to form      ing problems is fruitful in many contexts. GW provides
+several randomly permuted copies of Cs for each molecule          a natural framework for manipulation of these matrices, as
+s (between 8 and 1000 in (Hansen et al., 2013)). (Hansen          we demonstrate on classification, clustering, and regression
+et al., 2013, Table 3) provide out-of-sample mean absolute        tasks for shapes and molecules. We suspect this elegant and
+error (MAE) predictions for several techniques using 5 fold       efficient solution to extend to many other problem instances
+cross-validation. We report some of them in Table 4.2.            endowed with natural geometric structure.
+                                   Gromov-Wasserstein Averaging of Kernel and Distance Matrices
+
+Acknowledgements The work of G. Peyré has been sup-                    Hendrikson, Reigo. Using Gromov-Wasserstein distance to ex-
+ported by the European Research Council (ERC project                      plore sets of networks. In University of Tartu, Master Thesis,
+SIGMA-Vision). J. Solomon acknowledges the support of                     2016.
+the NSF Mathematical Sciences Postdoctoral Research Fel-                Kezurer, Itay, Kovalsky, Shahar Z., Basri, Ronen, and Lipman,
+lowship (award number 1502435).                                           Yaron. Tight relaxation of quadratic matching. CGF, 2015.
+                                                                        LeCun, Yann, Bottou, Léon, Bengio, Yoshua, and Haffner,
+References                                                                Patrick. Gradient-based learning applied to document recog-
+                                                                          nition. Proceedings of the IEEE, 86(11):2278–2324, 1998.
+Aflalo, Yonathan, Bronstein, Alexander, and Kimmel, Ron. On
+  convex relaxation of graph isomorphism. Proc. National                Loiola, Eliane Maria, de Abreu, Nair Maria Maia, Boaventura-
+  Academy of Sci., 112(10):2942–2947, 2015.                               Netto, Paulo Oswaldo, Hahn, Peter, and Querido, Tania. A
+                                                                          survey for the quadratic assignment problem. European J. Op-
+Agueh, Martial and Carlier, Guillaume. Barycenters in the                 erational Research, 176(2):657–690, 2007.
+  Wasserstein space. SIAM Journal on Mathematical Analysis,
+  43(2):904–924, 2011.                                                  Manning, Christopher D., Raghavan, Prabhakar, and Schütze,
+                                                                          Hinrich. Introduction to Information Retrieval. Cambridge
+Arthur, David and Vassilvitskii, Sergei. K-means++: The advan-            University Press, 2008.
+  tages of careful seeding. In Proc. SODA, pp. 1027–1035, 2007.
+                                                                        Mémoli, Facundo. On the use of Gromov–Hausdorff distances for
+Benamou, Jean-David, Carlier, Guillaume, Cuturi, Marco, Nenna,            shape comparison. In Symposium on Point Based Graphics, pp.
+  Luca, and Peyré, Gabriel. Iterative Bregman projections for            81–90. 2007.
+  regularized transportation problems. SIAM J. Sci. Comp., 37
+                                                                        Mémoli, Facundo. Gromov–Wasserstein distances and the metric
+  (2):A1111–A1138, 2015.
+                                                                          approach to object matching. Foundations of Comp. Math., 11
+Boţ, Radu Ioan, Csetnek, Ernö Robert, and László, Szilárd Csaba.     (4):417–487, 2011.
+  An inertial forward–backward algorithm for the minimization           Nielsen, Frank and Bhatia, Rajendra. Matrix Information Geom-
+  of the sum of two nonconvex functions. EURO J. Comp. Op-                etry. Springer, 2012.
+  tim., pp. 1–23, 2015.
+                                                                        Rangarajan, Anand, Yuille, Alan, and Mjolsness, Eric. Conver-
+Courty, Nicolas, Flamary, Rémi, and Tuia, Devis. Domain adap-            gence properties of the softassign quadratic assignment algo-
+  tation with regularized optimal transport. In Machine Learning          rithm. Neural Comput., 11(6):1455–1474, August 1999.
+  and Knowledge Discovery in Databases, pp. 274–289. 2014.
+                                                                        Rolet, Antoine, Cuturi, Marco, and Peyré, Gabriel. Fast dictio-
+Cuturi, Marco. Sinkhorn distances: Lightspeed computation of              nary learning with a smoothed Wasserstein loss. In Proc. AIS-
+  optimal transportation. In Proc. NIPS, volume 26, pp. 2292–             TATS’16, 2016.
+  2300. 2013.
+                                                                        Rupp, Matthias, Tkatchenko, Alexandre, Müller, Klaus-Robert,
+Cuturi, Marco and Doucet, Arnaud. Fast computation of Wasser-             and Von Lilienfeld, O Anatole. Fast and accurate modeling of
+  stein barycenters. In Proc. ICML, volume 32, 2014.                      molecular atomization energies with machine learning. Physi-
+                                                                          cal review letters, 108(5):058301, 2012.
+Dryden, Ian L, Koloydenko, Alexey, and Zhou, Diwei. Non-
+  Euclidean statistics for covariance matrices, with applications       Seguy, Vivien and Cuturi, Marco. Principal geodesic analysis for
+  to diffusion tensor imaging. The Annals of Applied Statistics,          probability measures under the optimal transport metric. In Ad-
+  pp. 1102–1123, 2009.                                                    vances in Neural Information Processing Systems, pp. 3294–
+                                                                          3302, 2015.
+Elad, Asi and Kimmel, Ron. On bending invariant signatures for
+   surfaces. IEEE Tr. on PAMI, 25(10):1285–1295, 2003.                  Solomon, Justin, Rustamov, Raif, Guibas, Leonidas, and
+                                                                          Butscher, Adrian. Earth mover’s distances on discrete surfaces.
+Frogner, Charlie, Zhang, Chiyuan, Mobahi, Hossein, Araya,                 ACM Trans. Graph., 33(4):67:1–67:12, July 2014.
+  Mauricio, and Poggio, Tomaso. Learning with a Wasserstein
+  loss. In Advances in Neural Information Processing Systems,           Solomon, Justin, Peyré, Gabriel, Kim, Vladimir, and Sra, Suvrit.
+  volume 28, pp. 2044–2052. 2015.                                         Entropic metric alignment for correspondence problems. ACM
+                                                                          Transactions on Graphics (TOG), 35(4), 2016.
+Gold, Steven and Rangarajan, Anand. A graduated assignment              Sra, Suvrit. Positive definite matrices and the S-divergence. arXiv
+  algorithm for graph matching. PAMI, 18(4):377–388, April                 preprint arXiv:1110.1773, 2011.
+  1996.
+                                                                        Sturm, Karl-Theodor. The space of spaces: curvature bounds and
+Gromov, Mikhail. Metric Structures for Riemannian and Non-                 gradient flows on the space of metric measure spaces. Preprint
+  Riemannian Spaces. Progress in Math. Birkhäuser, 2001.                  1208.0434, arXiv, 2012.
+Hansen, Katja, Montavon, Grégoire, Biegler, Franziska, Fazli,          Thakoor, Ninad, Gao, Jean, and Jung, Sungyong. Hidden Markov
+  Siamac, Rupp, Matthias, Scheffler, Matthias, Von Lilienfeld,            model-based weighted likelihood discriminant for 2-D shape
+  O Anatole, Tkatchenko, Alexandre, and Mller, Klaus-Robert.              classification. Trans. Image Proc., 16(11):2707–2719, 2007.
+  Assessment and validation of machine learning methods for
+  predicting molecular atomization energies. Journal of Chemi-          Villani, Cedric. Topics in Optimal Transportation. Graduate stud-
+  cal Theory and Computation, 9(8):3404–3419, 2013.                        ies in Math. AMS, 2003.
+

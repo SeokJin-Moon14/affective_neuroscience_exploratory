@@ -1,0 +1,71 @@
+# Hidden Markov Models for event segmentation
+
+Hidden Markov Models (HMM) allow us to temporally cluster brain activity into discrete events, and to identify event correspondences between datasets. This tutorial describes how to fit HMMs to a narrative dataset, how to statistically verify the identified event boundaries, how to align multiple datasets, and how to apply HMMs to connectivity data. A full description of the model is given in [the Neuron paper](http://www.dpmlab.org/Neuron17.pdf).
+
+First, download whole-brain data from 17 subjects watching the first hour of [A Study in Pink](https://en.wikipedia.org/wiki/A_Study_in_Pink). Voxels with low intersubject correlation (that were not consisently activated across subjects) were removed, and then the data was downsampled into 141 large regions (from a [resting-state atlas](http://www.dpmlab.org/peerj-784.pdf)). After putting this .h5 file into the same directory as this notebook, we can load in the data. In addition to the BOLD fMRI data, we have the coordinates of each region, as well as human-labeled boundaries for event boundaries.
+
+## Fitting HMM to activity patterns
+
+The goal of the HMM is to identify chunks of time during which activity patterns remain relatively constant. To see if this is a reasonable model for our dataset, we can plot a timepoint-timepoint correlation matrix, showing the similarity between every pair of timepoints in our dataset (averaged over subjects).
+
+Although there is a lot of potentially interesting structure here, the main thing to notice is that there are little blocks of high correlation along the diagonal. These blocks are about 30 TRs long = 45 seconds, suggesting that they are related to relatively slowly-changing features of the movie (i.e. semantically-meaningful scenes) rather than low-level properties e.g. dependent on the current camera angle.
+
+To fit the HMM to the group-averaged data, we simply pass it to the event segmentation module in brainiak.
+
+One way of visualizing the fit is to mark on the timepoint correlation matrix where the model thinks the borders of the events are. The (soft) event segmentation is in ev.segments\_\[0\], so we can convert this to hard bounds by taking the argmax.
+
+Another output of the event segmentation fit is the estimated activity pattern for each event. Since we are using whole-brain atlas data, this corresponds to a pattern of actvity across the whole brain. We can visualize the first few of these event patterns as an example - in these plots, the back of the brain is at the left, and the front is at the right.
+
+## Statistical testing for model boundaries
+
+One way to test whether the model-identified boundaries are consistent across subjects is to fit the model on all but one subject and try to predict something about the held-out subject. There are multiple approaches for doing this (see the [Neuron supplementary material](http://www.dpmlab.org/Neuron17.pdf) for some alternatives), but the simplest is to check whether the model boundaries predict pattern changes in the held-out subject. We therefore measure whether activity patterns 5 TRs apart show a drop in correlation when they are on opposite sides of an event boundary.
+
+For comparison, we generate permuted versions of the model boundaries, in which the distribution of event lengths (the distances between the boundaries) is held constant but the order of the event lengths is shuffled. This should should have a within vs. across boundary difference of zero on average, but the variance of these null boundaries lets us know that we are well above chance differences.
+
+## Comparing model boundaries to human-labeled boundaries
+
+We can also compare the event bounds from the model to human-labeled event boundaries. Since there is some ambiguity in both the stimulus and the model about exactly which timepoint the transition occurs at, we will count two boundaries as being a "match" if they are within 3 TRs (4.5 seconds) of each other.
+
+To determine whether the match is statistically significant, we generate permuted versions of the model boundaries as above. This gives as a null model for comparison (i.e. how often will a human and model bound be within 3 TRs of each other by chance?).
+
+## Aligning movie and recall data
+
+A simple model of free recall is that a subject will revisit the same sequence of events experienced during perception, but the lengths of the events will not be identical between perception and recall. We can fit this model by separately estimating event boundaries in movie and recall data, while constraining the event patterns to be the same across the two datasets.
+
+We will now download fMRI data from the angular gyrus, consisting of (group average) movie-watching data, and free recall data for a single subject. We also have a human-labeled correspondence between the movie and the recall (based on the transcript of the verbal recall). The full dataset for all 17 subjects is [available here](https://ndownloader.figshare.com/files/9055471).
+
+We use the same fit function as for a single dataset, but now we pass in both the movie and recall datasets in a list.
+
+This divides the movie and recall into 25 *corresponding* events, with the same 25 event patterns. We can plot the probability that each timepoint is in a particular event.
+
+To get the temporal correspondence between the movie and the recall, we need to find the probability that a movie TR and a recall TR are in the same event (regardless of which event it is). This is
+$$
+\sum_k p(T_M == k) \cdot p(T_R == k)
+$$
+which we can compute by a simple matrix multiplication.
+
+For comparison, we also plot the human-labeled correspondence as white boxes.
+
+## Tracking network dynamics
+
+In all analyses so far, we have defined a brain state to be a first-order pattern of activity (in a region or across the cortex). Alternatively we could define a brain state based on the second-order correlations between regions, to capture how interactions between regions are changing over time.
+
+Rather than using the standard approach of simply taking pairwise correlation between timecourses (in a single or group average), we can focus specifically on the stimulus-driven correlations by computing the ISFC (intersubject functional correlation), in which we take correlations between timecourse across subjects. We switch back to the 141-region atlas data for this section.
+
+The correlation between two z-scored timecourses $x$ and $y$ is simply the average pairwise product
+$$
+\frac{1}{T} \sum_t x_t y_t
+$$
+Since we will want to look at how the ISFC changes over time, we separately compute each of these pairwise products. We can then recover the correlations by taking the average over all timepoints, and can also look at more fine-grained periods by taking averages over shorter time periods.
+
+Next we need to decide on a moving window in which to estimate dynamic ISFC. To use a Gaussian window with standard deviation of 50 TRs, we can convolve the Gaussian weighting with our pairwise products.
+
+We can then plot a matrix of how similar the ISFC is at different timepoints.
+
+We could try to plug this ISFC directly in the HMM, but it would be extremely slow, since each timepoint has $141^2$=19881 connectivity features. Instead we can reduce the dimensionality without losing information about which timepoints are similar to each other. We do this by computing the SVD of the (z-scored) data matrix, and retaining only the top 50 modes (with largest eigenvalues). This is equivalent to computing PCA on the square of the data matrix.
+
+Plotting the similarity matrix for the reduced-dimension data, we find that we made the data 400x smaller without losing any structure!
+
+We can then plug the data into the HMM to identify temporal clusters. Since we can only estimate dynamic ISFC at slower timescales, this division will be coarser than that for first-order activity.
+
+We can visualize what each of these 5 ISFC periods looks like in the original space 141x141, by taking a weighted average of the original ISFC matrices for each of the event segments. Note that we can easily take weighted sums over a multidimensional array using [Einstein summation](http://ajcr.net/Basic-guide-to-einsum/).

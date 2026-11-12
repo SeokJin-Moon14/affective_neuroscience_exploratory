@@ -1,0 +1,653 @@
+                                            Topological Autoencoders
+
+
+                     Michael Moor † 1 2 Max Horn † 1 2 Bastian Rieck ‡ 1 2 Karsten Borgwardt ‡ 1 2
+
+
+                         Abstract                                 the following contributions:
+      We propose a novel approach for preserving topo-             1. We develop a new topological loss term for autoen-
+      logical structures of the input space in latent rep-            coders that helps harmonise the topology of the data
+      resentations of autoencoders. Using persistent ho-              space with the topology of the latent space.
+      mology, a technique from topological data analy-             2. We prove that our approach is stable on the level of
+      sis, we calculate topological signatures of both the            mini-batches, resulting in suitable approximations of
+      input and latent space to derive a topological loss             the persistent homology of a data set.
+      term. Under weak theoretical assumptions, we                 3. We empirically demonstrate that our loss term aids
+      construct this loss in a differentiable manner, such            in dimensionality reduction by preserving topological
+      that the encoding learns to retain multi-scale con-             structures in data sets; in particular, the learned latent
+      nectivity information. We show that our approach                representations are useful in that the preservation of
+      is theoretically well-founded and that it exhibits              topological structures can improve interpretability.
+      favourable latent representations on a synthetic
+      manifold as well as on real-world image data sets,          2. Background: Persistent Homology
+      while preserving low reconstruction errors.
+                                                                  Persistent homology (Barannikov, 1994, Edelsbrunner &
+                                                                  Harer, 2008) is a method from the field of computational
+                                                                  topology, which develops tools for analysing topological fea-
+1. Introduction
+                                                                  tures (connectivity-based features such as connected com-
+While topological features, in particular multi-scale features    ponents) of data sets. We first introduce the underlying
+derived from persistent homology, have seen increasing use        concept of simplicial homology. For a simplicial complex
+in the machine learning community (Carrière et al., 2019,         K, i.e. a generalised graph with higher-order connectivity
+Guss & Salakhutdinov, 2018, Hofer et al., 2017, 2019a,b,          information such as cliques, simplicial homology employs
+Ramamurthy et al., 2019, Reininghaus et al., 2015, Rieck          matrix reduction algorithms to assign K a family of groups,
+et al., 2019a,b), employing topology directly as a constraint     the homology groups. The dth homology group Hd (K) of
+for modern deep learning methods remains a challenge. This        K contains d-dimensional topological features, such as con-
+is due to the inherently discrete nature of these computa-        nected components (d = 0), cycles/tunnels (d = 1), and
+tions, making backpropagation through the computation of          voids (d = 2). Homology groups are typically summarised
+topological signatures immensely difficult or only possible       by their ranks, thereby obtaining a simple invariant “signa-
+in certain special circumstances (Chen et al., 2019, Hofer        ture” of a manifold. For example, a circle in R2 has one
+et al., 2019a, Poulenard et al., 2018).                           feature with d = 1 (a cycle), and one feature with d = 0 (a
+                                                                  connected component).
+This work presents a novel approach that permits obtaining
+gradients during the computation of topological signatures.       In practice, the underlying manifold M is unknown and we
+This makes it possible to employ topological constraints          are working with a point cloud X := {x1 , . . . , xn } ✓ Rd
+while training deep neural networks, as well as building          and a metric dist : X ⇥ X ! R such as the Euclidean
+topology-preserving autoencoders. Specifically, we make           distance. Persistent homology extends simplicial homol-
+  †
+                                                                  ogy to this setting: instead of approximating M by means
+   Equal contribution. ‡ These authors jointly directed this      of a single simplicial complex, which would be an unsta-
+work. 1 Department of Biosystems Science and Engineering, ETH
+Zurich, 4058 Basel, Switzerland 2 SIB Swiss Institute of Bioin-   ble procedure due to the discrete nature of X, persistent
+formatics, Switzerland. Correspondence to: Karsten Borgwardt      homology tracks changes in the homology groups over mul-
+<karsten.borgwardt@bsse.ethz.ch>.                                 tiple scales of the metric. This is achieved by construct-
+                                                                  ing a special simplicial complex, the Vietoris–Rips com-
+Proceedings of the 37 th International Conference on Machine      plex (Vietoris, 1927). For 0  ✏ < 1, the Vietoris–Rips
+Learning, Online, PMLR 119, 2020. Copyright 2020 by the au-
+thor(s).                                                          complex of X at scale ✏, denoted by R✏ (X), contains all
+                                                         Topological Autoencoders
+
+                                                                                                                    ✏2
+
+
+                                                                                                                    ✏1
+
+
+                                                                                                                    ✏0
+
+                                                                                                                         ✏0        ✏1     ✏2
+
+                   (a) ✏0                              (b) ✏1                               (c) ✏2                              (d) Dd
+
+Figure 1. The Vietoris–Rips complex R✏ (X) of a point cloud X at different scales ✏0 , ✏1 , and ✏2 . As the distance threshold ✏ increases, the
+connectivity changes. The creation and destruction of d-dimensional topological features is recorded in the dth persistence diagram Dd .
+
+
+simplices (i.e. subsets) of X whose elements {x0 , x1 , . . . }
+satisfy dist(xi , xj )  ✏ for all i, j. Given a matrix A of                      X                                 X̃
+pairwise distances of a point cloud X, we will use R✏ (A)                      Input data                      Reconstruction
+and R✏ (X) interchangeably because constructing R✏ only
+                                                                                                     Z
+requires distances. Vietoris–Rips complexes satisfy a nest-                                      Latent code
+                                                                                                                                 Reconstruction loss
+ing relation, i.e. R✏i (X) ✓ R✏j (X) for ✏i  ✏j , making it
+possible to track changes in the homology groups as ✏ in-                                                                         Topological loss
+creases (Edelsbrunner et al., 2002). Figure 1 illustrates this            ✏0                ✏0
+process. Since X contains a finite number of points, a max-
+                                                                                   ✏                 ✏
+imum ✏˜ value exists for which the connectivity stabilises;
+therefore, calculating R✏˜ is sufficient to obtain topological
+features at all scales.                                                   Figure 2. An overview of our method. Given a mini-batch X of
+We write PH(R✏ (X)) for the persistent homology calcu-                    data space X , we train an autoencoder to reconstruct X, leading
+lation of the Vietoris–Rips complex. It results in a tuple                to a reconstruction X̃. In addition to the usual reconstruction
+({D1 , D2 , . . .}, {⇡1 , ⇡2 , . . .}) of persistence diagrams (1st       loss, we calculate our topological loss based on the topological
+                                                                          differences between persistence diagrams, i.e. topological feature
+component) and persistence pairings (2nd component).
+                                                                          descriptors, calculated on the mini-batch X and its corresponding
+The d-dimensional persistence diagram Dd (Figure 1d) of                   latent code Z. The objective of our topological loss term is to
+R✏ (X) contains coordinates of the form (a, b), where a                   constrain the autoencoder such that topological features in the data
+refers to a threshold ✏ at which a d-dimensional topologi-                space are preserved in latent representations.
+cal feature is created in the Vietoris–Rips complex, and b
+refers to a threshold ✏0 at which it is destroyed (please refer
+to Supplementary Section A.1 for a detailed explanation).
+When d = 0, for example, the threshold ✏0 indicates at                    3. A Topology-Preserving Autoencoder
+which distance two connected components in X are merged
+into one. This calculation is known to be related to span-                We propose a generic framework for constraining autoen-
+ning trees (Kurlin, 2015) and single-linkage clustering, but              coders to preserve topological structures (measured via per-
+the persistence diagrams and the persistence pairings carry               sistent homology) of the data space in their latent encodings.
+more information than either one of these concepts.                       Figure 2 depicts an overview of our method; the subsequent
+                                                                          sections will provide more details about the individual steps.
+The d-dimensional persistence pairing contains indices
+(i, j) corresponding to simplices si , sj 2 R✏ (X) that
+create and destroy the topological feature identified by                  3.1. Vietoris–Rips Complex Calculation
+(a, b) 2 Dd , respectively. Persistence diagrams are known                Given a finite metric space S, such as a point cloud, we first
+to be stable with respect to small perturbations in the                   calculate the persistent homology of the Vietoris–Rips com-
+data set (Cohen-Steiner et al., 2007). Two diagrams D                     plex of its distance matrix AS . It is common practice to use
+and D0 can be compared using the bottleneck distance                      the Euclidean distance for the calculation of AS , but both
+db (D, D0 ) := inf ⌘ : D!D0 supx2 D kx ⌘(x)k1 , where                     the persistent homology calculation and our method are not
+⌘ : D ! D0 denotes a bijection between the points of the                  restricted to any particular distance; previous research (Wag-
+two diagrams, and k · k1 refers to the L1 norm. We use                    ner & Dłotko, 2014) shows that even similarity measures
+DX to refer to the set of persistence diagrams of a point                 that do not satisfy the properties of a metric can be used
+cloud X arising from PH(R✏ (X)).                                          successfully with PH(·). Subsequently, let ✏ := max AS so
+                                                                          that R✏ AS is the corresponding Vietoris–Rips complex
+                                                  Topological Autoencoders
+
+as described in Section 2. Given a maximum dimension1           to indicate that the diagram, which is a set, contains the
+of d 2 N>0 , we obtain a set of persistence diagrams DS ,       same information as the distances we retrieve with the pair-
+                                                                                   ⇥ ⇤
+and a set of persistence pairings ⇡ S . The dth persistence
+                                                                                                             X
+                                                                ing. We treat AX ⇡ X as a vector in R|⇡ | . Informally
+pairing ⇡dS contains indices of simplices that are pertinent    speaking, the persistent homology calculation can thus be
+to the creation and destruction of d-dimensional topological    seen as a selection of topologically relevant edges of the
+features. We can consider each pairing to represent edge in-    Vietoris–Rips complex, followed by the selection of cor-
+dices, namely the edges that are deemed to be “topologically    responding entries in the distance matrix. By comparing
+relevant” by the computation of persistent homology (see        both diagrams, we can construct a topological regularisa-
+below for more details). This works because the Vietoris–       tion term Lt := Lt AX , AZ , ⇡ X , ⇡ Z , which we add to the
+Rips complex is a clique complex, i.e. a simplicial complex     reconstruction loss of an autoencoder, i.e.
+that is fully determined by its edges (Zomorodian, 2010).
+                                                                                L := Lr (X, h(g(X))) + Lt                      (1)
+Selecting indices from pairings The basic idea of our
+method involves selecting indices in the persistence pairing    where 2 R is a parameter to control the strength of the
+and mapping them back to a distance between two ver-            regularisation (see also Supplementary Section A.6).
+tices. We then adjust this distance to harmonise topolog-       Next, we discuss how to specify Lt . Since we only select
+ical features of the input space and the latent space. For      edge indices from ⇡ X and ⇡ Z , the PH calculation represents
+0-dimensional topological features, it is sufficient to con-    a selection of topologically relevant distances from the dis-
+sider the indices of edges, which are the “destroyer” sim-      tance matrix. Each persistence diagram entry corresponds
+plices, in the pairing ⇡0S . Each index corresponds to an       to a distance between two data points. Following standard
+edge in the minimum spanning tree of the data set. This         assumptions in persistent homology (Hofer et al., 2019a,
+calculation is computationally efficient, having a worst-case   Poulenard et al., 2018), we assume that the distances are
+complexity of O m2 · ↵ m2 , where m is the batch size           unique so that each entry in the diagram has an infinitesimal
+and ↵(·) denotes the extremely slow-growing inverse Ack-        neighbourhood that only contains a single point. In prac-
+ermann function (Cormen et al., 2009, Chapter 22). For          tice, this can always be achieved by performing (symbolic)
+1-dimensional features, where edges are paired with trian-      perturbations of the distances. Given this fixed pairing and
+gles, we obtain edge indices by selecting the edge with         a differentiable distance function, the persistence diagram
+the maximum weight of the triangle. While this proce-           entries are therefore also differentiable with respect to the
+dure, and thus our method, generalises to higher dimensions,    encoder parameters. Hence, the persistence pairing does
+our current implementation supports no higher-dimensional       not change upon a small perturbation of the underlying dis-
+features. Since preliminary experiments showed that us-         tances, thereby guaranteeing the existence of the derivative
+ing 1-dimensional topological features merely increases         of our loss function. This, in turn, permits the calculation of
+runtime, the subsequent experiments will focus only on          gradients for backpropagation.
+0-dimensional persistence diagrams. We thus use DS , ⇡ S
+to denote the 0-dimensional persistence diagram and pairing     A straightforward approach to impose the data space topol-
+of S, respectively.                                             ogy on the latent space would be to directly calculate a
+                                                                loss based on the selected distances in both spaces. Such
+3.2. Topological Autoencoder                                    an approach will not result in informative gradients for the
+                                                                autoencoder, as it merely compares topological features
+In the following, we consider a mini-batch X of size m from     without matching2 the edges between R✏ (X) and R✏ (Z).
+the data space X as a point cloud. Furthermore, we define       A cleaner approach would be to enforce similarity on the
+an autoencoder as the composition of two functions h g,         intersection of the selected edges in both complexes. How-
+where g : X ! Z represents the encoder and h : Z ! X            ever, this would initially include very few edges, preventing
+represents the decoder, denoting latent codes by Z := g(X).     efficient training and leading to highly biased estimates of
+During a forward pass of the autoencoder, we compute the        the topological alignments between the spaces3 . To over-
+persistent homology of the mini-batch in both the data as       come this, we account for the union of all selected edges in
+well as the latent space, yielding two sets of tuples, i.e.        2
+ DX , ⇡ X := PH(R✏ (X)) and DZ , ⇡ Z := PH(R✏ (Z)).                  We use the term “matching” only to build intuition. Our
+                                                                approach does not calculate a matching in the sense of a bottleneck
+The values of the persistence diagram can be retrieved by       or Wasserstein distance between persistence diagrams.
+subsetting the distance matrix with the edge indices⇥ pro-⇤
+                                                                   3
+                                                                     When initialising a random latent space Z, the persistence
+vided by the persistence pairings; we write DX ' AX ⇡ X         pairing in the latent space will select random edges, resulting in
+                                                                only 1 expected matched edge (independent of mini-batch size)
+   1
+     This means that we do not have to consider higher-         between the two pairings. Thus, only one edge (referring to one
+dimensional topological features, making the calculation more   pairwise distance between two latent codes) could be used to
+efficient.                                                      update the encoding of these two data points.
+                                                   Topological Autoencoders
+
+X and Z. Our topological loss term decomposes into two            perturbations. The persistence diagrams change in a non-
+components, each handling the “directed” loss occurring as        differentiable manner during the training phase. However,
+topological features in one of the two spaces remain fixed.       for any given update step, a diagram is robust to infinitesi-
+Hence, Lt = LX !Z + LZ!X , with                                   mal changes of its entries (Cohen-Steiner et al., 2007). As a
+                                                                  consequence, our topological loss is differentiable for each
+                       1 X⇥ X⇤           ⇥ ⇤ 2
+           LX !Z :=      A ⇡           AZ ⇡ X              (2)    update step during training. We make our code publicly
+                       2                                          available4 .
+and
+                       1 Z⇥ Z⇤          ⇥ ⇤ 2
+           LZ!X :=       A ⇡          AX ⇡ Z  ,            (3)    3.3. Stability
+                       2
+respectively. The key idea for both terms is to align and pre-    Despite the aforementioned known stability of persistence
+serve topologically relevant distances from both spaces. By       diagrams with respect to small perturbations of the underly-
+taking the union of all selected edges (and the correspond-       ing space, we still have to analyse our topological approxi-
+ing distances), we obtain an informative loss term that is        mation on the level of mini-batches. The following theorem
+determined by at least |X| distances. This loss can be seen       guarantees that subsampled persistence diagrams are close
+as a more generic version of the loss introduced by Hofer         to the persistence diagrams of the original point cloud.
+et al. (2019a), whose formulation does not take the two           Theorem 1. Let X be a point cloud of cardinality n
+directed components into account and optimises the destruc-       and X (m) be one subsample of X of cardinality m, i.e.
+tion values of all persistence tuples with respect to a uniform   X (m) ✓ X, sampled without replacement. We can bound
+parameter (their goal is different from ours and does not         the probability of the persistence diagrams of X (m) exceed-
+require a loss term that is capable of harmonising topologi-      ing a threshold in terms of the bottleneck distance as
+cal features across the two spaces; please refer to Section 4
+for a brief discussion). By contrast, our formulation aims          ⇣ ⇣        (m)
+                                                                                   ⌘ ⌘     ⇣ ⇣         ⌘    ⌘
+to to align the distances between X and Z (which in turn           P db DX, DX      > ✏  P dH X, X (m) > 2✏ , (7)
+will lead to an alignment of distances between X and Z). If
+the two spaces are aligned perfectly, LX !Z = LZ!X = 0
+                                                                  where dH refers to the Hausdorff distance between the point
+because both pairings and their corresponding distances co-
+                                                                  cloud and its subsample.
+incide. The converse implication is not true: if Lt = 0,
+the persistence pairings and their corresponding persistence
+diagrams are not necessarily identical. Since we did not
+observe such behaviour in our experiments, however, we            Proof. See Section A.2 in the supplementary materials.
+leave a more formal treatment of these situations for future
+work.
+
+Gradient calculation Letting ✓ refer⇥ ⇤to theZparameters
+                                              ⇥ ⇤                 For m ! n, each mini-batch converges to the original point
+of the encoder and using ⇢ := AX ⇡ X       A ⇡ X , we             cloud, so we have limm!n dH X, X (m) = 0. Please refer
+have                                                              to Section A.3 for an analysis of empirical convergence rates
+                     ✓                          ◆                 as well as a discussion of a worst-case bound. Given certain
+     @             @ 1 X⇥ X⇤           Z
+                                         ⇥ X⇤ 2
+        LX !Z =            A ⇡        A ⇡            (4)          independence assumptions, the next theorem approximates
+    @✓            @✓ 2
+                               ⇥ X⇤ !                             the expected value of the Hausdorff distance between the
+                             Z
+                     > @A ⇡                                       point cloud and a mini-batch. The calculation of an exact
+               = ⇢                                   (5)
+                              @✓                                  representation is beyond the scope of this work.
+                       0                1
+                         |X
+                          ⇡X |   Z
+                                   ⇥ X⇤                           Theorem 2. Let A 2 Rn⇥m be the distance matrix between
+                       B       @A ⇡ i C
+               = ⇢> @                   A,           (6)          samples of X and X (m) , where the rows are sorted such
+                          i=1
+                                  @✓                              that the first m rows correspond to the columns of the m
+                                                                  subsampled points with diagonal elements aii = 0. Assume
+where ⇡ X ⇥denotes    the cardinality of a persistence pair-      that the entries aij with i > m are random samples follow-
+                ⇤                                                 ing a distance distribution FD with supp(FD ) 2 R 0 . The
+ing and AZ ⇡ X i refers to the ith entry of the vector of
+paired distances. This derivation works analogously for           minimal distances i for rows with i > m follow a distribu-
+LZ!X (with ⇡ X being replaced by ⇡ Z ). Furthermore, any          tion F . Letting Z := max1in i with a corresponding
+derivative of AX with respect to ✓ must vanish because the        distribution FZ , the expected Hausdorff distance between
+distances of the input samples do not depend on the en-             4
+                                                                      https://github.com/BorgwardtLab/
+coding by definition. These equations assume infinitesimal        topological-autoencoders
+                                                   Topological Autoencoders
+
+X and X (m) for m < n is bounded by:                              Such topology-based adjustments have only recently be-
+    h             i                                               come feasible. Poulenard et al. (2018) demonstrated how
+  E dH (X, X (m) ) = EZ⇠FZ [Z]                             (8)    to optimise real-valued functions based on their topology.
+                                                                  This constitutes the first approach for aligning persistence
+                           Z
+                           +1
+                             ⇣                  ⌘                 diagrams by modifying input data; it requires the connec-
+                                1   FD (z)(n 1) dz        (9)    tivity of the data to be known, and the optimised functions
+                           0                                      have to be node-based and scalar-valued. By contrast, our
+                           Z
+                           +1
+                             ⇣                   ⌘                method works directly on distances and sidesteps connec-
+                                1   FD (z)m(n m) dz      (10)    tivity calculations via the Vietoris–Rips complex. Chen
+                           0
+                                                                  et al. (2019) use a similar optimisation technique to regu-
+                                                                  larise the decision boundary of a classifier. However, this
+                                                                  requires discretising the space, which can be computation-
+                                                                  ally expensive. Hofer et al. (2019a), the closest work to ours,
+Proof. See Section A.4 in the supplementary materials.            also presents a differentiable loss term. Their formulation
+                                                                  enforces a single scale, referred to as ⌘, on the latent space.
+From Eq. 10, we obtain E[dH (X, X m )] = 0 as m ! n,              The learned encoding is then applied to a one-class learning
+so the expected value converges as the subsample size ap-         task in which a scoring function is calculated based on the
+proaches the total sample size5 . We conclude that our sub-       pre-defined scale. By contrast, the goal of our loss term
+sampling approach results in point clouds that are suitable       is to support the model in learning a latent encoding that
+proxies for the large-scale topological structures of the point   best preserves the data space topology in said latent space,
+cloud X.                                                          which we use for dimensionality reduction. We thus target
+                                                                  a different task, and can preserve multiple scales (those se-
+4. Related Work                                                   lected through the filtration process) that are present in the
+                                                                  data domain.
+Computational topology and persistent homology (PH) have
+started gaining traction in several areas of machine learn-
+                                                                  5. Experiments
+ing research. PH is often used as as post hoc method for
+analysing topological characteristics of data sets. Thus,         Our main task is to learn a latent space in an unsupervised
+there are several methods that compare topological fea-           manner such that topological features of the data space,
+tures of high-dimensional spaces with different embeddings        measured using persistent homology approximations on
+to assess the fidelity and quality of a specific embedding        every batch, are preserved as much as possible.
+scheme (Khrulkov & Oseledets, 2018, Paul & Chalup, 2017,
+Rieck & Leitte, 2015, 2017, Yan et al., 2018). PH can also        5.1. Experimental Setup
+be used to characterise the training of neural networks (Guss
+& Salakhutdinov, 2018, Rieck et al., 2019b), as well as their     Subsequently, we briefly describe our data sets and evalua-
+decision boundaries (Ramamurthy et al., 2019). Our method         tion metrics. Please refer to the supplementary materials for
+differs from all these publications in that we are able to ob-    technical details (calculation, hyperparameters, etc.).
+tain gradient information to update a model while training.
+Alternatively, topological features can be integrated into        5.1.1. DATA S ETS
+classifiers to improve classification performance. Hofer          We generate a S PHERES data set that consists of ten high-
+et al. (2017) propose a neural network layer that learns pro-     dimensional 100-spheres living in a 101-dimensional space
+jections of persistence diagrams, which can subsequently          that are enclosed by one larger sphere that consists of the
+be used as feature descriptors to classify structured data.       same number of points as the total of inner spheres (see
+Moreover, several vectorisation strategies for persistence        Section A.5 for more details). We also use three image data
+diagrams exist (Adams et al., 2017, Carrière et al., 2015),       sets (MNIST, FASHION -MNIST, and CIFAR-10), which
+making it possible to use them in kernel-based classifiers.       are particularly amenable to our topology-based analysis
+These strategies have been subsumed (Carrière et al., 2019)       because real-world images are known to lie on or near low-
+in a novel architecture based on deep sets. The commonality       dimensional manifolds (Lee et al., 2003, Peyré, 2009).
+of these approaches is that they treat persistence diagrams
+as being fixed; while they are capable of learning suitable       5.1.2. BASELINES & T RAINING P ROCEDURE
+parameters for classifying them, they cannot adjust input
+data to better approximate a certain topology.                    We compare our approach with several dimensionality re-
+                                                                  duction techniques, including UMAP (McInnes et al., 2018),
+  5
+    For m = n, the two integrals switch their order as m(n        t-SNE (van der Maaten & Hinton, 2008), Isomap (Tenen-
+m) = 0 < n 1 (for n > 1).
+                                                  Topological Autoencoders
+
+baum et al., 2000), PCA, as well as standard autoen-
+coders (AE). We apply our proposed topological constraint
+to this standard autoencoder architecture (TopoAE).
+For comparability and interpretability, each method is re-
+stricted to two latent dimensions. We split each data set into
+training and testing (using the predefined split if available;
+90% versus 10% otherwise). Additionally, we remove 15%
+of the training split as a validation data set for tuning the
+hyperparameters. We normalised our topological loss term                     (a) PCA                       (b) Isomap
+by the batch size m in order to disentangle from it. All
+autoencoders employ batch-norm and are optimized using
+ADAM (Kingma & Ba, 2014). Since t-SNE is not intended
+to be applied to previously unseen test samples, we evaluate
+this method only on the train split. In addition, significant
+computational scaling issues prevent us from running a hy-
+perparameter search for Isomap on real-world data sets, so
+we only compare this algorithm on the synthetic data set.
+Please refer to Section A.6 for more details on architectures
+                                                                             (c) t-SNE                     (d) UMAP
+and hyperparameters.
+
+5.1.3. E VALUATION
+We evaluate the quality of latent representations in terms
+of (1) low-dimensional visualisations, (2) dimensionality
+reduction quality metrics (evaluated between input data and
+latent codes), and (3) reconstruction errors (Data MSE; eval-
+uated between input and reconstructed data), provided that
+invertible transformations are available6 . For (2), we con-
+                                                                              (e) AE                       (f) TopoAE
+sider several measures (please refer to Section A.7 for more
+details). First, we calculate KL , the Kullback–Leibler di-      Figure 3. Latent representations of the S PHERES data set. Only
+vergence between the density estimates of the input and          our method is capable of representing the complicated nesting
+latent space, based on density estimates (Chazal et al., 2011,   relationship inherent to the data; t-SNE, for example, tears the
+2014b), where 2 R>0 denotes the length scale of the              original data apart. For TopoAE, we used a batch size of 28.
+Gaussian kernel, which is varied to account for multiple         Please refer to Figure A.5 in the supplementary materials for an
+data scales. We chose minimising KL0.1 as our hyperparam-        enlarged version.
+eter search objective. Furthermore, we calculate common
+non-linear dimensionality reduction (NLDR) quality met-
+rics, which use the pairwise distance matrices of the input      5.2. Results
+and the latent space (as indicated by the “`” in the abbrevi-    Next to a quantitative evaluation in terms of various quality
+ations), namely (1) the root mean square error (`-RMSE),         metrics, we also discuss qualitative results in terms of visu-
+which—despite its name—is not related to the reconstruc-         alisations, which are interpretable in case the ground truth
+tion error of the autoencoder but merely measures to what        manifold is known.
+extent the two distributions of distances coincide, (2) the
+mean relative rank error (`-MRRE), (3) the continuity (`-        5.2.1. Q UANTITATIVE R ESULTS
+Cont), and (4) the trustworthiness (`-Trust) . The reported
+measures are computed on the test splits (except for t-SNE       Table 1 reports the quantitative results. Overall, we observe
+where no transformation between splits is available, so we       that our method is capable of preserving the data density
+report the measures on a random subsample of the train split     over multiple length scales (as measured by KL). Further-
+preserving the cardinality of the test split).                   more, we find that TopoAE displays competitive continuity
+                                                                 values (`-Cont) and reconstruction errors (Data MSE). The
+   6
+    Invertible transformations are available for PCA and all     latter is particularly relevant as it demonstrates that im-
+autoencoder-based methods.
+                                                                 posing our topological constraints does not result in large
+                                                                 impairments when reconstructing the input space.
+                                                                 The remaining classical measures favour the baselines (fore-
+                                                      Topological Autoencoders
+
+                Data set     Method KL0.01 KL0.1             KL1 `-MRRE `-Cont `-Trust `-RMSE Data MSE
+                         Isomap           0.181 0.420 0.00881          0.246    0.790   0.676        10.4           –
+                         PCA              0.332 0.651 0.01530          0.294    0.747   0.626        11.8      0.9610
+                         TSNE             0.152 0.527 0.01271          0.217    0.773   0.679         8.1           –
+                S PHERES
+                         UMAP             0.157 0.613 0.01658          0.250    0.752   0.635         9.3           –
+                         AE               0.566 0.746 0.01664          0.349    0.607   0.588        13.3      0.8155
+                         TopoAE           0.085 0.326 0.00694          0.272    0.822   0.658        13.5      0.8681
+                        PCA               0.356 0.052 0.00069          0.057    0.968   0.917         9.1      0.1844
+                        TSNE              0.405 0.071 0.00198          0.020    0.967   0.974        41.3           –
+                F-MNIST UMAP              0.424 0.065 0.00163          0.029    0.981   0.959        13.7           –
+                        AE                0.478 0.068 0.00125          0.026    0.968   0.974        20.7      0.1020
+                        TopoAE            0.392 0.054 0.00100          0.032    0.980   0.956        20.5      0.1207
+                             PCA          0.389 0.163 0.00160          0.166    0.901   0.745        13.2      0.2227
+                             TSNE         0.277 0.133 0.00214          0.040    0.921   0.946        22.9           –
+                MNIST        UMAP         0.321 0.146 0.00234          0.051    0.940   0.938        14.6           –
+                             AE           0.620 0.155 0.00156          0.058    0.913   0.937        18.2      0.1373
+                             TopoAE       0.341 0.110 0.00114          0.056    0.932   0.928        19.6      0.1388
+                             PCA          0.591 0.020 0.00023          0.119    0.931   0.821        17.7      0.1482
+                             TSNE         0.627 0.030 0.00073          0.103    0.903   0.863        25.6           –
+                CIFAR        UMAP         0.617 0.026 0.00050          0.127    0.920   0.817        33.6           –
+                             AE           0.668 0.035 0.00062          0.132    0.851   0.864        36.3      0.1403
+                             TopoAE       0.556 0.019 0.00031          0.108    0.927   0.845        37.9      0.1398
+
+Table 1. Embedding quality according to multiple evaluation metrics (Section 5.1). The hyperparameters of all tunable methods were
+selected to minimise the objective KL0.1 . For each criterion, the winner is shown in bold and underlined, the runner-up in bold. Please
+refer to Supplementary Table A.2 for more scales and variance estimates. The column “Data MSE” indicates the reconstruction error. It
+is included to demonstrate that applying our loss term has no adverse effects.
+
+
+most the train (!) performance of t-SNE). However, we will            ically motivated (McInnes et al., 2018). Furthermore, we
+subsequently see by inspecting the latent spaces that those           observe that t-SNE tends to fragment certain classes (dark
+classic measures fail to detect the relevant structural infor-        orange, red) into multiple distinct subgroups. This likely
+mation, as exemplified with known ground truth manifolds,             does not reflect the underlying manifold structure, but con-
+such as the S PHERES data set.                                        stitutes an artefact frequently observed with this method.
+                                                                      For MNIST, the latent embeddings (Figure 4, middle col-
+5.2.2. V ISUALISATION OF L ATENT S PACES                              umn) demonstrate that the non-linear competitors—mostly
+                                                                      by pulling apart distinct classes—lose some of the relation-
+For the S PHERES data set (Figure 3), we observe that only
+                                                                      ship information between clusters when comparing against
+our method is capable of assessing the nesting relation-
+                                                                      our proposed method or PCA. Finally, we observe that
+ship of the high-dimensional spheres correctly. By contrast,
+                                                                      CIFAR-10 (Figure 4, rightmost column), is challenging
+t-SNE “cuts open” the enclosing sphere, distributing most
+                                                                      to embed in two latent dimensions in a purely unsupervised
+of its points around the remaining spheres. We see that the
+                                                                      manner. Interestingly, our method (consistently, i.e. over all
+KL-divergence confirms the visual assessment that only our
+                                                                      runs) was able to identify a linear substructure that separates
+proposed method preserves the relevant structure of this data
+                                                                      the latent space in two additional groups of classes.
+set. Several classical evaluation measures, however, favour
+t-SNE, even though this method fails to capture the global
+structure and nesting relationship of the enclosing sphere            6. Discussion and Conclusion
+manifold accounting for half of the data set.
+                                                                      We presented topological autoencoders, a novel method for
+On FASHION -MNIST (Figure 4, leftmost column), we see                 preserving topological information, measured in terms of
+that, as opposed to AE, which is purely driven by the re-             persistent homology, of the input space when learning latent
+construction error, our method has the additional objective           representations with deep neural networks. Under weak
+of preserving structure. Here, the constraint helps the regu-         theoretical assumptions, we showed how our persistent ho-
+larised autoencoder to “organise” the latent space, resulting         mology calculations can be combined with backpropagation;
+in a comparable pattern as in UMAP, which is also topolog-            moreover, we proved that approximating persistent homol-
+                                                                      ogy on the level of mini-batches is theoretically justified.
+                                                    Topological Autoencoders
+
+ FASHION -MNIST             MNIST               CIFAR-10          entangled structures, which we consider to constitute a more
+                                                                  meaningful representation of the underlying manifolds (an
+                                                                  auxiliary analysis in Supplementary Section A.10 confirms
+                                                                  that our method influences topological features, measured
+                                                                  using PH, in a beneficial manner).
+
+                                                                  Future work Our topological loss formulation is highly
+                             PCA                                  generalizable; it only requires the existence of a distance
+                                                                  matrix between individual samples (either globally, or on
+                                                                  the level of batches). As a consequence, our topological
+                                                                  loss term can be directly integrated into a variety of dif-
+                                                                  ferent architectures and is not limited to standard autoen-
+                                                                  coders. For instance, we can also apply our constraint to
+                                                                  variational setups (see Figure A.3 for a sketch) or create
+                            t-SNE
+                                                                  a topology-aware variant of principal component analy-
+                                                                  sis (dubbed “TopoPCA”; see Table A.2 for more details,
+                                                                  as well as Figures A.6, A.7, and A.8 for the corresponding
+                                                                  latent space representations). Employing our loss term to
+                                                                  more involved architectures will be an exciting route for
+                                                                  future work. One issue with the calculation is that, given the
+                            UMAP                                  computational complexity of calculating R✏ (·), for higher-
+                                                                  dimensional features, we would scale progressively worse
+                                                                  with increasing batch size. However, in our low-dimensional
+                                                                  setup, we observed that runtime tends to grow with decreas-
+                                                                  ing batch size, i.e. the mini-batch speed-up still dominates
+                                                                  runtime (for more details concerning the effect of batch
+                                                                  sizes, see Supplementary Section A.8). In future work,
+                             AE                                   scaling to higher dimensions could be mitigated by approxi-
+                                                                  mating the calculation of persistent homology (Choudhary
+                                                                  et al., 2018, Kerber & Sharathkumar, 2013, Sheehy, 2013)
+                                                                  or by exploiting recent advances in parallelising it (Bauer
+                                                                  et al., 2014, Lewis & Morozov, 2015). Another interesting
+                                                                  extension would be to tackle classification scenarios with
+                           TopoAE                                 topology-preserving loss terms. This might prove challeng-
+                                                                  ing, however, because the goal in classification is to increase
+Figure 4. Latent representations of the FASHION -MNIST (left      class separability, which might be achieved by removing
+column), MNIST (middle column), CIFAR-10 (right column)           topological structures. This goal is therefore at odds with
+data sets. The respective batch size values for our method        our loss term that tries preserving those structures. We think
+are (95, 126, 82). Please refer to Figures A.6, A.7, and A.8 in   that such an extension might require restricting the method
+the supplementary materials for enlarged versions.
+                                                                  to a subset of scales (namely those that do not impede class
+                                                                  separability) to be preserved in the data.
+In our experiments, we observed that our method is uniquely
+able to capture spatial relationships between nested high-        ACKNOWLEDGEMENTS
+dimensional spheres. This is relevant, as the ability to cope     The authors wish to thank Christian Bock for fruitful discus-
+with several manifolds in the domain of manifold learning         sions and valuable feedback.
+still remains a challenging task. On real-world data sets,
+we observed that our topological loss leads to competitive        This project was supported by the grant #2017-110 of the
+performance in terms of numerous quality metrics (such as         Strategic Focal Area “Personalized Health and Related Tech-
+a density preservation metric), while not adversely affecting     nologies (PHRT)” of the ETH Domain for the SPHN/PHRT
+the reconstruction error. In both synthetic and real-world        Driver Project “Personalized Swiss Sepsis Study” and the
+data sets, we obtain interesting and interpretable represen-      SNSF Starting Grant “Significant Pattern Mining” (K.B.,
+tations, as our method does not merely pull apart different       grant no. 155913). Moreover, this work was funded in part
+classes, but tries to spatially arrange them meaningfully.        by the Alfried Krupp Prize for Young University Teachers of
+Thus, we do not observe mere distinct “clouds”, but rather        the Alfried Krupp von Bohlen und Halbach-Stiftung (K.B.).
+                                                    Topological Autoencoders
+
+References                                                           homology. In Bach, F. and Blei, D. (eds.), Proceed-
+                                                                     ings of the 32nd International Conference on Machine
+Adams, H., Emerson, T., Kirby, M., Neville, R., Peterson,
+                                                                     Learning (ICML), volume 37 of Proceedings of Machine
+  C., Shipman, P., Chepushtanova, S., Hanson, E., Motta,
+                                                                     Learning Research, pp. 2143–2151. PMLR, 2015a.
+  F., and Ziegelmeier, L. Persistence images: A stable
+ vector representation of persistent homology. Journal of          Chazal, F., Glisse, M., Labruère, C., and Michel, B. Conver-
+ Machine Learning Research, 18(1):218–252, 2017.                     gence rates for persistence diagram estimation in topolog-
+                                                                     ical data analysis. Journal of Machine Learning Research,
+Barannikov, S. A. The framed Morse complex and its in-               16:3603–3635, 2015b.
+  variants. Advances in Soviet Mathematics, 21:93–115,
+  1994.                                                            Chen, C., Ni, X., Bai, Q., and Wang, Y. A topological
+                                                                     regularizer for classifiers via persistent homology. In
+Bauer, U., Kerber, M., and Reininghaus, J. Distributed com-          Chaudhuri, K. and Sugiyama, M. (eds.), Proceedings of
+  putation of persistent homology. In McGeoch, C. C. and             Machine Learning Research, volume 89 of Proceedings
+  Meyer, U. (eds.), Proceedings of the Sixteenth Workshop            of Machine Learning Research, pp. 2573–2582. PMLR,
+  on Algorithm Engineering and Experiments (ALENEX),                 2019.
+  pp. 31–38. Society for Industrial and Applied Mathemat-
+  ics, 2014.                                                       Choudhary, A., Kerber, M., and Raghvendra, S. Improved
+                                                                     topological approximations by digitization. arXiv e-
+Bibal, A. and Frénay, B. Measuring quality and interpretabil-        prints, art. arXiv:1812.04966, 2018.
+  ity of dimensionality reduction visualizations. Safe Ma-
+  chine Learning Workshop at ICLR, 2019.                           Cohen-Steiner, D., Edelsbrunner, H., and Harer, J. Stabil-
+                                                                     ity of persistence diagrams. Discrete & Computational
+Burago, D., Burago, Y., and Ivanov, S. A course in metric            Geometry, 37(1):103–120, 2007.
+  geometry, volume 33 of Graduate Studies in Mathematics.
+                                                                   Cormen, T. H., Leiserson, C. E., Rivest, R. L., and Stein, C.
+  American Mathematical Society, 2001.
+                                                                     Introduction to algorithms. MIT Press, Cambridge, MA,
+Carrière, M., Oudot, S. Y., and Ovsjanikov, M. Stable                USA, 3rd edition, 2009.
+  topological signatures for points on 3D shapes. In Pro-          Edelsbrunner, H. and Harer, J. Persistent homology—a
+  ceedings of the Eurographics Symposium on Geometry                 survey. In Goodman, J. E., Pach, J., and Pollack, R.
+  Processing (SGP), pp. 1–12, Aire-la-Ville, Switzerland,            (eds.), Surveys on discrete and computational geometry:
+  2015. Eurographics Association.                                    Twenty years later, number 453 in Contemporary Math-
+Carrière, M., Chazal, F., Ike, Y., Lacombe, T., Royer, M.,           ematics, pp. 257–282. American Mathematical Society,
+  and Umeda, Y. PersLay: A neural network layer for per-             Providence, RI, USA, 2008.
+  sistence diagrams and new graph topological signatures.          Edelsbrunner, H., Letscher, D., and Zomorodian, A. J. Topo-
+  arXiv e-prints, art. arXiv:1904.09378, 2019.                       logical persistence and simplification. Discrete & Com-
+                                                                     putational Geometry, 28(4):511–533, 2002.
+Chazal, F., Cohen-Steiner, D., Guibas, L. J., Mémoli, F.,
+  and Oudot, S. Y. Gromov–Hausdorff stable signatures              Gracia, A., González, S., Robles, V., and Menasalvas, E. A
+  for shapes using persistence. Computer Graphics Forum,             methodology to compare dimensionality reduction algo-
+  28(5):1393–1403, 2009.                                             rithms in terms of loss of quality. Information Sciences,
+                                                                     270:1–27, 2014.
+Chazal, F., Cohen-Steiner, D., and Mérigot, Q. Geomet-
+  ric inference for probability measures. Foundations of           Guss, W. H. and Salakhutdinov, R. On characterizing the
+  Computational Mathematics, 11(6):733–751, 2011.                    capacity of neural networks using algebraic topology.
+                                                                     arXiv e-prints, art. arXiv:1802.04443, 2018.
+Chazal, F., de Silva, V., and Oudot, S. Y. Persistence stability
+  for geometric complexes. Geometriæ Dedicata, 173(1):             Hinton, G. E. and Salakhutdinov, R. R. Reducing the di-
+  193–214, 2014a.                                                    mensionality of data with neural networks. Science, 313
+                                                                     (5786):504–507, 2006.
+Chazal, F., Fasy, B. T., Lecci, F., Michel, B., Rinaldo, A.,
+  and Wasserman, L. Robust topological inference: Dis-             Hofer, C., Kwitt, R., Niethammer, M., and Uhl, A. Deep
+  tance to a measure and kernel distance. arXiv e-prints,            learning with topological signatures. In Guyon, I.,
+  art. arXiv:1412.7197, 2014b.                                       Luxburg, U. V., Bengio, S., Wallach, H., Fergus, R., Vish-
+                                                                    wanathan, S., and Garnett, R. (eds.), Advances in Neural
+Chazal, F., Fasy, B., Lecci, F., Michel, B., Rinaldo, A.,           Information Processing Systems 30, pp. 1633–1643. Cur-
+  and Wasserman, L. Subsampling methods for persistent               ran Associates, Inc., 2017.
+                                                 Topological Autoencoders
+
+Hofer, C., Kwitt, R., Niethammer, M., and Dixit, M.            Peyré, G. Manifold models for signals and images. Com-
+  Connectivity-optimized representation learning via per-        puter Vision and Image Understanding, 113(2):249–260,
+  sistent homology. In Chaudhuri, K. and Salakhutdinov,          2009.
+  R. (eds.), Proceedings of the 36th International Confer-
+  ence on Machine Learning, volume 97 of Proceedings           Poulenard, A., Skraba, P., and Ovsjanikov, M. Topologi-
+  of Machine Learning Research, pp. 2751–2760. PMLR,             cal function optimization for continuous shape matching.
+  2019a.                                                         Computer Graphics Forum, 37(5):13–25, 2018.
+
+Hofer, C. D., Graf, F., Rieck, B., Niethammer, M., and         Ramamurthy, K. N., Varshney, K., and Mody, K. Topologi-
+  Kwitt, R. Graph filtration learning. arXiv e-prints, art.      cal data analysis of decision boundaries with application
+  arXiv:1905.10996, 2019b.                                       to model selection. In Chaudhuri, K. and Salakhutdinov,
+                                                                 R. (eds.), Proceedings of the 36th International Confer-
+Kerber, M. and Sharathkumar, R. Approximate Čech com-           ence on Machine Learning, volume 97 of Proceedings
+  plexes in low and high dimensions. arXiv e-prints, art.        of Machine Learning Research, pp. 5351–5360. PMLR,
+  arXiv:1307.3272, 2013.                                         2019.
+
+Khrulkov, V. and Oseledets, I. Geometry score: A method        Reininghaus, J., Huber, S., Bauer, U., and Kwitt, R. A stable
+  for comparing generative adversarial networks. In Dy, J.       multi-scale kernel for topological machine learning. In
+  and Krause, A. (eds.), Proceedings of the 35th Interna-        Proceedings of the IEEE Conference on Computer Vision
+  tional Conference on Machine Learning, volume 80 of            and Pattern Recognition, pp. 4741–4748, 2015.
+ Proceedings of Machine Learning Research, pp. 2621–
+  2629. PMLR, 2018.                                            Rieck, B. and Leitte, H. Persistent homology for the eval-
+                                                                 uation of dimensionality reduction schemes. Computer
+Kingma, D. P. and Ba, J. Adam: A method for stochastic           Graphics Forum, 34(3):431–440, 2015.
+  optimization. arXiv e-prints, art. arXiv:1412.6980, 2014.
+                                                               Rieck, B. and Leitte, H. Agreement analysis of quality mea-
+Kurlin, V. A one-dimensional homologically persistent            sures for dimensionality reduction. In Carr, H., Garth,
+  skeleton of an unstructured point cloud in any metric          C., and Weinkauf, T. (eds.), Topological Methods in Data
+  space. Computer Graphics Forum, 34(5):253–262, 2015.           Analysis and Visualization IV. Springer, Cham, Switzer-
+                                                                 land, 2017.
+Lee, A. B., Pedersen, K. S., and Mumford, D. The nonlinear
+  statistics of high-contrast patches in natural images. In-   Rieck, B., Bock, C., and Borgwardt, K. A persistent
+  ternational Journal of Computer Vision, 54(1–3):83–103,        Weisfeiler–Lehman procedure for graph classification.
+  2003.                                                          In Chaudhuri, K. and Salakhutdinov, R. (eds.), Proceed-
+                                                                 ings of the 36th International Conference on Machine
+Lee, J. A. and Verleysen, M. Quality assessment of dimen-        Learning, volume 97 of Proceedings of Machine Learn-
+  sionality reduction: Rank-based criteria. Neurocomput-         ing Research, pp. 5448–5458. PMLR, 2019a.
+  ing, 72(7):1431–1443, 2009.
+                                                               Rieck, B., Togninalli, M., Bock, C., Moor, M., Horn, M.,
+Lewis, R. and Morozov, D. Parallel computation of persis-        Gumbsch, T., and Borgwardt, K. Neural persistence: a
+  tent homology using the blowup complex. In Proceedings         complexity measure for deep neural networks using alge-
+  of the 27th ACM Symposium on Parallelism in Algorithms         braic topology. In International Conference on Learning
+  and Architectures (SPAA), pp. 323–331. ACM, 2015.              Representations (ICLR), 2019b.
+
+McInnes, L., Healy, J., and Melville, J. UMAP: Uniform         scikit-optimize      contributers,       T.
+ manifold approximation and projection for dimension              scikit-optimize/scikit-optimize: v0.5.2,
+ reduction. arXiv e-prints, art. arXiv:1802.03426, 2018.          March 2018.   https://doi.org/10.5281/
+                                                                  zenodo.1207017.
+Mémoli, F. and Sapiro, G. Comparing point clouds. In
+ Proceedings of the 2004 Eurographics/ACM SIGGRAPH             Sheehy, D. R. Linear-size approximations to the Vietoris–
+ Symposium on Geometry Processing (SGP), pp. 32–40,              Rips filtration. Discrete & Computational Geometry, 49
+ New York, NY, USA, 2004. ACM.                                   (4):778–796, 2013.
+
+Paul, R. and Chalup, S. K. A study on validating non-linear    Tenenbaum, J. B., De Silva, V., and Langford, J. C. A
+  dimensionality reduction using persistent homology. Pat-       global geometric framework for nonlinear dimensionality
+  tern Recognition Letters, 100:160–166, 2017.                   reduction. Science, 290(5500):2319–2323, 2000.
+                                                Topological Autoencoders
+
+van der Maaten, L. J. and Hinton, G. Visualizing data using
+  t-SNE. Journal of Machine Learning Research, 9:2579–
+  2605, 2008.
+van der Maaten, L. J., Postma, E. O., and van den Herik,
+  H. J. Dimensionality reduction: A comparative review.
+  Technical Report 2009-005, Tilburg University, 2009.
+
+Venna, J. and Kaski, S. Visualizing gene interaction graphs
+  with local multidimensional scaling. In Proceedings of
+  the 14th European Symposium on Artificial Neural Net-
+  works, pp. 557–562. d-side group, 2006.
+Vietoris, L. Über den höheren Zusammenhang kompak-
+  ter Räume und eine Klasse von zusammenhangstreuen
+  Abbildungen. Mathematische Annalen, 97(1):454–472,
+  1927.
+Wagner, H. and Dłotko, P. Towards topological analysis of
+ high-dimensional feature spaces. Computer Vision and
+ Image Understanding, 121:21–26, 2014.
+
+Yan, L., Zhao, Y., Rosen, P., Scheidegger, C., and Wang,
+  B. Homology-preserving dimensionality reduction via
+  manifold landmarking and tearing. arXiv e-prints, art.
+  arXiv:1806.08460, 2018.
+
+Zomorodian, A. J. Fast construction of the Vietoris–Rips
+  complex. Computers & Graphics, 34(3):263–271, 2010.
+

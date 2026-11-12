@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "stage02-public-backup",
+  "snapshot_id": "df4a445a84462e7c3eda5f5c3b9122f5f10cb0ee0acfe5aedd2467e47a91b3c1",
+  "prepared_at_utc": "2026-11-12T04:34:56.514574+00:00",
+  "file_count": 1240,
+  "total_bytes": 193101451,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

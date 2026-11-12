@@ -35,6 +35,11 @@ def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
 
+def push(repo, *args):
+    # 클라우드 Git 경로의 thin-pack 기저 객체 누락을 피한다.
+    return run(repo, '-c', 'pack.useBitmaps=false', '-c', 'pack.useSparse=false',
+               'push', '--no-thin', *args)
+
 def verify_remote(repo, config):
     owner_repo = config['github_repository']
     actual = run(repo, 'remote', 'get-url', 'origin')
@@ -175,10 +180,10 @@ def push_pending(repo, config, manifest):
     run(repo, 'merge-base', '--is-ancestor', base, 'HEAD')
     commits = run(repo, 'rev-list', '--reverse', f'{base}..HEAD').splitlines()
     for i, commit in enumerate(commits, 1):
-        run(repo, 'push', 'origin', f'{commit}:refs/heads/{branch}')
+        push(repo, 'origin', f'{commit}:refs/heads/{branch}')
         print(f'원격 저장 {i}/{len(commits)}', flush=True)
     # 앞선 실행이 로컬 commit 뒤 push에서 끊겨도 위 원격 HEAD부터 재개한다.
-    run(repo, 'push', '-u', 'origin', branch)
+    push(repo, '-u', 'origin', branch)
     local = run(repo, 'rev-parse', 'HEAD')
     remote = run(repo, 'ls-remote', 'origin', f'refs/heads/{branch}').split()[0]
     if local != remote:
@@ -192,7 +197,7 @@ def push_pending(repo, config, manifest):
     write_json(repo / 'backup/LAST_SUCCESS.json', receipt)
     run(repo, 'add', '--', 'backup/LAST_SUCCESS.json')
     run(repo, 'commit', '-m', f"backup: verify {manifest['stage']} remote snapshot")
-    run(repo, 'push', 'origin', branch)
+    push(repo, 'origin', branch)
     final = run(repo, 'rev-parse', 'HEAD')
     if run(repo, 'ls-remote', 'origin', f'refs/heads/{branch}').split()[0] != final:
         raise RuntimeError('백업 확인서의 원격 저장 검증 실패.')

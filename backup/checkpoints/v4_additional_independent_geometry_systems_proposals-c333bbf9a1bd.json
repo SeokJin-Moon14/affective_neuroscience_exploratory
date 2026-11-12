@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "v4_additional_independent_geometry_systems_proposals",
+  "snapshot_id": "c333bbf9a1bdfa848584a940a9f9a2f22aa793b6dcbe87b8618a29fa236fc2b3",
+  "prepared_at_utc": "2026-11-12T11:42:23.474728+00:00",
+  "file_count": 1894,
+  "total_bytes": 211738589,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "path": "agents/07_geometry_information/revision_v4_candidates.json",
+    "sha256": "6ce0a0ba7ce049e3f26fe5152c519a997d5ec0490af5bf826a5f910664ea9200",
+    "candidate_ids": [
+      "D07-A"
+    ]
+  },
+  {
+    "path": "agents/08_systems_neuroscience/revision_v4_candidates.json",
+    "sha256": "825b42a6206544ff120534646f480bcc5136094fba90d58102ca8d7fecae37b1",
+    "candidate_ids": [
+      "D08-A"
+    ]
+  }
+]

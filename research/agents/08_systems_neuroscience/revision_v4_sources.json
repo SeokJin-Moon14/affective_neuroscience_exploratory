@@ -1,0 +1,49 @@
+{
+  "read_scope": "독립 제안. 다른 역할 v4 후보 파일은 읽지 않음. P008 지정 본문과 Discussion 일부 직접 재검토. 데이터 본체 분석 없음.",
+  "files": [
+    {
+      "path": "RESEARCH_MISSION.md",
+      "sha256": "b1f332b1087eda5a9997ff77e834a9e39c6adc0735a24540d50df9393471d823"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "ba37cb8fc5f7aa787956d9b92679dc5570080eeef4879e43e3d3495a453cd6b3"
+    },
+    {
+      "path": "revision_v4/PROTOCOL.md",
+      "sha256": "b194ebbe4e37384574cb7657662914c2efa7b48df87fbb414a314608fd68faba"
+    },
+    {
+      "path": "datasets/DATASET_INTELLIGENCE_REPORT.md",
+      "sha256": "87f0be7028630fcdab2875a057b2ea0d2adc2b9e7ad5731f7dbbc6da88068c7f"
+    },
+    {
+      "path": "datasets/horikawa/verified_spec.md",
+      "sha256": "0e7b50a4e6135f42b50495285c3893c9b45d1821bf0064fb516b8147358aa2aa"
+    },
+    {
+      "path": "datasets/mind_captioning/verified_spec.md",
+      "sha256": "6a97a85713e2091ba659f6cb82bc15c567f0b62fc823695e5eb5117fee1bd3d6"
+    },
+    {
+      "path": "datasets/mind_captioning/evidence/data_README.md",
+      "sha256": "58195eb202514b0f3fbe68950fd2f39805f08001284a53ee4d3ee6fc5812254b"
+    },
+    {
+      "path": "agents/01_dataset/priority_recheck.md",
+      "sha256": "b8abb24e3a95e6c7c7a8c2508273d78f21420b4a47d02e2c4908dc5d59a9c913"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/report.md",
+      "sha256": "4df8b9849dc3f1bd493d65854f550b603e9e6699610a1a371c95f0c8ccb2a530"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt",
+      "sha256": "7c287a9ab154bbdcd5f374145c0b2a6c2ddb8f2256d68447eae6912cd24165c3"
+    },
+    {
+      "path": "literature/papers.csv",
+      "sha256": "854d9b56ceed2f18ec2c8909f54e4b3fe0f47ca822326bf9e167e0f1ff05f736"
+    }
+  ]
+}

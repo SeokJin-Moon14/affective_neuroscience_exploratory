@@ -1,0 +1,30 @@
+[
+  {
+    "path": "agents/01_dataset/evidence/repos/horikawa_code/code/sub/perform_clustering_analysis.m",
+    "sha256": "461ff9197462f0ca512b044adc9677237e218a7404644aa7f35905eae022413c"
+  },
+  {
+    "path": "agents/01_dataset/evidence/repos/horikawa_code/code/sub/draw_figureS3AB.m",
+    "sha256": "86c9385bd1746db499bb808053f139a5e02aab4e5a875814157e302b112df2b1"
+  },
+  {
+    "path": "agents/01_dataset/evidence/repos/horikawa_code/code/sub/draw_figure6AB.m",
+    "sha256": "a16d2ccd50da14d1e9cacfaf70a92c3949bb975877725b78971deb0f4064b491"
+  },
+  {
+    "path": "agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt",
+    "sha256": "7c287a9ab154bbdcd5f374145c0b2a6c2ddb8f2256d68447eae6912cd24165c3"
+  },
+  {
+    "path": "datasets/horikawa/verified_spec.md",
+    "sha256": "0e7b50a4e6135f42b50495285c3893c9b45d1821bf0064fb516b8147358aa2aa"
+  },
+  {
+    "path": "datasets/mind_captioning/verified_spec.md",
+    "sha256": "6a97a85713e2091ba659f6cb82bc15c567f0b62fc823695e5eb5117fee1bd3d6"
+  },
+  {
+    "path": "agents/07_geometry_information/revision_v4_candidates.json",
+    "sha256": "6ce0a0ba7ce049e3f26fe5152c519a997d5ec0490af5bf826a5f910664ea9200"
+  }
+]

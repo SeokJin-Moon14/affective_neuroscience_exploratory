@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "stage": "v4_author_revisions_and_actual_integration",
-  "snapshot_id": "0724c87b653ae8b2ca4015eb456a290a8eb0c7121495a8bfb7437929b586c4ce",
-  "prepared_at_utc": "2026-11-12T11:33:50.324845+00:00",
-  "file_count": 1879,
-  "total_bytes": 211623358,
+  "stage": "v4_additional_independent_geometry_systems_proposals",
+  "snapshot_id": "c333bbf9a1bdfa848584a940a9f9a2f22aa793b6dcbe87b8618a29fa236fc2b3",
+  "prepared_at_utc": "2026-11-12T11:42:23.474728+00:00",
+  "file_count": 1894,
+  "total_bytes": 211738589,
   "files": [
     {
       "path": "AGENTS.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 2247,
-      "sha256": "8942c15022065ac0b976b9d83524c326603028866fc5c9eac95324f1b48dd3a6",
+      "size": 2747,
+      "sha256": "39f69fcabb7b182d0ba13c462a8547f9d826faace28cb5b78e2e206bad9a7d90",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
@@ -5155,6 +5155,12 @@
       "stored_path": "research/agents/02_affective_neuroscience/revision_v4_candidates.json"
     },
     {
+      "path": "agents/02_affective_neuroscience/revision_v4_composition_science_review.md",
+      "size": 10429,
+      "sha256": "59cc21e6bacf0ff683e39dda60e9cbf93b843b14635df1fcbbb8c01ebb82d553",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_composition_science_review.md"
+    },
+    {
       "path": "agents/02_affective_neuroscience/revision_v4_integration_agreement.json",
       "size": 3079,
       "sha256": "f493c49a84e891c42eb1675fe44e6474c55cc0d14ee61ba6163115f0a310d0fb",
@@ -6877,6 +6883,18 @@
       "stored_path": "research/agents/06_frontier_ai/revision_v4_candidates.json"
     },
     {
+      "path": "agents/06_frontier_ai/revision_v4_final_contribution_review.json",
+      "size": 10747,
+      "sha256": "cf7fa260494ab53fffd2f397f746d7501f574f7ea635b2b52547855dfe56e31f",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_final_contribution_review.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_final_review_delivery.json",
+      "size": 1417,
+      "sha256": "1ab742ce9ff40cd8d4eba5dbfc7957926da0a50e40e433e8440a2dfbe8783cf8",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_final_review_delivery.json"
+    },
+    {
       "path": "agents/06_frontier_ai/revision_v4_integration_agreement.json",
       "size": 1135,
       "sha256": "b3e4c85a4b037ebce730063ac4f840e5d6bd9c0319b3639f4c67d6b9ef4e4dfd",
@@ -7007,6 +7025,24 @@
       "size": 26357,
       "sha256": "e9cd60a5f421671b8d16d7545617817cbe97ed94f49eef0cfbb5758af8fbb659",
       "stored_path": "research/agents/07_geometry_information/report.md"
+    },
+    {
+      "path": "agents/07_geometry_information/revision_v4_candidates.json",
+      "size": 19997,
+      "sha256": "6ce0a0ba7ce049e3f26fe5152c519a997d5ec0490af5bf826a5f910664ea9200",
+      "stored_path": "research/agents/07_geometry_information/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/07_geometry_information/revision_v4_source_notes.md",
+      "size": 3671,
+      "sha256": "8452f70f6373f05d8c3a281aae4059e81591465654aaf857a8f5e3be5c4002f4",
+      "stored_path": "research/agents/07_geometry_information/revision_v4_source_notes.md"
+    },
+    {
+      "path": "agents/07_geometry_information/revision_v4_sources.json",
+      "size": 1173,
+      "sha256": "a60e48cccb4bbb93701a4ff7d0c8661a65dc3410d6998f17d864f66f0c9d4e93",
+      "stored_path": "research/agents/07_geometry_information/revision_v4_sources.json"
     },
     {
       "path": "agents/07_geometry_information/round02_exchange.json",
@@ -7307,6 +7343,24 @@
       "size": 21340,
       "sha256": "4df8b9849dc3f1bd493d65854f550b603e9e6699610a1a371c95f0c8ccb2a530",
       "stored_path": "research/agents/08_systems_neuroscience/report.md"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/revision_v4_candidates.json",
+      "size": 18607,
+      "sha256": "825b42a6206544ff120534646f480bcc5136094fba90d58102ca8d7fecae37b1",
+      "stored_path": "research/agents/08_systems_neuroscience/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/revision_v4_design_notes.md",
+      "size": 4836,
+      "sha256": "b3daaf5ed2ec6c28e6cd8b11f0ed75bbea21ded229b35ac88355f168137882dc",
+      "stored_path": "research/agents/08_systems_neuroscience/revision_v4_design_notes.md"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/revision_v4_sources.json",
+      "size": 1823,
+      "sha256": "3f77bd4e8e81d26b03a81312abf91421c2b88c650449abf24f56c50cdf5195ad",
+      "stored_path": "research/agents/08_systems_neuroscience/revision_v4_sources.json"
     },
     {
       "path": "agents/08_systems_neuroscience/round02_exchange.json",
@@ -7643,6 +7697,12 @@
       "size": 3310,
       "sha256": "156de919eb8f5263bb24773f9605f6c6e44723fc9eee4000c9b113a1ee53995d",
       "stored_path": "research/agents/08_systems_neuroscience/subaxes.json"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/write_revision_v4.py",
+      "size": 18987,
+      "sha256": "194f9c91cc9cceaa20e40389a7286c9ca8166aac0d659685e37cfbd50df56813",
+      "stored_path": "research/agents/08_systems_neuroscience/write_revision_v4.py"
     },
     {
       "path": "agents/09_generative_ai/RESEARCH_STATUS.md",
@@ -10140,8 +10200,8 @@
     },
     {
       "path": "discussions/AGENT_REGISTRY.json",
-      "size": 1842,
-      "sha256": "54a3d2e56d6c0cfc9e6c2ab76ba9512bf9c4aa3556d56f0df39bff0954d977f1",
+      "size": 2234,
+      "sha256": "6e610dd7e242511db63ad90a62e433e2e0d93539551398f314167a0caf838831",
       "stored_path": "research/discussions/AGENT_REGISTRY.json"
     },
     {
@@ -10595,6 +10655,18 @@
       "stored_path": "research/pilots/plans.json"
     },
     {
+      "path": "pilots/v4/INPUTS.md",
+      "size": 3276,
+      "sha256": "6672ac4b470c99b7cb5f43047a0925c79b08509387e77b3e874a8ffa127cd24a",
+      "stored_path": "research/pilots/v4/INPUTS.md"
+    },
+    {
+      "path": "pilots/v4/MC_IMAGERY.md",
+      "size": 5492,
+      "sha256": "2b8eafee9d43dbc00208e31297dc93d7589a114a880af5a8a0b4a65db1757939",
+      "stored_path": "research/pilots/v4/MC_IMAGERY.md"
+    },
+    {
       "path": "pilots/v4/metadata_check.json",
       "size": 17497,
       "sha256": "e98e2acf2cc3791d572bf4db296414e90ae9b49f0f393907eb39d439e1e8286e",
@@ -10979,6 +11051,12 @@
       "stored_path": "research/revision_v3/version.json"
     },
     {
+      "path": "revision_v4/ADDITIONAL_SOURCES.json",
+      "size": 419,
+      "sha256": "5801b4d64b9d87f6f8d742b11b0f4a8eaf892126bf46e0caf9fbc0e7d554c6e0",
+      "stored_path": "research/revision_v4/ADDITIONAL_SOURCES.json"
+    },
+    {
       "path": "revision_v4/DATA_FIT_REVIEW.md",
       "size": 3578,
       "sha256": "129f6df87431c4d46f06305a0c61ee9a8a494e62c56a9c33c50a074fc0284ee3",
@@ -10995,6 +11073,12 @@
       "size": 650,
       "sha256": "7ca9def669c1274ae83e4cd1de81983026873f4e4e5b5c36ca1ec11e72a1a507",
       "stored_path": "research/revision_v4/PERCEPTION_SOURCES.json"
+    },
+    {
+      "path": "revision_v4/PRIOR_COMPARISON.md",
+      "size": 5062,
+      "sha256": "03fb219214fa41fb4bbaca197f1779e0f6d7bd8dcdc6b61984fdc8a973c98658",
+      "stored_path": "research/revision_v4/PRIOR_COMPARISON.md"
     },
     {
       "path": "revision_v4/PROTOCOL.md",
@@ -11076,8 +11160,8 @@
     },
     {
       "path": "revision_v4/version.json",
-      "size": 984,
-      "sha256": "e01d0158e1c0e6f592f678af987d4693a3b74e14f68e7af76d870f933c4e9355",
+      "size": 1024,
+      "sha256": "4dd73bddc10e10ed889cd6c96c0e7681a72281df1053fadd0c78b468c4c5a899",
       "stored_path": "research/revision_v4/version.json"
     },
     {
@@ -11187,6 +11271,12 @@
       "size": 10319,
       "sha256": "349d5b6351f01f3cb046502c936b3c64dbd99ea894e314ac0ef00f9f3db830be",
       "stored_path": "research/scripts/render_contribution_v3.py"
+    },
+    {
+      "path": "scripts/render_contribution_v4.py",
+      "size": 8363,
+      "sha256": "e5dc956ac1bf5464c3cce95d37f3f91a1e99a2bc82e626a05c4ec8c0a48fb8cc",
+      "stored_path": "research/scripts/render_contribution_v4.py"
     },
     {
       "path": "scripts/render_neuroscience_v2.py",

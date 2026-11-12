@@ -32,5 +32,19 @@
     "04_brain_foundation": "/root/foundation_continuation",
     "05_multimodal_dynamics": "/root/dynamics_continuation",
     "06_frontier_ai": "/root/frontier_contribution"
-  }
+  },
+  "v4_additional_roles": [
+    {
+      "role": "07 Geometry & Information",
+      "agent": "/root/geometry_v4",
+      "status": "독립 제안 중",
+      "workspace": "agents/07_geometry_information/"
+    },
+    {
+      "role": "08 Systems Neuroscience",
+      "agent": "/root/systems_v4",
+      "status": "독립 제안 중",
+      "workspace": "agents/08_systems_neuroscience/"
+    }
+  ]
 }

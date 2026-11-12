@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-12",
+  "source_proposals": 36,
+  "integrated_subaxes": 36,
+  "origin_roles": 12,
+  "parent_axes": 24,
+  "active_parent_axes": 22,
+  "families": 8,
+  "unique_references_used": 94,
+  "verified_bibliography_references_used": 86,
+  "pending_references_used": [
+    "P058",
+    "P091",
+    "PENDING-A12-P02",
+    "P003"
+  ],
+  "document_only_references": [
+    "DOC-SAE",
+    "DOC-TRANSCODER",
+    "DOC-CIRCUIT",
+    "DOC-DOMAINBED"
+  ],
+  "checks": "필수12필드·고유ID·12역할·모든 원본 경로·문헌ID 대응·유형·상위축 참조 통과",
+  "not_verified": [
+    "실제 데이터 스키마",
+    "모델 실행",
+    "신규성 역검색",
+    "Round2–5",
+    "최종 RQ 수량 목표"
+  ],
+  "manual_cross_connections": 8,
+  "connection_checks": "모든 하위축 ID 참조, 연결별 3개 이상 유형, 근거 ID 연결 확인"
+}

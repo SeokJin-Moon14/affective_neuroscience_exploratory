@@ -1,0 +1,2185 @@
+[
+  {
+    "axis_id": "AS01",
+    "name": "내용 환경을 넘는 정서 차원",
+    "definition": "자극내용 변화와 측정불확실성을 넘어 유지되는 정서관련 신경 차원",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P001",
+      "P007",
+      "P010"
+    ],
+    "models": [
+      "공식 Horikawa 선형기준",
+      "조건부 kernel 비교",
+      "CLIP"
+    ],
+    "open_questions": [
+      "고차원 구조가 객체/장면 하위군에 불변인가"
+    ],
+    "transfer_opportunities": [
+      "분포 밖 일반화",
+      "계층 측정오차"
+    ],
+    "dataset_feasibility": "Horikawa: 실제 주석·내용 ID 대응. Emo-FilM: 영화 단위 외적 평가.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "02_affective_neuroscience",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "A2-S1",
+    "source_file": "agents/02_affective_neuroscience/subaxes.csv",
+    "source_confidence": "E3;중간;신규성 미확인",
+    "source_dataset_feasibility": "Horikawa 주석·영상ID 확인 후 가능;실제 자료 미감사",
+    "family_id": "F04",
+    "parent_axes": [
+      "A",
+      "F",
+      "K",
+      "Q",
+      "S"
+    ],
+    "competing_explanations": "환경을 넘는 정서 차원 vs 객체·장면 구성비",
+    "falsification_test": "내용군 보류에서 효과가 사라지고 신뢰도 보정으로도 회복되지 않으면 보편 차원 주장을 축소한다.",
+    "critical_controls": "내용군별 분할; 평정 신뢰도; 저수준·의미 기준모형",
+    "review_date": "2026-11-12",
+    "source_definition": "자극내용 변화와 측정불확실성을 넘어 유지되는 정서관련 신경 차원",
+    "deduplication_group": "DG01",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P001",
+      "P007",
+      "P010"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS02",
+    "name": "현재 내용과 이력 의존 정서 코드",
+    "definition": "동일 현재내용에 대한 신경 예측이 선행이력에 의해 달라지는 구조",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P008",
+      "P013",
+      "P014"
+    ],
+    "models": [
+      "EmoNet",
+      "V-JEPA2/2.1",
+      "미래 입력 차단 encoder 비교"
+    ],
+    "open_questions": [
+      "프레임 설명과 맥락 상태를 구별할 수 있는가"
+    ],
+    "transfer_opportunities": [
+      "잠재 미래예측",
+      "능동 모델구별"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자극·BOLD·주석 정렬. Horikawa는 이용 가능한 시간 단위에 맞춤.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "02_affective_neuroscience",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "A2-S2",
+    "source_file": "agents/02_affective_neuroscience/subaxes.csv",
+    "source_confidence": "E3;중간;시간 식별성 낮음 가능",
+    "source_dataset_feasibility": "시간별BOLD·stimulus timing 검증 필요;순서 조작은 새 뇌자료 필요",
+    "family_id": "F02",
+    "parent_axes": [
+      "A",
+      "C",
+      "D",
+      "H",
+      "V"
+    ],
+    "competing_explanations": "이력 의존 신경 상태 vs 현재 자극 설명",
+    "falsification_test": "입력 정보량·HRF를 맞추면 이력 이득이 사라지는 경우 지속 상태 필요성은 지지되지 않는다.",
+    "critical_controls": "동일 현재 입력; 문맥 길이 일치; HRF 계열; run 경계",
+    "review_date": "2026-11-12",
+    "source_definition": "동일 현재내용에 대한 신경 예측이 선행이력에 의해 달라지는 구조",
+    "deduplication_group": "DG02",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P008",
+      "P013",
+      "P014"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS03",
+    "name": "분산 정서 코드의 결합과 중복",
+    "definition": "영역들이 공유하는 예측정보와 공동관찰로 얻는 추가정보를 구별",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P005",
+      "P009",
+      "P010"
+    ],
+    "models": [
+      "PINES",
+      "MPA2",
+      "용량맞춤 결합모델",
+      "정보분해 추정기는 후속검증"
+    ],
+    "open_questions": [
+      "분산성은 중복인가 새로운 결합인가"
+    ],
+    "transfer_opportunities": [
+      "결측센서 강건성",
+      "조건부 정보분해"
+    ],
+    "dataset_feasibility": "Horikawa 시행별 신경값·주석·ROI. 정보이론적 synergy는 별도 추정 정의 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "02_affective_neuroscience",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "A2-S3",
+    "source_file": "agents/02_affective_neuroscience/subaxes.csv",
+    "source_confidence": "E3;중간;추정기 식별성 미검증",
+    "source_dataset_feasibility": "HorikawaROI·신뢰도확인 후 관찰분석 가능;모달리티통합은 외부자료필요",
+    "family_id": "F03",
+    "parent_axes": [
+      "A",
+      "E",
+      "F",
+      "K",
+      "X"
+    ],
+    "competing_explanations": "영역 간 정보 결합 vs 중복·가산 정보",
+    "falsification_test": "복잡도를 맞춘 가산 모델이 joint 모델과 같으면 결합 계산의 필요성은 약해진다.",
+    "critical_controls": "ROI 선택 독립성; nonlinear additive; 신뢰도·복잡도 일치",
+    "review_date": "2026-11-12",
+    "source_definition": "영역들이 공유하는 예측정보와 공동관찰로 얻는 추가정보를 구별",
+    "deduplication_group": "DG03",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P005",
+      "P009",
+      "P010"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS04",
+    "name": "생성 prior와 신경정보의 기여 분리",
+    "definition": "생성 전 latent·prior 출력·생성 후 영상에서 뇌 조건의 추가 정보를 각각 검증",
+    "type_tags": [
+      "Model / Method",
+      "Neural",
+      "Inference / Measurement",
+      "Construct / Stimulus"
+    ],
+    "representative_papers": [
+      "P015",
+      "P016",
+      "P019",
+      "P021"
+    ],
+    "models": [
+      "MindEye2",
+      "MindEye",
+      "Brain-Diffuser",
+      "ridge latent decoding"
+    ],
+    "open_questions": [
+      "정서 관련 내용이 신경 조건의 정보인가 생성 prior의 보충인가?"
+    ],
+    "transfer_opportunities": [
+      "hard-negative retrieval",
+      "조건 교환",
+      "latent와 출력 이중 평가"
+    ],
+    "dataset_feasibility": "Horikawa 자극–신경–주석 정렬. NSD는 시각 대조; 측정 정서 주석은 별도 확인.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "03_vision_decoding",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "G/X-VD1",
+    "source_file": "agents/03_vision_decoding/subaxes.csv",
+    "source_confidence": "방법 코드 범위 E1; 과학 가설 E3; 신규성 미확정",
+    "source_dataset_feasibility": "Horikawa 우선이나 실제 주석/반복/정합 확인 필요; NSD는 시각 대조군",
+    "family_id": "F05",
+    "parent_axes": [
+      "G",
+      "I",
+      "L",
+      "X",
+      "T"
+    ],
+    "competing_explanations": "뇌 조건이 제공한 정보 vs 생성 prior가 채운 정보",
+    "falsification_test": "뇌 조건을 교환하거나 제거해도 평가가 같으면 해당 정서 내용의 신경 근거를 주장하지 않는다.",
+    "critical_controls": "생성 전 latent; prior-only; 조건 교환; 생성기 교체",
+    "review_date": "2026-11-12",
+    "source_definition": "생성 전 latent·prior 출력·생성 후 영상에서 뇌 조건의 추가 정보를 각각 검증",
+    "deduplication_group": "DG04",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P015",
+      "P016",
+      "P019",
+      "P021"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS05",
+    "name": "정렬 과정의 정서 관련 정보 보존",
+    "definition": "공유 시각 latent 정렬이 유지하는 정보와 버리는 반복 가능한 신경 잔차를 분리",
+    "type_tags": [
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement",
+      "Construct / Stimulus"
+    ],
+    "representative_papers": [
+      "P015",
+      "P017",
+      "P022",
+      "P023"
+    ],
+    "models": [
+      "MindEye2",
+      "Brain-IT",
+      "MinD-Vis",
+      "MindBridge"
+    ],
+    "open_questions": [
+      "영상 검색이 유지되는 동안 정서 관련 신경정보는 소실될 수 있는가?"
+    ],
+    "transfer_opportunities": [
+      "domain adaptation",
+      "masked 대 contrastive 학습",
+      "cycle consistency 감사"
+    ],
+    "dataset_feasibility": "Horikawa/NSD 공유 자극·반복 대응. 정서 검정에는 독립 측정 주석 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "03_vision_decoding",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "O/X-VD2",
+    "source_file": "agents/03_vision_decoding/subaxes.csv",
+    "source_confidence": "방법 코드/문서 E1; 가설 E3; 반복 가능성 전제 미검증",
+    "source_dataset_feasibility": "피험자/자극 이중 보류와 반복 신뢰도 자료가 필요; 대상 데이터의 실제 가용성 미확인",
+    "family_id": "F01",
+    "parent_axes": [
+      "F",
+      "G",
+      "O",
+      "X",
+      "Q"
+    ],
+    "competing_explanations": "공유 latent의 충분성 vs 정렬이 지운 개인 신경정보",
+    "falsification_test": "잔차가 독립 반복에 재현되지 않거나 조건부 표적을 설명하지 못하면 정보 소실 주장을 축소한다.",
+    "critical_controls": "정렬 전후 정보; 자극·피험자 보류; 반복 신뢰도",
+    "review_date": "2026-11-12",
+    "source_definition": "공유 시각 latent 정렬이 유지하는 정보와 버리는 반복 가능한 신경 잔차를 분리",
+    "deduplication_group": "DG05",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P015",
+      "P017",
+      "P022",
+      "P023"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS06",
+    "name": "생성 시간 해상도와 신경 식별 시간의 분리",
+    "definition": "영상 출력의 시간적 매끄러움과 fMRI가 식별한 정서 관련 시간 정보의 차이를 측정",
+    "type_tags": [
+      "Structure / Dynamics",
+      "Neural",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P024",
+      "P015"
+    ],
+    "models": [
+      "MinD-Video",
+      "시간적 hard-negative retrieval"
+    ],
+    "open_questions": [
+      "장면·움직임·HRF 통제 후 정서 관련 변화가 추가 신경정보를 갖는가?"
+    ],
+    "transfer_opportunities": [
+      "temporal negative sampling",
+      "자기상관 보존 교환",
+      "prior-only 대조"
+    ],
+    "dataset_feasibility": "Emo-FilM 시간주석·연속 BOLD 우선. Spacetop clip 평정은 연속 정서 궤적을 대신하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "03_vision_decoding",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "D/Q-VD3",
+    "source_file": "agents/03_vision_decoding/subaxes.csv",
+    "source_confidence": "공식 README E1; 시간적 전이 가설 E3; 데이터 조건 미확인",
+    "source_dataset_feasibility": "Emo-FilM/Spacetop 영상 onset·연속 주석·원신호 정합 확인 전 보류",
+    "family_id": "F07",
+    "parent_axes": [
+      "D",
+      "G",
+      "L",
+      "Q"
+    ],
+    "competing_explanations": "생성 영상의 세밀한 변화 vs fMRI가 식별한 시간 정보",
+    "falsification_test": "시간 평활 prior만으로 같은 출력을 설명하면 영상 프레임 속도를 신경 시간 해상도로 해석하지 않는다.",
+    "critical_controls": "시간 평활 null; HRF; 입력 지연; 생성 prior 제거",
+    "review_date": "2026-11-12",
+    "source_definition": "영상 출력의 시간적 매끄러움과 fMRI가 식별한 정서 관련 시간 정보의 차이를 측정",
+    "deduplication_group": "DG06",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P024",
+      "P015"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS07",
+    "name": "사전학습 목표별 정보 보존과 소실",
+    "definition": "재구성·잠재예측·변환불변 목표에서 신뢰 가능한 신경정보가 보존 또는 제거되는 양상을 비교",
+    "type_tags": [
+      "Neural",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P025",
+      "P026",
+      "P029",
+      "P032",
+      "P033"
+    ],
+    "models": [
+      "SwiFT",
+      "CortexMAE",
+      "Brain-JEPA"
+    ],
+    "open_questions": [
+      "작은 정서 관련 transient는 어떤 목표에서 소실되는가?"
+    ],
+    "transfer_opportunities": [
+      "같은 ROI·학습자료·probe 조건에서 목적함수만 비교"
+    ],
+    "dataset_feasibility": "Horikawa/Emo-FilM/NSD 중 입력 형식이 맞는 보유본; checkpoint 호환은 후속 확인.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "04_brain_foundation",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "J-X-Q.BF1",
+    "source_file": "agents/04_brain_foundation/subaxes.csv",
+    "source_confidence": "E3; 도구 근거 E1",
+    "source_dataset_feasibility": "네 데이터셋 모두 조건부; 실제 시계열·반복신뢰도·주석 감사 필요",
+    "family_id": "F01",
+    "parent_axes": [
+      "F",
+      "I",
+      "J",
+      "Q",
+      "X"
+    ],
+    "competing_explanations": "학습 목표가 보존한 정보 vs 용량·입출력 차이",
+    "falsification_test": "모델 용량·공간 표현·관측 시간을 맞추면 차이가 없어질 때 목적함수 효과를 기각한다.",
+    "critical_controls": "공간 지지집합·시간격자 일치; 학습량; readout 복잡도",
+    "review_date": "2026-11-12",
+    "source_definition": "재구성·잠재예측·변환불변 목표에서 신뢰 가능한 신경정보가 보존 또는 제거되는 양상을 비교",
+    "deduplication_group": "DG07",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P025",
+      "P026",
+      "P029",
+      "P032",
+      "P033"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS08",
+    "name": "자극조건부와 신경조건부 표현의 불일치",
+    "definition": "자극에서 예측 가능한 신경변동과 다른 신경구간에서 예측 가능한 신경변동의 차이를 검사",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P026",
+      "P027",
+      "P029"
+    ],
+    "models": [
+      "TRIBE v2",
+      "CortexMAE",
+      "Brain-JEPA"
+    ],
+    "open_questions": [
+      "두 모형이 놓치는 신뢰 가능한 정서 관련 정보는 겹치는가?"
+    ],
+    "transfer_opportunities": [
+      "cross-fitting 잔차·조건부 추가설명력",
+      "잔차를 정서와 동일시하지 않음"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자극·신경자료 우선; Mind Captioning은 신경–자극 쌍과 시간구조 존재 시 조건부. Mind Captioning의 텍스트 출처를 구분하며, 같은 신경반응으로 생성한 캡션을 독립 입력으로 되넣지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "04_brain_foundation",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "H-F-X.BF2",
+    "source_file": "agents/04_brain_foundation/subaxes.csv",
+    "source_confidence": "E3; 잔차 식별성 낮음, 추가 통제 필요",
+    "source_dataset_feasibility": "정렬된 자극·연속 신경시계열·독립 평가단위가 필요; 실제 가능성 미확인",
+    "family_id": "F08",
+    "parent_axes": [
+      "F",
+      "H",
+      "I",
+      "X",
+      "Q"
+    ],
+    "competing_explanations": "자극으로 설명되는 변동 vs 신경 문맥으로 설명되는 변동",
+    "falsification_test": "두 모델의 고유 잔차가 신뢰 가능한 신경변동과 연결되지 않으면 계산적 상보성을 주장하지 않는다.",
+    "critical_controls": "동일 test; 공통자극 통제; 잔차 신뢰도; 외부 주석",
+    "review_date": "2026-11-12",
+    "source_definition": "자극에서 예측 가능한 신경변동과 다른 신경구간에서 예측 가능한 신경변동의 차이를 검사",
+    "deduplication_group": "DG08",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P026",
+      "P027",
+      "P029"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS09",
+    "name": "관측시간격자와 잠재상태 선택의 분리",
+    "definition": "TR·HRF·재표본화가 만드는 시간구조와 입력의존 상태 갱신의 기여를 구별",
+    "type_tags": [
+      "Structure / Dynamics",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P026",
+      "P027",
+      "P028",
+      "P034"
+    ],
+    "models": [
+      "selective SSM",
+      "고정 SSM",
+      "CortexMAE",
+      "TRIBE v2"
+    ],
+    "open_questions": [
+      "긴 문맥 이득은 신경적 통합인가 관측과정의 자기상관인가?"
+    ],
+    "transfer_opportunities": [
+      "과거전용 예측·HRF 대조·자기상관 보존 surrogate·run holdout"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 BOLD. beta-map을 임의로 나열해 시계열로 사용하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "04_brain_foundation",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "D-N-Q.BF3",
+    "source_file": "agents/04_brain_foundation/subaxes.csv",
+    "source_confidence": "E3; 코드404로 Brain-Mamba 직접 재사용 보류",
+    "source_dataset_feasibility": "연속 시계열 확인 전 보류; beta-map trial 나열은 대체 입력으로 불가",
+    "family_id": "F02",
+    "parent_axes": [
+      "D",
+      "H",
+      "N",
+      "Q",
+      "V"
+    ],
+    "competing_explanations": "잠재 상태 통합 vs TR·HRF·재표본화 효과",
+    "falsification_test": "관측모형을 맞춘 짧은 문맥 모델이 같으면 장기 상태의 신경적 필요성을 축소한다.",
+    "critical_controls": "원 시간격자; HRF 계열; 자기상관 null; 재표본화 민감도",
+    "review_date": "2026-11-12",
+    "source_definition": "TR·HRF·재표본화가 만드는 시간구조와 입력의존 상태 갱신의 기여를 구별",
+    "deduplication_group": "DG09",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P026",
+      "P027",
+      "P028",
+      "P034"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS10",
+    "name": "예측에 충분한 상태와 복원 정보의 분리",
+    "definition": "현재 관측 설명 정보와 가능한 상태 전이를 구별하는 정보의 분리",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P033",
+      "P045",
+      "P046",
+      "P013",
+      "P048"
+    ],
+    "models": [
+      "I-JEPA",
+      "VideoMAE",
+      "V-JEPA",
+      "V-JEPA2",
+      "DreamerV3"
+    ],
+    "open_questions": [
+      "정서 관련 신경정보는 현재 장면 동일성을 넘는 상태 전이를 보존하는가?"
+    ],
+    "transfer_opportunities": [
+      "같은 현재 장면·다른 이전 문맥에서 prefix-only latent prediction과 신경반응을 비교"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자극·전이 단위. 신경 실험 없이 상태전이의 인간 인과를 주장하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "06_frontier_ai",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "V.FAI1",
+    "source_file": "agents/06_frontier_ai/subaxes.csv",
+    "source_confidence": "계산 원리 높음; 신경 전이 미검증(E3)",
+    "source_dataset_feasibility": "발견 경로: timing·연속 문맥·원자극 확인 필요; Horikawa 제약에 소급 맞추지 않음",
+    "family_id": "F02",
+    "parent_axes": [
+      "B",
+      "C",
+      "J",
+      "V",
+      "X"
+    ],
+    "competing_explanations": "전이를 구별하는 예측 상태 vs 현재 장면 복원 정보",
+    "falsification_test": "장면 동일성 기준모형이 상태 전이 대비까지 설명하면 예측 상태의 추가 필요성은 약해진다.",
+    "critical_controls": "동일 과거 창; 복원 목표 대조; 상태 전이 보류",
+    "review_date": "2026-11-12",
+    "source_definition": "현재 관측 설명 정보와 가능한 상태 전이를 구별하는 정보의 분리",
+    "deduplication_group": "DG10",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P033",
+      "P045",
+      "P046",
+      "P013",
+      "P048"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS11",
+    "name": "분해 안정성과 계산 사용의 이중 식별",
+    "definition": "희소 방향의 재현성·모델 내 필요성·신경 정렬을 분리",
+    "type_tags": [
+      "Neural",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT"
+    ],
+    "models": [
+      "SAE TopK",
+      "transcoder",
+      "feature intervention"
+    ],
+    "open_questions": [
+      "개별 feature가 불안정해도 분산 subspace가 정서 관련 신경정보를 안정적으로 설명하는가?"
+    ],
+    "transfer_opportunities": [
+      "seed·dictionary width·sparsity 안정성 및 모델 개입×신경 정렬 교차 평가"
+    ],
+    "dataset_feasibility": "Horikawa/NSD 모델 activation·신경 대비. Mind Captioning은 텍스트/표현 연결이 실제 있는 경우 조건부. Mind Captioning의 텍스트 출처를 구분하며, 같은 신경반응으로 생성한 캡션을 독립 입력으로 되넣지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "06_frontier_ai",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "R.FAI2",
+    "source_file": "agents/06_frontier_ai/subaxes.csv",
+    "source_confidence": "구현 원리 높음; video 호환성·신경 전이 미검증(E3)",
+    "source_dataset_feasibility": "모델 activation 및 독립 자극 split 필요; 인간 인과 주장은 별도 실험 필요",
+    "family_id": "F08",
+    "parent_axes": [
+      "I",
+      "J",
+      "R",
+      "F",
+      "X"
+    ],
+    "competing_explanations": "해석 특징의 안정성 vs 모델 계산에서의 실제 사용",
+    "falsification_test": "특징 개입이 held-out 계산을 바꾸지 않거나 seed에 따라 의미가 바뀌면 단일 특징 설명을 축소한다.",
+    "critical_controls": "seed·기저 변환; feature/subspace 대비; ablation; 오류 노드",
+    "review_date": "2026-11-12",
+    "source_definition": "희소 방향의 재현성·모델 내 필요성·신경 정렬을 분리",
+    "deduplication_group": "DG11",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT"
+    ],
+    "reference_caveats": [
+      "DOC-SAE: 공식 코드·문서 확인; 논문 서지 확정 수 제외",
+      "DOC-TRANSCODER: 공식 코드·문서 확인; 논문 서지 확정 수 제외",
+      "DOC-CIRCUIT: 공식 코드·문서 확인; 논문 서지 확정 수 제외"
+    ]
+  },
+  {
+    "axis_id": "AS12",
+    "name": "선택적 맥락 불변성",
+    "definition": "보존할 맥락과 제거할 환경 정보의 경계를 대칭적인 guide 실험으로 정의",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P049",
+      "P050",
+      "DOC-DOMAINBED"
+    ],
+    "models": [
+      "IRM",
+      "metadata-guided DINOv3",
+      "ERM"
+    ],
+    "open_questions": [
+      "nuisance 제거는 일반화를 높이고 필요 context 제거는 신경 설명력을 낮추는 이중 분리가 있는가?"
+    ],
+    "transfer_opportunities": [
+      "auxiliary/adversarial guide와 외부 환경 일반화를 비교"
+    ],
+    "dataset_feasibility": "Horikawa 내용군·맥락 메타데이터; 없으면 주석 생성·검증 조건. 조작의 뇌효과는 새 측정 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "06_frontier_ai",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "S.FAI3",
+    "source_file": "agents/06_frontier_ai/subaxes.csv",
+    "source_confidence": "코드·README 원리 높음; 신경 전이·신규성 미검증(E3)",
+    "source_dataset_feasibility": "환경·맥락 metadata의 실제 존재 및 식별성 확인 전 실현성 미확정",
+    "family_id": "F04",
+    "parent_axes": [
+      "A",
+      "C",
+      "J",
+      "S",
+      "X"
+    ],
+    "competing_explanations": "제거할 환경 변화 vs 보존할 필요 맥락",
+    "falsification_test": "필요 맥락과 nuisance를 지워도 결과가 같으면 선택적 불변성의 이중 분리가 성립하지 않는다.",
+    "critical_controls": "짝지은 맥락·환경 변화; 외적 split; 대칭 ablation",
+    "review_date": "2026-11-12",
+    "source_definition": "보존할 맥락과 제거할 환경 정보의 경계를 대칭적인 guide 실험으로 정의",
+    "deduplication_group": "DG12",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P049",
+      "P050"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [
+      "DOC-DOMAINBED"
+    ],
+    "reference_caveats": [
+      "DOC-DOMAINBED: 공식 코드·문서 확인; 논문 서지 확정 수 제외"
+    ]
+  },
+  {
+    "axis_id": "AS13",
+    "name": "불변성에 따른 정보 보존과 소실",
+    "definition": "좌표변환·차원축소·정렬이 보존하거나 제거하는 정서 관련 신경정보를 독립 재현성으로 구별",
+    "type_tags": [
+      "Structure / Dynamics",
+      "Neural",
+      "Inference / Measurement",
+      "Model / Method"
+    ],
+    "representative_papers": [
+      "P051",
+      "P052",
+      "P060"
+    ],
+    "models": [
+      "CKA",
+      "crossnobis RSA",
+      "공유 저차원 정렬"
+    ],
+    "open_questions": [
+      "공통 기하 밖의 신경정보는 잡음인가 독립 재현 가능한 정서 관련 정보인가?"
+    ],
+    "transfer_opportunities": [
+      "T1: 표현 수렴을 정보 손실 감사로 전환"
+    ],
+    "dataset_feasibility": "Horikawa/NSD 반복 또는 독립 평가; 정서 관련성은 실제 주석과 별도 검정.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "Agent07",
+    "last_verified": "2026-11-12",
+    "source": "papers.csv G07-P01/P02/P10; report.md §5–7",
+    "needs_followup": "라벨·반복·최신 중복 검증",
+    "source_axis_id": "K07.1",
+    "source_file": "agents/07_geometry_information/subaxes.csv",
+    "source_confidence": "계산 원리 높음; 뇌 전이 E3",
+    "source_dataset_feasibility": "Horikawa 우선 조건부: 실제 정서 주석·자극 ID·독립 반복/런 검증 필요",
+    "family_id": "F01",
+    "parent_axes": [
+      "F",
+      "K",
+      "O",
+      "X",
+      "Q"
+    ],
+    "competing_explanations": "좌표상 동등성 vs 변환이 제거한 신뢰 가능한 정보",
+    "falsification_test": "기하 정렬이 좋아져도 잔차가 반복되지 않으면 제거된 정서 정보의 존재를 주장하지 않는다.",
+    "critical_controls": "가역 좌표변환; rank 일치; 잔차 반복; 독립 표적",
+    "review_date": "2026-11-12",
+    "source_definition": "좌표변환·차원축소·정렬이 보존하거나 제거하는 정서 관련 신경정보를 독립 재현성으로 구별",
+    "deduplication_group": "DG05",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P051",
+      "P052",
+      "P060"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS14",
+    "name": "관측척도를 건너는 기하 재현성",
+    "definition": "잡음·표본밀도·시간창·거리·임베딩을 바꾸어도 남는 내재차원과 연결 구조",
+    "type_tags": [
+      "Structure / Dynamics",
+      "Neural",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P056",
+      "P059",
+      "P060"
+    ],
+    "models": [
+      "H0 persistent homology",
+      "TWO-NN 및 대안 ID",
+      "noise ceiling"
+    ],
+    "open_questions": [
+      "내재차원·연결 구조가 측정 척도와 표본밀도를 넘어 재현되는가?"
+    ],
+    "transfer_opportunities": [
+      "T2: 위상보존 압축을 관측척도 시험으로 전환"
+    ],
+    "dataset_feasibility": "Horikawa/Emo-FilM 신뢰도와 충분한 표본; 보유만으로 반복 측정 존재를 가정하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "Agent07",
+    "last_verified": "2026-11-12",
+    "source": "papers.csv G07-P06/P09/P10; report.md §5–7",
+    "needs_followup": "표본수·HRF·거리 추정·독립성 확인",
+    "source_axis_id": "K07.2",
+    "source_file": "agents/07_geometry_information/subaxes.csv",
+    "source_confidence": "방법 원리 높음; H1/attractor 해석 낮음",
+    "source_dataset_feasibility": "Horikawa/Emo-FilM 조건부: 반복 또는 시간별 자료와 정서 주석 정렬 확인 필요",
+    "family_id": "F06",
+    "parent_axes": [
+      "D",
+      "F",
+      "K",
+      "Q",
+      "T"
+    ],
+    "competing_explanations": "신경 기하 구조 vs 표본밀도·거리·잡음 산물",
+    "falsification_test": "거리·밀도·시간창의 합리적 변화에 구조가 붕괴하면 기하의 신경 일반성을 축소한다.",
+    "critical_controls": "잡음 일치 합성 null; 거리·표본수·임베딩 민감도",
+    "review_date": "2026-11-12",
+    "source_definition": "잡음·표본밀도·시간창·거리·임베딩을 바꾸어도 남는 내재차원과 연결 구조",
+    "deduplication_group": "DG14",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P056",
+      "P059",
+      "P060"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS15",
+    "name": "잠재요인·공간 대응의 비유일성",
+    "definition": "shared/private 요인·수송 결합의 여러 해가 독립 표적에서 동일한 의미를 갖는지 검증한다. PID의 결합정보 질문은 AS03·AS34와 별도 연결한다.",
+    "type_tags": [
+      "Structure / Dynamics",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P053",
+      "P054",
+      "P055",
+      "P057",
+      "P058"
+    ],
+    "models": [
+      "보조변수 nonlinear ICA",
+      "iVAE",
+      "GW",
+      "PID"
+    ],
+    "open_questions": [
+      "서로 동등한 shared/private 분해·수송 결합이 독립 표적에서도 동일한 의미를 갖는가?"
+    ],
+    "transfer_opportunities": [
+      "잠재요인 식별과 수송 결합 불확실성; PID는 별도 결합정보 경로로 연결"
+    ],
+    "dataset_feasibility": "다섯 보유 데이터셋 사이 공통 anchor 실제 확인 후. Mind Captioning 이름만으로 공통 ontology를 가정하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "Agent07",
+    "last_verified": "2026-11-12",
+    "source": "papers.csv G07-P03/P04/P05/P07/P08; report.md §5–8",
+    "needs_followup": "PID 본문·유한표본·독립 anchor·최신 중복 검증",
+    "source_axis_id": "X07.1",
+    "source_file": "agents/07_geometry_information/subaxes.csv",
+    "source_confidence": "이론 조건 높음; 실제 신경 식별·cross-dataset 전이 낮음",
+    "source_dataset_feasibility": "4개 후보자료 모두 측정/ontology/anchor 확인 전 직접 결합 보류",
+    "family_id": "F04",
+    "parent_axes": [
+      "K",
+      "M",
+      "O",
+      "Q",
+      "X"
+    ],
+    "competing_explanations": "의미가 식별된 대응 vs 여러 등가 정렬",
+    "falsification_test": "동등한 적합의 수송 결합들이 독립 anchor에서 반대 의미를 주면 특정 의미 대응 주장을 보류한다.",
+    "critical_controls": "여러 초기화·결합; 독립 anchor; 공통 측정모형",
+    "review_date": "2026-11-12",
+    "source_definition": "shared/private 요인·수송 결합의 여러 해가 독립 표적에 동일한 의미를 갖는지 검증",
+    "deduplication_group": "DG15",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P053",
+      "P054",
+      "P055",
+      "P057"
+    ],
+    "pending_bibliography_refs": [
+      "P058"
+    ],
+    "supporting_document_refs": [],
+    "reference_caveats": [
+      "P058: 보류: 공식 README 본문 저자열과 BibTeX 저자열 충돌; 명단 확정 보류"
+    ]
+  },
+  {
+    "axis_id": "AS16",
+    "name": "지역·분산·상호작용의 설명력 경쟁",
+    "definition": "같은 정서관련 관측 타깃에 대해 지역 제한 모형, 분산 가산 모형, 상호작용 모형의 일반화 차이를 식별",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P066",
+      "P067"
+    ],
+    "models": [
+      "nested regularized encoding/decoding",
+      "mean-only HMM",
+      "covariance HMM"
+    ],
+    "open_questions": [
+      "네트워크 모형의 이득이 평균활성·공통자극·복잡도로 설명되는가?"
+    ],
+    "transfer_opportunities": [
+      "system identification의 관측모형 경쟁"
+    ],
+    "dataset_feasibility": "Horikawa 시행 단위 우선; 동적 네트워크는 연속 신호 확인 후 별도 검정.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "08_systems_neuroscience",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "E.SYS08.1",
+    "source_file": "agents/08_systems_neuroscience/subaxes.json",
+    "source_confidence": "E3; 방법 근거 E1, 정서 결과 없음",
+    "source_dataset_feasibility": "Horikawa 우선 정적/시행 단위 가능성을 확인; 동역학은 실제 시계열과 timing 확인 후",
+    "family_id": "F03",
+    "parent_axes": [
+      "A",
+      "E",
+      "F",
+      "H",
+      "X"
+    ],
+    "competing_explanations": "지역 모델 vs 분산 가산 모델 vs 상호작용 모델",
+    "falsification_test": "평균활성·공통자극·모델복잡도로 이득이 설명되면 네트워크 상호작용 필요성을 축소한다.",
+    "critical_controls": "ROI 크기·신뢰도; additive; 공통자극; 외적 검정",
+    "review_date": "2026-11-12",
+    "source_definition": "같은 정서관련 관측 타깃에 대해 지역 제한 모형, 분산 가산 모형, 상호작용 모형의 일반화 차이를 식별",
+    "deduplication_group": "DG16",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P066",
+      "P067"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS17",
+    "name": "gradient 위치와 맥락 통합시간의 독립성",
+    "definition": "감각–transmodal 위치와 시간적 맥락 이득을 분리하고 HRF·의미적 사건길이 설명과 경쟁",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P061",
+      "P062",
+      "P065",
+      "P066",
+      "P068"
+    ],
+    "models": [
+      "matched temporal-horizon features",
+      "FIR/HRF family",
+      "event segmentation"
+    ],
+    "open_questions": [
+      "정서관련 고유분산의 맥락 의존성은 어느 gradient에서 반복되는가?"
+    ],
+    "transfer_opportunities": [
+      "sequence modeling의 제한 문맥 실험"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자료·공간 대응. Spacetop 정서 궤적에는 별도 시간 주석 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "08_systems_neuroscience",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "D.E.SYS08.2",
+    "source_file": "agents/08_systems_neuroscience/subaxes.json",
+    "source_confidence": "E3; gradient 원 논문 E2, 도구 E1",
+    "source_dataset_feasibility": "Emo-FilM/Spacetop의 연속 자료·주석이 실제 존재할 때; Horikawa 시간 해상도는 미확인",
+    "family_id": "F02",
+    "parent_axes": [
+      "C",
+      "D",
+      "E",
+      "H",
+      "Q"
+    ],
+    "competing_explanations": "gradient 위치의 통합시간 vs HRF·사건 길이",
+    "falsification_test": "공간·HRF·의미 길이를 통제하면 위치–시간 관계가 없어지는 경우 신경 통합 해석을 축소한다.",
+    "critical_controls": "공간 null; HRF; 제한 문맥; 의미 사건 길이",
+    "review_date": "2026-11-12",
+    "source_definition": "감각–transmodal 위치와 시간적 맥락 이득을 분리하고 HRF·의미적 사건길이 설명과 경쟁",
+    "deduplication_group": "DG17",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P061",
+      "P062",
+      "P065",
+      "P066",
+      "P068"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS18",
+    "name": "정서 네트워크 주장에 대한 공간·시간 null의 식별성",
+    "definition": "공간 비정상성·시간 자기상관·공통 자극을 유지하는 대조에서 효과를 재평가하는 추론 축",
+    "type_tags": [
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P062",
+      "P063",
+      "P064",
+      "P067"
+    ],
+    "models": [
+      "spatial surrogate",
+      "run-constrained temporal surrogate",
+      "stationary generative null"
+    ],
+    "open_questions": [
+      "gradient 및 switching 효과가 어떤 null 가설에서만 존재하는가?"
+    ],
+    "transfer_opportunities": [
+      "generative model criticism과 모의 정답 검정"
+    ],
+    "dataset_feasibility": "각 보유본의 공간 표현·시간 단위 확인; 데이터 형식에 맞는 null 선택.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "08_systems_neuroscience",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "Q.E.SYS08.3",
+    "source_file": "agents/08_systems_neuroscience/subaxes.json",
+    "source_confidence": "E3; 저자 명시적 비정상성 후속과제 E1",
+    "source_dataset_feasibility": "모든 자료에서 방법 검증 가능하나 실제 공간·시계열 형태가 먼저 필요",
+    "family_id": "F07",
+    "parent_axes": [
+      "D",
+      "E",
+      "K",
+      "Q",
+      "T"
+    ],
+    "competing_explanations": "정서 네트워크 효과 vs 공간·시간 구조가 만든 유의성",
+    "falsification_test": "공간 비정상성·자기상관을 보존하는 null에서 효과가 같으면 네트워크 특이 주장을 기각한다.",
+    "critical_controls": "여러 구조 보존 null; 공통자극; parcellation 민감도",
+    "review_date": "2026-11-12",
+    "source_definition": "공간 비정상성·시간 자기상관·공통 자극을 유지하는 대조에서 효과를 재평가하는 추론 축",
+    "deduplication_group": "DG18",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P062",
+      "P063",
+      "P064",
+      "P067"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS19",
+    "name": "의미 보존 검증을 포함한 자극 개입",
+    "definition": "모델 내부 편집량과 실제 자극 변화량을 구분하고 감각·사건 보존 검증 뒤 정서 관련 뇌 대비 평가",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P069",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P078"
+    ],
+    "models": [
+      "Prompt-to-Prompt",
+      "Null-text Inversion",
+      "InstructPix2Pix",
+      "FateZero",
+      "AudioLDM",
+      "FlowEdit"
+    ],
+    "open_questions": [
+      "목표 편집의 신경 대비가 사건·감각 보존과 생성기 변경 이후 유지되는가?"
+    ],
+    "transfer_opportunities": [
+      "컴퓨터 그래픽스의 구조보존 편집→검증된 자극 family의 신경 대비"
+    ],
+    "dataset_feasibility": "Horikawa 원본으로 후보 선정 가능. 편집 자극의 인간 신경효과는 새 주석·뇌 측정 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "09_generative_ai",
+    "last_verified": "2026-11-12",
+    "competing_explanations": "의미 보존 개입의 표적 효과 vs 편집된 감각·사건 혼입",
+    "falsification": "독립 의미 보존 실패 또는 무편집/동강도 비목표와 동일한 효과이면 선택적 정서 개입 해석 기각",
+    "controls": "원본/무편집/목표/비목표; 독립 사람 주석; 자연 matched control; 원본 family split; 교차 생성기",
+    "source_axis_id": "L09a",
+    "source_file": "agents/09_generative_ai/subaxes.csv",
+    "source_confidence": "방법근거 높음(공식 자료); 신경 전이 E3; 데이터 미검증",
+    "source_dataset_feasibility": "Horikawa 우선 자극·뇌 metadata 확인 필요; 기존 자료는 원본만 평가; 편집효과는 새 주석·뇌 측정 필요",
+    "family_id": "F05",
+    "parent_axes": [
+      "B",
+      "C",
+      "L",
+      "P",
+      "T"
+    ],
+    "falsification_test": "독립 검증에서 의미 보존이 실패하거나 생성기 교체에 소실되면 선택적 개입 주장을 기각한다.",
+    "critical_controls": "편집 타당성 평정; 비표적 특징; 생성기 변경; sham edit",
+    "review_date": "2026-11-12",
+    "source_definition": "모델 내부 편집량과 실제 자극 변화량을 구분하고 감각·사건 보존 검증 뒤 정서 관련 뇌 대비 평가",
+    "deduplication_group": "DG19",
+    "role": "개입·실험 설계",
+    "verified_bibliography_refs": [
+      "P069",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P078"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS20",
+    "name": "관측 등가 자극 집합의 정서적 식별성",
+    "definition": "한 재구성 대신 관측과 양립하는 후보 분포에서 prior와 무관하게 결정되는 정서 관련 특징을 검사",
+    "type_tags": [
+      "Neural",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P071",
+      "P076",
+      "P075"
+    ],
+    "models": [
+      "Diffusion Posterior Sampling",
+      "검증된 brain encoding likelihood",
+      "복수 생성 prior"
+    ],
+    "open_questions": [
+      "같은 관측을 설명하는 자극 후보들이 공유하는 정서 정보는 관측이 결정하는가 생성 prior가 채우는가?"
+    ],
+    "transfer_opportunities": [
+      "역문제의 비유일성→정서 관련 신경표상의 측정 식별 가능성"
+    ],
+    "dataset_feasibility": "Horikawa 자극–뇌–주석 및 held-out encoding. NSD는 시각 검증; 정서 측정은 별도.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "09_generative_ai",
+    "last_verified": "2026-11-12",
+    "competing_explanations": "관측이 결정한 특징 vs prior에 따라 달라지는 후보",
+    "falsification": "관측 shuffle/prior-only와 구별되지 않거나 prior 교체에 따라 정서 특징이 임의 변화하면 식별 주장 반박",
+    "controls": "prior 교체; 관측 shuffle; posterior calibration; 독립 brain likelihood; 참가자/원 자극 split",
+    "source_axis_id": "L09b",
+    "source_file": "agents/09_generative_ai/subaxes.csv",
+    "source_confidence": "역문제 방법 E1 공식코드; 뇌 posterior 확장 E3; calibration 미검증",
+    "source_dataset_feasibility": "Horikawa 우선 기존 자극·뇌 정렬과 독립 정서 주석 및 충분한 held-out encoding 성능 확인 필요; 인과 검증 아님",
+    "family_id": "F05",
+    "parent_axes": [
+      "G",
+      "L",
+      "Q",
+      "X"
+    ],
+    "falsification_test": "같은 관측 적합도에서 정서 특징이 prior별로 달라지면 해당 특징은 관측만으로 식별되지 않는다.",
+    "critical_controls": "관측 적합도 일치; 다중 생성 prior; 독립 encoding 검증",
+    "review_date": "2026-11-12",
+    "source_definition": "한 재구성 대신 관측과 양립하는 후보 분포에서 prior와 무관하게 결정되는 정서 관련 특징을 검사",
+    "deduplication_group": "DG20",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P071",
+      "P076",
+      "P075"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS21",
+    "name": "불확실성 분해를 포함한 생성 실험 설계",
+    "definition": "편집 타당성·관측 잡음·신경 모형 불확실성을 분리하고 예상 정보 이득으로 경쟁 모형을 가르는 자극 선택",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Neural",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P070",
+      "P074",
+      "P076",
+      "P077",
+      "P078"
+    ],
+    "models": [
+      "Deep Adaptive Design",
+      "encoding ensemble",
+      "validity-constrained 생성 candidate pool"
+    ],
+    "open_questions": [
+      "정보 이득 최적화가 실제 신경 가설 구분을 향상시키는가 아니면 off-manifold 편집을 고르는가?"
+    ],
+    "transfer_opportunities": [
+      "Bayesian design의 policy 최적화→정서 관련 감각/의미/비가산 모형 판별"
+    ],
+    "dataset_feasibility": "기존 보유본으로 모형 보정·후보 평가. 실제 순차 검증은 새 자극의 신경 측정 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "09_generative_ai",
+    "last_verified": "2026-11-12",
+    "competing_explanations": "가설을 가르는 정보 이득 vs 불확실한 편집의 극단 선택",
+    "falsification": "동일 예산 random/coverage/disagreement 대비 새로운 실제 뇌 관측의 모형 판별 이득이 없으면 복잡한 설계 필요성 약화",
+    "controls": "무작위/coverage/disagreement baseline; calibration; 독립 test; 생성 candidate 수를 독립 표본으로 세지 않음; HRF",
+    "source_axis_id": "L09c",
+    "source_file": "agents/09_generative_ai/subaxes.csv",
+    "source_confidence": "DAD 본문/Discussion E1; 뇌·편집 타당성 결합 E3",
+    "source_dataset_feasibility": "기존 자료로 encoding/자극 후보 분포 검증만 가능; 순차 또는 묶음 새 자극 뇌 측정 필요; HRF·시간 의존 likelihood 필요",
+    "family_id": "F05",
+    "parent_axes": [
+      "L",
+      "P",
+      "Q",
+      "T",
+      "V"
+    ],
+    "falsification_test": "무작위·전형성 기준보다 실제 가설 구분이 좋아지지 않으면 설계 이득을 기각한다.",
+    "critical_controls": "편집·관측·모델 불확실성 분리; 무작위 대조; 외삽 검사",
+    "review_date": "2026-11-12",
+    "source_definition": "편집 타당성·관측 잡음·신경 모형 불확실성을 분리하고 예상 정보 이득으로 경쟁 모형을 가르는 자극 선택",
+    "deduplication_group": "DG21",
+    "role": "개입·실험 설계",
+    "verified_bibliography_refs": [
+      "P070",
+      "P074",
+      "P076",
+      "P077",
+      "P078"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS22",
+    "name": "언어 압축에 대한 신경 대비의 보존",
+    "definition": "직접 시각·병목·캡션 표현에서 정서 관련 신경 대비의 보존/소실 비교",
+    "type_tags": [
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P079",
+      "P080",
+      "P081",
+      "P083"
+    ],
+    "models": [
+      "CLIP",
+      "BLIP",
+      "BLIP-2",
+      "CBM"
+    ],
+    "open_questions": [
+      "동일 의미 압축에서 어떤 신경 대비가 유지되는가?"
+    ],
+    "transfer_opportunities": [
+      "병목을 모델 설명 도구에서 정보 보존 검사로 전환"
+    ],
+    "dataset_feasibility": "Horikawa/NSD 자극–뇌 대응. Mind Captioning은 자극·신경·캡션 대응과 캡션 생성 주체 확인 시 우선 연결. Mind Captioning의 텍스트 출처를 구분하며, 같은 신경반응으로 생성한 캡션을 독립 입력으로 되넣지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "10_llm_semantics",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "X.S10.1",
+    "source_file": "agents/10_llm_semantics/subaxes.csv",
+    "source_confidence": "방법 근거 E1; 정서 전이 E3; 데이터 E0",
+    "source_dataset_feasibility": "Horikawa 우선; 실제 자극/주석/반복 검증 전 조건부",
+    "family_id": "F01",
+    "parent_axes": [
+      "C",
+      "F",
+      "G",
+      "I",
+      "X"
+    ],
+    "competing_explanations": "언어 압축이 보존한 신경 대비 vs 생략된 비언어 정보",
+    "falsification_test": "캡션의 정보량·유연성을 늘리면 차이가 사라질 때 언어 고유 한계 주장을 축소한다.",
+    "critical_controls": "직접 시각·캡션·bottleneck 비교; 길이 일치; readout 용량",
+    "review_date": "2026-11-12",
+    "source_definition": "직접 시각·병목·캡션 표현에서 정서 관련 신경 대비의 보존/소실 비교",
+    "deduplication_group": "DG22",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P079",
+      "P080",
+      "P081",
+      "P083"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS23",
+    "name": "사건 순서와 의미량을 분리한 문맥 의존성",
+    "definition": "내용량을 맞춘 사건 순서·시간 거리·경계의 모델 표현 경쟁",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P085",
+      "P086",
+      "P087"
+    ],
+    "models": [
+      "문맥 LLM",
+      "사건집합 기준 모델",
+      "FIR encoding"
+    ],
+    "open_questions": [
+      "정서 관련 신경 변화가 사건 순서에 조건부인가?"
+    ],
+    "transfer_opportunities": [
+      "문맥 구성 감사를 시간적 정서 대비의 식별 도구로 전환"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자극·BOLD. Mind Captioning은 연속 순서·시간 대응이 실제 있을 때만 후보. Mind Captioning의 텍스트 출처를 구분하며, 같은 신경반응으로 생성한 캡션을 독립 입력으로 되넣지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "10_llm_semantics",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "C.S10.2",
+    "source_file": "agents/10_llm_semantics/subaxes.csv",
+    "source_confidence": "언어 코드 E1; 정서 전이 E3; 데이터 E0",
+    "source_dataset_feasibility": "Emo-FilM/Spacetop 후보이나 시간/주석 존재 검증 전 보류",
+    "family_id": "F02",
+    "parent_axes": [
+      "C",
+      "D",
+      "I",
+      "V",
+      "Q"
+    ],
+    "competing_explanations": "사건 순서 효과 vs 의미량·시간 거리 효과",
+    "falsification_test": "내용량·거리·경계를 맞추면 순서 효과가 사라지는 경우 순서 의존 계산 주장을 축소한다.",
+    "critical_controls": "bag-of-events; 순서 교환; 동일 길이; 거리·경계 통제",
+    "review_date": "2026-11-12",
+    "source_definition": "내용량을 맞춘 사건 순서·시간 거리·경계의 모델 표현 경쟁",
+    "deduplication_group": "DG23",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P085",
+      "P086",
+      "P087"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS24",
+    "name": "개념 불완전성과 정서 잔차의 식별",
+    "definition": "개념 집합·표현 가족을 늘릴 때 잔차의 주석 관련성과 신뢰도가 유지되는지 검증",
+    "type_tags": [
+      "Neural",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P083",
+      "P084",
+      "P086"
+    ],
+    "models": [
+      "CBM",
+      "LF-CBM",
+      "독립 concept probe",
+      "교차검증 encoding"
+    ],
+    "open_questions": [
+      "의미 잔차에 누락된 사건 의미가 남아 있는가?"
+    ],
+    "transfer_opportunities": [
+      "우회 경로의 개념 누출 문제를 의미 제거 감사로 전환"
+    ],
+    "dataset_feasibility": "Horikawa 주석·feature 대응. Mind Captioning에 독립 캡션이 있으면 의미 통제에 사용; AI 캡션은 측정 정서 주석이 아님. Mind Captioning의 텍스트 출처를 구분하며, 같은 신경반응으로 생성한 캡션을 독립 입력으로 되넣지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "10_llm_semantics",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "X.S10.3",
+    "source_file": "agents/10_llm_semantics/subaxes.csv",
+    "source_confidence": "개념 원리 E1; 정서 전이 E3; 데이터 E0",
+    "source_dataset_feasibility": "Horikawa 우선 조건부; NSD는 정서 라벨 미검증 시 의미 통제만",
+    "family_id": "F04",
+    "parent_axes": [
+      "A",
+      "C",
+      "H",
+      "R",
+      "X"
+    ],
+    "competing_explanations": "정서 관련 신경 잔차 vs 누락된 의미·개념",
+    "falsification_test": "개념 집합을 확장하면 잔차–주석 관계가 사라지는 경우 정서 고유 잔차 주장을 철회한다.",
+    "critical_controls": "다른 표현 가족; 개념 확장; nested CV; 독립 주석",
+    "review_date": "2026-11-12",
+    "source_definition": "개념 집합·표현 가족을 늘릴 때 잔차의 주석 관련성과 신뢰도가 유지되는지 검증",
+    "deduplication_group": "DG24",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P083",
+      "P084",
+      "P086"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS25",
+    "name": "오차–상태 판별",
+    "definition": "예측 내용·내부 상태·양음 오차의 신경 설명을 분리",
+    "type_tags": [
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement",
+      "Construct / Stimulus"
+    ],
+    "representative_papers": [
+      "P089",
+      "P096"
+    ],
+    "models": [
+      "PredNet",
+      "PCNet"
+    ],
+    "open_questions": [
+      "예측 내용·상태를 조건화한 뒤 부호별 예측오차의 추가 신경 설명이 남는가?"
+    ],
+    "transfer_opportunities": [
+      "영상 예측의 내부 변수 분리→정서 관련 신경 변동의 경쟁 설명"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자료 우선. Horikawa에 시간 정보가 없으면 정적 대비로 범위를 제한.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "11_brain_inspired",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "N11-1",
+    "source_file": "agents/11_brain_inspired/subaxes.csv",
+    "source_confidence": "E3 가설; 구현 기초 E1; 데이터 실현성 E0",
+    "source_dataset_feasibility": "Horikawa 우선 metadata 확인; 시간 자료 부재 시 정적 비교만 가능; 다른 자료도 미감사",
+    "family_id": "F02",
+    "parent_axes": [
+      "C",
+      "D",
+      "N",
+      "V",
+      "X"
+    ],
+    "competing_explanations": "예측 오차 vs 상태·예측 내용",
+    "falsification_test": "상태·내용·양음 오차를 맞춘 경쟁에서 오차의 추가 설명이 없으면 오차 코드 주장을 축소한다.",
+    "critical_controls": "오차·상태 모델 용량 일치; 과거 제한; HRF; 부호 대비",
+    "review_date": "2026-11-12",
+    "source_definition": "예측 내용·내부 상태·양음 오차의 신경 설명을 분리",
+    "deduplication_group": "DG25",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P089",
+      "P096"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS26",
+    "name": "선택 경로–내용 판별",
+    "definition": "입력 의존 gate와 전문가 내부 표현의 영향을 분리",
+    "type_tags": [
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P093",
+      "P090",
+      "P089"
+    ],
+    "models": [
+      "V-MoE",
+      "CORnet",
+      "새 시간 gate 확장은 E3"
+    ],
+    "open_questions": [
+      "전문가 내용과 용량을 맞춰도 입력 의존 경로 선택이 독립 신경 대비를 설명하는가?"
+    ],
+    "transfer_opportunities": [
+      "계산 자원 배분→정서 관련 신경 경로 선택 가설"
+    ],
+    "dataset_feasibility": "Horikawa 자극별 신경 대비. MoE expert와 뇌영역의 일대일 대응은 가정하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "11_brain_inspired",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "N11-2",
+    "source_file": "agents/11_brain_inspired/subaxes.csv",
+    "source_confidence": "E3 가설; gate 구현 E1; expert–ROI 대응 미검증",
+    "source_dataset_feasibility": "Horikawa 자극별 분석 조건부; 맥락 시간 분석은 Emo-FilM/Spacetop 실제 timing 검증 필요",
+    "family_id": "F03",
+    "parent_axes": [
+      "E",
+      "I",
+      "N",
+      "R",
+      "X"
+    ],
+    "competing_explanations": "경로 선택의 기여 vs 전문가가 담은 내용",
+    "falsification_test": "gate 교환 효과가 내용·부하 차이로 설명되면 독립 경로 선택 계산을 주장하지 않는다.",
+    "critical_controls": "gate/expert 교차 ablation; 부하·용량 일치; 재현성",
+    "review_date": "2026-11-12",
+    "source_definition": "입력 의존 gate와 전문가 내부 표현의 영향을 분리",
+    "deduplication_group": "DG26",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P093",
+      "P090",
+      "P089"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS27",
+    "name": "생물학적 제약의 관측 가능성",
+    "definition": "스파이크·가중치 공유·국소 학습 차이가 신경 측정 집계 후 식별되는지 평가",
+    "type_tags": [
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P090",
+      "P091",
+      "P092",
+      "P094",
+      "P095",
+      "P096"
+    ],
+    "models": [
+      "CORnet",
+      "e-prop",
+      "SpyTorch",
+      "Spikformer",
+      "Meta-SpikeFormer",
+      "PCNet"
+    ],
+    "open_questions": [
+      "생물학적 계산 제약의 차이가 fMRI 집계 후에도 경쟁 모델과 구별되는가?"
+    ],
+    "transfer_opportunities": [
+      "국소 신용 할당·이벤트 계산→학습/추론 및 측정 제약의 구별"
+    ],
+    "dataset_feasibility": "보유 fMRI는 집계 표상 비교. spike timing·학습 규칙의 직접 식별에는 추가 측정 필요.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "11_brain_inspired",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "N11-3",
+    "source_file": "agents/11_brain_inspired/subaxes.csv",
+    "source_confidence": "E3 가설; 코드 구별 E1; 관측 가능성 미검증",
+    "source_dataset_feasibility": "fMRI는 표현 비교 후보; 실제 spike timing·학습 규칙 식별은 추가 자료 필요; NSD 정서 라벨 존재 가정 금지",
+    "family_id": "F06",
+    "parent_axes": [
+      "F",
+      "I",
+      "N",
+      "Q",
+      "T"
+    ],
+    "competing_explanations": "생물학적 제약의 관측 가능한 차이 vs 집계 후 등가성",
+    "falsification_test": "HRF와 공간 집계 후 경쟁 모델이 구별되지 않으면 fMRI로 spike 규칙을 식별한다는 주장을 기각한다.",
+    "critical_controls": "집계 전후 식별성; 동일 입력·용량; synthetic recovery",
+    "review_date": "2026-11-12",
+    "source_definition": "스파이크·가중치 공유·국소 학습 차이가 신경 측정 집계 후 식별되는지 평가",
+    "deduplication_group": "DG27",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P090",
+      "P092",
+      "P094",
+      "P095",
+      "P096"
+    ],
+    "pending_bibliography_refs": [
+      "P091"
+    ],
+    "supporting_document_refs": [],
+    "reference_caveats": [
+      "P091: 보류: 발표연도·최종 출판연도 미확인"
+    ]
+  },
+  {
+    "axis_id": "AS28",
+    "name": "일반화 대상에 따른 정서 표상 안정성",
+    "definition": "참가자·자극·맥락별 일반화와 해당 수준의 불확실성을 결합해 정서 관련 코드의 적용 범위를 식별",
+    "type_tags": [
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P098",
+      "P099",
+      "P100",
+      "P060"
+    ],
+    "models": [
+      "2-factor cross-validation",
+      "corrected bootstrap",
+      "domain-aware model selection"
+    ],
+    "open_questions": [
+      "새 자극 조합·새 참가자에서 같은 정서 관련 neural contrast가 유지되는가?"
+    ],
+    "transfer_opportunities": [
+      "domain generalization의 domain 명세를 정서 신경코드의 적용 범위로 전이"
+    ],
+    "dataset_feasibility": "다섯 보유본 각각 실제 반복·참가자·자극 ID를 확인한 뒤 split 구성.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "Agent12",
+    "last_verified": "2026-11-12",
+    "source": "https://proceedings.mlr.press/v139/koh21a.html;https://github.com/facebookresearch/DomainBed;https://elifesciences.org/articles/82566;https://github.com/rsagroup/rsatoolbox",
+    "verified_on": "2026-11-12",
+    "needs_followup": "Agent01 metadata 대조; 독립성 유지 후 최소 2개 타 분야와 실제 교차 검토; 신규성 역검색",
+    "evidence_level": "E3: 문헌 기반 신규 연결",
+    "strongest_objection": "분포 난도·표본 부족이 불변성 실패처럼 보임",
+    "revision_or_drop": "matched baseline/신뢰도/overlap을 확인; 필요한 cell이 비면 해당 일반화 주장 보류",
+    "source_axis_id": "A12-S1:S/T/Q",
+    "source_file": "agents/12_adversarial_review/subaxes.csv",
+    "source_confidence": "중간: 방법근거 E1; 정서 feasibility E0",
+    "source_dataset_feasibility": "Horikawa 우선: 실제 반복/ID/주석 확인 후; 나머지 세 dataset도 metadata 검증 전 조건부",
+    "family_id": "F07",
+    "parent_axes": [
+      "A",
+      "F",
+      "O",
+      "Q",
+      "S",
+      "T"
+    ],
+    "competing_explanations": "일반화 가능한 신경 코드 vs 특정 자극·사람의 효과",
+    "falsification_test": "자극·사람 이중 보류에서 효과가 없으면 그 모집단을 넘는 주장을 축소한다.",
+    "critical_controls": "자극/참가자 분리 분산; 이중 보류; 신뢰도; 계층 bootstrap",
+    "review_date": "2026-11-12",
+    "source_definition": "참가자·자극·맥락별 일반화와 해당 수준의 불확실성을 결합해 정서 관련 코드의 적용 범위를 식별",
+    "deduplication_group": "DG28",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P098",
+      "P099",
+      "P100",
+      "P060"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS29",
+    "name": "조건화 집합에 따른 정서 신경정보의 식별 범위",
+    "definition": "조건화 변수·overlap·측정 오차에 따라 total/shared/conditional 정보에 대해 가능한 주장을 명시",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "PENDING-A12-P02",
+      "P102",
+      "P055"
+    ],
+    "models": [
+      "foldwise residualization",
+      "CMIknn",
+      "joint encoding",
+      "conditional latent prior"
+    ],
+    "open_questions": [
+      "어떤 시각·의미 조건화 집합에서 정서 주석 관련 추가 neural information이 식별되는가?"
+    ],
+    "transfer_opportunities": [
+      "causal/conditional estimand 명세를 순수 정서 성분 주장 감사로 전이"
+    ],
+    "dataset_feasibility": "Horikawa 실제 주석·시각·의미 특징. 측정되지 않은 원인은 관찰자료만으로 제거할 수 없음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "Agent12",
+    "last_verified": "2026-11-12",
+    "source": "https://github.com/lukassnoek/MVCA;https://proceedings.mlr.press/v84/runge18a.html;https://proceedings.mlr.press/v108/khemakhem20a.html",
+    "verified_on": "2026-11-12",
+    "needs_followup": "Agent01 metadata 대조; 독립성 유지 후 최소 2개 타 분야와 실제 교차 검토; 신규성 역검색",
+    "evidence_level": "E3: 문헌 기반 신규 연결",
+    "strongest_objection": "조건화가 관심 신호를 제거하거나 overlap을 소실시킴",
+    "revision_or_drop": "중첩 조건 집합별 추정 대상을 따로 보고; overlap 없으면 순수 성분 식별 폐기",
+    "source_axis_id": "A12-S2:P/X/B/C",
+    "source_file": "agents/12_adversarial_review/subaxes.csv",
+    "source_confidence": "중간: 이론근거 E1; 정서 실증 E0",
+    "source_dataset_feasibility": "실제 시각/의미 feature·정서 annotation·overlap 확인 필요; 자체 생성 AI label을 측정값으로 간주하지 않음",
+    "family_id": "F04",
+    "parent_axes": [
+      "A",
+      "B",
+      "C",
+      "P",
+      "X",
+      "Q"
+    ],
+    "competing_explanations": "조건부 추가 정보 vs 조건화가 바꾼 추정 대상",
+    "falsification_test": "조건화 집합·overlap에 따라 효과가 역전되면 보편적 정서 고유 정보 주장을 보류한다.",
+    "critical_controls": "total/shared/conditional 구별; fold 내 적합; 측정오차·overlap",
+    "review_date": "2026-11-12",
+    "source_definition": "조건화 변수·overlap·측정 오차에 따라 total/shared/conditional 정보에 대해 가능한 주장을 명시",
+    "deduplication_group": "DG29",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P102",
+      "P055"
+    ],
+    "pending_bibliography_refs": [
+      "PENDING-A12-P02"
+    ],
+    "supporting_document_refs": [],
+    "reference_caveats": [
+      "PENDING-A12-P02: 보류: 완전 서지 미확인; 고유103편 집계 밖의 보조 코드 출처"
+    ]
+  },
+  {
+    "axis_id": "AS30",
+    "name": "분석 선택을 통과하는 모델–뇌 구별 가능성",
+    "definition": "layer·ROI·거리·readout 선택 전체를 평가해 경쟁 계산의 독립 예측 차이를 찾음",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "models": [
+      "nested CV",
+      "fixed/flexible RSA",
+      "dimension-matched readout",
+      "model disagreement"
+    ],
+    "open_questions": [
+      "최고 alignment의 모델 순위가 자유도와 선택을 통제해도 유지되며 새로운 자극에서 경쟁 모델을 구별하는가?"
+    ],
+    "transfer_opportunities": [
+      "모델 선택 편향·비식별성을 정서 신경실험의 경쟁 예측 설계로 연결"
+    ],
+    "dataset_feasibility": "모든 보유본에서 해당 분석의 독립 test 확보; 반복 신뢰도와 탐색 이력 기록.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "Agent12",
+    "last_verified": "2026-11-12",
+    "source": "https://jmlr.org/papers/v11/cawley10a.html;https://elifesciences.org/articles/82566;https://github.com/rsagroup/rsaModelComparison;https://proceedings.mlr.press/v97/locatello19a.html",
+    "verified_on": "2026-11-12",
+    "needs_followup": "Agent01 metadata 대조; 독립성 유지 후 최소 2개 타 분야와 실제 교차 검토; 신규성 역검색",
+    "evidence_level": "E3: 문헌 기반 신규 연결",
+    "strongest_objection": "기존 benchmark를 더 엄격히 반복할 뿐 신경과학 기여가 없음",
+    "revision_or_drop": "정서 관련 neural contrast에서 다른 예측을 내는 경쟁 가설 필요; 없다면 평가 개선으로만 분류",
+    "source_axis_id": "A12-S3:K/R/T/A",
+    "source_file": "agents/12_adversarial_review/subaxes.csv",
+    "source_confidence": "중간: 원문/코드근거; 신규성 역검색 미완료",
+    "source_dataset_feasibility": "독립 test·탐색 이력·ROI 선택 경로·반복 신뢰도 확인 후 가능",
+    "family_id": "F07",
+    "parent_axes": [
+      "A",
+      "H",
+      "K",
+      "R",
+      "T"
+    ],
+    "competing_explanations": "계산 가설의 예측 차이 vs 분석 선택의 자유도",
+    "falsification_test": "독립 test와 선택 자유도 통제 뒤 모델 순위가 불안정하면 계산 설명 우위를 주장하지 않는다.",
+    "critical_controls": "layer·ROI·거리·readout nested 선택; 독립 대비; 단순 baseline",
+    "review_date": "2026-11-12",
+    "source_definition": "layer·ROI·거리·readout 선택 전체를 평가해 경쟁 계산의 독립 예측 차이를 찾음",
+    "deduplication_group": "DG30",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS31",
+    "name": "자극 독립성의 의미적 단위",
+    "definition": "자극 ID·파일·내용의 독립성을 구별하여 일반화 모집단을 정의한다.",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Structure / Dynamics"
+    ],
+    "representative_papers": [
+      "P001"
+    ],
+    "models": [
+      "perceptual fingerprint",
+      "group CV"
+    ],
+    "open_questions": [
+      "ID가 다른 자극의 내용 중복을 제거하면 정서 관련 신경정보의 일반화는 유지되는가?"
+    ],
+    "transfer_opportunities": [
+      "데이터 중복 감사와 의미적 그룹 분할"
+    ],
+    "dataset_feasibility": "Horikawa 영상·ID·dupidx 우선; NSD 자극 ID; 다른 자료는 사용 단위별 적용.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "01_dataset",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "P-A01",
+    "source_file": "agents/01_dataset/round1_independent_report.md",
+    "source_confidence": "E3 조건부 제안; 신규성 미확인",
+    "source_dataset_feasibility": "Horikawa 보유 자극의 ID·파일·내용 대응 확인",
+    "family_id": "F07",
+    "parent_axes": [
+      "B",
+      "C",
+      "Q",
+      "S",
+      "T"
+    ],
+    "competing_explanations": "새 내용에 대한 일반화 vs ID만 다른 반복 내용",
+    "falsification_test": "중복 내용 그룹 분할에서 이득이 사라지면 내용 일반화 주장을 기각한다.",
+    "critical_controls": "파일 해시+지각 중복; content-group split; provenance",
+    "review_date": "2026-11-12",
+    "source_definition": "자극 ID·파일·내용의 독립성을 구별하여 일반화 모집단을 정의한다.",
+    "deduplication_group": "DG31",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P001"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS32",
+    "name": "시간 좌표와 관측지연",
+    "definition": "영화 시간의 주석과 clip 평정 구간을 관측 단위로 구별하고 scanner onset·HRF에 정렬한다.",
+    "type_tags": [
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P002"
+    ],
+    "models": [
+      "상태공간 관측모형",
+      "FIR/HRF"
+    ],
+    "open_questions": [
+      "주석 집계와 관측지연을 분리한 뒤에도 신경적 시간 통합의 설명이 필요한가?"
+    ],
+    "transfer_opportunities": [
+      "시계열 관측모형과 타임베이스 감사"
+    ],
+    "dataset_feasibility": "Emo-FilM 주석과 clip 검증은 같은 영화 시간의 다른 단위; scanner onset은 별도 대응.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "01_dataset",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "Q-A01",
+    "source_file": "agents/01_dataset/round1_independent_report.md",
+    "source_confidence": "E3 조건부 제안; 신규성 미확인",
+    "source_dataset_feasibility": "Emo-FilM 보유본의 주석·이벤트·BOLD 대응 확인",
+    "family_id": "F07",
+    "parent_axes": [
+      "D",
+      "H",
+      "Q",
+      "X"
+    ],
+    "competing_explanations": "신경 통합 지연 vs 주석 집계·scanner·HRF 정렬",
+    "falsification_test": "관측 시계 정정만으로 장기 통합 이득이 사라지면 신경 시간상수 주장을 축소한다.",
+    "critical_controls": "영화시간–scanner onset; 관측 단위; HRF; clip 경계",
+    "review_date": "2026-11-12",
+    "source_definition": "영화 시간의 주석과 clip 평정 구간을 관측 단위로 구별하고 scanner onset·HRF에 정렬한다.",
+    "deduplication_group": "DG32",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P002"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS33",
+    "name": "주석 불확실성과 공유 표상",
+    "definition": "평정자·타깃·척도 차이를 측정모형으로 분리하여 자료 간 공유 표상 주장의 범위를 정한다.",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P002",
+      "P003"
+    ],
+    "models": [
+      "계층 측정모형",
+      "measurement invariance"
+    ],
+    "open_questions": [
+      "공유 요인의 차이가 신경표상 차이인가 평정자·척도의 차이인가?"
+    ],
+    "transfer_opportunities": [
+      "측정 불변성과 공통 anchor 기반 비교"
+    ],
+    "dataset_feasibility": "Emo-FilM/Spacetop 평정 자료 우선. 다섯 보유본 공통 척도 존재는 가정하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "01_dataset",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "X-A01",
+    "source_file": "agents/01_dataset/round1_independent_report.md",
+    "source_confidence": "E3 조건부 제안; 신규성 미확인",
+    "source_dataset_feasibility": "공통 anchor·평정자 자료 확인; 없으면 공동 평정 추가 조건",
+    "family_id": "F04",
+    "parent_axes": [
+      "A",
+      "O",
+      "Q",
+      "S",
+      "X"
+    ],
+    "competing_explanations": "자료 간 공유 표상 vs 평정 척도·주체 차이",
+    "falsification_test": "공통 anchor에서 측정 불변성이 실패하면 직접적인 표상 크기 비교를 보류한다.",
+    "critical_controls": "평정자·타깃·척도 명시; hierarchical error; 공동 anchor",
+    "review_date": "2026-11-12",
+    "source_definition": "평정자·타깃·척도 차이를 측정모형으로 분리하여 자료 간 공유 표상 주장의 범위를 정한다.",
+    "deduplication_group": "DG33",
+    "role": "측정·평가 조건",
+    "verified_bibliography_refs": [
+      "P002"
+    ],
+    "pending_bibliography_refs": [
+      "P003"
+    ],
+    "supporting_document_refs": [],
+    "reference_caveats": [
+      "P003: 보류: 공식 Authors 배열과 HowToAcknowledge 저자 표기 충돌; 정식 서지 대조 필요"
+    ]
+  },
+  {
+    "axis_id": "AS34",
+    "name": "공유 통로의 충분성과 고유정보의 필요성",
+    "definition": "동일 자극의 공유 성분과 뇌 예측에 추가로 필요한 모달리티 고유 성분을 구별한다.",
+    "type_tags": [
+      "Model / Method",
+      "Structure / Dynamics",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "representative_papers": [
+      "P035",
+      "P036",
+      "P037",
+      "P038"
+    ],
+    "models": [
+      "ImageBind",
+      "CAV-MAE",
+      "FactorCL",
+      "MBT"
+    ],
+    "open_questions": [
+      "공통 잠재만으로 충분한가, 공유·고유 정보의 결합이 필요한가?"
+    ],
+    "transfer_opportunities": [
+      "멀티뷰 분해와 정보 교환량 제약"
+    ],
+    "dataset_feasibility": "Emo-FilM 또는 Horikawa 실제 영상·음악/환경음 존재 확인. 음성 특징을 연구 축으로 확장하지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "05_multimodal_dynamics",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "M-X-05a",
+    "source_file": "agents/05_multimodal_dynamics/report.md",
+    "source_confidence": "E3 조건부 제안; 신규성 미확인",
+    "source_dataset_feasibility": "실제 자극의 영상·음악/환경음 및 신경 정렬 확인",
+    "family_id": "F03",
+    "parent_axes": [
+      "B",
+      "H",
+      "J",
+      "M",
+      "X"
+    ],
+    "competing_explanations": "공유 통로의 충분성 vs 모달리티 고유 정보 필요성",
+    "falsification_test": "강한 가산 모델이 joint 모델과 같으면 상호작용 필요성을 축소한다.",
+    "critical_controls": "동일 용량 nonlinear additive; 공통원인 null; 합성 양성대조",
+    "review_date": "2026-11-12",
+    "source_definition": "동일 자극의 공유 성분과 뇌 예측에 추가로 필요한 모달리티 고유 성분을 구별한다.",
+    "deduplication_group": "DG34",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P035",
+      "P036",
+      "P037",
+      "P038"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS35",
+    "name": "관찰 가능한 과거와 잠재 예측오류",
+    "definition": "입력 가용시간을 제한한 상태와 예측 잔차를 신경 전이에 비교한다.",
+    "type_tags": [
+      "Structure / Dynamics",
+      "Model / Method",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "representative_papers": [
+      "P043",
+      "P013",
+      "P044"
+    ],
+    "models": [
+      "VideoMamba",
+      "V-JEPA2",
+      "VideoPrism"
+    ],
+    "open_questions": [
+      "장기 문맥 이득은 과거 상태의 필요성인가 미래 입력의 유출인가?"
+    ],
+    "transfer_opportunities": [
+      "과거 입력 제한과 사건경계 reset"
+    ],
+    "dataset_feasibility": "Emo-FilM 연속 자료. 모델명만으로 causal 입력을 가정하지 않음; Spacetop 시간 정서 주석은 추가 조건.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "05_multimodal_dynamics",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "D-V-05b",
+    "source_file": "agents/05_multimodal_dynamics/report.md",
+    "source_confidence": "E3 조건부 제안; 신규성 미확인",
+    "source_dataset_feasibility": "연속 자극·BOLD·시간주석 확인; 모델별 미래 프레임 접근 검사",
+    "family_id": "F02",
+    "parent_axes": [
+      "C",
+      "D",
+      "J",
+      "M",
+      "V"
+    ],
+    "competing_explanations": "과거 상태의 예측력 vs 미래 프레임·bidirectional 정보",
+    "falsification_test": "미래 접근을 차단하면 효과가 사라질 때 과거 예측 상태 주장을 철회한다.",
+    "critical_controls": "원 입력 t에서 절단; bidirectional 경로 검사; reset 대조",
+    "review_date": "2026-11-12",
+    "source_definition": "입력 가용시간을 제한한 상태와 예측 잔차를 신경 전이에 비교한다.",
+    "deduplication_group": "DG35",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P043",
+      "P013",
+      "P044"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  },
+  {
+    "axis_id": "AS36",
+    "name": "사건 단계와 경과시간의 분리",
+    "definition": "사건 진행 좌표를 시계시간·편집 리듬과 경쟁시키는 정렬을 평가한다.",
+    "type_tags": [
+      "Construct / Stimulus",
+      "Structure / Dynamics",
+      "Model / Method",
+      "Inference / Measurement"
+    ],
+    "representative_papers": [
+      "P041",
+      "P042",
+      "P044"
+    ],
+    "models": [
+      "AVE",
+      "TCC",
+      "VideoPrism"
+    ],
+    "open_questions": [
+      "신경 전이는 사건 단계에 정렬되는가 단순 경과시간에 정렬되는가?"
+    ],
+    "transfer_opportunities": [
+      "비신경 감독 사건 정렬과 시간왜곡 통제"
+    ],
+    "dataset_feasibility": "Emo-FilM 사건 경계·다양성 확인. Mind Captioning은 사건 순서/주석 존재 확인 시에만 연결. Mind Captioning의 텍스트 출처를 구분하며, 같은 신경반응으로 생성한 캡션을 독립 입력으로 되넣지 않음.",
+    "confidence": "E3 통합 제안; 문헌·코드 근거 범위는 출처별 표시; 신규성·실험 결과 미확정",
+    "origin_agent": "05_multimodal_dynamics",
+    "last_verified": "2026-11-12",
+    "source_axis_id": "C-D-05c",
+    "source_file": "agents/05_multimodal_dynamics/report.md",
+    "source_confidence": "E3 조건부 제안; 신규성 미확인",
+    "source_dataset_feasibility": "독립 사건 주석 및 사건 길이·내용의 다양성 확인",
+    "family_id": "F02",
+    "parent_axes": [
+      "C",
+      "D",
+      "K",
+      "M",
+      "V"
+    ],
+    "competing_explanations": "사건 진행 좌표 vs 경과시간·편집 리듬",
+    "falsification_test": "position-only 또는 DTW가 같거나, 타깃을 이용한 정렬에만 의존하거나 비신경 감독 정렬의 효과가 보류 사건에 일반화하지 않으면 사건 단계 계산 주장을 축소한다.",
+    "critical_controls": "정서·신경 타깃 없는 정렬; position-only; DTW; 보류 사건",
+    "review_date": "2026-11-12",
+    "source_definition": "사건 진행 좌표를 시계시간·편집 리듬과 경쟁시키는 정렬을 평가한다.",
+    "deduplication_group": "DG36",
+    "role": "경쟁 계산·표상 가설",
+    "verified_bibliography_refs": [
+      "P041",
+      "P042",
+      "P044"
+    ],
+    "pending_bibliography_refs": [],
+    "supporting_document_refs": [],
+    "reference_caveats": []
+  }
+]

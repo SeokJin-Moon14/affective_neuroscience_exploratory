@@ -1,0 +1,25 @@
+axis_id,name,type_tags,active_subaxes,status,boundary
+A,Emotion & Affective Constructs,"[""Construct / Stimulus"", ""Inference / Measurement""]","[""AS01"", ""AS02"", ""AS03"", ""AS12"", ""AS16"", ""AS24"", ""AS28"", ""AS29"", ""AS30"", ""AS33""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+B,Vision & Sensory Representation,"[""Construct / Stimulus"", ""Model / Method""]","[""AS10"", ""AS19"", ""AS29"", ""AS31"", ""AS34""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+C,"Context, Meaning & Event Representation","[""Construct / Stimulus"", ""Structure / Dynamics""]","[""AS02"", ""AS10"", ""AS12"", ""AS17"", ""AS19"", ""AS22"", ""AS23"", ""AS24"", ""AS25"", ""AS29"", ""AS31"", ""AS35"", ""AS36""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+D,Emotion & Neural Dynamics,"[""Construct / Stimulus"", ""Structure / Dynamics"", ""Inference / Measurement""]","[""AS02"", ""AS06"", ""AS09"", ""AS14"", ""AS17"", ""AS18"", ""AS23"", ""AS25"", ""AS32"", ""AS35"", ""AS36""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+E,Brain Regions & Networks,"[""Neural""]","[""AS03"", ""AS16"", ""AS17"", ""AS18"", ""AS26""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+F,Neural Representation,"[""Neural"", ""Structure / Dynamics""]","[""AS01"", ""AS03"", ""AS05"", ""AS07"", ""AS08"", ""AS11"", ""AS13"", ""AS14"", ""AS16"", ""AS22"", ""AS27"", ""AS28""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+G,Decoding,"[""Model / Method"", ""Inference / Measurement""]","[""AS04"", ""AS05"", ""AS06"", ""AS20"", ""AS22""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+H,Encoding,"[""Model / Method"", ""Neural""]","[""AS02"", ""AS08"", ""AS09"", ""AS16"", ""AS17"", ""AS24"", ""AS30"", ""AS32"", ""AS34""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+I,AI Model Families,"[""Model / Method""]","[""AS04"", ""AS07"", ""AS08"", ""AS11"", ""AS22"", ""AS23"", ""AS26"", ""AS27""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+J,Learning Objectives,"[""Model / Method""]","[""AS07"", ""AS10"", ""AS11"", ""AS12"", ""AS34"", ""AS35""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+K,"Geometry, Topology & Information","[""Structure / Dynamics"", ""Inference / Measurement""]","[""AS01"", ""AS03"", ""AS13"", ""AS14"", ""AS15"", ""AS18"", ""AS30"", ""AS36""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+L,Generative & Counterfactual Methods,"[""Model / Method"", ""Inference / Measurement""]","[""AS04"", ""AS06"", ""AS19"", ""AS20"", ""AS21""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+M,Multimodal Integration,"[""Model / Method"", ""Structure / Dynamics""]","[""AS15"", ""AS34"", ""AS35"", ""AS36""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+N,Brain-inspired Computation,"[""Model / Method"", ""Neural""]","[""AS09"", ""AS25"", ""AS26"", ""AS27""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+O,Individual Difference & Alignment,"[""Neural"", ""Inference / Measurement""]","[""AS05"", ""AS13"", ""AS15"", ""AS28"", ""AS33""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+P,Causal/Computational Inference,"[""Inference / Measurement"", ""Model / Method""]","[""AS19"", ""AS21"", ""AS29""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+Q,Reliability & Measurement,"[""Inference / Measurement""]","[""AS01"", ""AS05"", ""AS06"", ""AS07"", ""AS08"", ""AS09"", ""AS13"", ""AS14"", ""AS15"", ""AS17"", ""AS18"", ""AS20"", ""AS21"", ""AS23"", ""AS27"", ""AS28"", ""AS29"", ""AS31"", ""AS32"", ""AS33""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+R,Mechanistic Interpretability,"[""Model / Method"", ""Structure / Dynamics"", ""Inference / Measurement""]","[""AS11"", ""AS24"", ""AS26"", ""AS30""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+S,Generalization & Robustness,"[""Inference / Measurement""]","[""AS01"", ""AS12"", ""AS28"", ""AS31"", ""AS33""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+T,Scientific Evaluation,"[""Inference / Measurement""]","[""AS04"", ""AS14"", ""AS18"", ""AS19"", ""AS21"", ""AS27"", ""AS28"", ""AS30"", ""AS31""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+U,Memory & Imagery,"[""Construct / Stimulus"", ""Structure / Dynamics""]",[],seed 보존; 이번 통합의 근거 공백,보유 데이터 이름만으로 기억·심상 조건을 추정하지 않음
+V,World Models & Latent State Discovery,"[""Model / Method"", ""Structure / Dynamics""]","[""AS02"", ""AS09"", ""AS10"", ""AS21"", ""AS23"", ""AS25"", ""AS35"", ""AS36""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음
+W,Computational Value & Salience,"[""Construct / Stimulus"", ""Structure / Dynamics""]",[],seed 보존; 이번 통합의 근거 공백,독립적인 가치·salience 조작과 경쟁 설명이 없어 정서 평정으로 대신 채우지 않음
+X,Identifiability & Representation Decomposition,"[""Structure / Dynamics"", ""Inference / Measurement""]","[""AS03"", ""AS04"", ""AS05"", ""AS07"", ""AS08"", ""AS10"", ""AS11"", ""AS12"", ""AS13"", ""AS15"", ""AS16"", ""AS20"", ""AS22"", ""AS24"", ""AS25"", ""AS26"", ""AS29"", ""AS32"", ""AS33"", ""AS34""]",하위축 연결,유형은 다중 태그이며 단일 계층으로 제한하지 않음

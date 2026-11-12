@@ -1,15 +1,15 @@
 {
   "format": 1,
-  "stage": "stage02-public-backup",
-  "snapshot_id": "df4a445a84462e7c3eda5f5c3b9122f5f10cb0ee0acfe5aedd2467e47a91b3c1",
-  "prepared_at_utc": "2026-11-12T04:34:56.514574+00:00",
-  "file_count": 1240,
-  "total_bytes": 193101451,
+  "stage": "stage03-axis-integration",
+  "snapshot_id": "c9e7423449e5003a00a003824d1a0d3bcebd2740a46af7847b97d74c75537474",
+  "prepared_at_utc": "2026-11-12T05:43:14.642344+00:00",
+  "file_count": 1260,
+  "total_bytes": 193544033,
   "files": [
     {
       "path": "AGENTS.md",
-      "size": 9807,
-      "sha256": "44adfc307b99566fa2dba813da01f50215d47baa77ea2d3f07718f60c2c1b0c1",
+      "size": 10985,
+      "sha256": "550dfd57bdabb7c12645291fcdb3679eb8e341e9600af34775eff749f9f26de0",
       "stored_path": "research/AGENTS.md"
     },
     {
@@ -26,8 +26,8 @@
     },
     {
       "path": "CHATGPT_PROJECT_BRIEF.md",
-      "size": 2959,
-      "sha256": "7254d000c591062cd6916a9d74e39077f64ad690f4ae3d5b5a92f415334f80a8",
+      "size": 4991,
+      "sha256": "c3266c5845c07c688289f756068e944ee94f53d639a53967d19a7a96b318aebb",
       "stored_path": "research/CHATGPT_PROJECT_BRIEF.md"
     },
     {
@@ -38,14 +38,14 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 2948,
-      "sha256": "cc3ba2cdaa76f8e3d44f0825b1f19b6153d5b13d51df963049d17602074f62d4",
+      "size": 3974,
+      "sha256": "42f2b6e636223b53ac55ed66dbfac3794c0466718e83df4116d728c1064a1242",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
       "path": "START_HERE.md",
-      "size": 1269,
-      "sha256": "ffea58b592b70d9945a398e9f55f1b5e3b15568c3e81297131a376001c90473c",
+      "size": 1597,
+      "sha256": "fb9227a890fc545451cf73aac8cbda77fd53ebc93e665f946ab0732b4748059c",
       "stored_path": "research/START_HERE.md"
     },
     {
@@ -5497,6 +5497,12 @@
       "stored_path": "research/agents/07_geometry_information/access_notes.md"
     },
     {
+      "path": "agents/07_geometry_information/axis_integration_review.md",
+      "size": 18623,
+      "sha256": "94168d4acda6960b09a10df913c6de79014621019d63991b6bc7984b9aa5ba7f",
+      "stored_path": "research/agents/07_geometry_information/axis_integration_review.md"
+    },
+    {
       "path": "agents/07_geometry_information/build_manifests.py",
       "size": 7122,
       "sha256": "7c465629b94b0ed8742f799573ef46a12c8a452fa05b7b7373dcb7b5fb2340d0",
@@ -6269,6 +6275,12 @@
       "stored_path": "research/agents/10_llm_semantics/RESEARCH_STATUS.md"
     },
     {
+      "path": "agents/10_llm_semantics/axis_integration_review.md",
+      "size": 14533,
+      "sha256": "364eadd35087736c8370f46d25223ee9a086c0870ca4043715d926fcac08549b",
+      "stored_path": "research/agents/10_llm_semantics/axis_integration_review.md"
+    },
+    {
       "path": "agents/10_llm_semantics/build_tables.py",
       "size": 26146,
       "sha256": "1bc6dab59ee70e18a9df5499b0340d09acb10acd28623d05a40ca79d9bd2af0d",
@@ -6785,6 +6797,18 @@
       "stored_path": "research/agents/12_adversarial_review/STATUS.md"
     },
     {
+      "path": "agents/12_adversarial_review/axis_integration_review.md",
+      "size": 17021,
+      "sha256": "4dd195b0edc0f483881570344ed2f9939565758f0dec370f6a6deaa618d2a904",
+      "stored_path": "research/agents/12_adversarial_review/axis_integration_review.md"
+    },
+    {
+      "path": "agents/12_adversarial_review/axis_v1_final_check.md",
+      "size": 4677,
+      "sha256": "32f787555a54177c9c19a3551d792b5b47a00cde3f5759ec767a89abbbd7d547",
+      "stored_path": "research/agents/12_adversarial_review/axis_v1_final_check.md"
+    },
+    {
       "path": "agents/12_adversarial_review/build_catalog.py",
       "size": 30822,
       "sha256": "8917203ce7c05f7beb88857d8413d1dda13c88357312ac8b07683696a9a87ba8",
@@ -7169,9 +7193,15 @@
       "stored_path": "research/agents/12_adversarial_review/validation.json"
     },
     {
+      "path": "axis_map/AXIS_ENCYCLOPEDIA.md",
+      "size": 72102,
+      "sha256": "6645a19966f45090ecc44bb203114650393c9c232b60a3d3f229981e5042beb6",
+      "stored_path": "research/axis_map/AXIS_ENCYCLOPEDIA.md"
+    },
+    {
       "path": "axis_map/README.md",
-      "size": 473,
-      "sha256": "a978dc83d94f79f88d029d9769e87d8c7c4c33fec2d55d59de7f20976929026b",
+      "size": 1370,
+      "sha256": "2c0a3d5402e0f3e104972d30e94828dad42049737d74f7716f40502c0b0bb94a",
       "stored_path": "research/axis_map/README.md"
     },
     {
@@ -7181,10 +7211,76 @@
       "stored_path": "research/axis_map/candidate_subaxes.json"
     },
     {
+      "path": "axis_map/cross_connections.csv",
+      "size": 8759,
+      "sha256": "0dda177902101a37323b88142ac8b5fecde3eab3658d1a32fc254fcef7b9647b",
+      "stored_path": "research/axis_map/cross_connections.csv"
+    },
+    {
+      "path": "axis_map/cross_connections.md",
+      "size": 10034,
+      "sha256": "f31af01940fa07c766cd2f69d2722a51852aa6015b016b00b39eb72acbeac7cc",
+      "stored_path": "research/axis_map/cross_connections.md"
+    },
+    {
+      "path": "axis_map/families.csv",
+      "size": 1493,
+      "sha256": "4622b164a5df70bdd429b90d252e3501e6e9442a4114994dfb880729975a861e",
+      "stored_path": "research/axis_map/families.csv"
+    },
+    {
+      "path": "axis_map/integrated_subaxes.csv",
+      "size": 57477,
+      "sha256": "3a145bc73e35bcf34246af7c5125fdf4f31f012a3d13e40c0e2ffc3b4c1e7d50",
+      "stored_path": "research/axis_map/integrated_subaxes.csv"
+    },
+    {
+      "path": "axis_map/integrated_subaxes.json",
+      "size": 88141,
+      "sha256": "61cd9333adbff82f67d4f381b5310f3c416ab8e40f9aae09a4d74936e07b6f58",
+      "stored_path": "research/axis_map/integrated_subaxes.json"
+    },
+    {
+      "path": "axis_map/integration_review.md",
+      "size": 6460,
+      "sha256": "7604713cd77aeea94e2acb04ab2bbf20b0f3d0dfb6ab969070148972fc90656b",
+      "stored_path": "research/axis_map/integration_review.md"
+    },
+    {
+      "path": "axis_map/reference_catalog.csv",
+      "size": 33775,
+      "sha256": "3343b2d8a2b31e4908ca11bb2593044824d18fc76b0c006c92b9ea3bf1ec95ec",
+      "stored_path": "research/axis_map/reference_catalog.csv"
+    },
+    {
       "path": "axis_map/seed_taxonomy.csv",
       "size": 6761,
       "sha256": "4cc77963e304fa739b087ea5a2eb5bcc621e8b61c6f5099118013f09c4c68eef",
       "stored_path": "research/axis_map/seed_taxonomy.csv"
+    },
+    {
+      "path": "axis_map/source_crosswalk.csv",
+      "size": 2764,
+      "sha256": "60d94dd5b609cffdb661297ed4cd014fee065c217ac4ba95be6adae624aedd4f",
+      "stored_path": "research/axis_map/source_crosswalk.csv"
+    },
+    {
+      "path": "axis_map/source_proposals.json",
+      "size": 44605,
+      "sha256": "e42fa373d057c7c043ce7a8fde4e998df21e741f6d10a67c6cf3515c9ff6fe14",
+      "stored_path": "research/axis_map/source_proposals.json"
+    },
+    {
+      "path": "axis_map/taxonomy.csv",
+      "size": 5951,
+      "sha256": "5edb112146ac2c9fac0767958b5ab5512805ee6d7582c8027676ac4efb307f70",
+      "stored_path": "research/axis_map/taxonomy.csv"
+    },
+    {
+      "path": "axis_map/validation.json",
+      "size": 873,
+      "sha256": "cf955141a03640b8b8edc62d5143985b80220b91a1fecb717f572d442f0e3374",
+      "stored_path": "research/axis_map/validation.json"
     },
     {
       "path": "combinations/README.md",
@@ -7194,8 +7290,8 @@
     },
     {
       "path": "datasets/README.md",
-      "size": 985,
-      "sha256": "a027ea73d0040cdc284ba36f9c9fddc8e76663d07894148f87aeb2b90901c3e6",
+      "size": 1520,
+      "sha256": "7b6f8c049d3ddd0ab1d144b3db25918dee452da9bb4f51d373dfdd06236910fc",
       "stored_path": "research/datasets/README.md"
     },
     {
@@ -7259,6 +7355,12 @@
       "stored_path": "research/datasets/horikawa/verified_spec.md"
     },
     {
+      "path": "datasets/mind_captioning/verified_spec.md",
+      "size": 793,
+      "sha256": "cd74bf548a80b418546d7d7128a1a712abe907ba0ed043a994f9c6942faafcbb",
+      "stored_path": "research/datasets/mind_captioning/verified_spec.md"
+    },
+    {
       "path": "datasets/nsd/annotation_dictionary.csv",
       "size": 1659,
       "sha256": "61aa92070a5c45ff718ad744bda9a1ae27e27a3eed127a4fe6cdfa52a92ccaef",
@@ -7281,6 +7383,12 @@
       "size": 4462,
       "sha256": "cdfe4537da082e65039f429c99cb17ed815eda881f8a23244eb7592a31c730df",
       "stored_path": "research/datasets/nsd/verified_spec.md"
+    },
+    {
+      "path": "datasets/ownership_and_readiness.md",
+      "size": 3607,
+      "sha256": "9f3eb214f89bad1d5e68105d88ff30da55b036b746763729df93aa305976695c",
+      "stored_path": "research/datasets/ownership_and_readiness.md"
     },
     {
       "path": "datasets/spacetop/annotation_dictionary.csv",
@@ -7308,8 +7416,8 @@
     },
     {
       "path": "discussions/EXECUTION_LOG.md",
-      "size": 1677,
-      "sha256": "37711cc51830794629fec3226db7ea970e0f8be095ee9ced8ece8bdcb540c65f",
+      "size": 2998,
+      "sha256": "4217596421564dbbe138d0a6974b5152b0830d8a5fe3595b33c6340538468009",
       "stored_path": "research/discussions/EXECUTION_LOG.md"
     },
     {
@@ -7421,6 +7529,18 @@
       "stored_path": "research/research_questions/README.md"
     },
     {
+      "path": "scripts/build_axis_connections.py",
+      "size": 9058,
+      "sha256": "7150255ea62fa3a169fba0058eb0fe6920f050f141160e409389bf374925cf22",
+      "stored_path": "research/scripts/build_axis_connections.py"
+    },
+    {
+      "path": "scripts/build_axis_registry.py",
+      "size": 34081,
+      "sha256": "6bd01e77bdd8dd650afd916087b9832c99bae237fac834cb0082c9f6952fd727",
+      "stored_path": "research/scripts/build_axis_registry.py"
+    },
+    {
       "path": "scripts/checkpoint_backup.py",
       "size": 12522,
       "sha256": "1f3747ad7dacb49a49a80eef0f9b59130f0a5488ca98811da2023af768991b86",
@@ -7446,8 +7566,8 @@
     },
     {
       "path": "synthesis/gate_criteria.md",
-      "size": 1222,
-      "sha256": "c5ed92d8a1a8f9769aecfb771fdcddc42099adbe07b34803bf638370a7e0ffe9",
+      "size": 1660,
+      "sha256": "7bd5e4038c851a9bec8171bbc79b3040ac38d5b6073c149827595d180960fc16",
       "stored_path": "research/synthesis/gate_criteria.md"
     },
     {

@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "stage03-axis-integration",
+  "snapshot_id": "c9e7423449e5003a00a003824d1a0d3bcebd2740a46af7847b97d74c75537474",
+  "prepared_at_utc": "2026-11-12T05:43:14.642344+00:00",
+  "file_count": 1260,
+  "total_bytes": 193544033,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

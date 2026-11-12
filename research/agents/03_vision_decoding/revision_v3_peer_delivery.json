@@ -1,0 +1,25 @@
+[
+  {
+    "review_id": "V3-R03-C04-A",
+    "candidate_id": "C04-A",
+    "recipient": "/root/foundation_continuation",
+    "source_path": "agents/04_brain_foundation/revision_v3_candidates.json",
+    "tool": "collaboration.send_message",
+    "status": "실제 발송 및 원저자 수신 확인; 원저자 수정 대기.",
+    "sent_summary": "공동 주석의 측정 대상과 신경 성분 결론을 맞출 것; 범주 단위와 사건요소 단위가 갈리는 예측을 만들어 C02-B와 재구성 검토.",
+    "review_file": "agents/03_vision_decoding/revision_v3_peer_review.json",
+    "recorded_at_utc": "2026-11-12T10:07:40.376539+00:00",
+    "author_acknowledgment": "원저자가 실제 메시지로 수신을 확인했고, 공동주석/주석자 혼합 구분 및 범주 성분 대 사건 요소의 재사용 경쟁을 다음 수정 단계에서 다루겠다고 답했다. 수정 완료로 기록하지 않는다."
+  },
+  {
+    "review_id": "V3-R03-C05-B",
+    "candidate_id": "C05-B",
+    "recipient": "/root/dynamics_continuation",
+    "source_path": "agents/05_multimodal_dynamics/revision_v3_candidates.json",
+    "tool": "collaboration.send_message",
+    "status": "호출 성공; 실제 메시지 발송. 원저자 읽음·수용 여부는 아직 확인하지 않음.",
+    "sent_summary": "새 ROI encoding모형 비교와 기존 고정 지표의 타당성 검증이 다른 문제임; C03-A/C04-B와 통합해 원목표 측정 및 새 내용의 오판 규칙을 검정할 것.",
+    "review_file": "agents/03_vision_decoding/revision_v3_peer_review.json",
+    "recorded_at_utc": "2026-11-12T10:07:40.376551+00:00"
+  }
+]

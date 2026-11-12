@@ -9,6 +9,8 @@ import re
 import urllib.parse
 
 r = Path(__file__).resolve().parents[1]
+if (r / 'revision_v3/version.json').exists():
+    raise SystemExit('현재 문서는 v3입니다. v2 검증 결과는 archive/v2에 보존되어 있으며 현재 문서를 판정하지 않습니다.')
 cards = json.loads((r / 'revision_v2/cards.json').read_text())
 pilots = json.loads((r / 'revision_v2/pilots.json').read_text())
 papers = {p['canonical_id']: p for p in csv.DictReader((r / 'literature/papers.csv').open())}

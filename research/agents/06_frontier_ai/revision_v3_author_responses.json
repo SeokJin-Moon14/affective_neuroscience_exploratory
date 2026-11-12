@@ -1,0 +1,38 @@
+{
+  "recorded_at_utc": "2026-11-12T10:19:36.158203+00:00",
+  "original_preserved": true,
+  "original_sha256": "e9064d3572dfa16a80465d38120f37828b000b840e9669174ca40fd5dae0d108",
+  "revised_sha256": "c755d3722b8549ef0f360a6de168a4eb761013522c35a246d45ac193a85529ba",
+  "actual_messages": [
+    {
+      "recipient": "/root/dynamics_continuation",
+      "candidate_id": "C06-A",
+      "status": "collaboration.send_message 전달 완료",
+      "summary": "다른 편집의 비슷한 위협 변화와 같은 편집의 비위협 대조, 제한된 공통 선형 변환의 새 조합 예측으로 재구성. 사건 의미로 충분하면 정서 규칙 철회."
+    },
+    {
+      "recipient": "/root/foundation_continuation",
+      "candidate_id": "C06-B",
+      "status": "collaboration.send_message 전달 완료",
+      "summary": "독립 RQ 보류. 중요한 비교의 실제 실패를 확인하기 전 확증 자동 진행 안 함. C02-B/C04-A의 선택적 후속 후보 생성 도구로 축소."
+    },
+    {
+      "recipient": "/root/auditor",
+      "candidate_id": "C06-A/C06-B",
+      "status": "collaboration.send_message 전달 완료",
+      "summary": "A12-V3-09/10 수용과 실질 수정·보류 내용 전달."
+    },
+    {
+      "recipient": "/root/affective_reframe",
+      "candidate_id": "C06-B",
+      "status": "통합 범위를 서로 메시지로 확인",
+      "summary": "독립 RQ로 세지 않고 C02-B/C04-A의 미리 정한 요소가 실패할 때만 다음 후보 제안을 돕는 후속 도구로 참고. 지금 핵심 실험에 넣지 않음."
+    }
+  ],
+  "current_decisions": {
+    "C06-A": "발전",
+    "C06-B": "보류"
+  },
+  "scope": "원저자 수정과 실제 응답 기록. 수정본의 독창성·실험 가능성·가설 검증 완료 판정은 아님.",
+  "followup_revision": "A12-V3-09 후속 비판 수용: 정서 전용 회로 또는 사건 의미와 완전 독립을 채택 요건으로 삼지 않음."
+}

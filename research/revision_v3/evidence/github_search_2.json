@@ -1,0 +1,28 @@
+{
+  "query": "\"Neural Representations of Emotion\"",
+  "url": "https://github.com/search?q=%22Neural+Representations+of+Emotion%22&type=repositories",
+  "status": 200,
+  "sha256": "d0702f802a0e701c80dea17e65bebbaaa2d1fc62044eb125348d2fdebc9b09f3",
+  "payloads": [
+    {
+      "header_redesign_enabled": false,
+      "results": [],
+      "type": "repositories",
+      "page": 1,
+      "page_count": 0,
+      "elapsed_millis": 38,
+      "errors": [],
+      "result_count": 0,
+      "facets": [],
+      "protected_org_logins": [],
+      "topics": null,
+      "query_id": "",
+      "logged_in": false,
+      "sign_up_path": "/signup?source=code_search_results",
+      "sign_in_path": "/login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3D%2522Neural%2BRepresentations%2Bof%2BEmotion%2522%26type%3Drepositories",
+      "metadata": null,
+      "warn_limited_results": false
+    }
+  ],
+  "raw_html_retained": false
+}

@@ -6,6 +6,8 @@ import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
+if (ROOT / 'revision_v3/version.json').exists():
+    raise SystemExit('v3 작업이 시작되어 v2 생성기의 현재 문서 덮어쓰기를 중단합니다. 과거 결과는 archive/v2를 읽으세요.')
 CARDS = json.loads((ROOT / 'revision_v2/cards.json').read_text())
 PILOTS = json.loads((ROOT / 'revision_v2/pilots.json').read_text())
 PAPERS = {p['canonical_id']: p for p in csv.DictReader((ROOT / 'literature/papers.csv').open())}

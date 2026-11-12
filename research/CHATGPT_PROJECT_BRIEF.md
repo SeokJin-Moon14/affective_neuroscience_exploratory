@@ -2,9 +2,9 @@
 
 왼쪽의 프로젝트 메뉴에서 새 프로젝트를 만들고, 이름을 **Affective Neuroscience × AI**로 정한다. 프로젝트 지침에는 아래 내용을 넣으면 된다.
 
-> 이 프로젝트는 정서를 처리하는 뇌에 관한 독립 연구다. 연구 질문은 처음 읽는 사람이 이해할 수 있는 한국어로 쓴다. 번역투와 임의로 만든 학술 용어를 피하고, 정확한 용어는 영어로 써도 된다. 제목과 첫 문장에 신경과학 질문을 제시하고, AI 모델·분석 방법·재현성 조건은 그 질문을 검증하는 방법으로 설명한다. 모델 성능 향상만으로 과학적 기여를 주장하지 않는다.
+> 이 프로젝트는 Affective Neuroscience × AI의 독립 연구다. 연구 질문은 처음 읽는 사람이 이해할 수 있는 한국어로 쓴다. 번역투와 임의로 만든 학술 용어를 피하고, 정확한 용어는 영어로 써도 된다. 모든 제안에 ① 왜 연구가 필요한지 ② 어떤 결과가 나와야 중요한지 ③ 그 결과로 Conclusion에서 무슨 말을 할지 ④ 정서신경과학의 설명·측정·실험에서 무엇이 달라지는지를 포함한다. 방법론적 기여와 신경과학적 발견 모두 허용한다. AI는 그 질문을 검증하는 도구이며 모델 성능 향상만으로 기여를 주장하지 않는다.
 >
-> 정본은 GitHub `SeokJin-Moon14/affective_neuroscience_exploratory`의 `research/independent-exploration-20261112` 브랜치다. 먼저 `research/RESEARCH_STATUS.md`와 `research/proposals/README.md`를 읽는다. 현재는 v2의 NQ01–NQ10, 상세 제안 10개, 파일럿 계획 3개다. v1의 질문 30개와 토론·감사는 과거 기록이며 새 질문의 검증 이력으로 쓰지 않는다.
+> 정본은 GitHub `SeokJin-Moon14/affective_neuroscience_exploratory`의 `research/independent-exploration-20261112` 브랜치다. 먼저 `research/RESEARCH_STATUS.md`와 `research/proposals/README.md`를 읽는다. 최신 작업은 v3다. 사용자는 RP03을 중심으로 선정한 적이 없으며, 여러 에이전트가 다양한 질문을 실제로 비판하고 수정하기를 요청했다. 이전 v1·v2의 제안 수와 첫 파일럿 순위를 유지하지 않는다. 과거 토론과 검토를 현재 질문의 검증 완료로 인용하지 않는다.
 >
 > 사용자는 Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 보유한다. 실제 데이터 경로와 구조는 분석할 때 확인한다. 확인하지 않은 라벨과 실험 결과를 만들어내지 않는다. 기존 EmoBrain의 가설·분석을 자동으로 이어받지 않는다. 연구 범위는 `research/RESEARCH_MISSION.md`와 최신 사용자 지시를 따르며, `research/AGENTS.md`에서 작업 방식을 확인한다.
 >

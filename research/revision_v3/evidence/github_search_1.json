@@ -1,0 +1,151 @@
+{
+  "query": "\"controversial stimuli\"",
+  "url": "https://github.com/search?q=%22controversial+stimuli%22&type=repositories",
+  "status": 200,
+  "sha256": "4b0665742e1fdd6c5479b403b5786910a0ef9d2a0944de9765678782e71df309",
+  "payloads": [
+    {
+      "header_redesign_enabled": false,
+      "results": [
+        {
+          "id": "316069929",
+          "archived": false,
+          "color": "#DA5B0B",
+          "followers": 13,
+          "has_funding_file": false,
+          "hl_name": "kriegeskorte-lab/<em>controversial</em>_<em>stimuli</em>_tutorial",
+          "hl_trunc_description": "A PyTorch tutorial on synthesizing <em>controversial</em> <em>stimuli</em> for ImageNet classifiers",
+          "language": "Jupyter Notebook",
+          "mirror": false,
+          "owned_by_organization": true,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 316069929,
+              "name": "controversial_stimuli_tutorial",
+              "owner_id": 49289828,
+              "owner_login": "kriegeskorte-lab",
+              "updated_at": "2024-01-11T14:31:55.960Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [
+            "deep-neural-networks",
+            "pytorch",
+            "perception",
+            "adversarial-examples",
+            "image-synthesis"
+          ],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        },
+        {
+          "id": "477857690",
+          "archived": false,
+          "color": "#DA5B0B",
+          "followers": 0,
+          "has_funding_file": false,
+          "hl_name": "Hosseinadeli/OCRA_<em>ControversialStimuli</em>",
+          "hl_trunc_description": null,
+          "language": "Jupyter Notebook",
+          "mirror": false,
+          "owned_by_organization": false,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 477857690,
+              "name": "OCRA_ControversialStimuli",
+              "owner_id": 17715264,
+              "owner_login": "Hosseinadeli",
+              "updated_at": "2022-04-05T02:35:06.895Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        },
+        {
+          "id": "949099317",
+          "archived": false,
+          "color": "#DA5B0B",
+          "followers": 0,
+          "has_funding_file": false,
+          "hl_name": "chenghands-on/<em>controversial</em>_<em>stimuli</em>_tutorial",
+          "hl_trunc_description": null,
+          "language": "Jupyter Notebook",
+          "mirror": false,
+          "owned_by_organization": false,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 949099317,
+              "name": "controversial_stimuli_tutorial",
+              "owner_id": 72299808,
+              "owner_login": "chenghands-on",
+              "updated_at": "2025-03-21T04:59:37.276Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        },
+        {
+          "id": "305901568",
+          "archived": false,
+          "color": null,
+          "followers": 0,
+          "has_funding_file": false,
+          "hl_name": "kriegeskorte-lab/PNAS_2020_<em>Controversial</em>_<em>Stimuli</em>",
+          "hl_trunc_description": "Official supporting information for Golan, Raju &amp; Kriegeskorte (2020) <em>Controversial</em> <em>stimuli</em>: Pitting neural networks against each other a…",
+          "language": null,
+          "mirror": false,
+          "owned_by_organization": true,
+          "public": true,
+          "repo": {
+            "repository": {
+              "id": 305901568,
+              "name": "PNAS_2020_Controversial_Stimuli",
+              "owner_id": 49289828,
+              "owner_login": "kriegeskorte-lab",
+              "updated_at": "2023-02-10T08:32:53.331Z",
+              "has_issues": true
+            }
+          },
+          "sponsorable": false,
+          "topics": [],
+          "type": "Public",
+          "help_wanted_issues_count": 0,
+          "good_first_issue_issues_count": 0,
+          "starred_by_current_user": false
+        }
+      ],
+      "type": "repositories",
+      "page": 1,
+      "page_count": 1,
+      "elapsed_millis": 87,
+      "errors": [],
+      "result_count": 4,
+      "facets": [],
+      "protected_org_logins": [],
+      "topics": null,
+      "query_id": "",
+      "logged_in": false,
+      "sign_up_path": "/signup?source=code_search_results",
+      "sign_in_path": "/login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3D%2522controversial%2Bstimuli%2522%26type%3Drepositories",
+      "metadata": null,
+      "warn_limited_results": false
+    }
+  ],
+  "raw_html_retained": false
+}

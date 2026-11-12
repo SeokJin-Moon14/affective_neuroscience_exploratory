@@ -33,3 +33,9 @@ P005, Chang et al. (2015), *A Sensitive and Specific Neural Signature for Pictur
 P009의 참고문헌 16에는 Chikazoe, Lee, Kriegeskorte & Anderson (2014), *Population coding of affect across stimuli, modalities and individuals*, Nature Neuroscience 17, 1114–1122가 있다. 이번에는 P009의 참고문헌에서 서지 존재를 확인했으며 해당 논문 원문은 읽지 않았다. 감각·자극·참가자를 넘는 정서표상 후보라면 직접 대조해야 한다. 이를 새로 원문 검증한 문헌으로 세지 않는다.
 
 이 메모는 기존 장부의 원문 확인 범위를 넓혀 주장하지 않는다. 포괄적인 최신 학술 검색과 각 새 후보의 신규성 판정은 별도다.
+
+## 모델들의 예측이 갈리는 자극을 고르는 방법도 기존 연구다
+
+Golan, Raju & Kriegeskorte (2020), *Controversial stimuli: Pitting neural networks against each other as models of human cognition*, PNAS 117, 29330–29337. DOI [10.1073/pnas.1912334117](https://doi.org/10.1073/pnas.1912334117). 이번에는 저자의 [공식 코드 저장소](https://github.com/kriegeskorte-lab/PNAS_2020_Controversial_Stimuli)의 README를 직접 읽어 서지와 자료 공개를 확인했다. [보존한 README](evidence/controversial_original_readme.md)와 [접근 기록](evidence/controversial_original_readme.json). 본문·Discussion을 읽은 논문 수에는 추가하지 않는다.
+
+두 모델이 다른 예측을 내는 자극을 AI로 찾는다는 아이디어 자체를 새 방법으로 주장할 수 없다. 이번 정서 뇌 지표 후보가 기여하려면, 실제 새 뇌 측정에서 특정한 자극 차이가 어떤 정서 비교를 잘못 해석하게 하는지까지 밝혀야 한다. 해당 선행이 정서 지표에서 어디까지 검증했는지는 원문 대조가 남아 있다.

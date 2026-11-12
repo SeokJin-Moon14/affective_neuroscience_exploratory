@@ -1,0 +1,26 @@
+{
+  "url": "https://github.com/search?q=Skerry+emotion&type=repositories",
+  "http_status": 200,
+  "sha256_downloaded": "1143e9ee65204b5fe4df34a1f2af8ea5e0fb509f56ecbe2c58a2d95c9e007e73",
+  "search_results": [
+    {
+      "header_redesign_enabled": false,
+      "results": [],
+      "type": "repositories",
+      "page": 1,
+      "page_count": 0,
+      "elapsed_millis": 58,
+      "errors": [],
+      "result_count": 0,
+      "facets": [],
+      "protected_org_logins": [],
+      "topics": null,
+      "query_id": "",
+      "logged_in": false,
+      "sign_up_path": "/signup?source=code_search_results",
+      "sign_in_path": "/login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3DSkerry%2Bemotion%26type%3Drepositories",
+      "metadata": null,
+      "warn_limited_results": false
+    }
+  ]
+}

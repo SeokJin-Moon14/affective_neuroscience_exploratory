@@ -1,0 +1,18 @@
+{
+  "sent_at_utc": "2026-11-12T10:05:21.663553+00:00",
+  "delivery_status": "collaboration.send_message 호출 성공; 수신자의 열람 여부는 주장하지 않음",
+  "messages": [
+    {
+      "review_id": "R02-C03-A",
+      "recipient": "/root/vision",
+      "candidate_id": "C03-A",
+      "summary": "위협 단서의 독립적 정의와 실제 목표 변수의 조건 간 비교 오류가 필요함. C04-B와 통합 권고."
+    },
+    {
+      "review_id": "R02-C04-B",
+      "recipient": "/root/foundation_continuation",
+      "candidate_id": "C04-B",
+      "summary": "C03-A와 실질적 중복. 불특정 반례 탐색을 독립 RQ로 유지하지 않고 구체적 실험 도구로 통합; 기여는 방법론으로 한정."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Throat"
+    ],
+    "StartTime": 0,
+    "Throat": {
+        "Description": "You had a feeling of a lump in the throat",
+        "Instructions": "Move the gauge up as you feel a lump in your throat. Move it down as your throat feels clear as usual.",
+        "Levels": {
+            "high": "Lump In Throat",
+            "low": "Throat Clear"
+        }
+    }
+}

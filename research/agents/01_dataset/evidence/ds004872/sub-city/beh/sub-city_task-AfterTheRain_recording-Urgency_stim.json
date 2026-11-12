@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Urgency"
+    ],
+    "StartTime": 0,
+    "Urgency": {
+        "Description": "There was no urgency in the situation",
+        "Instructions": "There is urgency in the situation to act. Move up the gauge to indicate that there is urgency in the situation, move it down if the situation is not urgent.",
+        "Levels": {
+            "high": "Situation Urgent",
+            "low": "Not Urgent"
+        }
+    }
+}

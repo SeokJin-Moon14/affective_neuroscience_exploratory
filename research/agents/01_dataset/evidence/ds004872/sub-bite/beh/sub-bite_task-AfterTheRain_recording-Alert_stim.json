@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Alert"
+    ],
+    "StartTime": 0,
+    "Alert": {
+        "Description": "You felt tired",
+        "Instructions": "Move the gauge up as you feel alert and attentive. Move it down as you feel tired. You may use the middle of the scale to describe a level of alertnes that is 'normal' for you.",
+        "Levels": {
+            "high": "Feel Alert",
+            "low": "Feel Tired"
+        }
+    }
+}

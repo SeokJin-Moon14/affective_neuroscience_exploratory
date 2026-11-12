@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Support"
+    ],
+    "StartTime": 0,
+    "Support": {
+        "Description": "You wanted someone to be there to provide help or support",
+        "Instructions": "Move the gauge up if you want someone to be there to provide help or support. Move it down as you do not feel the desire for someone to be there for support or help. You may use the middle of the scale if you are indifferent with regards to someone being there to provide help and support.",
+        "Levels": {
+            "high": "WantHelp",
+            "low": "Don'tWantHelp"
+        }
+    }
+}

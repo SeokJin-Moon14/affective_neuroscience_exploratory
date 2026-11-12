@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Satisfaction"
+    ],
+    "StartTime": 0,
+    "Satisfaction": {
+        "Description": "Satisfaction",
+        "Instructions": "Satisfaction is the response to the fulfilment of our wishes, expectations, and needs. Move the gauge up as you feel more satisfied. Move it down as you feel dissatisfied. You may use the middle of the scale to describe a neutral state of being neither satisfied nor dissatisfied.",
+        "Levels": {
+            "high": "Satisfied",
+            "low": "Dissatisfied"
+        }
+    }
+}

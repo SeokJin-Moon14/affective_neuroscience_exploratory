@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "GoalsOther"
+    ],
+    "StartTime": 0,
+    "GoalsOther": {
+        "Description": "It was important and relevant for the goals or needs of somebody",
+        "Instructions": "Important and relevant for the goals or needs of somebody is a situation that will help somebody achieve their wants and needs. Move the gauge up in situations that are important and relevant for somebodys goals and down for situations that are irrelevant. If you find conflict with different characters in the movie focus on the character you feel most invested in.",
+        "Levels": {
+            "high": "MeetOthersGoals",
+            "low": "NotOthersGoals"
+        }
+    }
+}

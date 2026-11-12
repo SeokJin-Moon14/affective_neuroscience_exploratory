@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Love"
+    ],
+    "StartTime": 0,
+    "Love": {
+        "Description": "Love",
+        "Instructions": "Love is a strong feeling of liking some people very much and being attached to them. For example, you may experience love when you like a person, a child, or a lover very much. Move the gauge up as you feel more love. Move it down as you feel less love. ",
+        "Levels": {
+            "high": "Love",
+            "low": "No Love"
+        }
+    }
+}

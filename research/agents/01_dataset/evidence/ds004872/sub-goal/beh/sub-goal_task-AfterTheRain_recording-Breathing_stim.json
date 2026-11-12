@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Breathing"
+    ],
+    "StartTime": 0,
+    "Breathing": {
+        "Description": "You experienced breathing changes",
+        "Instructions": "Move the gauge up as you experience your breathing getting faster. Move it down as you feel your breathing going slower. You may use the middle of the scale to describe what you experience normal breathing.",
+        "Levels": {
+            "high": "Breathing Faster",
+            "low": "Breathing Slower"
+        }
+    }
+}

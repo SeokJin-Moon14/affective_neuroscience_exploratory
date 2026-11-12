@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "PleasantOther"
+    ],
+    "StartTime": 0,
+    "PleasantOther": {
+        "Description": "It was unpleasant for somebody else",
+        "Instructions": "Pleasant for somebody else discribes a situation that you perceive as generally positive for somebody else. Move the gauge up the more pleasant you perceive the situation is for somebody else and down as the situation is more unpleasant for them. You may use the middle of the scale for situation that are neither positive or negative. If you find conflict with different characters in the movie focus on the character you feel most invested in.",
+        "Levels": {
+            "high": "PleasantOthers",
+            "low": "UnpleasantOthers"
+        }
+    }
+}

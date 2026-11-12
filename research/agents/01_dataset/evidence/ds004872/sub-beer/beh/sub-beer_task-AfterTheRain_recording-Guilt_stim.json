@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Guilt"
+    ],
+    "StartTime": 0,
+    "Guilt": {
+        "Description": "Guilt",
+        "Instructions": "Guilt is the response when a person regrets having violated agreements, principles, or values. For example, you may experience guilt when some behaviours or situations violate your own values or moral code. Move the gauge up as you feel guity. Move it down as you feel less guilty. ",
+        "Levels": {
+            "high": "Guilty",
+            "low": "Not Guilty"
+        }
+    }
+}

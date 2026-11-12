@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Anxiety"
+    ],
+    "StartTime": 0,
+    "Anxiety": {
+        "Description": "Anxiety",
+        "Instructions": "Anxiety is a feeling of tension, apprehension, worry, and nervousness. For example, you may experience anxiety when you worry about something that is happening or might happen in the future. Move up the gauge as you feel more anxious. Move it down as you feel less anxious.",
+        "Levels": {
+            "high": "Anxious",
+            "low": "Not Anxious"
+        }
+    }
+}

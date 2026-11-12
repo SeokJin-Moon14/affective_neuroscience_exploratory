@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "WarmHeartedness"
+    ],
+    "StartTime": 0,
+    "WarmHeartedness": {
+        "Description": "WarmHeartedness",
+        "Instructions": "Warm-hearted is a feeling of sympathy, affection, kindness, and cordiality for situations or people. For example, you may experience warm-hearted when you witness an event that you find very positive and comforting. Move the gauge up as you feel more warm-hearted. Move it down if you do not feel warm-hearted towards the situation or the people in it.",
+        "Levels": {
+            "high": "WarmHearted",
+            "low": "NotWarmHeart"
+        }
+    }
+}

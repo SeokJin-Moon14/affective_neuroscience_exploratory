@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Disgust"
+    ],
+    "StartTime": 0,
+    "Disgust": {
+        "Description": "Disgust",
+        "Instructions": "Disgust is the response to sights, situations, and actions that we do not accept. For example, you may experience disgust when someone behaves in a way that you disapprove. Move the gauge up as you feel disgusted. Move it down as you do not feel disgusted. ",
+        "Levels": {
+            "high": "Disgusted",
+            "low": "Not Disgusted"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Pride"
+    ],
+    "StartTime": 0,
+    "Pride": {
+        "Description": "Pride",
+        "Instructions": "Pride is a feeling of pleasure or satisfaction with ones achievements. Shame is a feeling of humiliation or distress when a person is conscious of their wrongdoings or faults. Move the gauge up as you feel more proud. Move it down as you feel more ashamed. You may use the middle of the scale if you feel neither pride nor shame.",
+        "Levels": {
+            "high": "Proud",
+            "low": "Ashamed"
+        }
+    }
+}

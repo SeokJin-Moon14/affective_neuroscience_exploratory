@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "PleasantSelf"
+    ],
+    "StartTime": 0,
+    "PleasantSelf": {
+        "Description": "It was unpleasant for you",
+        "Instructions": "Pleasant discribes a situation that was generally positive for you. Move the gauge up the more pleasant you perceive the situation and down as the situation is more unpleasant. You may use the middle of the scale for situation that are neither positive or negative.",
+        "Levels": {
+            "high": "Pleasant For Me",
+            "low": "Unpleasant Me"
+        }
+    }
+}

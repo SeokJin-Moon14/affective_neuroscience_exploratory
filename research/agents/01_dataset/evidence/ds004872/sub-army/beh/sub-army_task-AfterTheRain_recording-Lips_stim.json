@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Lips"
+    ],
+    "StartTime": 0,
+    "Lips": {
+        "Description": "You pressed lips together",
+        "Instructions": "You press your lips together. Move the gauge up to indicate pressing your lips together. When your lips are relaxed move the gauge down.",
+        "Levels": {
+            "high": "Press Lips",
+            "low": "Relax Lips"
+        }
+    }
+}

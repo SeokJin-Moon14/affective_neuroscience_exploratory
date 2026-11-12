@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Controlled"
+    ],
+    "StartTime": 0,
+    "Controlled": {
+        "Description": "The event was uncontrolled",
+        "Instructions": "Controlled is an event that could have been averted or stopped. Move the gauge up the more controlled you perceive the situation and down as the situation is less controlled i.e. uncontrolled.",
+        "Levels": {
+            "high": "EventControlled",
+            "low": "Uncontrolled"
+        }
+    }
+}

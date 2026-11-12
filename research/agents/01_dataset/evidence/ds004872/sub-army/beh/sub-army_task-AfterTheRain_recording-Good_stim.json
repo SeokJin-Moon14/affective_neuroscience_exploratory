@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Good"
+    ],
+    "StartTime": 0,
+    "Good": {
+        "Description": "You felt good",
+        "Instructions": "Move the gauge up as you feel good. Move it down as you feel less good.",
+        "Levels": {
+            "high": "Feel Good",
+            "low": "Not Feel Good"
+        }
+    }
+}

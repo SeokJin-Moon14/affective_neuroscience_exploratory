@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Stomach"
+    ],
+    "StartTime": 0,
+    "Stomach": {
+        "Description": "You have stomach discomfort",
+        "Instructions": "Move the gauge up as you feel discomfort in your stomach. Move it down as your stomach feels comfortable as normal.",
+        "Levels": {
+            "high": "Stomach Unwell",
+            "low": "Stomach Normal"
+        }
+    }
+}

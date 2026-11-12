@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Anger"
+    ],
+    "StartTime": 0,
+    "Anger": {
+        "Description": "Anger",
+        "Instructions": "Anger is a feeling of irritation or rage towards another person or situation. Move up the gauge as you feel increasing anger. Move it down as you do not feel angry.",
+        "Levels": {
+            "high": "Angry",
+            "low": "Not Angry"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "IntenseEmotion"
+    ],
+    "StartTime": 0,
+    "IntenseEmotion": {
+        "Description": "You experienced an intense emotional state",
+        "Instructions": "Move up the gauge as you experience an intense emotional state. Move it down as you do not feel intense emotions.",
+        "Levels": {
+            "high": "Intense Emotion",
+            "low": "No Intense Emoti"
+        }
+    }
+}

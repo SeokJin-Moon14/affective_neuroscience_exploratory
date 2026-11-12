@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Calm"
+    ],
+    "StartTime": 0,
+    "Calm": {
+        "Description": "Your felt calm",
+        "Instructions": "Calm is the response to quiet and peaceful conditions. For example, you may experience calm when you are in a safe situation. Move the gauge up as you feel more calm. Move it down if you feel more restless. ",
+        "Levels": {
+            "high": "Feel Calm",
+            "low": "Feel Restless"
+        }
+    }
+}

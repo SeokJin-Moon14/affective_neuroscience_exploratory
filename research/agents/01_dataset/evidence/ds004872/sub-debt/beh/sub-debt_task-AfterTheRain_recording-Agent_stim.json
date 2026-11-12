@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Agent"
+    ],
+    "StartTime": 0,
+    "Agent": {
+        "Description": "Agent",
+        "Instructions": "Rate the degree to which the event is caused by a human agent (including personified animals and machines) versus caused by chance. Move the gauge up the more you think the event was caused by a human agent and down the more it is caused by change. Use the middle of the scale if influences are even or if the cause was neither human nor chance.",
+        "Levels": {
+            "high": "HumanCaused",
+            "low": "ChanceCaused"
+        }
+    }
+}

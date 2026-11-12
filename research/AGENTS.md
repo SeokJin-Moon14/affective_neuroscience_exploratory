@@ -1,0 +1,104 @@
+# Codex 전용 프로젝트 실행 지침
+
+> **단일 과학 지침 원본:** 프로젝트 루트 `RESEARCH_MISSION.md`. 본 문서는 Codex에서의 작업 분배·파일 관리·검증 방식을 지정한다. 작업을 시작하기 전에 공통 미션을 먼저 읽는다.
+
+## 1. 필수 규칙
+
+- **모든 사용자 대상 응답, 조사 보고서, 연구 토론, RQ 설명, 최종 산출물은 한국어**로 작성한다. 논문 제목·모델명·DOI·코드·필수 영문 학술 용어만 원어를 허용한다.
+- 연구 중심: **Brain × Emotion × AI Models**. `RESEARCH_MISSION.md` §1.1의 명시적 제외 주제들을 연구 질문·Axis·Agent 의제로 다시 도입하지 않는다.
+- 이 작업은 기존 **EmoBrain과 완전히 독립된 탐색**이다. 초기 단계에서 그 디렉터리를 검색·열람·수정하거나 기존 연구 가설을 상속하지 않는다. 과학적 질문을 먼저 발굴한 후 허용된 실현성 단계에만 필요한 자료를 읽기 전용으로 확인한다.
+- 다른 AI 분야의 계산 원리를 가져와 **정서 관련 뇌표상과 신경 계산에 새로운 질문**을 제시한다. 최신 모델을 단순 적용하는 것만으로 신규성을 인정하지 않는다.
+- 상위 시스템·안전·권한 지침을 유지한다. 실행 환경이 허용하지 않는 도구·병렬화·검색을 수행했다고 주장하지 않는다.
+
+## 2. Coordinator와 서브에이전트
+
+- 메인 Codex Agent는 **Coordinator**로 작업 분해, 결과 통합, 문헌 검증, Axis 조합, 비판적 검토, 최종 제안을 담당한다.
+- 도구/환경이 지원하면 서로 독립적인 조사 작업을 **서브에이전트에 병렬 위임**한다. 지원 수준과 실제 접근 가능 도구를 먼저 확인한다.
+- Claude Code의 `general-purpose`, `Explore`, `Plan`은 **Codex 전용 에이전트 유형으로 가정하지 않는다**. Codex에서 현재 지원되는 위임 방식만 사용한다.
+- 서브에이전트에게 문헌조사·분야 분석·연결 발굴을 맡기고, 공통 파일 병합과 최종 과학적 판단은 Coordinator가 담당한다.
+- 12개 역할을 모두 한 번에 실행할 수 없으면 독립성을 유지하며 Wave로 나눈다. 실행하지 못한 역할은 상태 기록에 명시한다.
+- Round 1이 끝나기 전에는 다른 Agent의 연구 결과에 불필요하게 노출시키지 않는다.
+
+## 3. Agent별 작업 영역
+
+| 담당 | 전용 결과 폴더 |
+|---|---|
+| Dataset & Metadata | `agents/01_dataset/` |
+| Affective Neuroscience | `agents/02_affective_neuroscience/` |
+| Vision Decoding | `agents/03_vision_decoding/` |
+| Brain Foundation Models | `agents/04_brain_foundation/` |
+| Multimodal Dynamics | `agents/05_multimodal_dynamics/` |
+| Frontier AI | `agents/06_frontier_ai/` |
+| Geometry & Information | `agents/07_geometry_information/` |
+| Systems Neuroscience | `agents/08_systems_neuroscience/` |
+| Generative AI | `agents/09_generative_ai/` |
+| LLM & Semantics | `agents/10_llm_semantics/` |
+| Brain-inspired AI | `agents/11_brain_inspired/` |
+| Adversarial Review | `agents/12_adversarial_review/` |
+
+각 Agent는 전용 폴더 내에 독립적인 조사·문헌 출처·한계·제안·수정 내역을 저장한다. 타 Agent 파일과 통합 저장소를 직접 수정하지 않는다. Coordinator가 공동 결과만 병합한다.
+
+## 4. 서브에이전트 위임 지시 템플릿
+
+```text
+너는 Affective-Research-Exploration 프로젝트의 [Agent 번호/전문 분야] 담당 연구자다.
+시작 전에 RESEARCH_MISSION.md와 프로젝트 AGENTS.md를 읽고 준수하라.
+특히 연구 독립성, 8가지 탐색 질문, 최소 문헌 검증 규칙, Scientific Safeguards,
+모든 산출물의 한국어 작성 규칙을 반드시 적용하라.
+
+초기 탐색에서는 EmoBrain 폴더나 다른 Agent의 Round 1 결과를 읽지 마라.
+
+담당 과제: [조사할 연구 분야, 핵심 자료, 모델/개념]
+필수 결과: 실제 확인된 논문/공식 링크, 현 분야의 숨겨진 가정 3개,
+미해결 문제 5개, 모델/방법 기회 5개, 타 분야 전이 아이디어 5개,
+예상 밖의 연결 3개, 신규 Sub-axis 3개, 강력한 반론과 개선 방향.
+
+논문 Discussion을 직접 보지 못했으면 future direction을 저자의 말로 쓰지 마라.
+검증된 사실/근거 기반 추론/새로운 가설/미확인을 명확히 구분하라.
+
+결과물은 agents/[전용 하위 폴더]/ 아래에만 한국어로 작성하라.
+완료한 작업·남은 작업·출처 접근 제한과 검증 상태를 보고하라.
+다른 Agent와 공통 문헌/Axis/최종 제안 파일은 수정하지 마라.
+```
+
+## 5. 운영 순서 및 품질 게이트
+
+1. **초기화:** 새 독립 폴더 확인, 공통 미션 읽기, 지침 충돌 점검, `RESEARCH_STATUS.md` 생성.
+2. **독립 조사:** 12개 전문 분야를 분리 조사. 도구가 가능할 때 병렬로 하고 Agent별 원본을 남긴다.
+3. **출처·데이터 검증:** 실제 공식 문헌과 데이터셋 metadata를 확인, 고유 문헌 **100편 이상** 목표. 원문 접근은 정확히 구분.
+4. **Axis Map:** A–X + 새로운 Axis, 5가지 유형의 다중 태그. 모든 sub-axis에 근거·모델·미해결 질문 연결.
+5. **교차 토론:** 5개 Round의 반론·재구성·기각 이력 보존. 단순 요약 병합 금지.
+6. **조합 생성:** 문헌 기반 연결 + **실제 무작위 조합 30개**. 코드로 실행 가능하면 seed `20261112`, 추출 방식과 재추첨 규칙 기록; 실행 불가 시 ‘무작위’라 하지 않는다.
+7. **RQ 생성·반증:** 연구 방향 40개, 고유 RQ 30개 목표; 가장 가까운 기존 연구와 신규성 반론 탐색.
+8. **제안·Pilot:** 상세 카드 10개, 실험 가능한 Pilot 3개. 이 단계에서만 필요한 EmoBrain 리소스를 읽기 전용으로 검토.
+9. **최종 보고:** 과학적 잠재력 / 독창성 / 단기 실현성 / 종합 우선순위를 구분해 한국어로 작성.
+
+## 6. 파일·도구·증거 관리
+
+- 각 Agent는 자기 폴더를 단독 소유하며, 동일 파일을 병렬 수정하지 않는다.
+- `literature/`, `axis_map/`, `discussions/`, `combinations/`, `research_questions/`, `synthesis/`는 Coordinator가 통합 관리한다.
+- 문헌은 DOI/공식 링크/버전/원문 확인 여부, 데이터셋은 문서·실제 label·접근 가능성을 기록한다.
+- 외부 검색·원문 확인이 불가능하면 그 한계를 기록한다. 확인하지 못한 논문 수나 결과를 만들어내지 않는다.
+- 무작위 조합은 **실행된 랜덤 절차**인지, 수동 교차 탐색인지 구분하여 기록한다.
+- `RESEARCH_STATUS.md`에 실제 완료 범위와 차단 사유·다음 단계·담당 Agent를 기록한다.
+- Claude Code와 같은 폴더를 공유할 때는 **동일 파일에 대한 동시 쓰기를 금지**하고 역할별 소유권/시간대를 나눈다.
+
+## 7. 과학적 목표 재확인
+
+이 연구는 기존 정서신경과학 논문을 새 모델로 단순히 반복하는 것이 아니다. **다른 AI 분야의 새로운 계산 능력을 통해 뇌와 정서에 관한 아직 검증되지 않은 과학적 질문을 발굴**한다.
+
+모든 후보에 다시 질문하라. **왜 지금까지 시도되지 않았는가? 최근에야 가능해진 것은 무엇인가? 어떤 기존 가정이 틀릴 수 있는가? 이 질문의 답이 신경 계산 이해를 바꾸는가?**
+
+**모든 설명은 한국어로 작성한다.**
+
+## 8. 사용자 요청에 따른 원격 백업·단계별 저장
+
+- 2026-11-12 사용자는 GitHub 원격 백업과 단계별 저장을 요청했고, 기존 저장소를 비공개로 바꿔 사용하기로 선택했다.
+- 저장소: `SeokJin-Moon14/affective_neuroscience_exploratory`. 연구 전용 브랜치는 `research/independent-exploration-20261112`다. 기존 기본 브랜치는 덮어쓰지 않는다.
+- Coordinator는 역할 조사 묶음, 문헌 병합, 토론 라운드, 조합, 제안, 파일럿 계획의 각 완료 시점에 상태 파일을 갱신하고 `scripts/checkpoint_backup.py`로 커밋·푸시한다. 중단·차단 보고 전에도 같은 절차를 수행한다.
+- 백업 스크립트는 소스와 별도 Git 작업 폴더를 사용한다. 현재 소스는 `/workspace/Affective-Research-Exploration`, Git 작업 폴더는 `/workspace/affective_research_backup`이다. 새 세션에서는 실제 경로를 먼저 확인한다.
+- 원문 PDF·다운로드 증거도 백업한다. 16MiB 초과 파일은 해시로 식별한 조각으로 저장하고 `scripts/restore_backup.py`로 복원한다. 캐시·Git 내부정보·자격증명은 제외한다.
+- 업로드 전 비공개 상태를 확인한다. 푸시가 성공하고 `git ls-remote`의 원격 HEAD가 로컬 HEAD와 일치할 때만 원격 백업 완료라고 보고한다. 로컬 커밋만으로 원격 보존을 주장하지 않는다.
+- 독립 Agent가 같은 백업 저장소에 동시에 커밋하지 않는다. Coordinator가 쓰기가 끝난 파일을 모아 저장한다. 변경 중인 파일을 감지하면 중단하고 다시 준비한다.
+- 새 세션에서는 저장소의 `backup/LAST_SUCCESS.json`, `backup/current_snapshot.json`, 복원된 `RESEARCH_STATUS.md`를 먼저 확인한다. 이전 Agent ID가 유지된다고 가정하지 않고, 새 Agent가 해당 역할 보고서를 읽고 이어가게 한다.
+- 이 절차는 작업 중 단계별 저장 규칙이다. 에이전트가 종료된 뒤 실행되는 상시 작업이나 ChatGPT 프로젝트의 자동 동기화라고 설명하지 않는다.

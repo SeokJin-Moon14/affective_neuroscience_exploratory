@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Movement"
+    ],
+    "StartTime": 0,
+    "Movement": {
+        "Description": "You made abrupt body movements",
+        "Instructions": "Move the gauge up as you made abprupt body movements. Move it down as you observe yourself sitting very still. ",
+        "Levels": {
+            "high": "Move Abpruptly",
+            "low": "Sat Very Still"
+        }
+    }
+}

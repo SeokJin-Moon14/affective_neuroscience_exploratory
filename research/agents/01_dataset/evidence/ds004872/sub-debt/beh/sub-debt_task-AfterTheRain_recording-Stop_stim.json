@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Stop"
+    ],
+    "StartTime": 0,
+    "Stop": {
+        "Description": "You felt the urge to stop what was happening",
+        "Instructions": "Move the gauge up as you feel the urge to intervene and stop what is happening. Move it down if you do not feel an urge to stop what is happening.",
+        "Levels": {
+            "high": "Want Stop Event",
+            "low": "Don't Want Stop"
+        }
+    }
+}

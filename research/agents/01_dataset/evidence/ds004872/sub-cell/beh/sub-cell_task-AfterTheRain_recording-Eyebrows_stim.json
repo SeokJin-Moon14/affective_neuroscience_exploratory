@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Eyebrows"
+    ],
+    "StartTime": 0,
+    "Eyebrows": {
+        "Description": "You felt your eyebrows go up",
+        "Instructions": "Move the gauge up as you feel your eyebrows go up. Move it down as your eyebrows are relaxed in their normal position.",
+        "Levels": {
+            "high": "BrowsRaised",
+            "low": "BrowsRelaxed"
+        }
+    }
+}

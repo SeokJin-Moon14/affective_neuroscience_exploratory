@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Predictable"
+    ],
+    "StartTime": 0,
+    "Predictable": {
+        "Description": "The event was unpredictable",
+        "Instructions": "An event is predictable and could have been forseen. Move the gauge up the more predictable you perceive the situation to be an down for situations that are unpredictable.",
+        "Levels": {
+            "high": "EventPredictable",
+            "low": "Unpredictable"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Surprise"
+    ],
+    "StartTime": 0,
+    "Surprise": {
+        "Description": "Surprise",
+        "Instructions": "Surprise is the response to sudden expected events. For example, you may experience surprise when you are in unusual situations or someone acts unexpectedly. Move the gauge up as you feel more surprised. Move it down as you feel less surprise.",
+        "Levels": {
+            "high": "Surprised",
+            "low": "Not Surprised"
+        }
+    }
+}

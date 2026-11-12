@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Tackle"
+    ],
+    "StartTime": 0,
+    "Tackle": {
+        "Description": "You felt like tackling the situation and do something",
+        "Instructions": "Move the gauge up if you feel like tackling the situation and doing something. Move it down as you do not feel an urge to takle the situation.",
+        "Levels": {
+            "high": "WantDoSth",
+            "low": "NotDoSomething"
+        }
+    }
+}

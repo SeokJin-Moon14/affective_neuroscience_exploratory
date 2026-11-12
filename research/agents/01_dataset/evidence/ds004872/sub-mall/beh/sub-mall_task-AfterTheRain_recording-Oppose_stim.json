@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Oppose"
+    ],
+    "StartTime": 0,
+    "Oppose": {
+        "Description": "You wanted to oppose someone or something (situation)",
+        "Instructions": "Move the gauge up if you want to oppose someone, something or the situation as a whole. Move the gauge down if you do not feel an urge to oppose someone or something.",
+        "Levels": {
+            "high": "Want To Oppose ",
+            "low": "NotWantOppose"
+        }
+    }
+}

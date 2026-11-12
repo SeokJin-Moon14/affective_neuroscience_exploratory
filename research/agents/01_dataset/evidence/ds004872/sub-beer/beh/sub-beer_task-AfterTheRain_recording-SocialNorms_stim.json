@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "SocialNorms"
+    ],
+    "StartTime": 0,
+    "SocialNorms": {
+        "Description": "It violated laws or socially accepted norms",
+        "Instructions": "A situation is congruent with social norms,  if what is happening and how people are acting is in line with your cultures expectations regarding social rules and behaviour. Move the gauge up the more the situation is conform with your laws or social norms and down if what is happening violates these ideas. You may use the middle of the scale for situations that are neutral with regards to laws and social norms.",
+        "Levels": {
+            "high": "SocialNorms",
+            "low": "NotSocialNorms"
+        }
+    }
+}

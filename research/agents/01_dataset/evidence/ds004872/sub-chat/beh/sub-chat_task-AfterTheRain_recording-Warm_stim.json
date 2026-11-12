@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Warm"
+    ],
+    "StartTime": 0,
+    "Warm": {
+        "Description": "You felt warm",
+        "Instructions": "Move the gauge up as you felt physically warm. Move it down if you feel physically cold. You may use the middle of the scale to describe feeling at a temperature that is 'normal' for you. ",
+        "Levels": {
+            "high": "Felt Warm",
+            "low": "Felt Cold"
+        }
+    }
+}

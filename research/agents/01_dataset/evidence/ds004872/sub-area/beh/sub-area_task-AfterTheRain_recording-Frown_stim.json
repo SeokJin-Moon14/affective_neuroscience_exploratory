@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Frown"
+    ],
+    "StartTime": 0,
+    "Frown": {
+        "Description": "You frowned",
+        "Instructions": "Move the gauge up as you observe yourself frowning. Move it down as you are not frowning. ",
+        "Levels": {
+            "high": "Frowned",
+            "low": "Did Not Frown"
+        }
+    }
+}

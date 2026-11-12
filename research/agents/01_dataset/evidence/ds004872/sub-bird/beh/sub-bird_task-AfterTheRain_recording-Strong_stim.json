@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Strong"
+    ],
+    "StartTime": 0,
+    "Strong": {
+        "Description": "You felt strong",
+        "Instructions": "Move the gauge up as you feel strong. Move it down as you feel weak. You may use the middle of the scale to indicate feeling neither particularly strong nor weak.",
+        "Levels": {
+            "high": "Feel Strong",
+            "low": "Feel Weak"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Care"
+    ],
+    "StartTime": 0,
+    "Care": {
+        "Description": "You wanted to take care of another person or cause",
+        "Instructions": "Move the gauge up if you want to take care of another person or cause. Move it down as you do not feel the urge to take care of another person or cause.",
+        "Levels": {
+            "high": "WantToCareFor",
+            "low": "NotCareFor"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Sad"
+    ],
+    "StartTime": 0,
+    "Sad": {
+        "Description": "Sadness",
+        "Instructions": "Sadness is the response to the loss of an object or a person to which you are attached. Move the gauge up as you feel more sad. Move it down as you do not feel sad",
+        "Levels": {
+            "high": "Sad",
+            "low": "Not Sad"
+        }
+    }
+}

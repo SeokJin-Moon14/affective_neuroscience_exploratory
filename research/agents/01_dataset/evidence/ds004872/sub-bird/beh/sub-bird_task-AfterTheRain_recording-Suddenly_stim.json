@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Suddenly"
+    ],
+    "StartTime": 0,
+    "Suddenly": {
+        "Description": "The event occurred suddenly",
+        "Instructions": "A sudden event occurred without much lead up or warning, the situation changed from one moment to another. Move the gauge up the more surprising and sudden an event occurred.",
+        "Levels": {
+            "high": "EventSuddenly",
+            "low": "Not Suddenly"
+        }
+    }
+}

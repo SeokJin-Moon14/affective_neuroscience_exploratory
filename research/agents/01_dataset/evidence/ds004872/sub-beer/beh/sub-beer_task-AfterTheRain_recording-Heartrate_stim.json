@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Heartrate"
+    ],
+    "StartTime": 0,
+    "Heartrate": {
+        "Description": "You experienced heart rate changes",
+        "Instructions": "Move the gauge up as you experience your heartbeat going faster. Move it down as you experience your heartbeat going slower. You may use the middle of the scale for what you perceive as your normal heartrate.",
+        "Levels": {
+            "high": "Heartbeat Faster",
+            "low": "Heartbeat Slower"
+        }
+    }
+}

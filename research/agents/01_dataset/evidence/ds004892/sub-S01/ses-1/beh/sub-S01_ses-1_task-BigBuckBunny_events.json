@@ -1,0 +1,33 @@
+{
+    "onset": {
+        "Description": "Onset of clip relative to full film file",
+        "unit": "seconds"
+    },
+    "duration": {
+        "Description": "Duration of clip",
+        "unit": "seconds"
+    },
+    "Tears": {
+        "Description": "You had tears in your eyes",
+        "Instructions": "You have tears in your eyes, feel your eyes tearing up. Move the gauge up as you perceive tearing in your eyes. Move it down if your eyes are dry, that is no more tears than usual. "
+    },
+    "PleasantOther": {
+        "Description": "It was unpleasant for somebody else",
+        "Instructions": "Pleasant for somebody else discribes a situation that you perceive as generally positive for somebody else. Move the gauge up the more pleasant you perceive the situation is for somebody else and down as the situation is more unpleasant for them. You may use the middle of the scale for situation that are neither positive or negative. If you find conflict with different characters in the movie focus on the character you feel most invested in."
+    },
+    "Predictable": {
+        "Description": "The event was unpredictable",
+        "Instructions": "An event is predictable and could have been forseen. Move the gauge up the more predictable you perceive the situation to be an down for situations that are unpredictable."
+    },
+    "Stop": {
+        "Description": "You felt the urge to stop what was happening",
+        "Instructions": "Move the gauge up as you feel the urge to intervene and stop what is happening. Move it down if you do not feel an urge to stop what is happening."
+    },
+    "Anxiety": {
+        "Description": "Anxiety",
+        "Instructions": "Anxiety is a feeling of tension, apprehension, worry, and nervousness. For example, you may experience anxiety when you worry about something that is happening or might happen in the future. Move up the gauge as you feel more anxious. Move it down as you feel less anxious."
+    },
+    "trial": {
+        "Description": "Clip number"
+    }
+}

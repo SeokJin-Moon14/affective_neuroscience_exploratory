@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Tears"
+    ],
+    "StartTime": 0,
+    "Tears": {
+        "Description": "You had tears in your eyes",
+        "Instructions": "You have tears in your eyes, feel your eyes tearing up. Move the gauge up as you perceive tearing in your eyes. Move it down if your eyes are dry, that is no more tears than usual. ",
+        "Levels": {
+            "high": "Tears In My Eyes",
+            "low": "Dry Eyes"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Command"
+    ],
+    "StartTime": 0,
+    "Command": {
+        "Description": "You wanted to be in command of others",
+        "Instructions": "Move the gauge up as you want command others. Move it down as you do not feel an urge to be in command of others.",
+        "Levels": {
+            "high": "WantCommand",
+            "low": "Don'tWant"
+        }
+    }
+}

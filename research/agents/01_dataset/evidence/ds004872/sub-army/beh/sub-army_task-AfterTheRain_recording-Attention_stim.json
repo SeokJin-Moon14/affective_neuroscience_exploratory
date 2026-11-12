@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Attention"
+    ],
+    "StartTime": 0,
+    "Attention": {
+        "Description": "You felt motivated to pay attention to what was going on",
+        "Instructions": "Move the gauge up as you feel more motivated to pay attention to what was going on. Move it down if you feel disinterested in paying attention. You may use the middle of the scale if you feel indifferent with respect to the situation being repeated. ",
+        "Levels": {
+            "high": "Captured",
+            "low": "Disinterested"
+        }
+    }
+}

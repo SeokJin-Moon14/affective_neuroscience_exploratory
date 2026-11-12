@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Smile"
+    ],
+    "StartTime": 0,
+    "Smile": {
+        "Description": "You smiled",
+        "Instructions": "Move the gauge up as you observe yourself smiling. Move it down as you are not smiling. ",
+        "Levels": {
+            "high": "Smiled",
+            "low": "Did Not Smile"
+        }
+    }
+}

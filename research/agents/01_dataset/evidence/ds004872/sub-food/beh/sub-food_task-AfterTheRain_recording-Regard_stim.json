@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Regard"
+    ],
+    "StartTime": 0,
+    "Regard": {
+        "Description": "Regard",
+        "Instructions": "Regard is a feeling of respect and sympathy towards another person. Opposite to regard; contempt is a feeling of moral superiority, disrespect, and aversion towards another person. Move the gauge up as you feel regard. Move it down as you feel contempt. You may use the middle of the scale if you feel neither regard nor contemt.",
+        "Levels": {
+            "high": "Regard",
+            "low": "Contempt"
+        }
+    }
+}

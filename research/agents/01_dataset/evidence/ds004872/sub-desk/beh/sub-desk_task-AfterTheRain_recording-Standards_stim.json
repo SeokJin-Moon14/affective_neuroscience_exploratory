@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Standards"
+    ],
+    "StartTime": 0,
+    "Standards": {
+        "Description": "It was incongruent with your standards and ideas",
+        "Instructions": "A situation is congruent with your standards or ideas, if what is happending and how people are acting is in line with your personal values and you would consider it as fair. Move the gauge up the more the situation alignes with your standards and ideas and down if what is happening violates them. You may use the middle of the scale for situations that are neutral with regards to your standards and ideas.",
+        "Levels": {
+            "high": "MyStandards",
+            "low": "NotMyStandards"
+        }
+    }
+}

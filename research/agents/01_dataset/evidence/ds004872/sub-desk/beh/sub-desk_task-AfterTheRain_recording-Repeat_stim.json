@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Repeat"
+    ],
+    "StartTime": 0,
+    "Repeat": {
+        "Description": "You wanted the ongoing situation to last or be repeated",
+        "Instructions": "Move the gauge up as you want the ongoing situation to last or be repeated. Move it down if you don't want it to last or be repeated. You may use the middle of the scale if you are indifferent with respects to the situation to last or be repeated. ",
+        "Levels": {
+            "high": "WantLastRepeat ",
+            "low": "NotWantRepeat"
+        }
+    }
+}

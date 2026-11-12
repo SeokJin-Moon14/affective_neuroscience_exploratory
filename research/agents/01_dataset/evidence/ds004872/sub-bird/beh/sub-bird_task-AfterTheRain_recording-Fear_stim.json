@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Fear"
+    ],
+    "StartTime": 0,
+    "Fear": {
+        "Description": "Fear",
+        "Instructions": "Fear is the response to concrete physical and psychological threats. For example, you may experience fear when your/someone\u2019s life, health, or well-being is threatened. Move up the gauge as you feel fearful. Move it down as you feel less fearful.",
+        "Levels": {
+            "high": "Fearful",
+            "low": "Not Fearful"
+        }
+    }
+}

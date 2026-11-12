@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Jaw"
+    ],
+    "StartTime": 0,
+    "Jaw": {
+        "Description": "You felt your jaw drop",
+        "Instructions": "Move the gauge up as you feel your jaw drop. Move it down if your jaw is closed in a relaxed position.",
+        "Levels": {
+            "high": "Feel Jaw Drop",
+            "low": "Jaw Closed"
+        }
+    }
+}

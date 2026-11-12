@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Undo"
+    ],
+    "StartTime": 0,
+    "Undo": {
+        "Description": "You wanted to undo what was happening",
+        "Instructions": "Move the gauge up as you feel the desire to undo what is happening. Move it down as you do not feel an urge to undo what is happening.",
+        "Levels": {
+            "high": "Want Undo Event",
+            "low": "Don't Want Undo"
+        }
+    }
+}

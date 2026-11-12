@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "AtEase"
+    ],
+    "StartTime": 0,
+    "AtEase": {
+        "Description": "You felt at ease",
+        "Instructions": "Move the gauge up as you feel at ease. Move it down as you feel more nervous. You may use the middle of the scale to indicate a state of neither feeling particularly at ease nor feeling nervous.",
+        "Levels": {
+            "high": "Feel At Ease",
+            "low": "Feel Nervous"
+        }
+    }
+}

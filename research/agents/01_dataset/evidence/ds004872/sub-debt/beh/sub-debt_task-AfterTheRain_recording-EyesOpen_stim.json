@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "EyesOpen"
+    ],
+    "StartTime": 0,
+    "EyesOpen": {
+        "Description": "You opened your eyes widely",
+        "Instructions": "Move the gauge up as you open your eyes widely. Move it down as you close your eyes or look away. You may use the middle of the scale to indicate your eyes being relaxed and opened as normal.",
+        "Levels": {
+            "high": "OpenEyesWide",
+            "low": "Close Eyes"
+        }
+    }
+}

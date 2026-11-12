@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Happiness"
+    ],
+    "StartTime": 0,
+    "Happiness": {
+        "Description": "Happiness",
+        "Instructions": "Happiness is a feeling of joy opposite to feeling sad. Move the gauge up as you feel more happy. Move it down as you feel less happy.",
+        "Levels": {
+            "high": "Happy",
+            "low": "Not Happy"
+        }
+    }
+}

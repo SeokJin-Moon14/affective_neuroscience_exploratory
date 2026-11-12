@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Consequences"
+    ],
+    "StartTime": 0,
+    "Consequences": {
+        "Description": "The consequences were predictable",
+        "Instructions": "The consequences of the event are predictable and could be forseen. Move the gauge up to indicate more predictable consequences of a situation. Move it down if the situations consequences are unpredictable.",
+        "Levels": {
+            "high": "ResultPredictable",
+            "low": "Unpredictable"
+        }
+    }
+}

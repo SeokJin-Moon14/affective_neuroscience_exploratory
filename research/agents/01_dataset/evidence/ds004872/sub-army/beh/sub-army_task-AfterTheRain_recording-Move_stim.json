@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Move"
+    ],
+    "StartTime": 0,
+    "Move": {
+        "Description": "You wanted to move",
+        "Instructions": "Move the gauge up as you feel like you want to move. Move it down as you do not feel an urge to move.",
+        "Levels": {
+            "high": "Want To Move",
+            "low": "Don't Want Move"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "SamplingFrequency": 1.0,
+    "Columns": [
+        "Muscle"
+    ],
+    "StartTime": 0,
+    "Muscle": {
+        "Description": "You experienced muscle tensions (whole body)",
+        "Instructions": "Move the gauge up as you experience muscle tensions in your whole body. Move it down as you experience your muscles relaxing. You may use the middle of the scale for what you perceive as your normal level of muscle tension.",
+        "Levels": {
+            "high": "Muscles Tense",
+            "low": "Muscles Relax"
+        }
+    }
+}

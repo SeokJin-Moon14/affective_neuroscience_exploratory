@@ -1,0 +1,284 @@
+{
+  "proposal_id": "RP05",
+  "rq_id": "RQ13",
+  "title": "독립 반복의 target 제외 신경 문맥이 지정 자극모형의 정서 대비 예측을 보완하는가?",
+  "core_question": "추가로 관측한 동일 자극의 독립 반복 문맥 N_a가, 그 입력 경로에서 target 신호가 배제되었을 때, 고정 자극모형 S보다 반복 b의 독립 A 신경 대비를 더 잘 예측하는가?",
+  "scientific_motivation": "추가 신경 입력을 가진 모델이 더 높은 전체 BOLD 성능을 얻는 것은 새로운 발견이 아니다. 필요한 구별은 같은 반복 잡음 공유, 독립 반복에 남는 자극 반응, 누락 사건 의미와 target 복사의 어느 경우가 지정 A 대비 회수를 설명하는지다. 이 결과는 신경문맥의 상대적 측정가치를 제한하며 내부 정서 기전의 식별로 확장하지 않는다.",
+  "idea_provenance": {
+    "origins": [
+      "Agent04 C04-02/AS08",
+      "Agent10 의미 누락 감사 AS24",
+      "Agent07 C07-05의 입력조건 경쟁"
+    ],
+    "development": "Round3 두 비판으로 지도 겹침을 A contrast loss로 바꾸고 독립 반복을 추가했다. Round5 Agent10/01의 비판으로 추가 측정 예산과 target perturbation 게이트를 명시했다.",
+    "branch_boundary": "A는 동시 공간완성/독립 반복 전이, B는 과거 신경문맥→미래 Y다. 같은 상위 RQ 안의 다른 관측 계약이며 점수를 합치거나 독립 RQ 수를 늘리지 않는다."
+  },
+  "prior_literature": [
+    {
+      "paper_id": "P001",
+      "contribution": "자극 수준 정서와 분산 신경표상의 직접 인접 연구 및 Horikawa 경로.",
+      "limitation": "현재 catalog 원문 접근 제한; 실제 반복/feature label을 문헌명으로 가정하지 않는다.",
+      "access_scope": {
+        "full_text": "아니오; 프록시 403",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json"
+    },
+    {
+      "paper_id": "P026",
+      "contribution": "fMRI 입력의 공간 표현과 masked latent/복원 도구.",
+      "limitation": "공식 코드 지원은 target-free 전처리나 독립 반복 masked head 지원을 보장하지 않는다.",
+      "access_scope": {
+        "full_text": "아니오; 공식 README/코드만 확인",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://github.com/MedARC-AI/CortexMAE"
+    },
+    {
+      "paper_id": "P027",
+      "contribution": "자극→피질 예측이라는 S 후보를 제공.",
+      "limitation": "공개 평균 fsaverage5 출력이 개인 likelihood·subcortical 예측을 뜻하지 않는다.",
+      "access_scope": {
+        "full_text": "아니오; 공식 README/코드만 확인",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://github.com/facebookresearch/tribev2"
+    },
+    {
+      "paper_id": "P029",
+      "contribution": "ROI 신경입력의 latent prediction이라는 N 경로 후보.",
+      "limitation": "공개 weight/ROI config·mask head의 실제 동작은 미검증.",
+      "access_scope": {
+        "full_text": "아니오; 공식 README/코드만 확인",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://github.com/Eric-LRL/Brain-JEPA"
+    },
+    {
+      "paper_id": "P083",
+      "contribution": "의미/개념 잔차의 우회 정보 감사를 정당화하는 원리.",
+      "limitation": "개념 제거가 의미 완전 제거라는 결론을 제공하지 않는다.",
+      "access_scope": {
+        "full_text": "PDF 접근; 첫 페이지·§8 Discussion PDF9쪽 직접검토",
+        "discussion": "§8 Discussion PDF9쪽 직접확인",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://raw.githubusercontent.com/mlresearch/v119/gh-pages/koh20a/koh20a.pdf"
+    },
+    {
+      "paper_id": "P100",
+      "contribution": "참가자/조건 모집단과 선택을 반영하는 추론 설계 근거.",
+      "limitation": "독립 반복의 실재·교환가능성·작은 N의 검정력을 대신 보장하지 않는다.",
+      "access_scope": {
+        "full_text": "예: 공식 XML 저장·본문 검토",
+        "discussion": "예: Discussion s3-1–s3-6",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://elifesciences.org/articles/82566"
+    }
+  ],
+  "closest_prior_and_novelty": {
+    "direct_near": [
+      "P001",
+      "P026",
+      "P027",
+      "P029"
+    ],
+    "different_contrast": "S 대 N 승패가 아니라 같은 표적에서 동일/독립 반복/내용 일치 타자극 N의 A contrast 예측을 의미 강화와 target-free 경로 아래 비교한다.",
+    "overlap": "encoding·completion·variance decomposition 및 더 많은 입력의 이득은 기존이다. 비교가 독립 반복과 A 대비를 갖추지 못하면 방법 감사로 낮춘다.",
+    "verification_limit": "TOP10_REVIEW.md의 corpus 역대조를 반영했다. 기존 영어 외부역검색은 CONNECT403으로 실패했으며 세계 최초·2024–2026 전면 중복배제는 주장하지 않는다."
+  },
+  "dataset_and_metadata": {
+    "primary": "Horikawa 보유본을 먼저 감사하되 개인 내 동일 자극 독립 반복은 아직 확인되지 않았다. 각 참가자2196 이벤트 ID/name은 고유하고 dupidx는 반복 증거가 아니다. RP05-A 실증 착수는 현재 보류한다.",
+    "unit": "참가자×동일 원자극×다른 run/session 반복쌍×target 공간블록. N_a→Y_b와 반대방향은 연관 관측이다.",
+    "fields": {
+      "confirmed_official_event_fields": [
+        "onset",
+        "duration",
+        "trial_type",
+        "stimulus_name",
+        "stim_index"
+      ],
+      "official_code_contract_only": [
+        "Session",
+        "Run",
+        "Block",
+        "Label",
+        "VoxelData",
+        "voxel_x",
+        "voxel_y",
+        "voxel_z"
+      ],
+      "path_contracts": [
+        "공식 코드 계약: data/fmri/paper2020/fmri_Subject1.h5",
+        "공식 feature 계약: data/features/amt/mean_score_concat/{category,dimension,semantic,vision}"
+      ],
+      "not_local_verified": "위 경로와 HDF5 키는 공식 코드의 계약이다. 사용자의 실제 보유본 경로·헤더·버전은 아직 열어 확인하지 않았으며 임의 로컬 경로를 만들지 않는다.",
+      "generated_analysis_fields": [
+        "content_group",
+        "outer_split",
+        "repeat_id",
+        "preprocessing_provenance",
+        "atlas_id",
+        "space_id",
+        "feature_source",
+        "annotation_source"
+      ],
+      "generated_field_scope": "분석자가 확인 후 만드는 계약 필드이며 원자료에 이미 있다는 뜻이 아니다."
+    },
+    "repeat_contract": [
+      "같은 participant와 실제 동일 영상 hash/ID",
+      "반복별 run/session·측정시각·노출순서",
+      "target/context coverage·motion/global nuisance",
+      "원전처리부터 context feature까지 provenance"
+    ],
+    "five_dataset_roles": {
+      "Horikawa": "반복·주석·target-free 경로 충족 시 공간완성. 고유 ID의 내용중복을 반복으로 쓰지 않는다.",
+      "Emo-FilM": "RP05-B 연속시간 가지의 조건부 자료. film/scanner 시간과 외부 consensus를 구별하며 개인별 연속 정답으로 보지 않는다.",
+      "NSD": "실제 반복이 있는 subset의 누출/방법 대조 후보. 정서 주석 미확인으로 RP05-A 정서 검정을 자동 대체하지 않는다.",
+      "Spacetop": "실제 태스크·clip후 평정 단위의 제한된 보조 비교. 연속 A나 반복이 있다고 가정하지 않는다.",
+      "Mind Captioning": "정확한 식별자·version·텍스트/뇌 출처 확인 전 핵심 입력으로 배정하지 않는다."
+    }
+  },
+  "computational_framework": {
+    "baseline": "S: cached 저수준·검수 중립 객체/관계/사건 특징→target Y ridge. N: 검증된 원입력에서 target+buffer를 제거한 raw-context→같은 target Y ridge. 추가 신경 관측을 제공한 S+N과 S-only는 서로 다른 입력 예산임을 명시하고 같은 N 입력의 head 간 비교도 보고한다.",
+    "adaptation": "모든 feature scale/PCA/head/개인 보정/Q/의미·mask 선택은 outer training에서 적합한다. test N_a는 허용된 입력이고 Y_a/Y_b는 fitting·선택에 넣지 않는다. target 자체의 다른 반복 제공은 신뢰도 기준으로 분리한다.",
+    "loss": "head는 training Y squared error로 적합; 외부 일차 평가는 A contrast loss. 전체 Y loss는 보조.",
+    "target_free_gate": "선형 H를 알면 H_context,target=0을 확인한다. 원 target에 여러 크기/방향 perturbation을 가한 후 고정 전체 pipeline의 N feature 불변성을 수치허용오차와 함께 검사한다. nonlinear 경로는 구조 감사와 병행한다. 이미 비가역적으로 혼합되어 확인 불가이면 착수 보류.",
+    "extensions": [
+      "S baseline: 실제 자극의 cached low-level/검수 사건/시각 특징→같은 target Y 또는 c_A. image-only CLIP ViT-B/32는 시각 특징 기준이며 시청각 또는 시간 상태 전체를 제공하지 않는다.",
+      "TRIBE v2는 video/audio/text→평균 참가자 fsaverage5 피질 예측이다. 공개 output을 개인 target voxel이나 subcortex likelihood로 간주하지 않는다. 공통 cortical mapping·개인 보정·checkpoint config의 TR 및 5초 offset 확인이 필요하다.",
+      "CortexMAE는 fMRI→latent/복원, Brain-JEPA는 ROI 시계열→latent prediction이다. N→보류 Y readout과 target masking은 추가 구현이며 공개 weight가 beta 시행순서를 연속 신호로 처리할 수 있다고 가정하지 않는다.",
+      "실행 전 load·입력 shape·mask 전파·반환 shape를 작은 batch에서 확인한다. 미지원이면 target 밖 raw-context ridge를 같은 공간에서 사용한다."
+    ],
+    "checkpoint_scope": "TRIBE/CortexMAE/Brain-JEPA 공식 링크와 config 범위는 Agent04 model_cards.md를 참조하며 이번 stage load 검증 없음. 작은 raw baseline으로 충분하면 확장하지 않는다.",
+    "auxiliary_clip": {
+      "model": "OpenAI CLIP ViT-B/32",
+      "code": "https://github.com/openai/CLIP",
+      "checkpoint_url": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
+      "sha256_expected": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+      "license_scope": "공식 코드 MIT 및 loader의 URL/hash 규칙 확인; 실제 weights 다운로드·해시·load·추론은 미검증.",
+      "input_output": "이미지 또는 텍스트→모달별 embedding. 동영상은 사전 고정 frame sampling과 집계가 필요한 별도 자극 특징 구성이다. 오디오 또는 독립 정서 주석을 제공하지 않는다.",
+      "role": "보유 cache가 없을 때 검수된 비정서 V/S 통제의 보조 시각 특징. 첫 projection baseline에 필수 아님."
+    },
+    "resources": {
+      "observed_environment": "공통 관측 보고서 CPU quota4·memory.max32GiB·nvidia-smi 없음; GPU 추론 미실행. 다른 사용자 장비의 자원은 판단하지 않음.",
+      "cost_boundary": "이미 추출된 feature cache 및 작은 신경 블록의 적합 비용과 새로운 backbone 추출 비용을 분리한다. 시간/VRAM은 작은 실행으로 계측 전 미확인.",
+      "ownership": "사용자 컴퓨터에 대형 자료를 받도록 요구하지 않고 새 원자료·개인 데이터를 공개 백업 산출물에 넣지 않는다."
+    }
+  },
+  "neural_target": "같은 cortical target 공간의 Y_b와 외부 A로 정한 c_A(Y_b). 피질 표적을 subcortex로 확대하지 않고 집계 A를 개인의 정서 상태로 해석하지 않는다.",
+  "proposed_analyses": {
+    "estimand": "w는 독립 A 차원/고저 대비로 사전 고정하며 sum w=0,sum w²=1. c_A(Y)=Σ_i w_iY_i. L_A=||c_A(Y)-c_A(Yhat)||²_Q, Δ_A=L_A(S)-L_A(S+N); Q는 train-only shrinkage/diagonal 기준. 같은 test 표본·target 척도에서 모든 입력조건을 비교한다.",
+    "conditions": [
+      "S-only",
+      "S+동일 반복 target제외 N_b",
+      "S+다른 run/session 동일 자극 target제외 N_a",
+      "S+같은 run 다른 자극 N",
+      "S+내용/A/context 신뢰도 일치 타자극 N"
+    ],
+    "nuisance": "의미 강화 전체 곡선·buffer거리·반복순서·경과시간·global/run/motion·context reliability를 보고한다. 표적 perturbation 검사를 통계적 null로 대체하지 않는다.",
+    "splits": "자극 내용 family를 outer fold에 묶고 같은 자극의 모든 반복은 모델 적합의 train/test 경계를 함께 지킨다. test 반복 a의 N을 b 예측에 쓰는 것은 명시된 관측 입력이며 training label이나 test target는 아니다. 의미/feature/ROI/head 선택과 normalization은 train 안에서만 한다.",
+    "null": "known shared stimulus/잡음/target-copy 생성 문제에서 recovery를 확인하고 실제 matched 타자극 대조를 사용한다. 시간점 iid 또는 무조건 label permutation을 조건부 독립 증명으로 쓰지 않는다.",
+    "inference": "Horikawa 참가자5명의 개별 효과를 모두 제시한다. 참가자 조건부 새 자극 추론과 사람 모집단 추론을 구별한다. n=5 양측 exact sign-flip의 최소 p는 2/32=.0625이며 자극·voxel·atlas seed를 사람 N으로 세지 않는다. 계층/모수 CI는 작은 n 가정 민감도와 함께 표시하고, 비유의성을 동등성으로 읽지 않는다.",
+    "multiplicity": "일차 A차원1개·target 블록1개·미리 고정한 mask curve. 다차원/다블록 확장은 별도 test와 가족별 교정.",
+    "reliability": "context와 target 신뢰도를 별도 추정할 실제 독립 반복이 필요하다. 없으면 반복 결과·noise ceiling 없음으로 기록한다. 모델기반 오차는 반복 신뢰도와 다른 가정적 추정이다.",
+    "branch_B": "과거→미래 확장은 본인/타인/자극 과거와 nuisance를 같은 물리시간 창에서 비교하며 미래접근·HRF/annotation lag를 별도 감사한다. RP05-A 성능과 합치지 않는다."
+  },
+  "competing_explanations": "N이 회수하는 것은 미측정 사건 의미·감각 이력 또는 run/global·평활화 잡음일 수 있다. 독립 반복에 전달되어도 안정적인 자극 유발 반응과 내재 상태의 기원을 구별하지 못하며, 이를 내부 정서 계산으로 명명해서는 안 된다.",
+  "falsifiable_outcomes": {
+    "positive": "검증된 target-free 독립 N의 Δ_A가 최소효과를 넘고 타자극/내용/신뢰도 대조에서 유지되면 지정 S의 상대적 충분성이 반박된다. 내부 상태나 순수 정서는 아니다.",
+    "negative": "충분한 신뢰도와 precision에서 Δ_A CI상한이 사전δ 아래면 그 입력·표적에서 추가 N의 실용가치가 작다.",
+    "mixed": "동일반복만 이득이면 공통잡음 또는 낮은 독립 N 신뢰도/반복적응; 의미 보강후 소실이면 미모형화 자극; 타자극에서도 같으면 nuisance.",
+    "unidentified": "반복·target-free 경로 미확인 또는 CI가 넓으면 미식별이며 신경 회수 주장 착수/확증을 보류한다."
+  },
+  "scientific_and_modeling_contribution": {
+    "neuroscience": "현재 자극표현이 어느 관측조건에서 독립 A 대비를 충분히 예측하지 못하는지 제한한다.",
+    "modeling": "입력예산·target 전파·반복 nuisance를 명시한 두 조건부 예측의 평가계약. 대형 AI 모델 신규 개발은 필수 기여가 아니다."
+  },
+  "limitations_and_risks": [
+    "현재 독립 반복과 target-free 전처리 경로가 미확인되어 신경분석 착수 보류.",
+    "비선형 의미 완전성·nuisance 독립성은 유한 검정으로 완전히 확정할 수 없다.",
+    "같은 참가자 반복은 적응·순서·기억이 달라질 수 있으며 독립 측정이 잡음 완전 독립을 뜻하지 않는다.",
+    "Horikawa 사람5명의 모집단 일반화는 제한됨.",
+    "현재 모델 load·GPU비용·원자료 경로·실물 주석은 미검증."
+  ],
+  "smallest_informative_pilot": {
+    "status": "PILOT03으로 선정된 질문이 아니며 RP05의 별도 조건부 최소계획이다.",
+    "pre_gate": "공식 스키마 대응·반복 mapping·target perturbation을 먼저 확인. 실패하면 실제 신경 회수 실험으로 진행하지 않음.",
+    "planned_subset": "게이트 충족 자료에서 첫 QC는 반응값을 보지 않고 고른 1명·최대32개 실제 반복 자극쌍·target block1개. 과학검정은 최소관심 효과의 독립 cluster 검정력이 충족된 새 자극 subset으로 확대하며 32쌍을 충분한 power라고 가정하지 않는다.",
+    "steps": [
+      "manifest/provenance",
+      "synthetic target-copy null",
+      "raw S/S+N ridge",
+      "matched 타자극/의미/buffer 대조",
+      "외부 A loss/CI"
+    ],
+    "expand": "반복/입력게이트와 synthetic calibration이 통과하고 raw baseline의 안정된 대비가 있을 때만 더 많은 내용군/모델로 확대.",
+    "stop": "반복 또는 target-free 경로 없음, 신뢰도 부족, 의미 보강으로 설명됨이면 보류/방법후보로 축소."
+  },
+  "priority": {
+    "scientific_potential": "높음: 입력원 충분성의 해석을 제한한다.",
+    "novelty": "중간·미확정: 기존 encoding/completion과 가까움.",
+    "short_term_feasibility": "낮음: 독립 반복/target-free 조건 미확인으로 즉시 착수 제외.",
+    "overall": "Top10은 과학적 다양성의 종합 선정이며 즉시 실행 순위가 아니다.",
+    "new_annotations_or_measurements": "독립 A와 기존 반복이 없으면 추가 주석/반복 신경측정이 필요. 이미 있다고 가정하지 않음."
+  },
+  "debate_response": [
+    {
+      "proposal_id": "RP05",
+      "critic_role": "10_llm_semantics / 회의적비판자",
+      "critique_summary": "추가 신경 관측은 원 자극의 풍부한 proxy이므로 S 밖의 이득을 자극 밖 내부 정서 기전으로 해석할 수 없다.",
+      "response": "수용한다. 제목과 주장은 지정 S에 대한 독립 관측 문맥의 조건부 예측가치로 제한한다. 객체→관계→사건/맥락→유연한 raw stimulus 모형의 S 강화와 A/비정서 대비를 같이 보고한다. 같은 뇌에서 생성한 caption을 그 뇌 예측 입력으로 되넣지 않는다.",
+      "decision": "수용",
+      "remaining_disagreement": "유한 S 강화로 의미 완전성은 입증되지 않는다. 양성 결과도 내부 상태와 미모형화 자극을 구별하지 않는다.",
+      "source_file": "agents/10_llm_semantics/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP05",
+      "critic_role": "10_llm_semantics / 회의적비판자",
+      "critique_summary": "반복 입력의 추가 측정 비용, target 포함 여부, 동시 완성과 미래 예측의 차이를 선언해야 한다.",
+      "response": "수용한다. RP05-A는 test 자극에서 target 밖 N_a를 추가로 측정한 공간완성 계약이다. S-only와 같은 입력예산이라고 하지 않으며 동일 N을 쓰는 raw-context ridge를 따로 비교한다. target 자체의 다른 반복을 제공하는 것은 신뢰도 benchmark로 분리한다. RP05-B 과거→미래는 별도 관측 가지로 유지한다.",
+      "decision": "수용",
+      "remaining_disagreement": "A/B를 한 점수로 합치지 않는다. 독립 반복 존재 미확인으로 A의 신경 실증 착수는 보류한다.",
+      "source_file": "agents/10_llm_semantics/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP05",
+      "critic_role": "01_dataset / 데이터통계검토자",
+      "critique_summary": "전처리 전파로 context에 target이 섞일 수 있어 단순 masking 순서 기술만으로 target-free가 성립하지 않는다.",
+      "response": "수용한다. 원입력에서 target와 buffer를 변경해도 고정 전처리 경로의 context feature가 허용 수치오차 안에서 불변인지 직접 확인하는 게이트를 둔다. affine H를 명시할 수 있으면 context←target block이 0인지도 확인한다. 이미 비가역 혼합된 처리본밖에 없어 이를 입증할 수 없으면 독립 문맥 가설을 착수하지 않는다.",
+      "decision": "수용",
+      "remaining_disagreement": "유한 perturbation 검사는 일반 nonlinear 경로의 수학적 독립성 증명이 아니다. 구현 구조 감사와 함께 사용하고 검증 범위를 명시한다.",
+      "source_file": "agents/01_dataset/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP05",
+      "critic_role": "01_dataset / 데이터통계검토자",
+      "critique_summary": "반복 a/b가 실제 독립 측정인지, 적응·nuisance와 N 신뢰도 차이를 별도로 확인해야 한다.",
+      "response": "수용한다. 참가자·동일 원자극 hash·run/session·노출순서·측정일의 mapping을 요구한다. Horikawa 2,196개 고유 ID와 dupidx는 그 증거가 아니다. 같은 run 다른 자극뿐 아니라 A/내용/context 신뢰도 일치 다른 자극 N을 대조하며 Q·w·mask는 train에서 고정한다.",
+      "decision": "수용",
+      "remaining_disagreement": "반복 적응과 안정 nuisance는 완전히 제거되지 않을 수 있다. 음성 결과를 독립 문맥 정보 부재로 단정하지 않는다.",
+      "source_file": "agents/01_dataset/round05_debate.json"
+    }
+  ],
+  "read_files": [
+    "discussions/round_05/collected.json",
+    "agents/10_llm_semantics/round05_debate.json (RP05)",
+    "agents/01_dataset/round05_debate.json (RP05)",
+    "agents/08_systems_neuroscience/round05_debate.json (RP08)",
+    "agents/11_brain_inspired/round05_debate.json (RP08)",
+    "proposals/AUTHORING_PROTOCOL.md",
+    "pilots/AUTHORING_PROTOCOL.md",
+    "pilots/SELECTION.md",
+    "literature/novelty/TOP10_REVIEW.md",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "datasets/horikawa/verified_spec.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md"
+  ],
+  "completion_status": "상세 제안과 실제 비판 응답 작성 완료; 실증 착수 보류; 분석·checkpoint 실행 미완료"
+}

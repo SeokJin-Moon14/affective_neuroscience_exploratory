@@ -1,0 +1,266 @@
+# PILOT02. 동일 경계 접근에서 forgetting 좌표와 관측필터를 분리하는 첫 검정
+
+연결: [RP03](../proposals/RP03.md), RQ18.
+
+**준비 상태:** **plan complete:** True
+
+**execution ready:** False
+
+**data mounted verified:** False
+
+**model loaded:** False
+
+**brain analysis executed:** False
+
+**reason:** 문헌·실제 토론에 기반한 계획 완료다. 보유본 경로/숫자/품질·모델 load·핵심 복구 검증 전 실행 준비 또는 실험 완료로 표시하지 않는다.
+
+
+
+이 문서는 파일럿 실행 계획이다. 실험·모델 추론·뇌 분석 결과를 보고하는 문서가 아니다.
+
+## 1. 핵심·경쟁 가설
+
+**H1:** 제한된 동일정보 head family와 학습예산에서 explicit forgetting이 강한 boundary-input no-explicit head보다 고정 Fear 전이 신경대비의 손실을 δ 이상 줄인다.
+
+**H0 alternatives:** - boundary-aware continuous update/readout 또는 finite-window로 충분하다.
+- reset 노출·초기상태·유효HRF가 차이를 만든다.
+- 서로 다른 hidden state도 HRF 후 같은 관측을 낸다.
+
+**refutation:** 정밀한 동등성/연속모형 우위는 explicit 좌표의 필요성을 낮춘다. exact control 실패·모형복구 실패는 과학H0가 아니라 검정체계 실패다.
+
+
+
+## 2. 자료·접근·하위집합
+
+**owned:** Horikawa·Emo-FilM·Mind Captioning·NSD·Spacetop 보유는 사용자 진술. 본 계획 주자료는 Emo-FilM이며 실제 마운트 경로·배열은 미확인.
+
+**official sources:** - https://github.com/OpenNeuroDatasets/ds004892
+- https://github.com/OpenNeuroDatasets/ds004872
+- https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json
+
+**actual known:** 외부 consensus14영화/50열/1Hz, Fear high/low 정의 및 annotation StartTime=0, fMRI30명/주석44명은 기존 감사 범위다. 실제 TR·coverage·척도·반복은 아직 확인하지 않았다.
+
+**planned subset:** 단계A: QC로 선택한1영화의 warm-up 이후 유효120TR로 shape/timebase/exact-control만 확인. 단계B: valid onset·stimulus·Fear 존재를 기준으로 최대6영화×8참가자; 먼저 coverage가 넓은 영화, 동률이면 film ID, 참가자는 coverage 후 ID로 선정한다. Y–Fear 상관·모델 성능으로 선정하지 않는다. 관측된 participant×film 셀만 사용하고 없는 셀을 만들지 않는다.
+
+**minimum support:** 6영화 중 outer test1·inner validation1·train4의 구조가 불가능하면 단계A/합성복구까지만 수행한다. 참가자는 해당 fold train/dev/test가 실제 있는 경우만 포함한다. 검정력 부족은 더 큰 모델보다 데이터/관측계약 문제로 보고한다.
+
+**new manifest:** source_path/hash, subject/film/run, scanner_onset_s, TR_s, observed_modality, feature support, time_available_s, b_source/available_s, split를 검증해 만드는 분석계약이다. 실제 원컬럼처럼 가장하지 않는다.
+
+**repetition limit:** 동일영화 개인 내 독립반복은 현재 미확인이고 요구된 기본가정이 아니다. 원평정이 있을 때만 평정자분할 신뢰도. 개인 반복 noise ceiling과 참가자 간 일치는 구별한다.
+
+**audio:** 첫 시간검정은 실제 시각입력으로 가능하다. audio를 추가하려면 음원 존재와 스캐너 내 실제 청각 제시를 별도 확인하며 미제시 오디오는 배제한다. Speech Features는 제외.
+
+**privacy:** 원본·개인별 숫자자료·새 개인정보를 공개 백업에 업로드하지 않는다. 계획과 허용된 aggregate/코드만 결과물로 검토한다.
+
+
+
+## 3. 모델·체크포인트·자원
+
+**current:** 공통 보고서의 cgroup4CPU·32GiB, GPU load/추론 성공 미확인. 사용자 다른 장비 자원에 대한 단정은 하지 않는다.
+
+**cache first:** time_available과 추출 모델이 검증된 고정 feature cache가 있으면 먼저 사용한다. legacy full-clip feature는 retrospective로 분리한다.
+
+**checkpoint:** **name:** OpenAI CLIP ViT-B/32
+
+**canonical id:** P079
+
+**code url:** https://github.com/openai/CLIP/blob/main/clip/clip.py
+
+**weights url:** https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
+
+**sha256:** 40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af
+
+**license url:** https://github.com/openai/CLIP/blob/main/LICENSE
+
+**verified scope:** 공통 자원계획이 loader·공식 URL/해시·MIT 코드 LICENSE를 확인했다. 가중치 다운로드/load/추론·본 환경 peak 메모리는 미확인. 라이선스·원자극 사용조건은 실제 실행 전 재확인.
+
+**expected output:** 공식 구조상 ViT-B/32 image embedding 512차원을 예상하되 smoke test로 확인; state model이나 audio encoder가 아니다.
+
+**extraction:** 계획은 1Hz 시점 t의 현재 프레임 한 장→ViT-B/32 embedding. decoder/frame sampling이 t 이후 프레임을 고르지 않게 한다. 연속 prefix head가 시간정보를 담당한다. d_X=512를 예상하되 실제 smoke test shape로 계약을 고정한다.
+
+**heads:** train PCA≤32, state64 tanh RNN을 첫 신규 head로 구현할 계획이다. 같은 x_t,b_t로 next-feature MSE 학습; train epochs cap50, validation patience5, seeds[0,1,2]를 초기 제한으로 둔다. 모든 후보의 동일예산 검토 후 test 전 동결한다. h0/rho 선택은 inner split만. checkpoint는 새로 학습할 예정이며 현재 존재하지 않는다.
+
+**state readout separation:** state는 비정서 자극 예측만으로 학습하고 neural readout은 별도 inner fitting이다. next feature는 학습 target으로만 쓰고 test state input은 x_≤t다.
+
+**memory:** 가령 T=20,000 float32일 때512차원 feature≈39.06MiB,64차원 state≈4.88MiB. 원본·voxel·복사·autograd·model weights 제외다. actual peak를 단계A에서 측정한다. GPU VRAM·벽시계시간은 미확인.
+
+**expansion:** Mamba/PredNet/VideoPrism은 공식코드 근거만 있는 확장경로이며 첫파일럿에 필수 아니다. cache/작은head로 복구가 실패하면 대형모델로 자동확장하지 않는다.
+
+
+
+## 4. 입력·출력과 정렬
+
+**input arrays:** 영화별 시각 cache X_f[T_feat,512 예상], boundary b_f[T_feat,1], times/available[T_feat], participant-run BOLD Y_sfr[T_TR,P], Fear E_f[T_ann,1]. T_feat는1Hz 계획, T_TR는실제TR, P는보유공간/독립parcellation 확인 뒤 고정하며 숫자를 임의로 확정하지 않는다.
+
+**target:** **annotation:** Fear: high=Fearful, low=Not Fearful; 1초 consensus 포함은 공식 JSON/기존 사전에서 확인. 숫자 범위·개별 평정수·신뢰도는 미확인.
+
+**annotation source:** https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json
+
+**primary contrast:** 원숫자 확인 후 train mean/SD로 표준화한 Fear의 뒤쪽 3초 차분 d_A(t)=A(t)−A(t−3s)를 하나의 전이 방향으로 고정한다. 처음3초와 결측은 마스킹하며 50개 항목 중 test 최적 항목을 고르지 않는다. Fear가 상수/불량이면 이 파일럿을 축소하고 다른 라벨로 사후 교체하지 않는다.
+
+**neural:** 개별 참가자 outer-train에서만 공통 parcel 신호 Y_s와 고정 d_A를 이용해 ridge projection u_A,s를 적합한다. inner train에서 target 방향 적합, inner validation에서 규제·주석 lag 규칙을 정한 뒤 outer train 재적합, test에서는 고정한다. 모든 head에 같은 z_A,s=u_A,sᵀY_s와 train 표준화를 사용한다.
+
+**time contract:** d_A는 별도 평정 관측으로 모형 입력이 아니다. 평정 lag는 개발에서 정하고 stimulus/brain 시간으로 매핑한다. 그 사후 관측을 causal stimulus model의 입력에 넣지 않는다. HRF는 원물리시간의 feature/state에 적용한다.
+
+**validity:** held-out z_A와 외부 d_A의 관계를 별도로 확인하되 그 결과로 projection/라벨을 다시 고르지 않는다. 현재 동일 영화 개인 내 반복은 미확인이다. 반복 신뢰도·noise ceiling은 가정하지 않으며, 원평정이 있을 때만 평정자 split 신뢰도를 추정한다.
+
+**output arrays:** head H_mf[T_feat,64]→원시간 HRF/FIR→Zhat_m,sfr[T_TR,1]; 고정 Z_sfr[T_TR,1]와 paired loss[T_TR,1]. 전체Y 예측은 보조.
+
+**alignment:** film onset+실제 TR로 scanner time을 구성한다. annotation StartTime0은 film time이며 그대로 scanner time이 아니다. 주석 lag·HRF는 개발에서 별도 선택하고 모든head에 같은 target 규칙을 적용한다.
+
+**causal boundary:** 독립 prefix 경계 annotation/비정서 causal detector가 있으면 b를 사용한다. full-film 사후 boundary만 있으면 online branch는 착수하지 않고 retrospective로 분리한다. 단순 임베딩 변화 detector를 쓰는 fallback은 representation-change 경계 방법검정이며 인간 사건경계로 이름 바꾸지 않는다.
+
+**buffer:** feature 최대과거 support+HRF/FIR support+boundary 검출지연의 합으로 경계buffer를 계산한다. run초기화·인위적 clip 경계와 자연경계를 분리한다.
+
+
+
+## 5. 실험 순서
+
+- **step:** 1
+  
+  **action:** manifest/실제시계열 확인
+  
+  **output:** 읽기전용 local경로·hash·coverage·TR/onset·Fear 숫자/극성·제시모달리티·결측 기록. 원자료 미확인 필드를 추정으로 채우지 않음.
+- **step:** 2
+  
+  **action:** 작은120TR 계약·체크포인트 검사
+  
+  **output:** cache provenance 또는 CLIP 공식weight SHA256·1입력 finite/shape·peak 확인. 실패시 다운로드/모델 실행 성공을 보고하지 않음.
+- **step:** 3
+  
+  **action:** target와 split 고정
+  
+  **output:** Fear3초 차분·u_A/규칙·causal 경계available·6영화 outer schedule 및 inner tuning 계약. 원평정/반복 없음은 명시.
+- **step:** 4
+  
+  **action:** 비학습·선형 기준
+  
+  **output:** 현재프레임+경계 ridge/FIR, 단순 causal mean/finite-window/generic decay. 훈련 공통scale와 loss 확인.
+- **step:** 5
+  
+  **action:** exact functional audit
+  
+  **output:** 같은 theta/h0/rho의 explicit/absorbed 경로, state/예측 및 HRF후 출력 동등 확인. 차이나면 과학비교 중단.
+- **step:** 6
+  
+  **action:** HRF 이후 복구·거짓양성 calibration
+  
+  **output:** reset/연속/finitewindow 생성세계×boundary 지연[0,2,4]초×사전HRF family폭을 실제 자극구조·개발노이즈에 적용. 모든경쟁모형 nuisance 재적합. exact쌍과 실제구별쌍을 분리한 복구표.
+- **step:** 7
+  
+  **action:** 동일정보 모형 적합·고정
+  
+  **output:** state/readout 모두같은 b를 받는 제한된 head, explicit hard/soft, randomschedule·노출 통제. A/Y는state학습에 주지 않으며 test 최적모형을 고르지 않음.
+- **step:** 8
+  
+  **action:** 독립영화 평가
+  
+  **output:** primary paired risk·영화/참가자별효과·공통고정HRF 및 후보별재적합HRF·비정서/전체Y 보조결과. 예상결과를 실제성과처럼 쓰지 않음.
+- **step:** 9
+  
+  **action:** 결정과 재현성
+  
+  **output:** δ/CI·복구·timing게이트에 따라 확대/수정/중단. config·seed·hash·허용 aggregate를 저장하되 새 원자료/개인정보 공개업로드 금지.
+
+
+## 6. 평가·통계
+
+**loss and effect:** **primary:** 동일 test 행의 공통 표준화 z_A에서 d_i=(z_Ai−pred_boundary_input_no_explicit_i)^2−(z_Ai−pred_explicit_forgetting_i)^2. 참가자×영화 안에서 평균 후 영화에 동일 가중을 주는 D가 주효과다. 관측 수가 많은 영화가 결론을 지배하지 않게 한다.
+
+**secondary:** matched-random forgetting 대비 위치특이 손실차, 전체 Y 손실, 비정서 z_C 대비는 별도 보고. 같은 함수 exact control은 독립 모델 증거로 세지 않는다.
+
+**minimum effect:** 계획용 δ=0.01: train에서 분산1로 표준화한 z_A의 MSE를 0.01 줄이는 효과, 즉 train target variance 1%에 해당한다. 생리적 임계치나 알려진 임상효과가 아닌 사전 의사결정 해상도다. δ=0.005/0.02 민감도를 함께 고정한다. test 전 개발 신뢰도·복구로 이 해상도를 판정할 수 없으면 확증/동등성 판단을 보류한다.
+
+**decision:** 95% 계층 CI 하한>δ일 때만 효과 확대 근거로 삼고, 보수적으로 전체95% CI가 [−δ,+δ] 안에 있을 때만 실용 동등성이라 한다. 그 사이 또는 넓은 CI는 미결정이다. 실제6영화 파일럿은 정밀도/복구·계약 검증을 우선하며 p값으로 최종 기전을 결정하지 않는다.
+
+**split:** 6-film outer leave-one-film-out, 나머지5 중 ID 규칙으로1 inner validation·4 train. 개발-only 선택 후 outer5로 재적합 가능하나 사전 절차를 동일 적용. test 영화/인접구간은 어떤 학습에도 사용하지 않는다.
+
+**reliability:** raw ratings 존재시 평가자분할로 Fear전이 안정성을 추정; consensus만 있으면 lag/평활도오차 민감도를 보고0오차로 두지 않는다. 개인 반복 미확인으로 repeat noise ceiling을 만들지 않는다. 외부 d_A와 고정 z_A 관계가 성립하지 않으면 정서 해석중단.
+
+**uncertainty:** 참가자×영화 교차구조 재표집을 계획하며 영화별원효과와 leave-one-film 영향도를 함께보고한다. 적은영화에서 bootstrap 안정성·CI범위가 부족하면 최종동등성 판정 금지. 시간점 독립가정 금지.
+
+**multiplicity:** 주비교1개·Fear1개·u_A target1개. random위치·HRF민감도·비정서/ROI분석은 사전 부차family로 나누고 필요시 Holm보정. 여러 관측모형 중 유리한 결과만 제시하지 않는다.
+
+**recovery decisions:** 개발생성세계에서 exact통제 오검출은0이어야 하며 수치오차게이트를 통과해야 한다. 후보δ 신호의 검출·영효과의false positive를 최소200개의 개발seed 계획으로 추정하고95%이항구간까지 보고한다. 기준안은 검출률80%이상 및 false positive 5%목표이나 유한복구의CI가 넓으면 달성확정 대신 추가복구/범위축소한다. 이는 실제power 결과가 아니다.
+
+
+
+## 7. Ablation·대조
+
+**exact function:** **identity:** explicit: h_t=F_theta((1−rho_t)h_prev+rho_t*h0,x_t); absorbed: F_tilde_theta(h,x,b)=F_theta((1−rho(b))h+rho(b)*h0,x). 동일 theta,h0,rho,입력,seed와 readout이면 동일 함수다.
+
+**test:** 학습 없는 동일 가중치 복사와 고정 test 입력에서 state·출력·HRF 후 예측을 비교한다. float32 기준 atol=1e−5,rtol=1e−4를 계획값으로 두고 정규화된 출력이 이를 넘으면 구현/수치 문제를 먼저 해결한다.
+
+**interpretation:** exact control은 기전 검증이 아니라 구현 감사다. 통과하면 하나의 관측 동치류로 묶고, 이 둘의 신경 점수 차이는 과학결과로 쓰지 않는다. 제한된 별도 학습 no-explicit-reset 함수족과의 차이는 parameterization/최적화/자료효율을 포함한 유한예산 효용이다.
+
+**same information:** 주비교의 모든 모형에 state update와 readout 양쪽으로 x_t, b_t, 같은 초기 시점을 제공한다. readout-only 2×2는 보조 ablation이며 모형 전체의 경계정보 유무로 명명하지 않는다.
+
+**reference matching:** 공통 비개입 reference의 사전 norm/age, 이미 도착한 과거 오차, 컷·음향 onset, duration·경계밀도로 random 위치를 맞춘다. treatment 이후 state와 test Fear/Y를 사용하지 않는다.
+
+**observation:** 단일 고정 HRF 결과와 동일 family 안에서 각 후보의 train nuisance를 최적화한 결과를 모두 보존한다. zero-phase 필터·미래 caption·미래 clip 특징은 causal 모형에서 금지한다.
+
+**function budget:** 같은 state 폭·학습목적·자료·seed·탐색 예산을 적용하고 train-fit h0·soft rho·reset exposure를 표로 남긴다. exact 동치류는 한 모형으로 집계한다.
+
+**sensory semantic:** 현재 장면·motion·cuts·비정서 사건 의미·경계밀도와 유한창 기준을 비교한다. audio를 포함하면 실제 제시된 음악·환경음만 사용한다.
+
+
+
+## 8. 확대·수정·중단 기준
+
+- **gate:** 계약
+  
+  **expand:** 실제 timebase·target·feature available time·presentation 확인
+  
+  **revise:** 오디오 미확인 시 시각만의 시간검정; 사후 경계는 별도 retrospective 분석
+  
+  **stop:** 연속 BOLD 또는 Fear 원숫자 정렬이 없으면 해당 신경검정 중단
+- **gate:** 함수 동등성
+  
+  **expand:** exact control의 수치 동등성 확인
+  
+  **revise:** readout·수치·구현 차이의 원인 수정
+  
+  **stop:** 동등 통제의 불일치를 해결하기 전 과학 비교 금지
+- **gate:** 관측 후 복구
+  
+  **expand:** δ 규모의 구별 가능한 모형쌍과 영효과 calibration을 충분한 정밀도로 확인
+  
+  **revise:** 구별 불가능한 모형은 동치류로 묶거나 정서 시간 해석을 축소
+  
+  **stop:** 모든 기전이 HRF 후 구별 불가능하면 큰 모델 확장 중단
+- **gate:** 실자료
+  
+  **expand:** D의 95% CI 하한>δ이며 영화별 방향이 견고하고 고정 정서 대비가 검증되면 전체 가용 영화로 확대
+  
+  **revise:** 전체 Y만 개선되면 일반 경계모형; HRF 재적합 후 소멸하면 관측필터 설명
+  
+  **stop:** 95% CI 전체가 ±δ 안이면 explicit 좌표의 우선성을 낮춤. 넓은 CI는 기각이 아닌 미결정
+
+
+## 9. 실패 가능성과 주장 한계
+
+- exact 흡수 함수가 존재하므로 전체 함수족에서 신경 forgetting 기전의 고유 필요성을 증명할 수 없다.
+- 별도 코호트의 Fear consensus는 개별 fMRI 참가자의 연속 정답이 아니다.
+- 독립 반복이 확인되지 않은 자료의 개인 내 신뢰도·noise ceiling을 확정하지 않는다.
+- 모델 내부 reset·audio 제거는 인간 기억 삭제·모달리티 차단 실험이 아니다.
+- Spacetop 사후 clip 평정·NSD 정적 시행으로 연속 Fear 전이 정답을 만들지 않는다.
+- 6영화 파일럿의 CI·복구 추정 불안정은 계획 수정 또는 자료 확대의 조건이다.
+- 신규성은 P066 직접 비교 및 제한적 코퍼스 역검색 범위다. 외부 CONNECT403 때문에 전면 확인하지 못했다.
+
+
+## 근거
+
+- [P002 Emo-FilM: A multimodal dataset for affective neuroscience using naturalistic stimuli](https://raw.githubusercontent.com/OpenNeuroDatasets/ds004892/cdf68fe448ad180a476fa2371473a1a6ed063774/dataset_description.json)
+- [P066 Discovering event structure in continuous narrative perception and memory](https://github.com/brainiak/brainiak/blob/master/src/brainiak/eventseg/event.py)
+- [P089 Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning](https://github.com/coxlab/prednet)
+- [P034 Mamba: Linear-Time Sequence Modeling with Selective State Spaces](https://github.com/state-spaces/mamba)
+- [P044 VideoPrism: A Foundational Visual Encoder for Video Understanding](https://github.com/google-deepmind/videoprism)
+- [P079 Learning Transferable Visual Models From Natural Language Supervision](https://raw.githubusercontent.com/mlresearch/v139/gh-pages/radford21a/radford21a.pdf)
+- [P100 Statistical inference on representational geometries](https://elifesciences.org/articles/82566)
+- [P101 Representational models: A common framework for understanding encoding, pattern-component, and representational-similarity analysis](https://github.com/rsagroup/rsaModelComparison)
+- https://github.com/openai/CLIP/blob/main/clip/clip.py
+- https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
+- https://github.com/openai/CLIP/blob/main/LICENSE
+- https://raw.githubusercontent.com/OpenNeuroDatasets/ds004872/e9b1bf0b05975f7815f2924da16e3ff37111739e/sub-bird/beh/sub-bird_task-AfterTheRain_recording-Fear_stim.json
+
+작성 원본: [05_multimodal_dynamics](../agents/05_multimodal_dynamics/pilot_PILOT02.json). [공통 자원·모델 근거](RESOURCE_AND_MODEL_PLAN.md).

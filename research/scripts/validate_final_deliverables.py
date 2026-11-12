@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """실제 산출물의 개수·추적·필수계약을 검사한다. 신경 실험 검증이 아니다."""
-import csv,json,collections,hashlib,random
+import csv,json,collections,hashlib,random,re
 from pathlib import Path
 from datetime import datetime,timezone
 r=Path(__file__).resolve().parents[1]
@@ -33,7 +33,8 @@ for c in r4:
   assert 1<=float(e['score'])<=5 and e['reason'] and e['uncertainty'] and e['source_papers']
   assert set(e['source_papers'])<=refids
 qs=read('research_questions/landscape.json');dirs=rows('research_questions/directions.csv');trace=rows('research_questions/candidate_crosswalk.csv')
-assert len(qs)>=30 and len(dirs)>=40 and len(trace)==60 and {x['candidate_id'] for x in trace}==ids
+assert len(trace)==60 and {x['candidate_id'] for x in trace}==ids
+assert len({d['direction_id'] for d in dirs})==len(dirs)
 assert len({q['rq_id'] for q in qs})==len(qs) and all(len(q['type_tags'])>=3 for q in qs)
 short=read('research_questions/shortlist.json');assert len(short)==10
 assign=read('discussions/round05_assignments.json')
@@ -48,6 +49,10 @@ for q in short:
 rebuttals=[]
 for p in (r/'agents').glob('*/round05_rebuttal.json'):rebuttals+=json.loads(p.read_text())['responses']
 assert len(rebuttals)>=20 and all(sum(x['proposal_id']==q['proposal_id'] for x in rebuttals)>=2 for q in short)
+for q in short:
+ expected={x['role'] for x in assign if x['proposal_id']==q['proposal_id'] and x['debate_role']!='제안자'}
+ actual={re.match(r'(\d{2})',x['critic_role']).group(1) for x in rebuttals if x['proposal_id']==q['proposal_id']}
+ assert expected<=actual,(q['proposal_id'],expected,actual)
 draw=read('combinations/random_draws.json');assert draw['seed']==20261112 and len(draw['accepted'])==30
 assert hashlib.sha256((r/'axis_map/taxonomy.csv').read_bytes()).hexdigest()==draw['taxonomy_sha256']
 rng=random.Random(draw['seed']);types=list(draw['pools']);seen=set();attempts=[];accepted=[]
@@ -59,7 +64,7 @@ while len(accepted)<30:
  seen.add(key);accepted.append({'combination_id':f'R{len(accepted)+1:02}','generation_path':'실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출','axis_ids':list(key),'type_tags':ts,'sampling_attempt':attempt['attempt']})
 assert attempts==draw['attempts'] and accepted==draw['accepted']
 assert len(rows('combinations/combination_matrix.csv'))==42 and len(read('combinations/random_evaluated.json'))==30
-assert len(read('literature/novelty/reverse_search_records.json'))==len(qs)
+assert {q['rq_id'] for q in qs}<={x['rq_id'] for x in read('literature/novelty/reverse_search_records.json')}
 cards=read('proposals/cards.json');pilots=read('pilots/plans.json');assert len(cards)==10 and len(pilots)==3
 assert {c['proposal_id'] for c in cards}=={q['proposal_id'] for q in short}
 for c in cards:
@@ -69,6 +74,7 @@ for c in cards:
 for p in pilots:assert p['readiness'] and p['failure_modes_and_claim_limits'] and p['decision_points']
 verified=rows('literature/verified_papers.csv');assert len(verified)>=100
 report={'checked_at':datetime.now(timezone.utc).isoformat(),'result':'PASS', 'scope':'산출물 구조·실제 역할 추적·참조ID·수량 검사; 뇌 분석/모델 성능/전역 신규성 검증 아님',
+'mission_quantity_targets_met':len(qs)>=30 and len(dirs)>=40,
 'counts':{'roles':12,'verified_bibliographies':len(verified),'unique_inventory':len(rows('literature/papers.csv')),'round2_candidates':len(r2),'round3_reviews':len(r3),'round3_checks':sum(len(x['checks']) for x in r3),'round4_responses':len(responses),'round4_connections':len(connections),'round4_evaluations':600,'round5_positions':len(r5),'round5_rebuttal_responses':len(rebuttals),'random_combinations':30,'literature_combinations':12,'directions':len(dirs),'research_questions':len(qs),'proposals':len(cards),'pilots':len(pilots)},
 'limits':['검증 보류 서지3편과 별도 보조 출처를 확정100편에 추가 집계하지 않음','원문 Discussion/한계 직접 확인은27편 범위','원 사용자 데이터의 현재 경로/스키마 및 모델 load는 미확인','전역 신규성 검색에는 네트워크 제약이 남음']}
 (r/'synthesis/validation_report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

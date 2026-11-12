@@ -554,7 +554,7 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C03-05: 과학RQ후보; C10-02: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
-    "round05_condition": "고정 A·같은 proper loss·paired test에서 D=b(S)+Σf_r(X_r,S), N은 교차영역 항을 더한 함수족으로 명시한다. 관계/비관계 설명의 조건부 예측력 matching은 개발자료에서만 한다. δ는 정보분해나 신경영역 결합의 인과량이 아니다.",
+    "round05_condition": "고정 A·같은 proper loss·paired test에서 D=b(S)+Σf_r(X_r,S), N은 교차영역 항을 더한 함수족으로 명시한다. 관계/비관계 설명의 조건부 예측력 matching은 개발자료에서만 한다. δ는 정보분해나 신경영역 결합의 인과량이 아니다. 최종 감사 반영: 감소/부분 대체에는 g(O)의 충분한 기준 이득, r_R=g(O)-g(O+R)의 실제 의미 있는 감소, δ=g(O+B)-g(O+R)의 비교우위를 공동 신뢰하한으로 요구한다. δ만 양수이면 차등 변조이며 감소 증거가 아니다.",
     "round05_rejected_claim": "영역 비가산 예측=실제 영역 간 결합, 관계 설명 추가=정서 기전 식별",
     "round4_original_fields": {},
     "proposal_id": "RP02",

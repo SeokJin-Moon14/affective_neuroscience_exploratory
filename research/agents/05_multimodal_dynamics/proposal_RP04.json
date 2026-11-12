@@ -1,0 +1,226 @@
+{
+  "proposal_id": "RP04",
+  "rq_id": "RQ16",
+  "title": "사전 지정 공유 병목·판독 범위에서 모달리티 잔차의 정서 예측 증분",
+  "core_question": "같은 실제 시청각 입력에서 사전 지정 shared rank·readout 함수족·학습량을 넓혀도 operational residual이 독립 정서 신경 대비를 추가 예측하는가?",
+  "scientific_motivation": "공통 embedding의 성공을 뇌 설명의 충분성으로 바꾸는 가정을 검정한다. 추가 경로가 단순 압축/판독 난도를 회복하는지, 시험한 공통표현의 범위 밖 정보에 접근해야 하는지를 구분한다.",
+  "idea_provenance": {
+    "origin": [
+      "Agent05 C05-01",
+      "Agent11 gate/content 분리: gate는 현재 고정",
+      "Agent01 내용 중복·주석 provenance",
+      "UC05-01 분해 식별/좌표불변성"
+    ],
+    "actual_round5": [
+      "06_frontier_ai 회의적비판자",
+      "04_brain_foundation 데이터통계검토자"
+    ],
+    "changes": "같은 함수족·학습량·가역 대조, 잔차 비독립성, 실제 음향 제시, 선택성의 별도 검정을 반영했다."
+  },
+  "prior_literature": [
+    {
+      "paper_id": "P037",
+      "contribution": "shared/private task 정보 보존을 비교할 직접적인 AI 선행.",
+      "limitation": "운영적 분해의 잔차는 통계 독립·생물학적 고유정보가 아니다.",
+      "access_scope": "E1(공식코드·README 범위);논문본문 미검증;신경전이는E3; full_text_access=아니오: 논문 본문 미접근; 공식 코드·문서만 직접확인",
+      "official_url": "https://github.com/pliang279/FactorCL"
+    },
+    {
+      "paper_id": "P038",
+      "contribution": "멀티모달 bottleneck 용량을 조절하는 직접 선행 구조.",
+      "limitation": "fusion 성능 향상 자체는 정서 신경 대비의 충분성을 말하지 않는다.",
+      "access_scope": "E1(공식코드·README 범위);논문본문 미검증;신경전이는E3; full_text_access=아니오: 논문 본문 미접근; 공식 코드·문서만 직접확인",
+      "official_url": "https://github.com/google-research/scenic/tree/main/scenic/projects/mbt"
+    },
+    {
+      "paper_id": "P035",
+      "contribution": "공통 multimodal embedding을 shared 기준으로 검토할 구현.",
+      "limitation": "공통 출력이 FactorCL private branch는 아니며 공개 링크와 실행 성공은 다르다.",
+      "access_scope": "E1(공식코드·README 범위);논문본문 미검증;신경전이는E3; full_text_access=아니오: 논문 본문 미접근; 공식 코드·문서만 직접확인",
+      "official_url": "https://github.com/facebookresearch/ImageBind"
+    },
+    {
+      "paper_id": "P053",
+      "contribution": "분해 비유일성과 부가 가정의 필요성을 규정.",
+      "limitation": "뇌에 특정 private factor가 없다는 결과가 아니다.",
+      "access_scope": "E1(본문); 정서·뇌 전이는 E3; full_text_access=예; 공식 PDF 직접 열람",
+      "official_url": "https://proceedings.mlr.press/v97/locatello19a.html"
+    },
+    {
+      "paper_id": "P051",
+      "contribution": "좌표 변화와 표현비교의 적절한 불변성 대조.",
+      "limitation": "단순 회전 통과만으로 정보론적 충분성은 증명되지 않는다.",
+      "access_scope": "E1(본문); 정서·뇌 전이는 E3; full_text_access=예; 공식 PDF 직접 열람",
+      "official_url": "https://proceedings.mlr.press/v97/kornblith19a.html"
+    },
+    {
+      "paper_id": "P001",
+      "contribution": "Horikawa의 정서 관련 신경표상·자극 데이터 배경.",
+      "limitation": "서지/공식 metadata 근거이며 실제 audio replay·숫자 annotation은 보유본에서 확인해야 한다.",
+      "access_scope": "E2; full_text_access=아니오; 프록시 403",
+      "official_url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json"
+    },
+    {
+      "paper_id": "P100",
+      "contribution": "참가자/자극 일반화와 표현 통계 불확실성의 근거.",
+      "limitation": "본 소규모 영화 표본의 검정력을 대신 보장하지 않는다.",
+      "access_scope": "E1; full_text_access=예: 공식 XML 저장·본문 검토",
+      "official_url": "https://elifesciences.org/articles/82566"
+    },
+    {
+      "paper_id": "P101",
+      "contribution": "표현모형과 encoding 관측 비교의 틀.",
+      "limitation": "기존 검증은 공식 코드 범위이며 단일 신경기전 식별 정리는 아니다.",
+      "access_scope": "E1; full_text_access=아니오",
+      "official_url": "https://github.com/rsagroup/rsaModelComparison"
+    }
+  ],
+  "closest_prior_and_novelty": {
+    "closest": "P037 shared/private 학습과 P038 bottleneck이 가장 가까운 AI 선행; P035는 공통표현 기준이다.",
+    "difference": "같은 실제 자극·같은 정서 신경 target에서 k×readout×학습량과 전체 원정보 접근을 교차하고 가역 판독 회복 및 비정서 대비로 대안을 제한한다.",
+    "overlap": "추가 특징의 예측 이득·일반 압축손실은 이미 알려진 문제다. biological private 경로의 발견은 제안하지 않는다.",
+    "search_limit": "TOP10_REVIEW와 기존 문헌 역대조 범위. Crossref CONNECT403 때문에 최신 직접 정서 신경 비교의 중복은 미확정."
+  },
+  "dataset_and_metadata": {
+    "primary": "Horikawa 참가자×시행/내용군의 뇌반응과 실측 정서주석을 우선 검토하되 실제 scanner 내 AV 재생이 확인될 때만 시청각 질문을 적용한다.",
+    "verified_fields": "공식 events onset,duration,trial_type,stimulus_name,stim_index 확인. Session,Run,Block,Label,VoxelData는 원코드 계약이며 실제 HDF5 확인과 다르다. 2,196 이벤트·내용 중복·2,185/2,181 차이는 mapping 전 임의 수정하지 않는다.",
+    "analysis_contract_fields": [
+      "presentation_modality_verified",
+      "audio_source_and_hash",
+      "stimulus_to_feature_map",
+      "content_group",
+      "annotation_source",
+      "target_definition",
+      "split",
+      "feature_learning_supervision"
+    ],
+    "fallback": "오디오가 미제시/미확인이면 Horikawa 시청각 분기를 중단하고 실제 동시 재생이 확인된 Emo-FilM으로 전환한다. Spacetop은 clip 단위, NSD는 시각 대조, Mind Captioning은 식별 확인 후 보조만.",
+    "repetitions": "개인 내 독립 반복·주석 숫자 신뢰도는 현재 미확인. 내용 중복이나 다른 참가자 동일자극을 개인 반복으로 부르지 않는다.",
+    "sources": [
+      "https://github.com/OpenNeuroDatasets/ds002425",
+      "https://github.com/KamitaniLab/EmotionVideoNeuralRepresentation",
+      "https://github.com/OpenNeuroDatasets/ds004892"
+    ]
+  },
+  "computational_framework": {
+    "inputs": "동일 실제 제시 자극의 frozen V,A; A는 여기서 audio 특징이며 정서주석은 별도 E로 명명해 변수 혼동을 피한다.",
+    "shared": "train-only 두-view 투영의 shared score S_k와 R_k=X−g_train(S_k), X=[V,A]. k는 가능한 rank에서 사전3수준, ridge 및 제한 nonlinear family를 모든 표현조건에 동일 적용한다.",
+    "residual_limit": "R_k는 g_train에 대한 잔차로 독립정보·PID private가 아니다. X=g(S)+R이면 S+R과 full X는 같은 정보 접근의 재표현 대조다.",
+    "sharedness": "k별 held-out cross-modal predictability·correspondence와 비정서 사건 probe를 보고한다. 큰 k에서 raw private 정보가 섞이면 이를 공유정보 충분성 증거로 쓰지 않는다.",
+    "supervision": "FactorCL의 실제 target·output 확인 전 비지도라 가정하지 않는다. E/Y 감독이면 분해 전체를 outer train에 넣는다. 첫 경로는 cache+train-only 투영이다.",
+    "checkpoints": "CLIP ViT-B/32 시각 기준은 공통계획의 공식 URL/해시만 확인, load 미실행. audio 대신 사용할 수 없다. ImageBind imagebind_huge 1024차원/기본2frame 문서 확인은 있으나 실제 가중치·sampling·라이선스·audio smoke test는 조건부다.",
+    "official_model_links": [
+      "https://github.com/facebookresearch/ImageBind",
+      "https://github.com/pliang279/FactorCL"
+    ],
+    "training": "각 family에서 같은 inner split·규제grid·초기화·early stop·학습량 곡선을 쓰고 입력차원·effective df를 기록한다. 동일 파라미터수와 동일 함수족을 동일시하지 않는다."
+  },
+  "neural_target": {
+    "primary": "훈련자료만으로 한 외부 정서 대비 E와 projection u_E를 정한 z_E=u_EᵀY. test E/BOLD로 축을 다시 고르지 않고 모든 표현조건에 같은 target을 쓴다. 실제 라벨명/척도 확인 전 Horikawa category 숫자를 심리구인으로 가정하지 않는다.",
+    "control": "같은 자극·참가자의 비정서 사건/감각 대비 z_C를 별도로 고정하고 신뢰도/난도를 평가한다. 선택성 비교가 불가능하면 정서 관련 대비의 일반 압축손실로만 보고한다."
+  },
+  "proposed_analyses": {
+    "primary": "D_k,E=mean[(z_E−pred_Sk)^2−(z_E−pred_Sk+Rk)^2]를 공통 train 단위와 동일 held-out 표본에서 구한다. shared/full X/가역재표현·rank 절단에 같은 family를 적용한다.",
+    "sensitivity": "소수 k×선형/제한 nonlinear×학습량 곡선, 동일정보 가역변환·known shared-only/known residual 신호 주입을 비교한다. residual 독립 shuffle은 조건부 의존을 파괴하므로 유일한 null로 사용하지 않는다.",
+    "selectivity": "공통 train 표준화 뒤 D_k,E−D_k,C를 같은 참가자·자극에서 별도 검정한다. 신뢰도·난도 차이는 보고하고 선택성이 없으면 특수성 주장을 하지 않는다.",
+    "split": "내용 중복/family 전체 묶음과 participant 조건을 명시한다. 영화는 whole-film outer split. u_E·target scale·k·분해·readout·HRF는 nested fit.",
+    "inference": "paired loss의 내용군/영화·참가자 의존성을 유지한다. Horikawa5명의 양측 exact subject sign-flip은 최소2/32=0.0625이므로 p<0.05를 약속하지 않는다. 참가자별 효과와 자극 모집단 조건부 추론을 분리한다.",
+    "precision": "δ=0.01 train-standardized target MSE를 초기 의사결정 해상도로 제안하고 개발 신뢰도·주입복구를 통과한 범위에서만 사용한다. 작은 D_k의 넓은CI는 충분성 증거가 아니다. k/ROI/E family를 작게 사전 고정하고 다중비교한다."
+  },
+  "competing_explanations": [
+    "shared bottleneck·선형 readout·작은 자료량이 사건의미를 읽지 못했을 뿐이다.",
+    "잔차가 새 정보가 아니라 같은 정보를 쉬운 좌표로 바꿔 제공한다.",
+    "오디오 미제시·감각 SNR·정합 오류·test supervised feature 학습이 효과를 만든다.",
+    "큰 k 포화는 보편 공유표현의 충분성이 아니라 regularization/최적화 한계다."
+  ],
+  "falsifiable_outcomes": {
+    "positive": "가역/절단 복구·동일family·학습량·내용대조 후 D_k,E>δ가 반복되면 시험한 shared family가 해당 신경 대비를 충분히 읽지 못한다는 근거다.",
+    "negative": "shared nonlinear/학습량 확대 후 정밀한 D_k,E 동등성이면 operational residual의 실용 필요성을 낮춘다. full X도 실패하면 shared 충분성을 지지하지 않는다.",
+    "mixed": "정서·비정서 대비에서 같은 이득이면 일반 압축손실. 일부 k/seed만 이기면 분해 의존 결과. 시각만 제시된 데이터 효과는 시청각 신경 결론에서 제외.",
+    "inconclusive": "숫자신뢰도·AV 제시·공유성 기준·검정력 미충족이면 보류이며 private 정보 부재가 아니다."
+  },
+  "scientific_and_modeling_contribution": {
+    "neural": "정서 관련 신경 대비가 어떤 공통 감각표현 범위에서 읽히는지 제한한다.",
+    "modeling": "source access·shared rank·판독 family·학습량을 분리한 조건부 충분성 평가를 제공한다."
+  },
+  "limitations_and_risks": [
+    "유한 모형의 예측 증분은 Shannon 정보·통계 독립·신경 고유 통로를 식별하지 않는다.",
+    "미제시 음원을 계산에 넣어도 인간이 음향을 처리했다는 결과가 아니다.",
+    "참가자5명·반복 미확인에서 모집단/동등성 추론이 제한된다.",
+    "표현 전체의 의미 누락과 정서 관련 정보의 공유분을 완전히 분리할 수 없다.",
+    "최신 직접 선행 역검색과 가중치실행은 미완료다."
+  ],
+  "smallest_informative_pilot": {
+    "selected_formal_pilot": false,
+    "subset": "cache/API 계약은1개 실제 AV clip로 확인; 비교 feasibility는 재생확인된 내용군30–60개와 최소2명의 유효 시행으로 시작한다. 이 크기는 최종 정서 충분성/참가자 모집단 검정이 아니다.",
+    "sequence": "AV제시/ID QC → 동일함수·가역/절단 복구 →3개k×잔차유무·full정보 readout →학습량·paired손실 정밀도",
+    "decision": "AV미제시/target실패는 해당분기 중단. 단순readout 회복이면 접근성 방법 결과. 충분한 cluster/정밀도 전 확증은 하지 않는다."
+  },
+  "priority": {
+    "scientific_potential": "높음: modality-invariant 설명의 범위를 제한한다.",
+    "originality": "중간·잠정: shared/private·병목은 직접 선행이 있다.",
+    "near_term_feasibility": "cache가 있으면 중간 이상, 실제 AV제시/audio모형 미확인이 핵심 조건.",
+    "overall": "Top10 조건부 유지; 선정된 첫3파일럿에는 포함하지 않는다.",
+    "new_annotation": "독립 정서/사건 주석·신뢰도 자료 보강이 필요할 수 있다.",
+    "new_brain_measurement": "기존 실제 AV자료의 관찰 충분성 검정에는 필수 아님. 모달리티 제거/통합의 인과를 주장하려면 새 제시·새BOLD가 필요하다."
+  },
+  "debate_response": [
+    {
+      "proposal_id": "RP04",
+      "critic_role": "06_frontier_ai",
+      "critique_summary": "큰 k의 잔차 이득은 유한 shared/readout family의 한계이며 잔차는 독립 또는 biological private 정보가 아니다.",
+      "response": "카드 제목에 사전 지정 병목·판독 범위를 명시했다. R_k=X−g_train(S_k)는 해당 predictor의 operational residual이며 통계 독립을 뜻하지 않는다. S_k+R_k가 원정보의 가역 재표현인 설정은 full X와 같은 정보 접근 대조로 표기한다. 모든 조건에 같은 ridge/제한 nonlinear family·탐색·seed·학습량 곡선을 적용한다.",
+      "decision": "수용",
+      "remaining_disagreement": "유한 k와 자료량에서 shared 표현이 충분히 강하다는 보편 기준은 없다. 결과는 명시한 family의 예측 충분성으로만 보고한다.",
+      "source_file": "agents/06_frontier_ai/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP04",
+      "critic_role": "06_frontier_ai",
+      "critique_summary": "정서 특수성은 같은 자극의 신뢰도·난도를 맞춘 비정서 대비와 비교해야 한다. 좌표 난도와 정보 절단을 구분해야 한다.",
+      "response": "동일 자극·참가자에서 z_A와 사전 정의 z_C의 D_k를 공통 train 표준화로 비교하는 선택성 검정을 부차 분기로 추가한다. 이것이 없거나 효과가 동등하면 정서 관련 대비에서도 나타나는 일반 압축/접근성 결과라고 명명한다. 알려진 가역변환·rank 절단 신호주입과 학습량 회복을 먼저 검사한다.",
+      "decision": "수용",
+      "remaining_disagreement": "z_A와 z_C의 측정 신뢰도·난도가 완전히 같다고 보장할 수 없다. 정서 선택성은 추가 조건을 통과한 범위에서만 쓴다.",
+      "source_file": "agents/06_frontier_ai/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP04",
+      "critic_role": "04_brain_foundation",
+      "critique_summary": "파일의 오디오와 실제 스캐너 내 오디오 재생을 구분하고 독립 대비·내용군·FactorCL 감독 경로를 확인해야 한다.",
+      "response": "실제 presentation 로그/공식 프로토콜과 원음원 매핑을 착수 계약에 둔다. Horikawa 재생이 확인되지 않으면 해당 시청각 분기를 실행하지 않고 재생조건이 확인된 Emo-FilM으로 전환한다. u_A·분해·readout·표준화는 모두 outer train 안에서 적합하고 독립 test A/BOLD로 재선택하지 않는다. FactorCL 감독이 미확인일 때는 frozen cache+train-only 투영으로 좁힌다.",
+      "decision": "수용",
+      "remaining_disagreement": "현재 실제 보유본의 AV 재생·숫자주석·체크포인트 load는 확인되지 않았다. 데이터 보유와 실행 준비를 구분한다.",
+      "source_file": "agents/04_brain_foundation/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP04",
+      "critic_role": "04_brain_foundation",
+      "critique_summary": "이벤트 수와 독립 표본수를 구분하고 반복을 가정하지 않아야 한다. Horikawa 5명 exact 양측 sign-flip은 최소 p=0.0625다.",
+      "response": "내용 중복은 같은 fold에 묶고 2,196행을 독립 자극 수로 세지 않는다. 개인 내 반복은 현재 미확인이라고 명시했다. 5명만의 모든 부호반전 32개에서 양측 최소 p=2/32임을 카드에 기록하고 p<0.05 보장을 제거한다. 참가자별 효과와 내용군 조건부 불확실성을 병기하며 정밀도 부족은 충분성 입증이 아니다.",
+      "decision": "수용",
+      "remaining_disagreement": "새 참가자 모집단 추론은 5명 표본으로 제한된다. 자극 수·voxel 수 증가는 참가자 수를 대체하지 않는다.",
+      "source_file": "agents/04_brain_foundation/round05_debate.json"
+    }
+  ],
+  "author_role": "05_multimodal_dynamics",
+  "verified_on": "2026-11-12",
+  "claim_status": "문헌 기반 상세 계획; 실제 분석·모델실행·신규성 확정 아님",
+  "readiness": {
+    "plan_complete": true,
+    "execution_ready": false,
+    "data_mounted_verified": false,
+    "model_loaded": false,
+    "brain_analysis_executed": false,
+    "reason": "문헌·실제 토론에 기반한 계획 완료다. 보유본 경로/숫자/품질·모델 load·핵심 복구 검증 전 실행 준비 또는 실험 완료로 표시하지 않는다."
+  },
+  "read_files": [
+    "discussions/round_05/collected.json",
+    "proposals/AUTHORING_PROTOCOL.md",
+    "pilots/AUTHORING_PROTOCOL.md",
+    "pilots/SELECTION.md",
+    "literature/novelty/TOP10_REVIEW.md",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md",
+    "datasets/emofilm/annotation_dictionary.csv"
+  ]
+}

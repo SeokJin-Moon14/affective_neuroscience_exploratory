@@ -1,0 +1,136 @@
+{
+  "role": "03_vision_decoding",
+  "audit_round": 1,
+  "read_files": [
+    "agents/01_dataset/final_pilot_audit_round1.json",
+    "agents/01_dataset/final_pilot_audit_round1.md",
+    "agents/03_vision_decoding/proposal_RP01.json",
+    "agents/03_vision_decoding/pilot_PILOT01.json"
+  ],
+  "responses": [
+    {
+      "audit_id": "FPA1-01-01",
+      "decision": "수용",
+      "critique": "가설은 I>δ 방향으로 적혔지만 통계 계약은 양측이며 G4는 I>δ 또는 I<−δ에서 확대한다. 또한 D_A,D_C가 둘 다 악화되면 일반손상으로 축소한다는 규칙은 크기가 다른 동방향 악화에서 I가 충분히 큰 경우와 충돌한다.",
+      "change": "수용. 일차 H1=|I|>δ_I로 명시하고 부호별 해석을 나눴다. 공통 상대 손상과 차등 접근성은 배타적이지 않으며, 둘다악화+큰|I|는 혼합으로 기록한다. 같은부호만으로 일반손상 판정하지 않는다.",
+      "modified_locations": [
+        "proposal:/proposed_analyses/statistics/primary_estimand",
+        "proposal:/proposed_analyses/statistics/outcome_partition",
+        "proposal:/falsifiable_outcomes",
+        "pilot:/hypotheses",
+        "pilot:/evaluation/statistics/primary_estimand",
+        "pilot:/evaluation/statistics/outcome_partition",
+        "proposal:/smallest_informative_pilot/decision_points/G4–G5",
+        "pilot:/decision_points/G4–G5"
+      ],
+      "remaining_conditions": "실제 D_A,D_C,I와 불확실성은 미계산이며 양측 차등성/동등성의 실증 판정은 남는다."
+    },
+    {
+      "audit_id": "FPA1-01-02",
+      "decision": "수용",
+      "critique": "δ=0.02 nats의 exp(δ)≈1.0202를 하나의 정답확률 기하평균 비로 설명하지만 일차 추정량 I는 두 손실 차이의 차이다.",
+      "change": "수용. exp(D_t)의 기하평균 확률비와 exp(I)의 비의비를 구분했다. δ_I와 원뇌 gate의 δ_signal을 별도 기획 임계로 정의했다.",
+      "modified_locations": [
+        "proposal:/proposed_analyses/statistics/effect_threshold",
+        "pilot:/evaluation/statistics/effect_threshold",
+        "proposal:/smallest_informative_pilot/decision_points/G1/G3",
+        "pilot:/decision_points/G1/G3"
+      ],
+      "remaining_conditions": "0.02는 개발 후 test전 각각 잠글 제안값이다. 생물학적 최소효과의 검증이 아니다."
+    },
+    {
+      "audit_id": "FPA1-01-03",
+      "decision": "수용",
+      "critique": "outer test를 신경→CLIP 학습에서 제외한다는 계약은 명확하다. 그러나 inner fold마다 다시 학습해야 하는 범위에서 PCA/probe/calibration만 열거되어 encoder가 inner-validation 입력/visual target을 미리 학습하는지 모호하다. 25/50/100%도 probe 표본량만인지 encoder까지 포함한 전체 학습량인지 확정되지 않았다.",
+      "change": "수용. 전체 pipeline 학습량 축을 택해 fraction/inner fold마다 encoder까지 재학습한다. F_fit/C_calibration/V_validation 역할표와 최종 outer/H fit 경로를 명시했다. pair는 분할 확정 후 내부에서만 생성한다.",
+      "modified_locations": [
+        "proposal:/computational_framework/input_preprocessing",
+        "proposal:/computational_framework/model_selection",
+        "proposal:/computational_framework/probe",
+        "proposal:/computational_framework/fit_scope",
+        "proposal:/proposed_analyses/statistics/split",
+        "proposal:/proposed_analyses/statistics/learning_curves",
+        "pilot:/model_and_environment/framework",
+        "pilot:/evaluation/statistics/fit_scope",
+        "pilot:/experiment_sequence/step6"
+      ],
+      "remaining_conditions": "실제 family 수로 inner fit/calibration/validation과 학습분율이 성립하는지 확인 필요. 비용 때문에 encoder 재학습을 생략하지 않는다."
+    },
+    {
+      "audit_id": "FPA1-01-04",
+      "decision": "수용",
+      "critique": "family-pair block bootstrap은 같은 쌍의 두 타깃·5명을 묶어 보존하지만, 고정된 out-of-fold 예측을 재표집하는지 매 재표집에서 학습/모형선택도 반복하는지 명시하지 않았다. 겹치는 outer training sets 때문에 OOF 손실 전체를 독립 test block처럼 재표집하면 학습절차 불확실성이 누락될 수 있다.",
+      "change": "수용. OOF 재표집을 고정 fitted models/현재 예측에 조건부인 기술 구간으로 한정했다. D20/R60/H20 경로에서 잠근 H를 최종1회 검정하도록 추가했고, H도 재학습 불확실성까지 포함하지 않음을 명시했다.",
+      "modified_locations": [
+        "proposal:/proposed_analyses/statistics/uncertainty",
+        "proposal:/proposed_analyses/statistics/independent_confirmation",
+        "proposal:/proposed_analyses/statistics/equivalence",
+        "proposal:/falsifiable_outcomes",
+        "pilot:/evaluation/statistics",
+        "pilot:/decision_points/G4–G5",
+        "pilot:/experiment_sequence/step8"
+      ],
+      "remaining_conditions": "OOF는 학습절차 CI가 아니다. H지지·독립성·실제 conditional interval 계산이 미검증이고 사람5명 및 training sample 변동 한계가 남는다."
+    },
+    {
+      "audit_id": "FPA1-01-05",
+      "decision": "수용",
+      "critique": "4CPU quota·32GiB와 행렬/activation 비용의 구분은 정확하나 5명×5fold×3seed×2목표 전체 실행의 동시성, dense voxel ridge/PCA solver의 메모리 경로와 OOM 이전 중단 기준이 아직 없다. 작은 encoder 한 batch peak만으로 전처리와 CV peak를 확인할 수는 없다.",
+      "change": "수용. 단일프로세스·thread1·workers0 순차 실행, V×V 금지 dual/iterative ridge·block/truncated PCA, 단계별 RSS/cgroup 계측, 명시적 예산/중단선 및 smoke 기반 wall budget을 추가했다.",
+      "modified_locations": [
+        "proposal:/computational_framework/resource_execution_contract",
+        "proposal:/smallest_informative_pilot/sequence",
+        "pilot:/model_and_environment/resource_execution_contract",
+        "pilot:/model_and_environment/memory_arithmetic",
+        "pilot:/model_and_environment/runtime",
+        "pilot:/experiment_sequence/step2/step5/step6",
+        "pilot:/decision_points/G3"
+      ],
+      "remaining_conditions": "당시 cgroup 잔여량·shape·solver수렴·단계별 peakRSS/시간이 미측정이다. guard도 외부 순간 allocation의 OOM 부재를 보증하지 않는다."
+    }
+  ],
+  "artifact_hashes_before": {
+    "proposal_RP01.json": "93f7f571a79a62d2ea0eefb2ce00b9e9a0c42d1e7741051fa3d30ed8b8549493",
+    "pilot_PILOT01.json": "d6a932ea10921204da0595dcb78354a8a1fefcb647f44d83539939855b1dceeb"
+  },
+  "artifact_hashes_after": {
+    "proposal_RP01.json": "950d132d7dc287779a2f3e2f974a8905498625f5d16b127b0ad4196928ad77a0",
+    "pilot_PILOT01.json": "055e7dc79eb4ff0569aa667a0c4c94a5bf8dfc2efbd3031250430f3584cc6720"
+  },
+  "round05_history_preservation": {
+    "hashes_before": {
+      "round05_debate.json": "3069c0122ce75f204b245687086350e4b730e0b5a9522f3a4c1770c1b6639291",
+      "round05_debate.md": "3a498445237d762d14cb774540f454e47f9406ae6448a485595d750dc1c99a58",
+      "round05_rebuttal.json": "8f2b1c97b3d1675745041176e193a3995646a8e3b7c899b77b2480b9cb811eb5",
+      "round05_rebuttal.md": "8796612615ebba21173aab7948e380d0b4e4b2bde9b2ad7f4444582e119e6a9a"
+    },
+    "hashes_after": {
+      "round05_debate.json": "3069c0122ce75f204b245687086350e4b730e0b5a9522f3a4c1770c1b6639291",
+      "round05_debate.md": "3a498445237d762d14cb774540f454e47f9406ae6448a485595d750dc1c99a58",
+      "round05_rebuttal.json": "8f2b1c97b3d1675745041176e193a3995646a8e3b7c899b77b2480b9cb811eb5",
+      "round05_rebuttal.md": "8796612615ebba21173aab7948e380d0b4e4b2bde9b2ad7f4444582e119e6a9a"
+    },
+    "proposal_debate_response_unchanged": true
+  },
+  "retained_passes": [
+    "FPA1-01-06",
+    "FPA1-01-07",
+    "FPA1-01-08",
+    "FPA1-01-09",
+    "FPA1-01-10",
+    "FPA1-01-11",
+    "FPA1-01-12"
+  ],
+  "validation": {
+    "data_equal": true,
+    "framework_equal": true,
+    "loss_equal": true,
+    "statistics_equal": true,
+    "sequence_equal": true,
+    "decision_points_equal": true,
+    "history_unchanged": true,
+    "debate_response_unchanged": true,
+    "five_findings_addressed": true
+  },
+  "execution_status": "문서 수정/일관성 확인만 수행; 인간자료·모델·메모리·통계 실행 미수행; 실행 준비 조건부."
+}

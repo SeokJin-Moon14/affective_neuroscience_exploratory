@@ -1,0 +1,287 @@
+{
+  "auditor": "12_adversarial_review",
+  "audit_round": 2,
+  "timestamp_utc": "2026-11-12T07:42:37.071884+00:00",
+  "overall_judgment": "추가7카드의 명시한 핵심 범위에서 새 high/critical 결함을 발견하지 못했다. 1차 핵심 수정5건은 해결을 확인했고 시간질문 범위는 일부 본문 정정이 남는다. 새 medium1/low1은 통합/가설 문구의 불일치이며 데이터 미확인을 자동 차단한 것이 아니다.",
+  "current_counts": {
+    "scientific_rq_rows": 30,
+    "direction_rows": 40,
+    "candidate_crosswalk_rows": 60
+  },
+  "card_coverage": [
+    {
+      "artifact": "agents/03_vision_decoding/proposal_RP01.json",
+      "proposal_id": "RP01",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. 같은 입력/시각표적/소형 encoder의 contrastive–regression 목표 비교와 같은 공통 pair의 정서/비정서 순서 loss가 구체화됐다. 정보삭제·뇌 학습목표 주장을 하지 않으며 방법후보 축소와 소수 의견을 보존했다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    },
+    {
+      "artifact": "agents/04_brain_foundation/proposal_RP05.json",
+      "proposal_id": "RP05",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. 같은 참가자/같은 자극의 독립 획득과 전처리부터 target-free인 경로를 요구한다. target perturbation·선형 mixing 경로 검사, 동일/독립 반복/타자극 비교와 입력 예산 차이를 명시한다. 현재 Horikawa 반복 확증/즉시착수로 과장하지 않았다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    },
+    {
+      "artifact": "agents/04_brain_foundation/proposal_RP08.json",
+      "proposal_id": "RP08",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. W-metric projection P=CG와 Gr=0, train-only residual PCA, 강한 nonlinear 평균 readout을 정의하고 H1 일반 잔차효용/H2 atlas/H3 정서선택성을 구분한다. 반복 없는 held-out prediction은 허용하되 repeat ceiling·정보전체 부재는 주장하지 않는다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    },
+    {
+      "artifact": "agents/05_multimodal_dynamics/proposal_RP03.json",
+      "proposal_id": "RP03",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. 경계 cue를 update/readout 모두 제공하고 exact absorbed-function control은 같은 가중치의 한 동치류로 묶는다. 효과는 유한 함수/학습예산의 예측 효용이며 실제 뇌 기억삭제로 확대하지 않는다. 외부 Fear consensus·가용시점·영화/scanner축·반복 미확인이 구분됐다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    },
+    {
+      "artifact": "agents/05_multimodal_dynamics/proposal_RP04.json",
+      "proposal_id": "RP04",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. 실제 시청각 제시 확인 전 Horikawa AV 주장을 하지 않고, S+R과 full X의 동일정보 가능성·운영 잔차·rank/readout 범위를 명시한다. 정서/비정서 대비의 비교 가능성과 shared라는 이름의 한계를 조건으로 남겼다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    },
+    {
+      "artifact": "agents/09_generative_ai/proposal_RP07.json",
+      "proposal_id": "RP07",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. 자연 후보 우선, 원본 실제 독립 반복, 새 NSD 정서 주석, 원본 참조 유지와 정확히 한 후보만 배제하는 endpoint를 명시한다. 둘다 탈락/참조 탈락/미발견을 구분하고 모델조건부 배제를 후보 실제 뇌반응과 혼동하지 않는다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    },
+    {
+      "artifact": "agents/09_generative_ai/proposal_RP10.json",
+      "proposal_id": "RP10",
+      "read_scope": [
+        "title",
+        "core_question",
+        "dataset_and_metadata",
+        "computational_framework",
+        "neural_target",
+        "proposed_analyses",
+        "falsifiable_outcomes",
+        "prior_literature",
+        "closest_prior_and_novelty",
+        "scientific_and_modeling_contribution",
+        "limitations_and_risks",
+        "priority"
+      ],
+      "not_claimed_read_scope": "이번2차에서 debate_response 전문·smallest_informative_pilot 전문은 새로 전부 읽지 않았다. 실제 R5 collected 입장은 이전 감사에서 읽었으며 아래 별도 파일럿 검토는 지정 필드에 한정한다.",
+      "judgment": "추가 중대 오류 없음. family-level 허용집합·독립 선별/주석검증/새 BOLD를 분리하고 원본 BOLD를 편집물에 재사용하지 않는다. 새 개발 neural projection의 비용과 동일 family의 두 editor 공통지지를 명시하며 결과를 S=1 자극묶음의 효과로 한정한다.",
+      "source_check": "prior_literature의 canonical ID를 공통 papers.csv에 재대조했고 모두 해소된다. 본문/코드/Discussion 접근범위는 카드 기재와 공통 기록에 모순이 없었다."
+    }
+  ],
+  "pilot_partial_coverage": [
+    {
+      "artifact": "agents/03_vision_decoding/pilot_PILOT01.json",
+      "read_scope": [
+        "hypotheses",
+        "evaluation",
+        "decision_points",
+        "failure_modes_and_claim_limits",
+        "readiness"
+      ],
+      "boundary": "핵심 가설/추정량/실행 상태만 검토. data_and_access·model_and_environment·inputs_outputs·experiment_sequence의 전체 자원/배열/메모리 상세 감사는 Agent01 담당이며 이 보고서의 승인 범위가 아니다."
+    },
+    {
+      "artifact": "agents/05_multimodal_dynamics/pilot_PILOT02.json",
+      "read_scope": [
+        "hypotheses",
+        "evaluation",
+        "decision_points",
+        "failure_modes_and_claim_limits",
+        "readiness"
+      ],
+      "boundary": "핵심 가설/추정량/실행 상태만 검토. data_and_access·model_and_environment·inputs_outputs·experiment_sequence의 전체 자원/배열/메모리 상세 감사는 Agent01 담당이며 이 보고서의 승인 범위가 아니다."
+    },
+    {
+      "artifact": "agents/04_brain_foundation/pilot_PILOT03.json",
+      "read_scope": [
+        "hypotheses",
+        "evaluation",
+        "decision_points",
+        "failure_modes_and_claim_limits",
+        "readiness"
+      ],
+      "boundary": "핵심 가설/추정량/실행 상태만 검토. data_and_access·model_and_environment·inputs_outputs·experiment_sequence의 전체 자원/배열/메모리 상세 감사는 Agent01 담당이며 이 보고서의 승인 범위가 아니다."
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "A12-F2-01",
+      "severity": "medium",
+      "artifact": "research_questions/landscape.json:RQ20.measurable_contrast와 final_audit_condition",
+      "claim": "RQ20은 미래 예측 목표 대 과거 복원 목표에 고정되고, 순서 대 bag는 공통 기준이다.",
+      "issue": "최종 감사 조건은 이 축소를 명시했으나 measurable_contrast에는 여전히 두 사전 대비 중 (1) order-aware state 대 recency-weighted bag, (2) 미래 목표 대 과거 복원을 병렬로 적는다. 메인 필드를 읽는 독자는 (1)도 RQ20의 독립 주기여로 재집계할 수 있다. 이는 1차 중복 감사에서 합의한 수정의 본문 반영 공백이다.",
+      "required_fix": [
+        "measurable_contrast에서 (2)를 유일한 primary로 재작성하고 (1)은 RQ07/RQ29와 공유하는 baseline/이차 검증임을 명시한다.",
+        "원래 두 대비의 문장은 round4_original_fields 등 이력으로 보존하되 최종 본문·CSV·요약은 한 계약을 사용한다."
+      ],
+      "blocking_scope": "전체 작업/데이터 조건을 차단하는 사유가 아니며 최종 통합의 명시적 본문 정정",
+      "evidence_status": "최신 landscape 직접 읽음; final_audit_condition과 같은 JSON 안의 문장 비교"
+    },
+    {
+      "finding_id": "A12-F2-02",
+      "severity": "low",
+      "artifact": "agents/03_vision_decoding/pilot_PILOT01.json:hypotheses.H1; evaluation.statistics.primary_estimand; decision_points.G4",
+      "claim": "H1은 I가 실용 임계보다 크다고 적고, 통계와 G4는 I>+δ 또는 I<−δ의 양측 대비다.",
+      "issue": "실제 판정/통계는 양측으로 일관되지만 H1 문장만 양의 효과를 요구하는 것처럼 읽힌다. 음의 I는 contrastive의 상대적 정서 접근성 개선이라는 별도 방향이므로 효과크기와 부호를 명확히 해야 한다. 새로운 분석 결함은 아니며 가설 표기의 작은 불일치다.",
+      "required_fix": [
+        "H1을 |I|>δ 또는 두 사전 방향을 모두 검정한다고 명시하고 각 부호의 뜻을 붙인다.",
+        "만일 양의 방향만 과학가설이라면 음의 효과는 반대 방향 결과로 보고하고 양측 탐색과 H1 지지를 구별한다. 현재 G4와 맞추려면 첫 수정이 자연스럽다."
+      ],
+      "blocking_scope": "실행·최종 작성 차단 아님; 한 문장 정정",
+      "evidence_status": "pilot H1·primary_estimand·G4 직접 비교"
+    }
+  ],
+  "round1_followup": [
+    {
+      "finding_id": "A12-F1-01",
+      "status": "해결 확인",
+      "evidence": "RP02 final_audit_revision 및 falsifiable_outcomes.positive에 g(O), r_R, δ의 사전 양수 문턱·공동 추론을 요구하고 δ 단독은 차등 변조로 명명했다."
+    },
+    {
+      "finding_id": "A12-F1-02",
+      "status": "해결 확인",
+      "evidence": "최신 landscape30행에서 RQ30은 없고 RQ25의 gate/error 분기로 병합됐다. candidate_crosswalk에서 C11-01/C11-02가 모두 RQ25로 연결된다. 원 ID 재사용 없이 추적한다."
+    },
+    {
+      "finding_id": "A12-F1-03",
+      "status": "해결 확인",
+      "evidence": "RQ22는 과학 landscape에서 제외되고 C06-03의 crosswalk rq_id는 비어 있으며 방법후보 이유가 보존됐다."
+    },
+    {
+      "finding_id": "A12-F1-04",
+      "status": "부분 반영·본문 정정 권고",
+      "evidence": "RQ07은 동일현재 probe의 실제 이력상태/HRF, RQ29는 현재·최근성 일치 순서 비가산, RQ20은 미래 목표로 final_audit_condition을 추가했다. RQ20 본문의 두 primary 병기는 F2-01로 남는다. RQ07/RQ29의 차이는 좁은 사전 신경 대비로 유지해야 하며 모델명/자료 수준 차이로 다시 확장하지 않는다."
+    },
+    {
+      "finding_id": "A12-F1-05",
+      "status": "해결 확인",
+      "evidence": "숫자 목표의 강제 assert가 제거됐고 실제 counts와 quantity_targets_met 보고로 변경됐다. 60 원후보 추적 검사는 유지한다."
+    },
+    {
+      "finding_id": "A12-F1-06",
+      "status": "해결 확인",
+      "evidence": "directions.csv status가 Round4·Round5 및 최종 독립 감사 반영으로 갱신됐다."
+    }
+  ],
+  "maintain_conditions": [
+    "RP03/PILOT02는 exact 동등쌍을 반드시 동등하게 복구하고 구별 불가능한 기전은 한 동치류로 남기는 규칙을 둔다. 여기의 성공은 신경 reset 구현의 고유성 증명이 아니다.",
+    "PILOT01/03의 n=5 사람 추론과 자극 조건부 CI가 구별되고, 반복 없는 예측 경로를 가짜 반복/ceiling으로 설명하지 않는다.",
+    "세 파일럿은 문서 계획 완료와 데이터 mount·weight load·뇌분석 완료를 분리했다. power/최소효과 숫자는 계획 해상도로 표시하며 실제 결과로 제시하지 않는다.",
+    "후속 실행에서 저신뢰 대비를 보고 바꾸거나 새 family를 test 결과에 맞춰 선택해서는 안 된다는 계약이 존재한다. 실제 준수 여부는 실행 전후 검증 사항이다.",
+    "모든 비교가 정서 특수성을 이미 입증한 것은 아니다. RP01/RP08을 비롯해 일반 접근성/압축손실만 남으면 방법후보로 낮추는 조건을 최종 요약에서도 보존해야 한다."
+  ],
+  "file_sha256_at_report": {
+    "agents/03_vision_decoding/proposal_RP01.json": "950d132d7dc287779a2f3e2f974a8905498625f5d16b127b0ad4196928ad77a0",
+    "agents/04_brain_foundation/proposal_RP05.json": "6704a3249f9ec60586da707d3f5a04d0b0cce0fd5e40efce4f7a2a9ded718e9b",
+    "agents/04_brain_foundation/proposal_RP08.json": "041d91c972651d79fc22b3a200dcb94026d3f332a59865685852d2b3063633bb",
+    "agents/05_multimodal_dynamics/proposal_RP03.json": "98e5b98f5852668fc8b02ab4ffde362880846e5dd10683f3ef33f4b035d8a06a",
+    "agents/05_multimodal_dynamics/proposal_RP04.json": "15344864d5d1e535a72420abdaf5322412b367e1b73bd2ebdb46a61b3a5a038f",
+    "agents/09_generative_ai/proposal_RP07.json": "1965a3cda64c09b765b31e4df8e83739cd59042b5e374fde32b10b2065e10987",
+    "agents/09_generative_ai/proposal_RP10.json": "cdc56c81f119714d0b0f830fc4fb1036c1f50e0b6fbcb8c76d81c665a8dbe251",
+    "agents/03_vision_decoding/pilot_PILOT01.json": "055e7dc79eb4ff0569aa667a0c4c94a5bf8dfc2efbd3031250430f3584cc6720",
+    "agents/05_multimodal_dynamics/pilot_PILOT02.json": "b8bd238b6e70095770725a6d559cff6db756781d33ec6ba382bad5c49e9de3de",
+    "agents/04_brain_foundation/pilot_PILOT03.json": "26cf97dfb2de4cd05de193f9ea5287e5045894ebb8737768039af696da65a81a",
+    "research_questions/landscape.json": "ab8240cce50b8cdb3edd91eb2d43c052873f83d6b5f48dc33152b41a47ff4ddc",
+    "research_questions/candidate_crosswalk.csv": "6f8324c985c0ec0444b8c6e13a6e7bb8838401870dec516060bf7921a45a58fe",
+    "research_questions/directions.csv": "965d9e58cb81df67497d53944bf85f29648ece46a09f67732c3e71e2ef139ece",
+    "scripts/build_research_landscape.py": "ddc4e85cc30ba1dcab8e4c623777be2e4a3dff72def23bdf97d52f72ac10ad2e",
+    "agents/10_llm_semantics/proposal_RP02.json": "839a18110d581af5464b91b149a2771147726130647aa4d59da28a475f4e4255",
+    "literature/papers.csv": "854d9b56ceed2f18ec2c8909f54e4b3fe0f47ca822326bf9e167e0f1ff05f736"
+  },
+  "limitations": [
+    "1차3카드와2차7카드를 합해10카드의 핵심 과학내용을 읽었지만 모든 카드의 모든 필드·최종 렌더링·원문 재검증을 완료했다는 뜻은 아니다. 파일별 실제 읽은 필드를 위에 표시했다.",
+    "3파일럿은 핵심 가설·평가·판정·미실행 상태만 검토했다. 세부 데이터·메모리·경로·배열 스키마 감사는 Agent01의 별도 결과와 함께 최종 판단한다.",
+    "실험·모델실행·신경분석·신규 문헌 검증 없음. 현재30개는 수정된 조건부 RQ 목록 수이며 전세계 신규성이나 실제 판별 성공이 확정된 수가 아니다.",
+    "RQ07/RQ29의 고유성은 좁힌 관측 대비를 유지하는 조건부 판단이다. 중복 우려를 수량 목표 때문에 지우지 않는다.",
+    "자기 감사 파일2개만 작성했으며 공유파일/Git를 수정하지 않았다. 작성 중 공유파일 변경 가능성에 대비해 해시를 저장했다."
+  ]
+}

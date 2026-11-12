@@ -1,0 +1,478 @@
+[
+  {
+    "candidate_id": "C11-01",
+    "title": "동일 입력정보에서 오차 좌표는 정서 신경 대비의 제한된 읽기 효율을 높이는가",
+    "axis_ids": [
+      "AS25",
+      "AS35",
+      "AS10",
+      "AS29"
+    ],
+    "research_question": "A·Ahat·R의 동일 정보와 허용 함수족 아래, 명시적 오차 좌표가 독립 정서 신경 대비의 표본효율을 일반 시각 대비보다 선택적으로 바꾸는가?",
+    "neural_target": "사전 정의한 정서 주석 대비에 대한 보류 신경 대비 예측 손실; 전체 BOLD 손실은 보조 지표",
+    "external_principle": "영상 예측의 파생 오차 좌표 + 표현 재매개화 불변성 검증(UC11-01)",
+    "model_application": "현재 A, 예측 Ahat, 상태 R을 모든 조건에 제공하고 E+=ReLU(Ahat−A), E−=ReLU(A−Ahat)를 고정 계산한다. 동일 정보의 여러 좌표를 같은 유효 readout 예산에서 비교한다.",
+    "scientific_question": "추가 정보가 아닌 계산 좌표의 접근성 차이가 정서 대비에서 선택적인가?",
+    "assumption_challenge": "E의 조건부 이득을 독립 신경정보 또는 prediction-error unit 증거로 읽는 가정을 철회한다.",
+    "main_hypothesis": "같은 데이터·입력정보의 제한 readout에서 오차 좌표의 학습곡선 이득이 신뢰도 일치 비정서 대비보다 크다.",
+    "alternative": "일반 함수근사·조건수·현재 입력 누락·명도/의미 변화로 충분하다.",
+    "measurable_contrast": "동일 train/test와 각 표본수 n에서 사전 정서 대비의 평균제곱 예측손실 차이를 측정한다. 파라미터/계산예산 고정 곡선과 충분한 함수족의 포화곡선을 분리한다. [E+,E−]와 [E,abs(E)]는 서로 결정되는 재표현 대조로 사용한다.",
+    "falsification": "충분한 readout에서 차이 소멸은 독립 정보 가설의 반증과 일치하며 예상 가능한 결과다. 제한 예산에서도 선택적 이득이 없거나 일반 시각 대비와 같으면 정서 관련 효율 가설을 축소한다.",
+    "baseline": [
+      "A+Ahat+R를 모두 보는 동일 비선형 함수족",
+      "원 입력에서 고정 오차변환을 계산하는 정확 동등 경로",
+      "상태·절대오차·방향오차를 동일 입력정보로 비교",
+      "가역 오차 좌표 재표현",
+      "명도·색·사건관계 일치 자극 및 신뢰도 일치 비정서 대비"
+    ],
+    "dataset_plan": "보유 Horikawa 자극과 신경/정서 대비로 자극별 검정을 우선 설계한다. 연속 프레임·주석이 확인되면 Emo-FilM/Spacetop의 시간 비교로 확장; 시간 주석 없으면 궤적 주장은 하지 않는다.",
+    "missing_conditions": [
+      "자극 프레임·제시 timing·독립 정서 주석 단위",
+      "checkpoint와 입력 정규화 확인",
+      "오차 부호를 정의할 감각 좌표; JEPA latent 부호는 일반적으로 회전 비식별적",
+      "A/Ahat/R의 완전 입력 감사",
+      "함수족/유효 복잡도와 학습예산 일치",
+      "독립 정서·비정서 대비의 신뢰도 매칭"
+    ],
+    "source_papers": [
+      "P089",
+      "P046",
+      "P096",
+      "P051"
+    ],
+    "closest_prior_ids": [
+      "P089",
+      "P046"
+    ],
+    "what_is_new": "원안의 추가정보 주장을 폐기하고 동일정보 재매개화의 표본효율×정서대비 선택성으로 실질적으로 변경했다. 신경 error unit의 실재 검증은 아니다.",
+    "novelty_risk": "높음: 정서 예측오차 선행연구와 겹칠 수 있다. 이번 Round2는 신규 외부 검색 없이 기존 문헌 역대조만 수행했다.",
+    "conceptual_signature": {
+      "관측대상": "보류 정서 신경 대비의 손실 학습곡선",
+      "조작": "같은 A/Ahat/R의 명시 오차 좌표와 readout 예산",
+      "경쟁설명": "계산좌표 접근성 대 누락 입력·일반 함수근사"
+    },
+    "eight_questions": [
+      "Q1 최초성 미확인; 파생 좌표의 정보 증가와 readout 효율을 혼동하기 쉬웠다.",
+      "Q2 공개 A/Ahat/R/E 접근으로 동일정보 좌표를 실제 비교 가능하다.",
+      "Q3 오차가 원 입력보다 새 정보를 갖는다는 가정을 철회한다.",
+      "Q4 AI는 원 입력과 파생 좌표·readout 예산을 명시적으로 통제한다.",
+      "Q5 잔여 신경 대비는 모델/의미 누락 또는 잡음일 수 있어 미시기전으로 명명하지 않는다.",
+      "Q6 재매개화 불변성 검사를 정서 대비의 좌표 효율 검정에 수입한다.",
+      "Q7 같은 자극·신경 대비를 표본수/예산별 학습곡선에 재사용한다.",
+      "Q8 효율이 정서 대비에 선택적일 때만 조건부 계산 좌표 제약으로 남긴다."
+    ],
+    "status": "수정 후 발전: E3, 계산/신경 해석은 지정 관측·함수족에 조건부",
+    "revision_history": [
+      {
+        "round": "Round4",
+        "critique_ids": [
+          "R3-06-C11-01",
+          "R3-10-C11-01"
+        ],
+        "changes": [
+          "E=f(A,Ahat)의 결정성을 명시하고 추가 정보 주장을 철회",
+          "A,Ahat,R 전체 입력 및 함수족/유효복잡도 일치 대조 추가",
+          "주 추정량을 독립 정서 신경 대비의 보류 손실·표본효율로 고정"
+        ],
+        "remaining_disagreement": "비판 수용. 제한된 readout의 효율도 관측적 계산 제약 후보로는 보존하지만 신경 error unit이나 정보이론적 증분으로 해석하지 않는다. 효율만 보이면 방법 결과로 낮춘다."
+      }
+    ],
+    "reverse_search_query_en": "signed prediction error neural encoding emotional stimuli nonlinear readout efficiency",
+    "reverse_search_execution": {
+      "date": "2026-11-12",
+      "query_en": "signed prediction error neural encoding emotional stimuli nonlinear readout efficiency",
+      "url": "https://github.com/search?q=signed+prediction+error+neural+encoding+emotional+stimuli+nonlinear+readout+efficiency&type=repositories",
+      "http_status": 200,
+      "result_count": 0,
+      "scope": "공개 GitHub 저장소의 실제 영어 검색; 학술 원문 검색 아님",
+      "interpretation": "긴 결합질의의 재현율이 낮을 수 있으며 0건을 신규성·부재 근거로 사용하지 않음",
+      "additional_search": "기존 canonical 목록과 실제 두 비판의 가장 가까운 문헌을 역대조; 새 논문 추가 0"
+    },
+    "research_role": "과학RQ후보",
+    "shortlist_recommendation": {
+      "recommended": false,
+      "reason": "결정적 파생특징의 접근성 질문으로 축소했으므로 최상위 우선순위는 낮춘다."
+    },
+    "interpretation_boundary": "모델 좌표/구조/학습의 비교는 지정 입력·관측 연산자·허용 readout에서의 예측 주장이다. 인간 뇌의 미시 회로·spike timing·가중치 공유·학습 규칙을 식별한 것으로 해석하지 않는다.",
+    "evaluation": {
+      "novelty": {
+        "score": 2,
+        "reason": "파생특징의 효율 비교와 겹쳐 신규성은 제한적이다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "neuro_importance": {
+        "score": 3,
+        "reason": "정서 대비의 읽기 제약을 좁히지만 error unit을 밝히지는 않는다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "ai_necessity": {
+        "score": 2,
+        "reason": "단순 고정변환과 강한 readout으로 핵심 대조가 가능하다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "data_feasibility": {
+        "score": 3,
+        "reason": "자극별 대비부터 가능하나 입력과 반복 schema 확인이 필요하다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "rigor": {
+        "score": 4,
+        "reason": "정보예산·함수족·학습곡선 대조를 명시했다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "falsifiability": {
+        "score": 4,
+        "reason": "선택적 효율 부재와 일반 함수근사 설명으로 반증 가능하다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "interpretability": {
+        "score": 4,
+        "reason": "추가 정보 주장을 철회해 접근성 해석이 명료하다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "generalization": {
+        "score": 3,
+        "reason": "새 자극/내용 전이는 계획했으나 자료 다양성 미확인이다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "technical_feasibility": {
+        "score": 3,
+        "reason": "PredNet 내부 변수는 코드상 접근 가능하지만 실행 미검증이다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      },
+      "exploration_value": {
+        "score": 3,
+        "reason": "익숙한 오차 encoding의 해석 한계를 생산적으로 드러낸다.",
+        "uncertainty": "잠정 설계 평가; 신규성 역검색은 GitHub 제한 검색이고 원자료·checkpoint·모델 실행은 미검증",
+        "source_papers": [
+          "P089",
+          "P046",
+          "P096"
+        ]
+      }
+    },
+    "role_folder": "11_brain_inspired",
+    "source_file": "agents/11_brain_inspired/round04_revision.json",
+    "rq_id": "RQ30",
+    "direction_id": "D41",
+    "merged_candidate_ids": [
+      "C11-01"
+    ],
+    "parent_axes": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "J",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "V",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "merge_rationale": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "merged_source_statuses": {
+      "C11-01": "과학RQ후보"
+    },
+    "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C11-01: 과학RQ후보",
+    "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "final_audit_status": "동일 과학 대비의 계산좌표 분기로 병합",
+    "redirect_rq": "RQ25"
+  },
+  {
+    "candidate_id": "C06-03",
+    "title": "기저 불변 신경 대응과 모델 계산 사용을 구별하는 개념 분해",
+    "axis_ids": [
+      "AS11",
+      "AS15",
+      "AS24",
+      "AS16"
+    ],
+    "research_question": "정서 대비와 연결된 개별 feature 또는 subspace의 대응은 함수 보존 재매개화에 얼마나 의존하며 분포 손상을 통제한 모델 개입에서도 기능 효과가 남는가?",
+    "neural_target": "정서 주석 대비에 연결되는 parcel별 encoding 성분과 SAE/개념 분해의 잔차가 설명하는 신경정보",
+    "external_principle": "SAE는 활성 재구성의 희소 basis를, transcoder는 계산 대체를, concept bottleneck은 개념 경유 예측을 제공한다. 해석 가능한 이름·정보 readout·계산 사용은 서로 다른 검증 대상이다.",
+    "model_application": "같은 activation a=SAE reconstruction(a)+r(a)에서 잔차 r을 모든 개입 조건에 동일하게 유지한다. feature와 subspace 선택은 neural train fold, seed 정렬/개입강도는 validation, 모델 기능과 독립 정서/비정서 대비는 test에서 평가한다.",
+    "scientific_question": "개념 이름·분해 좌표·모델 기능·신경 대응이 각각 어디까지 식별되는지 구별한다. 안정된 subspace도 인간 뇌가 그 단위로 계산한다는 증거는 아니다.",
+    "assumption_challenge": "이름이 안정적인 feature의 제거 효과가 고유 계산 단위를 뜻한다는 가정을 시험한다. 동일 함수의 좌표 재표현에서 이름별 중요도가 변하면 개별 단위 주장을 축소한다.",
+    "main_hypothesis": "함수 보존 재매개화와 잔차 보존 개입을 통과하는 subspace 수준의 정서 대비 대응이 존재할 수 있다. 개별 feature의 일대일 개념 가설은 별도 검정하며 실패해도 subspace 가설을 자동 확정하지 않는다.",
+    "alternative": "세 지표의 양성은 고에너지 시각·motion 성분, downstream 민감도, basis 선택 또는 off-manifold 손상에 의해 생긴다.",
+    "measurable_contrast": "feature-level 재현도와 subspace-level 재현도를 별도 보고한다. 안정/불안정×정서대비 관련/비관련 성분에서 잔차를 유지한 zeroing·조건부 대체·donor patch의 다음사건 손실과 독립 신경 대비 손실을 비교한다. 두 손실을 곱한 기전 점수는 만들지 않는다.",
+    "falsification": "가역 재표현에서 같은 모델 출력·신경 예측은 유지되는데 개별 중요도만 달라지면 named-unit 가설 기각. residual-preserving 대체와 downstream-matched 대조에서 효과가 같으면 선택 성분의 기능 특수성 기각. PCA/random과 같으면 SAE의 추가 가치를 축소한다.",
+    "baseline": [
+      "dense 원표현",
+      "matched-rank PCA",
+      "무작위 희소 dictionary",
+      "matched-reconstruction SAE",
+      "동일 에너지 random ablation",
+      "분해 재구성 잔차 encoding",
+      "가역 재매개화와 downstream 역변환의 함수 동등 control",
+      "잔차 보존 조건부 donor patch",
+      "동일 downstream 민감도 dense direction",
+      "같은 자극의 정서/비정서 대비"
+    ],
+    "dataset_plan": "Horikawa를 우선하여 시행별 신경 대비와 정렬한다. NSD는 정서 주석을 가정하지 않는 일반 시각 성분 안정성 대조다. Mind Captioning은 정확한 데이터 식별자·caption 및 신경 정렬 단위를 확인한 경우에만 언어 개념 대조로 사용한다.",
+    "missing_conditions": [
+      "선택 backbone activation 추출 및 SAE 호환성",
+      "개념 이름과 독립 인간 주석의 구별",
+      "seed/width 간 component alignment는 train 자료에서 수행",
+      "모델 feature intervention은 인간 뇌 인과 증거가 아님",
+      "activation 주입 지점·시간·잔차 우회 경로",
+      "동일 함수 보존의 수치 확인은 실행 때 수행",
+      "선택/seed 정렬/개입평가의 세 분할"
+    ],
+    "source_papers": [
+      "P083",
+      "P007",
+      "P009",
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT",
+      "P051",
+      "P053",
+      "P096",
+      "P101"
+    ],
+    "closest_prior_ids": [
+      "P083",
+      "DOC-SAE",
+      "DOC-TRANSCODER"
+    ],
+    "what_is_new": "희소 특징을 뇌지도에 붙이는 것에서 벗어나 분해의 비유일성·계산 사용·신경 대비·잔차의 충분성을 동시에 반박 가능한 기준으로 나눈다.",
+    "novelty_risk": "기존 SAE 안정성·concept completeness와 brain alignment 조합의 중복 가능. DOC 출처는 코드/README 근거이며 해당 논문 본문이나 실증을 확인했다는 의미가 아니다.",
+    "conceptual_signature": {
+      "관측대상": "함수 동등 변환 아래 feature/subspace 신경 대응과 모델 손실",
+      "조작": "잔차 보존 개입·가역 재매개화·donor 대체",
+      "경쟁설명": "고유 개념 사용 vs 좌표 선택·고에너지·off-manifold 손상"
+    },
+    "eight_questions": {
+      "q1": "기존 해석 연구는 있으나 신경표상과 동일한 feature 단위를 대응시키는 식별성이 어렵다. 미시도는 확정 못 한다.",
+      "q2": "공개 SAE·transcoder·circuit 도구가 activation 분해와 모델 내 기능 검사를 분리해 제공한다.",
+      "q3": "개별 basis feature의 안정성이 고유 신경 계산 단위를 뜻한다는 가정이 틀릴 수 있다.",
+      "q4": "AI는 계산 내부 성분 제거와 오류 잔차의 명시가 가능하며 이를 BOLD의 인과 조작과 동일시하지 않는다.",
+      "q5": "희소 분해가 설명 못 한 반복 가능한 신경 대비는 개념 불완전성 후보지만 노이즈·부적합과 경쟁한다.",
+      "q6": "알고리즘의 기능 동등성과 표현 불변성 검사를 개념 개입의 음성 대조로 전이한다.",
+      "q7": "기존 brain encoding 자료를 개념 분해의 충분성과 비유일성 평가에 재사용한다.",
+      "q8": "개념 단위 주장을 기각하면서 제한된 subspace 대응을 남길 수 있으며 이것도 뇌의 분산 기전 확정은 아니다."
+    },
+    "status": "E3 수정 과학RQ; DOC-SAE는 코드 증거만, 인간 뇌 인과 주장 없음",
+    "revision_history": [
+      {
+        "round": 4,
+        "critique_ids": [
+          "R3-01-C06-03",
+          "R3-05-C06-03"
+        ],
+        "changes": "feature/subspace 가설을 분리하고 activation 재구성 잔차를 보존한다. 가역 재매개화·조건부 대체·donor patch·downstream 민감도 대조를 추가한다.",
+        "preserved_disagreement": "안정 subspace의 대응이 뇌의 분산 계산 증거라는 확대 해석을 철회한다. 조건부 donor 대체도 완전한 분포 보존을 보장하지 않아 모델 사용 해석은 개입 방식에 조건화한다.",
+        "original_preserved_at": "agents/06_frontier_ai/round02_exchange.json#C06-03"
+      }
+    ],
+    "research_role": "과학RQ후보",
+    "shortlist_recommendation": {
+      "recommended": true,
+      "reason": "기저 비유일성과 모델 기능·신경 대비를 분리하는 판별력이 있다. DOC 도구 호환성 확인 전 즉시 실행으로 분류하지 않는다."
+    },
+    "reverse_search_status": "8–15단어 영어 역검색 쿼리 작성 및 기존 canonical 근거 역대조 완료; 외부 검색 도구가 발견되지 않아 신규 외부 검색은 실행하지 않음",
+    "reverse_search_query_en": "sparse autoencoder brain alignment functional equivalence basis rotation residual preserving interventions",
+    "activation_intervention": {
+      "baseline": "a_hat+r",
+      "zeroing": "a_hat−selected_component+r",
+      "conditional_replacement": "a_hat−selected_component+matched_donor_component+r",
+      "basis_control": "같은 재구성/후속 함수를 보존하도록 coefficient 변환과 decoder 역변환을 함께 적용; 임의 회전이 sparsity를 보존한다고 주장하지 않음",
+      "control_limits": "조건부 donor도 분포 보존을 보장하지 않아 activation distance·downstream 손상·task 성능을 감사"
+    },
+    "evaluation": {
+      "novelty": {
+        "score": 3,
+        "reason": "SAE·기능 등가·뇌 대응 결합의 가까운 선행 역검색은 미완료다.",
+        "uncertainty": "설계 기반 잠정평가; 신규 외부 역검색 미실행으로 최초성 미확정.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "neuro_importance": {
+        "score": 4,
+        "reason": "정렬을 해석하는 단위가 개념인지 subspace인지 제한한다.",
+        "uncertainty": "설계 기반 잠정평가; 효과·검정력·통제의 실제 성립은 분석 미실행으로 미확인.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "ai_necessity": {
+        "score": 4,
+        "reason": "내부 activation·decoder·개입 접근이 이 질문에 필요하다.",
+        "uncertainty": "설계 기반 잠정평가; 단순 기준이 충분하면 최신 AI 필요성 축소.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "data_feasibility": {
+        "score": 3,
+        "reason": "신경 대비는 보유자료로 계획할 수 있으나 activation 호환은 남는다.",
+        "uncertainty": "설계 기반 잠정평가; 사용자 보유 진술과 현재 접근·필드 검증을 구별.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "rigor": {
+        "score": 4,
+        "reason": "잔차 보존과 동등 함수 control로 일반 손상 대안을 강화했다.",
+        "uncertainty": "설계 기반 잠정평가; 효과·검정력·통제의 실제 성립은 분석 미실행으로 미확인.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "falsifiability": {
+        "score": 4,
+        "reason": "named-unit·subspace·기능 가설을 따로 반박할 수 있다.",
+        "uncertainty": "설계 기반 잠정평가; 효과·검정력·통제의 실제 성립은 분석 미실행으로 미확인.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "interpretability": {
+        "score": 3,
+        "reason": "분포 보존 개입과 생물학적 의미 연결은 여전히 제한적이다.",
+        "uncertainty": "설계 기반 잠정평가; 효과·검정력·통제의 실제 성립은 분석 미실행으로 미확인.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "generalization": {
+        "score": 3,
+        "reason": "seed·분해·모델 내 목표로 확장하되 인간 기전 일반화는 하지 않는다.",
+        "uncertainty": "설계 기반 잠정평가; 효과·검정력·통제의 실제 성립은 분석 미실행으로 미확인.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "technical_feasibility": {
+        "score": 2,
+        "reason": "비디오 activation 주입·SAE 학습과 donor 감사가 구현 부담이다.",
+        "uncertainty": "설계 기반 잠정평가; checkpoint·코드·실행경로 미검증.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      },
+      "exploration_value": {
+        "score": 5,
+        "reason": "해석 단위의 비유일성을 드러내는 음성 결과도 정보가 크다.",
+        "uncertainty": "설계 기반 잠정평가; 효과·검정력·통제의 실제 성립은 분석 미실행으로 미확인.",
+        "source_papers": [
+          "P083",
+          "P007",
+          "P009"
+        ]
+      }
+    },
+    "evidence_status": "E3 수정 설계; 기존 본문/공식 문서 검증 범위 승계, 실험 결과 없음",
+    "role_folder": "06_frontier_ai",
+    "source_file": "agents/06_frontier_ai/round04_revision.json",
+    "rq_id": "RQ22",
+    "direction_id": "D26",
+    "merged_candidate_ids": [
+      "C06-03"
+    ],
+    "parent_axes": [
+      "A",
+      "C",
+      "E",
+      "F",
+      "H",
+      "I",
+      "J",
+      "K",
+      "M",
+      "O",
+      "Q",
+      "R",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "merge_rationale": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "merged_source_statuses": {
+      "C06-03": "과학RQ후보"
+    },
+    "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C06-03: 과학RQ후보",
+    "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "final_audit_status": "방법후보로 유지",
+    "reason": "기저 불변성과 모델 기능/신경 대응의 감사는 유용하지만 현재 명세만으로 독립 정서 신경 가설을 구별하지 못하므로 방법후보로 유지"
+  }
+]

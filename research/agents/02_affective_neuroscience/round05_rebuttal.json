@@ -1,0 +1,98 @@
+{
+  "role": "02_affective_neuroscience",
+  "responses": [
+    {
+      "proposal_id": "RP06",
+      "critic_role": "01_dataset / 회의적비판자",
+      "critique_summary": "복수 내용metric도 같은 누락을 공유할 수 있으며, 경계 초과량은 내용모형에 상대적인 관측 연관이다. 경계확률·독립 비정서 경계·pair graph 의존성과 새 사건 가족 일반화를 요구했다.",
+      "response": [
+        {
+          "point": "누락 내용과 해석 범위",
+          "decision": "수용",
+          "answer": "일차 주장은 사전 고정한 내용모형 집합 아래 정서 경계 관련 잔여거리로 제한한다. 범주고유 코드·불연속성·곡률·순수 정서 인과를 주장하지 않는다. 사후 새 metric을 추가해 유리한 결과만 고르는 절차를 금지한다."
+        },
+        {
+          "point": "경계확률과 주석 불확실성",
+          "decision": "수용",
+          "answer": "정확한 원 category 명칭·척도·평정자·집계법이 현재 미확인임을 기입했다. 실제 공통척도와 평정자 자료가 있을 때만 경계 가로지름 확률을 산출한다. 집계값만 있으면 가짜 rater split을 만들지 않고 새 독립 경계주석을 조건으로 둔다."
+        },
+        {
+          "point": "비정서 경계와 내용매칭",
+          "decision": "수용",
+          "answer": "독립 객체·행위·사건 의미 경계를 정서 결과를 보지 않고 만들고 내용거리·개념 강도·주석 확실성·밀도를 맞춘다. 임의 label cut과 독립 의미경계는 별도 대조로 둔다. 매칭 실패면 정서 선택성을 주장하지 않는다."
+        },
+        {
+          "point": "pair 수와 독립성",
+          "decision": "수용",
+          "answer": "모든 endpoint가 outer fold 하나에만 속하도록 자극/내용 가족을 배정하고, 평가용 pair는 그 뒤 만든다. 공유 endpoint를 가진 edge를 독립 N으로 세지 않는다. 연결된 원자극 가족이나 중복 없는 matched pair 설계로 재표집 단위를 제한한다."
+        },
+        {
+          "point": "관측적 기여의 과학 지위",
+          "decision": "미해결",
+          "answer": "제안자는 좁은 내용조건부 경계 대비 자체를 과학적으로 유익하다고 본다. 비판자가 경고한 미측정 의미의 인과 비식별은 그대로 보존하며 결과가 단순 매칭 민감도에 그치면 방법 결과로 낮춘다."
+        }
+      ],
+      "decision": "수용하여 범위 축소; 기전·전용성 해석은 하지 않음",
+      "remaining_disagreement": "모든 의미 누락을 배제할 수 없으므로 양성 경계 연관을 정서 범주가 뇌 거리를 만드는 인과 원리로 승격할 수 없다. 이 한계는 최종 카드에 유지한다."
+    },
+    {
+      "proposal_id": "RP06",
+      "critic_role": "12_adversarial_review / 데이터통계검토자",
+      "critique_summary": "확인된 Horikawa는 각 참가자 2,196개 서로 다른 event ID/name이며 독립 반복 근거가 없어 개인별 자극 crossnobis 즉시 확증이 불가하다. 대체 추정량·endpoint 의존성·5명 모집단 정밀도·정확한 null을 구분해야 한다.",
+      "response": [
+        {
+          "point": "반복 없는 crossnobis 확증",
+          "decision": "수용",
+          "answer": "현재 확인된 Horikawa 경로의 개인별 자극쌍 crossnobis 확증 계획을 즉시 실행 범위에서 제외했다. 기존자료는 ID·경계·내용 지지·관측적 예측 탐색에 한정하고, 동일 자극의 독립 반복이 실제 확인되거나 새 반복 신경측정을 수집하는 분기를 분리했다."
+        },
+        {
+          "point": "가짜 반복 방지",
+          "decision": "수용",
+          "answer": "동일 event odd/even TR, voxel 반쪽, 다른 평정자, 임의 trial fold, 참가자간 평균을 개인 내 독립 반복으로 부르지 않는다. 15개 제외 인덱스나 61런도 반복 증거가 아니다."
+        },
+        {
+          "point": "대체 관측설계의 추정대상",
+          "decision": "수용",
+          "answer": "raw distance는 잡음이 섞인 관측 패턴거리, condition mean은 구성 exemplar의 평균 조건차, 참가자 교차거리는 정렬된 집단공유 패턴, held-out encoding 손실차는 모델 접근성이다. 카드에 별도 분기 ID와 변경된 해석을 적었고 개인 내 경계거리와 합치지 않는다."
+        },
+        {
+          "point": "pair graph·noise covariance·다중선택",
+          "decision": "수용",
+          "answer": "훈련에서 noise precision/shrinkage·metric·경계·매칭을 고정한다. outer split은 endpoint/family 단위이며 null도 node·family 구조와 내용조건부 교환가능성을 보존한다. 1개 경계·1개 주ROI·1개 primary metric을 먼저 고정하고 확장 대비는 별도 다중비교로 처리한다."
+        },
+        {
+          "point": "5명 통계 한계",
+          "decision": "수용",
+          "answer": "5명의 양측 exact sign-flip 검정은 최소 p=2/32=0.0625여서 그 방법으로 0.05 사람모집단 유의성을 얻을 수 없다. 자극 가족 일반화는 관측된 5명에 조건부로 보고하고 참가자별 효과·CI를 제시한다. 더 많은 pair를 피험자 수 증가로 간주하지 않는다."
+        },
+        {
+          "point": "당장 자연쌍 분석 가능이라는 표현",
+          "decision": "수용",
+          "answer": "당장 가능한 범위를 독립 주석·ID·matching·반복설계 감사와 탐색으로 정정했다. 실제 신경분석은 수행하지 않았고 확증 준비 완료라고 표시하지 않는다."
+        }
+      ],
+      "decision": "수용; 현재 개인별 crossnobis 확증 보류, 설계·관측 탐색과 새 반복 분리",
+      "remaining_disagreement": "통계검토자의 즉시 확증 반대는 해결되지 않은 반론이 아니라 수용한 실행 경계다. 원자료 처리본에 미확인 반복이 있을 가능성은 새 증거가 제시될 때만 별도 확인하며 현재 있다고 가정하지 않는다."
+    }
+  ],
+  "read_files": [
+    "proposals/AUTHORING_PROTOCOL.md",
+    "literature/novelty/TOP10_REVIEW.md",
+    "agents/02_affective_neuroscience/round05_debate.json",
+    "agents/02_affective_neuroscience/round05_debate.md",
+    "agents/01_dataset/round05_debate.json (RP06)",
+    "agents/01_dataset/round05_debate.md (RP06)",
+    "agents/12_adversarial_review/round05_debate.json (RP06)",
+    "agents/12_adversarial_review/round05_debate.md (RP06)",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "datasets/horikawa/annotation_dictionary.csv",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md",
+    "literature/papers.csv",
+    "axis_map/reference_catalog.csv"
+  ],
+  "limitations": [
+    "두 검토자의 실제 Round5 입장을 직접 읽고 작성했다. 상대가 응답에 동의한 것으로 기록하지 않는다.",
+    "핵심 확증의 반복 조건과 모집단 제한은 최종 제안서에 보존했다. 실제 분석·새 주석·뇌측정은 수행하지 않았다.",
+    "공유 proposals·Git을 수정하지 않았다. Coordinator가 렌더링·최종 판정을 수행한다."
+  ]
+}

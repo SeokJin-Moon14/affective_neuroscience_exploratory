@@ -16,7 +16,7 @@ for f in sorted((r/'agents').glob('*/round05_rebuttal.json')):
 assert len(responses)>=20 and all(sum(x['proposal_id']==pid for x in responses)>=2 for pid in qs)
 manual={
 'RP01':('수정 후 조건부 파일럿','동일 입력·작은 encoder·시각표적에서 contrastive 대 회귀를 비교한다. cache/ridge는 접근성·검증 기준이며 목표효과와 분리한다.','유한 readout·학습량의 실패로 정보 소실을 증명할 수 없다. 내용 통제도 정서 특수성의 완전 보장은 아니다.'),
-'RP02':('수정 후 조건부 제안','고정 A·loss·표본에서 D/N 함수족의 S 접근을 맞추고 δ=g(O+B)-g(O+R)를 검정한다. matching은 개발에서만 한다.','관계/비관계의 같은 예측력은 신경과의 오류 중복을 같게 하지 않는다. no-coupling 공통원인 모형이 같은 결과를 낼 수 있고 정확 direct prior도 미확정이다.'),
+'RP02':('수정 후 조건부 제안','고정 A·loss·표본에서 D/N 함수족의 S 접근을 맞추고 δ=g(O+B)-g(O+R)를 검정한다. matching은 개발에서만 한다. 감소 주장에는 g(O) 기준·r_R의 실제 감소·δ 비교우위의 공동 조건을 요구하며 δ만 양수이면 차등 변조다.','관계/비관계의 같은 예측력은 신경과의 오류 중복을 같게 하지 않는다. no-coupling 공통원인 모형이 같은 결과를 낼 수 있고 정확 direct prior도 미확정이다.'),
 'RP03':('수정 후 조건부 파일럿','경계를 같은 시점에 받는 연속 상태 대조와 exact functional control, HRF 이후 모형복구를 먼저 둔다.','우세한 forgetting 매개화가 관측상 효율적일 수 있으나 인간 기억 소거나 전체 함수족에서의 필요성은 식별되지 않는다.'),
 'RP04':('조건부 제안','고정 shared 용량·readout·학습량에서 operational residual/full입력을 비교하고 실제 오디오 제시를 확인한다.','private의 비유일성과 유한 shared family 밖의 대안이 남는다. 양성도 생물학적 고유 경로 또는 PID 분해의 확증은 아니다.'),
 'RP05':('설계 유지·신경 확증 착수 보류','같은 사람/자극의 독립 반복과 target-free 전처리가 확인될 때만 신경 문맥 회수 검정을 시작한다. 동시공간/과거미래 분기를 구별한다.','안정적 미모형화 의미·혈관·해부학·추가 관측량이 신경 문맥 이득을 설명할 수 있다. 보유 사실만으로 반복 조건을 충족하지 않는다.'),

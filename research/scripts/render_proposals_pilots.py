@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """전문 역할이 쓴 카드·계획의 필수항목/근거를 검사하고 공유 문서로 렌더링."""
-import csv,json
+import csv,json,re
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 papers={r['canonical_id']:r for r in csv.DictReader((root/'literature/papers.csv').open())}
@@ -14,7 +14,12 @@ def render(value,level=0):
         return '\n'.join(f'**{key.replace("_"," ")}:** '+render(val,level+1).strip()+'\n' for key,val in value.items())+'\n'
     return str(value)+'\n'
 def link(pid):
-    p=papers[pid];return f"[{pid} {p['title']}]({p['official_url']})"
+    p=papers[pid];ident=p.get('doi_or_arxiv','');url=p['official_url']
+    doi=re.search(r'10\.\d{4,9}/[^\s;,]+',ident)
+    arxiv=re.search(r'(?:arXiv:|arxiv.org/abs/)(\d{4}\.\d{4,5}(?:v\d+)?)',ident,re.I)
+    if doi:url='https://doi.org/'+doi.group(0)
+    elif arxiv:url='https://arxiv.org/abs/'+arxiv.group(1)
+    return f"[{pid} {p['title']}]({url})"+(f" · [실제 확인 출처]({p['official_url']})" if url!=p['official_url'] else '')
 fields=[('core_question','핵심 질문'),('scientific_motivation','과학적 동기'),('idea_provenance','아이디어 출처'),
         ('prior_literature','관련 문헌과 실제 확인 범위'),('closest_prior_and_novelty','가장 가까운 선행연구와 신규성'),
         ('dataset_and_metadata','데이터와 메타데이터'),('computational_framework','계산 모형'),('neural_target','신경 표적'),

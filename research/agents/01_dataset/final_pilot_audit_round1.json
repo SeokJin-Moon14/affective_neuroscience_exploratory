@@ -1,0 +1,235 @@
+{
+  "role": "01_dataset",
+  "audit_round": 1,
+  "scope": "RP01/PILOT01 최종 자료·통계·자원 계약 감사",
+  "read_files": [
+    "agents/03_vision_decoding/proposal_RP01.json",
+    "agents/03_vision_decoding/pilot_PILOT01.json",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md"
+  ],
+  "artifact_snapshots": [
+    {
+      "path": "agents/03_vision_decoding/proposal_RP01.json",
+      "sha256": "93f7f571a79a62d2ea0eefb2ce00b9e9a0c42d1e7741051fa3d30ed8b8549493"
+    },
+    {
+      "path": "agents/03_vision_decoding/pilot_PILOT01.json",
+      "sha256": "d6a932ea10921204da0595dcb78354a8a1fefcb647f44d83539939855b1dceeb"
+    }
+  ],
+  "overall": {
+    "pass": false,
+    "verdict": "조건부 계획의 핵심은 적절하나 실행/판정 계약 5건 수정 필요",
+    "critical": 0,
+    "high": 0,
+    "medium": 4,
+    "low": 1,
+    "passed_checks": 7,
+    "execution_readiness": "현재 실행 준비 완료 판정 아님. 사용자 데이터·모델 실행은 미검증이며 수정 후에도 G0–G3 조건은 남는다."
+  },
+  "findings": [
+    {
+      "audit_id": "FPA1-01-01",
+      "severity": "medium",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "pilot:/hypotheses/H1",
+        "pilot:/evaluation/statistics/primary_estimand",
+        "pilot:/decision_points/G4",
+        "proposal:/falsifiable_outcomes/mixed"
+      ],
+      "issue": "가설은 I>δ 방향으로 적혔지만 통계 계약은 양측이며 G4는 I>δ 또는 I<−δ에서 확대한다. 또한 D_A,D_C가 둘 다 악화되면 일반손상으로 축소한다는 규칙은 크기가 다른 동방향 악화에서 I가 충분히 큰 경우와 충돌한다.",
+      "required_fix": "일차가 양측이면 H1을 |I|>δ로 명시하고 I>δ와 I<−δ의 반대 방향 해석을 따로 적는다. 방향가설을 유지하면 I<−δ는 H1 반박/반대 선택성으로 분류한다. 일반손상은 D_A,D_C가 같은 방향이라는 사실만으로 판정하지 말고 I가 ±δ 안인 경우로 제한하며, 둘 다 악화되고 |I|>δ이면 일반손상+차등 접근성의 혼합 결과로 분리한다.",
+      "pass": false,
+      "basis": "예: D_A=0.10,D_C=0.01이면 둘 다 악화되지만 I=0.09이다. 현재 두 G4 분기가 동시에 해당한다. 새 과학 확대가 아니라 기존 판정 규칙의 논리 일치 수정이다."
+    },
+    {
+      "audit_id": "FPA1-01-02",
+      "severity": "low",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "proposal:/proposed_analyses/statistics/effect_threshold",
+        "pilot:/evaluation/statistics/effect_threshold"
+      ],
+      "issue": "δ=0.02 nats의 exp(δ)≈1.0202를 하나의 정답확률 기하평균 비로 설명하지만 일차 추정량 I는 두 손실 차이의 차이다.",
+      "required_fix": "g_o,t=exp(mean log p_o,t(true label))로 두면 exp(D_t)=g_regression,t/g_contrastive,t이고 exp(I)=(g_regression,A/g_contrastive,A)/(g_regression,C/g_contrastive,C)임을 구분한다. δ는 I의 실용적 비의비 임계이며 생물학적 최소효과가 아니라는 기존 제한을 유지한다. G3 원뇌 signal gate에도 같은 수치를 쓰면 별도 용도임을 명시하거나 δ_signal/δ_I로 구분한다.",
+      "pass": false,
+      "basis": "D와 I의 대수적 해석 차이이며 숫자 0.02 자체의 타당성을 실측했다고 주장하지 않는다."
+    },
+    {
+      "audit_id": "FPA1-01-03",
+      "severity": "medium",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "proposal:/computational_framework/model_selection",
+        "proposal:/proposed_analyses/statistics/split",
+        "proposal:/proposed_analyses/statistics/learning_curves",
+        "pilot:/model_and_environment/framework",
+        "pilot:/evaluation/statistics"
+      ],
+      "issue": "outer test를 신경→CLIP 학습에서 제외한다는 계약은 명확하다. 그러나 inner fold마다 다시 학습해야 하는 범위에서 PCA/probe/calibration만 열거되어 encoder가 inner-validation 입력/visual target을 미리 학습하는지 모호하다. 25/50/100%도 probe 표본량만인지 encoder까지 포함한 전체 학습량인지 확정되지 않았다.",
+      "required_fix": "fit-scope 표를 추가해 전처리/PCA/encoder/probe/calibration별 fit ID와 validation ID를 지정한다. 전체 pipeline hyperparameter 선택의 inner 검증이면 encoder까지 inner-train에만 fit한다. 이미 고정된 outer-train encoder 위 probe-only 검증을 택한다면 그 조건부 추정대상을 명시하고 전체 pipeline의 미관측 자극 검증과 혼동하지 않는다. 학습량 축은 probe-only 또는 전체 pipeline 중 하나로 잠그며 후자이면 encoder도 각 nested subset에서 재학습한다. pair는 각 분할을 정한 뒤 그 분할 내부에서만 생성한다는 기존 규칙을 유지한다.",
+      "pass": false,
+      "basis": "실제 누수가 발생했다는 판정이 아니다. 구현자가 두 가지 서로 다른 fit 경로를 선택할 수 있는 계약 누락이다. 기존 공통 pair·fold 금지 규칙은 적절하다."
+    },
+    {
+      "audit_id": "FPA1-01-04",
+      "severity": "medium",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "proposal:/proposed_analyses/statistics/uncertainty",
+        "proposal:/proposed_analyses/statistics/equivalence",
+        "pilot:/evaluation/statistics/uncertainty",
+        "pilot:/decision_points/G4"
+      ],
+      "issue": "family-pair block bootstrap은 같은 쌍의 두 타깃·5명을 묶어 보존하지만, 고정된 out-of-fold 예측을 재표집하는지 매 재표집에서 학습/모형선택도 반복하는지 명시하지 않았다. 겹치는 outer training sets 때문에 OOF 손실 전체를 독립 test block처럼 재표집하면 학습절차 불확실성이 누락될 수 있다.",
+      "required_fix": "첫 파일럿은 고정 fitted models와 현재 OOF 예측에 조건부인 재표집 구간임을 명시하고 학습절차/새 학습표본까지 일반화하는 CI로 사용하지 않는다. 전체 pipeline 일반화·동등성을 주장하려면 교차검증 의존성을 반영하는 검증된 추론 또는 개발 때 정한 재적합 재표집/완전히 잠근 독립 final holdout 중 실현 가능한 경로를 별도로 정한다. 95% 차이 CI와 90% 동등성 CI가 어느 범위의 불확실성을 담는지 G4와 일치시킨다.",
+      "pass": false,
+      "basis": "사람5명에 조건부라는 기존 제한은 충분히 명시돼 있다. 남은 항목은 사람 모집단이 아니라 shared training 및 model-selection uncertainty의 범위이다."
+    },
+    {
+      "audit_id": "FPA1-01-05",
+      "severity": "medium",
+      "artifact": [
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/model_and_environment/memory_arithmetic",
+        "/model_and_environment/runtime",
+        "/experiment_sequence/step6",
+        "/decision_points/G3"
+      ],
+      "issue": "4CPU quota·32GiB와 행렬/activation 비용의 구분은 정확하나 5명×5fold×3seed×2목표 전체 실행의 동시성, dense voxel ridge/PCA solver의 메모리 경로와 OOM 이전 중단 기준이 아직 없다. 작은 encoder 한 batch peak만으로 전처리와 CV peak를 확인할 수는 없다.",
+      "required_fix": "첫 전체 실행은 참가자/fold/seed를 순차 처리하고 BLAS/작업자 thread 합계가 CPU quota를 넘지 않도록 고정한다. 실제 N,V에 따라 V×V dense normal matrix를 만들지 않는 dual/iterative ridge와 block 또는 truncated PCA 경로를 선택한다. 전처리·캐시 생성·최대 한 fold 학습·평가 각 단계의 RSS/메모리 예상과 관측을 기록하고, 당시 cgroup 잔여량에 여유를 둔 명시적 budget/중단선을 test 이전 manifest에 잠근다. CPU 벽시계 budget도 기술 smoke 후 산출한다.",
+      "pass": false,
+      "basis": "GPU나 속도를 새로 보장하라는 요구가 아니다. 모델 batch와 전체 자료 처리의 peak가 다르므로 기존 조건부 실행을 구현 가능한 자원 게이트로 완성하는 수정이다."
+    },
+    {
+      "audit_id": "FPA1-01-06",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/dataset_and_metadata 또는 /data_and_access"
+      ],
+      "issue": "사용자 보유 사실·공식 이벤트 필드·원 코드가 소비하는 필드·새 분석 계약·null 경로가 분리되어 있다.",
+      "required_fix": "추가 수정 없음. 실제 마운트·배열·코드북 확인을 G0 실행 조건으로 유지한다.",
+      "pass": true,
+      "basis": "onset/duration/trial_type/stimulus_name/stim_index는 공식 확인, Session/Run/Block/Label/VoxelData는 미load 코드 계약, content_family/pair_id 등은 신규 계약으로 표시된다."
+    },
+    {
+      "audit_id": "FPA1-01-07",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/proposed_analyses/loss_contract 또는 /evaluation/loss"
+      ],
+      "issue": "정서·비정서가 같은 공통 자극쌍·orientation·0/1 순서타깃·Bernoulli natural-log loss를 사용한다. 원 주석을 Bernoulli 생성모형으로 오독하지 않는다.",
+      "required_fix": "추가 수정 없음. 교차 지지·난도·불확실성을 맞출 수 없으면 I를 보류한다는 G1을 유지한다.",
+      "pass": true,
+      "basis": "두 target 모두 충분한 원척도 차이가 있는 pair를 fold 내부에서 최대매칭하며 family 중첩·fold 교차를 금지한다. 명목 범주의 가짜 순서를 만들지 않으며 복수 독립 평정을 softmax로 취급하지 않는다."
+    },
+    {
+      "audit_id": "FPA1-01-08",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/proposed_analyses/statistics 또는 /evaluation/statistics"
+      ],
+      "issue": "Horikawa5명·실제 반복 미확인을 정확히 구분하며 seed·frame·내용중복·타 참가자를 개인내 반복으로 사용하지 않는다.",
+      "required_fix": "추가 수정 없음. 반복 없을 때 repeat ceiling=NA와 사람별 결과를 유지한다.",
+      "pass": true,
+      "basis": "정확한 양측 sign-flip 최소 p=2/32=0.0625 제한과 관측5명 조건부 해석이 명시돼 있다. 보류자극 판독과 진짜 반복 신뢰도를 별도 측정한다."
+    },
+    {
+      "audit_id": "FPA1-01-09",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/computational_framework/checkpoint 또는 /model_and_environment/framework/checkpoint"
+      ],
+      "issue": "OpenAI CLIP ViT-B/32 identity·공식 URL·SHA256·MIT 코드 범위·미download/미load·cache provenance가 명시돼 공통 자원계획과 일치한다.",
+      "required_fix": "추가 수정 없음. 실제 load/hash/한입력 shape 확인 전 실행 성공을 주장하지 않는다.",
+      "pass": true,
+      "basis": "기대 SHA256 40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af 일치. 예시 K=1024를 실제 모델 차원으로 확정하지 않는다. 8 frame 평균은 제안 추출계약으로 표시된다."
+    },
+    {
+      "audit_id": "FPA1-01-10",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/computational_framework/stage_A",
+        "/computational_framework/stage_B",
+        "pilot:/readiness"
+      ],
+      "issue": "접근성·기술검사 A와 동일 visual target contrastive/regression의 목표비교 B를 분리한다. 원형 MindEye2나 Horikawa adapter를 가정하지 않는다.",
+      "required_fix": "추가 수정 없음. masked/contrastive 예시에서 동일 입력/표적 contrastive/regression으로 바꾼 것은 원 데이터통계 비판의 목적을 충족한다.",
+      "pass": true,
+      "basis": "목표함수만 비교하기 위해 구조·정규화·batch·paired seed·update budget를 공통 고정하고 optimizer에 상대적인 효과로 제한한다."
+    },
+    {
+      "audit_id": "FPA1-01-11",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "/smallest_informative_pilot/decision_points 또는 /decision_points"
+      ],
+      "issue": "δ는 제안값이며 개발자료 근거로 test 전 고정한다. 정서 주석/비정서 지지/대조 실패/원뇌 검출력 부재 시 축소·중단을 구분한다.",
+      "required_fix": "FPA1-01-01·02·04의 방향/효과 해석/CI 조건을 동기화하면 나머지 단계 게이트를 유지할 수 있다.",
+      "pass": true,
+      "basis": "반복·신뢰도 부족을 가설 부재로 쓰지 않고 큰 모델 자동 확장을 중단한다. 90% CI의 ±δ 동등성 해석도 관측범위로 제한되어 있다."
+    },
+    {
+      "audit_id": "FPA1-01-12",
+      "severity": "none",
+      "artifact": [
+        "agents/03_vision_decoding/proposal_RP01.json",
+        "agents/03_vision_decoding/pilot_PILOT01.json"
+      ],
+      "location": [
+        "동일 자료/모델/loss/statistics/decision_points 사본"
+      ],
+      "issue": "proposal과 pilot의 중복 핵심 계약이 현재 동일하다.",
+      "required_fix": "수정 후 두 파일의 대응 블록도 함께 갱신한다.",
+      "pass": true,
+      "basis": "JSON 구조를 실제 비교한 결과 data=true, framework=true, loss=true, statistics=true, decision_points=true. 실행 결과의 검증이 아니라 문서 일치 검사다."
+    }
+  ],
+  "limitations": [
+    "문서·JSON 동기화·추정량 대수만 검토했다. 원자료·checkpoint·학습·메모리·검정력 측정은 실행하지 않았다.",
+    "기존 보유/공식 스키마 경계의 정확성을 검토했으며 사용자의 데이터 보유를 부정하지 않는다.",
+    "FPA1-01-03·04·05는 실제 누수/잘못된 CI/OOM 발생을 관찰한 것이 아니라 이를 막을 실행 계약이 충분히 특정되지 않았다는 판정이다.",
+    "PILOT02·PILOT03은 이번 감사 범위가 아니며 후속 요청에서 별도 검토한다.",
+    "공유 파일과 제안자 파일·Git은 수정하지 않았다."
+  ]
+}

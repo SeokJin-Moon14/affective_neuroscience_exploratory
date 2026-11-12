@@ -1,0 +1,280 @@
+{
+  "proposal_id": "RP08",
+  "rq_id": "RQ14",
+  "title": "고정 parcel 평균을 조건으로 내부 공간 대비가 정서 예측 접근성에 더하는 것",
+  "core_question": "같은 dense cortical 관측의 parcel 평균을 강한 비선형 readout으로 읽어도, 그 평균이 소거한 within-parcel 성분이 새 자극의 독립 A 예측에 추가로 유용한가?",
+  "scientific_motivation": "평균이 세부 패턴을 제거한다는 항등식은 발견이 아니다. 미해결 대비는 어떤 관측공간·읽기 함수족에서 A 접근성의 추가 이득이 일반 감각/의미 정보, 등록·공간대역, 더 많은 열과 규제효과를 넘는지다. H1/H2/H3를 분리하면 공간 평균의 충분성, atlas 경계, 정서 선택성을 혼동하지 않을 수 있다.",
+  "idea_provenance": {
+    "origin": "Agent04 C04-03/AS07·AS13·AS16",
+    "cross_field": "Agent07 표현 비교와 역문제의 관측 영공간 witness 구조를 결정적 parcel projection에 적용했다. null-space 존재가 아니라 외부 예측을 witness로 사용한다.",
+    "actual_debate": "Agent08의 nonlinear mean·면적 metric·신규성 비판과 Agent11의 반복 부재·5명 추론·조건부 null 비판을 수용했다.",
+    "scope_change": "첫 파일럿은 참가자 조건부 새 자극 접근성으로 축소했다. 반복 재현/정서 선택성이 미확보면 방법 QC로 낮추는 소수 의견을 보존한다."
+  },
+  "prior_literature": [
+    {
+      "paper_id": "P001",
+      "contribution": "고차원 분산 정서 신경표상의 가장 직접적인 주제 선행과 Horikawa 자료 경로.",
+      "limitation": "공간 평균의 잔차 선택성을 이미 검증했다는 근거는 아니며 원문 접근 제한을 유지한다.",
+      "access_scope": {
+        "full_text": "아니오; 프록시 403",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json"
+    },
+    {
+      "paper_id": "P026",
+      "contribution": "parcel/flatmap/cortical-volume 입력 차이를 문제로 만들 수 있는 뇌표현 도구.",
+      "limitation": "checkpoint variant 차이는 학습·공간 요인 혼동이므로 주검정의 대체가 아니다.",
+      "access_scope": {
+        "full_text": "아니오; 공식 README/코드만 확인",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://github.com/MedARC-AI/CortexMAE"
+    },
+    {
+      "paper_id": "P051",
+      "contribution": "표현의 가역 좌표 변화와 readout 접근성·유사도 해석을 구별하는 근거.",
+      "limitation": "높은/낮은 유사도가 정보 부재나 신경 알고리즘을 입증하지 않는다.",
+      "access_scope": {
+        "full_text": "예; 공식 PDF 직접 열람",
+        "discussion": "예; 결론/한계 해당 절 직접 확인",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://proceedings.mlr.press/v97/kornblith19a.html"
+    },
+    {
+      "paper_id": "P060",
+      "contribution": "명시적 fold·noise precision·재현성 평가 구현 근거.",
+      "limitation": "코드가 실제 반복을 만들어 주거나 독립 split을 자동 보장하지 않는다.",
+      "access_scope": {
+        "full_text": "아니오; E1은 공식 코드·문서만",
+        "discussion": "아니오",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://github.com/rsagroup/rsatoolbox"
+    },
+    {
+      "paper_id": "P063",
+      "contribution": "공간 자기상관을 존중하는 null을 설계하는 방법론 근거.",
+      "limitation": "해당 null이 모든 native/atlas 경우에 맞는지 별도 검증해야 한다.",
+      "access_scope": {
+        "full_text": "예; Abstract 및 Discussion 직접 읽음; 전체 방법 절을 정독했다고 주장하지 않음",
+        "discussion": "예; Discussion 및 권고사항",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://github.com/netneurolab/markello_spatialnulls/blob/master/manuscript/main.tex"
+    },
+    {
+      "paper_id": "P100",
+      "contribution": "사람/조건 일반화와 선택·불확실성을 구별하는 추론 근거.",
+      "limitation": "사람5명과 미확인 반복의 한계를 분석 도구로 해결할 수 없다.",
+      "access_scope": {
+        "full_text": "예: 공식 XML 저장·본문 검토",
+        "discussion": "예: Discussion s3-1–s3-6",
+        "this_stage": "기존 canonical 기록의 확인 범위 재사용; 이번 원문 신규 열람 아님"
+      },
+      "official_url": "https://elifesciences.org/articles/82566"
+    }
+  ],
+  "closest_prior_and_novelty": {
+    "direct_and_methods": "P001의 distributed affect 및 일반 MVPA 대 ROI 평균, P026 공간표현 비교가 가깝다. P051/P060/P063/P100은 필요한 해석·null·통계 근거다.",
+    "transfer_only": "P081의 VLM 병목 및 P076 역문제는 원리 전이일 뿐 직접 fMRI 공간평균 선행으로 제시하지 않는다.",
+    "different_contrast": "고정 가중 G의 null-space를 알려진 방식으로 재추가하고 strong nonlinear m-only·train k곡선·H1/H2/H3의 독립 판정을 사용한다.",
+    "remaining_overlap": "일반 미세 공간정보의 예측이득만 나오면 새로운 정서 계산 질문이 아니라 유용한 측정 감사다.",
+    "search_limit": "TOP10_REVIEW.md 실제 corpus 대조를 반영. 외부 인덱스 CONNECT403으로 최신 직접선행 배제·세계 최초는 미확정."
+  },
+  "dataset_and_metadata": {
+    "primary": "Horikawa 실제 dense cortical 시행 요약 y와 자극 수준 독립 A를 우선 사용한다. cortex-only 한정이며 주석을 개인 상태로 읽지 않는다.",
+    "official_vs_contract": {
+      "confirmed_official_event_fields": [
+        "onset",
+        "duration",
+        "trial_type",
+        "stimulus_name",
+        "stim_index"
+      ],
+      "official_code_contract_only": [
+        "Session",
+        "Run",
+        "Block",
+        "Label",
+        "VoxelData",
+        "voxel_x",
+        "voxel_y",
+        "voxel_z"
+      ],
+      "path_contracts": [
+        "공식 코드 계약: data/fmri/paper2020/fmri_Subject1.h5",
+        "공식 feature 계약: data/features/amt/mean_score_concat/{category,dimension,semantic,vision}"
+      ],
+      "not_local_verified": "위 경로와 HDF5 키는 공식 코드의 계약이다. 사용자의 실제 보유본 경로·헤더·버전은 아직 열어 확인하지 않았으며 임의 로컬 경로를 만들지 않는다.",
+      "generated_analysis_fields": [
+        "content_group",
+        "outer_split",
+        "repeat_id",
+        "preprocessing_provenance",
+        "atlas_id",
+        "space_id",
+        "feature_source",
+        "annotation_source"
+      ],
+      "generated_field_scope": "분석자가 확인 후 만드는 계약 필드이며 원자료에 이미 있다는 뜻이 아니다."
+    },
+    "verified_limits": "공식5명·각61런·2196 unique ID/name의 이벤트, raw TR2초·2mm등방 명세는 확인됐으나 보유 processed array·dense atlas 대응·정확 A척도·noise는 미확인. 2196−15=2181과 소개2185는 mapping으로 해결/기록하고 수량을 임의 맞추지 않는다.",
+    "five_dataset_roles": {
+      "Horikawa": "정적 공간 접근성의 첫 후보. 실제 반복 미확인 상태에서도 새 자극 예측은 가능하지만 반복 주장 금지.",
+      "NSD": "실제 반복 subset의 공간/null 방법 점검만; 정서 주석 미확인으로 H3 대체 불가.",
+      "Emo-FilM": "추후 연속 자료에서 별도 시간모형을 고정한 공간 비교. 외부 consensus/개인 clip 평가 구별.",
+      "Spacetop": "실제 clip target·dense 대응 확인 후 별도 재현.",
+      "Mind Captioning": "정확 dataset/version/brain-caption provenance 확인 전 보조 사용도 조건부."
+    },
+    "weights": "native 동일부피 W와 실제 surface vertex area W를 구별한다. raw/processed smoothing·registration·GLM/HRF 요약을 공간조건마다 동일하게 고정한다."
+  },
+  "computational_framework": {
+    "projection": {
+      "definition": "C∈R^(V×J)는 비중첩 parcel membership, W=diag(w_v)>0는 결과와 무관하게 고정한 voxel-volume/vertex-area 가중이다. G=(CᵀWC)⁻¹CᵀW, P=CG, m=Py, r=y-m. 그러면 P²=P, Gr=0, CᵀWr=0이며 W-metric에서 평균과 잔차가 직교한다. W=I이면 기존 Euclidean Gᵀ(GGᵀ)⁻¹G와 같다.",
+      "weight_policy": "native 동일부피 voxel을 확인한 첫 경로는 W=I 또는 공통 voxel-volume. surface로 바꿀 때 실제 vertex-area 자료가 있으면 W를 명시해 사용한다. 면적이 없으면 면적가중이라고 부르지 않는다. 두 관측은 합치지 않고 민감도 가지로 비교한다.",
+      "implementation": "P를 V×V로 만들지 않고 parcel별 가중 group sum/division 및 broadcast로 m,r를 얻는다. train-only PCA는 sqrt(W)r에서 적합하고 feature는 U_kᵀsqrt(W)r로 정의한다. G/r와 weight를 모든 split에 고정한다.",
+      "unit_checks": "합성 벡터에서 G r≈0, P²y≈Py, m+r≈y, CᵀWr≈0를 dtype tolerance로 확인한다. 이는 계획된 수치검사이며 아직 실행 결과가 아니다."
+    },
+    "models": "입력 Gy와 U_kᵀsqrt(W)r를 ridge 및 strong nonlinear probe로 비교한다. 모든 방법에 같은 target·train scale·test와 selection budget. residual PCA는 정서 label로 방향을 고르지 않는다.",
+    "loss": "train은 표준화 A squared error; outer test는 paired loss difference. multi-target 확장은 사전 고정 loss/weight 및 교정이 필요하다.",
+    "checkpoint": "projection/ridge/kernel ridge는 pretrained checkpoint 없음. CortexMAE는 후속 확장 선택이며 checkpoint 입력/면적/variant 학습조건을 검증한 뒤에만 사용한다.",
+    "auxiliary_clip": {
+      "model": "OpenAI CLIP ViT-B/32",
+      "code": "https://github.com/openai/CLIP",
+      "checkpoint_url": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt",
+      "sha256_expected": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+      "license_scope": "공식 코드 MIT 및 loader의 URL/hash 규칙 확인; 실제 weights 다운로드·해시·load·추론은 미검증.",
+      "input_output": "이미지 또는 텍스트→모달별 embedding. 동영상은 사전 고정 frame sampling과 집계가 필요한 별도 자극 특징 구성이다. 오디오 또는 독립 정서 주석을 제공하지 않는다.",
+      "role": "보유 cache가 없을 때 검수된 비정서 V/S 통제의 보조 시각 특징. 첫 projection baseline에 필수 아님."
+    },
+    "resources": {
+      "observed_environment": "공통 관측 보고서 CPU quota4·memory.max32GiB·nvidia-smi 없음; GPU 추론 미실행. 다른 사용자 장비의 자원은 판단하지 않음.",
+      "cost_boundary": "이미 추출된 feature cache 및 작은 신경 블록의 적합 비용과 새로운 backbone 추출 비용을 분리한다. 시간/VRAM은 작은 실행으로 계측 전 미확인.",
+      "ownership": "사용자 컴퓨터에 대형 자료를 받도록 요구하지 않고 새 원자료·개인 데이터를 공개 백업 산출물에 넣지 않는다."
+    }
+  },
+  "neural_target": "고정 cortical 공간의 y를 G 평균 좌표와 그 null-space 성분으로 분리해 자극 수준 A의 접근성을 읽는다. 유한 k와 함수족에서의 예측 가능성이며 영공간 전체의 정보량 또는 뇌의 실제 압축기전을 측정하지 않는다.",
+  "proposed_analyses": {
+    "hypotheses": {
+      "H1": "일차: 같은 참가자·새 자극에서 m-only의 강한 readout보다 [Gy,U_kᵀsqrt(W)r]가 A의 paired prediction risk를 낮추는가?",
+      "H2": "이차: 같은 참가자·자극의 H1 효과가 실제 atlas와 사전 정의 random contiguous atlas 분포에서 다른가?",
+      "H3": "이차: train에서 척도/난도/가능한 신뢰도 기준을 맞춘 A와 비정서 B의 model×target risk interaction이 있는가?",
+      "logic": "H1만 양성이면 일반 spatial-pattern 접근성. H2 실패는 H1 반박 아님. H3 실패면 정서 선택성 철회. 반복이 실제 없으면 반복 재현 주장 없음."
+    },
+    "estimand": "A를 train mean/SD로 표준화하고 test에서 d_is=ell(A_s,f_m(m_is))-ell(A_s,f_plus(m_is,r_k,is))를 같은 squared-error 단위로 계산한다. 일차δ는 이 paired loss 감소 단위다. 총 예측과 V,S를 함께 넣은 조건부 예측을 별개 estimand로 모두 보고한다.",
+    "primary_model_pair": "각 입력조건에서 ridge와 kernel ridge(작은 N) 또는 파라미터 제한 MLP를 동일 inner selection 예산으로 비교한다. m-only 최강 사전 함수족과 plus 함수족의 selection-adjusted 외부 손실이 주비교다. linear-only 결과는 보조로 별도 표시한다.",
+    "k_curve": "k∈{4,8,16}를 사전 계획하되 훈련 rank와 자료 크기에 맞는 유효 k만 사용한다. inner CV 선택 k를 일차로 두고 모든 사전 k의 외부 곡선을 보고한다. test-best k를 일차로 바꾸지 않는다.",
+    "controls": [
+      "mean+k spectrum-matched noise",
+      "mean의 중복/가역 회전 좌표 재표현 후 readout 재적합",
+      "동일 effective df·regularization·전체 rank 대조",
+      "감각 V/검수 사건 S를 조건으로 한 전체·조건부 예측",
+      "native/surface·registration·smoothing·공간대역·parcel 크기/면적을 명시한 random atlas",
+      "matched 비정서 B와 양성 null-space 신호 주입"
+    ],
+    "split": "내용중복 원영상 family를 같은 outer fold로 묶고 run/GLM 공통오차를 고려한다. run block 보류와 겹치는 content group은 train에서 제외하는 규칙을 사전 고정한다. PCA·whitening·alpha·k·target/probe·matching은 inner train만 사용한다. 외부 test 신경으로 atlas·정렬을 재적합하지 않는다.",
+    "null": "무조건 A permutation은 m의 실제 신호까지 제거하므로 H1의 정확 conditional null이라고 하지 않는다. known m-only 자료에 공간상관 noise를 주입한 null과, reduced-model 적합 및 exchangeability가 검증된 경우의 residual resampling을 비교한다. null 재표본화는 pipeline 재적합을 포함한다.",
+    "H2_H3": "H2=d_actual-mean_j d_random,j이며 atlas seed는 Monte Carlo 단위일 뿐 생물학 표본 아님. H3는 공통 표준화/사전 target family의 paired 개선 차이로 정의하고 다른 척도의 raw loss를 그대로 빼지 않는다. 원 총효과와 신뢰도/대역 matching 후 효과를 함께 보존한다.",
+    "reliability": "Horikawa 동일 ID 개인내 반복은 미확인. 반복이 없으면 repeat ceiling/crossnobis 반복 재현을 계산하지 않는다. 모델기반 GLM 오차는 그 가정을 붙여 다른 보조량으로 표시한다. NSD 반복 신뢰도를 Horikawa로 이식하지 않는다.",
+    "inference": "Horikawa 참가자5명의 개별 효과를 모두 제시한다. 참가자 조건부 새 자극 추론과 사람 모집단 추론을 구별한다. n=5 양측 exact sign-flip의 최소 p는 2/32=.0625이며 자극·voxel·atlas seed를 사람 N으로 세지 않는다. 계층/모수 CI는 작은 n 가정 민감도와 함께 표시하고, 비유의성을 동등성으로 읽지 않는다.",
+    "multiplicity": "H1 1개 A차원/1개 고정 공간집합을 일차 가족으로 둔다. H2/H3는 별도 사전 이차 가족이며 추가 ROI/target/k 선택을 포함한 교정 또는 새 보류 자료 검증이 필요하다.",
+    "precision": "표준화 MSE의 δ0=.01(훈련 A분산의1%에 해당하는 손실감소)을 파일럿 감도목표로 제안한다. 이는 확립된 신경학적 최소효과가 아닌 명시적 실용 허용손실이다. 개발 noise/cluster simulation으로 δ0 검출과 CI coverage를 확인하고, 타당하지 않으면 .005/.02 민감도를 포함해 최종δ와 표본계획을 test 개봉 전에 고정한다. CI상한<δ면 해당 함수족의 잔차가치가 작음, CI전체가[-δ,δ]면 동등성, CI폭이 크면 미결정으로 구분한다."
+  },
+  "competing_explanations": [
+    "strong nonlinear m-only로 회수되는 좌표 접근성 차이",
+    "모든 표적에 유용한 일반 감각/의미 미세패턴",
+    "더 많은 feature와 effective df 또는 ridge penalty 형식 변화",
+    "registration·혈관·smoothing·공간 주파수·parcel 면적 효과",
+    "noise/표본부족으로 생긴 k/atlas 선택의 우연"
+  ],
+  "falsifiable_outcomes": {
+    "positive": "H1 양성은 지정 함수족에서 평균만으로 A 접근성이 충분하지 않음. H2/H3를 각각 통과할 때만 경계 특이성/검토한 비정서 대비 대비 선택성을 추가한다.",
+    "negative": "충분한 precision에서 강한 m-only 대비 H1이 δ보다 작으면 제한된 평균 충분성. 전체 null-space 정보 부재는 아니다.",
+    "mixed": "H1+ H2−이면 일반 평균 상쇄, H1+ H3−이면 일반 공간정보 회수. nonlinear m-only로 회수되면 readout 문제로 축소.",
+    "unresolved": "반복 없음은 반복 안정성 미확인; 넓은 CI는 미결정. H1만으로 새로운 정서 신경기전을 확증하지 않는다."
+  },
+  "scientific_and_modeling_contribution": {
+    "neuroscience": "관측된 지역 평균의 정서 예측 충분성이 성립하는 조건을 제한한다.",
+    "method": "가중 projection·null-space 재추가·conditional-risk와 작은 표본 한계를 함께 명시한 reproducible 관측 감사. 대형 AI necessity는 낮다는 평가를 유지한다."
+  },
+  "limitations_and_risks": [
+    "현 Horikawa 개인 내 반복 미확인, 반복 noise ceiling 계산 금지.",
+    "5명에서 사람 모집단 확증 제한 및 다중비교 부담.",
+    "A와 비정서 B의 난도·신뢰도를 완전히 맞출 수 없음.",
+    "유한 k/함수족의 null 결과는 정보 부재가 아님.",
+    "실제 dense y가 없으면 parcel mean에서 잔차를 생성할 수 없음.",
+    "원자료 mount·feature cache·checkpoint load·실행시간 미검증."
+  ],
+  "smallest_informative_pilot": {
+    "pilot_id": "PILOT03",
+    "scope": "checkpoint 없는 weighted projection 및 linear/nonlinear 접근성 대비. 계획은 아래 pilot_PILOT03.json에 구체화.",
+    "subset": "QC: 반응 비의존 1명·최대32자극·완전한8 parcels. 최초 비교: 모든 가용5명, 최대512 고유자극/인, 사전 고정 완전한32 parcels(가용coverage 범위), 가능한12런 이상과 내용군 분산. 이 숫자는 계획 cap이지 확인된 가용량/검정력 아님.",
+    "first_informative_result": "projection 항등식·split leakage·train k 선택과 strong m-only 대비 H1 paired loss 및 CI. 반복 없으면 반복 신뢰도 결과 없음.",
+    "expand": "개발 null calibration·독립 test precision·일관된 H1 접근성 이득이 있을 때 더 많은 자극/영역, H2/H3를 별도 사전 검정으로 확장.",
+    "stop": "dense/A 없음, 투영/내용중복 split 실패, strong m-only로 전부 회수, generic spectrum null로 충분, CI 미정밀이면 데이터/방법 수정 또는 QC 모듈로 축소."
+  },
+  "priority": {
+    "scientific_potential": "중상: 지역 평균의 충분성을 직접 시험.",
+    "novelty": "중간 이하·미확정: MVPA 대 평균과 가까워 선택성/대조가 핵심.",
+    "short_term_feasibility": "상대적으로 높음: checkpoint 없이 CPU first pass 가능하나 실제 배열 확인 전 실행 준비완료 아님.",
+    "overall": "PILOT03 계획으로 선정. H1만 나오면 방법적 기여를 정직하게 보존한다.",
+    "new_annotations_or_measurements": "기존 독립 A가 부족하면 주석 필요. 반복 재현/사람 모집단 강화에는 실제 반복·추가 참가자 또는 별도 자료가 필요."
+  },
+  "debate_response": [
+    {
+      "proposal_id": "RP08",
+      "critic_role": "08_systems_neuroscience / 회의적비판자",
+      "critique_summary": "영공간의 존재는 자명하며 강한 nonlinear mean-only가 잔차 이득을 회수할 수 있다.",
+      "response": "수용한다. H1 주비교에 tuned ridge와 kernel ridge 또는 작은 MLP의 m-only를 넣고 같은 정보입력·선택예산·nested tuning을 유지한다. 잔차 k곡선을 train-selected primary k와 함께 전체 보고한다. 일반 MVPA 우위만 확인되면 공간 QC 모듈로 낮춘다.",
+      "decision": "수용",
+      "remaining_disagreement": "제안자는 제한된 접근성 검정도 첫 파일럿 가치가 있다고 보지만 비판자는 정서 선택성과 반복 없이는 독립 과학 RQ의 신규성이 약하다고 본다. 이 소수 의견을 보존한다.",
+      "source_file": "agents/08_systems_neuroscience/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP08",
+      "critic_role": "08_systems_neuroscience / 회의적비판자",
+      "critique_summary": "면적가중 G/P, 타깃 척도, k와 신뢰도 선택을 명확히 해야 한다.",
+      "response": "수용한다. C를 비중첩 parcel membership, W를 고정 양의 voxel-volume/vertex-area 가중으로 두고 G=(CᵀWC)⁻¹CᵀW, P=CG를 정의한다. H3는 train 표준화한 A와 비교가능한 비정서 B의 paired-risk interaction으로 고정한다. 원효과와 신뢰도/공간대역 matching 후 효과를 모두 보존한다.",
+      "decision": "수용",
+      "remaining_disagreement": "면적 정보가 없으면 W=I인 명시적 무가중 관측만 수행한다. 동일 rank는 동일 정보량이 아니며 모든 타깃의 난도/신뢰도를 완전히 맞출 수 없다.",
+      "source_file": "agents/08_systems_neuroscience/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP08",
+      "critic_role": "11_brain_inspired / 데이터통계검토자",
+      "critique_summary": "Horikawa 5명과 고유 이벤트 ID는 반복 신뢰도나 강한 사람 모집단 추론을 보장하지 않는다.",
+      "response": "수용한다. 첫 PILOT03은 다섯 명 각각과 그 참가자들에 조건부인 새 자극 일반화만 평가한다. 독립 반복이 실제 없으면 반복 noise ceiling과 반복 재현 witness를 계산하지 않는다. 내용 중복·복사본·다른 사람의 같은 자극을 개인 내 반복으로 바꾸지 않는다. 양측 exact sign-flip 최소 p=.0625와 집단 CI의 불안정성을 명시한다.",
+      "decision": "수용",
+      "remaining_disagreement": "새 자극에서의 접근성 이득은 반복 신호의 안정성과 다른 증거다. 참가자 모집단 일반화/반복 주장은 별도 자료를 요구한다.",
+      "source_file": "agents/11_brain_inspired/round05_debate.json"
+    },
+    {
+      "proposal_id": "RP08",
+      "critic_role": "11_brain_inspired / 데이터통계검토자",
+      "critique_summary": "H1/H2/H3·k·atlas 탐색과 잘못된 label permutation이 conditional null을 흐릴 수 있다.",
+      "response": "수용한다. H1을 일차, H2/H3를 사전 순서가 있는 별도 이차 가족으로 둔다. k/alpha/basis/atlas 선택은 내부훈련에만 두고 primary k와 고정 k곡선을 같이 보고한다. A 무조건 permutation은 평균의 실제 신호도 제거하므로 H1 정확 null로 부르지 않는다. known m-only 생성 null과 reduced-model 적합·exchangeability를 점검한 residual resampling을 별도로 사용한다.",
+      "decision": "수용",
+      "remaining_disagreement": "조건부 null의 오지정 위험이 남는다. 대조가 실패하거나 precision이 부족하면 확증이 아니라 방법 점검으로 제한한다.",
+      "source_file": "agents/11_brain_inspired/round05_debate.json"
+    }
+  ],
+  "read_files": [
+    "discussions/round_05/collected.json",
+    "agents/10_llm_semantics/round05_debate.json (RP05)",
+    "agents/01_dataset/round05_debate.json (RP05)",
+    "agents/08_systems_neuroscience/round05_debate.json (RP08)",
+    "agents/11_brain_inspired/round05_debate.json (RP08)",
+    "proposals/AUTHORING_PROTOCOL.md",
+    "pilots/AUTHORING_PROTOCOL.md",
+    "pilots/SELECTION.md",
+    "literature/novelty/TOP10_REVIEW.md",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "datasets/horikawa/verified_spec.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md"
+  ],
+  "completion_status": "상세 설계·비판응답 완료; 실행 미수행·자료조건 확인 대기"
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """실제 Round4 수정본을 Coordinator의 내용별 중복·선정 판정과 결합한다."""
-import csv,json
+import csv,json,re
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]; out=root/'research_questions'
 cs={c['candidate_id']:c for c in json.loads((root/'discussions/round_04/collected.json').read_text())}
@@ -68,7 +68,7 @@ for group in plan:
     for source in group['candidate_ids']:
         trace.append({'candidate_id':source,'direction_id':did,'rq_id':landscape[-1]['rq_id'] if did not in excluded else '',
                       'decision_reason':excluded.get(did,group['merge_reason'])})
-assert len(directions)==40 and len(landscape)>=30 and len(trace)==60
+assert len(trace)==60 and len({d['direction_id'] for d in directions})==len(directions)
 assert len({t['candidate_id'] for t in trace})==60
 amendment_path=out/'round05_amendments.json'
 if amendment_path.exists():
@@ -79,15 +79,60 @@ if amendment_path.exists():
         q['round05_condition']=a['condition'];q['round05_rejected_claim']=a['rejected_claim']
         q['round4_original_fields']={key:q[key] for key in a['field_overrides']}
         q.update(a['field_overrides'])
+curation_path=out/'final_curation.json';retired=[]
+if curation_path.exists():
+    audit=json.loads(curation_path.read_text());by_rq={q['rq_id']:q for q in landscape}
+    for old,new in audit['merge_rqs'].items():
+        a,b=by_rq[old],by_rq[new]
+        retired.append(dict(a,final_audit_status='동일 과학 대비의 계산좌표 분기로 병합',redirect_rq=new))
+        b['merged_candidate_ids']=list(dict.fromkeys(b['merged_candidate_ids']+a['merged_candidate_ids']))
+        b['source_papers']=list(dict.fromkeys(b['source_papers']+a['source_papers']))
+        b['axis_ids']=list(dict.fromkeys(b['axis_ids']+a['axis_ids']))
+        b['parent_axes']=sorted(set(b['parent_axes'])|set(a['parent_axes']))
+        b['type_tags']=sorted(set(b['type_tags'])|set(a['type_tags']))
+        b['merged_direction_ids']=[b['direction_id'],a['direction_id']]
+        b['merged_source_statuses'].update(a['merged_source_statuses'])
+        b['merge_rationale']+='; 최종 독립 감사: gate와 error의 결정적 파생좌표는 같은 접근성 질문의 두 분기로 통합'
+        b['title']=audit['merged_title'];b['research_question']=audit['merged_question']
+        b['main_hypothesis']='동일 완전입력의 gate 또는 오차 계산좌표가 제한된 함수족·학습량 범위에서 정서 대비의 판독 효율을 바꾸며, 그 선택성은 비정서 대비·가역 재표현 대조 후에도 평가할 수 있다. 정보 추가나 신경 구현의 동일성 주장이 아니다.'
+        for key in ['measurable_contrast','baseline','falsification']:
+            b[key]={'gate_coordinate_branch':b[key],'error_coordinate_branch':a[key]}
+        b['score_scope']='병합 전 대표 C11-02의 Round4 평가를 표시; C11-01 원 평가도 원본에 보존하며 평균·별도 RQ 수로 쓰지 않음'
+        b['remaining_disagreement']='; '.join(f'{k}: {v}' for k,v in b['merged_source_statuses'].items())
+        b['final_audit_condition']='gate·error 분기를 모두 비교하되 동일 입력의 정보량 증가나 인간 신경 기전 증명으로 해석하지 않는다. 각 원안은 원 출처에 보존한다.'
+        for t in trace:
+            if t['rq_id']==old:t['rq_id']=new;t['decision_reason']='최종 감사에서 같은 입력의 계산좌표 분기로 '+new+'에 통합'
+        for d in directions:
+            if d['direction_id']==a['direction_id']:d['decision']='다른 RQ의 계산좌표 분기로 통합';d['decision_reason']=new+'와 같은 관측·반증 대비'
+    for rid,reason in audit['method_rqs'].items():
+        q=by_rq[rid];retired.append(dict(q,final_audit_status='방법후보로 유지',reason=reason))
+        for t in trace:
+            if t['rq_id']==rid:t['rq_id']='';t['decision_reason']=reason
+        for d in directions:
+            if d['direction_id']==q['direction_id']:d['decision']='방법·공통검증으로 유지';d['decision_reason']=reason
+    landscape=[q for q in landscape if q['rq_id'] not in audit['merge_rqs'] and q['rq_id'] not in audit['method_rqs']]
+    for q in landscape:
+        if q['rq_id'] in audit['narrowing']:q['final_audit_condition']=audit['narrowing'][q['rq_id']]
+        if q['rq_id'] in audit.get('field_overrides',{}):
+            overrides=audit['field_overrides'][q['rq_id']]
+            q['pre_final_audit_fields']={key:q[key] for key in overrides}
+            q.update(overrides)
+    (out/'retired_questions.json').write_text(json.dumps(retired,ensure_ascii=False,indent=2)+'\n')
+for d in directions:d['status']='Round4·Round5 및 최종 독립 감사 반영'
 (out/'landscape.json').write_text(json.dumps(landscape,ensure_ascii=False,indent=2)+'\n')
 write_csv(out/'landscape.csv',landscape);write_csv(out/'directions.csv',directions);write_csv(out/'candidate_crosswalk.csv',trace)
 (out/'direction_aliases.json').write_text(json.dumps(merges,ensure_ascii=False,indent=2)+'\n')
 def cite(pid):
     p=papers.get(pid) or catalog.get(pid)
     assert p is not None,pid
-    return f"[{pid} {p['title']}]({p['official_url']})"
+    ident=p.get('doi_or_arxiv','');url=p['official_url']
+    doi=re.search(r'10\.\d{4,9}/[^\s;,]+',ident)
+    arxiv=re.search(r'(?:arXiv:|arxiv.org/abs/)(\d{4}\.\d{4,5}(?:v\d+)?)',ident,re.I)
+    if doi:url='https://doi.org/'+doi.group(0)
+    elif arxiv:url='https://arxiv.org/abs/'+arxiv.group(1)
+    return f"[{pid} {p['title']}]({url})"
 lines=['# Research Question Landscape','',
-       f'**60개 원 후보 → 40개 중복 통합 연구 방향 → {len(landscape)}개 구별되는 수정 RQ**. 방법·공통 검증·보류 항목{40-len(landscape)}개는 방향 지도에 보존하고 독립 RQ 수에서 제외했다. 출력 모달리티·적응 단계·생성기 교체만 다른 분기는 기존 질문에 합쳤다. 숫자 자체가 신규성이나 실현성의 검증을 뜻하지 않는다. 모든 질문은 E3이며 실제 신경 분석 결과는 없다.','',
+       f'**60개 원 후보 → {len(directions)}개 중복 통합 연구 방향 → {len(landscape)}개 구별되는 수정 RQ**. 방법·공통 검증·보류·중복 분기{len(directions)-len(landscape)}개는 방향 지도에 보존하고 독립 RQ 수에서 제외했다. 출력 모달리티·적응 단계·생성기 교체만 다른 분기는 기존 질문에 합쳤다. 최종 감사에서 RQ30은 RQ25에 병합하고 RQ22는 방법후보로 옮겼다. 추적을 위해 번호를 재사용하지 않았다. 숫자 자체가 신규성이나 실현성의 검증을 뜻하지 않는다. 모든 질문은 E3이며 실제 신경 분석 결과는 없다.','',
        '각 질문은 Round2 원안, 서로 다른 두 역할의 Round3 비판, Round4 응답을 추적할 수 있다. [원본 대응표](candidate_crosswalk.csv), [방향40개](directions.csv), [신규성 역대조](../literature/novelty/README.md).','',
        '| RQ | 질문 | 원 방향 | 출발 후보 |','|---|---|---|---|']
 for q in landscape:lines.append(f"| [{q['rq_id']}](#{q['rq_id'].lower()}) | {q['title']} | {q['direction_id']} | {', '.join(q['merged_candidate_ids'])} |")
@@ -109,6 +154,9 @@ for q in landscape:
     lines += ['', '여덟 탐색 질문의 개별 답과 비판 수용/미해결 이력은 위 구조화 원본에 보존했다.']
     if q.get('round05_condition'):
         lines += ['', '**실제 Round5 반영 조건:** '+q['round05_condition'], '', '**철회한 강한 해석:** '+q['round05_rejected_claim'], '', '평가 점수는 Round4의 역할 판단이다. Round5 조건으로 실제 착수 가능성이 좁아진 경우 현재 점수 자체를 실현성 증명으로 읽지 않는다.']
+    if q.get('final_audit_condition'):lines += ['', '**최종 독립 감사의 범위 제한:** '+q['final_audit_condition']]
+for q in retired:
+    lines += ['',f"<a id=\"{q['rq_id'].lower()}\"></a>",f"## {q['rq_id']} — 독립 RQ 집계에서 제외",'',q['final_audit_status']+'; '+q.get('redirect_rq',q.get('reason','')),'','원안과 추적 정보는 [보존 기록](retired_questions.json)에 있다.']
 (out/'LANDSCAPE.md').write_text('\n'.join(lines)+'\n')
 short_dirs=['D11','D15','D22','D20','D17','D06','D12','D18','D04','D36']
 reasons=[
@@ -138,4 +186,4 @@ for name,keys in ranking_specs.items():
     for rank,q in enumerate(ordered,1):rankings.append({'ranking':name,'rank':rank,'rq_id':q['rq_id'],'title':q['title'],'criterion_order':keys,'scores':[q['evaluation'][k]['score'] for k in keys],'meaning':'설명용 사전순 비교; 자동 종합 선정 아님'})
 for rank,q in enumerate(short,1):rankings.append({'ranking':'overall_priority','rank':rank,'rq_id':q['rq_id'],'title':q['title'],'criterion_order':'Coordinator 내용·다양성·반증·착수조건 판단','scores':'가중합 사용 안 함','meaning':q['coordinator_selection_reason']})
 write_csv(out/'rankings.csv',rankings)
-print(json.dumps({'directions':len(directions),'rqs':len(landscape),'shortlist':len(short),'traced_candidates':len(trace)},ensure_ascii=False))
+print(json.dumps({'directions':len(directions),'rqs':len(landscape),'shortlist':len(short),'traced_candidates':len(trace),'quantity_targets_met':len(directions)>=40 and len(landscape)>=30},ensure_ascii=False))

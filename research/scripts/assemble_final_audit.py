@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """최종 문서 감사의 실제 원본·해시를 묶는다. 실험 성공을 인증하지 않는다."""
+
+# V2_LEGACY_GUARD: preserve historical scripts without overwriting the new agenda.
+from pathlib import Path as _VersionPath
+if (_VersionPath(__file__).resolve().parents[1] / "revision_v2/version.json").exists():
+    raise SystemExit("이 스크립트는 v1 전용입니다. 현재 기획에는 render_neuroscience_v2.py와 validate_neuroscience_v2.py를 사용하세요.")
+
 import json,hashlib
 from pathlib import Path
 from datetime import datetime,timezone

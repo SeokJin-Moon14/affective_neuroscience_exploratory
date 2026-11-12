@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """검증된 산출물을 최종 보고·재개 안내로 연결한다."""
+
+# V2_LEGACY_GUARD: preserve historical scripts without overwriting the new agenda.
+from pathlib import Path as _VersionPath
+if (_VersionPath(__file__).resolve().parents[1] / "revision_v2/version.json").exists():
+    raise SystemExit("이 스크립트는 v1 전용입니다. 현재 기획에는 render_neuroscience_v2.py와 validate_neuroscience_v2.py를 사용하세요.")
+
 from pathlib import Path
 import csv,json,re
 r=Path(__file__).resolve().parents[1]

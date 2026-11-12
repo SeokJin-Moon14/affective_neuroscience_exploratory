@@ -1,4 +1,4 @@
-> 이 문서는 초기 단계의 역사적 기록이다. 현재 결론·수량·추진 조건은 [최종 종합 보고서](FINAL_REPORT.md)를 따른다.
+> 이 문서는 초기 단계의 역사적 기록이다. 현재 결론·수량·추진 조건은 [최종 종합 보고서](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/synthesis/FINAL_REPORT.md)를 따른다.
 
 # 뇌 × 정서 × AI: 독립 탐색 1차 보고
 
@@ -21,7 +21,7 @@
 | 데이터셋 감사 | 4종 | 데이터 본체·모델 실행과 구분 |
 | 기계 판독 가능한 하위축 후보 | 30개 | 별도6개는 역할 보고서에 있음; 통합 확정 전 |
 
-[문헌 집계와 CSV](../literature/README.md), [데이터 감사](../datasets/README.md), [12역할 독립 보고서](../discussions/round_01/index.md), [Axis 초안](../axis_map/README.md)에 원본과 근거 경로를 연결했다. 다운로드 상태·URL·일자·해시·일부 저장소 commit을 보존했다.
+[문헌 집계와 CSV](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/literature/README.md), [데이터 감사](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/datasets/README.md), [12역할 독립 보고서](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/discussions/round_01/index.md), [Axis 초안](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/axis_map/README.md)에 원본과 근거 경로를 연결했다. 다운로드 상태·URL·일자·해시·일부 저장소 commit을 보존했다.
 
 ## 연구 설계를 바꾸는 주요 발견
 
@@ -31,7 +31,7 @@
 4. **Spacetop의 README 인원과 현행 메타데이터 행 수는 다르다.** 101명과117행을 어느 하나의 분석 가능한 표본 수로 단정하지 않았다. NSD에서 정서 정답이 제공된다고 가정하지 않았고, AI 생성 점수와 인간 평정을 구별했다.
 5. **최신 모델의 실제 계산과 평가 조건을 확인해야 한다.** Brain-IT를 정확히 식별했고, MindEye2의 검색 방향 정정과300-way 평가 조건을 기록했다. 양방향 영상 모델·masked objective의 성능을 과거만 사용하는 신경 예측으로 해석하지 않았다.
 
-각 사실의 근거·범위·미확인 항목은 [초기 발견 상세](phase1_findings.md)에 있다. 이 문서는 별도 사실검사 후 시간축, 참여자 비중복, 중복 영상 매핑, 평가 조건, 프레임 표집 표현을 수정했다. 이 검사는 5라운드 과학토론을 대신하지 않는다.
+각 사실의 근거·범위·미확인 항목은 [초기 발견 상세](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/synthesis/phase1_findings.md)에 있다. 이 문서는 별도 사실검사 후 시간축, 참여자 비중복, 중복 영상 매핑, 평가 조건, 프레임 표집 표현을 수정했다. 이 검사는 5라운드 과학토론을 대신하지 않는다.
 
 ## 잠정적으로 중요한 탐색 경로
 
@@ -59,4 +59,4 @@
 3. Horikawa feature 본체·라벨 사전·원영상 대응, Emo-FilM 실제 주석과 스캐너 매핑 등 연구 설계의 필수 전제를 검증한다. 영상 신청 폼 제출은 수행하지 않았다.
 4. 독립 하위축을 통합하고 실제 교차 교환·비판·새 연결·대립 가설 토론을 수행한다. 그 기록에 근거해 조합·RQ·신규성 심사·10개 카드·3개 파일럿으로 진행한다.
 
-현재까지의 부분 결과를 다음 세션에서 그대로 이어 쓸 수 있도록 [상태 파일](../RESEARCH_STATUS.md)과 실행·검증 스크립트를 저장했다.
+현재까지의 부분 결과를 다음 세션에서 그대로 이어 쓸 수 있도록 [상태 파일](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/RESEARCH_STATUS.md)과 실행·검증 스크립트를 저장했다.

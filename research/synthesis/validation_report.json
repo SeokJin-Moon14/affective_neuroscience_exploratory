@@ -1,31 +1,12 @@
 {
-  "checked_at": "2026-11-12T08:12:42.718021+00:00",
-  "result": "PASS",
-  "scope": "산출물 구조·실제 역할 추적·참조ID·수량 검사; 뇌 분석/모델 성능/전역 신규성 검증 아님",
-  "mission_quantity_targets_met": true,
-  "counts": {
-    "roles": 12,
-    "verified_bibliographies": 100,
-    "unique_inventory": 103,
-    "round2_candidates": 60,
-    "round3_reviews": 120,
-    "round3_checks": 960,
-    "round4_responses": 60,
-    "round4_connections": 27,
-    "round4_evaluations": 600,
-    "round5_positions": 30,
-    "round5_rebuttal_responses": 59,
-    "random_combinations": 30,
-    "literature_combinations": 12,
-    "directions": 40,
-    "research_questions": 30,
-    "proposals": 10,
-    "pilots": 3
-  },
-  "limits": [
-    "검증 보류 서지3편과 별도 보조 출처를 확정100편에 추가 집계하지 않음",
-    "원문 Discussion/한계 직접 확인은27편 범위",
-    "원 사용자 데이터의 현재 경로/스키마 및 모델 load는 미확인",
-    "전역 신규성 검색에는 네트워크 제약이 남음"
-  ]
+  "version": 2,
+  "checked_at": "2026-11-12T08:57:50.289561+00:00",
+  "checks": 140,
+  "proposals": 10,
+  "pilot_plans": 3,
+  "files_checked": 35,
+  "internal_links_checked": 133,
+  "errors": [],
+  "missing_links": [],
+  "scope": "현재 원고·렌더링의 일치, 문헌 ID와 내부 파일 링크. 한국어 자연스러움·과학적 타당성·신규성은 자동 검증 범위가 아님. 외부 링크 응답이나 실험 실행을 검사하지 않음."
 }

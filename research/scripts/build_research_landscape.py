@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """실제 Round4 수정본을 Coordinator의 내용별 중복·선정 판정과 결합한다."""
+
+# V2_LEGACY_GUARD: preserve historical scripts without overwriting the new agenda.
+from pathlib import Path as _VersionPath
+if (_VersionPath(__file__).resolve().parents[1] / "revision_v2/version.json").exists():
+    raise SystemExit("이 스크립트는 v1 전용입니다. 현재 기획에는 render_neuroscience_v2.py와 validate_neuroscience_v2.py를 사용하세요.")
+
 import csv,json,re
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]; out=root/'research_questions'

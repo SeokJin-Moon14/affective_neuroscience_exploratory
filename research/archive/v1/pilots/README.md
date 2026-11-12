@@ -1,0 +1,9 @@
+# 세 가지 파일럿 구현 계획
+
+서로 다른 과학 대비를 대표하는 계획3개다. 현재 확보한 공식 경로·체크포인트 식별과 실행 성공을 구별한다. 사용자의 데이터 보유를 전제하되 보유본의 실제 필드·정렬·신뢰도 확인은 착수 조건으로 남긴다.
+
+- [PILOT01 — 동일 입력·시각표적에서 contrastive 대 regression의 정서 대비 접근성 비교](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/pilots/PILOT01.md): RP01 / RQ09
+- [PILOT02 — 동일 경계 접근에서 forgetting 좌표와 관측필터를 분리하는 첫 검정](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/pilots/PILOT02.md): RP03 / RQ18
+- [PILOT03 — 가중 parcel 평균과 내부 잔차의 독립 정서 예측 접근성 비교](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/pilots/PILOT03.md): RP08 / RQ14
+
+[현재 환경 관측과 자원 산술](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/pilots/RESOURCE_AND_MODEL_PLAN.md). 모든 작업·백업은 클라우드 기준이며 사용자 컴퓨터에 데이터 다운로드를 요구하지 않는다.

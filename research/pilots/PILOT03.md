@@ -1,425 +1,51 @@
-# PILOT03. 가중 parcel 평균과 내부 잔차의 독립 정서 예측 접근성 비교
+# 앞선 맥락이 정서와 관련된 뇌 반응을 설명하는지 확인하기
 
-연결: [RP08](../proposals/RP08.md), RQ14.
+PILOT03 · [RP05](../proposals/RP05.md) · NQ05
 
-**준비 상태:** **plan complete:** True
+현재 화면만으로는 설명하기 어려운 정서 관련 뇌 반응을 앞선 장면의 내용이 설명할 수 있는지 본다. 영화의 맥락을 처리하는 뇌 활동이 정서와 어떤 관계가 있는지 조사한다.
 
-**analysis executed:** False
+## 예상하는 차이
 
-**execution ready:** False
+현재 장면이 중요하다면 앞선 맥락을 더해도 정서 관련 뇌 반응의 예측이 별로 좋아지지 않을 것이다. 맥락이 중요하다면 같은 정도로 비슷한 현재 장면들 사이에서도 앞선 사건에 따라 다른 뇌 패턴이 나타날 수 있다.
 
-**confirmed:** 공식 데이터/code 경로 계약, 현재 CPU/메모리 보고, projection-baseline이 checkpoint 불필요하다는 설계, CLIP 공식 identity/URL/hash 규칙.
+## 첫 분석
 
-**conditional:** 실제 보유본 mount·A 사전·dense array·G/W 공간 대응·GLM/내용중복·cache·작은 실행 수치·power/δ 고정. A0/B 척도별 MSE gate, 공통/참가자별 Ω 완전분할, 실제/random atlas 동일지원, conditional95% CI cluster/coverage, 대표 block 계측 후≤24GiB(현재 L32GiB기준) config 및 총thread≤4가 추가 착수조건이다.
+1. Emo-FilM의 영화 시간, fMRI 촬영 시간, 연속 정서 주석을 연결한다. 외부 평정자의 합의 주석을 영화의 정서적 특성으로 사용하며, 스캔 참가자 각자의 정서 상태라고 부르지 않는다.
 
-**repeat status:** 개인 내 동일 자극 반복 미확인. 첫 파일럿은 반복 없는 예측 범위로 제한하고 확인되면 추가 가지로 명시.
+2. 현재 장면의 사물·행동·관계를 설명하는 특징을 먼저 만든다. 앞선 사건도 같은 영상 모델 또는 같은 방식의 짧은 사건 설명으로 표현한다. 과거 사건의 의미를 더 자세하게 설명한 효과와 과거 정보가 필요한 효과를 구별하기 위해서다. 현재 시점 이후의 사건이나 전체 줄거리는 입력하지 않으며, 대사·음성 특징은 연구 대상으로 삼지 않는다.
 
-**checkpoint status:** 필수 baseline에는 없음. 보조 CLIP/CortexMAE load 미실행.
+3. 현재 장면의 영상·의미 특징으로 뇌 반응을 예측한 뒤, 앞선 정서 평정과 앞선 사건의 의미를 순서대로 더한다. 비슷한 현재 장면에서도 맥락에 따라 정서와 뇌 반응이 달라지는지 확인한다. 사건이나 장면 변화의 크기는 비슷하지만 정서 평정 변화가 다른 구간을 비교해, 일반적인 사건 이해로만 설명되는 효과와 구별한다.
 
-**completion boundary:** 계획·상세설계 완료와 분석 착수/실험 완료는 별개다.
+4. 같은 시간 길이의 과거 시각 특징만 더한 모델도 비교한다. 오래된 BOLD 신호가 남은 현상이나 단순히 입력 길이가 길어진 효과를 사건의 의미를 이해한 효과로 해석하지 않도록 한다. HRF를 반영하는 여러 합리적인 시간 설정에서 결과를 확인한다. 맥락이 현재 장면의 뜻을 바꿨는지는 현재 장면만 보는 조건과 앞선 맥락까지 보는 조건의 추가 평가로 확인한다. 자연 영화에 필요한 비교가 부족하면 일반 맥락 효과까지만 보고한다.
 
+5. 한 영화 전체를 평가 자료로 남겨 다른 영화에서 학습한 설명이 유지되는지 본다. 신경 모델을 고르는 단계에 평가 영화의 뇌 반응이나 정서 평정을 사용하지 않는다. 주된 결과는 새 영화에서 맥락을 추가했을 때의 뇌 반응 예측 개선과, 그 개선이 정서 변화와 관계되는 정도다.
 
+## 결과에 따른 판단
 
-이 문서는 파일럿 실행 계획이다. 실험·모델 추론·뇌 분석 결과를 보고하는 문서가 아니다.
+| 관찰 결과 | 판단 |
+| --- | --- |
+| 과거 시각 특징을 추가한 효과를 넘어서 사건 맥락이 정서 변화 구간의 뇌 반응을 설명한다. | 정서와 관련된 뇌 반응이 현재 화면뿐 아니라 사건의 맥락과도 관계된다는 설명을 지지한다. 자연 영화 관찰만으로 맥락의 인과 효과를 확정하지 않는다. |
+| 맥락의 효과가 정서 변화와 무관하게 넓게 나타난다. | 일반적인 사건 이해나 시간 통합의 결과일 수 있다. 정서에 관한 설명을 추가했다고 주장하지 않는다. |
+| 현재 장면과 맥락이 너무 강하게 함께 변하거나, 시간 설정에 따라 결과가 뒤집힌다. | 기존 자료만으로 두 설명을 구별하기 어렵다. 같은 짧은 영상을 다른 앞선 맥락 뒤에 제시하는 후속 실험을 설계한다. |
+| 현재 장면 모델이 뇌 반응을 잘 예측하고, 구별할 만한 차이를 볼 수 있는 자료에서도 사건 맥락의 추가 이득이 작다. | 시험한 장면과 영역에서는 맥락의 추가 역할을 지지하지 못한다. 모든 맥락 효과가 없다는 결론은 아니다. |
+| 현재 장면 모델과 맥락 모델 모두 뇌 반응을 잘 예측하지 못한다. | 이 분석으로 두 설명을 구별할 수 없다. 현재 장면만으로 충분하다고 결론내리지 않는다. |
 
-## 1. 핵심·경쟁 가설
+## 자료와 준비
 
-**H1:** 일차: 같은 참가자·새 자극에서 m-only의 강한 readout보다 [Gy,U_kᵀsqrt(W)r]가 A의 paired prediction risk를 낮추는가?
+기존 영화 자료에서의 관찰적 탐색이다. 같은 장면을 서로 다른 맥락 뒤에 제시하는 실험은 새로운 자극 구성과 뇌 측정이 필요하다. Mind Captioning은 자료의 정확한 태스크와 텍스트 출처를 확인한 뒤 보조 자료로 검토한다.
 
-**H2:** 이차: 같은 참가자·자극의 H1 효과가 실제 atlas와 사전 정의 random contiguous atlas 분포에서 다른가?
+- 실제 fMRI·영화·연속 주석 파일의 시간 대응
+- 미래 장면을 포함하지 않는 과거 특징 또는 사건 설명
+- 영화별로 분리한 학습·평가 목록
+- 실제 제공되는 정서 항목과 시간 해상도
+- 맥락에 따라 달라지는 현재 장면의 의미와 정서에 관한 추가 평가
 
-**H3:** 이차: train에서 척도/난도/가능한 신뢰도 기준을 맞춘 A와 비정서 B의 model×target risk interaction이 있는가?
+먼저 짧은 구간과 작은 특징 차원으로 시간 대응 및 메모리 사용을 확인한다. 본 분석에는 학습용 영화와 별도로 남긴 평가 영화가 모두 필요하다. 영상 모델 특징을 추출할 GPU가 없으면 기존 캐시 또는 독립적으로 작성한 사건 설명으로 작은 모델부터 시작한다.
 
-**logic:** H1만 양성이면 일반 spatial-pattern 접근성. H2 실패는 H1 반박 아님. H3 실패면 정서 선택성 철회. 반복이 실제 없으면 반복 재현 주장 없음.
+## 남길 결과
 
-**alternatives:** - 강한 nonlinear 평균 readout으로 충분
-- 추가 feature/regularization 효과
-- 일반 공간 주파수·감각/의미 정보
+현재 장면·과거 시각 특징·사건 맥락이 각각 설명하는 뇌 반응, 정서 변화와의 관계, 그리고 자연 영화 자료로 구별하지 못한 설명을 기록한다.
 
-**falsification:** H1 precision이 충분한데 strongest m-only와 동등하면 제한된 함수족의 추가 잔차 필요성 반박. H2 실패는 경계 특수성만, H3 실패는 정서 선택성만 반박한다. 신뢰도/precision 불충분은 미결정.
+실행 계획. 데이터 분석과 모델 학습은 아직 수행하지 않음.
 
-
-
-## 2. 자료·접근·하위집합
-
-**possession:** Horikawa·Emo-FilM·Mind Captioning·NSD·Spacetop 보유는 사용자 진술. 실제 workspace mount 및 array는 미확인.
-
-**primary official:** - https://github.com/OpenNeuroDatasets/ds002425
-- https://github.com/KamitaniLab/EmotionVideoNeuralRepresentation
-- https://github.com/KamitaniLab/EmotionVideoNeuralRepresentationPython
-
-**contracts:** **confirmed official event fields:** - onset
-- duration
-- trial_type
-- stimulus_name
-- stim_index
-
-**official code contract only:** - Session
-- Run
-- Block
-- Label
-- VoxelData
-- voxel_x
-- voxel_y
-- voxel_z
-
-**path contracts:** - 공식 코드 계약: data/fmri/paper2020/fmri_Subject1.h5
-- 공식 feature 계약: data/features/amt/mean_score_concat/{category,dimension,semantic,vision}
-
-**not local verified:** 위 경로와 HDF5 키는 공식 코드의 계약이다. 사용자의 실제 보유본 경로·헤더·버전은 아직 열어 확인하지 않았으며 임의 로컬 경로를 만들지 않는다.
-
-**generated analysis fields:** - content_group
-- outer_split
-- repeat_id
-- preprocessing_provenance
-- atlas_id
-- space_id
-- feature_source
-- annotation_source
-
-**generated field scope:** 분석자가 확인 후 만드는 계약 필드이며 원자료에 이미 있다는 뜻이 아니다.
-
-**selection rule:** 먼저 실물manifest에 participant,stim_index,stimulus_name,run/session,content_group,space,preprocessing를 연결한다. 내용중복 exclusion은 근거 mapping을 기록한다. 원칙적으로 반응값을 보지 않은 deterministic seed20261112로 run/content coverage를 분산해 cap를 적용하며 같은 내용을 train/test로 나누지 않는다.
-
-**planned subset:** **contract QC:** 가용 participant ID 중 사전순 첫1명, 최대32개 실제 자극행, atlas label 순서와 coverage를 이용해 고정한 완전8 parcels. 이 단계는 수치/입출력 검증이며 신경 효과 검정 아님.
-
-**first comparison:** 가능하면 가용5명 모두, 공통/대응 가능한 최대512고유 자극/인과 최소12런 coverage를 목표로 한다. 실제 공통 자극/내용수 부족이면 수와 power를 재계획하고 숫자를 채우지 않는다. 사전 고정32개 완전 비중첩 cortical parcels를 전체 영역에 걸쳐 label순 균등간격으로 선택; 신경 효과로 고르지 않음.
-
-**scope:** 공통 공간이 검증되면 완전 parcel 단위 공통 coverage로 고정한 Ω, 그렇지 않으면 참가자별 Ω_s에 조건부인 결과다. 부족한 coverage를 voxel단위 교집합으로 잘라 완전parcel이라고 부르지 않는다. H2는 각 같은 y/W/Ω의 실제·random 완전 분할에 한정한다.
-
-**replicates:** 확인된 반복이 없으면 no-independent-repeat 플래그. dupidx·복사본·다른 사람을 개인 반복으로 변환하지 않음.
-
-**fixed support:** **audit id:** FPA3-01-02
-
-**omega definition:** Ω는 보존할 실제 dense cortical 좌표/voxel/vertex ID의 고정 목록이다. 좌표변환·coverage·atlas membership·W의 출처를 기록하고 배경·미할당·중복할당·비유한 y/weight는 관측범위 결정 단계에서 제외한다. 결과/label 효과로 Ω를 고르지 않는다.
-
-**complete parcels:** 공통 공간 좌표가 검증된 경우 참가자 coverage 교집합에 완전히 포함되는 기준 atlas parcel만 parcel 단위로 유지하고 그 합집합을 Ω로 정한다. 교집합이 parcel을 자르면 주계획에서는 그 parcel 전체를 제외한다. 8/32 parcel은 상한 목표이며 완전한 parcel 수가 부족하면 수를 줄여 기록한다. 부분-support를 별도로 허용할 경우 새 관측계약으로 명시하고 완전 parcel 또는 원 atlas와 같은 연산이라고 부르지 않는다.
-
-**participant boundary:** native 좌표의 공통 매핑이 없으면 사람 간 voxel 교집합을 만들지 않는다. 참가자별 Ω_s에서 H1을 수행하고 공간범위가 다른 조건부 결과로 표시한다. 이 경우 동일 Ω의 사람 공통 분석이라고 부르지 않는다.
-
-**partition checks:** 각 고정 Ω(또는 Ω_s)에서 C의 각 행 합=1, 각 열의 가중합>0, 모든 W_v>0 및 유한값, y/W/coordinate 순서 일치를 검사한다. 빈 parcel 열은 허용하지 않는다. 모든 mean/plus 조건과 fold에 같은 y지원·W·G를 적용한다.
-
-**H2 same support:** 실제 atlas와 각 random atlas는 동일 Ω와 동일 y/W를 빠짐없이 정확히 한 번 분할한다. J·가중 면적/크기 분포·연속성/거리 및 사전 공간대역 허용범위를 개발 단계에서 고정해 맞춘다. 실제/random의 Ω 좌표해시와 W해시가 같음을 검사하며 배경을 residual에 더하지 않는다.
-
-**H2 failure:** 동일 Ω의 비어 있지 않은 분할과 공간/크기 제약을 충족한 random atlas를 만들 수 없으면 H2만 보류한다. 다른 뇌영역을 포함하거나 Ω를 random atlas마다 바꿔 결과를 채우지 않는다.
-
-**status:** 실제 coverage·완전parcel·random atlas 제약은 미실행. 공간계약 검증 후에만 G/P를 적용한다.
-
-**fallback:** dense y가 없으면 첫 H1 실험 불가. 실제 dense 처리본 확인 또는 NSD의 비정서 projection 방법 대조만 가능하며 정서 분석을 한 것으로 세지 않는다.
-
-**target scale gate:** **audit id:** FPA3-01-01
-
-**required metadata:** A0와 H3의 B 각각에 실제 header·정의·원 단위·수치 범위·극성·평정/집계 방식·척도 유형·결측 코딩·결측률·상수 여부를 확인해 manifest에 기록한다. category/dimension 경로명이나 숫자 dtype만으로 등간 정량 표적을 추정하지 않는다.
-
-**MSE go:** 값 간 차이의 크기와 squared-error가 해당 정량 표적에서 의미 있다고 문서화할 수 있을 때만 현재 MSE 계약을 적용한다. 집계평균도 원 평정척도와 집계 의미를 확인한다. train mean/SD는 허용된 정량척도의 수치 단위 조정이며 척도 타당성을 만들어 주지 않는다.
-
-**nominal ordinal:** 명목 범주 또는 순서만 정의된 값에 임의 숫자 간격을 부여하지 않는다. 문서화된 정량 열을 뇌효과와 test 성능을 보지 않고 사전 선택하거나, 현 MSE 분석을 보류하고 loss·δ·비교모형을 test 개봉 전에 다시 고정한다. loss 변경 시 현재 δ=.01 및 MSE 기반 H3 계약은 자동 승계하지 않는다.
-
-**missing constant:** A/B 결측 처리와 공통 평가행 선택을 모든 mean/plus 조건에 동일하게 적용한다. target 결측을 test 뇌값으로 대체하지 않는다. training target가 상수 또는 사전 수치허용범위 이하 SD이면 ε를 넣어 진행하지 않고 해당 fold/target의 분석을 보류하거나 test 이전 계획을 수정한다.
-
-**H3 go:** B도 같은 척도 gate를 통과하고 개발자료의 scale·난도·신뢰도 비교가능성이 별도로 뒷받침될 때만 H3를 수행한다. 단순 z-score와 같은 loss 이름만으로 비교가능하다고 하지 않는다. B gate 실패는 H3만 보류하며 A/H1 게이트 통과 여부와 분리한다.
-
-**status:** 실제 A/B 실물척도 미확인. 현재는 실행 규칙 작성이며 MSE 착수 허용 판정이 아니다.
-
-
-
-## 3. 모델·체크포인트·자원
-
-**baseline:** 고정 가중 G/P group-reduction, train-only weighted residual PCA, ridge와 kernel ridge(또는 사전 작은 MLP). checkpoint가 없는 직접 projection baseline이므로 미확보 foundation weight를 기다릴 필요 없음.
-
-**optional visual model:** **model:** OpenAI CLIP ViT-B/32
-
-**code:** https://github.com/openai/CLIP
-
-**checkpoint url:** https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
-
-**sha256 expected:** 40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af
-
-**license scope:** 공식 코드 MIT 및 loader의 URL/hash 규칙 확인; 실제 weights 다운로드·해시·load·추론은 미검증.
-
-**input output:** 이미지 또는 텍스트→모달별 embedding. 동영상은 사전 고정 frame sampling과 집계가 필요한 별도 자극 특징 구성이다. 오디오 또는 독립 정서 주석을 제공하지 않는다.
-
-**role:** 보유 cache가 없을 때 검수된 비정서 V/S 통제의 보조 시각 특징. 첫 projection baseline에 필수 아님.
-
-**optional brain model:** CortexMAE 공식 https://github.com/MedARC-AI/CortexMAE 및 https://huggingface.co/medarc/CortexMAE; 코드 Apache-2.0·모델 CC-BY-NC4.0의 기존 확인 범위. 실제 config/P-F-V 지원·checkpoint load 미확인. 첫 pilot에 사용하지 않으며 후속 비교는 별도 matched-data 설계.
-
-**environment:** **observed environment:** 공통 관측 보고서 CPU quota4·memory.max32GiB·nvidia-smi 없음; GPU 추론 미실행. 다른 사용자 장비의 자원은 판단하지 않음.
-
-**cost boundary:** 이미 추출된 feature cache 및 작은 신경 블록의 적합 비용과 새로운 backbone 추출 비용을 분리한다. 시간/VRAM은 작은 실행으로 계측 전 미확인.
-
-**ownership:** 사용자 컴퓨터에 대형 자료를 받도록 요구하지 않고 새 원자료·개인 데이터를 공개 백업 산출물에 넣지 않는다.
-
-**memory plan:** NxV float32 한 행렬4NV bytes. 계획 N=512,V=20000 예시는40,960,000bytes≈39.1MiB/인/행렬이며 실제 V 미확인. 반면 V×V P는 같은 V에서도1.6GB이므로 만들지 않는다. m/r·train copies·5명·PCA workspace·kernel NxN을 별도 계상하고 한 참가자/공간블록씩 처리한다. 공간 block을 나눠도 전체 parcel weighted sum/분모와 Ω/W를 보존한다. 블록별 새로운 평균/PCA 관측을 만들지 않으며 동일 전체 train support의 incremental solver 사용은 실행계약대로 기록한다.
-
-**compute gate:** execution_contract.measured_resource_and_operator_preservation에 따라 첫 대표 QC 블록의 실제 total peak/workspace를 계측한 뒤 M_cap≤min(0.75L,L−8GiB)를 config에 기록한다. L=32GiB이면 최대24GiB, 경고0.9M_cap·중단M_cap. thread총합≤4·nested parallelism금지·model/fold순차. 적합/계측은 아직 미실행이다.
-
-**resource execution contract:** **audit id:** FPA3-01-04
-
-**first measurement:** 첫 대표 QC 블록에서 실제 cgroup limit L, 시작 total memory.current B, 전체 실행 peak memory·solver workspace·wall time을 측정하고 실행 config에 기록한다. 보고된 L=32GiB는 시작값이며 실행시 재확인한다.
-
-**cap rule:** 계측 후 명시적인 total peak 상한 M_cap≤min(0.75L,L−8GiB)를 config에 고정한다. L=32GiB이면 상한은 최대24GiB이고 최소8GiB를 남긴다. B와 대표 block workspace/복사본/solver를 합친 projected total peak가 이 상한에 맞지 않으면 full fit를 시작하지 않는다. 기존 부하가 상한을 넘으면 해당 실행을 보류한다. 실제 측정 없이는 맞는다고 선언하지 않는다.
-
-**warning stop:** 경고선=0.9M_cap, 계획/측정 total peak≥M_cap이면 새 할당·후속 fit를 중단하고 정리한다. 경고선 도달 시 다음 block 확대를 금지하고 block/solver 설정을 재계측한다. 예기치 않은 OOM 또는 monitor overshoot는 실패로 기록하며 상한을 지켰다고 소급 주장하지 않는다.
-
-**cpu concurrency:** 총 thread budget≤4이며 CPU quota가 더 작으면 그 값 이하로 낮춘다. BLAS/MKL/OpenBLAS/OMP 및 sklearn worker를 한 예산 안에 고정하고 nested parallelism을 금지한다. 참가자·model·outer/inner fold·bootstrap fit는 순차 실행한다. 실제 thread/env 설정을 config에 기록한다.
-
-**preserve G P:** 공간블록은 완전 parcel 단위로 처리하거나, parcel이 block을 가로지르면 모든 해당 block의 정확한 누적 Σw_v y_v와 Σw_v를 먼저 계산한 뒤 같은 전체 parcel 평균을 두 번째 pass에서 broadcast한다. block 내부만의 평균/분모로 G/P를 바꾸지 않는다. Ω·W·parcel membership hash는 block 크기를 바꿔도 동일해야 한다.
-
-**PCA workspace:** workspace가 크면 같은 전체 training rows와 같은 Ω의 residual을 사용하는 incremental/randomized solver로 바꾸고 solver·순서·수치허용오차를 기록한다. block별 별도 PCA/서로 다른 feature공간을 이어 붙이지 않는다. 작은 training subset에서 기존 solver와 subspace/예측 수치 민감도를 점검하며 test로 solver를 선택하지 않는다.
-
-**no silent scope change:** 메모리 문제를 해결하려고 원래 Ω에서 일부 voxel을 잘라 다른 관측을 같은 H1이라고 보고하지 않는다. block/out-of-core로 같은 연산을 유지할 수 없으면 해당 fit를 보류하고 test 이전 계약 변경으로 기록한다. V×V P 물리행렬은 만들지 않는다.
-
-**status:** 상한 공식·thread/순차 규칙 작성 완료; 대표 block 계측·config 설정·실제 G/P 보존검사는 아직 수행하지 않았다.
-
-
-
-## 4. 입력·출력과 정렬
-
-**input shapes:** 각 참가자 Y_s:[N_s,V_s], A:[N_s,D_A], 선택된 A0:[N_s,1], V/S:[N_s,K]가 있으면 보조, parcel_labels:[V_s], weights:[V_s]. N/V/K/정확 D_A는 실물확인 값으로 manifest에 기록. 원코드 category34/dimension14를 실제 라벨헤더 검증으로 대체하지 않음. 현재 A0/B의 numeric shape만으로 MSE 적합성을 판단하지 않으며 execution_contract.A_B_target_scale_gate를 먼저 통과해야 한다.
-
-**projection:** **definition:** C∈R^(V×J)는 비중첩 parcel membership, W=diag(w_v)>0는 결과와 무관하게 고정한 voxel-volume/vertex-area 가중이다. G=(CᵀWC)⁻¹CᵀW, P=CG, m=Py, r=y-m. 그러면 P²=P, Gr=0, CᵀWr=0이며 W-metric에서 평균과 잔차가 직교한다. W=I이면 기존 Euclidean Gᵀ(GGᵀ)⁻¹G와 같다.
-
-**weight policy:** native 동일부피 voxel을 확인한 첫 경로는 W=I 또는 공통 voxel-volume. surface로 바꿀 때 실제 vertex-area 자료가 있으면 W를 명시해 사용한다. 면적이 없으면 면적가중이라고 부르지 않는다. 두 관측은 합치지 않고 민감도 가지로 비교한다.
-
-**implementation:** P를 V×V로 만들지 않고 parcel별 가중 group sum/division 및 broadcast로 m,r를 얻는다. train-only PCA는 sqrt(W)r에서 적합하고 feature는 U_kᵀsqrt(W)r로 정의한다. G/r와 weight를 모든 split에 고정한다.
-
-**unit checks:** 합성 벡터에서 G r≈0, P²y≈Py, m+r≈y, CᵀWr≈0를 dtype tolerance로 확인한다. 이는 계획된 수치검사이며 아직 실행 결과가 아니다.
-
-**support contract:** **audit id:** FPA3-01-02
-
-**omega definition:** Ω는 보존할 실제 dense cortical 좌표/voxel/vertex ID의 고정 목록이다. 좌표변환·coverage·atlas membership·W의 출처를 기록하고 배경·미할당·중복할당·비유한 y/weight는 관측범위 결정 단계에서 제외한다. 결과/label 효과로 Ω를 고르지 않는다.
-
-**complete parcels:** 공통 공간 좌표가 검증된 경우 참가자 coverage 교집합에 완전히 포함되는 기준 atlas parcel만 parcel 단위로 유지하고 그 합집합을 Ω로 정한다. 교집합이 parcel을 자르면 주계획에서는 그 parcel 전체를 제외한다. 8/32 parcel은 상한 목표이며 완전한 parcel 수가 부족하면 수를 줄여 기록한다. 부분-support를 별도로 허용할 경우 새 관측계약으로 명시하고 완전 parcel 또는 원 atlas와 같은 연산이라고 부르지 않는다.
-
-**participant boundary:** native 좌표의 공통 매핑이 없으면 사람 간 voxel 교집합을 만들지 않는다. 참가자별 Ω_s에서 H1을 수행하고 공간범위가 다른 조건부 결과로 표시한다. 이 경우 동일 Ω의 사람 공통 분석이라고 부르지 않는다.
-
-**partition checks:** 각 고정 Ω(또는 Ω_s)에서 C의 각 행 합=1, 각 열의 가중합>0, 모든 W_v>0 및 유한값, y/W/coordinate 순서 일치를 검사한다. 빈 parcel 열은 허용하지 않는다. 모든 mean/plus 조건과 fold에 같은 y지원·W·G를 적용한다.
-
-**H2 same support:** 실제 atlas와 각 random atlas는 동일 Ω와 동일 y/W를 빠짐없이 정확히 한 번 분할한다. J·가중 면적/크기 분포·연속성/거리 및 사전 공간대역 허용범위를 개발 단계에서 고정해 맞춘다. 실제/random의 Ω 좌표해시와 W해시가 같음을 검사하며 배경을 residual에 더하지 않는다.
-
-**H2 failure:** 동일 Ω의 비어 있지 않은 분할과 공간/크기 제약을 충족한 random atlas를 만들 수 없으면 H2만 보류한다. 다른 뇌영역을 포함하거나 Ω를 random atlas마다 바꿔 결과를 채우지 않는다.
-
-**status:** 실제 coverage·완전parcel·random atlas 제약은 미실행. 공간계약 검증 후에만 G/P를 적용한다.
-
-**block preservation:** 공간블록은 완전 parcel 단위로 처리하거나, parcel이 block을 가로지르면 모든 해당 block의 정확한 누적 Σw_v y_v와 Σw_v를 먼저 계산한 뒤 같은 전체 parcel 평균을 두 번째 pass에서 broadcast한다. block 내부만의 평균/분모로 G/P를 바꾸지 않는다. Ω·W·parcel membership hash는 block 크기를 바꿔도 동일해야 한다.
-
-**feature shapes:** M=G y는 [N,J], Rcoord=[N,k]. readout 입력은 M 또는 concat(M,Rcoord); plus의 열수/규제효과는 중복좌표/noise 대조로 평가한다.
-
-**outputs:** 각 outer-held-out 표본의 A 예측·paired loss, participant별 H1 추정치/CI, 사전 k곡선, secondary H2/H3, 누수/공간/실행 manifest. AI 점수는 A의 대체물이 아님.
-
-**timing:** 정적 시행 요약에는 동일 GLM/HRF·onset/duration·adjacent trial nuisance를 모든 공간조건에 고정한다. raw TR2s가 beta의 시간분해능을 뜻하지 않으며 beta 순서를 temporal foundation 입력으로 만들지 않는다.
-
-
-
-## 5. 실험 순서
-
-- **step:** 1
-  
-  **action:** 계약 QC
-  
-  **detail:** 실제 경로/헤더·label척도·stim_index mapping·내용중복·dense/atlas/면적·smoothing/GLM provenance를 확인한다. 확인되지 않은 필드는 미확인으로 둔다. 실제 A0/B 척도 gate, 완전 parcel·Ω/W/partition 검사 및 첫 대표 block 자원 계측을 포함한다.
-- **step:** 2
-  
-  **action:** split와 목표 고정
-  
-  **detail:** A 차원1개는 데이터 사전에 근거해 의미적으로 사전 선택하고 뇌예측 최고차원으로 고르지 않는다. target scale·V/S 세트·outer3 run-block folds와 content-group train exclusion·inner3 group folds를 고정한다. 독립 group 수가 부족하면 k/모형규모를 줄이고 설계를 수정한다.
-- **step:** 3
-  
-  **action:** 비학습 투영·음성/양성대조
-  
-  **detail:** 합성 constant/known-nullspace 벡터로 weighted G/P 항등식과 residual 복구를 수치 검증한다. known m-only+공간상관 noise 및 알려진 잔차 신호로 전체 split/readout pipeline의 false-positive·감도를 검사한다.
-- **step:** 4
-  
-  **action:** 선형 기준
-  
-  **detail:** training M,weighted R의 scale/PCA와 ridge를 적합한다. k=4/8/16 및 log alpha grid를 inner fold에서 선택하고 test에서 재선택하지 않는다. mean+noise/duplicate-coordinate를 함께 평가한다.
-- **step:** 5
-  
-  **action:** 강한 평균 읽기와 주비교
-  
-  **detail:** 같은 inner budget의 kernel ridge 또는 고정 작은 MLP를 각 정보입력에 적합한다. strong m-only를 포함한 함수족 선택 후 같은 outer test에서 paired H1 loss를 계산한다. linear와 nonlinear 결과를 별도 표시한다.
-- **step:** 6
-  
-  **action:** 공간·의미 대조
-  
-  **detail:** 감각/검수 의미 조건부 및 총효과를 나란히 계산한다. 실제 atlas와 사전20개 random-contiguous atlas를 동일 parcel수/면적/공간대역 조건으로 비교하되 MC정밀도를 확인한다. seed20은 계획이며 실행/생물학 N이 아니다. H3용 B의 scale·난도·신뢰도 비교가능성이 없으면 H3를 보류한다. 실제/random atlas는 동일 Ω/y/W의 완전 분할만 허용하며 제약 실패 시 H2만 보류한다.
-- **step:** 7
-  
-  **action:** 통계·재현성 범위
-  
-  **detail:** content/run cluster를 존중한 participant조건부 불확실성과 5명 개인효과를 보고한다. outer fold를 독립 반복으로 세지 않는다. 실제 반복이 있으면 별도 held-out-repeat 분석, 없으면 repeat reliability 없음. code/config/split/feature provenance와 실패로그를 보존한다. 효과구간은 고정 fitted pipeline 조건부 95% paired-cluster CI로 표기하고 null 재적합과 학습절차 전체 불확실성을 구별한다.
-
-
-## 6. 평가·통계
-
-**primary loss:** 실제 A0가 문서화된 정량 target로서 squared loss 의미·결측/상수 gate를 통과했을 때에만 training mean/SD로 표준화한다. 같은 test에서 d_is=ell(A_s,f_m(m_is))-ell(A_s,f_plus(m_is,r_k,is))를 공통 MSE 단위로 계산한다. 명목/ordinal-only를 임의 등간변환하지 않는다. loss를 변경하면 δ와 H3 계약을 test 이전 재고정한다. 총 예측과 V,S 조건부 예측은 별도 estimand이며 H3의 B도 척도/비교가능성 gate를 통과해야 한다.
-
-**strong baseline:** 각 입력조건에서 ridge와 kernel ridge(작은 N) 또는 파라미터 제한 MLP를 동일 inner selection 예산으로 비교한다. m-only 최강 사전 함수족과 plus 함수족의 selection-adjusted 외부 손실이 주비교다. linear-only 결과는 보조로 별도 표시한다.
-
-**k selection:** k∈{4,8,16}를 사전 계획하되 훈련 rank와 자료 크기에 맞는 유효 k만 사용한다. inner CV 선택 k를 일차로 두고 모든 사전 k의 외부 곡선을 보고한다. test-best k를 일차로 바꾸지 않는다.
-
-**independence:** 내용중복 원영상 family를 같은 outer fold로 묶고 run/GLM 공통오차를 고려한다. run block 보류와 겹치는 content group은 train에서 제외하는 규칙을 사전 고정한다. PCA·whitening·alpha·k·target/probe·matching은 inner train만 사용한다. 외부 test 신경으로 atlas·정렬을 재적합하지 않는다.
-
-**statistics:** Horikawa 참가자5명의 개별 효과를 모두 제시한다. 참가자 조건부 새 자극 추론과 사람 모집단 추론을 구별한다. n=5 양측 exact sign-flip의 최소 p는 2/32=.0625이며 자극·voxel·atlas seed를 사람 N으로 세지 않는다. 계층/모수 CI는 작은 n 가정 민감도와 함께 표시하고, 비유의성을 동등성으로 읽지 않는다. 일차 효과 CI는 95% fitted-pipeline conditional paired-cluster 구간이며 execution_contract.conditional_CI_and_learning_uncertainty의 연결 run/content 재표집 규칙을 사용한다. OOF loss-only CI는 PCA/k/readout 학습 불확실성을 포함하지 않는다. 사람 간 변동은 개인효과·기술범위이며 새 사람 모집단 CI가 아니다.
-
-**conditional null:** 무조건 A permutation은 m의 실제 신호까지 제거하므로 H1의 정확 conditional null이라고 하지 않는다. known m-only 자료에 공간상관 noise를 주입한 null과, reduced-model 적합 및 exchangeability가 검증된 경우의 residual resampling을 비교한다. null 재표본화는 pipeline 재적합을 포함한다. 이 null calibration 재적합은 효과 CI의 전체 학습 불확실성을 계산한 것이 아니다. 일차 효과구간은 별도 고정 적합 조건부 규칙을 따른다.
-
-**minimum effect and equivalence:** 표준화 MSE의 δ0=.01(훈련 A분산의1%에 해당하는 손실감소)을 파일럿 감도목표로 제안한다. 이는 확립된 신경학적 최소효과가 아닌 명시적 실용 허용손실이다. 개발 noise/cluster simulation으로 δ0 검출과 CI coverage를 확인하고, 타당하지 않으면 .005/.02 민감도를 포함해 최종δ와 표본계획을 test 개봉 전에 고정한다. CI상한<δ면 해당 함수족의 잔차가치가 작음, CI전체가[-δ,δ]면 동등성, CI폭이 크면 미결정으로 구분한다. 이 δ/MSE 계약은 A0 척도 gate를 통과한 경우에만 유효하다. 판정에 사용하는 구간은 개발 coverage가 확인된 conditional 95% CI이며 학습절차 전체/사람 모집단 동등성이 아니다.
-
-**power:** subset cap를 충분한 power라고 주장하지 않는다. 개발/합성의 cluster·noise/개인차 범위에서 δ의 CI coverage와 detectable effect를 측정한 뒤 untouched test를 연다. 독립 반복 미확보일 때 모델기반 error calibration은 그 가정을 명시한 보조 결과다.
-
-**multiplicity:** H1 1개 A차원/1개 고정 공간집합을 일차 가족으로 둔다. H2/H3는 별도 사전 이차 가족이며 추가 ROI/target/k 선택을 포함한 교정 또는 새 보류 자료 검증이 필요하다.
-
-**reliability:** Horikawa 동일 ID 개인내 반복은 미확인. 반복이 없으면 repeat ceiling/crossnobis 반복 재현을 계산하지 않는다. 모델기반 GLM 오차는 그 가정을 붙여 다른 보조량으로 표시한다. NSD 반복 신뢰도를 Horikawa로 이식하지 않는다.
-
-**effect CI contract:** **audit id:** FPA3-01-03
-
-**primary scope:** 일차 효과구간은 각 참가자의 사전 고정 outer-fold OOF paired-loss에 대해, 그 fold별 이미 적합된 pipeline 집합에 조건부인 새 자극 접근성의 95% 구간으로 계획한다. 전체 학습절차의 재현 불확실성 또는 새 사람 모집단 CI가 아니다.
-
-**resampling rule:** 원영상/content family와 run/GLM 공통오차를 함께 보존하도록 연결된 의존 블록을 개발/metadata에서 고정한다. 동일 블록의 모든 paired losses와 model조건을 함께 재표집하고 fold별 test 규모를 유지하는 계층/층화 bootstrap을 계획한다. 블록이 여러 fold를 연결하면 연결관계를 보존한 하나의 단위로 처리한다. 유효 독립블록이 부족하거나 연결구조가 퇴화하면 CI를 산출 가능한 유효 구간으로 보고하지 않고 기술효과만 남긴다.
-
-**reported interval:** 2,000회 paired cluster bootstrap의 2.5/97.5 percentile을 계획상 95% 구간으로 지정한다. 단위·가중·fold구조·seed와 성공 resample 수를 기록하고 개발 simulation으로 CI coverage를 먼저 점검한다. 이 횟수는 실행 결과가 아니며 bootstrap 횟수가 유효표본수를 늘리지 않는다. OOF fold 간 shared-training 의존성은 loss-only resampling으로 제거되지 않으므로 이를 정확한 finite-sample coverage라고 주장하지 않는다.
-
-**fixed fit boundary:** PCA·k·readout·규제 선택을 고정한 loss 재표집은 그 선택/학습 불확실성을 포함하지 않는다. primary 제목과 표에 fitted-pipeline conditional이라고 명시하고 학습자료 일반화·학습절차 전체 CI라고 쓰지 않는다.
-
-**full learning rule:** 전체 학습절차 불확실성을 주장하도록 범위를 변경하려면 test 이전 별도 규칙으로 training/evaluation 의존블록을 재표집하고 매 replicate에서 normalization·PCA·k·readout/alpha의 nested 선택과 최종 적합·OOF평가를 다시 수행해야 한다. 같은 원 블록의 복제본이 train/test를 가로지르지 않게 묶는다. 이번 계약의 일차분석은 이 재적합 CI를 수행한 것으로 간주하지 않는다.
-
-**null vs effect:** known-null calibration 및 reduced-model null의 pipeline 재적합은 영가설하 오류율 점검이다. 그것을 효과크기 CI의 전체 학습 불확실성을 계산한 것으로 대체하지 않는다. 효과 CI와 null 절차의 목적·단위·재적합 여부를 각각 보고한다.
-
-**five subjects:** 5명 개인별 효과/conditional 95% 구간과 사람 간 관측 범위(min/max 등 기술량)를 분리한다. 공통 자극의 다섯 명 평균을 기술할 때 같은 자극 블록에 동일 bootstrap multiplicity를 적용하며 이 평균 역시 관측된 5명에 조건부다. 사람5명의 shared outer-train이나 많은 자극으로 사람 모집단 CI를 자동 얻지 않는다. 양측 exact sign-flip 최소 p=.0625와 비유의≠동등성 제한을 유지한다.
-
-**equivalence scope:** 사전 δ와 같은 단위의 conditional 95% 구간을 사용한다. CI상한<δ는 추가 이득이 작다는 제한적 판단, CI전체⊂[-δ,δ]는 지정 fitted pipeline·표적·참가자 조건의 실용 동등성이다. coverage 검증 실패/넓은 구간은 미결정이며 일반 학습절차나 사람 모집단으로 확대하지 않는다.
-
-**status:** 실제 OOF예측·bootstrap·coverage·효과 CI 미실행. 구간 수준과 계산 범위만 고정했다.
-
-
-
-## 7. Ablation·대조
-
-- mean+k spectrum-matched noise
-- mean의 중복/가역 회전 좌표 재표현 후 readout 재적합
-- 동일 effective df·regularization·전체 rank 대조
-- 감각 V/검수 사건 S를 조건으로 한 전체·조건부 예측
-- native/surface·registration·smoothing·공간대역·parcel 크기/면적을 명시한 random atlas
-- matched 비정서 B와 양성 null-space 신호 주입
-- strong nonlinear m-only
-- 같은 G/P에서 PCA basis 가역회전과 readout 재적합
-- 같은 GLM/HRF 및 영상 duration/run nuisance
-- H2 atlas seed를 실제 참가자 표본과 구분
-- 추가 정서차원 결과는 탐색으로 표시 또는 새로운 독립평가 사용
-- H2 실제/random atlas는 동일한 Ω/y/W의 완전 분할이며 배경/미할당 voxel을 포함하지 않는다. 동일지원/parcel수/가중면적/공간 제약 실패 시 H2만 보류한다.
-
-
-## 8. 확대·수정·중단 기준
-
-**start:** 실제 정량 A0의 squared-loss gate·dense y·완전 Ω/W/비중첩 partition·내용군 split·projection 수치검사 및 계측 후 자원 cap가 통과하면 제한된 H1 파일럿을 착수한다. 반복은 H1 predictive first pass의 필수조건이 아니지만 반복주장의 필수조건이다. H2/B-H3의 추가 gate 실패는 각각 해당 이차가설만 보류한다.
-
-**expand:** known-null calibration과 held-out H1 CI 하한>사전δ, strong mean-only·noise/규제 대조에서도 방향이 유지되면 더 많은 자극/영역으로 확장하고 H2/H3를 사전 secondary 계획으로 검정한다. 소수5명에서 사람 모집단 확증으로 승격하지 않는다.
-
-**revise:** H1이 linear-only이고 nonlinear mean으로 회수되면 readout 접근성 결과로 제한. H3 비교가능성이 없으면 일반 spatial prediction 결과로 기록. 잔차가 일반 spectrum/비정서 이득과 같으면 QC모듈로 축소.
-
-**stop:** dense/A 부재, projection/공간 mapping 오류, 내용중복 split 불가능, raw 관측에서 target/labels 오연결, 수렴/메모리 불능이면 수정 전 멈춘다. δ 검정 precision 부족이면 무효과 결론 없이 추가표본/범위축소 계획으로 남긴다. A0가 ordinal-only/nominal이거나 train SD가 유효하지 않으면 현 MSE계약을 중단한다. CI cluster/coverage 부족이면 기술효과만 남기며, 자원 cap 초과를 피하려고 Ω/G/P를 조용히 변경하지 않는다.
-
-**equivalence:** 척도 gate를 통과한 동일 loss·사전δ에 대해 고정 fitted-pipeline 조건부 95% CI 전체가[-δ,δ]안이면 관측한 참가자·표적·함수족 조건의 실용 동등성이다. CI상한<δ와 동등성은 구별한다. coverage 미확인·넓은 CI는 미결정이며 사람 모집단/전체 학습절차 동등성으로 확대하지 않는다.
-
-
-
-## 9. 실패 가능성과 주장 한계
-
-- P의 영공간이 있다는 항등식 또는 m+r=y 복원 자체는 새로운 신경 발견이 아니다.
-- 수치 k곡선 실패는 전체 영공간의 정보 부재가 아니다.
-- A는 자극 집계 주석이며 개인 정서 상태·경험을 추정했다고 하지 않는다.
-- H1/H2/H3의 결과를 혼합하지 않는다.
-- 반복 미확보 시 repeat ceiling·독립 반복 재현 주장을 하지 않는다.
-- 사람5명에 조건부인 자극 일반화와 사람 모집단을 구별한다.
-- 면적·공간주파수·신뢰도 matching이 실제 평균화 총효과를 제거할 수 있어 원효과/보정효과를 모두 남긴다.
-- CortexMAE나 CLIP의 공개 코드/URL은 실제 가중치 실행·호환성·생물학적 메커니즘 증거가 아니다.
-
-
-## 최종 감사로 확정한 실행 계약
-
-**version:** RP08-PILOT03-final-audit-20261112-v1
-
-**A B target scale gate:** **audit id:** FPA3-01-01
-
-**required metadata:** A0와 H3의 B 각각에 실제 header·정의·원 단위·수치 범위·극성·평정/집계 방식·척도 유형·결측 코딩·결측률·상수 여부를 확인해 manifest에 기록한다. category/dimension 경로명이나 숫자 dtype만으로 등간 정량 표적을 추정하지 않는다.
-
-**MSE go:** 값 간 차이의 크기와 squared-error가 해당 정량 표적에서 의미 있다고 문서화할 수 있을 때만 현재 MSE 계약을 적용한다. 집계평균도 원 평정척도와 집계 의미를 확인한다. train mean/SD는 허용된 정량척도의 수치 단위 조정이며 척도 타당성을 만들어 주지 않는다.
-
-**nominal ordinal:** 명목 범주 또는 순서만 정의된 값에 임의 숫자 간격을 부여하지 않는다. 문서화된 정량 열을 뇌효과와 test 성능을 보지 않고 사전 선택하거나, 현 MSE 분석을 보류하고 loss·δ·비교모형을 test 개봉 전에 다시 고정한다. loss 변경 시 현재 δ=.01 및 MSE 기반 H3 계약은 자동 승계하지 않는다.
-
-**missing constant:** A/B 결측 처리와 공통 평가행 선택을 모든 mean/plus 조건에 동일하게 적용한다. target 결측을 test 뇌값으로 대체하지 않는다. training target가 상수 또는 사전 수치허용범위 이하 SD이면 ε를 넣어 진행하지 않고 해당 fold/target의 분석을 보류하거나 test 이전 계획을 수정한다.
-
-**H3 go:** B도 같은 척도 gate를 통과하고 개발자료의 scale·난도·신뢰도 비교가능성이 별도로 뒷받침될 때만 H3를 수행한다. 단순 z-score와 같은 loss 이름만으로 비교가능하다고 하지 않는다. B gate 실패는 H3만 보류하며 A/H1 게이트 통과 여부와 분리한다.
-
-**status:** 실제 A/B 실물척도 미확인. 현재는 실행 규칙 작성이며 MSE 착수 허용 판정이 아니다.
-
-**fixed spatial support:** **audit id:** FPA3-01-02
-
-**omega definition:** Ω는 보존할 실제 dense cortical 좌표/voxel/vertex ID의 고정 목록이다. 좌표변환·coverage·atlas membership·W의 출처를 기록하고 배경·미할당·중복할당·비유한 y/weight는 관측범위 결정 단계에서 제외한다. 결과/label 효과로 Ω를 고르지 않는다.
-
-**complete parcels:** 공통 공간 좌표가 검증된 경우 참가자 coverage 교집합에 완전히 포함되는 기준 atlas parcel만 parcel 단위로 유지하고 그 합집합을 Ω로 정한다. 교집합이 parcel을 자르면 주계획에서는 그 parcel 전체를 제외한다. 8/32 parcel은 상한 목표이며 완전한 parcel 수가 부족하면 수를 줄여 기록한다. 부분-support를 별도로 허용할 경우 새 관측계약으로 명시하고 완전 parcel 또는 원 atlas와 같은 연산이라고 부르지 않는다.
-
-**participant boundary:** native 좌표의 공통 매핑이 없으면 사람 간 voxel 교집합을 만들지 않는다. 참가자별 Ω_s에서 H1을 수행하고 공간범위가 다른 조건부 결과로 표시한다. 이 경우 동일 Ω의 사람 공통 분석이라고 부르지 않는다.
-
-**partition checks:** 각 고정 Ω(또는 Ω_s)에서 C의 각 행 합=1, 각 열의 가중합>0, 모든 W_v>0 및 유한값, y/W/coordinate 순서 일치를 검사한다. 빈 parcel 열은 허용하지 않는다. 모든 mean/plus 조건과 fold에 같은 y지원·W·G를 적용한다.
-
-**H2 same support:** 실제 atlas와 각 random atlas는 동일 Ω와 동일 y/W를 빠짐없이 정확히 한 번 분할한다. J·가중 면적/크기 분포·연속성/거리 및 사전 공간대역 허용범위를 개발 단계에서 고정해 맞춘다. 실제/random의 Ω 좌표해시와 W해시가 같음을 검사하며 배경을 residual에 더하지 않는다.
-
-**H2 failure:** 동일 Ω의 비어 있지 않은 분할과 공간/크기 제약을 충족한 random atlas를 만들 수 없으면 H2만 보류한다. 다른 뇌영역을 포함하거나 Ω를 random atlas마다 바꿔 결과를 채우지 않는다.
-
-**status:** 실제 coverage·완전parcel·random atlas 제약은 미실행. 공간계약 검증 후에만 G/P를 적용한다.
-
-**conditional CI and learning uncertainty:** **audit id:** FPA3-01-03
-
-**primary scope:** 일차 효과구간은 각 참가자의 사전 고정 outer-fold OOF paired-loss에 대해, 그 fold별 이미 적합된 pipeline 집합에 조건부인 새 자극 접근성의 95% 구간으로 계획한다. 전체 학습절차의 재현 불확실성 또는 새 사람 모집단 CI가 아니다.
-
-**resampling rule:** 원영상/content family와 run/GLM 공통오차를 함께 보존하도록 연결된 의존 블록을 개발/metadata에서 고정한다. 동일 블록의 모든 paired losses와 model조건을 함께 재표집하고 fold별 test 규모를 유지하는 계층/층화 bootstrap을 계획한다. 블록이 여러 fold를 연결하면 연결관계를 보존한 하나의 단위로 처리한다. 유효 독립블록이 부족하거나 연결구조가 퇴화하면 CI를 산출 가능한 유효 구간으로 보고하지 않고 기술효과만 남긴다.
-
-**reported interval:** 2,000회 paired cluster bootstrap의 2.5/97.5 percentile을 계획상 95% 구간으로 지정한다. 단위·가중·fold구조·seed와 성공 resample 수를 기록하고 개발 simulation으로 CI coverage를 먼저 점검한다. 이 횟수는 실행 결과가 아니며 bootstrap 횟수가 유효표본수를 늘리지 않는다. OOF fold 간 shared-training 의존성은 loss-only resampling으로 제거되지 않으므로 이를 정확한 finite-sample coverage라고 주장하지 않는다.
-
-**fixed fit boundary:** PCA·k·readout·규제 선택을 고정한 loss 재표집은 그 선택/학습 불확실성을 포함하지 않는다. primary 제목과 표에 fitted-pipeline conditional이라고 명시하고 학습자료 일반화·학습절차 전체 CI라고 쓰지 않는다.
-
-**full learning rule:** 전체 학습절차 불확실성을 주장하도록 범위를 변경하려면 test 이전 별도 규칙으로 training/evaluation 의존블록을 재표집하고 매 replicate에서 normalization·PCA·k·readout/alpha의 nested 선택과 최종 적합·OOF평가를 다시 수행해야 한다. 같은 원 블록의 복제본이 train/test를 가로지르지 않게 묶는다. 이번 계약의 일차분석은 이 재적합 CI를 수행한 것으로 간주하지 않는다.
-
-**null vs effect:** known-null calibration 및 reduced-model null의 pipeline 재적합은 영가설하 오류율 점검이다. 그것을 효과크기 CI의 전체 학습 불확실성을 계산한 것으로 대체하지 않는다. 효과 CI와 null 절차의 목적·단위·재적합 여부를 각각 보고한다.
-
-**five subjects:** 5명 개인별 효과/conditional 95% 구간과 사람 간 관측 범위(min/max 등 기술량)를 분리한다. 공통 자극의 다섯 명 평균을 기술할 때 같은 자극 블록에 동일 bootstrap multiplicity를 적용하며 이 평균 역시 관측된 5명에 조건부다. 사람5명의 shared outer-train이나 많은 자극으로 사람 모집단 CI를 자동 얻지 않는다. 양측 exact sign-flip 최소 p=.0625와 비유의≠동등성 제한을 유지한다.
-
-**equivalence scope:** 사전 δ와 같은 단위의 conditional 95% 구간을 사용한다. CI상한<δ는 추가 이득이 작다는 제한적 판단, CI전체⊂[-δ,δ]는 지정 fitted pipeline·표적·참가자 조건의 실용 동등성이다. coverage 검증 실패/넓은 구간은 미결정이며 일반 학습절차나 사람 모집단으로 확대하지 않는다.
-
-**status:** 실제 OOF예측·bootstrap·coverage·효과 CI 미실행. 구간 수준과 계산 범위만 고정했다.
-
-**measured resource and operator preservation:** **audit id:** FPA3-01-04
-
-**first measurement:** 첫 대표 QC 블록에서 실제 cgroup limit L, 시작 total memory.current B, 전체 실행 peak memory·solver workspace·wall time을 측정하고 실행 config에 기록한다. 보고된 L=32GiB는 시작값이며 실행시 재확인한다.
-
-**cap rule:** 계측 후 명시적인 total peak 상한 M_cap≤min(0.75L,L−8GiB)를 config에 고정한다. L=32GiB이면 상한은 최대24GiB이고 최소8GiB를 남긴다. B와 대표 block workspace/복사본/solver를 합친 projected total peak가 이 상한에 맞지 않으면 full fit를 시작하지 않는다. 기존 부하가 상한을 넘으면 해당 실행을 보류한다. 실제 측정 없이는 맞는다고 선언하지 않는다.
-
-**warning stop:** 경고선=0.9M_cap, 계획/측정 total peak≥M_cap이면 새 할당·후속 fit를 중단하고 정리한다. 경고선 도달 시 다음 block 확대를 금지하고 block/solver 설정을 재계측한다. 예기치 않은 OOM 또는 monitor overshoot는 실패로 기록하며 상한을 지켰다고 소급 주장하지 않는다.
-
-**cpu concurrency:** 총 thread budget≤4이며 CPU quota가 더 작으면 그 값 이하로 낮춘다. BLAS/MKL/OpenBLAS/OMP 및 sklearn worker를 한 예산 안에 고정하고 nested parallelism을 금지한다. 참가자·model·outer/inner fold·bootstrap fit는 순차 실행한다. 실제 thread/env 설정을 config에 기록한다.
-
-**preserve G P:** 공간블록은 완전 parcel 단위로 처리하거나, parcel이 block을 가로지르면 모든 해당 block의 정확한 누적 Σw_v y_v와 Σw_v를 먼저 계산한 뒤 같은 전체 parcel 평균을 두 번째 pass에서 broadcast한다. block 내부만의 평균/분모로 G/P를 바꾸지 않는다. Ω·W·parcel membership hash는 block 크기를 바꿔도 동일해야 한다.
-
-**PCA workspace:** workspace가 크면 같은 전체 training rows와 같은 Ω의 residual을 사용하는 incremental/randomized solver로 바꾸고 solver·순서·수치허용오차를 기록한다. block별 별도 PCA/서로 다른 feature공간을 이어 붙이지 않는다. 작은 training subset에서 기존 solver와 subspace/예측 수치 민감도를 점검하며 test로 solver를 선택하지 않는다.
-
-**no silent scope change:** 메모리 문제를 해결하려고 원래 Ω에서 일부 voxel을 잘라 다른 관측을 같은 H1이라고 보고하지 않는다. block/out-of-core로 같은 연산을 유지할 수 없으면 해당 fit를 보류하고 test 이전 계약 변경으로 기록한다. V×V P 물리행렬은 만들지 않는다.
-
-**status:** 상한 공식·thread/순차 규칙 작성 완료; 대표 block 계측·config 설정·실제 G/P 보존검사는 아직 수행하지 않았다.
-
-
-
-## 근거
-
-- [P001 The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions](https://doi.org/10.1016/j.isci.2020.101060) · [실제 확인 출처](https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json)
-- [P026 Scaling Vision Transformers for Functional MRI with Flat Maps](https://arxiv.org/abs/2510.13768) · [실제 확인 출처](https://github.com/MedARC-AI/CortexMAE)
-- [P051 Similarity of Neural Network Representations Revisited](https://proceedings.mlr.press/v97/kornblith19a.html)
-- [P060 A Python Toolbox for Representational Similarity Analysis](https://doi.org/10.1101/2025.05.22.655542) · [실제 확인 출처](https://github.com/rsagroup/rsatoolbox)
-- [P063 Comparing spatial null models for brain maps](https://doi.org/10.1016/j.neuroimage.2021.118052) · [실제 확인 출처](https://github.com/netneurolab/markello_spatialnulls/blob/master/manuscript/main.tex)
-- [P100 Statistical inference on representational geometries](https://doi.org/10.7554/eLife.82566) · [실제 확인 출처](https://elifesciences.org/articles/82566)
-- https://github.com/OpenNeuroDatasets/ds002425
-- https://github.com/KamitaniLab/EmotionVideoNeuralRepresentationPython
-- https://github.com/openai/CLIP
-
-작성 원본: [04_brain_foundation](../agents/04_brain_foundation/pilot_PILOT03.json). [공통 자원·모델 근거](RESOURCE_AND_MODEL_PLAN.md).
+[공통 방법과 데이터 조건](METHODS.md) · [파일럿 목록](README.md)

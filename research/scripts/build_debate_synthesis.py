@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """실제 세 관점·후속 응답과 Coordinator의 명시적 판정을 합성."""
+
+# V2_LEGACY_GUARD: preserve historical scripts without overwriting the new agenda.
+from pathlib import Path as _VersionPath
+if (_VersionPath(__file__).resolve().parents[1] / "revision_v2/version.json").exists():
+    raise SystemExit("이 스크립트는 v1 전용입니다. 현재 기획에는 render_neuroscience_v2.py와 validate_neuroscience_v2.py를 사용하세요.")
+
 import json,collections
 from pathlib import Path
 r=Path(__file__).resolve().parents[1];out=r/'discussions/round_05'

@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "status": "revised_planning_complete",
+  "previous_commit": "bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6",
+  "primary_question_prefix": "NQ",
+  "note": "핵심 질문 10개를 새로 구성. 이전 RQ 30개와 같은 질문 수 또는 같은 검토 이력으로 합산하지 않음."
+}

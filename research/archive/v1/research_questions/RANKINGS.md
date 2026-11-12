@@ -1,0 +1,73 @@
+# 네 가지 우선순위
+
+점수는 문헌과 조건부 설계에 대한 각 역할의 Round4 1–5점 판단이다. 관측된 실험효과·메타분석 점수·역할 간 교정된 척도가 아니다. 세 기준순위는 명시한 항목을 차례로 비교하는 설명용 사전순 정렬이며, 동점의 RQ 번호 순서에 과학적 차이가 있다는 뜻은 없다. 종합 Top10은 Coordinator가 반증 대비·질문 다양성·자료 조건을 함께 판단했으며 자동 가중합 순위가 아니다. 최종 감사에서 제외·병합한 질문은 별도 순위로 세지 않는다.
+
+## 과학적 잠재력
+
+비교 기준: ["neuro_importance", "exploration_value", "falsifiability"]
+
+| 순서 | 질문 | 근거/점수 |
+|---:|---|---|
+| 1 | [RQ07 이력 상태는 복수 후속 사건의 정서 신경반응 변화를 예측하는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq07) | [5, 5, 5] |
+| 2 | [RQ20 과거 제한 상태의 신경 충분성과 미래 지향 학습목표의 추가 역할](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq20) | [5, 5, 4] |
+| 3 | [RQ23 훈련에서 식별한 공유 관계 연산은 보지 않은 내용–정서 조합으로 전이되는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq23) | [5, 5, 4] |
+| 4 | [RQ03 비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq03) | [4, 5, 4] |
+| 5 | [RQ14 parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq14) | [4, 4, 5] |
+| 6 | [RQ01 미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq01) | [4, 4, 4] |
+| 7 | [RQ04 개인별 정서 관련 tuning은 공통정보의 가역 좌표 차이로 충분한가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq04) | [4, 4, 4] |
+| 8 | [RQ05 내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq05) | [4, 4, 4] |
+| 9 | [RQ06 새 정서 대비와 환경에 재사용되는 공동 압축공간의 충분성](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq06) | [4, 4, 4] |
+| 10 | [RQ08 내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq08) | [4, 4, 4] |
+
+## 독창성
+
+비교 기준: ["novelty", "ai_necessity", "exploration_value"]
+
+| 순서 | 질문 | 근거/점수 |
+|---:|---|---|
+| 1 | [RQ07 이력 상태는 복수 후속 사건의 정서 신경반응 변화를 예측하는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq07) | [3, 4, 5] |
+| 2 | [RQ20 과거 제한 상태의 신경 충분성과 미래 지향 학습목표의 추가 역할](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq20) | [3, 4, 5] |
+| 3 | [RQ03 비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq03) | [3, 3, 5] |
+| 4 | [RQ23 훈련에서 식별한 공유 관계 연산은 보지 않은 내용–정서 조합으로 전이되는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq23) | [3, 3, 5] |
+| 5 | [RQ01 미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq01) | [3, 3, 4] |
+| 6 | [RQ08 내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq08) | [3, 3, 4] |
+| 7 | [RQ09 시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq09) | [3, 3, 4] |
+| 8 | [RQ10 독립 관측이 배제하는 정서 상반 witness 쌍](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq10) | [3, 3, 4] |
+| 9 | [RQ12 관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq12) | [3, 3, 4] |
+| 10 | [RQ15 관측격자를 넘어 필요한 이력 함수는 비선형 관측인가 선택적 상태 전이인가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq15) | [3, 3, 4] |
+
+## 단기 실현성
+
+비교 기준: ["data_feasibility", "technical_feasibility", "rigor"]
+
+| 순서 | 질문 | 근거/점수 |
+|---:|---|---|
+| 1 | [RQ12 관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq12) | [4, 4, 4] |
+| 2 | [RQ11 고정 ROI 분할에서 정서 대비의 비가산 판독이 필요한가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq11) | [3, 4, 4] |
+| 3 | [RQ14 parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq14) | [3, 4, 4] |
+| 4 | [RQ16 공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq16) | [3, 4, 4] |
+| 5 | [RQ19 감각 불일치 조건의 비가산성: 공통 단위 paired risk 검정](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq19) | [3, 4, 4] |
+| 6 | [RQ01 미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq01) | [3, 3, 4] |
+| 7 | [RQ05 내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq05) | [3, 3, 4] |
+| 8 | [RQ06 새 정서 대비와 환경에 재사용되는 공동 압축공간의 충분성](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq06) | [3, 3, 4] |
+| 9 | [RQ08 내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq08) | [3, 3, 4] |
+| 10 | [RQ09 시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq09) | [3, 3, 4] |
+
+## 종합 우선순위
+
+비교 기준: Coordinator 내용·다양성·반증·착수조건 판단
+
+| 순서 | 질문 | 근거/점수 |
+|---:|---|---|
+| 1 | [RQ09 시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq09) | Horikawa 우선으로 같은 입력·시각표적에서 정렬 전후 정서 대비의 판독 접근성을 검정한다. 유한 probe로 비가역 정보 소실을 입증하지 않으며, 작은 학습목표 비교와 cache 기준부터 조건부 착수할 수 있음. |
+| 2 | [RQ12 관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq12) | 관계 의미 누락과 비가산 신경 예측 이득을 고정 타깃에서 구별하고 Mind Captioning을 조건부로 연결함. |
+| 3 | [RQ18 경계 단서와 과거 소거를 분리한 상태 갱신의 필요성](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq18) | 현재 자극·연속 상태·사건경계 reset의 충돌하는 예측을 시간자료에서 검정함. |
+| 4 | [RQ16 공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq16) | 모달리티 공유 통로의 충분성과 고유 경로 필요성을 강한 가산 기준으로 구별함. |
+| 5 | [RQ13 독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq13) | 자극조건부와 신경조건부의 불일치를 의미 누락·공통자극과 경쟁시킴. |
+| 6 | [RQ05 내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq05) | 정서 범주 경계의 신경 구조를 단순 고차원성보다 구체적인 국소 대비로 검정함. |
+| 7 | [RQ10 독립 관측이 배제하는 정서 상반 witness 쌍](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq10) | 그럴듯한 단일 복원보다 관측이 제한하는 정서 정보의 식별 범위를 질문함. |
+| 8 | [RQ14 parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq14) | 공간 평균의 null-space에 정서 대비가 남는지 검정하여 뇌 foundation model의 공간 병목을 해부학·신뢰도와 구별함. |
+| 9 | [RQ03 비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq03) | 서로 다른 자료의 거리구조 일치와 정서 의미 대응을 구별하는 장기 기회를 보존함. |
+| 10 | [RQ27 사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6/research/research_questions/LANDSCAPE.md#rq27) | 사전 허용집합에서 의미 보존 편집의 실제 신경 대비를 검정하는 장기 경로; 선택한 모집단과 새 측정 조건을 명시함. |
+
+각 질문의 항목별 이유·근거·불확실성은 LANDSCAPE.md, 전체 순위는 rankings.csv에 있다. 우선5는 종합 검토 순서이며 다섯 개 모두 현재 자료로 즉시 실행할 수 있다는 뜻은 아니다. 최종 조건·실제 착수 판정은 Round5 종합과 상세 카드가 우선한다. 특히 RP05는 반복/전처리 독립성 미확인으로 신경 확증 착수를 보류했다.

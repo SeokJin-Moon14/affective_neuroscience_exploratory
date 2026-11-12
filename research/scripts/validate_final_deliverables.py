@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """실제 산출물의 개수·추적·필수계약을 검사한다. 신경 실험 검증이 아니다."""
+
+# V2_LEGACY_GUARD: preserve historical scripts without overwriting the new agenda.
+from pathlib import Path as _VersionPath
+if (_VersionPath(__file__).resolve().parents[1] / "revision_v2/version.json").exists():
+    raise SystemExit("이 스크립트는 v1 전용입니다. 현재 기획에는 render_neuroscience_v2.py와 validate_neuroscience_v2.py를 사용하세요.")
+
 import csv,json,collections,hashlib,random,re
 from pathlib import Path
 from datetime import datetime,timezone

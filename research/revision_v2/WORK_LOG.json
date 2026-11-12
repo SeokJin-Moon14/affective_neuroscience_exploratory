@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "completed_at": "2026-11-12T08:57:50.256730+00:00",
+  "scope": "질문·가설·실험 계획과 한국어 문장 재구성. 실제 뇌 분석·모델 실행은 미수행.",
+  "contributors": [
+    {
+      "agent": "/root/vision",
+      "task": "RP01–RP03 과학 질문과 설계 원고"
+    },
+    {
+      "agent": "/root/affective_reframe",
+      "task": "RP04·RP09·RP10 과학 질문과 설계 원고"
+    },
+    {
+      "agent": "/root/dynamics_continuation",
+      "task": "RP05–RP08 과학 질문과 설계 원고"
+    },
+    {
+      "agent": "/root/auditor",
+      "task": "새 파일럿 초기 검토 및 새 카드·파일럿 최종 검토"
+    },
+    {
+      "agent": "/root",
+      "task": "질문 선정·중복 검토·원고 편집·파일럿 작성·지적 반영·통합·저장"
+    }
+  ],
+  "new_fulltext_research": false,
+  "new_experiments": false,
+  "legacy_work_reused_as_new_review": false,
+  "initial_findings": 5,
+  "initial_findings_addressed": 5,
+  "remaining_major_document_findings": 0,
+  "writing_skill": {
+    "path": "skills/humanizer/SKILL.md",
+    "mode": "프로젝트 안에서 지침을 읽고 편집에 적용. 앱 전역 설치 아님."
+  },
+  "artifacts": [
+    {
+      "path": "revision_v2/cards.json",
+      "sha256": "da9bfd9590e3c4924116a07b8272f56c0e917800a541aaf50abd0a9600df26c7"
+    },
+    {
+      "path": "revision_v2/pilots.json",
+      "sha256": "16b236810c9970e8d1c6e184843200574d6cd42252aeac9180042972c200e8bd"
+    },
+    {
+      "path": "agents/12_adversarial_review/revision_v2_final_review.json",
+      "sha256": "dabe6833f1121fc27055b5d49a69fdb894c32cc73e970d7536e1643f21904396"
+    }
+  ],
+  "archive_check": {
+    "original_files": 59,
+    "source_commit": "bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6",
+    "original_hashes_match_prior_backup": true
+  }
+}

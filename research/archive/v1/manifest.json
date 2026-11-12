@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "source_commit": "bee5c041fca8ff8a6dcf99c9c8906252c2cbe2a6",
+  "note": "Markdown의 내부 링크만 고정된 v1 GitHub 커밋으로 변경. 원본 해시는 변경 전 파일 기준.",
+  "files": [
+    {
+      "path": "proposals/RP01.md",
+      "sha256_original": "f7b027b0edc3ae7606c8e13986ac0c00e9633338d09f6fd622435e5aebb117f3"
+    },
+    {
+      "path": "proposals/RP03.md",
+      "sha256_original": "a5e62cbbe6a661d2e0d0ae56b1ac8148d6ba4dc55e01d8ed6bf879d50b8419b4"
+    },
+    {
+      "path": "proposals/RP07.md",
+      "sha256_original": "d8e2eef0ec96ba34c2fbb68bb3fa5ce00124b28398e06eaaf41cb0e5e3c59dc1"
+    },
+    {
+      "path": "proposals/RP02.md",
+      "sha256_original": "56767b2c180e6643a5a6b5612b539d8cf95caee6566a71d3b66c53a90e14f5e8"
+    },
+    {
+      "path": "proposals/cards.json",
+      "sha256_original": "b5998902f66b520676f80b88eae6bd9b9d284542e5f276cdb84112d803a7f990"
+    },
+    {
+      "path": "proposals/RP10.md",
+      "sha256_original": "7664134ba5adf0404fdac0c37a28f2f51e0fc3732980f1261c62465b1cec2d7c"
+    },
+    {
+      "path": "proposals/RP06.md",
+      "sha256_original": "c0940674d8f52b9e35eb5225cdce839d3cc614f911695a7998db62b3926d25fb"
+    },
+    {
+      "path": "proposals/RP09.md",
+      "sha256_original": "92773811c6e008915a234b01de35b3917f4bdffe9ebddd91849566ad82c30a56"
+    },
+    {
+      "path": "proposals/README.md",
+      "sha256_original": "178875b61026156d9e9539fbe7384b8ae93f7b92f60733044accac333c744400"
+    },
+    {
+      "path": "proposals/AUTHORING_PROTOCOL.md",
+      "sha256_original": "4798e73ff49268f124c2c9f265471bd1d97b1898b79e39bfb8d8a098555f2119"
+    },
+    {
+      "path": "proposals/RP08.md",
+      "sha256_original": "c4bb4fd0edb520b668c89d4bb73ed1a4a105461f62a6a6b70bf22b7c9cdcc822"
+    },
+    {
+      "path": "proposals/RP05.md",
+      "sha256_original": "c22d751c01fdd972071c845af5c9f3a99a7677976559953b5045da0cfe99e178"
+    },
+    {
+      "path": "proposals/RP04.md",
+      "sha256_original": "c7aec6b1c5491077ad3892ef1fd4fef076f377f071253aea399ff46cb895cbf9"
+    },
+    {
+      "path": "pilots/PILOT03.md",
+      "sha256_original": "664b5677a8de4038d315b2abfab1cbba4eb1447c12503decfbd0e3143b99398b"
+    },
+    {
+      "path": "pilots/PILOT02.md",
+      "sha256_original": "abc733d4491e2d3dccff0ac8e7b86f864e351b1061c989b32d7636c951d7e9df"
+    },
+    {
+      "path": "pilots/PILOT01.md",
+      "sha256_original": "b525d11a5e1d017c13c616ba0bbb54aa61f5325049629a253d41f7b528641bba"
+    },
+    {
+      "path": "pilots/plans.json",
+      "sha256_original": "60dbf9d8d6bc2975fcbe1cdaea65e400ff4a26af10bfad5554bcc683b4d972f6"
+    },
+    {
+      "path": "pilots/SELECTION.md",
+      "sha256_original": "ae9ac69f1eb06ee19700a03d9a357690dc7fe521efca8763c2fc764dce448f2a"
+    },
+    {
+      "path": "pilots/environment_observation.json",
+      "sha256_original": "dcb1556ddb22eeffdefd376b3b61ad43bebc9734f2911525e41a3a5254582dfc"
+    },
+    {
+      "path": "pilots/README.md",
+      "sha256_original": "f2379dcf8e0afca3f0227c0c681ae5ed15a228db9affd6a86789d77dfc9234cf"
+    },
+    {
+      "path": "pilots/AUTHORING_PROTOCOL.md",
+      "sha256_original": "db697e279149bcdf00f859b05855641297923fa253195b2752a52a43e1157209"
+    },
+    {
+      "path": "pilots/RESOURCE_AND_MODEL_PLAN.md",
+      "sha256_original": "b92b87a6cf35713a031a74518d399549020c72e73ddeafd90f3874aaa5d7b053"
+    },
+    {
+      "path": "pilots/model_evidence/clip_license.txt",
+      "sha256_original": "987e63b32f6c89ff5160e429458a872ff048e6860b590a3912e938f9da8f14db"
+    },
+    {
+      "path": "pilots/model_evidence/manifest.json",
+      "sha256_original": "431c57e590bfb964de239421e785f4b369f6d51761a9987eb88c35e7f868d364"
+    },
+    {
+      "path": "pilots/model_evidence/clip_model.py",
+      "sha256_original": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c"
+    },
+    {
+      "path": "pilots/model_evidence/clip_loader.py",
+      "sha256_original": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6"
+    },
+    {
+      "path": "research_questions/EVALUATION_RUBRIC.md",
+      "sha256_original": "970a35bd0cd75c354c5c2ea8b55494b6272d1711a5ce756b5a4f160532bac8a3"
+    },
+    {
+      "path": "research_questions/round05_amendments.json",
+      "sha256_original": "fc0913d3f51dbb9ef845da00905d0a81d8ee2f805cb6844193b2d58e95368f00"
+    },
+    {
+      "path": "research_questions/rankings.csv",
+      "sha256_original": "31639524ae6c06cfca5ab1f0201f9d191bc3cecba3a445ab9d441826fa8adb08"
+    },
+    {
+      "path": "research_questions/shortlist.csv",
+      "sha256_original": "0cd6d43724bc943ae7f1bde65ce71edfd04367fca04b5aa852881a33afd17095"
+    },
+    {
+      "path": "research_questions/retired_questions.json",
+      "sha256_original": "81632f0349b3cedb885f1fce6e4e4def221e836ea9cc23a9291437814a8ef369"
+    },
+    {
+      "path": "research_questions/curation_plan.json",
+      "sha256_original": "eb7919f5f6f18d3376382d18548e571282c6d8eed648d294b073512e6944e375"
+    },
+    {
+      "path": "research_questions/landscape.csv",
+      "sha256_original": "5e1abf35ca95d2ce4663bce2c290774dc5d5d755ee8d79641a6096b4e14c2a0c"
+    },
+    {
+      "path": "research_questions/README.md",
+      "sha256_original": "cd2e15fd0fa964b259a45f578e22ebb917ba84cc08edad86d804e12e1dd522db"
+    },
+    {
+      "path": "research_questions/candidate_crosswalk.csv",
+      "sha256_original": "6f8324c985c0ec0444b8c6e13a6e7bb8838401870dec516060bf7921a45a58fe"
+    },
+    {
+      "path": "research_questions/direction_aliases.json",
+      "sha256_original": "8f43971cc4a025d30fdb4896682ab7fbfcd70678a95e278812490843b6732064"
+    },
+    {
+      "path": "research_questions/LANDSCAPE.md",
+      "sha256_original": "bcc46d02972c8be1524edbc1015b991d66b2e0ead99bfe4850d5ec18b961e994"
+    },
+    {
+      "path": "research_questions/clusters.csv",
+      "sha256_original": "9271d0d9f779823e2aff6ae583f0a1a4b0d7de4462f8332cd1bcc4541a917157"
+    },
+    {
+      "path": "research_questions/shortlist.json",
+      "sha256_original": "fa1306264490d22fda10ef95026496d9dda6670de718eea9651eb883afe7f3d7"
+    },
+    {
+      "path": "research_questions/final_curation.json",
+      "sha256_original": "ff2a7cf33b33076fad12d61499089b8c6310dc4098a438f6421bc000747f76e3"
+    },
+    {
+      "path": "research_questions/RANKINGS.md",
+      "sha256_original": "b35d8ffb92d73f7e36e853441daabb510afef1259ed741acd3732565f7393406"
+    },
+    {
+      "path": "research_questions/landscape.json",
+      "sha256_original": "ab8240cce50b8cdb3edd91eb2d43c052873f83d6b5f48dc33152b41a47ff4ddc"
+    },
+    {
+      "path": "research_questions/directions.csv",
+      "sha256_original": "3a8d63555b0abe2e64277ea4424228ae79a71ab18c83e9e0c1d136cdac5b184e"
+    },
+    {
+      "path": "synthesis/validation_report.json",
+      "sha256_original": "cc321cbfbb15e61903ff868c33404d12fac8e48a08c086a4b1e5e6923e546547"
+    },
+    {
+      "path": "synthesis/deliverables_manifest.json",
+      "sha256_original": "ed9b171f652ac1b697f2a8a2447394f200264440b11726ba83e45133d67ce3d7"
+    },
+    {
+      "path": "synthesis/OPPORTUNITY_MAP.md",
+      "sha256_original": "ce6915ca984d124d953a2a751a9c09ae991b2fa2cc0568ed51a6a7f8d939b6ff"
+    },
+    {
+      "path": "synthesis/link_check.json",
+      "sha256_original": "3ed4b60408f4eafb7fc558de42d52ada49bd119fd900907a978e9fa3fbed6195"
+    },
+    {
+      "path": "synthesis/gate_criteria.md",
+      "sha256_original": "7bd5e4038c851a9bec8171bbc79b3040ac38d5b6073c149827595d180960fc16"
+    },
+    {
+      "path": "synthesis/final_audit_resolution.json",
+      "sha256_original": "a523d54ebd3ac292d0a40080f609e58fc6a26ea80085f4e2d2852f53334ee9cd"
+    },
+    {
+      "path": "synthesis/initial_report.md",
+      "sha256_original": "cdaf6ae7591f8af044c20f7d1a29b4fff6859fe3a629047abb4de8d84d02954b"
+    },
+    {
+      "path": "synthesis/FINAL_REPORT.md",
+      "sha256_original": "52d91137da8c39aa6fc8c60b5f9a4e95b461e96a6c45a37768dbd81a18c4de98"
+    },
+    {
+      "path": "synthesis/FINAL_AUDIT.md",
+      "sha256_original": "25c194918a985b147216a7b0e3b9f65859d863a5bcf2b12655aecfbf60cb72e0"
+    },
+    {
+      "path": "synthesis/phase1_findings.md",
+      "sha256_original": "78bf2887f798ad8f96af1f500b70e23787af80b5cdc892d8c5c9f026e7e611a5"
+    },
+    {
+      "path": "synthesis/DIVERSITY_AUDIT.md",
+      "sha256_original": "56d249aa3cbe396c073be35420e16fb9181398eeeeeab31d86e3748991c2a587"
+    },
+    {
+      "path": "synthesis/assumption_inventory.csv",
+      "sha256_original": "c3e403ada90d56a58863ce7153308885c78999f548dffb5ee5743f0ac8e7a794"
+    },
+    {
+      "path": "START_HERE.md",
+      "sha256_original": "37ce78977443be3c1c1aff3322170fff343aaccd4ece59d428e133c07abe2391"
+    },
+    {
+      "path": "RESEARCH_STATUS.md",
+      "sha256_original": "ecc1f84f7029c3b04b43557a4e80f4108ccfd3c159e97b45076483da2385af10"
+    },
+    {
+      "path": "CHATGPT_PROJECT_BRIEF.md",
+      "sha256_original": "be17b5bd3696cbc35164062e44f0d9dc02b11c5720a06b693baf8ba13e22a2e8"
+    },
+    {
+      "path": "BUNDLE_CONTENTS.md",
+      "sha256_original": "2c1524b28aa8d4c226760f531bc0a841a330c35931df1ef625e2a737cfe12b98"
+    }
+  ]
+}

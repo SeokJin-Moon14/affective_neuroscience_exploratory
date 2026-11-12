@@ -1,102 +1,146 @@
 {
-  "date": "2026-11-12",
-  "counts": {
-    "roles": 12,
-    "verified_bibliographies": 100,
-    "unique_inventory": 103,
-    "round2_candidates": 60,
-    "round3_reviews": 120,
-    "round3_checks": 960,
-    "round4_responses": 60,
-    "round4_connections": 27,
-    "round4_evaluations": 600,
-    "round5_positions": 30,
-    "round5_rebuttal_responses": 59,
-    "random_combinations": 30,
-    "literature_combinations": 12,
-    "directions": 40,
-    "research_questions": 30,
-    "proposals": 10,
-    "pilots": 3
-  },
-  "deliverables": [
+  "version": 2,
+  "scope": "현재 독자 문서",
+  "files": [
     {
-      "deliverable": "A",
-      "name": "Dataset Intelligence Report",
-      "path": "datasets/DATASET_INTELLIGENCE_REPORT.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "공식4종 감사와 사용자 보유5종의 실제 확인/미확인 구분"
+      "path": "START_HERE.md",
+      "sha256": "0199ff0f419439e2e18c97e256bf5013217577de4d4cce765a0eadff2f596123"
     },
     {
-      "deliverable": "B",
-      "name": "Research Axis Encyclopedia",
-      "path": "axis_map/AXIS_ENCYCLOPEDIA.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "24축·36원제안·8묶음"
+      "path": "RESEARCH_STATUS.md",
+      "sha256": "9822f9fb0ca9c127ac4dd8b5fd8df5ffee75ea15b90f4af537ac0e510a8faac4"
     },
     {
-      "deliverable": "C",
-      "name": "Verified Literature Database",
-      "path": "literature/verified_papers.csv",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "고유 서지확인100편; 전체103편과보류별도"
+      "path": "CHATGPT_PROJECT_BRIEF.md",
+      "sha256": "4e3342bc333099f94e9fa8c499292625ed5e6f6af08b129ddde2a7fb21f270f0"
     },
     {
-      "deliverable": "D",
-      "name": "Discussion Mining",
-      "path": "literature/discussion_mining.csv",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "직접지정본문27편·저자후속25편; E3와구별"
+      "path": "BUNDLE_CONTENTS.md",
+      "sha256": "2c1524b28aa8d4c226760f531bc0a841a330c35931df1ef625e2a737cfe12b98"
     },
     {
-      "deliverable": "E",
-      "name": "Cross-Disciplinary Opportunity Map",
-      "path": "synthesis/OPPORTUNITY_MAP.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "문헌생성12전략·실제Round4새연결27개"
+      "path": "research_questions/README.md",
+      "sha256": "65deb6ed9225d164ce8e2d90edc8c66f4b7b5e7d5bfc1555f00f24e20a5b6127"
     },
     {
-      "deliverable": "F",
-      "name": "Actual Agent Discussion Records",
-      "path": "discussions/round_05/SYNTHESIS.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "12역할·실제Round1–5·제안자후속응답·소수의견"
-    },
-    {
-      "deliverable": "G",
-      "name": "Research Combination Matrix",
-      "path": "combinations/combination_matrix.csv",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "문헌12+실제랜덤30=42"
-    },
-    {
-      "deliverable": "H",
-      "name": "Research Question Landscape",
       "path": "research_questions/LANDSCAPE.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "방향40·독립RQ30·방법보류중복10"
+      "sha256": "1f6e24c0f1d761a1a855178568c040f6225a0bdceefc89b7e83719046fdb070b"
     },
     {
-      "deliverable": "I",
-      "name": "Top 10 Proposals",
-      "path": "proposals/README.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "각16본문항목·관련문헌≥5·실제반론응답"
+      "path": "research_questions/RANKINGS.md",
+      "sha256": "9a466597c6f67f8c9fbf4fb3af58df08ee5eb7288da61022fdaa03f263da332a"
     },
     {
-      "deliverable": "J",
-      "name": "Top 3 Pilot Plans",
-      "path": "pilots/README.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "각9실행항목·자료/모델조건·실험미실행"
+      "path": "literature/REVISION_V2_SOURCES.md",
+      "sha256": "8f2177a0179eb6a071c38ae2bf676b4222e50e7fa0d6e0d4555418a0e51a8381"
     },
     {
-      "deliverable": "K",
-      "name": "Coordinator Final Synthesis",
+      "path": "literature/novelty/REVISION_V2_REVIEW.md",
+      "sha256": "db8d6970346a170cda64a0522e351f15ab917ed7010ea627893767c4a2be39ba"
+    },
+    {
+      "path": "revision_v2/CHANGELOG.md",
+      "sha256": "d3538d2fbad0ff882c8cf43a3c881a88727702b34dfdf8392ad53eeeff31b211"
+    },
+    {
+      "path": "archive/v1/README.md",
+      "sha256": "dffa753fd5af64a4d309fb927d15b366c779024158f1b786b53e2e612f1e89b4"
+    },
+    {
       "path": "synthesis/FINAL_REPORT.md",
-      "status": "문헌·토론·설계 산출물 완료",
-      "verified_scope": "최종10질문·8탐색질문·우선순위·미해결조건"
+      "sha256": "4c554c778006ef2f32f1e230fddb3d8c701281e7ea7009483b7d78e7a9ca8c78"
+    },
+    {
+      "path": "synthesis/FINAL_AUDIT.md",
+      "sha256": "8bde552bbd536863ec156b9fe669de81ce361b02ffa549f4de1ad98dfe9cf945"
+    },
+    {
+      "path": "synthesis/OPPORTUNITY_MAP.md",
+      "sha256": "4c1693f8f76793486be5e3ca98a95266a3364d3ab48027e13971e37c15848239"
+    },
+    {
+      "path": "synthesis/DIVERSITY_AUDIT.md",
+      "sha256": "021f24fdf32e5e8a410aff47fe6447470a751db9d1c6a2615a60a24f989e7416"
+    },
+    {
+      "path": "proposals/AUTHORING_PROTOCOL.md",
+      "sha256": "0fb4aaa90101a1c9f49dbb39cbd70166c81996cf3a5768d4fd307eaf4ca76b18"
+    },
+    {
+      "path": "proposals/README.md",
+      "sha256": "cb52b35e9dfabfc0c31fd4d56d416f1045b2207026b3d2f16322d5454fdc3c18"
+    },
+    {
+      "path": "proposals/RP01.md",
+      "sha256": "02e1dc98902b95878601d8af28cc4ec5da14721161c39d689eca7f670b9c0e8d"
+    },
+    {
+      "path": "proposals/RP02.md",
+      "sha256": "be706300bc007b699c2cbdebc02a121b4b5e12ba328df19e9345400188d96218"
+    },
+    {
+      "path": "proposals/RP03.md",
+      "sha256": "e520c1f985fc95ca9880583e3a56fa2f8fd11ef513df8c30b86a095e16c79494"
+    },
+    {
+      "path": "proposals/RP04.md",
+      "sha256": "f012eb116779083e7de400e0f3776b790ca3c8dd27964edae40aa6f8fcd4e3e3"
+    },
+    {
+      "path": "proposals/RP05.md",
+      "sha256": "f6dc41b499240e7d9ba70fd6ab43887a4a55c06ba94d6124bf97b52e5b4cbe11"
+    },
+    {
+      "path": "proposals/RP06.md",
+      "sha256": "f2dde69b40ffd986ab1273d8b542daa17af44826f8f63d6c6f7954cd90114abb"
+    },
+    {
+      "path": "proposals/RP07.md",
+      "sha256": "c17aa307089775e69da4428f9d5eec6269d188dd24f991b2cb15cafdac1e8cde"
+    },
+    {
+      "path": "proposals/RP08.md",
+      "sha256": "98a62052f53d4b1b9d7ff7f677449e4c9adf6d110446abaecdc7538679ba0492"
+    },
+    {
+      "path": "proposals/RP09.md",
+      "sha256": "f97954c5886ab6f75318dea885b019e015fbeab9d49ae2d675b77544d7d270a5"
+    },
+    {
+      "path": "proposals/RP10.md",
+      "sha256": "5bd954a678693387c7d74fc4a10dd9bd35b5adb23f1bc74672ea9a4dabcb517a"
+    },
+    {
+      "path": "pilots/AUTHORING_PROTOCOL.md",
+      "sha256": "0a9d741d5cdb0e2fbea1c7b5780543888a4f4d57273e9d913854c85002e4c78b"
+    },
+    {
+      "path": "pilots/METHODS.md",
+      "sha256": "ae426a697407902e1940000c969b34b1bdee2836f82b85e1b328c058550e41a4"
+    },
+    {
+      "path": "pilots/PILOT01.md",
+      "sha256": "1b823f5284bc841d6a84a1464033f09b02a80e92df7f94680cb45bdbf8ba1838"
+    },
+    {
+      "path": "pilots/PILOT02.md",
+      "sha256": "15580509f436f7f792981d482bdfb806f110a9dca2e558355411cfcbe033c6df"
+    },
+    {
+      "path": "pilots/PILOT03.md",
+      "sha256": "a12fa4a4540d03e095c9d1e233227ca1760233af930663a98e9186843785f740"
+    },
+    {
+      "path": "pilots/README.md",
+      "sha256": "fac6f28e187b5820beaec36176dac896a6cd58839a55d4f7a4d2bd645342df16"
+    },
+    {
+      "path": "pilots/RESOURCE_AND_MODEL_PLAN.md",
+      "sha256": "6ba95e252d0f4837a57124a65578bffcbc090749113a7afbb63288e8f8b32937"
+    },
+    {
+      "path": "pilots/SELECTION.md",
+      "sha256": "770a18faacff09d3d6f20b331e8b7794952317ab846ba087c9cb07c97b78dfaf"
     }
-  ],
-  "execution_status": "실제 사용자 뇌 분석·모델 실험 미실행; 착수 조건은 개별 계획"
+  ]
 }

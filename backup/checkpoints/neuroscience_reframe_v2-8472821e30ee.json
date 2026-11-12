@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "neuroscience_reframe_v2",
+  "snapshot_id": "8472821e30eeafc59925900afb6a06efa71e742a2339fb2e9e3320bff65d8f0f",
+  "prepared_at_utc": "2026-11-12T08:58:05.128233+00:00",
+  "file_count": 1583,
+  "total_bytes": 205528509,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

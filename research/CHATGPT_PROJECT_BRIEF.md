@@ -1,46 +1,19 @@
-# ChatGPT 프로젝트용 연구 안내
+# ChatGPT 프로젝트에서 이어서 작업하기
 
-프로젝트 이름 제안: **Brain × Emotion × AI — 독립 연구 탐색**
+왼쪽의 프로젝트 메뉴에서 새 프로젝트를 만들고, 이름을 **Affective Neuroscience × AI**로 정한다. 프로젝트 지침에는 아래 내용을 넣으면 된다.
 
-## 현재 앱에서 설정하기
+> 이 프로젝트는 정서를 처리하는 뇌에 관한 독립 연구다. 연구 질문은 처음 읽는 사람이 이해할 수 있는 한국어로 쓴다. 번역투와 임의로 만든 학술 용어를 피하고, 정확한 용어는 영어로 써도 된다. 제목과 첫 문장에 신경과학 질문을 제시하고, AI 모델·분석 방법·재현성 조건은 그 질문을 검증하는 방법으로 설명한다. 모델 성능 향상만으로 과학적 기여를 주장하지 않는다.
+>
+> 정본은 GitHub `SeokJin-Moon14/affective_neuroscience_exploratory`의 `research/independent-exploration-20261112` 브랜치다. 먼저 `research/RESEARCH_STATUS.md`와 `research/proposals/README.md`를 읽는다. 현재는 v2의 NQ01–NQ10, 상세 제안 10개, 파일럿 계획 3개다. v1의 질문 30개와 토론·감사는 과거 기록이며 새 질문의 검증 이력으로 쓰지 않는다.
+>
+> 사용자는 Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 보유한다. 실제 데이터 경로와 구조는 분석할 때 확인한다. 확인하지 않은 라벨과 실험 결과를 만들어내지 않는다. 기존 EmoBrain의 가설·분석을 자동으로 이어받지 않는다. 연구 범위는 `research/RESEARCH_MISSION.md`와 최신 사용자 지시를 따르며, `research/AGENTS.md`에서 작업 방식을 확인한다.
+>
+> 실제 뇌 분석과 모델 실험은 아직 수행하지 않았다. GitHub 저장은 실행 도구와 쓰기 권한이 있을 때 커밋·푸시하고 원격 반영까지 확인한다. 확인하지 않은 백업이나 백그라운드 실행을 완료했다고 말하지 않는다.
 
-사용자가 왼쪽 사이드바에 프로젝트 메뉴가 보인다고 확인했다. 일반적인 ChatGPT 프로젝트 흐름은 다음과 같다. 세부 메뉴 위치는 앱 버전에 따라 다를 수 있다.
+현재 채팅의 메뉴에 **프로젝트로 이동**이 있으면 새 프로젝트를 선택한다. 메뉴가 없다면 프로젝트 안에서 새 채팅을 만들고 아래 연구 링크를 붙여 넣는다. 앱 버전에 따라 메뉴 위치와 이동 가능 여부가 다를 수 있다. 이 작업에서 앱 안의 프로젝트 생성이나 채팅 이동을 직접 수행한 것은 아니다.
 
-1. 왼쪽 **새 프로젝트**에서 위 이름으로 프로젝트를 만든다. 생성 시 메모리 선택이 제공되면 기존 연구와의 독립성을 위해 **프로젝트 전용 메모리**를 선택한다.
-2. 프로젝트 메뉴(대개 `⋯`)의 **프로젝트 지침**에 아래 내용을 붙여 넣는다.
-3. 현재 채팅의 `⋯` 메뉴에 **프로젝트로 이동**이 있으면 만든 프로젝트를 선택한다. 이동 메뉴가 없으면 프로젝트 안에서 새 채팅을 열고 이 안내와 GitHub 링크를 넣는다.
-4. 웹 화면이라면 만든 프로젝트를 새 탭으로 열 수 있다. 앱 자체의 별도 탭 제공 여부는 현재 도구로 확인하지 못했다.
+[새 연구 제안](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/research/independent-exploration-20261112/research/proposals/README.md)
 
-GitHub 보고서를 컴퓨터에 다운로드해서 프로젝트에 다시 올릴 필요는 없다. 지침에 저장소·브랜치를 기록하고, 새 대화에서 파일을 실제로 읽을 수 있는 도구/연결이 있는지 확인한다. 링크를 붙이는 것만으로 파일 전체가 자동 읽히거나 GitHub와 자동 동기화되지는 않는다.
+[현재 상태](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/research/independent-exploration-20261112/research/RESEARCH_STATUS.md)
 
-## 프로젝트 지침에 붙여 넣을 내용
-
-이 프로젝트는 Brain × Emotion × AI의 문헌 기반 독립 연구 탐색이다. 모든 사용자 설명과 연구 산출물은 한국어로 작성한다. 논문명·DOI·모델명·코드 표기는 원문을 허용한다.
-
-정본은 GitHub `SeokJin-Moon14/affective_neuroscience_exploratory`의 `research/independent-exploration-20261112` 브랜치다. 저장소의 `research/RESEARCH_MISSION.md`를 과학 지침으로, `research/AGENTS.md`를 운영 지침으로 사용한다. 새 작업을 시작하기 전에 `research/RESEARCH_STATUS.md`와 `backup/LAST_SUCCESS.json`을 확인한다. 채팅 기억보다 파일에 기록된 근거·상태를 우선한다.
-
-기존 EmoBrain의 가설·분석을 기본값으로 상속하지 않는다. 측정된 정서 주석, AI가 만든 특징, 신경반응을 구별한다. 공식 코드 확인과 논문 본문 확인, 서지 확인과 Discussion 확인을 구별한다. 확인하지 못한 자료·실험·토론·무작위 추출·백업을 완료했다고 주장하지 않는다.
-
-사용자는 Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 이미 보유한다. 정확한 버전·스키마 확인은 분석 착수 조건으로 기록하고 Axis·개념 조합을 중단하는 이유로 사용하지 않는다. Mind Captioning의 태스크·텍스트 생성 출처·정서 주석을 이름으로 추정하지 않는다.
-
-현재 문헌 기반 연구 기획 산출물은 완료했다. A–X24축, 방향40개, 독립 RQ30개, 상세제안10개, 파일럿 계획3개와 실제12역할·5라운드 토론이 있다. 최종 보고서는 research/synthesis/FINAL_REPORT.md이며, 첫 파일럿은 RP01 정렬 접근성·RP03 경계 상태 갱신·RP08 공간 null-space다. 서지확인100편 중 지정본문/한계 직접 확인은27편이다. 실제 뇌 분석·모델 실험은 실행하지 않았고, 보유본의 경로·스키마·모델 load와 전역 신규성은 미확인 조건으로 남긴다. RQ30은 RQ25에 병합했고 RQ22는 방법후보로 옮겼으므로 남은 ID의 최댓값32를 질문 수로 세지 않는다. 최신 상태는 항상 RESEARCH_STATUS.md를 다시 읽는다.
-
-연구 단계가 끝나거나 중단되기 전에 상태 파일을 갱신하고, 실행 도구와 GitHub 쓰기 권한이 있는 에이전트가 단계별 커밋·푸시·원격 HEAD 검증을 수행한다. 일반 ChatGPT 대화나 프로젝트 지침만으로 GitHub 파일이 자동 저장되거나 백그라운드 연구가 계속되는 것은 아니다.
-
-## 관리 방식
-
-- ChatGPT 프로젝트: 대화·목표·검토 결과를 모으는 공간.
-- GitHub 연구 저장소: 보고서·문헌 표·코드·원문 증거·복구 상태의 정본.
-- 클라우드 실행 환경: 실제 조사·파일 작성·Git 작업을 수행하는 공간.
-
-현재 사용자는 공개 저장소에서 작업하도록 선택했다. 공개 링크는 열람할 수 있지만, ChatGPT의 GitHub 쓰기 기능과 실행 도구는 별도 연결이 필요하다. 나중에 비공개로 전환하면 읽기 권한도 별도로 확인한다.
-
-브랜치: https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/tree/research/independent-exploration-20261112
-
-Axis: https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/research/independent-exploration-20261112/research/axis_map/AXIS_ENCYCLOPEDIA.md
-
-## 이 채팅을 옮길 때
-
-현재 ChatGPT 채팅 메뉴에 '프로젝트로 이동'이 제공되면 생성한 프로젝트를 선택한다. 이 대화가 별도 Codex 화면에 있어 이동 메뉴가 없다면, ChatGPT 프로젝트에 새 채팅을 만들고 위 안내를 붙여 넣어 연결한다. 현재 도구에는 ChatGPT 프로젝트 생성·채팅 이동 기능이 없으므로 이동 완료를 자동으로 확인할 수 없다.
-
-최종 보고서: https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/research/independent-exploration-20261112/research/synthesis/FINAL_REPORT.md
+프로젝트는 대화와 지침을 모으는 공간이고, GitHub는 연구 파일을 저장하는 곳이다. 링크를 넣는 것만으로 모든 파일이 자동으로 읽히거나 동기화되지는 않는다. 새 채팅에서는 연결된 도구로 해당 파일을 실제로 읽었는지 확인한다. 전체 자료를 사용자 컴퓨터에 다운로드할 필요는 없다.

@@ -1,7 +1,6 @@
 {
-  "checked_at": "2026-11-12T08:13:22.826918+00:00",
-  "files_checked": 28,
-  "local_file_links_checked": 347,
-  "missing": [],
-  "scope": "현재 진입점 및 최종 보고/제안/계획의 내부 파일 경로. 외부URL 응답·HTML anchor 동작 검증은 아님"
+  "version": 2,
+  "files_checked": 35,
+  "links_checked": 133,
+  "missing": []
 }

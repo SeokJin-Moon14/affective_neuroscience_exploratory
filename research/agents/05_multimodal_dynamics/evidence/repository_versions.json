@@ -1,0 +1,57 @@
+[
+  {
+    "repo": "facebookresearch/ImageBind",
+    "refs": "53680b02d7e37b19b124fa37bae4b6c98c38f5be\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "YuanGongND/cav-mae",
+    "refs": "d438712d80c44cbdcc590ca79f0f43d5def48c13\trefs/heads/main\n68fe8c2a3917dc2926e41f796bfdcb331a64b42c\trefs/heads/master",
+    "returncode": 0
+  },
+  {
+    "repo": "yizhilll/MERT",
+    "refs": "391062e4c384aaad4e5a992be339ef70769dbd6f\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "LAION-AI/CLAP",
+    "refs": "1fd4c37df5ffbfcfbad5415c170bc66cf94c9994\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "OpenGVLab/VideoMamba",
+    "refs": "37355c26d0ae99ca2459f6d4044a5f509031a79f\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "pliang279/FactorCL",
+    "refs": "0f9f7403b3764ba9faf9ee3247358bdd719f688c\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "google-research/google-research",
+    "refs": "f8d6d14a1fc6eaef606d7d1e1fa4e96ee09afb81\trefs/heads/master",
+    "returncode": 0
+  },
+  {
+    "repo": "YapengTian/AVE-ECCV18",
+    "refs": "93f843fed72fb17394df76330df958b0c2dbde76\trefs/heads/master",
+    "returncode": 0
+  },
+  {
+    "repo": "facebookresearch/vjepa2",
+    "refs": "204698b45b3712590f06245fbfba32d3be539812\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "google-research/scenic",
+    "refs": "77d19427a71d9fb8318b656d9710d4dfd7af0ba7\trefs/heads/main",
+    "returncode": 0
+  },
+  {
+    "repo": "google-deepmind/videoprism",
+    "refs": "4f831e332b80d6e77bdd43882206f23aba2a67a7\trefs/heads/main",
+    "returncode": 0
+  }
+]

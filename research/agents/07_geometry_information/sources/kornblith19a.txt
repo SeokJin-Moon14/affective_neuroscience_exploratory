@@ -1,0 +1,663 @@
+                     Similarity of Neural Network Representations Revisited
+
+
+                       Simon Kornblith 1 Mohammad Norouzi 1 Honglak Lee 1 Geoffrey Hinton 1
+
+
+                           Abstract                             This paper investigates the problem of measuring similari-
+       Recent work has sought to understand the behav-          ties between deep neural network representations. An effec-
+       ior of neural networks by comparing representa-          tive method for measuring representational similarity could
+       tions between layers and between different trained       help answer many interesting questions, including: (1) Do
+       models. We examine methods for comparing neu-            deep neural networks with the same architecture trained
+       ral network representations based on canonical           from different random initializations learn similar repre-
+       correlation analysis (CCA). We show that CCA             sentations? (2) Can we establish correspondences between
+       belongs to a family of statistics for measuring mul-     layers of different network architectures? (3) How simi-
+       tivariate similarity, but that neither CCA nor any       lar are the representations learned using the same network
+       other statistic that is invariant to invertible linear   architecture from different datasets?
+       transformation can measure meaningful similari-          We build upon previous studies investigating similarity be-
+       ties between representations of higher dimension         tween the representations of neural networks (Laakso &
+       than the number of data points. We introduce             Cottrell, 2000; Li et al., 2015; Raghu et al., 2017; Morcos
+       a similarity index that measures the relationship        et al., 2018; Wang et al., 2018). We are also inspired by the
+       between representational similarity matrices and         extensive neuroscience literature that uses representational
+       does not suffer from this limitation. This simi-         similarity analysis (Kriegeskorte et al., 2008a; Edelman,
+       larity index is equivalent to centered kernel align-     1998) to compare representations across brain areas (Haxby
+       ment (CKA) and is also closely connected to CCA.         et al., 2001; Freiwald & Tsao, 2010), individuals (Connolly
+       Unlike CCA, CKA can reliably identify corre-             et al., 2012), species (Kriegeskorte et al., 2008b), and be-
+       spondences between representations in networks           haviors (Elsayed et al., 2016), as well as between brains
+       trained from different initializations.                  and neural networks (Yamins et al., 2014; Khaligh-Razavi
+                                                                & Kriegeskorte, 2014; Sussillo et al., 2015).
+1. Introduction                                                 Our key contributions are summarized as follows:
+Across a wide range of machine learning tasks, deep neural
+                                                                 • We discuss the invariance properties of similarity in-
+networks enable learning powerful feature representations
+                                                                   dexes and their implications for measuring similarity of
+automatically from data. Despite impressive empirical ad-
+                                                                   neural network representations.
+vances of deep neural networks in solving various tasks,
+the problem of understanding and characterizing the neu-         • We motivate and introduce centered kernel alignment
+ral network representations learned from data remains rel-         (CKA) as a similarity index and analyze the relationship
+atively under-explored. Previous work (e.g. Advani &               between CKA, linear regression, canonical correlation
+Saxe (2017); Amari et al. (2018); Saxe et al. (2014)) has          analysis (CCA), and related methods (Raghu et al., 2017;
+made progress in understanding the theoretical dynamics            Morcos et al., 2018).
+of the neural network training process. These studies are
+insightful, but fundamentally limited, because they ignore       • We show that CKA is able to determine the correspon-
+the complex interaction between the training dynamics and          dence between the hidden layers of neural networks
+structured data. A window into the network’s representation        trained from different random initializations and with
+can provide more information about the interaction between         different widths, scenarios where previously proposed
+machine learning algorithms and data than the value of the         similarity indexes fail.
+loss function alone.
+                                                                 • We verify that wider networks learn more similar repre-
+   1
+     Google Brain. Correspondence to: Simon Kornblith <skorn-      sentations, and show that the similarity of early layers
+blith@google.com>.                                                 saturates at fewer channels than later layers. We demon-
+Proceedings of the 36 th International Conference on Machine       strate that early layers, but not later layers, learn similar
+Learning, Long Beach, California, PMLR 97, 2019. Copyright         representations on different datasets.
+2019 by the author(s).
+                                     Similarity of Neural Network Representations Revisited
+
+Problem Statement
+Let X ∈ Rn×p1 denote a matrix of activations of p1 neu-
+rons for n examples, and Y ∈ Rn×p2 denote a matrix of
+activations of p2 neurons for the same n examples. We
+assume that these matrices have been preprocessed to center
+the columns. Without loss of generality we assume that
+p1 ≤ p2 . We are concerned with the design and analysis of
+a scalar similarity index s(X, Y ) that can be used to com-
+pare representations within and across neural networks, in
+order to help visualize and understand the effect of different
+factors of variation in deep learning.                              Figure 1. First principal components of representations of net-
+                                                                    works trained from different random initializations are similar.
+2. What Should Similarity Be Invariant To?                          Each example from the CIFAR-10 test set is shown as a dot col-
+                                                                    ored according to the value of the first two principal components of
+This section discusses the invariance properties of similarity      an intermediate layer of one network (left) and plotted on the first
+indexes and their implications for measuring similarity of          two principal components of the same layer of an architecturally
+neural network representations. We argue that both intuitive        identical network trained from a different initialization (right).
+notions of similarity and the dynamics of neural network
+training call for a similarity index that is invariant to orthog-
+onal transformation and isotropic scaling, but not invertible       ant to arbitrary invertible linear transformation of inputs
+linear transformation.                                              or activations. Even in the linear case, gradient descent
+                                                                    converges first along the eigenvectors corresponding to the
+                                                                    largest eigenvalues of the input covariance matrix (LeCun
+2.1. Invariance to Invertible Linear Transformation
+                                                                    et al., 1991), and in cases of overparameterization or early
+A similarity index is invariant to invertible linear transfor-      stopping, the solution reached depends on the scale of the
+mation if s(X, Y ) = s(XA, Y B) for any full rank A and             input. Similar results hold for gradient descent training
+B. If activations X are followed by a fully-connected layer         of neural networks in the infinite width limit (Jacot et al.,
+f (X) = σ(XW + β), then transforming the activations                2018). The sensitivity of neural networks training to linear
+by a full rank matrix A as X  = XA and transforming the            transformation is further demonstrated by the popularity of
+weights by the inverse A−1 as W  = A−1 W preserves the             batch normalization (Ioffe & Szegedy, 2015).
+output of f (X). This transformation does not appear to
+                                                                    Invariance to invertible linear transformation implies that the
+change how the network operates, so intuitively, one might
+                                                                    scale of directions in activation space is irrelevant. Empiri-
+prefer a similarity index that is invariant to invertible linear
+                                                                    cally, however, scale information is both consistent across
+transformation, as argued by Raghu et al. (2017).
+                                                                    networks and useful across tasks. Neural networks trained
+However, a limitation of invariance to invertible linear trans-     from different random initializations develop representa-
+formation is that any invariant similarity index gives the          tions with similar large principal components, as shown in
+same result for any representation of width greater than or         Figure 1. Consequently, Euclidean distances between ex-
+equal to the dataset size, i.e. p2 ≥ n. We provide a simple         amples, which depend primarily upon large principal com-
+proof in Appendix A.                                                ponents, are similar across networks. These distances are
+Theorem 1. Let X and Y be n × p matrices. Suppose s                 meaningful, as demonstrated by the success of perceptual
+is invariant to invertible linear transformation in the first       loss and style transfer (Gatys et al., 2016; Johnson et al.,
+argument, i.e. s(X, Z) = s(XA, Z) for arbitrary Z and               2016; Dumoulin et al., 2017). A similarity index that is
+any A with rank(A) = p. If rank(X) = rank(Y ) = n, then             invariant to invertible linear transformation ignores this as-
+s(X, Z) = s(Y, Z).                                                  pect of the representation, and assigns the same score to
+                                                                    networks that match only in large principal components or
+There is thus a practical problem with invariance to invert-        networks that match only in small principal components.
+ible linear transformation: Some neural networks, especially
+convolutional networks, have more neurons in some layers            2.2. Invariance to Orthogonal Transformation
+than there are examples the training dataset (Springenberg
+                                                                    Rather than requiring invariance to any invertible linear
+et al., 2015; Lee et al., 2018; Zagoruyko & Komodakis,
+                                                                    transformation, one could require a weaker condition; in-
+2016). It is somewhat unnatural that a similarity index
+                                                                    variance to orthogonal transformation, i.e. s(X, Y ) =
+could require more examples than were used for training.
+                                                                    s(XU, Y V ) for full-rank orthonormal matrices U and V
+A deeper issue is that neural network training is not invari-       such that U T U = I and V T V = I.
+                                     Similarity of Neural Network Representations Revisited
+
+Indexes invariant to orthogonal transformations do not share        sentational similarity matrices reduces to another intuitive
+the limitations of indexes invariant to invertible linear trans-    notion of pairwise feature similarity.
+formation. When p2 > n, indexes invariant to orthogonal
+transformation remain well-defined. Moreover, orthogo-              Dot Product-Based Similarity. A simple formula relates
+nal transformations preserve scalar products and Euclidean          dot products between examples to dot products between
+distances between examples.                                         features:
+Invariance to orthogonal transformation seems desirable for          hvec(XX T ), vec(Y Y T )i = tr(XX T Y Y T ) = ||Y T X||2F .
+neural networks trained by gradient descent. Invariance to                                                                   (1)
+orthogonal transformation implies invariance to permuta-
+                                                                    The elements of XX T and Y Y T are dot products between
+tion, which is needed to accommodate symmetries of neural
+                                                                    the representations of the ith and j th examples, and indi-
+networks (Chen et al., 1993; Orhan & Pitkow, 2018). In
+                                                                    cate the similarity between these examples according to the
+the linear case, orthogonal transformation of the input does
+                                                                    respective networks. The left-hand side of (1) thus mea-
+not affect the dynamics of gradient descent training (LeCun
+                                                                    sures the similarity between the inter-example similarity
+et al., 1991), and for neural networks initialized with rota-
+                                                                    structures. The right-hand side yields the same result by
+tionally symmetric weight distributions, e.g. i.i.d. Gaussian
+                                                                    measuring the similarity between features from X and Y ,
+weight initialization, training with fixed orthogonal trans-
+                                                                    by summing the squared dot products between every pair.
+formations of activations yields the same distribution of
+training trajectories as untransformed activations, whereas
+                                                                    Hilbert-Schmidt Independence Criterion. Equation 1
+an arbitrary linear transformation would not.
+                                                                    implies that, for centered X and Y :
+Given a similarity index s(·, ·) that is invariant to orthog-                 1
+onal transformation, one can construct a similarity index                           tr(XX T Y Y T ) = ||cov(X T , Y T )||2F .   (2)
+                                                                           (n − 1)2
+s0 (·, ·) that is invariant to any invertible linear transforma-
+tion by first orthonormalizing the columns of X and Y ,             The Hilbert-Schmidt Independence Criterion (Gretton et al.,
+and then applying s(·, ·). Given thin QR decompositions             2005) generalizes Equations 1 and 2 to inner products
+X = QA RA and Y = QB RB one can construct a similarity              from reproducing kernel Hilbert spaces, where the squared
+index s0 (X, Y ) = s(QX , QY ), where s0 (·, ·) is invariant to     Frobenius norm of the cross-covariance matrix becomes
+invertible linear transformation because orthonormal bases          the squared Hilbert-Schmidt norm of the cross-covariance
+with the same span are related to each other by orthonormal         operator. Let Kij = k(xi , xj ) and Lij = l(yi , yj ) where k
+transformation (see Appendix B).                                    and l are two kernels. The empirical estimator of HSIC is:
+                                                                                                   1
+2.3. Invariance to Isotropic Scaling                                          HSIC(K, L) =               tr(KHLH),              (3)
+                                                                                                (n − 1)2
+We expect similarity indexes to be invariant to isotropic scal-     where H is the centering matrix Hn = In − n1 11T . For
+ing, i.e. s(X, Y ) = s(αX, βY ) for any α, β ∈ R+ . That            linear kernels k(x, y) = l(x, y) = xT y, HSIC yields (2).
+said, a similarity index that is invariant to both orthogonal
+transformation and non-isotropic scaling, i.e. rescaling of         Gretton et al. (2005) originally proposed HSIC as a test
+individual features, is invariant to any invertible linear trans-   statistic for determining whether two sets of variables are
+formation. This follows from the existence of the singular          independent. They prove that the empirical √  estimator con-
+value decomposition of the transformation matrix. Gener-            verges to the population value at a rate of 1/ n, and Song
+ally, we are interested in similarity indexes that are invariant    et al. (2007) provide an unbiased estimator. When k and
+to isotropic but not necessarily non-isotropic scaling.             l are universal kernels, HSIC = 0 implies independence,
+                                                                    but HSIC is not an estimator of mutual information. HSIC
+                                                                    is equivalent to maximum mean discrepancy between the
+3. Comparing Similarity Structures                                  joint distribution and the product of the marginal distribu-
+Our key insight is that instead of comparing multivariate           tions, and HSIC with a specific kernel family is equivalent
+features of an example in the two representations (e.g. via re-     to distance covariance (Sejdinovic et al., 2013).
+gression), one can first measure the similarity between every
+pair of examples in each representation separately, and then        Centered Kernel Alignment. HSIC is not invariant to
+compare the similarity structures. In neuroscience, such            isotropic scaling, but it can be made invariant through nor-
+matrices representing the similarities between examples             malization. This normalized index is known as centered ker-
+are called representational similarity matrices (Kriegesko-         nel alignment (Cortes et al., 2012; Cristianini et al., 2002):
+rte et al., 2008a). We show below that, if we use an inner                                  HSIC(K, L)
+product to measure similarity, the similarity between repre-               CKA(K, L) = p                     .                  (4)
+                                                                                        HSIC(K, K)HSIC(L, L)
+                                      Similarity of Neural Network Representations Revisited
+
+                                                                                                  Invariant to
+                                                                                   Invertible Linear    Orthogonal        Isotropic
+   Similarity Index                            Formula                                Transform         Transform          Scaling
+                 2
+   Linear Reg. (RLR )      ||QTY X||2F /||X||2F                                         Y only               3                3
+           2
+   CCA (RCCA )             ||QTY QX ||2F /p1                                               3                 3                3
+   CCA (ρ̄CCA )            ||QTY QX ||∗ /p1                                                3                 3                3
+              2
+   SVCCA (RSVCCA    )      ||(UY TY )T UX TX ||2F /min(||TX ||2F , ||TY ||2F )   If same subspace kept       3                3
+                                       T                         2         2
+   SVCCA (ρ̄SVCCA )        Pp1Y TY ) UX TX ||∗ /min(||T
+                           ||(U                         P X ||F , ||TY ||F )     If same subspace kept       3                3
+   PWCCA                          α
+                              i=1 i i ρ /||α|| 1 , αi =   j |hhi , x j i|                  7                 7                3
+   Linear HSIC             ||Y T X||2F /(n − 1)2                                           7                 3                7
+   Linear CKA              ||Y T X||2F /(||X T          T
+                                           p X||F ||Y Y ||F )                              7                 3                3
+   RBF CKA                 tr(KHLH)/ tr(KHKH)tr(LHLH)                                      7                 3               3∗
+
+Table 1. Summary of similarity methods investigated. QX and QY are orthonormal bases for the columns of X and Y . UX and UY
+are the left-singular vectors of X and Y sorted in descending order according to the corresponding singular vectors. || · ||∗ denotes the
+nuclear norm. TX and TY are truncated identity matrices that select left-singular vectors such that the cumulative variance explained
+reaches some threshold. For RBF CKA, K and L are kernel matrices constructed by evaluating the RBF kernel between the examples as
+in Section 3, and H is the centering matrix Hn = In − n1 11T . See Appendix C for more detail about each technique.
+∗
+  Invariance of RBF CKA to isotropic scaling depends on the procedure used to select the RBF kernel bandwidth parameter. In our
+experiments, we selected the bandwidth as a fraction of the median distance, which ensures that the similarity index is invariant to
+isotropic scaling.
+
+
+For a linear kernel, CKA is equivalent to the RV coefficient             every feature in Y as a linear combination of features from
+(Robert & Escoufier, 1976) and to Tucker’s congruence co-                X. A suitable summary statistic is the total fraction of
+efficient (Tucker, 1951; Lorenzo-Seva & Ten Berge, 2006).                variance explained by the fit:
+
+Kernel Selection. Below, we report results of CKA with                            2        minB ||Y − XB||2F   ||QTY X||2F
+                                                                                 RLR =1−                     =             .          (5)
+a linear kernel and the RBF kernel k(xi , xj ) = exp(−||xi −                                           2
+                                                                                                 ||Y ||F         ||X||2F
+xj ||22 /(2σ 2 )). For the RBF kernel, there are several possible
+strategies for selecting the bandwidth σ, which controls the             We are unaware of any application of linear regression to
+extent to which similarity of small distances is emphasized              measuring similarity of neural network representations, al-
+over large distances. We set σ as a fraction of the median               though Romero et al. (2015) used a least squares loss be-
+distance between examples. In practice, we find that RBF                 tween activations of two networks to encourage thin and
+and linear kernels give similar results across most exper-               deep “student” networks to learn functions similar to wide
+iments, so we use linear CKA unless otherwise specified.                 and shallow “teacher” networks.
+Our framework extends to any valid kernel, including ker-
+nels equivalent to neural networks (Lee et al., 2018; Jacot
+et al., 2018; Garriga-Alonso et al., 2019; Novak et al., 2019).          Canonical Correlation Analysis (CCA). Canonical cor-
+                                                                         relation finds bases for two matrices such that, when the
+                                                                         original matrices are projected onto these bases, the cor-
+4. Related Similarity Indexes                                            relation is maximized. For 1 ≤ i ≤ p1 , the ith canonical
+In this section, we briefly review linear regression, canon-             correlation coefficient ρi is given by:
+ical correlation, and other related methods in the context
+                                                                                                      i
+of measuring similarity between neural network representa-                           ρi = max
+                                                                                          i  i
+                                                                                               corr(XwX , Y wYi )
+                                                                                          wX ,wY
+tions. We let QX and QY represent any orthonormal bases
+for the columns of X and Y , i.e. QX = X(X T X)−1/2 ,                                                   i
+                                                                                      subject to ∀j<i XwX     j
+                                                                                                          ⊥ XwX                       (6)
+QY = Y (Y T Y )−1/2 or orthogonal transformations thereof.                                         ∀j<i Y wYi ⊥ Y wYj .
+Table 1 summarizes the formulae and invariance properties
+of the indexes used in experiments. For a comprehensive
+                                                                                        i
+general review of linear indexes for measuring multivariate              The vectors wX    ∈ Rp1 and wYi ∈ Rp2 that maximize ρi
+similarity, see Ramsay et al. (1984).                                    are the canonical weights, which transform the original data
+                                                                                                       i
+                                                                         into canonical variables XwX     and Y wYi . The constraints
+                                                                         in (6) enforce orthogonality of the canonical variables.
+Linear Regression. A simple way to relate neural net-
+work representations is via linear regression. One can fit               For the purpose of this work, we consider two summary
+                                      Similarity of Neural Network Representations Revisited
+
+statistics of the goodness of fit of CCA:                          Mutual Information. Among non-linear measures, one
+                       Pp1 2                                       candidate is mutual information, which is invariant not only
+                             ρ       ||QTY QX ||2F
+              RCCA = i=1 i =
+                 2
+                                                           (7)     to invertible linear transformation, but to any invertible trans-
+                          p1              p1
+                       Pp1                                         formation. Li et al. (2015) previously used mutual infor-
+                                        T
+                             ρi      ||QY QX ||∗                   mation to measure neuronal alignment. In the context of
+               ρ̄CCA = i=1 =                       ,       (8)
+                          p1              p1                       comparing representations, we believe mutual information
+where || · ||∗ denotes the nuclear norm. The mean squared          is not useful. Given any pair of representations produced by
+CCA correlation RCCA  2
+                          is also known as Yanai’s GCD mea-        deterministic functions of the same input, mutual informa-
+sure (Ramsay et al., 1984), and several statistical pack-          tion between either and the input must be at least as large as
+ages reportP  the sum of the squared canonical correlations        mutual information between the representations. Moreover,
+     2          p1                                                 in fully invertible neural networks (Dinh et al., 2017; Jacob-
+p1 RCCA   = i=1     ρ2i under the name Pillai’s trace (SAS In-
+stitute, 2015; StataCorp, 2015). The mean CCA correlation          sen et al., 2018), the mutual information between any two
+ρ̄CCA was previously used to measure similarity between            layers is equal to the entropy of the input.
+neural network representations in Raghu et al. (2017).
+                                                                   5. Linear CKA versus CCA and Regression
+SVCCA. CCA is sensitive to perturbation when the con-
+dition number of X or Y is large (Golub & Zha, 1995). To           Linear CKA is closely related to CCA and linear regression.
+improve robustness, singular vector CCA (SVCCA) per-               If X and Y are centered, then QX and QY are also centered,
+forms CCA on truncated singular value decompositions of            so:
+X and Y (Raghu et al., 2017; Mroueh et al., 2015; Kuss                                                      r
+                                                                                                               p2
+                                                                              2
+& Graepel, 2003). As formulated in Raghu et al. (2017),                      RCCA  = CKA(QX QTX , QY QTY )        .      (11)
+                                                                                                               p1
+SVCCA keeps enough principal components of the input
+matrices to explain a fixed proportion of the variance, and        When performing the linear regression fit of X with design
+drops remaining components. Thus, it is invariant to invert-                   2
+                                                                   matrix Y , RLR = ||QTY X||2F /||X||2F , so:
+ible linear transformation only if the retained subspace does
+not change.                                                                                             √
+                                                                         2                                  p1 ||X T X||F
+                                                                        RLR = CKA(XX T , QY QTY )                         .    (12)
+                                                                                                              ||X||2F
+Projection-Weighted CCA. Morcos et al. (2018) pro-
+pose a different strategy to reduce the sensitivity of CCA to
+perturbation, which they term “projection-weighted canoni-         When might we prefer linear CKA over CCA? One way
+cal correlation” (PWCCA):                                          to show the difference is to rewrite X and Y in terms of
+               Pc                                                  their singular value decompositions X = UX ΣX VXT , Y =
+                       αi ρi            X
+                                                                   UY ΣY VYT . Let the ith eigenvector of XX T (left-singular
+       ρPW = Pi=1                 αi =      |hhi , xj i|, (9)                                             2
+                    i=1 αi                j                        vector of X) be indexed as uiX . Then RCCA is:
+                                                      i
+where xj is the j th column of X, and hi = XwX          is the                                     p1 X
+                                                                                                   X  p2
+
+vector of canonical variables formed by projecting X to the
+                                                                      2
+                                                                     RCCA = ||UYT UX ||2F /p1 =          huiX , ujY i2 /p1 .   (13)
+ith canonical coordinate frame. As we show in Appendix                                             i=1 j=1
+C.3, PWCCA is closely related to linear regression, since:
+             Pc                                                    Let the ith eigenvalue of XX T (squared singular value of
+                    α 0 ρ2           X
+                                                                   X) be indexed as λiX . Linear CKA can be written as:
+      RLR = Pi=1 i 0 i
+       2
+                               αi0 =    hhi , xj i2 .     (10)
+                 i=1 αi              j
+                                                                                                    ||Y T X||2F
+                                                                     CKA(XX T , Y Y T ) =
+Neuron Alignment Procedures. Other work has studied                                            ||X X||F ||Y T Y ||F
+                                                                                                   T
+
+alignment between individual neurons, rather than align-                                       Pp1 Pp2 i j i j 2
+                                                                                                  i=1    j=1 λX λY huX , uY i
+ment between subspaces. Li et al. (2015) examined correla-                                 = pP                 qP                .
+                                                                                                    p1    i 2     p2        j 2
+tion between the neurons in different neural networks, and                                          i=1 (λX )         j=1 (λY )
+attempt to find a bipartite match or semi-match that maxi-                                                                     (14)
+mizes the sum of the correlations between the neurons, and
+then to measure the average correlations. Wang et al. (2018)       Linear CKA thus resembles CCA weighted by the eigen-
+proposed to search for subsets of neurons X̃ ⊂ X and               values of the corresponding eigenvectors, i.e. the amount
+Ỹ ⊂ Y such that, to within some tolerance, every neuron           of variance in X or Y that each explains. SVCCA (Raghu
+in X̃ can be represented by a linear combination of neu-           et al., 2017) and projection-weighted CCA (Morcos et al.,
+rons from Ỹ and vice versa. They found that the maximum           2018) were also motivated by the idea that eigenvectors
+matching subsets are very small for intermediate layers.           that correspond to small eigenvalues are less important, but
+                                       Similarity of Neural Network Representations Revisited
+
+                                                                                          Index               Accuracy
+                                                                                          CCA (ρ̄)                  1.4
+                                                                                                  2
+                                                                                          CCA (RCCA   )            10.6
+                                                                                          SVCCA (ρ̄)                9.9
+                                                                                                     2
+                                                                                          SVCCA (RCCA   )          15.1
+                                                                                          PWCCA                    11.1
+                                                                                          Linear Reg.              45.4
+                                                                                          Linear HSIC              22.2
+                                                                                          CKA (Linear)             99.3
+                                                                                          CKA (RBF 0.2)            80.6
+                                                                                          CKA (RBF 0.4)            99.1
+                                                                                          CKA (RBF 0.8)            99.3
+
+                                                                        Table 2. Accuracy of identifying corresponding layers based on
+                                                                        maximum similarity for 10 architecturally identical 10-layer CNNs
+                                                                        trained from different initializations, with logits layers excluded.
+                                                                        For SVCCA, we used a truncation threshold of 0.99 as recom-
+                                                                        mended in Raghu et al. (2017). For asymmetric indexes (PWCCA
+                                                                        and linear regression) we symmetrized the similarity as S + S T .
+                                                                        CKA RBF kernel parameters reflect the fraction of the median
+                                                                        Euclidean distance used as σ. Results not significantly different
+                                                                        from the best result are bold-faced (p < 0.05, jackknife z-test).
+
+                                                                        We first investigate a simple VGG-like convolutional net-
+                                                                        work based on All-CNN-C (Springenberg et al., 2015) (see
+                                                                        Appendix E for architecture details). Figure 2 and Table 2
+Figure 2. CKA reveals consistent relationships between layers of        show that CKA passes our sanity check, but other methods
+CNNs trained with different random initializations, whereas CCA,
+                                                                        perform substantially worse. For SVCCA, we experimented
+linear regression, and SVCCA do not. For linear regression, which
+is asymmetric, we plot R2 for the fit of the layer on the x-axis with
+                                                                        with a range of truncation thresholds, but no threshold re-
+the layer on the y-axis. Results are averaged over 10 networks.         vealed the layer structure (Appendix F.2); our results are
+See Table 2 for a numerical summary.                                    consistent with those in Appendix E of Raghu et al. (2017).
+                                                                        We also investigate Transformer networks, where all layers
+                                                                        are of equal width. In Appendix F.1, we show similarity
+linear CKA incorporates this weighting symmetrically and                between the 12 sublayers of the encoders of Transformer
+can be computed without a matrix decomposition.                         models (Vaswani et al., 2017) trained from different random
+Comparison of (13) and (14) immediately suggests the pos-               initializations. All similarity indexes achieve non-trivial
+sibility of alternative weightings of scalar products between           accuracy and thus pass the sanity check, although RBF CKA
+                                                                                2
+eigenvectors. Indeed, as we show in Appendix D.1, the sim-              and RCCA     performed slightly better than other methods.
+ilarity index induced by “canonical ridge” regularized CCA              However, we found that there are differences in feature
+(Vinod, 1976), when appropriately normalized, interpolates              scale between representations of feed-forward network and
+             2                                                          self-attention sublayers that CCA does not capture because
+between RCCA     , linear regression, and linear CKA.
+                                                                        it is invariant to non-isotropic scaling.
+6. Results
+                                                                        6.2. Using CKA to Understand Network Architectures
+6.1. A Sanity Check for Similarity Indexes
+                                                                        CKA can reveal pathology in neural networks representa-
+We propose a simple sanity check for similarity indexes:                tions. In Figure 3, we show CKA between layers of individ-
+Given a pair of architecturally identical networks trained              ual CNNs with different depths, where layers are repeated
+from different random initializations, for each layer in the            2, 4, or 8 times. Doubling depth improved accuracy, but
+first network, the most similar layer in the second network             greater multipliers hurt accuracy. At 8x depth, CKA indi-
+should be the architecturally corresponding layer. We train             cates that representations of more than half of the network
+10 networks and, for each layer of each network, we com-                are very similar to the last layer. We validated that these
+pute the accuracy with which we can find the corresponding              later layers do not refine the representation by training an 2 -
+layer in each of the other networks by maximum similarity.              regularized logistic regression classifier on each layer of the
+We then average the resulting accuracies. We compare CKA                network. Classification accuracy in shallower architectures
+with CCA, SVCCA, PWCCA, and linear regression.                          progressively improves with depth, but for the 8x deeper
+                                       Similarity of Neural Network Representations Revisited
+
+
+
+
+Figure 3. CKA reveals when depth becomes pathological. Top: Linear CKA between layers of individual networks of different depths on
+CIFAR-10. Titles show accuracy of each network. Later layers of the 8x depth network are similar to the last layer. Bottom: Accuracy of
+a logistic regression classifier trained on layers of the same networks is consistent with CKA.
+
+
+
+
+Figure 4. Linear CKA between layers of a ResNet-62 model. The
+grid pattern for ResNets in the left panel arises from the archi-
+tecture. Right panels show similarity separately for even layer
+(post-residual) and odd layer (block interior) activations. Layers in
+the same block group (i.e. at the same feature map scale) are more
+similar than layers in different block groups.
+
+
+network, accuracy plateaus less than halfway through the
+network. When applied to ResNets (He et al., 2016), CKA
+reveals no pathology (Figure 4). We instead observe a grid              Figure 5. Linear CKA between layers of networks with different
+pattern that originates from the architecture: Post-residual            architectures.
+activations are similar to other post-residual activations, but
+activations within blocks are not.
+CKA is equally effective at revealing relationships between
+layers of different architectures. Figure 5 shows the relation-
+ship between different layers of networks with and without
+residual connections. CKA indicates that, as networks are
+made deeper, the new layers are effectively inserted in be-
+tween the old layers. Other similarity indexes fail to reveal
+meaningful relationships between different architectures, as
+we show in Appendix F.5.
+In Figure 6, we show CKA between networks with differ-                  Figure 6. Layers become more similar to each other and to wide
+ent layer widths. Like Morcos et al. (2018), we find that               networks as width increases, but similarity of earlier layers satu-
+                                                                        rates first. Left: Similarity of networks with the widest network
+increasing layer width leads to more similar representations
+                                                                        we trained. Middle: Similarity of networks with other networks
+between networks. As width increases, CKA approaches 1;                 of the same width trained from random initialization. All CKA
+CKA of earlier layers saturates faster than later layers. Net-          values are computed between 10 networks; shaded regions reflect
+works are generally more similar to other networks of the               jackknife standard error.
+same width than they are to the widest network we trained.
+                                      Similarity of Neural Network Representations Revisited
+
+
+
+
+Figure 7. CKA shows that models trained on different datasets
+(CIFAR-10 and CIFAR-100) develop similar representations, and
+these representations differ from untrained models. The left panel
+shows similarity between the same layer of different models on the
+CIFAR-10 test set, while the right panel shows similarity computed
+on CIFAR-100 test set. CKA is averaged over 10 models of each
+type (45 pairs).
+
+
+6.3. Similar Representations Across Datasets
+                                                                     Figure 8. The shared subspace of two Tiny-10 networks trained
+CKA can also be used to compare networks trained on dif-             from random initialization is spanned primarily by the eigenvectors
+ferent datasets. In Figure 7, we show that models trained on         corresponding to the largest eigenvalues. Each row represents a
+CIFAR-10 and CIFAR-100 develop similar representations               different network layer. Note that the average pooling layer has
+in their early layers. These representations require training;       only 64 units. Left: Scaling of the eigenvectors uiX of the RSM
+similarity with untrained networks is much lower. We fur-            XX T from network A by RSMs of networks A and B. Orange
+                                                                     lines show ||XX T uiX ||2 , i.e. the eigenvalues. Purple dots show
+ther explore similarity between layers of untrained networks
+                                                                     ||Y Y T uiX ||2 , the scaling of the eigenvectors of the RSM of net-
+in Appendix F.3.
+                                                                     work A by the RSM of network B. Right: Cosine of the rotation
+                                                                     by the RSM of network B, (uiX )T Y Y T uiX /||Y Y T uiX ||2 .
+6.4. Analysis of the Shared Subspace
+Equation 14 suggests a way to further elucidating what CKA
+                                                                     index should focus on. Previous work has suggested that
+is measuring, based on the action of one representational
+                                                                     there is little similarity between intermediate layers of neu-
+similarity matrix (RSM) Y Y T applied to the eigenvectors
+                                                                     ral networks trained from different random initializations
+uiX of the other RSM XX T . By definition, XX T uiX points
+                                                                     (Raghu et al., 2017; Wang et al., 2018). We propose CKA as
+in the same direction as uiX , and its norm ||XX T uiX ||2 is
+                                                                     a method for comparing representations of neural networks,
+the corresponding eigenvalue. The degree of scaling and
+                                                                     and show that it consistently identifies correspondences be-
+rotation by Y Y T thus indicates how similar the action of
+                                                                     tween layers, not only in the same network trained from
+Y Y T is to XX T , for each eigenvector of XX T . For visu-
+                                                                     different initializations, but across entirely different archi-
+alization purposes, this approach is somewhat less useful
+                                                                     tectures, whereas other methods do not. We also provide a
+than the CKA summary statistic, since it does not collapse
+                                                                     unified framework for understanding the space of similarity
+the similarity to a single number, but it provides a more
+                                                                     indexes, as well as an empirical framework for evaluation.
+complete picture of what CKA measures. Figure 8 shows
+that, for large eigenvectors, XX T and Y Y T have similar            We show that CKA captures intuitive notions of similarity,
+actions, but the rank of the subspace where this holds is            i.e. that neural networks trained from different initializa-
+substantially lower than the dimensionality of the activa-           tions should be similar to each other. However, it remains
+tions. In the penultimate (global average pooling) layer, the        an open question whether there exist kernels beyond the
+dimensionality of the shared subspace is approximately 10,           linear and RBF kernels that would be better for analyzing
+which is the number of classes in the CIFAR-10 dataset.              neural network representations. Moreover, there are other
+                                                                     potential choices of weighting in Equation 14 that may be
+7. Conclusion and Future Work                                        more appropriate in certain settings. We leave these ques-
+                                                                     tions as future work. Nevertheless, CKA seems to be much
+Measuring similarity between the representations learned             better than previous methods at finding correspondences be-
+by neural networks is an ill-defined problem, since it is not        tween the learned representations in hidden layers of neural
+entirely clear what aspects of the representation a similarity       networks.
+                                   Similarity of Neural Network Representations Revisited
+
+Acknowledgements                                                 Garriga-Alonso, A., Rasmussen, C. E., and Aitchison, L.
+                                                                   Deep convolutional networks as shallow Gaussian pro-
+We thank Gamaleldin Elsayed, Jaehoon Lee, Paul-Henri               cesses. In International Conference on Learning Repre-
+Mignot, Maithra Raghu, Samuel L. Smith, and Alex                   sentations, 2019.
+Williams for comments on the manuscript, Rishabh Agarwal
+for ideas, and Aliza Elkin for support.                          Gatys, L. A., Ecker, A. S., and Bethge, M. Image style
+                                                                   transfer using convolutional neural networks. In IEEE
+References                                                         Conference on Computer Vision and Pattern Recognition,
+                                                                   2016.
+Advani, M. S. and Saxe, A. M. High-dimensional dynamics
+  of generalization error in neural networks. arXiv preprint     Golub, G. H. and Zha, H. The canonical correlations of
+  arXiv:1710.03667, 2017.                                          matrix pairs and their numerical computation. In Linear
+                                                                  Algebra for Signal Processing, pp. 27–49. Springer, 1995.
+Amari, S.-i., Ozeki, T., Karakida, R., Yoshida, Y., and
+ Okada, M. Dynamics of learning in MLP: Natural gradi-           Gretton, A., Bousquet, O., Smola, A., and Schölkopf, B.
+ ent and singularity revisited. Neural Computation, 30(1):         Measuring statistical dependence with Hilbert-Schmidt
+ 1–33, 2018.                                                       norms. In International Conference on Algorithmic
+                                                                   Learning Theory, 2005.
+Björck, Å. and Golub, G. H. Numerical methods for com-
+  puting angles between linear subspaces. Mathematics of         Haxby, J. V., Gobbini, M. I., Furey, M. L., Ishai, A.,
+  Computation, 27(123):579–594, 1973.                              Schouten, J. L., and Pietrini, P. Distributed and over-
+                                                                   lapping representations of faces and objects in ventral
+Chen, A. M., Lu, H.-m., and Hecht-Nielsen, R. On the               temporal cortex. Science, 293(5539):2425–2430, 2001.
+  geometry of feedforward neural network error surfaces.
+  Neural Computation, 5(6):910–927, 1993.                        He, K., Zhang, X., Ren, S., and Sun, J. Deep residual
+                                                                   learning for image recognition. In IEEE Conference on
+Connolly, A. C., Guntupalli, J. S., Gors, J., Hanke, M.,
+                                                                   Computer Vision and Pattern Recognition, 2016.
+  Halchenko, Y. O., Wu, Y.-C., Abdi, H., and Haxby, J. V.
+  The representation of biological classes in the human          Ioffe, S. and Szegedy, C. Batch normalization: Accelerating
+  brain. Journal of Neuroscience, 32(8):2608–2618, 2012.            deep network training by reducing internal covariate shift.
+                                                                    In International Conference on Machine Learning, 2015.
+Cortes, C., Mohri, M., and Rostamizadeh, A. Algorithms
+  for learning kernels based on centered alignment. Journal      Jacobsen, J.-H., Smeulders, A. W., and Oyallon, E. i-
+  of Machine Learning Research, 13(Mar):795–828, 2012.             RevNet: Deep invertible networks. In International Con-
+Cristianini, N., Shawe-Taylor, J., Elisseeff, A., and Kandola,     ference on Learning Representations, 2018.
+  J. S. On kernel-target alignment. In Advances in Neural        Jacot, A., Gabriel, F., and Hongler, C. Neural tangent ker-
+  Information Processing Systems, 2002.                            nel: Convergence and generalization in neural networks.
+Dinh, L., Sohl-Dickstein, J., and Bengio, S. Density esti-         In Advances in Neural Information Processing Systems,
+  mation using real NVP. In International Conference on            2018.
+  Learning Representations, 2017.                                Johnson, J., Alahi, A., and Fei-Fei, L. Perceptual losses for
+Dumoulin, V., Shlens, J., and Kudlur, M. A learned repre-          real-time style transfer and super-resolution. In European
+  sentation for artistic style. In International Conference        Conference on Computer Vision, 2016.
+  on Learning Representations, 2017.
+                                                                 Khaligh-Razavi, S.-M. and Kriegeskorte, N. Deep super-
+Edelman, S. Representation is representation of similarities.     vised, but not unsupervised, models may explain it corti-
+  Behavioral and Brain Sciences, 21(4):449–467, 1998.              cal representation. PLoS Computational Biology, 10(11):
+                                                                   e1003915, 2014.
+Elsayed, G. F., Lara, A. H., Kaufman, M. T., Churchland,
+  M. M., and Cunningham, J. P. Reorganization between            Kriegeskorte, N., Mur, M., and Bandettini, P. A. Repre-
+  preparatory and movement population responses in motor           sentational similarity analysis-connecting the branches of
+  cortex. Nature Communications, 7:13239, 2016.                    systems neuroscience. Frontiers in Systems Neuroscience,
+                                                                   2:4, 2008a.
+Freiwald, W. A. and Tsao, D. Y. Functional compartmental-
+  ization and viewpoint generalization within the macaque        Kriegeskorte, N., Mur, M., Ruff, D. A., Kiani, R., Bodurka,
+  face-processing system. Science, 330(6005):845–851,              J., Esteky, H., Tanaka, K., and Bandettini, P. A. Matching
+  2010.                                                            categorical object representations in inferior temporal
+                                   Similarity of Neural Network Representations Revisited
+
+  cortex of man and monkey. Neuron, 60(6):1126–1141,               for deep learning dynamics and interpretability. In Ad-
+  2008b.                                                           vances in Neural Information Processing Systems, 2017.
+
+Kuss, M. and Graepel, T. The geometry of kernel canon-           Ramsay, J., ten Berge, J., and Styan, G. Matrix correlation.
+  ical correlation analysis. Technical report, Max Planck          Psychometrika, 49(3):403–423, 1984.
+  Institute for Biological Cybernetics, 2003.
+                                                                 Robert, P. and Escoufier, Y. A unifying tool for linear multi-
+Laakso, A. and Cottrell, G. Content and cluster analysis:          variate statistical methods: the RV-coefficient. Applied
+  assessing representational similarity in neural systems.         Statistics, 25(3):257–265, 1976.
+  Philosophical Psychology, 13(1):47–76, 2000.
+                                                                 Romero, A., Ballas, N., Kahou, S. E., Chassang, A., Gatta,
+LeCun, Y., Kanter, I., and Solla, S. A. Second order proper-       C., and Bengio, Y. FitNets: Hints for thin deep nets. In
+  ties of error surfaces: Learning time and generalization.        International Conference on Learning Representations,
+  In Advances in Neural Information Processing Systems,            2015.
+  1991.
+                                                                 SAS Institute.   Introduction to Regression Proce-
+Lee, J., Sohl-dickstein, J., Pennington, J., Novak, R.,            dures.   2015.   URL https://support.sas.
+  Schoenholz, S., and Bahri, Y. Deep neural networks               com/documentation/onlinedoc/stat/141/
+  as gaussian processes. In International Conference on            introreg.pdf.
+  Learning Representations, 2018.
+                                                                 Saxe, A. M., McClelland, J. L., and Ganguli, S. Exact
+Li, Y., Yosinski, J., Clune, J., Lipson, H., and Hopcroft, J.      solutions to the nonlinear dynamics of learning in deep
+  Convergent learning: Do different neural networks learn          linear neural networks. In International Conference on
+  the same representations? In NIPS 2015 Workshop on               Learning Representations, 2014.
+  Feature Extraction: Modern Questions and Challenges,
+  2015.                                                          Sejdinovic, D., Sriperumbudur, B., Gretton, A., and Fuku-
+                                                                   mizu, K. Equivalence of distance-based and RKHS-based
+Lorenzo-Seva, U. and Ten Berge, J. M. Tucker’s congru-
+                                                                   statistics in hypothesis testing. The Annals of Statistics,
+  ence coefficient as a meaningful index of factor similarity.
+                                                                   pp. 2263–2291, 2013.
+  Methodology, 2(2):57–64, 2006.
+                                                                 Smith, S. L., Turban, D. H., Hamblin, S., and Hammerla,
+Morcos, A., Raghu, M., and Bengio, S. Insights on repre-
+ sentational similarity in neural networks with canonical          N. Y. Offline bilingual word vectors, orthogonal trans-
+ correlation. In Advances in Neural Information Process-           formations and the inverted softmax. In International
+ ing Systems, 2018.                                                Conference on Learning Representations, 2017.
+
+Mroueh, Y., Marcheret, E., and Goel, V. Asymmetri-               Song, L., Smola, A., Gretton, A., Borgwardt, K. M., and
+ cally weighted CCA and hierarchical kernel sentence               Bedo, J. Supervised feature selection via dependence esti-
+ embedding for multimodal retrieval. arXiv preprint                mation. In International Conference on Machine learning,
+ arXiv:1511.06267, 2015.                                           2007.
+
+Novak, R., Xiao, L., Bahri, Y., Lee, J., Yang, G., Abolafia,     Springenberg, J. T., Dosovitskiy, A., Brox, T., and Ried-
+  D. A., Pennington, J., and Sohl-dickstein, J. Bayesian           miller, M. Striving for simplicity: The all convolutional
+  deep convolutional networks with many channels are               net. In International Conference on Learning Represen-
+  Gaussian processes. In International Conference on               tations Workshop, 2015.
+ Learning Representations, 2019.
+                                                                 StataCorp. Stata Multivariate Statistics Reference Man-
+Orhan, E. and Pitkow, X. Skip connections eliminate singu-         ual. 2015. URL https://www.stata.com/
+  larities. In International Conference on Learning Repre-         manuals14/mv.pdf.
+  sentations, 2018.
+                                                                 Sussillo, D., Churchland, M. M., Kaufman, M. T., and
+Press, W. H.     Canonical correlation clarified by                Shenoy, K. V. A neural network that finds a naturalistic
+  singular value decomposition, 2011.           URL                solution for the production of muscle activity. Nature
+  http://numerical.recipes/whp/notes/                              Neuroscience, 18(7):1025, 2015.
+  CanonCorrBySVD.pdf.
+                                                                 Tucker, L. R. A method for synthesis of factor analysis
+Raghu, M., Gilmer, J., Yosinski, J., and Sohl-Dickstein, J.        studies. Technical report, Educational Testing Service,
+  SVCCA: Singular vector canonical correlation analysis            Princeton, NJ, 1951.
+                                  Similarity of Neural Network Representations Revisited
+
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones,
+  L., Gomez, A. N., Kaiser, Ł., and Polosukhin, I. Atten-
+  tion is all you need. In Advances in Neural Information
+  Processing Systems, pp. 5998–6008, 2017.
+Vinod, H. D. Canonical ridge and econometrics of joint pro-
+  duction. Journal of Econometrics, 4(2):147–166, 1976.
+
+Wang, L., Hu, L., Gu, J., Wu, Y., Hu, Z., He, K., and
+ Hopcroft, J. E. Towards understanding learning repre-
+ sentations: To what extent do different neural networks
+ learn the same representation. In Advances in Neural
+ Information Processing Systems, 2018.
+
+Yamins, D. L., Hong, H., Cadieu, C. F., Solomon, E. A.,
+  Seibert, D., and DiCarlo, J. J. Performance-optimized
+  hierarchical models predict neural responses in higher
+  visual cortex. Proceedings of the National Academy of
+  Sciences, 111(23):8619–8624, 2014.
+Zagoruyko, S. and Komodakis, N. Wide residual networks.
+  In British Machine Vision Conference, 2016.
+

@@ -1,0 +1,655 @@
+                     Variational Autoencoders and Nonlinear ICA:
+                                 A Unifying Framework
+
+
+
+    Ilyes Khemakhem              Diederik P. Kingma               Ricardo Pio Monti               Aapo Hyvärinen
+        Gatsby Unit                  Google Brain                     Gatsby Unit               Université Paris-Saclay,
+           UCL                                                           UCL                    Inria, Univ. of Helsinki
+
+
+                       Abstract                                  a scalable set of techniques for learning deep latent-
+                                                                 variable models and corresponding inference models.
+                                                                 With VAEs, we can in principle learn flexible models
+     The framework of variational autoencoders al-
+                                                                 of data such that, after optimization, the model’s im-
+     lows us to efficiently learn deep latent-variable
+                                                                 plicit marginal distribution over the observed variables
+     models, such that the model’s marginal distri-
+                                                                 approximates their true (but unknown) distribution.
+     bution over observed variables fits the data.
+                                                                 With VAEs we can also efficiently synthesize pseudo-
+     Often, we’re interested in going a step further,
+                                                                 data from the model.
+     and want to approximate the true joint dis-
+     tribution over observed and latent variables,               However, we’re often interested in going a step further
+     including the true prior and posterior distri-              and want to learn the true joint distribution over both
+     butions over latent variables. This is known                observed and latent variables. This is generally a very
+     to be generally impossible due to unidentifia-              difficult task, since by definition we only ever observe
+     bility of the model. We address this issue by               the observed variables, never the latent variables, there-
+     showing that for a broad family of deep latent-             fore we cannot directly estimate their joint distribution.
+     variable models, identification of the true joint           If we could however somehow achieve this task and
+     distribution over observed and latent variables             learn the true joint distribution, this would imply that
+     is actually possible up to very simple trans-               we have also learned to approximate the true prior and
+     formations, thus achieving a principled and                 posterior distributions over latent variables. Learning
+     powerful form of disentanglement. Our re-                   about these distributions can be very interesting for
+     sult requires a factorized prior distribution               various purposes, for example in order to learn about
+     over the latent variables that is conditioned               latent structure behind the data, or in order to infer
+     on an additionally observed variable, such as               the latent variables from which the data originated.
+     a class label or almost any other observation.
+                                                                 Learning the true joint distribution is only possible
+     We build on recent developments in nonlinear
+                                                                 when the model is identifiable, as we will explain. The
+     ICA, which we extend to the case with noisy,
+                                                                 original VAE theory doesn’t tell us when this is the case;
+     undercomplete or discrete observations, inte-
+                                                                 it only tells us how to optimize the model’s parameters
+     grated in a maximum likelihood framework.
+                                                                 such that its (marginal) distribution over the observed
+     The result also trivially contains identifiable
+                                                                 variables matches the data. The original theory doesn’t
+     flow-based generative models as a special case.
+                                                                 tell us if or when we learn the correct joint distribution
+                                                                 over observed and latent variables.
+1    INTRODUCTION                                                Almost no literature exists on achieving this goal. A
+                                                                 pocket of the VAE literature works towards the related
+The framework of variational autoencoders (Kingma                goal of disentanglement, but offers no proofs or theo-
+and Welling, 2013; Rezende et al., 2014) (VAEs) and              retic guarantees of identifiability of the model or its
+its extensions (e.g. Burda et al. (2015); Kingma et al.          latent variables. The most prominent of such mod-
+(2016); Tucker et al. (2018); Maaløe et al. (2019)) offers       els are β-VAEs and their extensions (Burgess et al.,
+                                                                 2018; Higgins et al., 2016, 2018; Esmaeili et al., 2018;
+                                                                 Kim and Mnih, 2018; Chen et al., 2018), in which the
+Proceedings of the 23rd International Conference on Artificial   authors introduce adjustable hyperparameters in the
+Intelligence and Statistics (AISTATS) 2020, Palermo, Italy.      VAE objective to encourage disentanglement. Other
+PMLR: Volume 108. Copyright 2020 by the author(s).
+                                                                 work attempts to find maximally independent compo-
+              Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+nents through the GAN framework (Brakel and Bengio,           where θ ∈ Θ is a vector of parameters, pθ (z) is called
+2017). However, models in these earlier works are ac-         a prior distribution over the latent variables. The
+tually non-identifiable due to non-conditional latent         distribution pθ (x|z), often parameterized with a neural
+priors, as has been seen empirically (Locatello et al.,       network called the decoder, tells us how the distribution
+2018), and we will show formally below.                       on x depends on the values of z. The model then gives
+                                                              rise to the observed distribution of the data as:
+Recent work in nonlinear Independent Component                                           Z
+Analysis (ICA) theory (Hyvärinen and Morioka, 2016,
+                                                                                pθ (x) = pθ (x, z)dz                (2)
+2017; Hyvärinen et al., 2019) provided the first identifi-
+ability results for deep latent-variable models. Nonlin-
+ear ICA provides a rigorous framework for recovering          Assuming pθ (x|z) is modelled by a deep neural network,
+independent latents that were transformed by some in-         this can model a rich class of data distributions pθ (x).
+vertible nonlinear transformation into the data. Some         We assume that we observe data which is gener-
+special but not very restrictive conditions are necessary,    ated from an underlying joint distribution pθ∗ (x, z) =
+since it is known that when the function from latent          pθ∗ (x|z)pθ∗ (z) where θ ∗ are its true but unknown pa-
+to observed variables is nonlinear, the general problem       rameters. We then collect a dataset of observations of
+is ill-posed, and one cannot recover the independent          x:
+latents (Hyvärinen and Pajunen, 1999). However, ex-
+isting nonlinear ICA methods do not learn to model               D = {x(1) , . . . , x(N ) } where z∗(i) ∼ pθ∗ (z)
+the data distribution (pdf), nor do they allow us to
+                                                                                                  x(i) ∼ pθ∗ (x|z∗(i) )
+synthesize pseudo-data.
+In this paper we show that under relatively mild con-         Note that the original values z∗(i) of the latent variables
+ditions the joint distribution over observed and latent       z are by definition not observed and unknown. The ICA
+variables in VAEs is identifiable and learnable, thus         literature, including this work, uses the term sources
+bridging the gap between VAEs and nonlinear ICA. To           to refer to z∗(i) . Also note that we could just as well
+this end, we establish a principled connection between        have written: x(i) ∼ pθ∗ (x).
+VAEs and an identifiable nonlinear ICA model, provid-         The VAE framework (Kingma and Welling, 2013;
+ing a unified view of two complementary methods in            Rezende et al., 2014) allows us to efficiently optimize
+unsupervised representation learning. This integration        the parameters θ of such models towards the (approx-
+is achieved by using a latent prior that has a factor-        imate) maximum marginal likelihood objective, such
+ized distribution that is conditioned on additionally         that after optimization:
+observed variables, such as a class label, time index, or
+almost any other further observation. Our theoretical                              pθ (x) ≈ pθ∗ (x)                       (3)
+results trivially apply to any consistent parameter esti-
+mation method for deep latent-variable models, not just       In other words, after optimization we have then esti-
+the VAE framework. We found the VAE a logical choice          mated the marginal density of x.
+since it allows for efficient latent-variable inference and
+scales to large datasets and models. Finally, we put          2.2   Parameter Space vs Function Space
+our theoretical results to a test in experiments. Per-
+haps most notably, we find that on a synthetic dataset        In this work we use slightly non-standard notation and
+with known ground-truth model, our method with an             nomenclature: we use θ ∈ Θ to refer to the model
+identifiable VAE indeed learns to closely approximate         parameters in function space. In contrast, let w ∈ W
+the true joint distribution over observed and latent          refer to the space of original neural network parameters
+variables, in contrast with a baseline non-identifiable       (weights, biases, etc.) in which we usually perform
+model.                                                        gradient ascent.
+
+2     UNIDENTIFIABILITY OF DEEP                               2.3   Identifiability
+      LATENT VARIABLE MODELS                                  The VAE model actually learns a full generative model
+                                                              pθ (x, z) = pθ (x|z)pθ (z) and an inference model qφ (z|x)
+2.1   Deep latent variable models                             that approximates its posterior pθ (z|x). The problem is
+Consider an observed data variable (random vector)            that we generally have no guarantees about what these
+x ∈ Rd , and a latent random vector z ∈ Rn . A common         learned distributions actually are: all we know is that
+deep latent variable model has the following structure:       the marginal distribution over x is meaningful (Eq. 3).
+                                                              The rest of the learned distributions are, generally,
+                pθ (x, z) = pθ (x|z)pθ (z)             (1)    quite meaningless.
+              Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+What we are looking for is models for which the follow-       in a time series, some kind of (possibly noisy) class
+ing implication holds for all (x, z):                         label, or another concurrently observed variable.
+
+       ∀(θ, θ 0 ) : pθ (x) = pθ0 (x)   =⇒   θ = θ0     (4)    Formally, let x ∈ Rd , and u ∈ Rm be two observed ran-
+                                                              dom variables, and z ∈ Rn (lower-dimensional, n ≤ d)
+That is: if any two different choices of model parameter      a latent variable. Let θ = (f , T, λ) be the parameters
+θ and θ 0 lead to the same marginal density pθ (x), then      of the following conditional generative model:
+this would imply that they are equal and thus have                          pθ (x, z|u) = pf (x|z)pT,λ (z|u)             (5)
+matching joint distributions pθ (x, z). This means that
+if we learn a parameter θ that fits the data perfectly:       where we first define:
+pθ (x) = pθ∗ (x) (the ideal case of Eq. 3), then its joint
+                                                                                pf (x|z) = pε (x − f (z))                (6)
+density also matches perfectly: pθ (x, z) = pθ∗ (x, z).
+If the joint density matches, this also means that we         which means that the value of x can be decomposed
+found the correct prior pθ (z) = pθ∗ (z) and correct          as x = f (z) + ε where ε is an independent noise vari-
+posteriors pθ (z|x) = pθ∗ (z|x). In case of VAEs, we can      able with probability density function pε (ε), i.e. ε is
+then also use the inference model qφ (z|x) to efficiently     independent of z or f . We assume that the function
+perform inference over the sources z∗ from which the          f : Rn → Rd is injective; but apart from injectivity it
+data originates.                                              can be an arbitrarily complicated nonlinear function.
+The general problem here is a lack of identifiability guar-   For the sake of analysis we treat the function f itself
+antees of the deep latent-variable model. We illustrate       as a parameter of the model; however in practice we
+this by showing that any model with unconditional             can use flexible function approximators such as neural
+latent distribution pθ (z) is unidentifiable, i.e. that       networks.
+Eq. (4) does not hold. In this case, we can always find       We describe the model above with noisy and continuous-
+transformations of z that changes its value but does          valued observations x = f (z) + ε. However, our iden-
+not change its distribution. For a spherical Gaussian         tifiability results also apply to non-noisy and discrete
+distribution pθ (z), for example, applying a rotation         observations. Non-noisy observations x = f (z) are a
+keeps its distribution the same. We can then incor-           special case of Eq. (6) where pε (ε) is Gaussian with
+porate this transformation as the first operation in          infinitesimal variance. Likewise, discrete random vari-
+pθ (x|z). This will not change pθ (x), but it will change     ables can be viewed as a special case of continuous
+pθ (z|x), since now the values of x come from different       random variables in the infinitesimal-temperature limit
+values of z. This is an example of a broad class of           (Maddison et al., 2016; Jang et al., 2016). This case
+commonly used models that are non-identifiable. We            is explained in Supplementary Material C. For these
+show rigorously in Supplementary Material D that, in          reasons, we can use discrete observations or flow-based
+fact, models with any form of unconditional prior pθ (z)      generative models (Dinh et al., 2014) for pθ (x|z), while
+are unidentifiable.                                           maintaining identifiability.
+                                                              The prior on the latent variables pθ (z|u) is assumed
+3     AN IDENTIFIABLE MODEL                                   to be conditionally factorial, where each element of
+      BASED ON CONDITIONALLY                                  zi ∈ z has a univariate exponential family distribution
+      FACTORIAL PRIORS                                        given conditioning variable u. The conditioning on u is
+                                                              through an arbitrary function λ(u) (such as a look-up
+In this section, we define a broad family of deep latent-     table or neural network) that outputs the individual
+variable models which is identifiable, and we show how        exponential family parameters λi,j . The probability
+to estimate the model and its posterior through the           density function is thus given by:
+VAE framework. We call this family of models, together                                      
+                                                                                               k
+                                                                                                                    
+                                                                             Y Qi (zi )
+with its estimation method, Identifiable VAE, or iVAE
+                                                                                             X
+                                                                pT,λ (z|u) =            exp      Ti,j (zi )λi,j (u) (7)
+for short.                                                                    i
+                                                                                 Zi (u)       j=1
+
+
+3.1   Definition of proposed model                            where Qi is the base measure, Zi (u) is the normaliz-
+                                                              ing constant and Ti = (Ti,1 , . . . , Ti,k ) are the sufficient
+The primary assumption leading to identifiability is          statistics and λi (u) = (λi,1 (u), . . . , λi,k (u)) the corre-
+a conditionally factorized prior distribution over the        sponding parameters, crucially depending on u. Finally,
+latent variables pθ (z|u), where u is an additionally         k, the dimension of each sufficient statistic, is fixed (not
+observed variable (Hyvärinen et al., 2019). The variable      estimated). Note that exponential families have uni-
+u could be, for example, the time index in a time series      versal approximation capabilities, so this assumption
+(Hyvärinen and Morioka, 2016), previous data points           is not very restrictive (Sriperumbudur et al., 2017).
+                Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+3.2    Estimation by VAE                                           related to the original z∗ as follows:
+
+Next we propose a practical estimation method for the                 (T1∗ (z1∗ ), . . . , Tn∗ (zn∗ )) = A(T1 (z1 ), . . . , Tn (zn ))    (9)
+modelintroduced above. Considerwe have a dataset
+D =      x(1) , u(1) , . . . , x(N ) , u(N ) of observations       for an invertible matrix A. That is, we can recover the
+generated according to the generative model defined in             original latent variables up to a component-wise (point-
+Eq. (5). We propose to use a VAE as a means of learn-              wise) transformations Ti∗ , Ti , which are defined as the
+ing the true generating parameters θ ∗ := (f ∗ , T∗ , λ∗ ),        sufficient statistics of exponential families, and up to a
+up to the indeterminacies discussed below.                         subsequent linear transformation A. Importantly, the
+                                                                   linear transformation A can often be resolved by exclud-
+VAEs are a framework that simultaneously learns a                  ing families where, roughly speaking, only the location
+deep latent generative model and a variational approx-             (mean) is changing. Then A is simply a permutation
+imation qφ (z|x, u) of its true posterior pθ (z|x, u), the         matrix, and equation (9) becomes
+latter  being often intractable. Denote by pθ (x|u) =
+                                                                                            Ti∗ (zi∗ ) = Ti0 (zi0 )                      (10)
+R
+   pθ (x, z, |u)dz the conditional marginal distribution
+of the observations, and with qD (x, u) we denote the
+empirical data distribution given by dataset D. VAEs               for a permuted index i0 . Thus, the only real indeter-
+learn the vector of parameters (θ, φ) by maximizing                minacy is often the component-wise transformations
+L(θ, φ), a lower bound on the data log-likelihood de-              of the latents, which may be inconsequential in many
+fined by:                                                          applications.
+
+                                                                   3.4    Interpretation as nonlinear ICA
+  EqD [log pθ (x|u)] ≥ L(θ, φ) :=
+                                                    
+  EqD Eqφ (z|x,u) [log pθ (x, z|u) − log qφ (z|x, u)] (8)          Now we show how the model above is closely related
+                                                                   to previous work on nonlinear ICA. In nonlinear ICA,
+We use the reparameterization trick (Kingma and                    we assume observations x ∈ Rd , which are the result of
+Welling, 2013) to sample from qφ (z|x, u). This trick              an unknown (but invertible) transformation f of latent
+provides a low-variance stochastic estimator for gradi-            variables z ∈ Rd :
+ents of the lower bound with respect to φ. The training                                  x = f (z)                   (11)
+algorithm is the same as in a regular VAE. Estimates
+                                                                   where z are assumed to follow a factorized (but typically
+of the latent variables can be obtained by sampling                                               Qd
+from the variational posterior.                                    unknown) distribution p(z) = i=1 pi (zi ). This model
+                                                                   is essentially a deep generative model. The difference
+VAEs, like any maximum likelihood estimation method,               to the definition above is mainly in the lack of noise
+requires the densities to be normalized. To this end, in           and the equality of the dimensions: The transformation
+practice we choose the prior pθ (z|u) to be a Gaussian             f is deterministic and invertible. Thus, any posteriors
+location-scale family, which is widely used with VAEs.1            would be degenerate.
+                                                                   The goal is then to recover (identify) f −1 , which gives
+3.3    Identifiability and consistency results
+                                                                   the independent components as z = f −1 (x), based on
+As discussed in section 2.3, identifiability as defined            a dataset of observations of x alone. Thus, the goal
+by equation (4) is very hard to achieve in deep latent             of nonlinear ICA was always identifiability, which is in
+variable models. As a first step towards an identifiable           general not attained by deep latent variable models, as
+model, we seek to recover the model parameters or the              was discussed in Section 2 above.
+latent variables up to trivial transformations. Here,              To obtain identifiability, we either have to restrict f (for
+we state informally our results on this weaker form of             instance make it linear) and/or we have to introduce
+identifiability of the model —a rigorous treatment is              some additional constraints on the distribution of the
+given in Section 4. Consider for simplicity the case               sources z. Recently, three new nonlinear ICA frame-
+of no noise and sufficient statistics of size k = 1, and           works (Hyvärinen and Morioka, 2016, 2017; Hyvärinen
+define Ti := Ti,1 . Then we can recover z which are                et al., 2019) exploring the latter direction were pro-
+    1
+                                                                   posed, in which it is possible to recover identifiable
+      As mentioned in section 3.1, our model contains normal-      sources, up to some trivial transformations.
+izing flows as a special case when Var(ε) = 0 and the mixing
+function f is parameterized as an invertible flow (Rezende         The framework in Hyvärinen et al. (2019) is particularly
+and Mohamed, 2015). Thus, as an alternative estimation             close to what we proposed above. However, there are
+method, we could then optimize the log-likelihood directly:
+EqD (x,u) [log pθ (x|u)] = log pθ (f −1 (z)|u) + log |Jf −1 (x)|   several important differences. First, here we define a
+where Jf −1 is easily computable. The conclusion on consis-        generative model where posteriors are non-degenerate,
+tency given in section 4.3 still holds in this case.               which allows us to show an explicit connection to VAE.
+                 Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+We are thus also able to perform maximum likelihood                    Definition 2 Let ∼ be the equivalence relation on Θ
+estimation, in terms of evidence lower bound, while pre-               defined as follows:
+vious nonlinear ICA used more heuristic self-supervised
+schemes. Computing a lower bound on the likelihood is                    (f , T, λ) ∼ (f̃ , T̃, λ̃) ⇔
+useful, for example, for model selection and validation.
+                                                                          ∃A, c | T(f −1 (x)) = AT̃(f̃ −1 (x)) + c, ∀x ∈ X     (13)
+In addition, we can in fact prove a tight link between
+maximum likelihood estimation and maximization of                      where A is an nk × nk matrix and c is a vector
+independence of latents, as discussed in Supplemen-
+tary Material F. We also learn both the forward and                    If A is invertible, we denote this relation by ∼A . If A
+backward models, which allows for recovering indepen-                  is a block permutation2 matrix, we denote it by ∼P .
+dent latents from data, but also generating new data.
+The forward model is also likely to help investigate the               Our main result is the following Theorem3 :
+meaning of the latents. At the same time, we are able
+to provide stronger identifiability results which apply                Theorem 1 Assume that we observe data sampled
+for more general models than earlier theory, and in par-               from a generative model defined according to (5)-(7),
+ticular considers the case where the number of latent                  with parameters (f , T, λ). Assume the following holds:
+variables is smaller than the number of observed vari-
+ables and is corrupted by noise. Given the popularity                   (i) The set {x ∈ X |ϕε (x) = 0} has measure zero,
+of VAEs, our current framework should thus be of inter-                     where ϕε is the characteristic function of the den-
+est. Further discussion can be found in Supplementary                       sity pε defined in (6).
+Material G.
+                                                                       (ii) The mixing function f in (6) is injective.
+
+4     IDENTIFIABILITY THEORY                                           (iii) The sufficient statistics Ti,j in (7) are differen-
+                                                                             tiable almost everywhere, and (Ti,j )1≤j≤k are lin-
+                                                                             early independent on any subset of X of measure
+Now we give our main technical results. The proofs
+                                                                             greater than zero.
+are in Supplementary Material B.
+                                                                       (iv) There exist nk + 1 distinct points u0 , . . . , unk such
+                              n                d
+Notations Let Z ⊂ R and X ⊂ R be the domain                                 that the matrix
+and the image of f in (6), respectively, and U ⊂ Rm
+the support of the distribution of u. We denote by                              L = (λ(u1 ) − λ(u0 ), . . . , λ(unk ) − λ(u0 )) (14)
+f −1 the inverse defined from X → Z. We suppose that
+Z, X and U are open sets. We denote by T(z) :=                                of size nk × nk is invertible.4
+(T1 (z1 ), . . . , Tn (zn )) = (T1,1 (z1 ) . . . , Tn,k (zn )) ∈ Rnk
+the vector of sufficient statistics of (7), λ(u) =                     then the parameters (f , T, λ) are ∼A -identifiable.
+(λ1 (u), . . . , λn (u)) = (λ1,1 (u), . . . , λn,k (u)) ∈ Rnk the
+vector of its parameters. Finally Θ = {θ := (f , T, λ)}                This Theorem guarantees a basic form of identifiabil-
+is the domain of parameters describing (5).                            ity of the generative model (5). In fact, suppose the
+                                                                       data was generated according to the set of parameters
+                                                                       (f , T, λ). And let (f̃ , T̃, λ̃) be the parameters obtained
+4.1    General results
+                                                                       from some learning algorithm (supposed consistent in
+In practice, we are often interested in models that are                the limit of infinite data) that perfectly approximates
+identifiable up to a class of transformation. Thus, we                 the marginal distribution of the observations. Then the
+introduce the following definition:                                    Theorem says that necessarily (f̃ , T̃, λ̃) ∼A (f , T, λ). If
+                                                                       there were no noise, this would mean that the learned
+Definition 1 Let ∼ be an equivalence relation on                       transformation f̃ transforms the observations into la-
+Θ. We say that (1) is identifiable up to ∼ (or ∼-                      tents z̃ = f̃ −1 (x) that are equal to the true generative
+identifiable) if                                                       latents z = f −1 (x), up to a linear invertible transfor-
+                                                                       mation (the matrix A) and point-wise nonlinearities
+                 pθ (x) = pθ̃ (x) =⇒ θ̃ ∼ θ                   (12)     (in the form of T and T̃). With noise, we obtain the
+                                                                       posteriors of the latents up to an analogous indetermi-
+The elements of the quotient space Θ /∼ are called the                 nacy.
+identifiability classes.                                                  2
+                                                                            each block linearly transforms Ti into T̃i0 .
+                                                                          3
+                                                                            an alternative version is in Supplementary Material E.
+We now define two equivalence relations on the set of                     4
+                                                                            the intuition and feasibility of this assumption are dis-
+parameters Θ.                                                          cussed in Supplementary Material B.2.3.
+                 Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+4.2      Characterization of the linear                           This Proposition stipulates that if the components are
+         indeterminacy                                            Gaussian (or exponential in the case of non-negative
+                                                                  components) and only the location is changing, we can’t
+The equivalence relation ∼A provides a useful form of             hope to reduce the matrix A in ∼A to a permutation.
+identifiability, but it is very desirable to remove the           In fact, to prove this in the Gaussian case, we sim-
+linear indeterminacy A, and reduce the equivalence                ply consider orthogonal transformations of the latent
+relation to ∼P by analogy with linear ICA where such              variables, which all give rise to the same observational
+matrix is resolved up to a permutation and signed                 distribution with a simple adjustment of parameters.
+scaling. We present in this section sufficient conditions
+for such reduction, and special cases to avoid.                   4.3   Consistency of Estimation
+We will start by giving two Theorems that provide
+sufficient conditions. Theorem 2 deals with the more              The theory above further implies a consistency result
+general case k ≥ 2, while Theorem 3 deals with the                on the VAE. If the variational distribution qφ is a broad
+special case k = 1.                                               parametric family that includes the true posterior, then
+                                                                  we have the following result.
+Theorem 2 (k ≥ 2) Assume the hypotheses of Theo-
+rem 1 hold, and that k ≥ 2. Further assume:                       Theorem 4 Assume the following:
+
+
+ (2.i) The sufficient statistics Ti,j in (7) are twice dif-        (i) The family of distributions qφ (z|x, u) contains
+       ferentiable.                                                    pf ,T,λ (z|x, u).
+                                                                  (ii) We maximize L(θ, φ) with respect to both θ and φ.
+(2.ii) The mixing function f has all second order cross
+       derivatives.
+                                                                  then in the limit of infinite data, the VAE learns the
+                                                                  true parameters θ ∗ := (f ∗ , T∗ , λ∗ ) up to the equivalence
+then the parameters (f , T, λ) are ∼P -identifiable.
+                                                                  class defined by ∼ in (13).
+Theorem 3 (k = 1) Assume the hypotheses of Theo-
+rem 1 hold, and that k = 1. Further assume:                       5     EXPERIMENTS
+
+ (3.i) The sufficient statistics Ti,1 are not monotonic5 .        5.1   Simulations on artifical data
+
+(3.ii) All partial derivatives of f are continuous.               Dataset We run simulations on data used previously
+                                                                  in the nonlinear ICA literature (Hyvärinen and Morioka,
+then the parameters (f , T, λ) are ∼P -identifiable.              2016; Hyvärinen et al., 2019). We generate synthetic
+                                                                  datasets where the sources are non-stationary Gaussian
+These two Theorems imply that in most cases f̃ −1 ◦ f :           time-series: we divide the sources into M segments of
+Z → Z is a pointwise 6 nonlinearity, which essentially            L samples each. The conditioning variable u is the
+means that the estimated latent variables z̃ are equal            segment label, and its distribution is uniform on the
+to a permutation and a pointwise nonlinearity of the              integer set [[1, M ]]. Within each segment, the condi-
+original latents z.                                               tional prior distribution is chosen from the family (7)
+                                                                  for small k. When k = 2, we used mean and variance
+This kind of identifiability is stronger than any previous        modulated Gaussian distribution. When k = 1, we
+results in the literature, and considered sufficient in           used variance modulated Gaussian or Laplace (to fall
+many applications. On the other hand, there are very              within the hypotheses of Theorem 3). The true param-
+special cases where a linear indeterminacy cannot be              eters λi were randomly and independently generated
+resolved, as shown by the following:                              across the segments and the components from a non
+                                                                  degenerate distributions to satisfy assumption (iv) of
+Proposition 1 Assume that k = 1, and that
+                                                                  Theorem 1. Following Hyvärinen et al. (2019), we mix
+                                                                  the sources using a multi-layer perceptron (MLP) and
+ (i) Ti,1 (zi ) = zi for all i.                                   add small Gaussian noise.
+                                     2
+(ii) Qi (zi ) = 1 or Qi (zi ) = e−zi for all i.
+                                                                  Model specification Our estimates of the latent
+                                                                  variables are generated from the variational poste-
+Then A can not be reduced to a permutation matrix.
+                                                                  rior qφ (z|u, x), for which we chose the following form:
+                                                                                                                      
+   5
+       monotonic means it is strictly increasing or decreasing.   qφ (z|x, u) = N z|g(x, u; φg ), diag σ 2 (x, u; φσ ) , a
+   6
+       each of its component is a function of only one zi .       multivariate Gaussian with a diagonal covariance. The
+              Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+                                                                                                                                                        1.0
+
+
+
+
+                                                              Performance (MCC)
+
+
+
+
+                                                                                                                                    Performance (MCC)
+                                                                                  0.9
+                                                                                                                                                        0.9
+                                                                                                                    iVAE
+                                                                                  0.8                               VAE
+                                                                                                                    β-VAE                               0.8
+                                                                                                                    β-TC-VAE
+                                                                                                                                                                  iVAE
+                                                                                  0.7                                                                   0.7       VAE
+                                                                                                                                                                  β-VAE
+                                                                                                                                                                  β-TC-VAE
+                                                                                                                                                        0.6
+                                                                                        1   5        10        15              20                             2              3           4      5
+(a) pθ∗ (z|u) (b) pθ∗ (x|u) (c) pθ (z|x, u) (d) pVAE (z|x)                                      Epoch (time)                                                             Latent dimension (n)
+
+
+
+Figure 1: Visualization of both observation and latent                            (a) Training dynamics                                                       (b) Changing n
+spaces in the case n = d = 2 and where the number
+of segments is M = 5 (segments are colour coded).            Figure 2: Performance of iVAE in recovering the true
+First, data is generated in (a)-(b) as follows: (a) sam-     sources, compared to VAE, β-VAE and β-TC-VAE, for
+ples from the true distribution of the sources pθ∗ (z|u):    M = 40, L = 1000 and d = 5 (and n = 5 for (a)).
+Gaussian with non stationary mean and variance, (b)
+are observations sampled from pθ∗ (x|z). Second, af-
+                                                             with the sole exception of the addition of the condi-
+ter learning both a vanilla VAE and an iVAE models,
+                                                             tional prior in iVAE . When the data is centered, the
+we plot in (c) the latent variables sampled from the
+                                                             VAE prior is Gaussian or Laplace. We also compared
+posterior qφ (z|x, u) of the iVAE and in (d) the latent
+                                                             the performance to two models from the disentangle-
+variables sampled from the posterior of the vanilla VAE.
+                                                             ment literature, namely a β-VAE (Higgins et al., 2016)
+                                                             and a β-TC-VAE (Chen et al., 2018). The parameter
+noise distribution pε is Gaussian with small variance.       β of the β-VAE and the parameters α, β and γ for
+The functional parameters of the decoder and the infer-      β-TC-VAE were chosen by following the instructions of
+ence model, as well as the conditional prior are chosen      their respective authors. We trained these 4 models on
+to be MLPs. We use an Adam optimizer (Kingma and             the dataset described above, with M = 40, L = 1000,
+Ba, 2014) to update the parameters of the network by         d = 5 and n ∈ [2, 5]. Figure 2a compares performances
+maximizing L(θ, φ) in equation (8). The data gener-          obtained from an optimal choice of parameters achieved
+ation process as well as hyperparameter choices are          by iVAE and the three models discussed above, when
+detailed in Supplementary Material H.1.                      the dimension of the latent space equals the dimension
+                                                             of the data (n = d = 5). iVAE achieved an MCC score
+                                                             of above 95%, whereas the other three models fail at
+Performance metric To evaluate the performance
+                                                             finding a good estimation of the true parameters. We
+of the method, we compute the mean correlation co-
+                                                             further investigated the impact of the latent dimen-
+efficient (MCC) between the original sources and the
+                                                             sion on the performance in Figure 2b. iVAE has much
+corresponding latents sampled from the learned pos-
+                                                             higher correlations than the three other models, espe-
+terior. To compute this performance metric, we first
+                                                             cially as the dimension increases. Further visualization
+calculate all pairs of correlation coefficients between
+                                                             are in Supplementary Material I.4.
+source and latent components. We then solve a linear
+sum assignment problem to assign each latent compo-
+nent to the source component that best correlates with       Results: Comparison to TCL Next, we compared
+it, thus reversing any permutations in the latent space.     our method to previous nonlinear ICA methods, namely
+A high MCC means that we successfully identified the         TCL by Hyvärinen and Morioka (2016), which is based
+true parameters and recovered the true sources, up to        on a self supervised classification task (see Supplemen-
+point-wise transformations. This is a standard measure       tary Material G.1). We run simulations on the same
+used in ICA.                                                 dataset as Figure 2a, where we varied the number of
+                                                             segments from 10 to 50. Our method slightly out-
+                                                             performed TCL in our experiments. The results are
+Results: 2D example First, we show a visualiza-
+                                                             reported in Figure 3a. Note that according to Hyväri-
+tion of identifiability of iVAE in a 2D case in Figure
+                                                             nen et al. (2019), TCL performs best among previously
+1, where we plot the original sources, observed data
+                                                             proposed methods for this kind of data.
+and the posterior distributions learned by our model,
+compared to a vanilla VAE. Our method recovers the           Finally, we wanted to show that our method is robust
+original sources up to trivial indeterminacies (rotation     to some failure modes which occur in the context of self-
+and sign flip), whereas the VAE fails to do a good           supervised methods. The theory of TCL is premised on
+separation of the latent variables.                          the notion that in order to accurately classify observa-
+                                                             tions into their relative segments, the model must learn
+Results: Comparison to VAE variants We com-                  the true log-densities of sources within each segment.
+pared the performance of iVAE to a vanilla VAE. We           While such theory will hold in the limit of infinite data,
+used the same network architecture for both models,          we considered here a special case where accurate classi-
+                                         Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+                                                                                  1.0
+                     0.9        iVAE                                                                                                                        PRc          DG
+ Performance (MCC)
+
+
+
+
+                                                              Performance (MCC)
+                                TCL                                                                                              PRc         DG
+                                                                                  0.8
+                     0.8                                                                                                                                          ERc
+                                                                                                                     iVAE
+                                                                                                                                       ERc                                     CA1
+                                                                                  0.6                                TCL                           CA1
+                     0.7
+                                                                                                                                                            PHc          Sub
+                                                                                  0.4                                            PHc         Sub
+                     0.6
+
+                           10     20       30       40   50                              10   20       30       40      50
+                                   Number of segments                                          Number of segments
+                                                                                                                                       (a) iVAE                   (b) TCL
+                                (a) Normal                                              (b) Easy to classify
+                                                                                                                             Figure 4: Estimated causal graph on hippocampal
+Figure 3: (a) Performance of iVAE in comparison to                                                                           fMRI data unmixing of sources is achieved via iVAE
+TCL in recovering the true sources on normal data                                                                            (left) or TCL (right). Blue edges are feasible given
+(b) Performance of iVAE in comparison to TCL in                                                                              anatomical connectivity, red edges are not.
+recovering the true sources on easy to classify data.
+
+                                                                                                                             approach can be extended beyond two-dimensional ob-
+fication did not require learning the log-densities very                                                                     servations as described in Monti et al. (2019).
+precisely. This was achieved by generating synthetic                                                                         To demonstrate the benefits of iVAE as compared to
+data where x2 alone contained sufficient information                                                                         TCL, both algorithms were employed to learn causal
+to perform classification, by making the mean of x2                                                                          structure from fMRI data (details in Supplementary
+significantly modulated across segments; further details                                                                     Material I.3). The recovered causal graphs are shown
+in Supplementary Material H.2. In such a setting, TCL                                                                        in Figure 4. Blue edges are anatomically feasible whilst
+is able to obtain high classification accuracy without                                                                       red edges are not. There is significant overlap between
+unmixing observations, resulting in its failure to recover                                                                   the estimated causal networks, but in the case of iVAE
+latent variables as reflected in Figure 3b. In contrast,                                                                     both anatomically incorrect edges correspond to indi-
+the proposed iVAE, by virtue of optimizing a maxi-                                                                           rect causal effects. This is in contrast with TCL where
+mum likelihood objective, does not suffer from such                                                                          incorrect edges are incompatible with anatomical struc-
+degenerate behaviour.                                                                                                        ture and cannot be explained as indirect effects.
+Further simulations on hyperparameter selection
+and discrete data are in Supplementary Material I.                                                                           6     CONCLUSION
+
+5.2                         Nonlinear causal discovery in fMRI                                                               Unsupervised learning can have many different goals,
+                                                                                                                             such as: (i) approximate the data distribution, (ii)
+An important application of ICA methods is within the                                                                        generate new samples, (iii) learn useful features, and
+domain of causal discovery (Peters et al., 2017). The                                                                        above all (iv) learn the original latent code that gen-
+use of ICA methods in this domain is premised on the                                                                         erated the data (identifiability). Deep latent-variable
+equivalence between a (nonlinear) ICA model and the                                                                          models typically implemented by VAEs are an excellent
+corresponding structural equation model (SEM). Such                                                                          framework to achieve (i), and are thus our first building
+a connection was initially exploited in the linear case                                                                      block. The nonlinear ICA model discussed in section
+(Shimizu et al., 2006) and extended to the nonlinear                                                                         3.4 is the only existing framework to provably achieve
+case by Monti et al. (2019) who employed TCL.                                                                                (iv). We bring these two pieces together to create our
+                                                                                                                             new model termed iVAE . In particular, this is the first
+Briefly, consider data x = (x1 , x2 ). The goal is to es-
+                                                                                                                             rigorous proof of identifiability in the context of VAEs.
+tablish if the causal direction is x1 → x2 , or x2 → x1 ,
+                                                                                                                             Our model in fact checks all the four boxes above that
+or conclude that no (acyclic) causal relationship exists.
+                                                                                                                             are desired in unsupervised learning.
+Assuming x1 → x2 , then the problem can be described
+by the following SEM: x1 = f1 (n1 ), x2 = f2 (x1 , n2 )                                                                      The advantage of the new framework over typical deep
+where f = (f1 , f2 ) is a (possibly nonlinear) mapping                                                                       latent-variable models used with VAEs is that we ac-
+and n = (n1 , n2 ) are latent disturbances that are as-                                                                      tually recover the original latents, thus providing prin-
+sumed to be independent. The above SEM can be seen                                                                           cipled disentanglement. On the other hand, the ad-
+as a nonlinear ICA model where latent disturbances, n,                                                                       vantages of this algorithm for solving nonlinear ICA
+are the sources. As such, we may perform causal discov-                                                                      over Hyvärinen et al. (2019) are several; briefly, we
+ery by first recovering latent disturbances (using TCL                                                                       significantly strengthen the identifiability results, we
+or iVAE) and then running a series of independence                                                                           obtain the likelihood and can use MLE, we learn a
+tests. Formally, if x1 → x2 then, denoting statistical                                                                       forward model as well and can generate new data, and
+independence by ⊥   ⊥, it suffices to verify that x1 ⊥
+                                                     ⊥ n2                                                                    we consider the more general cases of noisy data with
+whereas x1 6⊥ ⊥ n1 , x2 6⊥⊥ n1 and x2 6⊥  ⊥ n2 . Such an                                                                     fewer components, and even discrete data.
+              Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+References                                                   Conference on Artificial Intelligence and Statistics,
+                                                             pages 859–868.
+Ben-Israel, A. (1999). The Change-of-Variables For-
+  mula Using Matrix Volume. SIAM J. Matrix Anal.           Jang, E., Gu, S., and Poole, B. (2016). Categorical repa-
+ Appl., 21(1):300–312.                                       rameterization with gumbel-softmax. arXiv preprint
+Brakel, P. and Bengio, Y. (2017). Learning independent       arXiv:1611.01144.
+  features with adversarial nets for non-linear ICA.       Kim, H. and Mnih, A. (2018). Disentangling by Fac-
+  arXiv preprint arXiv:1710.05050.                           torising. arXiv:1802.05983 [cs, stat].
+Burda, Y., Grosse, R., and Salakhutdinov, R.               Kingma, D. P. and Ba, J. (2014). Adam: A Method
+ (2015).    Importance Weighted Autoencoders.                for Stochastic Optimization. arXiv:1412.6980 [cs].
+ arXiv:1509.00519 [cs, stat].                              Kingma, D. P., Salimans, T., Jozefowicz, R., Chen, X.,
+Burgess, C. P., Higgins, I., Pal, A., Matthey, L., Wat-      Sutskever, I., and Welling, M. (2016). Improving
+  ters, N., Desjardins, G., and Lerchner, A. (2018). Un-     Variational Inference with Inverse Autoregressive
+  derstanding disentangling in β-VAE. arXiv preprint         Flow. arXiv:1606.04934 [cs, stat].
+ arXiv:1804.03599.
+                                                           Kingma, D. P. and Welling, M. (2013). Auto-Encoding
+Chen, R. T. Q., Li, X., Grosse, R., and Duvenaud,            Variational Bayes. In arXiv:1312.6114 [Cs, Stat].
+ D. (2018). Isolating Sources of Disentanglement
+                                                           Lee, J. M. (2003). Introduction to Smooth Manifolds.
+ in Variational Autoencoders. arXiv:1802.04942 [cs,
+                                                             Graduate Texts in Mathematics. Springer-Verlag,
+ stat].
+                                                             New York.
+Dinh, L., Krueger, D., and Bengio, Y. (2014). NICE:
+  Non-linear Independent Components Estimation.            Locatello, F., Bauer, S., Lucic, M., Rätsch, G., Gelly, S.,
+  arXiv:1410.8516 [cs].                                      Schölkopf, B., and Bachem, O. (2018). Challenging
+                                                             Common Assumptions in the Unsupervised Learning
+Esmaeili, B., Wu, H., Jain, S., Bozkurt, A., Siddharth,      of Disentangled Representations. arXiv:1811.12359
+  N., Paige, B., Brooks, D. H., Dy, J., and van de           [cs, stat].
+  Meent, J.-W. (2018). Structured Disentangled Rep-
+  resentations. arXiv:1804.02086 [cs, stat].               Maaløe, L., Fraccaro, M., Liévin, V., and Winther,
+                                                            O. (2019). BIVA: A very deep hierarchy of latent
+Gretton, A., Bousquet, O., Smola, A., and Schölkopf,
+                                                            variables for generative modeling. In Advances in
+  B. (2005). Measuring statistical dependence with
+                                                            Neural Information Processing Systems, pages 6548–
+  Hilbert-Schmidt norms. In International Confer-
+                                                            6558.
+ ence on Algorithmic Learning Theory, pages 63–77.
+  Springer.                                                Maddison, C. J., Mnih, A., and Teh, Y. W. (2016). The
+                                                            Concrete Distribution: A Continuous Relaxation of
+Higgins, I., Amos, D., Pfau, D., Racaniere, S., Matthey,
+                                                            Discrete Random Variables. arXiv:1611.00712 [cs,
+  L., Rezende, D., and Lerchner, A. (2018). To-
+                                                            stat].
+  wards a Definition of Disentangled Representations.
+  arXiv:1812.02230 [cs, stat].                             Mathieu, E., Rainforth, T., Siddharth, N., and Teh,
+Higgins, I., Matthey, L., Pal, A., Burgess, C., Glorot,     Y. W. (2018). Disentangling Disentanglement in Vari-
+  X., Botvinick, M., Mohamed, S., and Lerchner, A.          ational Autoencoders. arXiv:1812.02833 [cs, stat].
+ (2016). Beta-VAE: Learning Basic Visual Concepts          Monti, R. P., Zhang, K., and Hyvarinen, A. (2019).
+  with a Constrained Variational Framework.                 Causal discovery with general non-linear relation-
+Hyvärinen, A. and Morioka, H. (2016). Unsupervised          ships using non-linear ICA. In 35th Conference on
+ feature extraction by time-contrastive learning and        Uncertainty in Artificial Intelligence, UAI 2019, vol-
+ nonlinear ICA. In Advances in Neural Information           ume 35.
+ Processing Systems, pages 3765–3773.                      Peters, J., Janzing, D., and Schölkopf, B. (2017). Ele-
+Hyvärinen, A. and Morioka, H. (2017). Nonlinear ICA          ments of Causal Inference: Foundations and Learn-
+  of temporally dependent stationary sources. In The         ing Algorithms. MIT press.
+ 20th International Conference on Artificial Intelli-      Poldrack, R. A., Laumann, T. O., Koyejo, O., Gregory,
+ gence and Statistics.                                       B., Hover, A., Chen, M.-Y., Gorgolewski, K. J.,
+Hyvärinen, A. and Pajunen, P. (1999). Nonlinear inde-        Luci, J., Joo, S. J., and Boyd, R. L. (2015). Long-
+  pendent component analysis: Existence and unique-          term neural and physiological phenotyping of a single
+  ness results. Neural Networks, 12(3):429–439.              human. Nature communications, 6(1):1–15.
+Hyvärinen, A., Sasaki, H., and Turner, R. (2019). Non-     Rezende, D. J. and Mohamed, S. (2015). Variational
+  linear ICA Using Auxiliary Variables and General-          Inference with Normalizing Flows. arXiv:1505.05770
+  ized Contrastive Learning. In The 22nd International       [cs, stat].
+             Ilyes Khemakhem, Diederik P. Kingma, Ricardo Pio Monti, Aapo Hyvärinen
+
+
+Rezende, D. J., Mohamed, S., and Wierstra, D. (2014).
+  Stochastic Backpropagation and Approximate Infer-
+  ence in Deep Generative Models. arXiv:1401.4082
+  [cs, stat].
+Rolinek, M., Zietlow, D., and Martius, G. (2018). Vari-
+  ational Autoencoders Pursue PCA Directions (by
+ Accident). arXiv:1812.06775 [cs, stat].
+Shimizu, S., Hoyer, P. O., Hyvärinen, A., and Ker-
+  minen, A. (2006). A Linear Non-Gaussian Acyclic
+  Model for Causal Discovery. Journal of Machine
+  Learning Research, 7(Oct):2003–2030.
+Sriperumbudur, B., Fukumizu, K., Gretton, A., Hyväri-
+  nen, A., and Kumar, R. (2017). Density Estimation
+  in Infinite Dimensional Exponential Families. Jour-
+  nal of Machine Learning Research, 18(57):1–59.
+Tucker, G., Lawson, D., Gu, S., and Maddison, C. J.
+ (2018). Doubly reparameterized gradient estima-
+  tors for monte carlo objectives. arXiv preprint
+ arXiv:1810.04152.
+

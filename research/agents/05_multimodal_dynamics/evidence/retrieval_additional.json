@@ -1,0 +1,41 @@
+[
+  {
+    "file": "cavmae_paper_access.txt",
+    "url": "https://openreview.net/pdf?id=QPtMRyk5rb",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "file": "imagebind_paper_access.txt",
+    "url": "https://facebookresearch.github.io/ImageBind/paper",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "file": "factorcl_paper_access.txt",
+    "url": "https://arxiv.org/abs/2306.05268",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "file": "mert_repo_tree.html",
+    "url": "https://github.com/yizhilll/MERT/tree/main/mert_fairseq",
+    "status": 200,
+    "bytes": 167678
+  },
+  {
+    "file": "imagebind_LICENSE",
+    "url": "https://raw.githubusercontent.com/facebookresearch/ImageBind/main/LICENSE",
+    "status": 200,
+    "bytes": 20848
+  },
+  {
+    "file": "tcc_alignment.py",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/master/tcc/tcc/deterministic_alignment.py",
+    "status": 200,
+    "bytes": 8396
+  },
+  {
+    "file": "clap_loss.py",
+    "url": "https://raw.githubusercontent.com/LAION-AI/CLAP/main/src/laion_clap/clap_module/loss.py",
+    "status": 200,
+    "bytes": 14405
+  }
+]

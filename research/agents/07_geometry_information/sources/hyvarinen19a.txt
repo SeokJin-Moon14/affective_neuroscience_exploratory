@@ -1,0 +1,627 @@
+                       Nonlinear ICA Using Auxiliary Variables
+                        and Generalized Contrastive Learning
+
+
+
+         Aapo Hyvärinen 1,2                    Hiroaki Sasaki 3,1                     Richard E. Turner 4
+        1                       2                            3                         4
+            The Gatsby Unit       Dept. of CS and HIIT           Div. of Info. Sci.     Univ. Cambridge &
+              UCL, UK            Univ. Helsinki, Finland         NAIST, Japan         Microsoft Research, UK
+
+
+                      Abstract                               approach to representation learning, for example us-
+                                                             ing deep neural networks. Nonlinear ICA attempts to
+                                                             find nonlinear components, or features, in multidimen-
+    Nonlinear ICA is a fundamental problem
+                                                             sional data, so that they correspond to a well-defined
+    for unsupervised representation learning, em-
+                                                             generative model (Hyvärinen et al., 2001; Jutten et al.,
+    phasizing the capacity to recover the underly-
+                                                             2010). The essential difference to most methods for
+    ing latent variables generating the data (i.e.,
+                                                             unsupervised representation learning is that the ap-
+    identifiability). Recently, the very first iden-
+                                                             proach starts by defining a generative model in which
+    tifiability proofs for nonlinear ICA have been
+                                                             the original latent variables can be recovered, i.e. the
+    proposed, leveraging the temporal structure
+                                                             model is identifiable by design.
+    of the independent components. Here, we
+    propose a general framework for nonlinear                Denote an observed n-dimensional random vector by
+    ICA, which, as a special case, can make use of           x = (x1 , . . . , xn ). We assume it is generated using n in-
+    temporal structure. It is based on augment-              dependent latent variables called independent compo-
+    ing the data by an auxiliary variable, such              nents, si . A straightforward definition of the nonlinear
+    as the time index, the history of the time se-           ICA problem is to assume that the observed data is an
+    ries, or any other available information. We             arbitrary (but smooth and invertible) transformation
+    propose to learn nonlinear ICA by discrimi-              f of the latent variables s = (s1 , . . . , sn ) as
+    nating between true augmented data, or data
+    in which the auxiliary variable has been ran-                                      x = f (s)                      (1)
+    domized. This enables the framework to be
+    implemented algorithmically through logistic             The goal is then to recover the inverse function f −1
+    regression, possibly in a neural network. We             as well as the independent components si based on
+    provide a comprehensive proof of the identifi-           observations of x alone.
+    ability of the model as well as the consistency          Research in nonlinear ICA has been hampered by the
+    of our estimation method. The approach not               fact that such simple approaches to nonlinear ICA are
+    only provides a general theoretical framework            not identifiable, in stark contrast to the linear ICA
+    combining and generalizing previously pro-               case. In particular, if the observed data x are obtained
+    posed nonlinear ICA models and algorithms,               as i.i.d. samples, i.e. there is no temporal or similar
+    but also brings practical advantages.                    structure in the data, the model is seriously uniden-
+                                                             tifiable (Hyvärinen and Pajunen, 1999), although at-
+                                                             tempts have been made to estimate it nevertheless, of-
+1   INTRODUCTION                                             ten by minimizing the mutual information of outputs
+                                                             of a neural network (Deco and Obradovic, 1995; Tan
+Nonlinear ICA is a fundamental problem in unsu-              et al., 2001; Almeida, 2003; Brakel and Bengio, 2017;
+pervised learning which has attracted a considerable         Hjelm and et al., 2018). This is a major problem since
+amount of attention recently. It promises a principled       in fact most of the utility of linear ICA rests on the
+                                                             fact that the model is identifiable, or—in alternative
+Proceedings of the 22nd International Conference on Ar-      terminology—the “sources can be separated”. Proving
+tificial Intelligence and Statistics (AISTATS) 2019, Naha,   the identifiability of linear ICA (Comon, 1994) was a
+Okinawa, Japan. PMLR: Volume 89. Copyright 2019 by           great advance on the classical theory of factor analy-
+the author(s).
+                                                             sis, where an orthogonal factor rotation could not be
+                                   Nonlinear ICA Using Auxiliary Variables
+
+
+identified.                                                ability of nonlinear ICA, and discuss some recently
+                                                           proposed solutions using time structure.
+Fortunately, a solution to non-identifiability in non-
+linear ICA can be found by utilizing temporal struc-       A straightforward generalization of ICA to the nonlin-
+ture in the data (Harmeling et al., 2003; Sprekeler        ear case would assume, as pointed out above, a mixing
+et al., 2014; Hyvärinen and Morioka, 2017b,a). In re-     model (1) with mutually independent latent variables
+cent work, various identifiability conditions have been    si , and a general nonlinear mixing function f , only as-
+proposed, assuming that the independent components         sumed to be invertible and smooth. Now, if we further
+are actually time series and have autocorrelations         assume that the observations of x are independent and
+(Sprekeler et al., 2014), general non-Gaussian tem-        identically distributed (i.i.d.), the model is seriously
+poral dependencies (Hyvärinen and Morioka, 2017a),        unidentifiable. A well-known result, see e.g. Hyvärinen
+or non-stationarities (Hyvärinen and Morioka, 2017b).     and Pajunen (1999), shows how to construct a func-
+These generalize earlier identifiability conditions for    tion g such that for any two random variables x1 and
+linear ICA with temporal structure (Belouchrani et al.,    x2 , the function g(x1 , x2 ) is independent of x1 . This
+1997; Pham and Cardoso, 2001).                             leads to the absurd case where based on independence
+                                                           alone, we could consider any of the observed variables
+Meanwhile, recent work in computer vision has suc-
+                                                           an independent component.
+cessfully proposed “self-supervised” feature extraction
+methods from a purely heuristic perspective. The           Nor can we get any new information based on the non-
+method by Misra et al. (2016) is quite similar to the      Gaussianity of the variables, like in linear ICA, be-
+nonlinear ICA by Hyvärinen and Morioka (2017a),           cause we can trivially create a point-wise transforma-
+while Oord et al. (2018) proposed a method related         tion f (xi ) to have any marginal distribution by well-
+to Hyvärinen and Morioka (2017b)—see also further         known theory (compounding the inverse cdf of the tar-
+self-supervised methods by Noroozi and Favaro (2016);      get distribution and the cdf of xi ).
+Larsson et al. (2017). These approaches have al-
+                                                           One possibility to obtain identifiability is to restrict
+lowed unsupervised data to be leveraged for super-
+                                                           the nonlinearity f . However, very few results are avail-
+vised tasks resulting in dramatic performance improve-
+                                                           able in that direction, and usually based on very re-
+ments, but the papers acknowledge that they lack the-
+                                                           strictive conditions, such as adding scalar nonlineari-
+oretical grounding.
+                                                           ties to a linear mixing (Taleb and Jutten, 1999).
+Here, we propose a very general form of nonlinear ICA,
+                                                           A more promising direction is to relax the assumption
+based on the idea that the independent components
+                                                           of i.i.d. sampling. A fundamental case is to consider
+are dependent on some additional auxiliary variable,
+                                                           time series, and the temporal structure of independent
+while being conditionally mutually independent given
+                                                           components. Thus, we assume
+the auxiliary variable. This unifies and generalizes the
+methods by Harmeling et al. (2003); Sprekeler et al.                            x(t) = f (s(t))                 (2)
+(2014); Hyvärinen and Morioka (2017b,a), giving a
+general framework where it is not necessary to specif-     where t is the time index. As a first attempt, we
+ically have a temporal (or even spatial) structure in      can assume that the sources si (t) have non-zero au-
+the data. We prove exact identifiability conditions for    tocorrelations, which has a long history in the lin-
+the new framework, and show how it extends previ-          ear case (Tong et al., 1991; Belouchrani et al., 1997).
+ous conditions, both from the viewpoint of theory and      Harmeling et al. (2003) proposed that we could try to
+practice. In particular, our theory establishes mathe-     find nonlinear transformations which are maximally
+matical principles underlying an important strand of       uncorrelated even over time lags and after nonlinear
+self-supervised approaches by Arandjelovic and Zisser-     scalar transformations. Sprekeler et al. (2014) showed
+man (2017) and Korbar et al. (2018), showing that un-      that a closely related method enables separation of
+der certain conditions, they will extract the underlying   sources if they all have distinct autocorrelations func-
+latent variables from the data. We further provide a       tions. This constitutes probably the first identifiabil-
+practical algorithm for estimating the model using the     ity proof for nonlinear ICA with general nonlinearities.
+idea of contrastive learning (Gutmann and Hyvärinen,      However, it suffers from the restrictive condition that
+2012; Hyvärinen and Morioka, 2017b,a), and prove its      the sources must have different statistical properties,
+consistency.                                               which is rather unrealistic in many cases.
+                                                           An alternative framework was proposed by Hyvärinen
+2    BACKGROUND                                            and Morioka (2017a), where it was first heuristically
+                                                           proposed to transform the problem into a classifica-
+We start by giving some background on nonlinear ICA        tion problem between two data sets, one constructed
+theory. We explain the central problem of unidentifi-      by concatenating real data points by taking a time
+                             Aapo Hyvärinen, Hiroaki Sasaki, Richard E. Turner
+
+
+window of data, and the other by a randomized (per-          any particular functional form. It can be modelled by
+muted) concatenation. In other words, we define two          a general neural network, since even the assumption
+data sets such as:                                           of invertibility usually (empirically) seems to hold for
+                                                             the f estimated by the methods developed here, even
+ x̃(t) = (x(t), x(t − 1)) vs. x̃∗ (t) = (x(t), x(t∗ )) (3)   without enforcing it.
+
+with a random time index t∗ . We then train a neural         The key idea here is that we further assume that each
+network to discriminate between these two new data           si is statistically dependent on some fully-observed m-
+sets. Such Permutation-Contrastive Learning (PCL)            dimensional random variable u, but conditionally in-
+(Hyvärinen and Morioka, 2017a) was shown to esti-           dependent of the other sj :
+mate independent components in the hidden layer,                                            n
+                                                                                            X
+even if they have identical distributions, assuming they                     log p(s|u) =         qi (si , u)        (4)
+have temporal dependencies which are, loosely speak-                                        i=1
+ing, non-Gaussian enough. In the case of Gaussian
+sources, PCL estimates the sources under the same            for some functions qi . First, to see how this general-
+conditions as the method by Sprekeler et al. (2014).         izes previous work on nonlinear ICA using time struc-
+Thus, the PCL theory proves a stronger version of            ture, we note that the auxiliary variable u could be the
+identifiability based on temporally dependent sources.       past of the component in the time series, giving rise to
+                                                             temporally dependent components as in permutation-
+Another form of temporal structure that has been             contrastive learning or PCL (Hyvärinen and Morioka,
+previously used in the case of linear ICA is non-            2017a) and the earlier methods by Harmeling et al.
+stationarity (Matsuoka et al., 1995). This principle         (2003); Sprekeler et al. (2014). Alternatively, u could
+was extended to the nonlinear case by Hyvärinen and         be the time index t itself in a time series, or the index of
+Morioka (2017b). The starting point was a heuris-            a time segment, leading to nonstationary components
+tic principle where the time series is divided into a        as in time-contrastive learning or TCL (Hyvärinen and
+large number of segments. Then, a neural network is          Morioka, 2017b). These connections will be considered
+trained by multinomial regression so that each data          in more detail below.
+point (i.e. time point) is assigned an artificially de-
+fined label given by the index of the time segment           Thus, we obtain a unification of the separation prin-
+to which it belongs. Intuitively speaking, one would         ciples of temporal dependencies and non-stationarity.
+expect that the hidden layers of the neural network          This is remarkable since these principles are well-
+must learn to represent nonstationarity, since nonsta-       known in the linear ICA literature, but they have been
+tionarity is nothing else than the differences between       considered as two distinct principles (Cardoso, 2001;
+the distributions of the time segments. The ensuing          Hyvärinen et al., 2001).
+method, Time-Contrastive Learning (TCL), was ac-             Furthermore, we can define u in completely new ways.
+tually shown to enable estimation of a nonlinear ICA         In the case where each observation of x is an image
+model where the independent components are assumed           or an image patch, a rather obvious generalization of
+to be nonstationary, at the same time constituting an-       TCL would be to assume u is the pixel index, or any
+other identifiability proof. Note that nonstationarity       similar spatial index, thus giving rise to nonlinear rep-
+and temporal dependencies are two completely differ-         resentation learning by the s. In a visual feature ex-
+ent properties which do not imply each other in any          traction task, x could be images and u related audio
+way.                                                         or text (Arandjelovic and Zisserman, 2017). Moreover,
+                                                             u could be a class label, giving rise to something more
+3     NONLINEAR ICA USING                                    related to conventional representation learning by a
+                                                             supervised neural network (e.g. ImageNet), but now
+      AUXILIARY VARIABLES
+                                                             connected to the theory of nonlinear ICA and identi-
+                                                             fiability (this is also considered in detail below). In a
+Next, we propose our general framework for nonlinear
+                                                             neuroscience context, x could be brain imaging data,
+ICA, as well as a practical estimation algorithm.
+                                                             and the u could be some quantity related to the stim-
+                                                             uli in the experiment. Furthermore, u could be some
+3.1   Definition of generative model                         combination of some of the above, thus providing a
+                                                             very general method. The appropriate definition of u
+Assume the general Rn → Rn mixing model in (1)
+                                                             obviously depends on the application domain, and the
+where the mixing function f is only assumed invertible
+                                                             list above is by no means exhaustive.
+and smooth (in the sense of having continuous second
+derivatives, and the same for its inverse). We empha-        It should be noted that the conditional independence
+size the point that we do not restrict the function f to     does not imply that the si would be marginally inde-
+                                        Nonlinear ICA Using Auxiliary Variables
+
+
+pendent. If u affects the distributions of the si some-       Definition 1 A random variable (independent com-
+how independently (intuitively speaking), the si are          ponent) si is conditionally exponential of order k given
+likely to be marginally independent. This would be            random vector u if its conditional pdf can be given in
+case, for example, if each qi is of the from qi (si , ui ),   the form
+that is, each source has one auxiliary variable which is
+                                                                                                  k
+not shared with the other sources, and the ui are in-                              Qi (si )     X
+dependent of each other. Thus, the formulation above                  p(si |u) =            exp[     q̃ij (si )λij (u)]   (7)
+                                                                                   Zi (u)        j=1
+is actually generalizing the ordinary independence in
+ICA to some extent.                                           almost everywhere in the support of u, with q̃ij , λij ,
+                                                              Qi , and Zi scalar-valued functions. The sufficient
+3.2   Learning algorithm                                      statistics q̃ij are assumed linearly independent (over
+                                                              j, for each fixed i).
+To estimate our nonlinear ICA model, we propose a
+general form of contrastive learning, inspired by the         This definition is a simple variant of the conventional
+idea of transforming unsupervised learning to super-          theory of exponential families, adding conditioning by
+vised learning previously explored by Gutmann and             u which comes through the parameters only.
+Hyvärinen (2012); Goodfellow et al. (2014); Gutmann
+et al. (2017). More specifically, we use the idea of          As a simple illustration, consider a (stationary) Gaus-
+discriminating between a real data set and some ran-          sian time series as si , and define u as the past of
+domized version of it, as used in PCL. Thus we define         the time series. The past of the time series can be
+two datasets                                                  compressed in a single statistic λ(u) which essentially
+                                                              gives the conditional expectation of si . Thus, models
+             x̃ = (x, u) vs. x̃∗ = (x, u∗ )            (5)    of independent components using Gaussian autocorre-
+where u∗ is a random value from the distribution of           lations lead to the conditionally exponential case, of
+the u, but independent of x, created in practice by           order k = 1. As is well-known, the basic theory of
+random permutation of the empirical sample of the u.          linear ICA relies heavily on non-Gaussianity, the intu-
+We learn a nonlinear logistic regression system (e.g. a       itive idea being that the Gaussian distribution is too
+neural network) using a regression function of the form       “simple” to support identifiability. Here, we see a re-
+                                                              flection of the same idea. Note also that if si and u
+                           n
+                           X                                  are independent, si is conditionally exponential, since
+               r(x, u) =         ψi (hi (x), u)        (6)    then we simply set k = 1, q̃i1 ≡ 0.
+                           i=1
+                                                              In the following, we analyse our algorithm separately
+which then gives the posterior probability of the first
+                                                              for the general case, and for conditionally exponential
+class as 1/(1+exp(−r(x, u)). Here, the scalar features
+                                                              independent components of low order k. The funda-
+hi would typically be computed by hidden units in
+                                                              mental result is that for sufficiently complex source
+a neural network. Universal approximation capacity
+                                                              distributions, the independent components are esti-
+(Hornik et al., 1989) is assumed for the models of hi
+                                                              mated up to component-wise nonlinear transforma-
+and ψi . This is a variant of the “contrastive learning”
+                                                              tions; if the data comes from an exponential family
+approach to nonlinear ICA (Hyvärinen and Morioka,
+                                                              of low order, there is an additional linear transforma-
+2017b,a), and we will see below that it in fact unifies
+                                                              tion that remains to be determined (by linear ICA, for
+and generalizes those earlier results.
+                                                              example).
+
+4     THEORETICAL ANALYSIS                                    4.2   Theory for general case
+In this section, we give exact conditions for the conver-     First, we consider the much more general case of dis-
+gence (consistency) of our learning algorithm, which          tributions which are not “pathological”. Our main
+also leads to constructive proofs of identifiability of       theorem, proven in Supplementary Material A, is as
+our nonlinear ICA model with auxiliary variables. It          follows:
+turns out we have two cases that need to be consid-
+ered separately, based on the property of conditional         Theorem 1 Assume
+exponentiality.
+                                                               1. The observed data follows the nonlinear ICA
+4.1   Definition of conditional exponentiality                    model with auxiliary variables in Eqs. (1,4).
+
+We start by a basic definition describing distributions        2. The conditional log-pdf qi in (4) is sufficiently
+which are in some sense pathological in our theory.               smooth as a function of si , for any fixed u.
+                                 Aapo Hyvärinen, Hiroaki Sasaki, Richard E. Turner
+
+
+ 3. [Assumption of Variability] For any y ∈ Rn ,                             to each other for different j = 1, . . . , k, for s al-
+    there exist 2n + 1 values for u, denoted by uj , j =                     most everywhere. Then, the Assumption of Vari-
+    0...2n such that the 2n vectors in R2n given by                          ability holds almost surely if the λ’s are statisti-
+                                                                             cally independent and follow a distribution whose
+       (w(y, u1 ) − w(y, u0 )), (w(y, u2 ) − w(y, u0 )),                     support has non-zero measure.
+                          ..., (w(y, u2n ) − w(y, u0 ))         (8)
+                                                                       Loosely speaking, the Assumption of Variability holds
+    with                                                               if the sources, or rather their modulation by u, is not
+                    
+                      ∂q1 (y1 , u)             ∂qn (yn , u)            “too simple”, which is here quantified as the order of
+       w(y, u) =                     ,...,                   ,         the exponential family from which the si are gener-
+                           ∂y1                     ∂yn
+                                                                       ated. Furthermore, for the second condition of Theo-
+                     ∂ 2 q1 (y1 , u)           ∂ 2 qn (yn , u)
+                                                               
+                                     , . . . ,                   (9)   rem 2 to hold, the sufficient statistics cannot be linear
+                          ∂y12                      ∂yn2               (which would lead to zero second derivatives), thus ex-
+    are linearly independent.                                          cluding the Gaussian scale-location family as too sim-
+                                                                       ple as well. (See Supplementary Material D for an
+ 4. We train some nonlinear logistic regression sys-                   alternative formulation of the assumption.)
+    tem with universal approximation capability to
+                                                                       Another non-trivial assumption in Theorem 1 is the
+    discriminate between x̃ and x̃∗ in (5) with regres-
+                                                                       invertibility of h. It is hoped that the constraint of
+    sion function in (6).
+                                                                       invertibility is only necessary to have a rigorous the-
+ 5. In the regression function in Eq. (6), we constrain                ory, and not necessary in any practical implementa-
+    h = (h1 , ..., hn ) to be invertible, as well as smooth,           tion. Our simulations below, as well as our next The-
+    and constrain the inverse to be smooth as well.                    orem, seem to back up this conjecture to some extent.
+
+Then, in the limit of infinite data, h in the regression               4.3    Theory for conditionally exponential case
+function provides a consistent estimator of demixing
+in the nonlinear ICA model: The functions (hidden                      The theory above excluded the conditionally exponen-
+units) hi (x) give the independent components, up to                   tial case of order one (Theorem 2). This is a bit curi-
+scalar (component-wise) invertible transformations.                    ous since it is actually the main model considered in
+                                                                       TCL (Hyvärinen and Morioka, 2017b). In fact, the
+Essentially, the Theorem shows that under mostly                       exponential family model of nonstationarities in that
+weak assumptions, including invertibility of h and                     work is nothing other than a special case of our “con-
+smoothness of the pdfs, and of course independence                     ditionally exponential” family of distributions; we will
+of the components, our learning system will recover                    consider the connection in detail in the next section.
+the independent components given an infinite amount
+of data. Thus, we also obtain a constructive identifia-                There is actually a fundamental difference between
+bility proof of our new, general nonlinear ICA model.                  Theorem 1 above and the TCL theory in (Hyvärinen
+                                                                       and Morioka, 2017b). In TCL, and in contrast to our
+Among the assumptions above, the only one which                        current results, a linear indeterminacy remains—but
+cannot considered weak or natural is clearly Assump-                   the TCL theory never showed that such an indeter-
+tion of Variability (#3), which is central in the our                  minacy is a property of the model and not only of the
+developments. It is basically saying that the auxiliary                particular TCL algorithm employed by Hyvärinen and
+variable must have a sufficiently strong and diverse                   Morioka (2017b).
+effect on the distributions of the independent compo-
+nents. To further understand this condition, we give                   Next, we construct a theory for conditionally expo-
+the following Theorem, proven in Supplementary Ma-                     nential families adapting our current framework, and
+terial B:                                                              indeed, we see the same kind of linear indeterminacy
+                                                                       as in TCL appear. We give the result for general k,
+Theorem 2 Assume the independent components are                        although the case k = 1 is mainly of interest:
+conditionally exponential given u, with the same order
+k for all components. Then,                                            Theorem 3 Assume
+
+ 1. If k = 1, the Assumption of Variability cannot                      1. The data follows the nonlinear ICA model with
+    hold.                                                                  auxiliary variables in Eqs. (1,4).
+ 2. Assume k > 1 and for each component si , the vec-                   2. Each si is conditionally exponential given u
+          ∂ q̃ (s ,u) ∂ 2 q̃ij (si ,u)
+    tors ( ij∂sii ,         ∂s2
+                                       ) are not all proportional          (Def. 1).
+                             i
+                                                  Nonlinear ICA Using Auxiliary Variables
+
+
+    3. There exist nk+1 points u0 , . . . , unk such that the                        likely to violate the central assumption of conditional
+       matrix of size nk × nk                                                        independence of the components. For example, one
+                                                                                   might be tempted to choose a u which is some deter-
+              λ11 (u1 ) − λ11 (u0 ), ..., λ11 (unk ) − λ11 (u0 )                     ministic function of x; in Supplementary Material E
+       L̄ = 
+                                      ..                        
+                                                                                     we give a simple example showing how this violates
+                                        .                        
+              λnk (u1 ) − λnk (u0 ), ..., λnk (unk ) − λnk (u0 )                     the conditional independence.
+                                                            (10)
+       is invertible (here, the rows corresponds to all the                          5.1   Using time as auxiliary variable
+       nk possible subscript pairs for λ).
+                                                                                     A real practical utility of the new framework can be
+    4. We train a nonlinear logistic regression system                               seen in the case of nonstationary data. Assume we ob-
+       with universal approximation capability to dis-                               serve a time series x(t) as in Eq. (2). Assume the n
+       criminate between x̃ and x̃∗ in (5) with regression                           independent components are nonstationary, with den-
+       function in (6).                                                              sities p(si |t). For analysing such nonstationary data
+                                                                                     in our framework, define x = x(t) and u = t. We can
+Then,                                                                                easily consider the time index as a random variable,
+                                                                                     observed for each data point, and coming from a uni-
+    1. The optimal regression function can be expressed                              form distribution. Thus, we create two new datasets
+       in the form                                                                   by augmenting the data by adding the time index:
+
+             r(x, u) = h̃(x)T v(u) + a(x) + b(u)                              (11)             x̃ = (x(t), t) vs. x̃∗ = (x(t), t∗ )    (13)
+
+       for some functions v : Rm → Rnk , h̃ : Rn → Rnk                               We analyse the nonstationary structure of the data by
+       and two scalar-valued functions a, b.                                         learning to discriminate between x̃ and x̃∗ by logistic
+                                                                                     regression. Directly applying the general theory above,
+    2. In the limit of infinite data, h̃(x) provides a con-                          we define the regression function to have the following
+       sistent estimator of the nonlinear ICA model, up                              form:                    X
+       to a linear transformation of point-wise scalar                                              r(x, t) =    ψi (hi (x), t)         (14)
+       (not necessarily invertible) functions of the inde-                                                     i
+       pendent components. The point-wise nonlinear-                                                    2
+                                                                                     where each ψi is R → R. Intuitively, this means that
+       ities are given by the sufficient statistics q̃i . In
+                                                                                     the nonstationarity is separately modelled for each
+       other words,
+                                                                                     component, with no interactions.
+                                                                         T
+           q̃11 (s1 ), q̃12 (s1 ), . . . , q̃21 (s2 ), . . . , q̃nk (sn )            Theorems 1 and 3 above give exact conditions for the
+                                                                                     consistency of such a method. This provides an al-
+                                                   = Ah̃(x) − c               (12)
+                                                                                     ternative way of estimating the nonstationary nonlin-
+       for some unknown matrix A and an unknown vec-                                 ear ICA model proposed in (Hyvärinen and Morioka,
+       tor c.                                                                        2017b) as a target for the TCL method.
+                                                                                     A practical advantage is that if the assumptions of
+The proof, found in Supplementary Material C, is                                     Theorem 1 hold, the method actually captures the in-
+quite similar to the proof of Theorem 1 by Hyvärinen                                dependent components directly: There is no indeter-
+and Morioka (2017b). Although the statistical as-                                    minacy of a linear transformation unlike in TCL. Nor
+sumptions made here are different, the very goal of                                  is there any nonlinear non-invertible transformation
+modelling exponential sources by logistic regression                                 (e.g. squaring) as in TCL, although this may come
+means the same linear indeterminacy appears, based                                   at the price of constraining h to be invertible. The
+on the linearity of the log-pdf in exponential families.                             Assumption of Variability in Theorem 1 is quite com-
+                                                                                     parable to the corresponding full rank condition in the
+5      DIFFERENT DEFINITIONS OF                                                      convergence theory of TCL. Another advantage of our
+                                                                                     new method is that there is no need to segment the
+       AUXILIARY VARIABLES
+                                                                                     data, although in our simulations below we found that
+                                                                                     segmentation is computationally very useful. From a
+Next, we consider different possible definitions of the
+                                                                                     theoretical perspective, the current theory in Theo-
+auxiliary variable, and show some exact connections
+                                                                                     rem 1 is also much more general than the TCL theory
+and generalization of previous work.
+                                                                                     since no assumption of an exponential family is needed
+First, we want to emphasize that any arbitrary defi-                                 — “too simple” exponential families are in fact con-
+nition of u is not possible since many definitions are                               sidered separately in Theorem 3.
+                                   Aapo Hyvärinen, Hiroaki Sasaki, Richard E. Turner
+
+
+5.2   Using history as auxiliary variables                          setting, and we use them as the auxiliary variable. Let
+                                                                    us note that the existence of labels does not mean a
+Next, we consider the theory in the case where u is                 nonlinear ICA model is not interesting, because our in-
+the history of each variable. For the purposes of our               terest might not be in classifying the data using these
+present theory, we define x = x(t) and u = x(t − 1)                 labels, but rather in understanding the structure of the
+based on a time-series model in (2). So, the nonlinear              data, or possibly, finding useful features for classifica-
+ICA model in Eqs. (1, 4) holds. Note that here, it does             tion using some other labels as in transfer learning. In
+not make any difference if we use the past of x or of               particular, with scientific data, the main goal is usually
+h(x) as u since they are invertible functions of each               to understand its structure; if the labels correspond to
+other. Each component follows a distribution                        different treatments, or experimental conditions, the
+                                                                    classification problem in itself may not be of great in-
+              qi (si , u) = qi (si (t), si (t − 1))         (15)    terest. It could also be that the classes are somehow
+This model is the same as in PCL (Hyvärinen and                    artificially created, as in TCL, and thus the whole clas-
+Morioka, 2017a), and in fact PCL is thus a special                  sification problem is of secondary interest.
+case of the discrimination problem we formulated in                 Formally, denote by c ∈ {1, .., k} the class label with k
+this paper. Likewise, the restriction of the regression             different classes. As a straight-forward application of
+function in (6) is very similar to the form imposed in              the theory above, we learn to discriminate between
+Eq. (12) of (Hyvärinen and Morioka, 2017a). Thus,
+essentially, Theorem 1 above provides an alternative                               x̃ = (x, c) vs. x̃∗ = (x, c∗ )              (16)
+identifiability proof of the model in (Hyvärinen and
+                                                                    where c is the class label of x, and c∗ is a randomized
+Morioka, 2017a), with quite similar constraints. See
+                                                                    class label; “one-hot” coding of c could also be used.
+Supplementary Material F for a detailed discussion on
+                                                                    Note that we could also apply the TCL method and
+the connection. Our goal here is thus not to sharpen
+                                                                    theory on such data, simply using the c as class labels
+the analysis of (Hyvärinen and Morioka, 2017a), but
+                                                                    instead of the time segment indices as in (Hyvärinen
+merely to show that that model falls into the present
+                                                                    and Morioka, 2017b). Applying Theorem 1, we see
+framework with minimal modification.
+                                                                    that, interestingly, we have no linear indeterminacy,
+                                                                    unlike in TCL (unless the data follows a conditionally
+5.3   Combining time and history
+                                                                    exponential source model of low rank, in which case
+Another generalization of previously published the-                 we fall back to Theorem 3.) Thus, the current theo-
+ory which could be of great interest in practice is                 rem seems to be in some sense stronger than the TCL
+to combine the nonstationarity-based model in TCL                   theory, although it is not a strict generalization. In
+(Hyvärinen and Morioka, 2017b) with the temporal                   either case, we use the class labels to estimate inde-
+dependencies model in PCL (Hyvärinen and Morioka,                  pendent components, thus combining supervised and
+2017a). Clearly, we can combine these two by defining               unsupervised learning in an interesting, new way.
+u = (x(t − 1), t), and thus discriminating between
+                                                                    6    SIMULATIONS
+x̃(t) = (x(t), x(t − 1), t) vs. x̃∗ (t) = (x(t), x(t∗ − 1), t∗ )
+                                                                    To test the performance of the method, we applied
+with a random time index t∗ , and accordingly defining              it on non-stationary sources similar to those used in
+the regression function as                                          TCL. This is the case of main interest here since
+                             n
+                             X                                      for temporally correlated sources, the framework gives
+rcomb (x(t), x(t−1), t) =          ψi (hi (x(t)), hi (x(t−1)), t)   PCL. It is not our goal to claim that the new method
+                             i=1                                    performs better than TCL, but rather to confirm that
+                                                                    our new very general framework includes something
+Such a method now has the potential of using both
+                                                                    similar to TCL as well.
+nonstationarity and temporal dependencies for non-
+linear ICA. Thus, there is no need to choose which                  First, we consider the non-conditionally-exponential
+method to use, since this combined method uses both                 case in Theorem 1, where the data does not fol-
+properties. (See Supplementary Material G for an al-                low a conditionally exponential family, and the re-
+ternative formulation.)                                             gression function has the general form in (6). We
+                                                                    artificially generated nonstationary sources si on a
+5.4   Using class label as auxiliary variable                       2D grid indexed by ξ, η by a scale mixture model:
+                                                                    si (ξ, η) = σi (ξ, η) · zi (ξ, η), i = 1, . . . , n, where zi is
+Finally, we consider the very interesting case where the            a standardized Laplacian variable, and the scale com-
+data includes class labels as in a classical supervised             ponents σi (ξ, η) were generated by creating Gaussian
+                                   Nonlinear ICA Using Auxiliary Variables
+
+
+blobs in random locations to represent areas of higher                a)    1
+
+variance. The number of dimensions was 5 and the
+number of data points 216 . The mixing function f was                      0.9
+
+
+a random three-layer feedforward neural network as                         0.8
+in (Hyvärinen and Morioka, 2017b). We used the spa-
+tial index pair as u := (ξ, η). We modelled h(x) by                        0.7
+
+a feedforward neural network with three layers: The
+                                                                           0.6
+number of units in the hidden layers was 2n, except                              Proposed   Proposed with ICA           TCL
+
+
+in the final layer where it was n; the nonlinearity was    b)    1
+
+max-out except for the last layer where absolute val-
+ues were taken; L2 regularization was used to prevent           0.9
+
+
+overlearning. The function ψi was also modelled by              0.8
+a neural network. In contrast to the assumptions of
+Theorem 1, no constraint related to the invertibility           0.7
+
+of h was imposed. After learning the neural network,
+                                                                0.6
+we further applied FastICA to the estimated features                  Proposed                      Proposed with ICA         TCL
+
+
+(heuristically inspired by Theorem 3). Performance
+was evaluated by the Pearson correlation between the       Figure 1: Performance measured by correlations be-
+estimated sources and the original sources (after op-      tween estimates and original quantities (see text). The
+timal matching and sign flipping). The results are         non-conditionally-exponential case is given in (a) and
+shown in Fig. 1 a). Our method has performance sim-        the exponential family case in (b). “Proposed” is tak-
+ilar to TCL.                                               ing raw outputs from neural network learned by our
+Second, we considered the conditionally exponential        new method, “Proposed with ICA” is adding final lin-
+family case as in Theorem 3. We generated nonsta-          ear ICA, “TCL” is time-contrastive learning (with fi-
+tionary sources si as above, but we generated them as      nal linear ICA) given for comparison. In a), TCL was
+time-series, and divided the time series into equispaced   performed with 16, 64, and 256 time segments. In b),
+segments. We used a simple random neural network           for each method, we report four cases, with 10, 50, 100,
+to generate separate variances σi inside each segment.     and 300 time segments.
+The mixing function was as above. Here, we used the
+index of the segment as u. This means we are also          We gave exact conditions for identifiability, showing
+testing the applicability of using a class label as the    how the definition of conditional exponentiality divides
+auxiliary variable as in Section 5.4. We modelled h(x)     the problem into two domains. Conditional exponen-
+as above. The v and b in (11) were modelled by con-        tiality interestingly corresponds to the simplest case
+stant parameter vectors inside each segment, and a by      of TCL theory in (Hyvärinen and Morioka, 2017b). In
+another neural network. Performance was evaluated          the special case of nonstationary components like in
+by the Pearson correlation of the absolute values of       TCL, we actually relaxed the assumption of an expo-
+the components, since the sign remains unresolved in       nential family model for the independent components,
+this case. The results are shown in Fig. 1 b). Again       and removed the need to segment the data, which may
+our method has performance similar to TCL, confirm-        be difficult in practice; nor was there any remaining
+ing that source separation by nonstationarity, as well     linear mixing, unlike in TCL. This result carried over
+as using class labels as in Section 5.4, can be modelled   to the case where we actually have class labels avail-
+in our new framework.                                      able; we argued that the identifiability theory of non-
+                                                           linear ICA is interesting even in such an apparently
+7   CONCLUSION                                             supervised learning case. We also provided a learning
+                                                           algorithm based on the idea of contrastive learning by
+We introduced a new framework for nonlinear ICA.           logistic regression, and proved its consistency.
+To solve the problem of non-identifiability central to
+                                                           Recent work has successfully used a very similar idea
+nonlinear ICA theory, we assume there is an exter-
+                                                           for “self-supervised” audio-visual feature extraction
+nal, auxiliary variable, such that conditioning by the
+                                                           from a purely heuristic perspective (Arandjelovic and
+auxiliary variables changes the distributions of the in-
+                                                           Zisserman, 2017; Korbar et al., 2018), and our theory
+dependent components. In a time series, the auxiliary
+                                                           hopefully elucidates the mathematical principles un-
+variable can correspond to the history, or the time in-
+                                                           derlying such methods. Yet, our framework is quite
+dex, thus unifying the previous frameworks (Sprekeler
+                                                           versatile, and the auxiliary variables can be defined in
+et al., 2014; Hyvärinen and Morioka, 2017b,a) both in
+                                                           many different ways depending on the application.
+theory and practice.
+                             Aapo Hyvärinen, Hiroaki Sasaki, Richard E. Turner
+
+
+References                                                  Hyvärinen, A., Karhunen, J., and Oja, E. (2001). In-
+                                                             dependent Component Analysis. Wiley Interscience.
+Almeida, L. B. (2003). MISEP—linear and nonlinear
+  ICA based on mutual information. J. of Machine            Hyvärinen, A. and Morioka, H. (2017a). Nonlinear
+  Learning Research, 4:1297–1318.                            ICA of temporally dependent stationary sources.
+                                                             In Proc. Artificial Intelligence and Statistics (AIS-
+Arandjelovic, R. and Zisserman, A. (2017). Look, lis-
+                                                             TATS2017), Fort Lauderdale,Florida.
+  ten and learn. In 2017 IEEE International Confer-
+  ence on Computer Vision (ICCV), pages 609–617.            Hyvärinen, A. and Morioka, H. (2017b). Unsupervised
+  IEEE.                                                      feature extraction by time-contrastive learning and
+                                                             nonlinear ICA. In Advances in Neural Information
+Belouchrani, A., Meraim, K. A., Cardoso, J.-F., and          Processing Systems (NIPS2016), Barcelona, Spain.
+  Moulines, E. (1997). A blind source separation tech-
+  nique based on second order statistics. IEEE Trans.       Hyvärinen, A. and Pajunen, P. (1999). Nonlinear inde-
+  on Signal Processing, 45(2):434–444.                       pendent component analysis: Existence and unique-
+                                                             ness results. Neural Networks, 12(3):429–439.
+Brakel, P. and Bengio, Y. (2017). Learning indepen-
+  dent features with adversarial nets for non-linear        Jutten, C., Babaie-Zadeh, M., and Karhunen, J.
+  ICA. arXiv preprint arXiv:1710.05050.                       (2010). Nonlinear mixtures. Handbook of Blind
+                                                              Source Separation, Independent Component Analy-
+Cardoso, J.-F. (2001). The three easy routes to in-           sis and Applications, pages 549–592.
+  dependent component analysis: contrasts and ge-
+  ometry. In Proc. Int. Workshop on Independent             Korbar, B., Tran, D., and Torresani, L. (2018). Co-
+  Component Analysis and Blind Signal Separation             training of audio and video representations from
+  (ICA2001), San Diego, California.                          self-supervised temporal synchronization. arXiv
+                                                             preprint arXiv:1807.00230.
+Comon, P. (1994). Independent component analysis—
+                                                            Larsson, G., Maire, M., and Shakhnarovich, G. (2017).
+  a new concept? Signal Processing, 36:287–314.
+                                                              Colorization as a proxy task for visual understand-
+Deco, G. and Obradovic, D. (1995). Linear re-                 ing. In CVPR, volume 2, page 8.
+  dundancy reduction learning. Neural Networks,
+                                                            Matsuoka, K., Ohya, M., and Kawamoto, M. (1995).
+  8(5):751–755.
+                                                             A neural net for blind separation of nonstationary
+Friedman, J., Hastie, T., and Tibshirani, R. (2001).         signals. Neural Networks, 8(3):411–419.
+  The elements of statistical learning. Springer: New       Misra, I., Zitnick, C. L., and Hebert, M. (2016). Shuf-
+  York.                                                      fle and learn: unsupervised learning using temporal
+Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B.,        order verification. In European Conference on Com-
+ Warde-Farley, D., Ozair, S., Courville, A., and Ben-        puter Vision, pages 527–544. Springer.
+ gio, Y. (2014). Generative adversarial nets. In Ad-        Noroozi, M. and Favaro, P. (2016). Unsupervised
+ vances in Neural Information Processing Systems,             learning of visual representations by solving jigsaw
+ pages 2672–2680.                                             puzzles. In Proc. European Conference on Computer
+Gutmann, M. U., Dutta, R., Kaski, S., and Corander,           Vision.
+ J. (2017). Likelihood-free inference via classification.   Oord, A. v. d., Li, Y., and Vinyals, O. (2018). Repre-
+ Statistics and Computing. doi:10.1007/s11222-017-           sentation learning with contrastive predictive cod-
+ 9738-6.                                                     ing. arXiv preprint arXiv:1807.03748.
+Gutmann, M. U. and Hyvärinen, A. (2012). Noise-            Pham, D.-T. and Cardoso, J.-F. (2001). Blind sep-
+ contrastive estimation of unnormalized statistical           aration of instantaneous mixtures of nonstationary
+ models, with applications to natural image statis-           sources. IEEE Trans. Signal Processing, 49(9):1837–
+ tics. J. of Machine Learning Research, 13:307–361.           1848.
+Harmeling, S., Ziehe, A., Kawanabe, M., and Müller,        Sprekeler, H., Zito, T., and Wiskott, L. (2014). An
+  K.-R. (2003). Kernel-based nonlinear blind source           extension of slow feature analysis for nonlinear blind
+  separation. Neural Computation, 15(5):1089–1124.            source separation. J. of Machine Learning Research,
+Hjelm, R. D. and et al. (2018). Learning deep rep-            15(1):921–947.
+  resentations by mutual information estimation and         Taleb, A. and Jutten, C. (1999). Source separation
+  maximization. arXiv preprint arXiv:1808.06670.              in post-nonlinear mixtures. IEEE Trans. on Signal
+Hornik, K., Stinchcombe, M., and White, H. (1989).            Processing, 47(10):2807–2820.
+  Multilayer feedforward networks are universal ap-         Tan, Y., Wang, J., and Zurada, J. (2001). Nonlinear
+  proximators. Neural Networks, 2(5):359–366.                 blind source separation using a radial basis function
+                                Nonlinear ICA Using Auxiliary Variables
+
+
+  network. IEEE Transactions on Neural Networks,
+  12(1):124–134.
+Tong, L., Liu, R.-W., Soon, V. C., and Huang, Y.-F.
+  (1991). Indeterminacy and identifiability of blind
+  identification. IEEE Trans. on Circuits and Sys-
+  tems, 38:499–509.
+

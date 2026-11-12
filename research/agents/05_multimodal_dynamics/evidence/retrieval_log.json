@@ -1,0 +1,66 @@
+[
+  {
+    "key": "imagebind",
+    "url": "https://raw.githubusercontent.com/facebookresearch/ImageBind/main/README.md",
+    "status": 200,
+    "bytes": 4733
+  },
+  {
+    "key": "cavmae",
+    "url": "https://raw.githubusercontent.com/YuanGongND/cav-mae/main/README.md",
+    "status": 200,
+    "bytes": 284
+  },
+  {
+    "key": "mert",
+    "url": "https://raw.githubusercontent.com/yizhilll/MERT/main/README.md",
+    "status": 200,
+    "bytes": 5903
+  },
+  {
+    "key": "clap",
+    "url": "https://raw.githubusercontent.com/LAION-AI/CLAP/main/README.md",
+    "status": 200,
+    "bytes": 17399
+  },
+  {
+    "key": "videomamba",
+    "url": "https://raw.githubusercontent.com/OpenGVLab/VideoMamba/main/README.md",
+    "status": 200,
+    "bytes": 4756
+  },
+  {
+    "key": "factorcl",
+    "url": "https://raw.githubusercontent.com/pliang279/FactorCL/main/README.md",
+    "status": 200,
+    "bytes": 3503
+  },
+  {
+    "key": "tcc",
+    "status": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "ave",
+    "url": "https://raw.githubusercontent.com/YapengTian/AVE-ECCV18/master/README.md",
+    "status": 200,
+    "bytes": 4486
+  },
+  {
+    "key": "vjepa2",
+    "url": "https://raw.githubusercontent.com/facebookresearch/vjepa2/main/README.md",
+    "status": 200,
+    "bytes": 21574
+  },
+  {
+    "key": "mbt",
+    "url": "https://raw.githubusercontent.com/google-research/scenic/main/scenic/projects/mbt/README.md",
+    "status": 200,
+    "bytes": 4529
+  },
+  {
+    "key": "videoprism",
+    "url": "https://raw.githubusercontent.com/google-deepmind/videoprism/main/README.md",
+    "status": 200,
+    "bytes": 12732
+  }
+]

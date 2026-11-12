@@ -1,0 +1,14 @@
+[
+  {
+    "file": "mert_model.py",
+    "url": "https://raw.githubusercontent.com/yizhilll/MERT/main/mert_fairseq/models/mert/mert_model.py",
+    "status": 200,
+    "bytes": 79269
+  },
+  {
+    "file": "mert_model_README.md",
+    "url": "https://raw.githubusercontent.com/yizhilll/MERT/main/mert_fairseq/models/mert/README.md",
+    "status": 200,
+    "bytes": 142
+  }
+]

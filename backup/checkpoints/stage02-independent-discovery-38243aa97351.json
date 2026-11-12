@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "stage02-independent-discovery",
+  "snapshot_id": "38243aa97351dbc049d8afb42367c5e2b8b170660e6e2608fd0608743c566332",
+  "prepared_at_utc": "2026-11-12T04:25:31.288224+00:00",
+  "file_count": 1239,
+  "total_bytes": 193099090,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

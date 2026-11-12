@@ -1,12 +1,12 @@
 {
-  "stage": "v4_author_revisions_and_actual_integration",
-  "snapshot_id": "0724c87b653ae8b2ca4015eb456a290a8eb0c7121495a8bfb7437929b586c4ce",
-  "data_commit": "acceeb00a74105a2809f3dc9f2c791332ac41d28",
-  "remote_head_verified": "acceeb00a74105a2809f3dc9f2c791332ac41d28",
-  "verified_at_utc": "2026-11-12T11:33:53.494678+00:00",
+  "stage": "v4_additional_independent_geometry_systems_proposals",
+  "snapshot_id": "c333bbf9a1bdfa848584a940a9f9a2f22aa793b6dcbe87b8618a29fa236fc2b3",
+  "data_commit": "be1ec872befd45179e0dd8aaa8719031bc6dce46",
+  "remote_head_verified": "be1ec872befd45179e0dd8aaa8719031bc6dce46",
+  "verified_at_utc": "2026-11-12T11:42:26.573211+00:00",
   "privacy_check": "사용자가 원문 증거 포함 Public 백업 지시; GitHub 웹 Public 확인",
-  "file_count": 1879,
-  "total_bytes": 211623358,
+  "file_count": 1894,
+  "total_bytes": 211738589,
   "github_repository": "SeokJin-Moon14/affective_neuroscience_exploratory",
   "branch": "research/independent-exploration-20261112"
 }

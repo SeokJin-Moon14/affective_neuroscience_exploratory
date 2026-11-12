@@ -1,0 +1,82 @@
+PAGE 2
+                                                       Concept Bottleneck Models
+
+to match the number of concepts provided, and add an in-               interventions at test time help model accuracy, and is con-
+termediate loss that encourages the neurons in that layer to           cept accuracy a good indicator of the ability to effectively
+align component-wise to the provided concepts. We show                 intervene? Do different ways of training bottleneck models
+that concept bottleneck models trained in this manner can              lead to significantly different outcomes in intervention?
+achieve task accuracies competitive with or even higher than
+                                                                       We evaluate concept bottleneck models on the two appli-
+standard models. We emphasize that concept annotations
+                                                                       cations in Figure 1: the osteoarthritis grading task (Nevitt
+are not needed at test time; the model predicts the concepts,
+                                                                       et al., 2006) and a fine-grained bird species identification
+then uses the predicted concepts to make a final prediction.
+                                                                       task (Wah et al., 2011). On these tasks, we show that bot-
+Importantly—and unlike standard end-to-end models—                     tleneck models are competitive with standard end-to-end
+these bottleneck models support interventions on concepts:             models while also attaining high concept accuracies. In con-
+we can edit the concept predictions ĉ and propagate those             trast, the concepts cannot be predicted with high accuracy
+changes to the target prediction ŷ. Interventions enable              from linear combinations of neurons in a standard black-box
+richer human-model interaction: e.g., if the radiologist real-         model, making it difficult to do post-hoc interpretation in
+izes that what the model thinks is a bone spur is actually an          terms of concepts like in Kim et al. (2018). We demonstrate
+artifact, she can update the model’s prediction by directly            that we can substantially improve model accuracy by inter-
+changing the corresponding value of ĉ. When we simulate               vening on these bottleneck models at test time to correct
+this injection of human knowledge by partially correcting              model mistakes on concepts. Finally, we show that bottle-
+concept mistakes that the model makes at test time, we                 neck models guided to learn the right concepts can also be
+find that accuracy improves substantially beyond that of a             more robust to covariate shifts.
+standard model.
+Interventions also make concept bottleneck models inter-               2. Related work
+pretable in terms of high-level concepts: by manipulating
+                                                                       Concept bottleneck models. Models that bottleneck on
+concepts ĉ and observing the model’s response, we can ob-
+                                                                       human-specified concepts—where the model first predicts
+tain counterfactual explanations like “if the model did not
+                                                                       the concepts, then uses only those predicted concepts to
+think the joint space was too narrow for this patient, then it
+                                                                       make a final prediction—have been previously used for
+would not have predicted severe arthritis”. In contrast, prior
+                                                                       specific applications (Kumar et al., 2009; Lampert et al.,
+work on explaining end-to-end models in terms of high-level
+                                                                       2009). Early versions did not use end-to-end neural net-
+concepts has been restricted to post-hoc interpretation of
+                                                                       works, which soon overtook them in predictive accuracy.
+already-trained end-to-end models: for example, predicting
+                                                                       Consequently, bottleneck models have historically been
+concepts from hidden layers (Kim et al., 2018) or measuring
+                                                                       more popular for few-shot learning settings, where shared
+the correlation of individual neurons with concepts (Bau
+                                                                       concepts might allow generalization to unseen contexts,
+et al., 2017).
+                                                                       rather than the standard supervised setting we consider here.
+The validity of interventions on a model depends on the
+                                                                       More recently, deep neural networks with concept bottle-
+alignment between its predicted concepts ĉ and the true
+                                                                       necks have re-emerged as targeted tools for solving par-
+concepts c. We can estimate this alignment by measuring
+                                                                       ticular tasks, e.g., Fauw et al. (2018) for retinal disease
+the model’s concept accuracy on a held-out validation set
+                                                                       diagnosis, Yi et al. (2018) for visual question-answering,
+(Fong & Vedaldi, 2017).1 A model with perfect concept
+                                                                       and Bucher et al. (2018) for content-based image retrieval.
+accuracy across all possible inputs makes predictions ĉ that
+                                                                       Losch et al. (2019) and Chen et al. (2020) also explore
+align with the true concepts c. Conversely, if a model has
+                                                                       learning concept-based models via auxiliary datasets.
+low concept accuracy, then the model’s predictions ĉ need
+not match with the true concepts, and we would not expect              Concept bottlenecks differ from traditional feature engi-
+interventions to lead to meaningful results.                           neering: we learn mappings from raw input to high-level
+                                                                       concepts, whereas feature engineering constructs low-level
+Contributions. We systematically study variants of con-
+                                                                       features that can be computed by handwritten functions.
+cept bottleneck models and contrast them with standard
+end-to-end models in different settings, with a focus on the           Concepts as auxiliary losses or features. Non-bottleneck
+previously-unexplored ability of concept bottleneck models             models that use human-specified concepts commonly use
+to support concept interventions. Our goal is to characterize          them in auxiliary objectives in a multi-task setup, or as aux-
+concept bottleneck models more fully: Is there a tradeoff              iliary features; examples include using object parts (Huang
+between task accuracy and concept interpretability? Do                 et al., 2016; Zhou et al., 2018), parse trees (Zelenko et al.,
+    1
+                                                                       2003; Bunescu & Mooney, 2005), or natural language ex-
+      With the usual caveats of measuring accuracy: in practice, the
+validation set might be skewed such that models that learn spurious
+                                                                       planations (Murty et al., 2020). However, these models do
+correlations can still achieve high concept accuracy.                  not support intervention on concepts. For instance, consider

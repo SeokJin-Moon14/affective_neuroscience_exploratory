@@ -1,0 +1,150 @@
+PAGE 2
+       BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models
+
+encoder and the frozen LLM, where it feeds the most useful             et al., 2021; 2022; Yu et al., 2022; Wang et al., 2022b).
+visual feature for the LLM to output the desired text. In
+                                                                       Most VLP methods perform end-to-end pre-training using
+the first pre-training stage, we perform vision-language rep-
+                                                                       large-scale image-text pair datasets. As the model size keeps
+resentation learning which enforces the Q-Former to learn
+                                                                       increasing, the pre-training can incur an extremely high
+visual representation most relevant to the text. In the second
+                                                                       computation cost. Moreover, it is inflexible for end-to-end
+pre-training stage, we perform vision-to-language genera-
+                                                                       pre-trained models to leverage readily-available unimodal
+tive learning by connecting the output of the Q-Former to a
+                                                                       pre-trained models, such as LLMs (Brown et al., 2020;
+frozen LLM, and trains the Q-Former such that its output
+                                                                       Zhang et al., 2022; Chung et al., 2022).
+visual representation can be interpreted by the LLM.
+We name our VLP framework as BLIP-2: Bootstrapping                     2.2. Modular Vision-Language Pre-training
+Language-Image Pre-training with frozen unimodal models.               More similar to us are methods that leverage off-the-shelf
+The key advantages of BLIP-2 include:                                  pre-trained models and keep them frozen during VLP. Some
+                                                                       methods freeze the image encoder, including the early work
+• BLIP-2 effectively leverages both frozen pre-trained im-
+                                                                       which adopts a frozen object detector to extract visual fea-
+  age models and language models. We bridge the modality
+                                                                       tures (Chen et al., 2020; Li et al., 2020; Zhang et al., 2021),
+  gap using a Q-Former pre-trained in two-stages: repre-
+                                                                       and the recent LiT (Zhai et al., 2022) which uses a frozen
+  sentation learning stage and generative learning stage.
+                                                                       pre-trained image encoder for CLIP (Radford et al., 2021)
+  BLIP-2 achieves state-of-the-art performance on various
+                                                                       pre-training. Some methods freeze the language model
+  vision-language tasks including visual question answer-
+                                                                       to use the knowledge from LLMs for vision-to-language
+  ing, image captioning, and image-text retrieval.
+                                                                       generation tasks (Tsimpoukelli et al., 2021; Alayrac et al.,
+• Powered by LLMs (e.g. OPT (Zhang et al., 2022),                      2022; Chen et al., 2022a; Tiong et al., 2022; Guo et al.,
+  FlanT5 (Chung et al., 2022)), BLIP-2 can be prompted to              2022). The key challenge in using a frozen LLM is to
+  perform zero-shot image-to-text generation that follows              align visual features to the text space. To achieve this,
+  natural language instructions, which enables emerging                Frozen (Tsimpoukelli et al., 2021) finetunes an image en-
+  capabilities such as visual knowledge reasoning, visual              coder whose outputs are directly used as soft prompts for
+  conversation, etc. (see Figure 4 for examples).                      the LLM. Flamingo (Alayrac et al., 2022) inserts new cross-
+                                                                       attention layers into the LLM to inject visual features, and
+• Due to the use of frozen unimodal models and a                       pre-trains the new layers on billions of image-text pairs.
+  lightweight Q-Former, BLIP-2 is more compute-efficient               Both methods adopt the language modeling loss, where the
+  than exisiting state-of-the-arts. For example, BLIP-2 out-           language model generates texts conditioned on the image.
+  performs Flamingo (Alayrac et al., 2022) by 8.7% on
+  zero-shot VQAv2, while using 54× fewer trainable pa-                 Different from existing methods, BLIP-2 can effectively and
+  rameters. Furthermore, our results show that BLIP-2 is a             efficiently leverage both frozen image encoders and frozen
+  generic method that can harvest more advanced unimodal               LLMs for various vision-language tasks, achieving stronger
+  models for better VLP performance.                                   performance at a lower computation cost.
+
+                                                                       3. Method
+2. Related Work
+                                                                       We propose BLIP-2, a new vision-language pre-training
+2.1. End-to-end Vision-Language Pre-training                           method that bootstraps from frozen pre-trained unimodal
+Vision-language pre-training aims to learn multimodal foun-            models. In order to bridge the modality gap, we propose a
+dation models with improved performance on various vision-             Querying Transformer (Q-Former) pre-trained in two stages:
+and-language tasks. Depending on the downstream task,                  (1) vision-language representation learning stage with a
+different model architectures have been proposed, including            frozen image encoder and (2) vision-to-language genera-
+the dual-encoder architecture (Radford et al., 2021; Jia et al.,       tive learning stage with a frozen LLM. This section first
+2021), the fusion-encoder architecture (Tan & Bansal, 2019;            introduces the model architecture of Q-Former, and then
+Li et al., 2021), the encoder-decoder architecture (Cho et al.,        delineates the two-stage pre-training procedures.
+2021; Wang et al., 2021b; Chen et al., 2022b), and more
+recently, the unified transformer architecture (Li et al., 2022;       3.1. Model Architecture
+Wang et al., 2022b). Various pre-training objectives have              We propose Q-Former as the trainable module to bridge the
+also been proposed over the years, and have progressively              gap between a frozen image encoder and a frozen LLM. It
+converged to a few time-tested ones: image-text contrastive            extracts a fixed number of output features from the image
+learning (Radford et al., 2021; Yao et al., 2022; Li et al.,           encoder, independent of input image resolution. As shown
+2021; 2022), image-text matching (Li et al., 2021; 2022;               in Figure 2, Q-Former consists of two transformer submod-
+Wang et al., 2021a), and (masked) language modeling (Li
+
+                                                                   2
+
+PAGE 3
+        BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models
+
+                                                                                                       Q: query token positions; T: text token positions.
+                        Q-Former
+                                      Image-Text                              Image-Grounded              masked     unmasked
+                                       Matching          Image-Text            Text Generation
+ Input Image                                                                                                Q       T              Q       T                Q     T
+                                                         Contrastive
+                                                          Learning                                     Q
+                                    Feed Forward                                Feed Forward                                  Q                       Q
+                       for every
+                Image other block   Cross Attention
+               Encoder                                Attention Masking                                T                       T                       T
+                                                         bidirectional
+                             xN     Self Attention     mutlimodal causal        Self Attention    xN      Bi-directional      Multi-modal Causal            Uni-modal
+                                                      x   uni-modal    x
+                                                                                                       Self-Attention Mask    Self-Attention Mask      Self-Attention Mask
+                          Learned                                                                          Image-Text          Image-Grounded             Image-Text
+                          Queries
+                                          …
+                                                           Input Text      a cat wearing sunglasses
+                                                                                                            Matching            Text Generation       Contrastive Learning
+
+
+Figure 2. (Left) Model architecture of Q-Former and BLIP-2’s first-stage vision-language representation learning objectives. We jointly
+optimize three objectives which enforce the queries (a set of learnable embeddings) to extract visual representation most relevant to the
+text. (Right) The self-attention masking strategy for each objective to control query-text interaction.
+
+ules that share the same self-attention layers: (1) an image                            of negative pairs. We align the output query representation
+transformer that interacts with the frozen image encoder                                Z from the image transformer with the text representation
+for visual feature extraction, (2) a text transformer that can                          t from the text transformer, where t is the output embed-
+function as both a text encoder and a text decoder. We create                           ding of the [CLS] token. Since Z contains multiple output
+a set number of learnable query embeddings as input to the                              embeddings (one from each query), we first compute the
+image transformer. The queries interact with each other                                 pairwise similarity between each query output and t, and
+through self-attention layers, and interact with frozen image                           then select the highest one as the image-text similarity. To
+features through cross-attention layers (inserted every other                           avoid information leak, we employ a unimodal self-attention
+transformer block). The queries can additionally interact                               mask, where the queries and text are not allowed to see each
+with the text through the same self-attention layers. Depend-                           other. Due to the use of a frozen image encoder, we can
+ing on the pre-training task, we apply different self-attention                         fit more samples per GPU compared to end-to-end meth-
+masks to control query-text interaction. We initialize Q-                               ods. Therefore, we use in-batch negatives instead of the
+Former with the pre-trained weights of BERTbase (Devlin                                 momentum queue in BLIP.
+et al., 2019), whereas the cross-attention layers are randomly
+                                                                                        Image-grounded Text Generation (ITG) loss trains the
+initialized. In total, Q-Former contains 188M parameters.
+                                                                                        Q-Former to generate texts, given input images as the con-
+Note that the queries are considered as model parameters.
+                                                                                        dition. Since the architecture of Q-Former does not allow
+In our experiments, we use 32 queries where each query                                  direct interactions between the frozen image encoder and
+has a dimension of 768 (same as the hidden dimension                                    the text tokens, the information required for generating the
+of the Q-Former). We use Z to denote the output query                                   text must be first extracted by the queries, and then passed
+representation. The size of Z (32 × 768) is much smaller                                to the text tokens via self-attention layers. Therefore, the
+than the size of frozen image features (e.g. 257 × 1024 for                             queries are forced to extract visual features that capture all
+ViT-L/14). This bottleneck architecture works together with                             the information about the text. We employ a multimodal
+our pre-training objectives into forcing the queries to extract                         causal self-attention mask to control query-text interaction,
+visual information that is most relevant to the text.                                   similar to the one used in UniLM (Dong et al., 2019). The
+                                                                                        queries can attend to each other but not the text tokens. Each
+3.2. Bootstrap Vision-Language Representation                                           text token can attend to all queries and its previous text to-
+     Learning from a Frozen Image Encoder                                               kens. We also replace the [CLS] token with a new [DEC]
+In the representation learning stage, we connect Q-Former to                            token as the first text token to signal the decoding task.
+a frozen image encoder and perform pre-training using                                   Image-Text Matching (ITM) aims to learn fine-grained
+image-text pairs. We aim to train the Q-Former such that the                            alignment between image and text representation. It is a
+queries can learn to extract visual representation that is most                         binary classification task where the model is asked to pre-
+informative of the text. Inspired by BLIP (Li et al., 2022),                            dict whether an image-text pair is positive (matched) or
+we jointly optimize three pre-training objectives that share                            negative (unmatched). We use a bi-directional self-attention
+the same input format and model parameters. Each objec-                                 mask where all queries and texts can attend to each other.
+tive employs a different attention masking strategy between                             The output query embeddings Z thus capture multimodal
+queries and text to control their interaction (see Figure 2).                           information. We feed each output query embedding into a
+Image-Text Contrastive Learning (ITC) learns to align                                   two-class linear classifier to obtain a logit, and average the
+image representation and text representation such that their                            logits across all queries as the output matching score. We
+mutual information is maximized. It achieves so by contrast-                            adopt the hard negative mining strategy from Li et al. (2021;
+ing the image-text similarity of a positive pair against those                          2022) to create informative negative pairs.
+
+
+                                                                                    3

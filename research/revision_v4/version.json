@@ -1,15 +1,11 @@
 {
   "version": 4,
-  "status": "planning_complete_with_explicit_conditions",
+  "status": "user_rejected_selection_interest_discussion",
   "updated_at_utc": "2026-11-12T11:55:13.007859+00:00",
   "raw_candidates": 10,
   "proposal_roles": 7,
   "data_review_count": 10,
-  "active_rqs": [
-    "V4-01",
-    "V4-02",
-    "V4-03"
-  ],
+  "active_rqs": [],
   "held_full_candidates": [
     "D02-B",
     "D03-B",
@@ -31,5 +27,10 @@
   "experiments_run": false,
   "public_metadata_checks_run": true,
   "novelty_fully_verified": false,
-  "reason": "기존 관측에 맞춘 제안·실제 토론·저자 수정·선정·파일럿 계획을 완료했다. 실제 BOLD 분석과 직접 선행 전체 확인은 수행 완료로 표시하지 않는다."
+  "reason": "사용자가 세 후보의 매력·임팩트·중복을 지적해 주력 추천을 해제했다. 서로 다른 결과와 도구를 먼저 제시하고 관심을 확인한다.",
+  "historical_active_rqs": [
+    "V4-01",
+    "V4-02",
+    "V4-03"
+  ]
 }

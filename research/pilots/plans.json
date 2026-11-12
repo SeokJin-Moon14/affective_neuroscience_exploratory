@@ -24,5 +24,7 @@
     }
   ],
   "metadata_check": "pilots/v4/metadata_check.json",
-  "brain_experiments_run": false
+  "brain_experiments_run": false,
+  "current_recommendation": false,
+  "status": "historical_plans_not_user_selected"
 }

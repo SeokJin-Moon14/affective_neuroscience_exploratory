@@ -89,5 +89,7 @@
     "V4-01",
     "V4-03"
   ],
-  "experiments_run": false
+  "experiments_run": false,
+  "current_recommendation": false,
+  "status": "historical_v4_selection_before_user_review"
 }

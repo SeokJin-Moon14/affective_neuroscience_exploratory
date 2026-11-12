@@ -2,5 +2,7 @@
   "version": 4,
   "local_links_checked": 208,
   "failed": [],
-  "scope": "v4 현재 문서 링크의 파일 존재 검사. 외부 URL 접속 검증과 구별."
+  "scope": "v4 현재 문서 링크의 파일 존재 검사. 외부 URL 접속 검증과 구별.",
+  "historical_snapshot": "b36835dfd915f876234cd47553c312b45a31644c",
+  "status": "v4_checks_before_latest_user_review"
 }

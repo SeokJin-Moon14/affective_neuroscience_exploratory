@@ -10,6 +10,8 @@ import json
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
+if (ROOT / 'interest_review/USER_FEEDBACK.json').exists():
+    raise SystemExit('사용자 평가 이후 v4를 현재 선정으로 다시 게시·검사하지 않습니다. interest_review를 확인하세요.')
 CHECKS = []
 
 

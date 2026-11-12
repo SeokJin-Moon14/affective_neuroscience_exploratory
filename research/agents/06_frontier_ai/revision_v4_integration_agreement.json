@@ -1,0 +1,21 @@
+{
+  "recipient": "/root/affective_reframe",
+  "method": "collaboration.send_message",
+  "delivery_result": "성공",
+  "recorded_at_utc": "2026-11-12T11:29:31.494137+00:00",
+  "integration_lead": "D02-A",
+  "own_candidate": "D06-A",
+  "agreement": "한 MC 연구로 통합. D06-A를 별도 RQ로 세지 않으며 보존할 독립 과학적 차이는 없음.",
+  "retained_points": [
+    "정서 관계와 풍부한 내용 관계가 실제로 다른 예측을 내는 비교가 핵심이며 상대적 약화도 대안으로 유지.",
+    "순서 역전은 강한 사례이지 모든 유효 결과의 필수 조건은 아님.",
+    "시각 ROI·latent는 보조 설명.",
+    "검사한 과제·허용 정서 항목·내용 범위로 Conclusion 한정.",
+    "최대 71개에서 실제 비교 항목·내용군이 성립하는지는 미확인 선정 조건.",
+    "일반 의미 공간 안의 정서적 가중 변화는 허용하지만, 더 풍부한 의미 모델도 같은 관계를 예측하면 독립 정서 재편성 주장 보류."
+  ],
+  "preserved_files": [
+    "revision_v4_candidates.json",
+    "revision_v4_revised.json"
+  ]
+}

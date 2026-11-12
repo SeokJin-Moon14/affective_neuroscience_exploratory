@@ -1,0 +1,57 @@
+{
+  "recorded_at_utc": "2026-11-12T11:28:29.547231+00:00",
+  "representative_candidate": "D02-A",
+  "integrated_candidates": [
+    "D02-A",
+    "D03-A",
+    "D04-A",
+    "D05-A",
+    "D06-A"
+  ],
+  "independent_research_count": 1,
+  "shared_claim": "같은 MC 영상의 지각·심상에서 정서 관련 관계가 풍부한 내용 관계와 다른 비중으로 유지되거나 감소하는지 검증한다. 전체 감도 저하·일반 의미 보존을 경쟁 설명으로 둔다.",
+  "author_responses": [
+    {
+      "author": "/root/vision",
+      "candidate": "D03-A",
+      "status": "실제 동의 메시지 수신",
+      "agreement": "시각 ROI/latent는 보조 분석, 동일 추상도 보장 주장 철회, 일반 의미 경로에만 결과가 남는 경우도 허용. 독립 RQ로 세지 않음.",
+      "remaining_difference": "시각 ROI에 관한 보조 관측은 전뇌 관계와 다를 수 있으나 별도 연구가 아님."
+    },
+    {
+      "author": "/root/foundation_continuation",
+      "candidate": "D04-A",
+      "status": "실제 동의 메시지 수신",
+      "agreement": "반복을 이용한 같은 장면 관계 비교를 공통 핵심에 포함. 상대적 약화·전체 감도 저하·일반 의미 보존을 대안으로 유지. 별도 과학적 차이가 없으며 독립 집계 중단.",
+      "remaining_difference": "없음."
+    },
+    {
+      "author": "/root/dynamics_continuation",
+      "candidate": "D05-A",
+      "status": "실제 동의 메시지 수신",
+      "agreement": "캡션이 충분히 설명하지 못하는 시각 특징은 선택적 보조 분석. 잔차를 순수 비언어·정서 전용 정보나 감각 경로로 해석하지 않음.",
+      "remaining_difference": "보조 특징의 선택 방법만 다르며 독립 RQ가 아님."
+    },
+    {
+      "author": "/root/frontier_contribution",
+      "candidate": "D06-A",
+      "status": "실제 동의 메시지 수신",
+      "agreement": "관계 순서 역전은 강한 사례이지만 필수 관문은 아님. 검사한 과제·허용 항목·내용 범위로 Conclusion 제한. 더 풍부한 의미 모델이 같은 예측을 하면 독립 정서 재편성 주장 보류.",
+      "remaining_difference": "없음."
+    }
+  ],
+  "shared_data_limits": [
+    "원영상 ID와 stimLabel 구별",
+    "Horikawa 공식 제외 적용시 최대71개; 실제 허용 항목·내용 분포 확인 필요",
+    "raw trainPerception 마지막2런의 시험72개 제외; 다른 자료에서 head를 학습할 때도 원ID 제외",
+    "cue·심상12초·휴식2초·후속 실제영상10초의 HRF 혼합과 processed window 확인",
+    "모든 참가자·유효 반복·ROI와 표현 모델 차이를 실제 보유본에서 확인"
+  ],
+  "research_claims_not_made": [
+    "정서만의 회로",
+    "모든 의미 차원과의 완전한 독립",
+    "개인 경험 정서나 객관적 기억 정확성",
+    "시각 latent 판독을 감각 형식 또는 실제 처리 경로로 해석",
+    "기존 데이터 관측 존재만으로 효과·감도·신규성 확정"
+  ]
+}

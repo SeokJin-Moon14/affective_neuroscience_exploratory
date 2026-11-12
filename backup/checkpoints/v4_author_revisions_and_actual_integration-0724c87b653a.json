@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "v4_author_revisions_and_actual_integration",
+  "snapshot_id": "0724c87b653ae8b2ca4015eb456a290a8eb0c7121495a8bfb7437929b586c4ce",
+  "prepared_at_utc": "2026-11-12T11:33:50.324845+00:00",
+  "file_count": 1879,
+  "total_bytes": 211623358,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

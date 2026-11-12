@@ -1,7 +1,7 @@
 {
   "version": 4,
-  "status": "peer_reviews_complete_author_revision_in_progress",
-  "updated_at_utc": "2026-11-12T10:56:22.522082+00:00",
+  "status": "first_wave_revised_additional_independent_exploration",
+  "updated_at_utc": "2026-11-12T11:33:48.987722+00:00",
   "priority": {
     "1": [
       "Horikawa",
@@ -22,5 +22,10 @@
   "user_latest_direction": "중간 승인 없이 에이전트 협업으로 전체 기획 진행. 기존 자료로 검증 가능하며 최신 근접 선행을 넘는 필요성·결론·기여 필수.",
   "raw_candidates": 8,
   "data_reviews": 8,
-  "scientific_review_coverage": 8
+  "scientific_review_coverage": 8,
+  "first_wave_revised_cards": 8,
+  "additional_agents": [
+    "geometry_v4",
+    "systems_v4"
+  ]
 }

@@ -1,0 +1,40 @@
+[
+  {
+    "path": "agents/02_affective_neuroscience/revision_v4_revised.json",
+    "sha256": "90e4ef86c31ea80fb82c9afc94cae64ce868beb6976fba720129e2f04f135678",
+    "candidate_ids": [
+      "D02-A",
+      "D02-B"
+    ]
+  },
+  {
+    "path": "agents/03_vision_decoding/revision_v4_revised.json",
+    "sha256": "d03e7c7c1b7058afa6671ac0fab640748c5cf94989065f0c35e33f90317e8d12",
+    "candidate_ids": [
+      "D03-A",
+      "D03-B"
+    ]
+  },
+  {
+    "path": "agents/04_brain_foundation/revision_v4_revised.json",
+    "sha256": "5768419e40412e94efadb8af418337b35a507ea87eca2df67fd96cb286f54087",
+    "candidate_ids": [
+      "D04-A",
+      "D04-B"
+    ]
+  },
+  {
+    "path": "agents/05_multimodal_dynamics/revision_v4_revised.json",
+    "sha256": "6c9d5f21c43c0398e788e43fe090578067ad2471e7c117ff7f69d086194f78d8",
+    "candidate_ids": [
+      "D05-A"
+    ]
+  },
+  {
+    "path": "agents/06_frontier_ai/revision_v4_revised.json",
+    "sha256": "91ca13c0a7f7f9a69dd8a4eb858addfa9a015527ddd2be455088a35e09687a5d",
+    "candidate_ids": [
+      "D06-A"
+    ]
+  }
+]

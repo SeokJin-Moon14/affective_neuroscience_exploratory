@@ -1,0 +1,355 @@
+[
+  {
+    "candidate_id": "D03-A",
+    "question": "통합 MC 연구의 보조 분석: 지각과 심상 사이의 정서 관련 장면 관계 변화는 시각 영역에서도 나타날까?",
+    "why_needed": "원안의 ‘정서 관련 정보가 일반 의미보다 선택적으로 유지되는가’는 다른 MC 후보와 같은 핵심 질문이었다. 이를 별도 연구로 세지 않고 D02-A 주도 통합 연구에 넣는다. 공통 질문은 같은 목표 영상의 지각–심상 변화가 모든 정보를 균일하게 약화시키는지, 풍부한 장면 의미를 보존하는 정도로 설명되는지, 아니면 정서 주석에 연결된 장면 관계가 다른 비중으로 유지되는지다. D03-A는 이 공통 변화가 시각 ROI에서 읽는 모델 특징에도 나타나는지를 설명하는 보조 분석이다. 지각 판독 가능성·차원·캡션 설명력을 맞춘 것만으로 같은 추상도라고 주장했던 부분은 철회한다.",
+    "primary_data": "MC(ds005191)의 기존 지각·심상 fMRI와 Horikawa의 기존 원영상 정서 주석을 사용한다. MC 공식 시험은72영상이며, Horikawa 원분석15개 제외를 그대로 적용하면 원ID1이 빠져 최대71개가 된다. 이 숫자는 해당 제외 정책의 결과이며 모든 참가자의 분석 가능 표본 수가 확인됐다는 뜻이 아니다. 원영상 연결은 MC stimID/imageryID, Horikawa stim_index, 캡션 video_id를 사용하고 stimLabel은 조인키로 쓰지 않는다. sub-01 raw trainPerception60런에는 시험72개가 포함되므로 마지막 두 런을 제외해야58런·2,108개가 된다. 실제 처리 MAT의 row-to-ID와 모든 참가자의 반복·ROI·window 검증은 남아 있다.",
+    "secondary_data": "D02-A 주도 한 MC 연구 안의 일반 의미·전뇌 분석이 공통 핵심이며, D03-A의 시각 ROI 분석은 별도 RQ가 아니다. NSD는 선택적인 시각 도구의 잡음 민감도 확인 자원일 뿐 정서 정답을 부여하지 않는다. Emo-FilM·Spacetop을 추가하거나 새 측정을 수행해 현재 후보를 구제하지 않는다.",
+    "data_binding": [
+      {
+        "dataset": "MC / OpenNeuro ds005191 v1.0.2",
+        "existing_observation": "공식 문서의 6명 지각·심상, 시험72영상×5반복. 실물 검산은 sub-01 testPerception의72영상×5반복과 첫 imagery 세션72개 대응까지다. 첫 실제 시행은 cue7초→imagery12초→rest2초→같은 영상10초 순서이며 다음 cue는5초다.",
+        "source_path": [
+          "datasets/mind_captioning/evidence/bids_README: MRI data 및 Task event files",
+          "datasets/mind_captioning/evidence/data_README.md: fMRI data",
+          "datasets/mind_captioning/verified_spec.md",
+          "agents/01_dataset/revision_v4_data_common.md: C1–C5",
+          "agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv"
+        ],
+        "use_in_test": "같은 참가자·같은 목표 영상의 지각과 심상에서 정서 관련 시각 정보 및 비정서적 의미 정보가 얼마나 유지되는지 비교한다. 지각 자료로 학습한 decoder와 head를 고정하고 시험한다.",
+        "still_to_verify": "모든 참가자의 유효 반복·ROI coverage·처리 MAT row-to-ID와 심상 집계 window. cue/심상/후속 영상의 혈역학 겹침을 기존 raw 자료에서 구별할 수 없으면 심상 관계 변화의 핵심 결론을 보류한다."
+      },
+      {
+        "dataset": "Horikawa / OpenNeuro ds002425 및 공식 feature 자료",
+        "existing_observation": "공식 분석이 사용한 기존 영상별 category 34, dimension 14, semantic 73, vision 1,000 특징·평정과 원 영상 ID. 5명의 새 뇌 촬영을 요구하지 않는다.",
+        "source_path": [
+          "agents/01_dataset/evidence/horikawa_python_README.md: Dataset",
+          "agents/01_dataset/evidence/horikawa_Tutorials.txt: 220행 feature 차원",
+          "agents/01_dataset/horikawa/verified_spec.md",
+          "agents/01_dataset/priority_recheck.md"
+        ],
+        "use_in_test": "MC 시험 영상과 그 내용 중복을 제외한 기존 영상으로 시각 latent→기존 인간 정서 평정 head를 학습한다. 비정서적 객체·행동·사건 내용을 나타내는 기존 semantic 항목을 비교 대상으로 삼는다. MC 시험 영상의 기존 평정은 마지막 평가에만 사용한다.",
+        "still_to_verify": "실제 정서·비정서 semantic 항목명·척도·값·결측·평정 신뢰도와 처리 행. 원ID 연결의 작은 metadata 근거는 확보됐으며 Horikawa 제외15개 적용시 MC시험 원ID1이 빠져 최대71개다. 모든6명과 feature 본체를 검증한 것은 아니다."
+      },
+      {
+        "dataset": "MC 기존 TimeSformer·DeBERTa 특징과 사람 캡션",
+        "existing_observation": "공식 문서의 TimeSformer 시각 특징, DeBERTa-large 의미 특징. 실제로 파싱한 caption_ck20.csv에는 원 영상 2,196개×사람 캡션 20개가 있다.",
+        "source_path": [
+          "datasets/mind_captioning/evidence/data_README.md: feature 및 Video caption",
+          "datasets/mind_captioning/evidence/code_README.md: Decoding and encoding analyses",
+          "datasets/mind_captioning/evidence/caption_schema_check.json"
+        ],
+        "use_in_test": "지각 BOLD→시각 latent decoder와 장면의 일반적인 의미를 읽는 비교 경로를 구성한다. 기존 캡션은 장면 내용과 중복을 확인하고 일반 의미 보존 설명을 강화하는 데 사용한다. 캡션 전체를 정서가 없는 정답으로 취급하지 않는다.",
+        "still_to_verify": "feature 본체의 row-to-ID·레이어·차원과 ROI별 BOLD. 사람 캡션의 원ID 연결은 확인되었지만, 그것이 동일한 편집·제시 길이 또는 정서 정답을 보장하지 않는다. whole-brain 결과로 시각 ROI 결론을 대신하지 않는다."
+      }
+    ],
+    "decisive_comparison": "먼저 최대71개 기존 목표에서 풍부한 장면 내용 관계와 기존 인간 정서 관계가 서로 다른 예측을 만드는 비교가 실제로 있는지 확인한다. 두 관계가 거의 같은 예측만 내면 이 자료에서 새 설명을 구별할 수 없으므로 통합 연구의 채택을 보류한다. 비교가 가능하면 같은 영상·같은 참가자의 지각과 심상에서 관계의 상대적 유지·약화를 평가하고, 전체 감도 저하 및 일반 의미 보존과 비교한다. D03-A의 시각 ROI/latent 분석은 그 관계 변화가 시각 영역에서도 관찰되는지, 아니면 일반 의미·전뇌 분석에서만 관찰되는지를 구별하는 보조 비교다. 영상·레이어·항목을 결과에 맞춰 바꾸며 대립 사례를 만들지 않는다.",
+    "competing_accounts": [
+      {
+        "account": "전체 감도 저하",
+        "distinguishing_result": "지각에서 심상으로 바뀔 때 정서·내용 관계가 비슷한 정도로 약해지고, 반복 신뢰도와 감도 변화로 관측된 차이를 설명한다. 이 경우 선택적 변화라는 결론을 내리지 않는다."
+      },
+      {
+        "account": "일반적인 의미 보존",
+        "distinguishing_result": "세부 시각 정보는 약해져도 풍부한 장면 의미가 유지되고 정서 관계도 그 정도만큼 남는다. 정서 관계를 별도로 가중하지 않은 의미 설명이 보류 영상의 관계를 충분히 예측하면 정서 관련 정보에 특별한 비중을 부여할 근거가 없다."
+      },
+      {
+        "account": "정서 관계의 상대적 유지 또는 상대적 약화",
+        "distinguishing_result": "내용 관계와 정서 관계가 다른 예측을 하는 기존 장면 비교에서, 정서에 연결된 차이가 일반 의미 설명보다 더 잘 유지되거나 더 약해진다. 어느 방향도 가능하며, 결과를 보기 전에 두 방향의 관측 의미를 정한다."
+      },
+      {
+        "account": "시각 ROI에서의 변화와 일반 의미·전뇌 변화가 다름",
+        "distinguishing_result": "공통 관계 변화가 일반 의미·전뇌 분석에서는 나타나지만 시각 ROI에서는 충분한 감도가 있어도 나타나지 않거나 반대 양상을 보일 수 있다. 이는 관측 위치와 판독 조건의 차이이며 뇌의 감각 형식·정보 흐름·인과 경로를 입증하지 않는다."
+      }
+    ],
+    "decisive_result": "통합 연구의 핵심은 검사한 장면 관계가 지각에서 심상으로 넘어갈 때 균일하게 약해진 것도, 일반 의미를 보존한 정도만 반영한 것도 아니라는 관찰이다. 기존 정서 주석과 연결된 관계가 다른 비중으로 유지되는 비교가 사전에 확보되어야 하며, 상대적으로 더 유지되는 결과와 더 약해지는 결과를 모두 허용한다. D03-A는 같은 차이가 시각 ROI의 모델 특징 판독에서도 나타나는지 보조적으로 평가한다. 평균 정서 decoding 성공이나 시각 latent 판독 성공만으로 통합 연구를 채택하지 않는다.",
+    "conclusion_if_supported": "검사한 단서 기반 심상 과제에서는 지각 정보가 균일하게 약해지는 것만으로 설명되지 않는 장면 관계 변화가 나타났으며, 정서 주석과 연결된 관계가 일반 내용 관계와 다른 비중으로 유지되었다. 시각 ROI에서 같은 차이가 확인된다면 그 관측 범위를 추가할 수 있지만 감각 형식이나 실제 뇌 처리 경로를 알아냈다고 말하지 않는다.",
+    "conclusion_if_alternative": "풍부한 일반 의미 보존이나 전체 감도 저하가 관계 변화를 설명한다면, 이 자료는 정서 관계에 별도 비중을 부여하는 설명을 요구하지 않는다. 정서 관련 관계가 상대적으로 약해지는 결과는 선택적 강화 가설의 반대 결과이며, 검정력이 충분하다면 내부 장면 재구성에서 무엇이 줄어드는지에 관한 관찰로 다룬다. 감도·window·관계 구별이 부족하면 어느 설명도 확정하지 않는다.",
+    "noncontribution_result": "기존 시각 decoder에 정서 head를 붙여 심상 정서 점수가 유의하게 예측되었다는 결과만 얻는 경우. 모델·레이어를 바꿔 정확도가 올라간 경우. 정서와 색·질감만 비교한 경우. P008이 이미 제안한 비망막 입력에 의한 emotion schema 활성화를 일반적 지각→심상 전이로만 재확인한 경우.",
+    "field_impact": "공통 MC 연구가 채택되면 후속 정서 심상 연구는 정서가 읽힌다는 사실을 넘어 어떤 장면 관계가 일반 의미 설명과 다르게 변하는지 검증해야 한다. D03-A의 시각 분석은 그 변화를 어느 영역의 어떤 모델 특징에서 관측했는지를 구체화한다. 다섯 원안의 동일한 결론을 다섯 독립 연구로 보고하지 않는다.",
+    "contribution_type": "신경과학적 발견",
+    "analysis_plan": [
+      "원영상 ID와 제외 정책으로 MC·Horikawa·사람 캡션을 연결하고, raw trainPerception에 포함된 시험72개를 제거하며 Horikawa head 학습에서도 같은 시험 ID와 내용 중복을 제외한다.",
+      "기존 최대71개 목표의 인간 정서 항목과 풍부한 영상·캡션 표현이 다른 장면 관계를 예측하는지 먼저 확인하고, 그 차이가 없으면 본 검정을 보류한다.",
+      "기존 raw events와 처리 과정을 확인하여 cue·심상·후속 같은 영상의 혈역학 반응을 구별할 수 있는지 판단하고, 공식 MAT의 집계 window가 확인되기 전 심상 독립 효과를 주장하지 않는다.",
+      "통합 연구에서 실제 반복을 이용해 지각·심상의 장면 관계를 비교하고 감도 저하·일반 의미 보존·정서 관계의 상대적 유지 또는 약화 설명을 평가한다.",
+      "D03-A는 기존 BOLD의 실제 시각 ROI에서 지각→시각 latent decoder를 계산하여 공통 변화가 이 관측에서도 나타나는지를 보조 검정하고 whole-brain 공개 결과를 시각 ROI 결과로 대신하지 않는다.",
+      "판독 가능성·차원·캡션 설명력을 점검하되 이를 같은 추상도나 의미의 완전한 통제로 부르지 않고, 시각 ROI와 일반 의미 경로의 차이를 뇌 처리 방향으로 확대하지 않는다.",
+      "6명 각각의 방향과 불확실성을 제시하고 유효 영상·반복·ROI 수를 확인하며 반복·영상 쌍을 독립 참가자로 세지 않는다."
+    ],
+    "ai_enables": "영상·언어 모델은 정서 주석과 일반 내용 관계가 실제로 다른 예측을 내는 장면 비교를 찾고 설명하는 도구다. 시각 decoder는 그 비교가 시각 ROI에서 읽히는 모델 특징에서도 나타나는지를 측정한다. 두 설명이 기존 장면에서 구별되지 않으면 AI 모델 수를 늘리거나 단순 decoding 성공을 추가해 기여를 만들지 않는다.",
+    "existing_data_only": true,
+    "new_observations_needed": [],
+    "nearest_prior": [
+      {
+        "paper_id": "P008",
+        "known": "Kragel et al. (2019), Emotion schemas are embedded in the human visual system, DOI 10.1126/sciadv.aaw4358. 영상 정보로 정서 범주를 예측하고 시각 피질과 대응시켰다. Discussion은 mental imagery 같은 비망막 입력이 emotion-specific visual codes를 활성화할 수 있다고 이미 제안한다.",
+        "proposed_difference": "심상에서 emotion schema를 읽을 수 있다는 사실을 새 발견으로 주장하지 않는다. 실제 동일 영상의 지각·심상 자료로, 일반적인 비정서 의미가 남는 정도보다 정서 관련 시각 정보가 더 유지되는지를 구별하는 것이 추가 결론이다.",
+        "access_scope": "공식 연구실 PDF의 저장 텍스트 agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt에서 초록·서론과 Discussion 451–470줄을 이번에 직접 읽음. 특히 461–468줄의 imagery·feedback 제안 확인. 논문 전체 Methods 및 추가자료의 모든 분석을 재검증한 것은 아니다."
+      },
+      {
+        "paper_id": "P001",
+        "known": "Horikawa et al. (2020)의 공식 README·튜토리얼은 자연 영상 fMRI와 정서·시각·의미 특징의 분석을 제공한다. 정서 표상의 차원·범주·분포에 관한 제목과 서지는 확인됐지만 본문 결과 전체를 이번에 검증하지 않았다.",
+        "proposed_difference": "같은 영상의 시각·의미·정서 encoding 결과를 새 모델로 반복하지 않는다. 기존 평정을 영상의 정서적 의미를 정하는 자료로 쓰고, MC의 지각→심상 변화에서 일반 의미 보존 대 정서 관련 시각 정보의 선택적 보존을 비교한다.",
+        "access_scope": "agents/01_dataset/evidence/horikawa_python_README.md, horikawa_Tutorials.txt와 공식 메타데이터 감사 기록. 공식 코드·문서 E1, 서지 E2, 원 논문 본문·Discussion 미확인."
+      },
+      {
+        "paper_id": "U001",
+        "known": "Huang et al., Human and Machine Annotations Predict Brain Responses to Naturalistic Movies Across Development: 사용자 제공 요약에 따르면 시각·설명문·인간/AI 정서 관련 특징으로 영화 fMRI를 예측하고 특징군의 기여를 비교했다.",
+        "proposed_difference": "영화 입력 중 서로 다른 특징군의 encoding 우열이 아니라, 동일 내용을 외부에서 볼 때와 내부에서 재구성할 때 어떤 종류의 정보가 상대적으로 유지되는지를 비교한다. 지각→심상 전이라는 평가 변경만으로 신규성을 주장하지 않고, 일반 요지 보존과 정서 관련 정보의 선택적 보존이 실제로 다른 결론을 내야 한다.",
+        "access_scope": "revision_v4/USER_PRIOR_U001.md의 사용자 요약과 revision_v4/evidence/U001_access.json의403 접근 실패 기록을 읽었다. 논문 본문·초록 직접 검증 완료가 아니다."
+      },
+      {
+        "paper_id": "U002",
+        "known": "공식 README·자료/코드 설명에서 지각·심상 fMRI, 시각/의미 특징 decoding과 문장 생성 경로, 이미 배포된 decoded feature를 확인했다. 따라서 지각에서 학습한 표현으로 심상 내용을 읽는다는 것 자체는 이 후보의 기여가 아니다.",
+        "proposed_difference": "지각에서 학습한 표현으로 심상 내용을 읽는 것 자체는 이미 선행이다. 통합 연구는 같은 장면 관계가 정서와 일반 의미에 따라 다른 비중으로 변하는지 구별하며 시각 분석은 그 보조 관측이다.",
+        "access_scope": "revision_v4/REFERENCES.json에서 U002 식별. datasets/mind_captioning/evidence/official_README.md, bids_README, data_README.md, code_README.md를 직접 읽었다. 논문 전체 본문·Discussion 직접 확인 아님."
+      }
+    ],
+    "strongest_objection": "원안들은 같은 선택적 보존 결론을 여러 말로 반복했고, 최대71개 기존 장면에서 정서 관계와 풍부한 일반 의미 설명이 실제로 다른 예측을 낸다는 점은 아직 확인되지 않았다. 판독 가능성과 차원을 맞췄다고 같은 추상도가 되는 것도 아니다. P008은 이미 imagery에 의한 emotion schema 활성화 가능성을 제안했고 U002는 심상 내용 decoding을 다룬다.",
+    "response_to_objection": "중복 지적을 수용하여 D02-A 주도 MC 한 연구에 통합하고 시각 ROI 분석은 보조 역할로 낮춘다. 같은 추상도라는 주장을 삭제하고 기존 장면 관계의 판별 가능성을 분석 전 선정 조건으로 둔다. 정서적 관계의 상대적 약화도 대안으로 추가하며, P008의 imagery 제안과 U002의 내용 decoding을 인정한다. 조건을 만족하지 못하면 독립 후보 또는 통합 연구의 새로운 원리 발견으로 채택하지 않는다.",
+    "claim_limit": "검사한 단서 기반 심상 과제의 장면 관계와 특정 ROI에서 읽히는 모델 특징의 변화만 다룬다. 외부 인간 정서 평정은 원영상 특성이며 심상 중 개인 경험의 정답이 아니다. 시각 latent가 읽혔다고 감각 형식·실제 신경 경로를 입증하지 않고, 캡션으로 설명되지 않는 성분을 순수 정서 또는 비언어 정보로 부르지 않는다. accuracy/vividness를 객관적 기억 오류로 해석하지 않는다.",
+    "minimum_pilot": "D02-A 통합 파일럿의 자료 적합성 단계에 참여한다. 원ID/제외/학습 중복/실제 정서 및 semantic 항목을 확인한 뒤 최대71개에서 일반 의미와 정서 관계가 다른 예측을 내는지 확인한다. 그 비교와 심상 window 구별이 성립할 때만 실제 ROI 마스크를 사용해 한 참가자의 시각 decoder를 보조적으로 계산한다. 제공 whole-brain decoded feature로 시각피질 결과를 만들지 않고, 비교가 성립하지 않을 때 영상·레이어를 사후 교체하지 않는다. 시각 분석을 별도 독립 파일럿으로 배정하지 않는다.",
+    "abandon_if": [
+      "기존 최대71개에서 풍부한 일반 의미 설명과 정서 관계가 사실상 같은 예측만 만들거나 비교에 필요한 변이가 부족한 경우.",
+      "기존 raw/processed 자료에서 cue·심상·후속 영상의 효과를 구별할 수 없어 단서 기반 심상에서의 관계 변화라는 해석을 지탱하지 못하는 경우.",
+      "실제 반복·ROI의 감도가 부족하여 균일한 약화와 관계별 차이를 구별할 수 없는 경우.",
+      "평균 정서 decoding 또는 imagery 전이의 존재만 남고 일반 의미 보존과 다른 중요한 관찰이 없거나 직접 선행이 같은 비교를 이미 수행한 경우."
+    ],
+    "uncertainty": [
+      "기존 관측으로 설계 가능하지만 사용자 BOLD·feature 본체·모델 실행은 미확인이다.",
+      "sub-01 작은 events의 원ID 연결·raw train 중 시험72개 포함·해당 제외정책의 최대71개는 확인되었으나 모든6명 및 실제 처리 MAT의 대응은 미확인이다.",
+      "정서/semantic 항목·척도·주석 신뢰도 및 기존 장면 관계의 판별 가능성은 미확인이다.",
+      "processed 심상 window와 cue·후속 영상 분리는 미확인이다.",
+      "P008의 imagery 가능성 제안은 직접 읽었지만 직접 정서 심상·gist 후속 선행과 U002 본문은 미확인이다.",
+      "같은 판독 난이도·차원은 같은 추상도를 보장하지 않는다. 측정한 의미 설명을 넘어 모든 의미 변인을 제거했다고 주장할 수 없다."
+    ],
+    "excluded_scope_check": "Subjective Feeling, Aesthetic Emotion/Awe/Beauty, Social Emotion/Empathy, Emotion Regulation, Emotion vs Mood, Emotion Recognition vs Experience, Interoception/Bodily States, Speech Features를 연구 축으로 도입하지 않는다. 기존 평균 정서 주석은 영상의 의미를 표시하는 데만 쓰고 해당 배제 항목은 실제 이름 확인 후 시험 결과를 보기 전에 제외한다. 심상 자료를 쓰지만 객관적 기억 정확성·오류 방향 연구나 C06-C의 재포장이 아니다.",
+    "draft_status": "원안 보존 후 실제 동료 비판·데이터 심사·저자 협의에 따른 수정본.",
+    "revision_decision": "통합",
+    "merged_into": "D02-A",
+    "independent_research_question": false,
+    "adoption_status": "통합 설계에 동의. 기존 관계의 판별 가능성·심상 window·표본/ROI 확인 전 최종 채택은 조건부.",
+    "response_log": [
+      {
+        "review_id": "R06-MC-GROUP",
+        "position": "수용",
+        "substantive_change": "D02-A 주도 MC 한 연구로 통합하고 D03-A를 시각 ROI/latent 보조 분석으로 낮췄다. 같은 추상도 주장을 삭제하고 풍부한 의미 관계와 정서 관계의 실제 판별 가능성을 채택 전 조건으로 추가했다. 상대적 약화 대안을 포함하고 평균 decoding·imagery 전이만으로 채택하지 않는다.",
+        "remaining": "기존 최대71개에서 비교 가능한 관계·감도가 실제 있는지와 직접 선행의 미해결 차이는 확인 전이다."
+      },
+      {
+        "review_id": "DATA-V4-D03-A",
+        "position": "수용",
+        "substantive_change": "원ID 조인, sub-01 raw train 마지막 두 런의 시험72개 제외, Horikawa 제외 적용시 최대71개, cue/imagery/후속영상과 MAT window 미확인을 반영했다. 시각 ROI 마스크·coverage를 확인하고 whole-brain 결과로 대신하지 않도록 했다.",
+        "remaining": "모든6명의 처리 행·반복·ROI·심상 window 및 실제 정서/semantic 항목·척도·값 확인이 남는다. 새 측정은 필수가 아니다."
+      }
+    ],
+    "author_dialogue": [
+      {
+        "with": "/root/affective_reframe",
+        "status": "원저자 양방향 실제 메시지로 통합 동의 완료. 대표 저자가 완전 카드와 합의 기록 저장을 통보함.",
+        "agreement": "D03-A 별도 RQ 제외, D02-A 대표 통합에서 시각 보조 분석 역할, 상대적 약화·window·원ID 조건 유지",
+        "integration_record": "agents/02_affective_neuroscience/revision_v4_integration_agreement.json"
+      },
+      {
+        "with": "/root/frontier_contribution",
+        "status": "R06-MC-GROUP에 대한 핵심 수정·통합 수용을 실제 send_message로 전달 완료",
+        "response": "동일 연구 통합, 시각 보조 분석, 같은 추상도 주장 철회, 기존 관계의 판별 가능성 조건을 반영했다."
+      }
+    ],
+    "source_original_sha256": {
+      "agents/03_vision_decoding/revision_v4_candidates.json": "9169d50e95c1d18349b0643aefd8ec9426641d2a74d969d79299b46bdce8a68f",
+      "agents/03_vision_decoding/revision_v4_perception_candidate.json": "e2dc116ed55fc5b23fc2f1dc77e06162c7e205b6fa68982ee7b0ad643fc331f0"
+    },
+    "review_sources_read": [
+      "agents/02_affective_neuroscience/revision_v4_peer_review.json: R02-D03-B",
+      "agents/06_frontier_ai/revision_v4_peer_review.json: R06-MC-GROUP",
+      "agents/01_dataset/revision_v4_data_review.json: DATA-V4-D03-A 및 DATA-V4-D03-B",
+      "agents/01_dataset/revision_v4_data_common.md",
+      "revision_v4/REFERENCES.json"
+    ]
+  },
+  {
+    "candidate_id": "D03-B",
+    "question": "시각 디코더를 거친 정서 평가가 원 뇌 반응의 비교를 바꾸는가? — 독립 연구는 보류",
+    "why_needed": "원안은 시각 특징으로 옮기는 과정에서 정서 관련 정보가 약해질 수 있다는 측정 문제를 제시했다. 그러나 직접 정서 판독이 가능한 현재 자료에서 연구자가 왜 그 우회 평가를 반드시 써야 하는지, 그 결과가 바꿀 중요한 정서신경과학 판단 한 가지를 충분히 특정하지 못했다. ROI 순위의 역전·복구도 알려진 대리 측정 실패의 사례일 수 있다는 비판을 수용한다. 따라서 기존 자료로 계산할 수 있다는 사실과 독립 연구의 필요성을 구별하고, 현재 주력 후보로 채택하지 않는다.",
+    "primary_data": "Horikawa(ds002425)의 5명 영상 지각 fMRI, 기존 영상별 인간 정서 평정(category/dimension), 기존 semantic·vision 특징을 사용한다. 같은 기존 영상의 시각 표현은 공식 제공 특징 또는 원 ID로 연결되는 MC TimeSformer 특징으로 정한다. 핵심 검정에 MC 심상이나 새 사람 측정은 필요하지 않다. 평정 항목명·척도와 ROI별 실제 배열은 실행 전 보유본에서 확인한다.",
+    "secondary_data": "MC의 testPerception 반복은 선택적으로 동일 분석의 반복 신뢰도를 확인하는 확장 자료이며 핵심 결론의 필수조건이 아니다. 원 영상 ID로 Horikawa의 기존 인간 평정과 연결하고 raw trainPerception의 시험 영상 중복을 제외한다. NSD는 시각 decoder의 구조·반복 잡음 대조를 확인할 수 있는 선택 자료이며 인간 정서 정답을 가정하지 않는다. Emo-FilM·Spacetop·MC testImagery는 사용하지 않는다.",
+    "data_binding": [
+      {
+        "dataset": "Horikawa / ds002425",
+        "existing_observation": "같은 원 영상 ID 집합을 본 5명의 지각 fMRI, 공식 분석의 영상별 기존 정서 category 34·dimension 14, semantic 73·vision 1,000 특징. 각 참가자의 같은 ID에 대한 독립 반복은 확인되지 않는다.",
+        "source_path": [
+          "agents/01_dataset/evidence/horikawa_python_README.md: Dataset",
+          "agents/01_dataset/evidence/horikawa_Tutorials.txt: 220행",
+          "agents/01_dataset/horikawa/verified_spec.md",
+          "agents/01_dataset/priority_recheck.md"
+        ],
+        "use_in_test": "같은 보류 영상과 같은 ROI 반응에서 원 뇌→기존 정서 평정, 뇌→시각 특징→기존 정서 평정, 시각 변환에 전달되지 않은 성분→기존 정서 평정을 비교한다. 인간 주석은 독립적으로 이미 수집된 영상별 목표값이며 decoder 출력으로 만들지 않는다.",
+        "still_to_verify": "실제 정서·semantic 항목과 척도·행 순서, BOLD·ROI 배열, 기존 15개 제외의 의미와 내용 중복. 원본 영상 ID별 평정 연결과 비교에 적합한 두 ROI 묶음을 결과를 보기 전에 고정한다."
+      },
+      {
+        "dataset": "기존 시각 자극·영상 특징 / Horikawa 및 MC 공통 원 영상 ID",
+        "existing_observation": "Horikawa 공식 영상 특징과 MC가 공개한 TimeSformer 시각 특징. Agent01은 Horikawa events의 모든 2,196 원 ID가 MC 사람 캡션 ID와 연결됨을 확인했다. 이는 시각 feature 배열의 실제 행 순서를 확인했다는 뜻은 아니다.",
+        "source_path": [
+          "datasets/mind_captioning/evidence/data_README.md: feature",
+          "datasets/mind_captioning/evidence/official_README.md",
+          "agents/01_dataset/revision_v4_data_bridge.md"
+        ],
+        "use_in_test": "정서 라벨로 미세조정하지 않은 하나의 고정 시각 표현을 복원 목표로 삼는다. 실제 영상의 같은 표현에서 정서와 비정서 의미를 얼마나 읽을 수 있는지 먼저 측정하여, 원 시각 표현의 한계와 뇌→표현 변환의 한계를 분리한다.",
+        "still_to_verify": "실제 feature 모델·레이어·차원과 영상 ID. MC 특징을 쓰면 Horikawa 원분석 제외와 MC 제공 ID의 교집합을 적용한다. 새로 계산할 경우에도 기존 영상만 입력으로 쓰며 편집본의 BOLD를 만들지 않는다."
+      },
+      {
+        "dataset": "MC testPerception / 선택적 반복 확인",
+        "existing_observation": "공식 문서의 6명, testPerception 72영상×5반복. Agent01의 실제 sub-01 events 검산은 72영상 각각5반복과, raw trainPerception 마지막 두 런에 시험72영상이 들어 있다는 사실을 확인했다.",
+        "source_path": [
+          "datasets/mind_captioning/evidence/bids_README",
+          "datasets/mind_captioning/evidence/data_README.md",
+          "agents/01_dataset/revision_v4_data_bridge.md"
+        ],
+        "use_in_test": "독립 확장에서 시각 변환 전후의 정서 정보 차이가 반복 측정에서도 재현되는지 평가한다. 핵심 Horikawa 결과가 없어도 이 자료 이름을 붙여 연구를 구제하지 않는다.",
+        "still_to_verify": "모든 참가자의 처리 행·ID·반복·QC. 학습은 원 ID로 시험 영상을 제외하며 sub-01에서는 마지막 두 런을 빼면58런·2,108개가 된다. Horikawa 원분석 제외를 그대로 적용하면 시험72개 중 ID1이 빠져71개가 남는다. 같은 ID라도 영상 편집·제시 길이 동일성은 별도 확인한다."
+      }
+    ],
+    "decisive_comparison": "보존한 방법 점검은 실제 기존 ROI와 실제 시각 특징으로 정해진 선형 decoder의 입력에서 출력에 전달되지 않는 성분이 있는지 확인하는 것이다. 있을 때만 원 뇌·전달 성분·누락 성분의 기존 정서 평정 판독을 비교한다. 이것은 생성된 장면이나 영상의 정서적 정확도를 검정하는 설계가 아니다. 누락 성분이 없으면 효과를 만들기 위해 입력 차원을 늘리거나 출력 차원을 줄이지 않는다. 이 비교가 독립 연구가 되려면 앞으로 구체적인 연구에서 해당 시각 표현을 써야 할 이유와 그 평가가 바꿀 신경 판단이 먼저 정해져야 한다.",
+    "competing_accounts": [
+      {
+        "account": "검사한 판독 조건에서의 영역 차이",
+        "distinguishing_result": "시각 특징을 거친 판독과 원 뇌 반응의 직접 판독에서 ROI 순서가 유지되고 누락 성분이 추가 예측을 주지 않는다. 이는 검사한 판독 조건의 결과이며 뇌에 정서 정보가 없거나 실제 정보량 순위가 확정됐다는 뜻이 아니다."
+      },
+      {
+        "account": "복원 과정의 누락: 장면 구별에 맞춘 변환이 정서 평정과 관련된 신경 성분을 전달하지 않아 영역을 과소평가한다.",
+        "distinguishing_result": "실제 영상의 목표 시각 특징에서는 정서 평정을 읽을 수 있고 원 ROI 반응에서도 읽을 수 있지만, 복원된 특징에서는 특정 정서 차이가 사라지거나 순서가 뒤집힌다. 출력에 전달되지 않는 성분의 독립적인 정서 예측이 그 오류와 ROI 순위 변화를 설명하고, 이 성분을 함께 읽으면 보류 영상에서 잘못된 순서가 복구된다."
+      },
+      {
+        "account": "원 시각 표현의 한계: decoder의 문제가 아니라 목표로 선택한 시각 표현 자체가 필요한 정서적 차이를 충분히 담지 않는다.",
+        "distinguishing_result": "실제 영상에서 추출한 완전한 목표 특징으로도 같은 정서 차이를 읽지 못한다. 이 경우 뇌→특징 변환에서 정보가 사라졌다고 국소화할 수 없으며, 그 특징 공간을 이용해 뇌의 정서 정보가 없다고 판단할 수 없다는 한계까지만 남는다."
+      },
+      {
+        "account": "일반적인 용량·잡음·판독 난이도 차이: 남은 뇌 차원 수가 많거나 직접 정서 학습을 한 효과 때문에 성능이 달라진다.",
+        "distinguishing_result": "같은 유효 차원과 학습 자유도를 가진 비정서 의미 목표·무작위 부분공간에서도 같은 크기의 복구가 나타나거나, 출력에 전달된 성분의 좌표를 잘 조건화하자 정서 예측이 회복된다. 이 경우 정서 정보가 선택적으로 누락됐다는 설명을 지지하지 않는다."
+      }
+    ],
+    "decisive_result": "현 원안의 순위 역전·복구만으로는 독립 기여를 인정하지 않는다. 향후 재검토에는 실제로 필요성이 확인된 한 평가 절차에서, 기존 시각 특징을 거친 판독이 연구자가 내릴 구체적 정서 관련 판단을 잘못 이끌고 원 신경 관측에서 그 차이를 검증할 수 있다는 조건이 추가로 필요하다. 현재 이 사용 상황과 중요한 판단이 충분히 특정되지 않았으므로 결정적 결과를 얻었다고 가정하거나 파일럿 우선순위를 부여하지 않는다.",
+    "conclusion_if_supported": "보존한 계산 비교가 성립한다면, 검사한 시각 특징 변환을 거친 판독 결과가 원 뇌 반응의 지정된 판독 결과와 다르며 일부 입력 성분을 전달하지 않았다고 말할 수 있다. 이는 특정 모델·목표·평가 조건의 접근 가능한 정보에 관한 결론이다. 뇌 영역의 실제 정서 정보량이나 인과적 중요도 순위를 복구했다고 말할 수 없고, 이 일반적 결론만으로는 독립 방법론 연구의 필요성이 충족되지 않는다.",
+    "conclusion_if_alternative": "기존 변환에 비자명한 누락 성분이 없거나 차이가 수치 조건·판독 난이도·일반적인 압축으로 설명되면 이 누락 가설을 보류한다. 정서 정보가 뇌에 없다는 결론은 내리지 않는다. 이 반대 결과 역시 현재로서는 모델 사용 점검이며 별도 큰 신경과학 발견으로 올리지 않는다.",
+    "noncontribution_result": "모델A가 모델B보다 정서를 잘 예측했다는 점수표, 차원 수를 늘려 모든 특징 예측이 좋아진 결과, 유리한 ROI나 영상 몇 개를 사후 선택한 사례, 시각 목표 특징 자체의 한계를 뇌 정보 손실로 오해한 결과. 영공간 분해와 직접 판독은 알려진 방법이며 그 적용 자체를 새 방법으로 주장하지 않는다. 실제 영역·조건 해석이 달라지지 않으면 일반적인 decoder 점검에 그치므로 독립 후보로 채택하지 않는다.",
+    "field_impact": "현재는 특정 시각 특징을 정서 평가에 재사용하는 분석에서 참고할 방법 점검이다. 왜 그 대리 평가가 필요한지와 그것이 바꿀 중요한 판단이 구체화되기 전에는 독립 정서신경과학 기여로 보고하지 않는다. D04-B와 합쳐 두 변환 단계를 점검하는 것만으로 이 부족함이 해결되지 않는다.",
+    "contribution_type": "방법론",
+    "analysis_plan": [
+      "현 단계에서는 주력 파일럿으로 배정하지 않고 원안의 계산 비교를 후속 방법 점검으로 보존한다.",
+      "재검토하려면 먼저 실제 연구에서 시각 특징을 거친 평가가 필요한 이유와 바뀔 신경 판단 하나를 명시해야 한다.",
+      "그 필요성이 확인되면 실제 기존 ROI·voxel 선택·특징 차원·변환 설정을 고정하고 decoder rank와 출력에 전달되지 않는 입력 성분의 존재를 확인한다.",
+      "비자명한 누락 성분이 없으면 차원을 조정해 효과를 만들지 않고 이 가설을 보류한다.",
+      "성분이 존재할 때만 같은 보류 영상에서 원 뇌·전달 성분·누락 성분의 기존 정서 및 비정서 의미 판독을 비교하고 가역적인 좌표 변화와 일반 압축을 대조한다.",
+      "ROI나 조건 순서의 차이는 특정 판독 조건의 상대적 결과로만 보고하며 생성 영상의 정서적 정확도나 뇌 영역의 실제 정보량 순위로 확대하지 않는다.",
+      "Horikawa의 단일 관측 범위를 유지하고 선택적인 MC testPerception 반복 확인과 NSD의 정서 정답 미확인을 구별한다."
+    ],
+    "ai_enables": "시각 표현과 선형 decoder는 실제 신경 반응을 전달·누락 성분으로 계산해 나누는 도구다. 이 계산은 새 뇌 관측이 아니며 알려진 방법이다. AI를 이용해 계산 가능하다는 사실만으로 정서신경과학에서 독립적으로 중요한 질문이 되지는 않는다.",
+    "existing_data_only": true,
+    "new_observations_needed": [],
+    "nearest_prior": [
+      {
+        "paper_id": "P008",
+        "known": "Emotion schemas are embedded in the human visual system은 영상 기반 정서 모델과 시각 피질 반응의 대응, 시각 피질에서 정서 관련 모델 출력을 읽는 경로를 이미 다룬다. 시각 decoder에 emotion head를 붙이는 발상 자체가 새롭지 않다.",
+        "proposed_difference": "시각 표현으로의 변환에서 전달되지 않는 실제 신경 성분이 인간 정서 평정 비교와 영역 순위를 바꾸는지를 검정한다. 감정 정보를 읽는 성공 자체가 아니라, 복원 경로가 정서 관련 영역의 해석을 왜곡하는 구체적인 경우가 기여다.",
+        "access_scope": "공식 PDF의 저장 텍스트 agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt의 초록·서론과 Discussion 지정 부분 직접 확인. 원 논문 전체와 추가자료의 모든 분석을 감사하지 않았다."
+      },
+      {
+        "paper_id": "P001",
+        "known": "Horikawa2020 공식 문서와 코드가 영상 지각 fMRI의 정서·시각·의미 특징 분석을 제공한다. 기존 인간 평정과 영역별 반응을 비교하는 것은 새 과제가 아니다.",
+        "proposed_difference": "같은 특징군의 encoding 성능 비교를 반복하지 않고, 고정된 시각 변환이 버린 신경 성분 때문에 정서 관련 영역의 비교가 실제로 달라지는지를 확인한다.",
+        "access_scope": "agents/01_dataset/evidence/horikawa_python_README.md, 공식 튜토리얼·설정과 데이터 감사 기록. 공식 코드 범위 E1, 논문 본문·Discussion 미확인."
+      },
+      {
+        "paper_id": "P015",
+        "known": "MindEye2 공식 README·코드는 fMRI에서 시각 표현과 생성 경로로 복원하며 NSD 검색·재구성 평가를 제공한다. NSD 정서 평정의 존재나 정서 보존 성능을 입증한 근거로 사용하지 않는다.",
+        "proposed_difference": "그 모델의 성능을 재비교하거나 가중치를 Horikawa에 그대로 이식하지 않는다. 시각 복원에 충분한 표현이 인간 정서 평정과 관련된 신경 정보도 보존하는지를 별도 검증한다.",
+        "access_scope": "agents/03_vision_decoding/sources/mindeye2_readme.txt 직접 읽음; 기존 모델카드의 공식 구현 조사 범위. 논문 본문·Discussion·weight 실행 미확인."
+      },
+      {
+        "paper_id": "P021",
+        "known": "Brain-Diffuser 공식 README는 뇌→VDVAE·CLIP vision/text 회귀와 생성 단계를 구별한다. ROI 분석에 원 결과의 정확한 재현을 막는 버그가 있다고 명시한다.",
+        "proposed_difference": "기존 ROI 생성 결과를 신경해석의 정답으로 쓰지 않고, 실제 Horikawa 반응과 기존 인간 주석에서 전달·누락 성분을 직접 비교한다. 생성기의 정서적 인상을 새 정답으로 삼지 않는다.",
+        "access_scope": "agents/03_vision_decoding/sources/brain_diffuser_readme.txt의 단계별 회귀·생성·ROI 버그 안내를 이번에 직접 읽음. 원 논문 본문과 실제 ROI 분석 실행 미확인."
+      },
+      {
+        "paper_id": "U001",
+        "known": "사용자 제공 요약에서는 시각·설명문·인간/AI 정서 특징의 영화 fMRI encoding과 특징별 기여를 비교했다.",
+        "proposed_difference": "입력 특징의 뇌 예측력이 아니라, 실제 뇌 반응을 시각 표현으로 변환하면서 누락되는 성분이 인간 정서 비교와 영역 해석을 바꾸는지를 다룬다. 경로 방향을 바꾼 것만으로 기여를 주장하지 않고 실제 해석 오류와 복구를 요구한다.",
+        "access_scope": "revision_v4/USER_PRIOR_U001.md의 사용자 요약과 revision_v4/evidence/U001_access.json의403 접근 실패 기록을 읽었다. 논문 본문·초록 직접 검증 완료가 아니다."
+      }
+    ],
+    "strongest_objection": "특정 목표로 만든 표현이 다른 목표를 덜 보존하고 원 신호에서 순위가 달라질 수 있다는 것은 일반적으로 예상 가능하다. 직접 정서 판독이 가능한데 시각 특징을 거친 평가를 왜 써야 하는지와 그 평가가 바꿀 중요한 판단이 부족하다. 실제 decoder에 영공간이 없을 수도 있고 현재 검정은 영상 생성이 아니라 특징 판독이다.",
+    "response_to_objection": "과학적 필요성에 대한 반론을 수용하여 standalone 보류로 바꾼다. 제목·비교·결론을 시각 특징을 거친 평가로 좁히고, ROI 순위 역전도 실제 뇌 정보량의 복구가 아닌 지정한 판독 조건의 결과라고 명시한다. 실제 기존 설정에 영공간이 없으면 차원을 바꾸지 않고 가설을 중단한다. D04-B와 통합 가능성을 실제 협의했으나 변환 단계 둘을 합친다는 이유로 독립 기여를 인정하지 않는다.",
+    "claim_limit": "현재 검정은 실제 뇌 반응에서 예측한 시각 특징과 그 특징을 통한 정서 평정 판독이다. 실제 생성 영상의 품질·정서적 정확도는 평가하지 않는다. 영공간은 검사한 선형 변환의 입력 성분에 관한 계산이며 뇌 안의 정서 전용 회로가 아니다. 특정 판독 조건의 ROI 순서가 달라졌다는 사실을 뇌의 실제 정보량 또는 인과적 역할 순위로 부르지 않는다. 외부 평정은 영상의 특성이며 참가자의 시행별 경험 정서가 아니다.",
+    "minimum_pilot": "독립 주력 파일럿으로 배정하지 않는다. 후속 연구에서 재사용 필요성이 생길 경우의 첫 확인은 기존 ROI·특징·voxel 선택을 그대로 둔 decoder의 실제 rank·수치적 영공간 존재다. 누락 성분이 없으면 효과를 만들기 위한 차원 변경 없이 보류한다. 있을 때도 기존 보류 영상에서 추정 가능한지 먼저 확인하며, Horikawa의 없는 반복을 만들지 않는다. 이 계산 점검이 통과해도 독립 연구 필요성이 자동 충족되지는 않는다.",
+    "abandon_if": [
+      "실제 기존 decoder에 비자명한 누락 성분이 없으면 차원을 바꾸어 효과를 만들지 않고 이 가설을 보류한다.",
+      "해당 시각 표현을 거쳐 평가해야 할 실제 연구상의 이유와 바뀔 중요한 신경 판단을 특정하지 못하면 독립 후보로 재채택하지 않는다.",
+      "일반 압축·판독 난이도·가역 좌표 변화만 남거나 평균 점수/ROI 순위가 달라질 뿐 적용 판단의 변화가 없으면 방법 점검 수준으로 남긴다.",
+      "직접 선행이 같은 방법상의 판단을 이미 해결했거나 새 정서·신경 관측을 추가해야만 의미 있는 비교가 가능해지면 현재 주력으로 구제하지 않는다."
+    ],
+    "uncertainty": [
+      "기존 관측의 종류는 설계에 맞지만 BOLD·ROI·feature 본체·실제 decoder rank·held-out 추정 가능성은 확인되지 않았다.",
+      "기존 정서·semantic 항목·척도·결측과 원ID/feature 행은 실물 확인 전이다.",
+      "일반적 측정 한계를 넘어서는 구체적인 적용 필요성과 중요한 정서신경과학 판단이 현재 충분히 특정되지 않았다.",
+      "D04-B의 표현 학습 목표 점검과 합쳐도 독립 기여가 생긴다고 볼 근거가 없다.",
+      "U001은 사용자 요약과 접근 실패 기록만 확인했고, U002는 공식 문서·코드·metadata 범위이며 두 논문의 전체 본문·Discussion은 직접 확인하지 않았다."
+    ],
+    "excluded_scope_check": "Subjective Feeling, Aesthetic Emotion/Awe/Beauty, Social Emotion/Empathy, Emotion Regulation, Emotion vs Mood, Emotion Recognition vs Experience, Interoception/Bodily States, Speech Features를 연구 축으로 도입하지 않는다. 기존 평정 항목을 읽은 뒤 명시적 제외 항목은 분석 전에 제외한다. 기억 정확성·심상·새 시선·편집 자극 BOLD를 사용하지 않는다.",
+    "draft_status": "원안 보존 후 실제 과학 비판·데이터 심사·D04-B 원저자와의 양방향 협의에 따른 최종 저자 수정본. 독립 주력 보류 및 통합 새 RQ 미계산에 동의했다.",
+    "revision_decision": "보류",
+    "independent_research_question": false,
+    "merged_into": null,
+    "adoption_status": "기존 관측으로 방법 점검 가능. 독립적인 정서신경과학 기여와 적용 판단이 충분히 특정되지 않아 주력 및 독립 파일럿에서 보류.",
+    "response_log": [
+      {
+        "review_id": "R02-D03-B",
+        "position": "수용 — 독립 후보 보류",
+        "substantive_change": "일반 대리측정 실패 이상의 필요성이 부족하다는 비판을 수용했다. 영상/장면 복원 주장을 시각 특징을 거친 판독으로 좁히고 실제 기존 decoder rank를 변경 없이 확인하는 조건을 앞에 두었다. 순위 역전을 뇌 정보량의 복구로 부르지 않으며 독립 파일럿에서 제외했다.",
+        "remaining": "그 대리 평가가 필요한 실제 연구 상황과 그 때문에 달라질 중요한 신경 판단이 아직 없다. 이를 정하지 못하면 재채택하지 않는다."
+      },
+      {
+        "review_id": "DATA-V4-D03-B",
+        "position": "수용",
+        "substantive_change": "기존 BOLD의 계산적 분해는 새 관측이 아니라는 데이터 판정을 유지하되 실제 rank·영공간·보류 영상 추정 가능성을 미확인으로 적었다. Horikawa 단일 관측과 선택적 MC반복, NSD 정서 정답 부재 가정을 구별했다.",
+        "remaining": "ROI mask/coverage, 실제 feature row·차원, 기존 평정 항목·척도와 평가 분할 확인이 남는다. 자료 적합성은 독립 기여의 승인과 다르다."
+      },
+      {
+        "review_id": "AUTHOR-D03B-D04B",
+        "position": "실제 저자 협의 후 보류·비통합에 동의",
+        "substantive_change": "D04-B와 합쳐도 우회 측정의 필요성이 생기지 않는다는 점에 양쪽 저자가 동의했다. 구체적인 고정 valence 대비가 방법 점검을 선명하게 할 수 있어도 독립 정서신경과학 질문을 대신하지 못하므로 두 B를 새 통합 RQ로 세지 않는다.",
+        "remaining": "향후 해당 표현을 사용해야 할 실질적인 연구 상황과 그 때문에 달라질 중요한 판단이 생길 때만 재검토한다."
+      }
+    ],
+    "author_dialogue": [
+      {
+        "with": "/root/foundation_continuation",
+        "status": "양방향 실제 send_message로 최종 동의 완료",
+        "proposal": "D03-B와 D04-B 모두 standalone 주력 보류; 통합 새 RQ로 세지 않고 필요한 방법 점검으로 보존.",
+        "other_author_response": "기존 valence로 고정한 신경 대비와 원캡션/원시각/정렬 표현 비교로 전달 손실을 더 구체화할 수 있지만, 직접 BOLD로 답할 판단을 왜 우회 표현으로 평가해야 하는지의 독립 필요성은 부족하므로 D04-B도 보류한다는 응답을 받았다.",
+        "our_response": "구체적 방법 점검만으로 독립 적용 필요성이 해결되지 않는다는 데 동의하고 비통합·보류 판단을 재전달했다."
+      },
+      {
+        "with": "/root/affective_reframe",
+        "status": "R02-D03-B 수용·보류·범위 축소·기존 rank 고정 조건을 실제 send_message로 응답 완료"
+      },
+      {
+        "with": "/root/frontier_contribution",
+        "status": "최종 기여 점검 담당에게 수정 경로와 보류 이유·B 상호 합의를 실제 전달 완료"
+      }
+    ],
+    "source_original_sha256": {
+      "agents/03_vision_decoding/revision_v4_candidates.json": "9169d50e95c1d18349b0643aefd8ec9426641d2a74d969d79299b46bdce8a68f",
+      "agents/03_vision_decoding/revision_v4_perception_candidate.json": "e2dc116ed55fc5b23fc2f1dc77e06162c7e205b6fa68982ee7b0ad643fc331f0"
+    },
+    "review_sources_read": [
+      "agents/02_affective_neuroscience/revision_v4_peer_review.json: R02-D03-B",
+      "agents/06_frontier_ai/revision_v4_peer_review.json: R06-MC-GROUP",
+      "agents/01_dataset/revision_v4_data_review.json: DATA-V4-D03-A 및 DATA-V4-D03-B",
+      "agents/01_dataset/revision_v4_data_common.md",
+      "revision_v4/REFERENCES.json"
+    ]
+  }
+]

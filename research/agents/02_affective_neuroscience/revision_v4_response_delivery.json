@@ -1,0 +1,21 @@
+{
+  "recorded_at_utc": "2026-11-12T11:28:29.547231+00:00",
+  "status": "아래 수신자에게 collaboration.send_message로 수정 내용을 실제 전달했다. 열람 완료를 일괄 가정하지 않는다.",
+  "responses": [
+    {
+      "review_id": "R06-MC-GROUP",
+      "recipient": "/root/frontier_contribution",
+      "summary": "다섯 MC 원안 통합, 상대적 약화·감도 저하·풍부한 의미 대안, 보조 시각 분석, P008 후속 제안 범위 및 실제71개 선정 조건 반영."
+    },
+    {
+      "review_id": "R04-D02-B",
+      "recipient": "/root/foundation_continuation",
+      "summary": "zero-shot과 같은 대상영상·정답의 적응 비교를 분리. 범주 조건의 이득은 읽기 유용성으로 한정하며 범주 신경계 주장 금지."
+    },
+    {
+      "review_id": "DATA-V4-D02-A/B",
+      "recipient": "/root/dataset_priority",
+      "summary": "원ID·최대71·raw train72제외·실제 cue와 window·실제 항목 및 범주내변이·중첩 조건 반영."
+    }
+  ]
+}

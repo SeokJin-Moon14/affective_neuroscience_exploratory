@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "stage": "v4_eight_proposals_data_and_peer_review",
-  "snapshot_id": "f6e98217f9b7fb05dbcee3ce779c4c41eaf201403c7dc7bea2d66d14546b564d",
-  "prepared_at_utc": "2026-11-12T11:27:35.795495+00:00",
-  "file_count": 1867,
-  "total_bytes": 211258316,
+  "stage": "v4_author_revisions_and_actual_integration",
+  "snapshot_id": "0724c87b653ae8b2ca4015eb456a290a8eb0c7121495a8bfb7437929b586c4ce",
+  "prepared_at_utc": "2026-11-12T11:33:50.324845+00:00",
+  "file_count": 1879,
+  "total_bytes": 211623358,
   "files": [
     {
       "path": "AGENTS.md",
@@ -4333,6 +4333,12 @@
       "stored_path": "research/agents/01_dataset/revision_v4_bridge_delivery.json"
     },
     {
+      "path": "agents/01_dataset/revision_v4_composition_feasibility.md",
+      "size": 12256,
+      "sha256": "5b4e9b2989f512ed78a15b1142c847539fa62a031c61d66a99d46bf29f48a924",
+      "stored_path": "research/agents/01_dataset/revision_v4_composition_feasibility.md"
+    },
+    {
       "path": "agents/01_dataset/revision_v4_data_bridge.md",
       "size": 7056,
       "sha256": "5ac67a6761d286a14a2ba399bea83158dcaa0fcf2692587bd2514d6d2614939b",
@@ -5149,6 +5155,12 @@
       "stored_path": "research/agents/02_affective_neuroscience/revision_v4_candidates.json"
     },
     {
+      "path": "agents/02_affective_neuroscience/revision_v4_integration_agreement.json",
+      "size": 3079,
+      "sha256": "f493c49a84e891c42eb1675fe44e6474c55cc0d14ee61ba6163115f0a310d0fb",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_integration_agreement.json"
+    },
+    {
       "path": "agents/02_affective_neuroscience/revision_v4_peer_delivery.json",
       "size": 493,
       "sha256": "2f347103cdecd8022e0a967da15569995099a9bd2c179f21bc92e154479382ec",
@@ -5167,9 +5179,15 @@
       "stored_path": "research/agents/02_affective_neuroscience/revision_v4_perception_candidate.json"
     },
     {
+      "path": "agents/02_affective_neuroscience/revision_v4_response_delivery.json",
+      "size": 1031,
+      "sha256": "351fa85052498ff830160ff1a601a1c62c8c9cb7237644768f4e3624c7d8ac32",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_response_delivery.json"
+    },
+    {
       "path": "agents/02_affective_neuroscience/revision_v4_revised.json",
-      "size": 41281,
-      "sha256": "0f6f935bbf2f22b0d5c7f1f5d5937355624af3d696adf404ef9bfadb9e06e627",
+      "size": 41458,
+      "sha256": "90e4ef86c31ea80fb82c9afc94cae64ce868beb6976fba720129e2f04f135678",
       "stored_path": "research/agents/02_affective_neuroscience/revision_v4_revised.json"
     },
     {
@@ -5381,6 +5399,12 @@
       "size": 23931,
       "sha256": "e2dc116ed55fc5b23fc2f1dc77e06162c7e205b6fa68982ee7b0ad643fc331f0",
       "stored_path": "research/agents/03_vision_decoding/revision_v4_perception_candidate.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/revision_v4_revised.json",
+      "size": 49580,
+      "sha256": "d03e7c7c1b7058afa6671ac0fab640748c5cf94989065f0c35e33f90317e8d12",
+      "stored_path": "research/agents/03_vision_decoding/revision_v4_revised.json"
     },
     {
       "path": "agents/03_vision_decoding/round02_exchange.json",
@@ -5777,6 +5801,12 @@
       "size": 20531,
       "sha256": "4a9dc8597732f036be1d0e855cc1d8f7baf8def8001352c1ec25b7062772b9fd",
       "stored_path": "research/agents/04_brain_foundation/revision_v4_perception_candidate.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v4_revised.json",
+      "size": 49440,
+      "sha256": "5768419e40412e94efadb8af418337b35a507ea87eca2df67fd96cb286f54087",
+      "stored_path": "research/agents/04_brain_foundation/revision_v4_revised.json"
     },
     {
       "path": "agents/04_brain_foundation/round02_exchange.json",
@@ -6571,6 +6601,12 @@
       "stored_path": "research/agents/05_multimodal_dynamics/revision_v4_peer_review.json"
     },
     {
+      "path": "agents/05_multimodal_dynamics/revision_v4_revised.json",
+      "size": 25489,
+      "sha256": "6c9d5f21c43c0398e788e43fe090578067ad2471e7c117ff7f69d086194f78d8",
+      "stored_path": "research/agents/05_multimodal_dynamics/revision_v4_revised.json"
+    },
+    {
       "path": "agents/05_multimodal_dynamics/round02_exchange.json",
       "size": 38445,
       "sha256": "b20c4eabf885b8548536f2a22e7dc4cb2ea2afb73869921e61f49429d8cf8aca",
@@ -6841,6 +6877,12 @@
       "stored_path": "research/agents/06_frontier_ai/revision_v4_candidates.json"
     },
     {
+      "path": "agents/06_frontier_ai/revision_v4_integration_agreement.json",
+      "size": 1135,
+      "sha256": "b3e4c85a4b037ebce730063ac4f840e5d6bd9c0319b3639f4c67d6b9ef4e4dfd",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_integration_agreement.json"
+    },
+    {
       "path": "agents/06_frontier_ai/revision_v4_peer_delivery.json",
       "size": 2224,
       "sha256": "c1299ae1f3a9920d3128422424c67a73805e24970123b0ea6068d1d0d8182fda",
@@ -6851,6 +6893,12 @@
       "size": 8649,
       "sha256": "c90422cbbf165d82595b8c303509a9f3c6cbd4d02e406ba938a55fbc7f6554d7",
       "stored_path": "research/agents/06_frontier_ai/revision_v4_peer_review.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_perception_contribution_notes.json",
+      "size": 6686,
+      "sha256": "32180b26467fa99da178b48ce18c59e9c693141c01ceb94021302e91fc1f8942",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_perception_contribution_notes.json"
     },
     {
       "path": "agents/06_frontier_ai/revision_v4_revised.json",
@@ -10547,6 +10595,12 @@
       "stored_path": "research/pilots/plans.json"
     },
     {
+      "path": "pilots/v4/metadata_check.json",
+      "size": 17497,
+      "sha256": "e98e2acf2cc3791d572bf4db296414e90ae9b49f0f393907eb39d439e1e8286e",
+      "stored_path": "research/pilots/v4/metadata_check.json"
+    },
+    {
       "path": "proposals/AUTHORING_PROTOCOL.md",
       "size": 300,
       "sha256": "d47cfabe6aaf9912fe5befdac010132562d54302456b0ba12478779438b61bfa",
@@ -10955,6 +11009,12 @@
       "stored_path": "research/revision_v4/REFERENCES.json"
     },
     {
+      "path": "revision_v4/REVISED_FIRST_WAVE_SOURCES.json",
+      "size": 1056,
+      "sha256": "0cac3ecf5e6ab273373e225e75fcaaeb26dad32f2bf385ba43de07a155ac6186",
+      "stored_path": "research/revision_v4/REVISED_FIRST_WAVE_SOURCES.json"
+    },
+    {
       "path": "revision_v4/USER_PRIOR_U001.md",
       "size": 1944,
       "sha256": "e32d9787d4fefcacab640d00aec2b9315e4095c45e6aad6fc09054783525e8e8",
@@ -11009,9 +11069,15 @@
       "stored_path": "research/revision_v4/perception_candidates.json"
     },
     {
+      "path": "revision_v4/revised_first_wave.json",
+      "size": 193119,
+      "sha256": "ff13c4ed495b85b1c1cbcb3b38f4e5a31f5fc7f3fc234b8bb7b7bc3639f38f0e",
+      "stored_path": "research/revision_v4/revised_first_wave.json"
+    },
+    {
       "path": "revision_v4/version.json",
-      "size": 881,
-      "sha256": "690260995037fbcc6b9647bd477fd616c664e0e5cf2d94cf950ddd0864501047",
+      "size": 984,
+      "sha256": "e01d0158e1c0e6f592f678af987d4693a3b74e14f68e7af76d870f933c4e9355",
       "stored_path": "research/revision_v4/version.json"
     },
     {
@@ -11055,6 +11121,12 @@
       "size": 18598,
       "sha256": "bc2ec3c98851caabd8f740ca9ba18575843766b19c92e9aace2149e29132a0b2",
       "stored_path": "research/scripts/build_research_landscape.py"
+    },
+    {
+      "path": "scripts/check_v4_metadata.py",
+      "size": 4394,
+      "sha256": "9b57d5710e53cbf637ff51f0768b84cbda5d520a264a378544c8e4122b624610",
+      "stored_path": "research/scripts/check_v4_metadata.py"
     },
     {
       "path": "scripts/checkpoint_backup.py",

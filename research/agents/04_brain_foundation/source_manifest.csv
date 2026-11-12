@@ -1,0 +1,71 @@
+﻿source_id,url,status,local_file,sha256,verified_on,origin_agent
+swift,https://raw.githubusercontent.com/Transconnectome/SwiFT/main/README.md,200,sources/swift.txt,6858ff86a2d3574af9ae00a925bb28cf968becb108ca19b5cf548786fc89395d,2026-11-12,04_brain_foundation
+tribe,https://raw.githubusercontent.com/facebookresearch/tribe/main/README.md,404,,,2026-11-12,04_brain_foundation
+brainmamba,https://github.com/search?q=BrainMamba&type=repositories,200,sources/brainmamba.txt,04b1d6dcaae058eb8aff97ae440a773b2014c7d22d3b320c7364d8c51622440f,2026-11-12,04_brain_foundation
+cortexmae,https://raw.githubusercontent.com/MedARC-AI/CortexMAE/main/README.md,200,sources/cortexmae.md,dedc0a8fa9bb49696cd8437e84fb7ff2fc7301dbf491892075b623ee2d06ad98,2026-11-12,04_brain_foundation
+tribev2,https://raw.githubusercontent.com/facebookresearch/tribev2/main/README.md,200,sources/tribev2.md,30303c0718811fc36c51cf446e6586d54907077c863c435980c8be4a9a40a28f,2026-11-12,04_brain_foundation
+brainmamba_whu,https://raw.githubusercontent.com/whuhxb/BrainMamba/main/README.md,200,sources/brainmamba_whu.md,882baa72b58a47377e6d84bb6ec03e3344c7f4e6c709d29e6df3f039168aaf77,2026-11-12,04_brain_foundation
+brainmamba_other,https://raw.githubusercontent.com/ucalyptus/brainmamba/main/README.md,200,sources/brainmamba_other.md,05e1263d220a72849775c5c7243a506f7d7d572b96791f923e2ad8b0adea55a9,2026-11-12,04_brain_foundation
+brainjepa,https://raw.githubusercontent.com/Eric-LRL/Brain-JEPA/main/README.md,200,sources/brainjepa.md,b301d585d5cb70347cdefdf1ff1db8b992f5a0fe3813b9c969b3f2c0b84b27db,2026-11-12,04_brain_foundation
+brainharmony,https://raw.githubusercontent.com/hzlab/Brain-Harmony/main/README.md,200,sources/brainharmony.md,7ceb9c77350dfe22896e6df45c157d53b13bd99a7327e48ad52051de07b2cb40,2026-11-12,04_brain_foundation
+brainlm,https://raw.githubusercontent.com/vandijklab/BrainLM/main/README.md,200,sources/brainlm.md,33a77fa1863bf5e24be7aed276588ad9419ee652a8e9b35b07ec4ed0bd1582d9,2026-11-12,04_brain_foundation
+tff,https://raw.githubusercontent.com/GonyRosenman/TFF/main/README.md,HTTP Error 404: Not Found,sources/tff.txt,f39f456b35640deba6fbec7dc8b97f4acda186df79d0c21e45676171f99c9953,2026-11-12,04_brain_foundation
+Brain-Mamba,https://github.com/search?q=Brain-Mamba&type=repositories,HTTP Error 429: Too Many Requests,,,2026-11-12,04_brain_foundation
+BrainLM,https://github.com/search?q=BrainLM&type=repositories,HTTP Error 429: Too Many Requests,,,2026-11-12,04_brain_foundation
+TFF fMRI,https://github.com/search?q=TFF%20fMRI&type=repositories,HTTP Error 429: Too Many Requests,,,2026-11-12,04_brain_foundation
+BrainMamba state space,https://github.com/search?q=BrainMamba%20state%20space&type=repositories,HTTP Error 429: Too Many Requests,,,2026-11-12,04_brain_foundation
+tff_master,https://raw.githubusercontent.com/GonyRosenman/TFF/master/README.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+brain_mamba,https://raw.githubusercontent.com/alibehrouz/BrainMamba/main/README.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+brain_mamba_dash,https://raw.githubusercontent.com/alibehrouz/Brain-Mamba/main/README.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+cortex_config,https://raw.githubusercontent.com/MedARC-AI/CortexMAE/main/src/cortex_mae/config/default_pretrain.yaml,200,sources/cortex_config.txt,73ac581bda71c29790f87668c1b03612c1684271c25dce9e527d840f59162b8e,2026-11-12,04_brain_foundation
+tribe_config,https://raw.githubusercontent.com/facebookresearch/tribev2/main/tribev2/grids/defaults.py,200,sources/tribe_config.txt,01fba566f15d164e8fee2e079ad2f0335e1eddd0c23398a527c3960bc9a8fb28,2026-11-12,04_brain_foundation
+tribe_model,https://raw.githubusercontent.com/facebookresearch/tribev2/main/tribev2/model.py,200,sources/tribe_model.txt,8127bd2d47370c45fca26c2db60d89a9f9af15bdac575b259bea0bca4a31b909,2026-11-12,04_brain_foundation
+tribe_demo,https://raw.githubusercontent.com/facebookresearch/tribev2/main/tribev2/demo_utils.py,200,sources/tribe_demo.txt,37d09f93dfc50a398f3325c290c6c092ba539579d16fd1a54571690afa7c9178,2026-11-12,04_brain_foundation
+jepa_config,https://raw.githubusercontent.com/Eric-LRL/Brain-JEPA/main/configs/ukb_vitb_ep300.yaml,200,sources/jepa_config.txt,c77f3f54771f236020ef84b585ea736c64a463fdcbbd87d0852883c16fd8535c,2026-11-12,04_brain_foundation
+swift_tail,https://raw.githubusercontent.com/Transconnectome/SwiFT/main/LICENSE,200,sources/swift_tail.txt,c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4,2026-11-12,04_brain_foundation
+brainlm_train,https://raw.githubusercontent.com/vandijklab/BrainLM/main/scripts/train_brainlm_mae.sh,200,sources/brainlm_train.txt,ceeff8a988ce37cf20021854f08a9090cd15ed6dbf7202c84d7c5018c68ac74c,2026-11-12,04_brain_foundation
+brain_mamba_search,https://github.com/search?q=Brain-Mamba&type=repositories,200,sources/brain_mamba_search.html,0bc05b768e03aa2ad1ba76116ec60374f572434eb4dd6593eda17b3d5bb2f897,2026-11-12,04_brain_foundation
+brainlm_search,https://github.com/search?q=BrainLM&type=repositories,200,sources/brainlm_search.html,9242c96af99a80ca55c658f7032b84e71dd9a48da5f94428b1f80104acfbae46,2026-11-12,04_brain_foundation
+tff_repo,https://github.com/GonyRosenman/TFF,200,sources/tff_repo.html,220e67eac2a4b67698241c3197615e1005fd25e4a12f77a34d9248bc2c0a4c90,2026-11-12,04_brain_foundation
+brainlm_repo,https://github.com/vandijklab/BrainLM,200,sources/brainlm_repo.html,9e9d8d81b0b3d28b6287ae0607ca323027b80e7a7d95bc63cff147d40a3556b7,2026-11-12,04_brain_foundation
+cortex_repo,https://github.com/MedARC-AI/CortexMAE,200,sources/cortex_repo.html,9975bae6db782c7640b4a4764eda6a6f92cfdc2d946b2af2da1925941608aa14,2026-11-12,04_brain_foundation
+swift_repo,https://github.com/Transconnectome/SwiFT,200,sources/swift_repo.html,fa5a92e44dd95ca0f6c3e048eb28352fe41cfb4bc299e49b8adab6dfc8348cb7,2026-11-12,04_brain_foundation
+tff,https://raw.githubusercontent.com/GonyRosenman/TFF/main/readme.md,200,sources/tff.txt,f39f456b35640deba6fbec7dc8b97f4acda186df79d0c21e45676171f99c9953,2026-11-12,04_brain_foundation
+brainlm_old,https://raw.githubusercontent.com/wyj1996/BrainLM/main/README.md,200,sources/brainlm_old.txt,e8f336094cd0d51b393304874646726c5fbdd535397ff1bed35e41704892fdd3,2026-11-12,04_brain_foundation
+pmlr248,https://github.com/mlresearch/v248/tree/gh-pages/_posts,200,sources/pmlr248.txt,ebbaea2f622da9a66d7c1a3f22c237ca9c4add708005f61194a3c1f0ddad9ee1,2026-11-12,04_brain_foundation
+brainmamba_papers,https://github.com/search?q=%22BrainMamba%22&type=repositories,200,sources/brainmamba_papers.txt,6f02fb45a2c297fc9374418fff26fe5524e8c430703bd62afa87cd5adc6d20ff,2026-11-12,04_brain_foundation
+swift_more,https://raw.githubusercontent.com/Transconnectome/SwiFT/main/pretrained_models/README.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+brainlm_license,https://raw.githubusercontent.com/vandijklab/BrainLM/main/LICENSE,200,sources/brainlm_license.txt,f7f28b8c7a1af76b9874ca6d040e8b1eb6768fd1043106c9d315090ea96754e7,2026-11-12,04_brain_foundation
+jepa_license,https://raw.githubusercontent.com/Eric-LRL/Brain-JEPA/main/LICENSE,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+harmony_config,https://raw.githubusercontent.com/hzlab/Brain-Harmony/main/configs/harmonizer/stage0_embed/conf_embed_pretrain.py,200,sources/harmony_config.txt,d241d2d02bdb8178b0f236174ba1c57854fa80b46359768ba9e1885b4dba9c0b,2026-11-12,04_brain_foundation
+brainmamba_pmlr,https://raw.githubusercontent.com/mlresearch/v248/gh-pages/_posts/2024-07-24-behrouz24a.md,200,sources/brainmamba_pmlr.txt,e5af15333ae1811e72f5982dc1ecee3c3ff100ca00c7f728c93cf6cef6e1856c,2026-11-12,04_brain_foundation
+pmlr_brainlm_index,https://github.com/mlresearch/v248/search?q=BrainLM&type=code,200,sources/pmlr_brainlm_index.txt,f23380bc602221976773dda47399e4f029fbec1a11b5c4a5e1e48bca6dcf7c47,2026-11-12,04_brain_foundation
+swift_pretrained_tree,https://github.com/Transconnectome/SwiFT/tree/main/pretrained_models,200,sources/swift_pretrained_tree.txt,b9bb9c6bedfc51992427d547a0e2cd17722dba41fd3b96519ac31d246c40d4e1,2026-11-12,04_brain_foundation
+brainlm_about,https://raw.githubusercontent.com/vandijklab/vandijklab.github.io/master/_publications/2023-brainlm.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+brainmamba_arxiv,https://arxiv.org/abs/2403.05700,<urlopen error Tunnel connection failed: 403 Forbidden>,,,2026-11-12,04_brain_foundation
+cortex_arxiv,https://arxiv.org/abs/2510.13768,<urlopen error Tunnel connection failed: 403 Forbidden>,,,2026-11-12,04_brain_foundation
+brainlm_config,https://raw.githubusercontent.com/vandijklab/BrainLM/main/brainlm_mae/configuration_brainlm.py,200,sources/brainlm_config.txt,41a0f6a8a5e42a45d7f8e9daed64d207f9b19afea0d33686bcff1260ccb320e8,2026-11-12,04_brain_foundation
+tff_model,https://raw.githubusercontent.com/GonyRosenman/TFF/main/model.py,200,sources/tff_model.txt,87f8b9ff582d2aa6a718126d08210825663e5706beb49d5efcc7319c07bcf02f,2026-11-12,04_brain_foundation
+brainmamba_full,https://raw.githubusercontent.com/mlresearch/v248/main/assets/behrouz24a/behrouz24a.pdf,200,sources/brainmamba_full.pdf,38f4a8338181c5883606148c7a78ae7127a73aac0c1b84999d564a1a5e2aff1c,2026-11-12,04_brain_foundation
+brainmamba_official,https://raw.githubusercontent.com/GraphMamba/BrainMamba/main/README.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+brainlm_pmlr,https://github.com/mlresearch/v248/tree/gh-pages/_posts,200,sources/brainlm_pmlr.txt,751a3f12bdbb557e0c5d2f4a9dea75e75d1d202f215f68237997a0fff3fefb5f,2026-11-12,04_brain_foundation
+brainlm_pub,https://raw.githubusercontent.com/vandijklab/vandijklab.github.io/main/_publications/brainlm.md,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+brainmarks,https://raw.githubusercontent.com/MedARC-AI/Brainmarks/main/README.md,200,sources/brainmarks.txt,1aa549943d5fe5803fb5083853051a6f615b91355d5bb6cc64078d0de0bbed6d,2026-11-12,04_brain_foundation
+mae,https://raw.githubusercontent.com/facebookresearch/mae/main/README.md,200,sources/mae.txt,edda3ecd28d6cb32559e638c56c7d28d59d6e2f9ada2dd084292c8706764bea6,2026-11-12,04_brain_foundation
+swift_cite,https://raw.githubusercontent.com/Transconnectome/SwiFT/main/README.md,200,sources/swift_cite.txt,6858ff86a2d3574af9ae00a925bb28cf968becb108ca19b5cf548786fc89395d,2026-11-12,04_brain_foundation
+ijepa,https://raw.githubusercontent.com/facebookresearch/ijepa/main/README.md,200,sources/ijepa.txt,c33e2cd78dc1d1429a947339157b1009334bc4b8d57bbc8e92f5018fa2ca8293,2026-11-12,04_brain_foundation
+mamba,https://raw.githubusercontent.com/state-spaces/mamba/main/README.md,200,sources/mamba.txt,46f3e7412d724fb9bedba32130b73df53625483ece8df92d29146e690434acb9,2026-11-12,04_brain_foundation
+brainlm_citation,https://raw.githubusercontent.com/MedARC-AI/Brainmarks/main/src/brainmarks/models/brainlm_wrapper.py,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+jepa_repo,https://github.com/Eric-LRL/Brain-JEPA,200,sources/jepa_repo.txt,af1058df33b5d52aab6efcaf6a70bbc7e743a1aed152b2892808ca3a05de7184,2026-11-12,04_brain_foundation
+brainmamba_repository,https://github.com/GraphMamba/BrainMamba,HTTP Error 404: Not Found,,,2026-11-12,04_brain_foundation
+tribe_repo,https://github.com/facebookresearch/tribev2,200,sources/tribe_repo.txt,ba092e327d8c713a83f691ec59652ca99102640ea40f079f07d1e1cf0c18f629,2026-11-12,04_brain_foundation
+harmony_repo,https://github.com/hzlab/Brain-Harmony,200,sources/harmony_repo.txt,e24d3ec88009268c69347ee4bcefe8ae3aacaf5bdde067de6913e653e6327ed0,2026-11-12,04_brain_foundation
+cortex_init,https://raw.githubusercontent.com/MedARC-AI/CortexMAE/main/src/cortex_mae/__init__.py,200,sources/cortex_init.txt,09ce028ddf6cc9fb248d9fd6e013bc4fb474449fc0ce6d70f0028d36d21cb8c0,2026-11-12,04_brain_foundation
+cortex_inference,https://raw.githubusercontent.com/MedARC-AI/CortexMAE/main/src/cortex_mae/inference.py,200,sources/cortex_inference.txt,ad35a555929ca22a33121109cec5b83879337de3ddde71e7333373c3c06e20c9,2026-11-12,04_brain_foundation
+cortex_models_license,https://raw.githubusercontent.com/MedARC-AI/CortexMAE/main/LICENSE.models,200,sources/cortex_models_license.txt,3711f963c05d0be80d53e5923308a6dee31b203da23435c9cfb7c7b6e4dd5e19,2026-11-12,04_brain_foundation
+tribe_license,https://raw.githubusercontent.com/facebookresearch/tribev2/main/LICENSE,200,sources/tribe_license.txt,0afca3145596cd005f6f6ed977313ea31928094fc5b4aaabc21bb765ea369d09,2026-11-12,04_brain_foundation
+ijepa_license,https://raw.githubusercontent.com/facebookresearch/ijepa/main/LICENSE,200,sources/ijepa_license.txt,336255dc30193e8e15d689d9481bb05673d89055718f3a96923a7ffb99adbbaf,2026-11-12,04_brain_foundation
+mamba_license,https://raw.githubusercontent.com/state-spaces/mamba/main/LICENSE,200,sources/mamba_license.txt,760939b000194d04548ede6a857bbe735d1695d8422ec85955c8e2bd7f4b95c5,2026-11-12,04_brain_foundation
+hf_access,https://huggingface.co/medarc/CortexMAE,<urlopen error Tunnel connection failed: 403 Forbidden>,,,2026-11-12,04_brain_foundation
+cortex_code_license,https://raw.githubusercontent.com/MedARC-AI/CortexMAE/main/LICENSE,200,sources/cortex_code_license.txt,c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4,2026-11-12,04_brain_foundation
+brainlm_tutorial,https://raw.githubusercontent.com/vandijklab/BrainLM/main/brainlm_tutorial.ipynb,200,sources/brainlm_tutorial.txt,a3646eca72780dfd012a4fd38df483f62ccba53acaa375898aa72ee933a06ab9,2026-11-12,04_brain_foundation

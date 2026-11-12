@@ -1,0 +1,13 @@
+{
+  "verified_on": "2026-11-12",
+  "paper_rows": 10,
+  "columns": 32,
+  "unique_paper_ids": 10,
+  "full_text_papers": 1,
+  "discussion_papers": 1,
+  "author_future_directions": 5,
+  "subaxes": 3,
+  "model_execution_performed": false,
+  "checkpoint_download_performed": false,
+  "csv_validation": "통과"
+}

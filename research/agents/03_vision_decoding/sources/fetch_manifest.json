@@ -1,0 +1,309 @@
+[
+  {
+    "key": "mindeye2_readme",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/MindEyeV2/main/README.md",
+    "status": 200,
+    "bytes": 11653,
+    "sha256": "ffa102b6762375691d8c1dd10d2df53f5f1f188b964d87e7e463cb64fabab965",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "mindeye_readme",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/fMRI-reconstruction-NSD/main/README.md",
+    "status": 200,
+    "bytes": 15714,
+    "sha256": "968d62dc28170e32e57ab2449d3476ca831953da168307e39b511fd029036f4b",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "brain_it_search",
+    "url": "https://github.com/search?q=Brain-IT&type=repositories",
+    "status": 200,
+    "bytes": 221264,
+    "sha256": "8631b0ab32e24f7b687c3df5f7f759ebba8449972bc9654f06f0c9d0350d52a6",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "takagi_readme",
+    "url": "https://raw.githubusercontent.com/yu-takagi/StableDiffusionReconstruction/main/README.md",
+    "status": 200,
+    "bytes": 6650,
+    "sha256": "efd895dd18cad901870e0737992ebec701b984040415cd8a0733e52813042031",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "brain_diffuser_readme",
+    "url": "https://raw.githubusercontent.com/ozcelikfu/brain-diffuser/main/README.md",
+    "status": 200,
+    "bytes": 4724,
+    "sha256": "7fe2eb3a915ff6602a9aac76be4143d8e3643f0d6e38910403b719a9c53162cb",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "mindvis_readme",
+    "url": "https://raw.githubusercontent.com/zjc062/mind-vis/main/README.md",
+    "status": 200,
+    "bytes": 10027,
+    "sha256": "859d59980441e4278fc8759831a5c89494ca41511ac6d9a90542d68c758acec7",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "brainclip_readme",
+    "url": "https://raw.githubusercontent.com/RomGai/BrainCLIP/main/README.md",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "mindbridge_readme",
+    "url": "https://raw.githubusercontent.com/littlepure2333/MindBridge/main/README.md",
+    "status": 200,
+    "bytes": 7174,
+    "sha256": "2f08307bb7e4e1d52c2030f87bacf625beeba8a2ea6279961aae9053430c2166",
+    "time_utc": "2026-11-12T03:31:00Z"
+  },
+  {
+    "key": "brainit_exact",
+    "url": "https://github.com/search?q=%22Brain-IT%22&type=repositories",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "key": "brainit_fmri",
+    "url": "https://github.com/search?q=%22Brain-IT%22+fMRI&type=repositories",
+    "status": 200,
+    "bytes": 166969,
+    "sha256": "a3b8efcca083eb9241a4f42553c698dc83bab6d4060f61ab0efae5b4b37550eb"
+  },
+  {
+    "key": "brainit_name",
+    "url": "https://github.com/search?q=Brain-IT+in%3Aname&type=repositories",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "key": "brainclip_search",
+    "url": "https://github.com/search?q=BrainCLIP&type=repositories",
+    "status": 200,
+    "bytes": 199823,
+    "sha256": "6494608b827eaffee6cd35a1842ee0976d996794b7484596327bd0c268ff1e7a"
+  },
+  {
+    "key": "mind_video_search",
+    "url": "https://github.com/search?q=Mind-Video&type=repositories",
+    "status": 200,
+    "bytes": 219728,
+    "sha256": "40f0b5df666d360813e3af7114c6c06ca55ef07abeb03f0d9e89077c26172d8e"
+  },
+  {
+    "key": "min_dalle_search",
+    "url": "https://github.com/search?q=MinD-Vis+brain&type=repositories",
+    "status": 200,
+    "bytes": 162543,
+    "sha256": "2c6b39e68c243bbcef7e1fa457a84ea0eb6992c852d4419317e829c53a0b9221"
+  },
+  {
+    "key": "brainit_readme",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/README.md",
+    "status": 200,
+    "bytes": 5756,
+    "sha256": "5a913f94adb8dfd63dddd7b4fccae88a88bb07bf6a351872c34f817138b4eea8",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindvideo_readme",
+    "url": "https://raw.githubusercontent.com/jqin4749/MindVideo/main/README.md",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "brainit_page",
+    "url": "https://github.com/WeizmannVision/brainit-fmri",
+    "status": 200,
+    "bytes": 267609,
+    "sha256": "281e1203342366a93189220d10bceb80dcbc08c79a6c1d7a8abd269223013273",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindeye2_license",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/MindEyeV2/main/LICENSE",
+    "status": 200,
+    "bytes": 1063,
+    "sha256": "33ddb251e3c5415f966988677e1f0684fa9c7ea9e4f001dfeefb8e64fa982198",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindeye_license",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/fMRI-reconstruction-NSD/main/LICENSE",
+    "status": 200,
+    "bytes": 1063,
+    "sha256": "9bf9cd9f94eec2107aeb4357b3ddf61f62b46777011467e3a1bfc7efd89eca5b",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindbridge_license",
+    "url": "https://raw.githubusercontent.com/littlepure2333/MindBridge/main/LICENSE",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "key": "mindvis_license",
+    "url": "https://raw.githubusercontent.com/zjc062/mind-vis/main/LICENSE",
+    "status": 200,
+    "bytes": 1121,
+    "sha256": "2900230f188b98df112d1198166507f43730e7a4318e6c22f02032f5804a74de",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "brain_diffuser_license",
+    "url": "https://raw.githubusercontent.com/ozcelikfu/brain-diffuser/main/LICENSE",
+    "status": 200,
+    "bytes": 1071,
+    "sha256": "51cdc95c35a75a1d7b29bab1c2f394bc33c87710705eb62d3cdb08aa89929781",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "takagi_license",
+    "url": "https://raw.githubusercontent.com/yu-takagi/StableDiffusionReconstruction/main/LICENSE",
+    "status": 200,
+    "bytes": 1066,
+    "sha256": "ec485fac01b2267f7ee7a4fb9cb48f0170a443c7840d917d3a025665c6f45a0f",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindeye2_models",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/MindEyeV2/main/src/models.py",
+    "status": 200,
+    "bytes": 34226,
+    "sha256": "62cf23f7268449e98b79673c341286496d361f0e79da85e2c56488b7ade63496",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindeye2_utils",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/MindEyeV2/main/src/utils.py",
+    "status": 200,
+    "bytes": 11994,
+    "sha256": "9e5d5a98f9007cdda4320b0ed2c7366dc9c74229bd3fad752026b8561729d89e",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindeye2_train",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/MindEyeV2/main/src/Train.ipynb",
+    "status": 200,
+    "bytes": 54324,
+    "sha256": "88b18882edcae56a06f30f4e8070c939e437cff4dd263bb2d4b8efa2ab8c85ef",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindeye2_eval",
+    "url": "https://raw.githubusercontent.com/MedARC-AI/MindEyeV2/main/src/final_evaluations.ipynb",
+    "status": 200,
+    "bytes": 977421,
+    "sha256": "123cce121eb338ce744b08c568b79cb6d32a010b3e11e3ad5af80011e8968c7c",
+    "time_utc": "2026-11-12T03:31:59Z"
+  },
+  {
+    "key": "mindvideo_readme_master",
+    "url": "https://raw.githubusercontent.com/jqin4749/MindVideo/master/README.md",
+    "status": 200,
+    "bytes": 6384,
+    "sha256": "c086b8cd98c015b6a21a02d7d7af3a403c7e0e588c510e5ff2175130a2bb885c",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_transfer",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/train_transfer/README.md",
+    "status": 200,
+    "bytes": 4364,
+    "sha256": "af1ccd3d48498ef9443dbdc8578749b970b8e8fef853869aa029821d2a11539a",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_train_encoder",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/train/train_encoder.py",
+    "status": 200,
+    "bytes": 6481,
+    "sha256": "4ea66161be7b3def1cc15e3b6b2f209acea23617dd3925258b7c59b9c7b46f6e",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_train_decoder",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/train/train_decoder.py",
+    "status": 200,
+    "bytes": 12887,
+    "sha256": "7932e851c28d31a744a15080a34f518479b0cf9b05d16b28ed524c8b75dae095",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_train_stage2",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/train/train_decoder_stage2.py",
+    "status": 200,
+    "bytes": 10577,
+    "sha256": "725a43e42ab8d1c528f0ab96b88fcdb936b79fbc34a87600a2ad5cbcd8ee30ba",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_inference",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/inference/full_inference.py",
+    "status": 200,
+    "bytes": 15377,
+    "sha256": "5e2a67d95857131e99994f28fece15b1e6a3e520cf0324a72fb2c21ac51ee735",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_checkpoint",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/data/scripts/download/download_checkpoints.py",
+    "status": 200,
+    "bytes": 1369,
+    "sha256": "f10d2ab5b12b1619c722df8e770c2f2f3872262968bcc01a2362da4e42a0c254",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "mindbridge_page",
+    "url": "https://github.com/littlepure2333/MindBridge",
+    "status": 200,
+    "bytes": 254287,
+    "sha256": "862909498bf4c7d224d6f75cd3dd7044483b04225ea41e5832250673a7ecdd59",
+    "time_utc": "2026-11-12T03:32:52Z"
+  },
+  {
+    "key": "arxiv_mindeye2_probe",
+    "url": "https://arxiv.org/abs/2403.11207",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_arxiv_probe",
+    "url": "https://arxiv.org/abs/2510.25976",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "huggingface_mindeye2_probe",
+    "url": "https://huggingface.co/datasets/pscotti/mindeyev2/tree/main/train_logs",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "time_utc": "2026-11-12T03:32:51Z"
+  },
+  {
+    "key": "brainit_decoder_models",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/models/decoder_models.py",
+    "status": 200,
+    "bytes": 4385,
+    "sha256": "e9f11722df9b5ca101a91769c664802cd2c0d0032f9ed23af6f1e8e9eb05a6da",
+    "time_utc": "2026-11-12T03:34:11Z"
+  },
+  {
+    "key": "brainit_encoder_models",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/models/encoder_models.py",
+    "status": 200,
+    "bytes": 6648,
+    "sha256": "bff9690fcbbf166254c767c5fcd98a38cce363c2e4f4c4f24d2cdfdda613a1c0",
+    "time_utc": "2026-11-12T03:34:11Z"
+  },
+  {
+    "key": "brainit_train_encoder_utils",
+    "url": "https://raw.githubusercontent.com/WeizmannVision/brainit-fmri/main/utils/train_utils.py",
+    "error": "HTTP Error 404: Not Found",
+    "time_utc": "2026-11-12T03:34:11Z"
+  },
+  {
+    "key": "mindvideo_license",
+    "url": "https://raw.githubusercontent.com/jqin4749/MindVideo/master/LICENSE",
+    "error": "HTTP Error 404: Not Found",
+    "time_utc": "2026-11-12T03:34:11Z"
+  }
+]

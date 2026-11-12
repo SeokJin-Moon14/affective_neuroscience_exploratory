@@ -1,0 +1,1316 @@
+Proceedings of Machine Learning Research 248:233–250, 2024       Conference on Health, Inference, and Learning (CHIL) 2024
+
+
+
+
+Brain-Mamba: Encoding Brain Activity via Selective State Space
+                         Models
+Ali Behrouz                                                                                     ab2947@cornell.edu
+Cornell University, USA
+Farnoosh Hashemi                                                                                sh2574@cornell.edu
+Cornell University, USA
+
+
+
+
+                        Abstract                             this link. The HCP-Age and HCP-Mental datasets
+     Representation learning of brain activity is a          can be found in this link. The MPI-EEG dataset is
+     key step toward unleashing machine learning             publicly available at this link. The Temple Univer-
+     models for use in the diagnosis of neurological         sity Hospital EEG Seizure Corpus (TUSZ) is publicly
+     diseases/disorders. Diagnosis of different neu-         available at this link. The implementation of this
+     rological diseases/disorders, however, might re-        work is available at this link.
+     quire paying more attention to either spatial
+     or temporal resolutions of brain activity. Ac-          Institutional Review Board (IRB) this study
+     cordingly, a generalized brain activity learner         does not require IRB approval as all the used datasets
+     requires the ability of learning from both reso-        were previously published and publicly available.
+     lutions. Most existing studies, however, use do-
+     main knowledge to design brain encoders, and
+     so are limited to a single neuroimage modal-            1. Introduction
+     ity (e.g., EEG or fMRI) and its single reso-
+     lution. Furthermore, their architecture design
+                                                    Recent advancements in neuroimaging have signif-
+     either: (1) uses self-attention mechanism with icantly enriched our understanding of the human
+     quadratic time with respect to input size, mak-brain, offering detailed insights into its function-
+                                                    ing and structure (Poldrack and Gorgolewski, 2014).
+     ing its scalability limited, (2) is purely based on
+     message-passing graph neural networks, miss-   Representation learning of brain activity based on
+     ing long-range dependencies and temporal res-  the neuroimaging data is a key step toward analyz-
+     olution, and/or (3) encode brain activity in each
+                                                    ing the provided information, and unleashing deep
+     unit of brain (e.g., voxel) separately, missing the
+                                                    learning techniques for use in understanding of cog-
+     dependencies of brain regions. In this study, we
+                                                    nitive process and the diagnosis of neurological dis-
+     present BrainMamba, an attention free, scal-   eases/disorders. The recent progress in deep learn-
+     able, and powerful framework to learn brain ac-
+                                                    ing techniques has led to powerful models for study-
+     tivity multivariate timeseries. BrainMamba
+     uses two modules: (i) A novel multivariate
+                                                    ing neuroimaging data, enabling the understanding
+     timeseries encoder that leverage an MLP to fuseof behaviors (Schneider et al., 2023), brain func-
+     information across variates and an Selective   tions (Yamins and DiCarlo, 2016) and/or detecting
+     Structured State Space (S4) architecture to en-neurological diseases (Uddin et al., 2017). These
+     code each timeseries. (ii) A novel graph learn-methods, however, use domain knowledge to design
+     ing framework that leverage message-passing    brain encoders that are suitable for a specific tasks,
+     neural networks along with S4 architecture     and so there is a lack of a universal model with the
+     to selectively choose important brain regions. ability of being employed for different neuroimage
+     Our experiments on 7 real-world datasets with  modalities.
+     3 modalities show that BrainMamba attains         The main challenge towards such a universal ar-
+     outstanding performance and outperforms all
+                                                    chitecture is the different data-modeling approaches
+     baselines in different downstream tasks.
+                                                    that are required to capture temporal and spatial res-
+Data and Code Availability All the datasets olutions. For example, Electroencephalogram (EEG)
+used in this study are publicly available. The fMRI is a non-invasive technique to measure electrical ac-
+and MEG THINGS datasets are publicly available at tivity in the brain with a high temporal resolu-
+
+
+© 2024 A. Behrouz & F. Hashemi.
+                                                   BrainMamba
+
+
+
+
+tion (Subha et al., 2010). That is, EEGs have high           They treat each variate of the multivariate timeseries
+sampling rate and can measure brain activity close           separately while in neuroimaging data, the dependen-
+to the timing of the actual activity. EEGs, however,         cies across different brain regions are important to
+have a poor spatial resolution, meaning they are not         understand brain activity patterns that might cause
+able to capture the exact location of the electrical ac-     a brain disease/disorder (Behrouz et al., 2023) (See
+tivity (Subha et al., 2010). On the other hand, func-        §5). 2 Their recurrent process is input independent
+tional Magnetic Resonance Imaging (fMRI) has a sig-          and so the learning process is time-invariant, meaning
+nificantly better spatial resolution while it has poor       that they use the same parameters for all input during
+temporal resolution and responds to changes in the           the recurrent scan. In task-dependent neuroimaging
+brain activity relatively slowly (Greve et al., 2013).       data, however, it is important to adjust the process
+   In the literature, neuroimage modalities with: 1          based on the context of the input data. Accordingly,
+high temporal resolution (e.g., EEG and MEG1 ) of-           time-invariant process results in missing the context
+ten are modeled as multivariate timeseries (Potter           and so suboptimal performance (Gu and Dao, 2023).
+et al., 2022; Tang et al., 2023; Behrouz et al., 2023),      To address these challenges, BTMamba first uses a
+focusing on high sampling rate and temporal aspect,          simple Multilayer Perceptron (MLP) to bind the in-
+and 2 high spatial resolution (e.g., fMRI and struc-         formation across variates, capturing the dependencies
+tural MRI) often are modeled as graphs (Kan et al.,          between the timeseries corresponds to different brain
+2022b; Li et al., 2021), focusing on spatiotemporal          units. Then, it employs an input-dependent selective
+dependencies. A natural way to overcome this chal-           state space model to select informative timestamps
+lenge is to use two encoders, each focuses on one as-        during recurrent scans.
+pect of data (Behrouz et al., 2023; Tang et al., 2023).         To learn from the underlying graph structure of
+However, the existing methods use Transformers-like          brain activity, which help to better capture spatio-
+architectures (Vaswani et al., 2017), which are based        temporal dependencies, BrainMamba uses Brain
+on self-attention mechanism (Bahdanau et al., 2015),         Network Mamba (BNMamba), a novel graph learn-
+and so require quadratic time and memory with re-            ing framework that uses message-passing neural net-
+spect to the input data. This complexity is a signifi-       work (MPNN) to first learn the local dependencies
+cant obstacle for high-dimensional neuroimaging data         of brain units (e.g., voxels or channels), then treats
+as different modalities either have i long-range time-       nodes as graph tokens, and finally uses an input-
+series (e.g., in EEG and MEG), or ii a large number          dependent selective state space model to select and
+of spatial units (e.g., voxels in fMRI). To overcome         aggregate informative brain regions in linear time.
+this, studies often use aggregation of local brain re-       This input-dependent selection mechanism is spe-
+sponse to obtain higher-level Region of Interest (ROI)       cially important for brain networks as for different
+activity (Kan et al., 2022b; Yang et al., 2023; Li et al.,   disease/disorder or different tasks (in task-based neu-
+2021), choose highly active local units (Behrouz et al.,     roimaging), diagnosis requires more attention to spe-
+2023), or reduce the dimension of temporal data (Pan         cific parts of the brain (Franzmeier et al., 2020; Chat-
+et al., 2022); all results in sub-optimal performance        terjee et al., 2021).
+and missing information.                                        Finally, BrainMamba uses a learnable gate to
+   To overcome the above challenges, motivated by            combine the information obtained from the encoders.
+the recent success of state space models in language         In pre-training setups, we adapt the training proce-
+modeling and timeseries data (Gu and Dao, 2023;              dure proposed by Behrouz et al. (2023) and maximize
+Zhang et al., 2023; Behrouz et al., 2024), we present        the mutual information of the output of the encoders.
+BrainMamba. To learn the dynamics of brain activ-            The overview of BrainMamba is illustrated in Fig-
+ity and its temporal properties, BrainMamba uses             ure 1. Our extensive experiments on seven datasets,
+Brain Timeseries Mamba (BTMamba). Recently,                  three different modalities, and on four downstream
+state space models show promising performance in             tasks show that not only BrainMamba achieves su-
+challenging long sequence modeling tasks (Zhang              perior performance with respect to the state-of-the-
+et al., 2023) and classification of biosignals (Tang         art methods, but each of its encoders alone also
+et al., 2023). However, they suffer from two main            outperforms their corresponding baselines. Notably,
+limitations when applying on neuroimaging data: 1            the superior performance is achieved while Brain-
+                                                             Mamba requires less memory and time compared to
+ 1. Magnetoencephalography                                   baselines.
+
+
+                                                         234
+                                                                            BrainMamba
+  A                                                                              D
+                                  Brain Mamba                                                    Bidirectional Mamba Readout                Linear
+
+                                                                                                                                            Conv
+                                 Graph                                                                       𝜎
+
+
+
+
+                                                                                                                               ×
+                                                BNMamba
+
+
+
+
+                                                          Information
+                               Construction
+
+
+
+
+                                                            Mutual
+                                                                                                                                            SSM
+                                                                                                             𝜎
+
+
+
+
+                                                                                                                         ×
+
+                                                                                                                                   +
+                                                BTMamba                                                                                𝜎 Activation
+                                                                                                                 𝜎
+  B
+                                 BNMamba                                          C                                  BTMamba
+                       Nodes      Selection
+
+
+
+                                                                                                         T              T
+                                                                                                                                   𝜎
+          Functional
+
+
+
+
+                                                                                                Cross
+
+
+
+
+                                                                                                                                       ×
+           Systems
+
+
+
+
+                                                                        Readout                Variate
+                                                                                                MLP
+                                                                                                                        T
+                                    …
+
+
+
+
+                                                                                                                                   𝜎
+                        …
+
+
+
+
+                                              Mamba
+
+
+
+
+Figure 1: Schematic of the BrainMamba. (A) The overview of the BrainMamba framework. (B) The
+architecture of BNMamba: It first ordered brain units based on their corresponding functional system, and
+then use Mamba to select informative brain units. (C) The architecture of BTMamba, where it first bind
+information cross variates by an MLP and then use Mamba to encode each variate of the time series. (D)
+The architecture of the bidirectional Mamba readout.
+
+
+Contributions. Our main contributions are:                                            2. Related Work and Background
+  • We present BNMamba, a graph learning                                              2.1. Multivariate Timeseries Learning
+    method that use special traits of brain networks
+    to efficiently and effectively encode spatiotempo-Attention mechanisms (Bahdanau et al., 2015) are
+    ral brain networks. It leverages: 1 MPNNs to      powerful models to learn long-range dependencies
+    encode local dependencies of brain units, 2 a to- in data. Accordingly, Transformer-based models
+    kenizer and ordering mechanism to order nodes     have attracted much attention in time series fore-
+    with respect to their functionality in the brain, casting (Zerveas et al., 2021; Li et al., 2019). De-
+     2 a selective structured state space model to    spite their power, their quadratic time complexity
+    efficiently select informative and relevant brain is a critical challenge when applying on large-scale
+    regions, and 4 a simple adaptive readout block    datasets. Accordingly, several studies aim to reduce
+    to learn the brain-level encoding.                the time and memory usage of these methods by using
+                                                      sparse attentions (Wu et al., 2020; Zhou et al., 2021).
+  • We propose BTMamba, a multivariate time-
+                                                      Concurrently, to improve the efficiency of timeseries
+    series encoders for brain signals that leverages:
+                                                      forecasting, inspired by the recent success of MLP-
+     1 an MLP block to bind temporal information
+                                                      Mixer (Tolstikhin et al., 2021), Li et al. (2023) and
+    across brain units, 2 a time-dependent S4 block
+                                                      Chen et al. (2023) presented two variants of MLP-
+    to selectively encode each variate, and 3 the
+                                                      Mixer for timeseries forecasting.
+    same readout function as BNMamba to obtain
+    brain-level encoding.                             State Space Models. State Space Models (SSMs),
+                                                      a type of sequence models, are usually known as lin-
+  • We extensively evaluate the BrainMamba and ear time-invariant systems that map input sequence
+    each of its encoders, BTMamba and BN- x(t) ∈ RL to response sequence y(t) ∈ RL (Aoki,
+    Mamba, on seven datasets with three different 2013). Specifically, SSMs use a latent state h(t) ∈
+    modalities, and on three different downstream RN ×L , evolution parameter A ∈ RN ×N , and projec-
+    tasks. The results show that not only Brain- tion parameters B ∈ RN ×1 , C ∈ R1×N such that:
+    Mamba achieve superior performance compared
+    to state-of-the-art models, but each of its en-
+                                                                      h′ (t) = A h(t) + B x(t),
+    coders alone also outperform their correspond-
+    ing baselines.                                                    y(t) = C h(t).                      (1)
+
+
+                                                                                  235
+                                                BrainMamba
+
+
+
+
+Due to the hardness of solving the above differen-        parameters and requires more data, which is costly
+tial equation in deep learning settings, discrete space   in neuroimaging (Bassett and Sporns, 2017). Re-
+state models (Gu et al., 2020; Zhang et al., 2023)        cently, attention-based and transformer-based mod-
+discretize the above system using a parameter ∆:          els attracts attention (Behrouz et al., 2023; Kan et al.,
+                                                          2022b; Hu et al., 2023). While these methods show
+                 ht = Ā ht−1 + B̄ xt ,
+                                                          promising performance, their attention mechanism
+                 yt = C̄ ht ,                      (2)    has quadratic time complexity, limiting their appli-
+                                                          cability to voxel-level activity of the whole brain.
+where
+                                                             On the other hand, several studies focus on purely
+        Ā = exp (∆A) ,                                   brain signals (multivariate timeseries data) to detect
+                    −1
+        B̄ = (∆A)        (exp (∆A − I)) . ∆B.      (3)    neurological diseases (Pan et al., 2022; Tang et al.,
+                                                          2022; Shoeibi et al., 2021; Craik et al., 2019). For
+Gu et al. (2020) shows that discrete-time SSMs are        example, Cai et al. (2023) designed a self-supervised
+equivalent to the following convolution:                  learning framework to detect seizures from EEG and
+                                                          SEEG data. However, all these methods are use do-
+         K̄ = C̄B̄, C̄ĀB̄, . . . , C̄ĀL−1 B̄ ,
+                                              
+                                                          main knowledge and also suffer from a subset of the
+          y = x ∗ K̄,                              (4)    following limitations: they are designed for 1 a par-
+                                                          ticular task (e.g., brain classification), 2 a particular
+and accordingly can be computed very efficiently.         neuroimaging modality (e.g., fMRI or EEG) or 3 su-
+Discrete space state models show promising perfor-        pervised settings, and cannot capture 4 long-range
+mance on timeseries data (Zhang et al., 2023; Tang        dependencies in the timeseries data, and/or 5 inter-
+et al., 2023), but they suffer from two main lim-         variate dependencies of timeseries. Our BTMamba
+itations: 1 They lack selection mechanism, caus-          can be used on any neuroimage modalities that pro-
+ing missing the context as discussed by Gu and Dao        vide multivariate timeseries recorded from multiple
+(2023) 2 They treat each variate of the multivariate      units across the brain. Further, its efficient linear-
+timeseries seperately, missing the inter-variate depen-   time selection mechanism helps it to select informa-
+dencies. Recently, Gu and Dao (2023) introduce an         tive timestamps and so capture the long-range depen-
+efficient and powerful architecture, called Mamba,        dencies across time.
+with a novel selection mechanism for 1-d sequences
+                                                             Table 1 summarizes the differences of Brain-
+(e.g., language and DNA) that potentially can ad-
+                                                          Mamba with recent brain activity encoders. While
+dress the first limitation. BTMamba can be seen as
+                                                          there are several studies, for the sake of presentation,
+an adapted selective state space model proposed by
+                                                          we discuss a sample of recent and state-of-the-art
+Gu and Dao (2023) to multivariate timeseries data.
+                                                          methods that are a good representative of all studies.
+                                                          One of the important properties of BrainMamba is
+2.2. Graph and/or Timeseries Learning for                 its linear time complexity, making it a powerful back-
+     Brain                                                bone for the architecture of foundation models for use
+With the success of graph neural networks in graph        in encoding brain activity.
+data analysis, they have become powerful and pop-
+ular methods to analyze the brain functional con-         3. Problem Setup
+nectivity (Behrouz and Seltzer, 2023a; Behrouz and
+Hashemi, 2023) and to diagnosis of neurological dis-      We represent the multivariate timeseries of brain ac-
+ease/disorder (Kan et al., 2021; Tang et al., 2023;       tivity as X = {X (t) }Tt=1 , where X (t) ∈ R|V|×T̃ (t) rep-
+Kan et al., 2022b). The first group of studies use the    resents the neural data in time window 1 ≤ t ≤ T ,
+statistical correlation of signals to construct the un-   V is the set of brain units, and T̃ (t) is the length of
+derlying graph and then employ pure MPNN to learn         the timeseries in time window t. In task-dependent
+the node (brain regions) encodings (Kan et al., 2021;     data, each time window t corresponds to a task, and
+Zhu et al., 2022; Li et al., 2021). The second group      in resting state data, we have T = 1. We fur-
+of studies try to learn the structure of the underlying   ther let tmax = maxt=1,...,T T̃ (t), representing the
+graph from the brain activity (Behrouz and Hashemi,       maximum length of timeseries. Using the multivari-
+2023; Tang et al., 2023). While this approach poten-      ate timeseries data, in each time window t, we fol-
+tially provide a more flexible paradigm, it has more      low the literature (e.g., (Kan et al., 2022b; Behrouz
+
+
+                                                      236
+                                                                      BrainMamba
+
+
+
+                                     Table 1: The comparison of recent brain activity encoders.
+
+                              Mvts             BNTransformer            GraphS4mer                Ptgb               BrainMixer               BrainMamba
+                       (Potter et al., 2022)   (Kan et al., 2022b)    (Tang et al., 2023)   (Yang et al., 2023)   (Behrouz et al., 2023)       (This work)
+                              EEG                    fMRI                   EEG†                  fMRI                    All‡                     All‡
+ Data
+                           (Timeseries)             (Graph)          (Timeseries + Graph)        (Graph)          (Timeseries + Graph)     (Timeseries + Graph)
+                                                                                                                  Highly active voxels          All voxels
+ Brain Unit                  Channels                ROIs                 Channels                ROIs
+                                                                                                                  (Channels in EEG)         (Channels in EEG)
+ Spatial Encoding                -
+ Temporal Encoding                                      -                                            -
+ Inter-variate
+                                 -                      -                      -                     -
+ Information Fusing
+ Pre-training                                           -                      -
+ Long-range Sequence             -                      -                                            -                      -
+ Time Complexity            Quadratic              Quadratic              Quadratic             Quadratic              Quadratic                 Linear
+ †
+   Although GraphS4mer can potentially be employed on neuroimage modalities with low sampling frequency (e.g. fMRI), it is best suited for timeseries with
+   long-range temporal dependencies (e.g., EEG) as discussed by Tang et al. (2023).
+ ‡
+   All fMRI, EEG, MEG, and generally any neuroimaging modalities that provide multivariate timeseries recorded from multiple units across the brain.
+
+
+
+
+and Seltzer, 2023a)) and construct the brain network                                  Inspired by the success of Mamba architecture in
+                                     (t)                                           1-d sequential data (Gu and Dao, 2023), Brain Net-
+(functional connectivity graph) GF = (V, E (t) ) such
+that E  (t)
+            ⊆ V × V is the set connections between                                 work Mamba uses discrete state space models with a
+brain units. The connections are constructed based                                 selection mechanism. To adapt Mamba in this con-
+on the Pearson correlation of corresponding time-                                  text, there are two critical challenges: 1 Mamba is
+                                       (t)
+series. That is, (u, v) ∈ E (t) iff Xu and Xv have
+                                                  (t)                              a sequential encoder and cannot simply be applied
+high correlation.                                                                  on complex structures like graphs. 2 Simply treat-
+   In this work, we aim to learn a low dimensional vec-                            ing a graph as a sequence of nodes requires a specific
+tor representation for (1) each brain unit and (2) the                             ordering of nodes and also will miss the local depen-
+brain, which we later will use for binary (i.e., anomaly                           dencies. To address the above challenges, BNMamba
+detection) and multi-class classification tasks.                                   uses MPNN, learning local dependencies, simultane-
+                                                                                   ously with a new selective graph SSM architecture,
+                                                                                   learning long-range dependencies.
+4. Model: BrainMamba                                                               Tokenization. Inspired by Graph Transformer (Yun
+                                                                                   et al., 2019; Behrouz and Hashemi, 2024), we tok-
+BrainMamba consists of two main modules: 1 BN-
+                                                                                   enize the brain network as a sequence of nodes each of
+Mamba and 2 BTMamba.
+                                                                                   which is associated with a positional encoding and an
+4.1. Brain Network Encoder                                                         initial feature vector. To encode the position of each
+                                                                                   node, we use a special traits of the brain. The hu-
+The main goal of this encoder is to encode spatio-                                 man brain is comprised of functional systems (Schae-
+temporal properties of the brain networks, obtained                                fer et al., 2018), which are groups of brain units (e.g.,
+from the neuroimaging data. A natural choice to                                    voxels) that perform similar functions (Smith et al.,
+learn the node encodings of a graph is to use MPNNs.                               2013). To capture the position of a brain unit, we
+However, as discussed earlier, the relevance of the ac-                            consider its distance to all other brain units within
+tivity of each brain unit for each neurological disease                            its corresponding functional systems. The main chal-
+or disorder is different and a simple MPNN will treat                              lenge in graph-structured data is the lack of orders
+all the nodes the same. They further suffer from over-                             for nodes. In BNMamba, we suggest functional or-
+squashing (Di Giovanni et al., 2023), making them                                  dering, which is sorting nodes with respect to the size
+limited in capturing long-range dependencies. Alter-                               of boundary edges2 in their corresponding functional
+natively, Graph Transformers (Yun et al., 2019) are                                system . The intuition of this approach comes from
+powerful architectures that can learn both long-range                              the recurrent architecture of the SSMs. In SSMs,
+dependencies as well as the importance of brain units                              including Mamba (Gu and Dao, 2023), the hidden
+via its attention mechanism. They, however, have                                   states are updated based on prior elements in the se-
+quadratic time complexity, limiting their applicabil-
+ity to large-scale neuroimage datasets.                                              2. i.e., edges between inside and outside.
+
+
+                                                                              237
+                                                 BrainMamba
+
+
+
+
+quence. Accordingly, earlier tokens has less informa-     Message-Passing. To capture the local dependen-
+tion about the other tokens in the sequence. In the       cies in the brain network, we use a message-passing
+proposed functional ordering earlier tokens has less      graph neural network model. Given u ∈ V and
+                                                                               (0)
+connections to other tokens, meaning that they have       1 ≤ t ≤ T , let ψ (t)
+                                                                             u     = ϕ(t)
+                                                                                      u be the initial feature
+less functional correlation with other brain units and    vector of u, as defined above. Then ℓ-th layer of
+so are less dependent to others. On the other hand,       message-passing neural network can be written as:
+later tokens are brain units with large number of con-
+nections, meaning that they are more dependent to
+                                                                                                               
+                                                                         (ℓ)              (t)(ℓ−1)     (t)(ℓ−1)
+                                                            m(ℓ)
+                                                              v→u    = Wlocal Concat    ψ u        , ψv
+the encodings of others.                                                   n                      o
+   While the functional ordering uses a special trait       ψ (t)
+                                                                 (ℓ)
+                                                                    = Sum m(ℓ)              (t)
+                                                                                                (u) + ψ u(t)
+                                                                                                                 (ℓ−1)
+                                                              u                v→u |v ∈ N                              (6)
+of the brain to group and order brain units, the order
+of brain units in a functional system is still unknown.
+                                                                      (ℓ)
+To this end, during the training phase, we randomly     where Wlocal is a learnable matrix and N (t) (u) is
+shuffle the order of brain units within a functional    the set of all neighbors of u in timestamp t. i.e.,
+system to make the model robust to permutation.         N (t) (u) = {v|(u, v) ∈ E (t) }. We let Ψ(t) be the out-
+                                                        put of the above message-passing procedure after the
+Selective SSM Module. In the previous part, we
+                                                        last layer whose rows are ψ (t)u for u ∈ V. Next, to take
+tokenize the brain network into a sequence of nodes.
+                                                        the advantage of both local and long-range dependen-
+Next, we discuss the selective SSM module. Given
+                                                        cies, we aggregate the output of the message-passing
+u ∈ V and 1 ≤ t ≤ T , let ϕ(t) u represents the initial
+                                                        process with the selective SSM:
+feature vector of u, obtained from the concatenation
+of the node positional encoding and its corresponding                                            
+                                                                                              (t)
+                             (t)
+brain activity time series Xu . We define Φ(t) as the                  H(t) = Agg Ψ(t) , y out ,              (7)
+                         (t)
+matrix whose rows are ϕu , ordered by the functional
+ordering discussed above. Given 1 ≤ t ≤ T , we define where Agg(.) is aggregation function (we use summa-
+our selective SSM as follows:                                                                    (t)
+                                                        tion in our experiments). We use hu to refer to the
+                                                                                  (t)
+    (t)
+  Φinput = σ Conv Winput LayerNorm Φ        (t)
+                                                    ,   corresponding row of the H to node a u ∈ V.
+                (t)                   (t)                 Readout Function (Mamba Readout). Given
+ B(t) = WB Φinput ,     C(t) = WC Φinput ,
+                                                          the encoding of brain units obtained from the above
+                (t)
+ ∆(t) = W∆ Φinput ,                                       procedure, the main goal of the readout function is to
+                                                        learn the global encoding, i.e., low-dimensional rep-
+ Ā(t) = DiscreteA A(t) , ∆ ,                             resentation of the brain. To this end, we aim to use a
+                                                          selective SSM on the sequence of nodes and treat the
+                            
+ B̄(t) = DiscreteB B(t) , ∆ ,
+                                                        last output as the graph-level representation. Ac-
+                      (t)
+ y (t) = SSMĀ,B̄,C Φinput ,                              cordingly, the selection mechanism filters irrelevant
+                                                    brain units to the brain-level downstream task, pro-
+   (t)
+ y out =Wout y (t)⊙ σ WLayerNorm Φ(t)     , (5)           viding a high quality encoding. Contrary to Equa-
+                                                          tion 7, in which we aim to learn node encodings, we
+where W, WB , WC , W∆ , and Wout are learnable            do not need the output for middle states and we only
+parameters, σ(.) is nonlinear function, LayerNorm(.)      look at the final output of the recurrent scan. Accord-
+is layer normalization (Ba et al., 2016), SSM(.) is the   ingly, the procedure is more sensitive to the choice of
+state space model discussed in Equations 2 and 4,         ordering and the proposed functional ordering is not
+and Discrete(.) is discretization process discussed in    useful. To this end, inspired by Wang et al. (2023),
+Equation 3. In the above formulation, all parameters      we use a bidirectional procedure. That is, given an
+of SSM(.), i.e., B, C, and ∆ are functions of the input   ordered sequence of nodes obtained from the func-
+  (t)
+Φinput and so the recurrent process is time-variant       tional ordering, we use two selective state space mod-
+and can select the relevant information based on the      els, each with the same architecture as Equation 7,
+input as discussed by (Gu and Dao, 2023). As dis-         and feed the ordered sequence forward and backward.
+cussed earlier, this selective SSM is particularly im-    This procedure helps decreasing the sensitivity to the
+portant for capturing long-range dependencies in the      ordering of nodes. We use η (t)BN
+                                                                                             to refer to the brain
+neuroimaging data.                                        network level encoding.
+
+
+                                                      238
+                                                 BrainMamba
+
+
+
+
+                                                                  (1)        (T )
+4.2. Multivariate Brain Signal Encoder                    treat hu , . . . , hu as corresponding tokens of node
+                                                          u and use a selective SSM, the same architecture as
+The main goal of this encoder is to learn the tem-
+                                                          Equation 7, to update the node encodings over time
+poral properties and long-range dependencies in the
+                                                          windows in a recurrent manner. We use the same
+multivariate timeseries of brain activity. As discussed
+                                                          procedure on Υ(1)                (T )
+                                                                              u , . . . , Υu    to update timeseries en-
+earlier, while state space models are powerful meth-
+                                                          codings over time. We use Ĥ, a matrix whose rows
+ods for efficiently modeling timeseries data, they suf-
+                                                          corresponds to nodes’ encodings, to denote the final
+fer from two limitations: 1 they cannot bind in-
+                                                          output of the brain network encoding process and Υ̂
+formation across variates in multivariate timeseries
+                                                          to refer to the final output of the timeseries encoding
+data and 2 they are time-invariant and use the same
+                                                          process.
+mechanism for all input tokens. In this section, we
+                                                            To take advantage of both temporal and spatio-
+present a new architecture that can address the above
+                                                          temporal encodings, respectively obtained from Υ̂
+limitations.
+                                                          and Ĥ, we concatenate them and use an MLP to
+Inter-variate Information Fusing. In multivari-           calculate the final encodings:
+ate timeseries data, there are dependencies across                                                 
+both time and variate dimensions. In the first mod-                            Ω = MLP Ĥ∥Υ̂ ,                       (9)
+ule, given 1 ≤ t ≤ T , to bind and fuse information
+across variates, we suggest using a simple MLP on where ∥ is row-wise concatenation.
+the transpose of timeseries matrix X (t) :
+                                             ⊤     4.4. Training
+                                             ⊤
+ Z (t) = WTime1 σ WTime2 LayerNorm X (t)         , (8)
+                                                       Supervised and Semi-Supervised Settings. In
+where WTime1 and WTime2 are learnable parameters.      semi-supervised     settings, given a pre-trained or ran-
+This module mixes the information across rows of ma-   domly   initialize model,   we end-to-end train our model
+        (t)
+trix X , capturing the variates wise dependencies.     using   provided   labels   or contrastive learning, dis-
+                                                       cussed by Behrouz et al. (2023). When the initial
+Variate Encoder. Next, given a brain unit u ∈ V,
+                                                       model is pre-trained, we freeze all modules except
+to encode its corresponding timeseries data, we use
+                                                       Equation 9, letting the MLP(.) learn how to incorpo-
+the same architecture as Equation 7 with input Z (t)
+                                                   u . rate the temporal and spatia-temporal information.
+We use Υ(t) to denote the output of this step, where
+Υ(t)                                                   Pre-training Setup. In the pre-training setup,
+   u is the encoding of the timeseries associated with
+a brain unit u ∈ V.                                    since our model is capable of obtaining brain activ-
+                                                       ity encodings from two different views (i.e., tempo-
+Readout Function. In graph-level downstream ral and spatio-temporal views), we use the frame-
+tasks, we use the same readout function as BN- work proposed by Behrouz et al. (2023), and max-
+Mamba, which is discussed earlier, to obtain the
+                                                       imize the mutual information between Ĥ and Υ̂ us-
+global encoding. We use η BT to refer to this global
+                                                       ing Noise-Contrastive Estimation (NCE) (Gutmann
+encoding.
+                                                       and Hyvärinen, 2010) and minimize the following loss
+                                                       function:
+4.3. Dynamics Across Time Windows                                                h    h               ii
+                                                            Loss = E(Υ̂,Ĥv,i ) EN L(Υ̂, Ĥv,i , N )
+In resting state neuroimage data, we have T = 1,                                 h    h               ii
+i.e., there is only one time window. In task-based                 + E(Ĥ,Υ̂v,j ) EN L(Ĥ, Υ̂v,j , N ) ,     (10)
+neuroimage data, however, we have different time
+windows and the dynamics of brain activity across where N is the set of negative samples, (Υ̂, Ĥ(t) ) and
+                                                                                                         v,i
+all time windows can be a key to diagnosis a dis-
+                                                       Ĥ, (Υ̂)v,j ) are the positive sample pairs, and L is a
+ease/disorder (Fiorenzato et al., 2019). In the above
+                                                       standard Log-Softmax function.
+procedures, we calculate the encodings based on only
+the current time window, missing the dynamics across
+all time windows. We use a similar approach as GRU 5. Experiments and Results
+mechanism (Chung et al., 2014) but with state space
+models. Given u ∈ V, to update the brain unit Datasets. We use seven real datasets with three
+encodings in brain network over time windows, we different modalities (i.e., fMRI, MEG, EEG): 1
+
+
+                                                      239
+                                                 BrainMamba
+
+
+
+
+Bvfc (Behrouz et al., 2023) is a task-based fMRI         Table 2: Performance on multi-class brain classifica-
+dataset that includes voxel activity timeseries and      tion: Mean ACC (%) ± std. We shade significance
+functional connectivity of 3 subjects when looking at    results with blue and others with gray.
+the 8460 images from 720 categories. 2 Bvfc-MEG             Methods                   Bvfc    Bvfc-MEG     HCP-Mental   HCP-Age
+is the MEG counterpart of Bvfc. 3 ADHD (Mil-                Usad                 48.52±1.94   50.02±1.13   73.49±1.56   39.17±1.68
+ham et al., 2011) consists of fMRI of 250 subjects in       HyperSAGCN           51.92±1.47   51.19±1.88   90.37±1.61   47.38±1.96
+                                                            GMM                  53.11±1.44   53.04±1.73   90.92±1.83   47.75±1.26
+the ADHD group and 450 subjects in the typically            GraphMixer           53.17±1.21   53.12±1.18   91.13±1.44   48.32±1.11
+developed (TD) control group. 4 The Seizure detec-          BrainNetCnn          49.10±1.83   50.12±1.57   83.58±1.68   42.26±2.03
+                                                            BrainGNN             50.63±1.67   51.08±0.96   85.25±2.17   43.08±1.54
+tion TUH-EEG dataset (Shah et al., 2018) contains           FbNetGen             50.18±0.98   50.94±1.39   84.47±1.88   42.83±1.78
+EEG data (with 31 channels) of 642 subjects. 5              Admire               54.36±1.39   54.87±1.92   89.74±1.93   47.82±1.72
+                                                            PTGB                 55.89±1.78   55.11±1.62   92.58±1.31   48.41±1.47
+HCP-mental (Van Essen et al., 2013) contains data           BNTransformer         OOM†        55.17±1.74   91.71±1.48   47.94±1.15
+                                                            GraphS4mer            OOM†        74.39±0.92   82.30±1.83   46.32±1.09
+from 7440 neuroimaging samples each of which is as-         BrainMixer            OOM†        62.58±1.12   96.32±0.29   57.83±1.03
+sociated with one of the seven ground-truth mental          BrainMamba           75.19±1.98   78.03±1.69   96.57±1.05   59.62±1.71
+                                                            †
+states. 5 HCP-age (Van Essen et al., 2013) contains             OOM: Out of Memory.
+
+the same data but we aim to predict the age of human
+subjects using their fMRI. 7 MPI-EEG (Babayan          based methods: BrainGnn (Li et al., 2021), FbNet-
+et al., 2019) consists of 204 EEG data (two healthy    Gen (Kan et al., 2022a), BrainNetCnn (Kawahara
+groups (1) young with age 25.1±3.1 and (2) elderly     et al., 2017), ADMire (Behrouz and Seltzer, 2023b),
+with age 67.6 ± 4.7) with 62 chennels. The details of  BNTransformer (Kan et al., 2022b), PTGB (Yang
+the dataset can be found in Appendix A                 et al., 2023), and BrainMixer (Behrouz et al.,
+                                                       2023). 3 Time-series-based methods: Usad (Au-
+Evaluation Tasks.         We focus on three tasks: dibert et al., 2020), Time Series Transformer
+ 1 Brain Classification (multi-class classification) 2 (TST) (Zerveas et al., 2021), Mvts (Potter et al.,
+Brain Unit Anomaly Detection (AD), and 3 Brain 2022), and GraphS4mer (Tang et al., 2023). For
+AD (binary classification). For the brain unit AD the sake of fair comparison, we use the same train-
+tasks, we follow previous studies (Ma et al., 2021; ing, hyperparameter tuning, and testing procedure as
+Behrouz and Seltzer, 2023a; Behrouz and Hashemi, BrainMamba.
+2023), and corrupt 1% and 5% of the data. For brain
+AD, the ground truth anomalies in Bvfc are the Brain Classification. Table 2 reports the per-
+brain responses to not recognizable images and for formance of BrainMamba and baselines on multi-
+ADHD and TUH-EEG datasets are brain activity of class brain classification task. BrainMamba out-
+people living with ADHD and seizure, respectively. performs all the baselines with three significant im-
+For brain classification, we focus on the prediction provement our of the four datasets. By average
+of ii age prediction and mental state decoding (in BrainMamba achieve 9.94% performance improve-
+HCP-Age, and HCP-Mental), and i categories of im- ment over the best baselines. The best improve-
+ages seen by the subjects (in Bvfc, and Bvfc-MEG). ment (24.68%) comes from the Bvfc-MEG data with
+We perform statistical comparison with baselines via high sampling rate, resulting in long-range brain sig-
+paired t-tests and shade significance results (p-value nals. The reason for this superior performance is five
+≤ 0.05) with blue and others with gray.                fold: 1 Compared to three state-of-the-art methods,
+   In binary classification tasks, due to the poten-   BrainMamba          is the most efficient methods and can
+tial of imbalanced data, we follow the literature (Ma  scale  to  large-scale    datasets (e.g., Bvfc). 2 Com-
+et al., 2021; Tang et al., 2023; Behrouz et al., 2023) pared   to  GraphS4mer,        BrainMamba has the ca-
+and report Area Under Precision-Recall Curve (AUC-     pability   of  learning   from  data with both high (e.g.,
+PR). For multi-class classification, we report the ac- MEG)     and    low  (e.g., fMRI)  temporal resolution. 3
+curacy of the methods.                                 Compared      to  PTGB    and BrainMixer,    which are ca-
+                                                       pable of pre-training, BrainMamba shows superior
+Baselines. We compare BrainMamba with state- performance, supporting the significance of the archi-
+of-the-art time series, graph, and brain activity en- tecture design. For example, PTGB only uses MPNN
+coder models: 1 Graph-based methods: GOut- networks which are important in capturing local de-
+lier (Aggarwal et al., 2011), NetWalk (Yu et al., pendencies, but miss the long-range dependencies.
+2018), Graph MLP-Mixer (GMM) (He et al., 2023), On the other hand, BrainMixer misses local de-
+GraphMixer (Cong et al., 2023). 2 brain-network- pendencies due to the lack of message-passing mech-
+
+
+                                                      240
+                                                                                BrainMamba
+
+
+
+
+Table 3: Performance on anomaly detection: Mean AUC-PR (%) ± standard deviation. OOM: Out of
+Memory. We shade significance results (corrected p-value ≤ 0.05) with blue and others with gray.
+                       Methods                                            HCP                      ADHD                      TUH-EEG                   MPI-EEG
+                                         Bvfc       Bvfc-MEG
+                       Anomaly %                                    1%           5%           1%           5%           1%           5%           1%             5%
+                       Usad            68.27±1.16   62.73±1.27   65.49±1.31   65.01±1.18   72.79±1.48   72.19±0.94   72.81±1.42   71.36±1.03   67.75±1.02   67.59±1.53
+                       TST             70.62±1.48   68.57±1.81   69.18±1.64   69.11±1.32   74.81±1.14   73.99±1.47   73.71±1.55   73.03±1.47   68.37±1.59   67.81±1.94
+                       Mvts               N/A          N/A          N/A          N/A          N/A          N/A       77.48±1.81   77.02±1.29   74.16±1.20   73.59±1.68
+ Brain Unit-level AD
+
+
+
+
+                       GOutlier        64.66±2.38   60.17±1.25   63.59±1.62   63.07±1.52   68.97±1.16   67.12±0.93   65.18±1.09   65.01±1.57   61.89±2.01   60.88±2.23
+                       NetWalk         68.73±1.16   63.61±1.31   66.98±1.44   66.04±1.63   75.16±1.23   74.73±1.01   72.21±0.91   71.62±1.46   72.18±1.15   71.77±1.49
+                       GraphMixer      76.94±1.68   71.44±1.39   81.55±1.82   81.07±1.27   81.37±1.09   80.83±1.16   72.95±1.26   72.01±0.82   78.95±1.33   78.51±1.84
+                       BrainNetCnn     80.17±1.49   73.91±1.54   82.75±1.27   82.21±1.73   82.79±1.08   81.12±1.16   73.98±1.24   73.01±1.08      N/A          N/A
+                       BrainGnn        79.92±1.63   73.25±1.94   82.99±1.65   82.13±1.66   81.14±1.05   80.83±0.87   73.06±1.14   72.74±0.86      N/A          N/A
+                       FbNetGen        79.17±2.04   72.35±1.84   82.26±1.37   81.62±1.49   80.91±1.12   80.94±1.74   72.53±1.48   72.06±1.29      N/A          N/A
+                       PTGB            85.18±1.83   76.16±1.08   85.72±1.14   84.95±1.33   86.43±1.16   86.36±1.15   77.54±1.37   77.32±1.21      N/A          N/A
+                       BNTransformer     OOM        75.67±1.14   85.02±0.96   84.36±1.59   86.13±1.21   86.11±1.82   77.96±1.32   77.08±1.06      N/A          N/A
+                       GraphS4mer        OOM        81.09±0.57   84.19±0.85   83.99±1.41   82.95±1.13   83.06±1.49   78.33±1.26   79.01±1.08   84.19±1.00   83.98±1.72
+                       BrainMixer        OOM        81.52±1.32   89.27±1.61   88.94±1.24   89.97±1.14   89.81±1.27   79.45±1.19   79.23±0.94   84.07±1.13   84.14±1.26
+                       BrainMamba      91.58±1.24   82.07±1.10   91.04±0.89   90.97±1.33   91.26±1.00   91.03±1.64   80.22±1.02   80.18±1.57   85.99±0.63   85.46±1.05
+                       Usad            71.93±1.15   61.32±1.71   67.79±2.28   67.36±2.61   82.87±2.03   80.52±1.84   72.03±1.17   71.48±1.05   75.19±1.52   73.60±0.91
+                       TST             72.47±1.23   67.12±2.07   67.94±1.69   67.22±1.17   83.54±1.38   83.04±1.12   72.96±1.39   72.11±1.58   74.26±1.33   73.95±1.98
+                       Mvts               N/A          N/A          N/A          N/A          N/A          N/A       83.53±1.91   82.41±1.02   86.44±1.78   83.92±1.63
+                       NetWalk         72.16±1.44   69.57±1.73   69.14±1.49   68.66±1.52   83.11±1.02   82.81±1.61   71.06±1.05   69.94±1.12   75.19±1.41   74.60±1.26
+                                       81.79±1.24   77.84±1.52   74.87±1.58   74.02±1.10   85.89±0.98   85.03±1.18   76.62±1.17   76.11±1.26   77.73±1.82   77.35±0.99
+ Brain-level AD
+
+
+
+
+                       GMM
+                       GraphMixer      82.56±1.19   77.91±1.26   75.03±1.72   74.46±1.53   86.02±1.15   85.64±1.09   77.49±1.09   76.63±1.22   76.52±1.07   75.93±1.06
+                       BrainNetCnn     78.47±1.18   73.12±1.27   70.73±1.77   70.12±1.86   85.84±0.96   85.07±1.52   73.92±0.97   73.07±1.51      N/A          N/A
+                       BrainGnn        79.81±1.57   75.28±1.61   72.98±1.55   72.41±1.16   84.59±1.26   83.72±1.35   72.41±1.38   71.55±1.16      N/A          N/A
+                       FbNetGen        78.94±1.24   74.49±1.33   71.62±1.53   71.06±1.48   84.67±1.26   84.08±1.37   72.69±1.18   71.87±1.12      N/A          N/A
+                       ADMire          83.72±1.18   78.83±1.56   75.52±1.81   74.59±1.12   86.27±1.72   85.18±1.56   78.12±1.47   77.59±1.68      N/A          N/A
+                       PTGB            84.08±1.35   79.68±1.62   76.01±1.07   75.13±1.48   87.59±1.12   86.99±0.96   79.17±1.36   78.64±1.55      N/A          N/A
+                       BNTransformer     OOM        79.03±1.78   75.64±1.82   75.09±1.18   87.54±1.04   86.92±1.48   79.36±1.71   78.08±1.16      N/A          N/A
+                       GraphS4mer        OOM        86.15±0.42   72.88±0.94   71.77±1.05   84.33±0.79   83.95±0.88   89.95±0.34   88.69±0.73   89.44±1.17   89.25±1.68
+                       BrainMixer        OOM        84.59±1.70   80.67±1.13   80.49±1.07   91.38±0.94   90.98±1.02   85.74±1.16   85.63±1.23   90.82±1.51   89.74±1.89
+                       BrainMamba      88.49±1.01   87.23±0.92   81.26±1.05   81.57±1.80   91.41±0.46   91.95±1.02   92.17±1.31   91.76±0.99   92.28±0.76   91.07±1.24
+
+
+
+anism. The architecture of BrainMamba, however,                                            multi-class classification tasks. The first row reports
+is capable of learning both local and long-range de-                                       the performance of the complete BrainMamba im-
+pendencies. 4 Compared to static methods (e.g.,                                            plementation with pre-training. Each subsequent
+BrainGNN, BrainNetCNN, etc.), BrainMamba                                                   row shows results for BrainMamba with one mod-
+can take advantage of dynamics of the brain activ-                                         ule modification: row 2 removes the pre-training
+ity over time. 5 Finally, compared to timeseries                                           phase, row 3 is the brain network encoder alone
+encoder, BrainMamba takes advantage of underly-                                            (BrainMamba without timeseries encoder), row 4
+ing graph structured data of brain signals, learning                                       removes message-passing from the BNMamba, row
+spatio-temporal properties.                                                                5 replaces functional ordering with random ordering
+Anomaly Detection. We further evaluate the                                                 in the training phase, row 6 is the brain timeseries
+performance of BrainMamba in anomaly detection                                             encoder alone (BrainMamba without brain network
+tasks. Table 3 reports the performance of Brain-                                           encoder), row 7 removes cross-variate MLP, and row 8
+Mamba and baselines on anomaly detection tasks                                             replace the bidirectional readout function with a sim-
+at different scales: i.e., brain unit-level and brain-                                     ple unidirectional readout (using state space model
+level. BrainMamba achieves the best AUC-PR on                                              discussed in Eq.7). The results show that each
+all datasets with 1.43% and 1.75% average improve-                                         component and choice of architecture design is crit-
+ment over the best baseline in brain unit-level AD,                                        ical for achieving BrainMamba’s superior perfor-
+and brain-level AD, respectively. The main reasons                                         mance. The greatest contribution comes from BN-
+for this superior performance are the same as the rea-                                     Mamba, message-passing mechanism, BTMamba,
+sons we discuss above.                                                                     cross-variate MLP, functional ordering, bidirectional
+                                                                                           readout, respectively. Note that the readout function
+Ablation Study. We conduct ablation studies
+                                                                                           is only used in brain classification tasks and its mod-
+on our model using the Bvfc, Bvfc-MEG, HCP,
+                                                                                           ification cannot affect the performance in unit AD.
+and ADHD datasets to validate the effectiveness of
+BrainMamba’s critical components and their con- Also, comparing the performance of the BNMamba
+tributions in its performance. Table 4 shows AUC- with graph learning methods and BTMamba with
+PR for Brain-Unit AD and accuracy (ACC) for brain time series encoders in Tables 2 and 3 shows that
+
+
+                                                                                       241
+                                                                                                 BrainMamba
+
+
+
+                  Table 4: Ablation study on BrainMamba. AUC-PR scores for brain AD and ACC for classification.
+        Methods                                          Bvfc                                      Bvfc-MEG                                     HCP                             ADHD
+                                           Unit-level AD                 Classification   Unit-level AD    Classification         Unit-level AD   Classification    Unit-level AD    Classification
+        BrainMamba                          91.58±1.24                       75.19±1.98    82.07±1.10       78.03±1.69             91.04±0.89         96.57±1.05     91.26±1.09             -
+        w/o Pre-training                    86.15±0.92                       68.55±1.93    79.84±1.22       77.00±0.81             88.59±1.08         93.19±1.35     89.37±1.44             -
+        BNMamba                             86.19±1.03                       71.02±0.98    77.14±1.19       67.41±1.33             88.65±1.28         94.19±0.94     86.98±1.53             -
+        w/o MPNN                            84.09±1.25                       70.83±0.24    74.11±1.60       66.02±1.39             85.99±1.19         92.68±0.88     85.26±1.20             -
+        w/o Functional Ordering             85.97±0.98                       70.88±1.06    76.85±1.00       65.49±1.23             87.12±1.67         93.74±0.80     86.19±0.61             -
+        BTMamba                             89.44±1.09                       73.29±1.15    80.37±0.92       71.38±0.89             90.57±1.42         94.10±1.46     89.74±0.71             -
+        w/o Cross-variate MLP               85.98±1.12                       71.16±1.39    79.22±1.66       67.82±1.73             89.52±1.68         92.85±0.32     88.54±1.16             -
+        Unidirectional Readout              91.58±1.24                       74.88±1.00    82.07±1.10       77.14±1.14             91.04±0.89         94.91±0.97     91.23±1.09             -
+
+
+                                                                                                                                                  w/o Selection       w/ Selection
+                 101
+Time (s)/Epoch
+
+
+
+
+                                                      Time (s)/Epoch
+
+
+
+
+                                                                       101                                            100
+
+
+                                                                                                                       80
+
+                 100
+
+
+
+
+                                                                                                                AUC
+                                                                       100                                             60
+
+
+                       102       103            104                          101           102                         40
+                             #Brain Unit                                             #Timestamps
+                                                                                                                       20
+                                                                                                                            10%      20%    30%        40%    50%    60%      70%     80%       90%
+Figure 2: The effect of the number of brain units and
+the number of timestamps on the training time.        Figure 4: The effect of selection mechanism on noisy
+                                                      data.
+                 104                                                   104
+Memory (MB)
+
+
+
+
+                                                      Memory (MB)
+
+
+
+
+                                                      state space model). Results are reported in Fig-
+                                                      ure 4. BrainMamba with selective state space mod-
+  103
+                                                      ule is more robust to the corrupted data than Brain-
+                              103                     Mamba without selection (i.e., time-invariant mech-
+      102        103              101       102
+           #Brain Unit                 #Timestamps    anism). These results show the importance of the
+                                                      architecture design of BrainMamba, specifically for
+Figure 3: The effect of the number of brain units and noisy neuroimage data.
+the number of timestamps on the memory usage.
+
+each of these two components alone can outperform
+                                                                                                             6. Conclusion
+their corresponding baselines.                                                                               In conclusion, in this paper, we developed Brain-
+Efficiency. We further evaluate the scalability and                                                          Mamba, a general and efficient encoder for model-
+memory usage of BrainMamba with respect to the                                                               ing spatio-temporal long-range dependencies in mul-
+input size (either high spatial or temporal resolu-                                                          tivariate brain signals. Its design allows for encod-
+tion). To this end, we change the number of voxels in                                                        ing the actual brain signals, using an timeseries en-
+BVFC and the number of samples from the timeseries                                                           coder, and their spatial dependencies, using a graph
+in BVFC-MEG. Figures 2 and 3 report the results.                                                             encoder, making it a powerful model for variety of
+BrainMamba time and memory scales linearly with                                                              neuroimaging data. While using two encoders, its ef-
+respect to both the number of brain units and the                                                            ficient design based on selective state space models
+number of samples in the time series. This scalabil-                                                         make its time complexity linear with respect to the
+ity allow us to use BrainMamba on large datasets,                                                            input data, enabling training on large-scale data. Our
+making BrainMamba a potentially powerful back-                                                               experimental evaluations on various tasks, includ-
+bone for the foundation models on neurosignals.                                                              ing seizure, ADHD, mental state detection, and with
+                                                                                                             three different modalities show that BrainMamba
+The Effect of Selection. In this part, we use                                                                outperforms all the baselines, while using less time
+corrupted data with different percent of corruption                                                          and memory.
+and report the performance of BrainMamba with
+and without selection (i.e., we use time-invariant
+
+
+                                                                                                          242
+                                              BrainMamba
+
+
+
+
+References                                            Ali Behrouz and Farnoosh Hashemi. Graph mamba:
+                                                        Towards learning on graphs with state space mod-
+Charu C. Aggarwal, Yuchen Zhao, and Philip S. Yu.       els. arXiv preprint arXiv:2402.08678, 2024.
+  Outlier detection in graph streams. In 2011 IEEE
+  27th International Conference on Data Engineer- Ali Behrouz and Margo Seltzer. Anomaly detection
+  ing, pages 399–409, 2011. doi: 10.1109/ICDE.2011.     in human brain via inductive learning on tempo-
+  5767885.                                              ral multiplex networks. In Machine Learning for
+                                                        Healthcare Conference, volume 219. PMLR, 2023a.
+Masanao Aoki. State space modeling of time series.
+  Springer Science & Business Media, 2013.            Ali Behrouz and Margo Seltzer.        ADMIRE++:
+                                                        Explainable anomaly detection in the human
+Julien Audibert, Pietro Michiardi, Frédéric Guyard,
+                                                        brain via inductive learning on temporal multi-
+  Sébastien Marti, and Maria A Zuluaga. Usad: Un-
+                                                        plex networks. In ICML 3rd Workshop on Inter-
+  supervised anomaly detection on multivariate time
+                                                        pretable Machine Learning in Healthcare (IMLH),
+  series. In Proceedings of the 26th ACM SIGKDD
+                                                        2023b. URL https://openreview.net/forum?
+  international conference on knowledge discovery &
+                                                        id=t4H8acYudJ.
+  data mining, pages 3395–3404, 2020.
+
+Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E.        Ali Behrouz, Parsa Delavari, and Farnoosh Hashemi.
+  Hinton. Layer normalization, 2016.                     Unsupervised representation learning of brain ac-
+                                                         tivity via bridging voxel activity and functional
+Anahit Babayan, Miray Erbey, Deniz Kumral, Ja-           connectivity. In NeurIPS 2023 AI for Science
+  nis D Reinelt, Andrea MF Reiter, Josefin Röbbig,      Workshop, 2023. URL https://openreview.net/
+  H Lina Schaare, Marie Uhlig, Alfred Anwander,          forum?id=HSvg7qFFd2.
+  Pierre-Louis Bazin, et al. A mind-brain-body
+  dataset of mri, eeg, cognition, emotion, and periph- Ali Behrouz, Michele Santacatterina, and Ramin
+  eral physiology in young and old adults. Scientific    Zabih. Mambamixer: Efficient selective state space
+  data, 6(1):1–21, 2019.                                 models with dual token and channel selection.
+                                                         arXiv preprint arXiv:2403.19888, 2024.
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua
+  Bengio. Neural machine translation by jointly Donghong Cai, Junru Chen, Yang Yang, Teng Liu,
+  learning to align and translate. In Yoshua Bengio      and Yafeng Li. Mbrain: A multi-channel self-
+  and Yann LeCun, editors, 3rd International Con-        supervised learning framework for brain signals.
+  ference on Learning Representations, ICLR 2015,        In Proceedings of the 29th ACM SIGKDD Con-
+  San Diego, CA, USA, May 7-9, 2015, Conference          ference on Knowledge Discovery and Data Min-
+  Track Proceedings, 2015. URL http://arxiv.             ing, KDD ’23, page 130–141, New York, NY,
+  org/abs/1409.0473.                                     USA, 2023. Association for Computing Machin-
+                                                         ery.    ISBN 9798400701030.       doi: 10.1145/
+Danielle S. Bassett and Olaf Sporns. Network neuro-      3580305.3599426.     URL https://doi.org/10.
+  science. Nature Neuroscience, 20(3):353–364, Mar       1145/3580305.3599426.
+  2017. ISSN 1546-1726. doi: 10.1038/nn.4502. URL
+  https://doi.org/10.1038/nn.4502.                     Tanima Chatterjee, Réka Albert, Stuti Thap-
+                                                         liyal, Nazanin Azarhooshang, and Bhaskar Das-
+Ali Behrouz and Farnoosh Hashemi. Learning tem-          Gupta.      Detecting network anomalies using
+  poral higher-order patterns to detect anomalous        forman–ricci curvature and a case study for hu-
+  brain activity.     In Stefan Hegselmann, Anto-        man brain networks. Scientific Reports, 11(1):
+  nio Parziale, Divya Shanmugam, Shengpu Tang,           8121, Apr 2021. ISSN 2045-2322. doi: 10.1038/
+  Mercy Nyamewaa Asiedu, Serina Chang, Tom               s41598-021-87587-z. URL https://doi.org/10.
+  Hartvigsen, and Harvineet Singh, editors, Pro-         1038/s41598-021-87587-z.
+  ceedings of the 3rd Machine Learning for Health
+  Symposium, volume 225 of Proceedings of Machine Si-An Chen, Chun-Liang Li, Nate Yoder, Sercan O
+  Learning Research, pages 39–51. PMLR, 10 Dec           Arik, and Tomas Pfister. Tsmixer: An all-mlp
+  2023. URL https://proceedings.mlr.press/               architecture for time series forecasting. arXiv
+  v225/behrouz23a.html.                                  preprint arXiv:2303.06053, 2023.
+
+
+                                                   243
+                                                BrainMamba
+
+
+
+
+Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, Albert Gu, Tri Dao, Stefano Ermon, Atri Rudra, and
+  and Yoshua Bengio. Empirical evaluation of gated      Christopher Ré. Hippo: Recurrent memory with
+  recurrent neural networks on sequence modeling.       optimal polynomial projections. Advances in neu-
+  arXiv preprint arXiv:1412.3555, 2014.                 ral information processing systems, 33:1474–1487,
+                                                        2020.
+Weilin Cong, Si Zhang, Jian Kang, Baichuan
+  Yuan, Hao Wu, Xin Zhou, Hanghang Tong, and Michael Gutmann and Aapo Hyvärinen. Noise-
+  Mehrdad Mahdavi.          Do we really need com-      contrastive estimation: A new estimation princi-
+  plicated model architectures for temporal net-        ple for unnormalized statistical models. In Pro-
+  works? In The Eleventh International Conference       ceedings of the thirteenth international conference
+  on Learning Representations, 2023. URL https:         on artificial intelligence and statistics, pages 297–
+  //openreview.net/forum?id=ayPPc0SyLv1.                304. JMLR Workshop and Conference Proceedings,
+                                                        2010.
+Alexander Craik, Yongtian He, and Jose L Contreras-
+  Vidal. Deep learning for electroencephalogram Xiaoxin He, Bryan Hooi, Thomas Laurent, Adam
+  (eeg) classification tasks: a review. Journal of neu- Perold, Yann LeCun, and Xavier Bresson. A gen-
+  ral engineering, 16(3):031001, 2019.                  eralization of vit/mlp-mixer to graphs. In Inter-
+Hejie Cui, Wei Dai, Yanqiao Zhu, Xuan Kan, An-          national Conference on Machine Learning, pages
+  tonio Aodong Chen Gu, Joshua Lukemire, Liang          12724–12745. PMLR, 2023.
+  Zhan, Lifang He, Ying Guo, and Carl Yang. Jinlong Hu, Yangmin Huang, Nan Wang, and
+  BrainGB: A Benchmark for Brain Network Anal-          Shoubin Dong. Brainnpt: Pre-training of trans-
+  ysis with Graph Neural Networks. IEEE Transac-        former networks for brain network classification.
+  tions on Medical Imaging (TMI), 2022.                 arXiv preprint arXiv:2305.01666, 2023.
+Francesco Di Giovanni, Lorenzo Giusti, Federico Bar-
+                                                       Xuan Kan, Hejie Cui, Ying Guo, and Carl Yang.
+  bero, Giulia Luise, Pietro Lio, and Michael M
+                                                        Effective and interpretable fmri analysis via func-
+  Bronstein. On over-squashing in message passing
+                                                        tional brain network generation. arXiv preprint
+  neural networks: The impact of width, depth, and
+                                                        arXiv:2107.11247, 2021.
+  topology. In International Conference on Machine
+  Learning, pages 7865–7885. PMLR, 2023.               Xuan Kan, Hejie Cui, Joshua Lukemire, Ying Guo,
+Eleonora Fiorenzato, Antonio P Strafella, Jinhee        and Carl Yang. Fbnetgen: Task-aware gnn-based
+  Kim, Roberta Schifano, Luca Weis, Angelo An-          fmri analysis via functional brain network genera-
+  tonini, and Roberta Biundo.          Dynamic func-    tion. In International Conference on Medical Imag-
+  tional connectivity changes associated with demen-    ing with Deep Learning, pages 618–637. PMLR,
+  tia in parkinson’s disease. Brain, 142(9):2860–2872,  2022a.
+  2019.                                                   Xuan Kan, Wei Dai, Hejie Cui, Zilong Zhang,
+Nicolai Franzmeier, Julia Neitzel, Anna Rubinski,          Ying Guo, and Carl Yang.       Brain network
+  Ruben Smith, Olof Strandberg, Rik Ossenkoppele,          transformer. In Alice H. Oh, Alekh Agarwal,
+  Oskar Hansson, and Michael Ewers. Functional             Danielle Belgrave, and Kyunghyun Cho, editors,
+  brain architecture is associated with the rate of tau    Advances in Neural Information Processing Sys-
+  accumulation in alzheimer’s disease. Nature com-         tems, 2022b. URL https://openreview.net/
+  munications, 11(1):347, 2020.                            forum?id=1cJ1cbA6NLN.
+
+Douglas N Greve, Gregory G Brown, Bryon A Jeremy Kawahara, Colin J Brown, Steven P Miller,
+  Mueller, Gary Glover, Thomas T Liu, and Func-        Brian G Booth, Vann Chau, Ruth E Grunau, Jill G
+  tion Biomedical Research Network. A survey of        Zwicker, and Ghassan Hamarneh. Brainnetcnn:
+  the sources of noise in fmri. Psychometrika, 78:     Convolutional neural networks for brain networks;
+  396–416, 2013.                                       towards predicting neurodevelopment. NeuroIm-
+                                                       age, 146:1038–1049, 2017.
+Albert Gu and Tri Dao. Mamba: Linear-time se-
+  quence modeling with selective state spaces. arXiv Shiyang Li, Xiaoyong Jin, Yao Xuan, Xiyou Zhou,
+  preprint arXiv:2312.00752, 2023.                     Wenhu Chen, Yu-Xiang Wang, and Xifeng Yan.
+
+
+                                                      244
+                                                BrainMamba
+
+
+
+
+   Enhancing the locality and breaking the memory Anwar Said, Roza G Bayrak, Tyler Derr, Mudassir
+   bottleneck of transformer on time series forecast-    Shabbir, Daniel Moyer, Catie Chang, and Xeno-
+   ing. Advances in neural information processing sys-   fon D. Koutsoukos. Neurograph: Benchmarks
+   tems, 32, 2019.                                       for graph machine learning in brain connectomics.
+                                                         In Thirty-seventh Conference on Neural Informa-
+Xiaoxiao Li, Yuan Zhou, Nicha Dvornek, Muhan             tion Processing Systems Datasets and Benchmarks
+   Zhang, Siyuan Gao, Juntang Zhuang, Dustin             Track, 2023. URL https://openreview.net/
+   Scheinost, Lawrence H Staib, Pamela Ventola, and      forum?id=MEa0cQeURw.
+   James S Duncan. Braingnn: Interpretable brain
+   graph neural network for fmri analysis. Medical Alexander Schaefer, Ru Kong, Evan M Gordon, Tim-
+   Image Analysis, 74:102233, 2021.                      othy O Laumann, Xi-Nian Zuo, Avram J Holmes,
+                                                         Simon B Eickhoff, and B T Thomas Yeo. Local-
+Zhe Li, Zhongwen Rao, Lujia Pan, and Zenglin Xu.         Global parcellation of the human cerebral cortex
+   Mts-mixers: Multivariate time series forecasting      from intrinsic functional connectivity MRI. Cereb
+   via factorized temporal and channel mixing. arXiv     Cortex, 28(9):3095–3114, September 2018.
+   preprint arXiv:2302.04501, 2023.
+                                                       Steffen Schneider, Jin Hwa Lee, and Mackenzie Wey-
+Ilya Loshchilov and Frank Hutter. Decoupled weight       gandt Mathis. Learnable latent embeddings for
+   decay regularization. In International Conference     joint behavioural and neural analysis. Nature,
+   on Learning Representations, 2019. URL https:         pages 1–9, 2023.
+   //openreview.net/forum?id=Bkg6RiCqY7.
+                                                       Vinit Shah, Eva Von Weltin, Silvia Lopez, James Ri-
+Xiaoxiao Ma, Jia Wu, Shan Xue, Jian Yang, Chuan          ley McHugh, Lillian Veloso, Meysam Golmoham-
+   Zhou, Quan Z. Sheng, Hui Xiong, and Leman             madi, Iyad Obeid, and Joseph Picone. The temple
+   Akoglu. A comprehensive survey on graph anomaly       university hospital seizure detection corpus. Fron-
+   detection with deep learning. IEEE Transactions       tiers in neuroinformatics, 12:83, 2018.
+    on Knowledge and Data Engineering, pages 1–1, Afshin Shoeibi, Marjane Khodatars, Navid Ghas-
+    2021. doi: 10.1109/TKDE.2021.3118815.                  semi, Mahboobeh Jafari, Parisa Moridian, Roohal-
+                                                           lah Alizadehsani, Maryam Panahiazar, Fahime
+Michael P. Milham, Jan Buitelaar, F. Xavier Castel-
+                                                           Khozeimeh, Assef Zare, Hossein Hosseini-Nejad,
+    lanos, Daniel Dickstein, Damien Fair, David
+                                                           et al. Epileptic seizures detection using deep learn-
+    Kennedy, Beatric Luna, Michael P. Milham, Stew-
+                                                           ing techniques: A review. International Journal of
+    art Mostofsky, Joel Nigg, Julie B. Schweitzer, Kate-
+                                                           Environmental Research and Public Health, 18(11):
+    rina Velanova, Yu-Feng Wang, and Yu-Feng Zang.
+                                                           5780, 2021.
+    1000 functional connectome project. 1000 Func-
+    tional Connectome Project, 1, July 2011.             Stephen M Smith, Diego Vidaurre, Christian F
+                                                           Beckmann, Matthew F Glasser, Mark Jenkinson,
+Yue-Ting Pan, Jing-Lun Chou, and Chun-Shu Wei.             Karla L Miller, Thomas E Nichols, Emma C
+    MAtt: A manifold attention network for EEG de-         Robinson, Gholamreza Salimi-Khorshidi, Mark W
+    coding. In Alice H. Oh, Alekh Agarwal, Danielle        Woolrich, Deanna M Barch, Kamil Uğurbil, and
+    Belgrave, and Kyunghyun Cho, editors, Advances         David C Van Essen. Functional connectomics from
+    in Neural Information Processing Systems, 2022.        resting-state fMRI. Trends Cogn Sci, 17(12):666–
+                                                           682, November 2013.
+Russell A Poldrack and Krzysztof J Gorgolewski.
+    Making big data open: data sharing in neuroimag- D Puthankattil Subha, Paul K Joseph, Rajendra
+    ing. Nature neuroscience, 17(11):1510–1517, 2014.      Acharya U, and Choo Min Lim. Eeg signal analysis:
+                                                           a survey. Journal of medical systems, 34:195–212,
+İlkay Yıldız Potter, George Zerveas, Carsten Eick-        2010.
+    hoff, and Dominique Duncan. Unsupervised mul-
+    tivariate time-series transformers for seizure iden- Siyi Tang, Jared Dunnmon, Khaled Kamal Saab,
+    tification on eeg. In 2022 21st IEEE International     Xuan Zhang, Qianying Huang, Florian Dubost,
+    Conference on Machine Learning and Applications        Daniel Rubin, and Christopher Lee-Messer. Self-
+    (ICMLA), pages 1304–1311. IEEE, 2022.                  supervised graph neural networks for improved
+
+
+                                                      245
+                                               BrainMamba
+
+
+
+
+  electroencephalographic seizure analysis. In Inter-    findings-emnlp.5. URL https://aclanthology.
+  national Conference on Learning Representations,       org/2023.findings-emnlp.5.
+  2022. URL https://openreview.net/forum?id=
+  k9bx1EfHI_-.                                        Sifan Wu, Xi Xiao, Qianggang Ding, Peilin Zhao,
+                                                         Ying Wei, and Junzhou Huang. Adversarial sparse
+Siyi Tang, Jared A Dunnmon, Qu Liangqiong,               transformer for time series forecasting. Advances in
+  Khaled K Saab, Tina Baykaner, Christopher Lee-         neural information processing systems, 33:17105–
+  Messer, and Daniel L Rubin. Modeling multi-            17115, 2020.
+  variate biosignals with graph neural networks and
+  structured state space models. In Bobak J. Mor- Daniel LK Yamins and James J DiCarlo. Using goal-
+  tazavi, Tasmie Sarker, Andrew Beam, and Joyce C.       driven deep learning models to understand sensory
+  Ho, editors, Proceedings of the Conference on          cortex. Nature neuroscience, 19(3):356–365, 2016.
+  Health, Inference, and Learning, volume 209 of Yi Yang, Hejie Cui, and Carl Yang. Ptgb: Pre-train
+  Proceedings of Machine Learning Research, pages        graph neural networks for brain network analysis.
+  50–71. PMLR, 22 Jun–24 Jun 2023. URL https:            In Conference on Health, Inference, and Learning,
+  //proceedings.mlr.press/v209/tang23a.html.             pages 526–544. PMLR, 2023.
+Ilya Tolstikhin, Neil Houlsby, Alexander Kolesnikov, Wenchao Yu, Wei Cheng, Charu C. Aggarwal, Kai
+   Lucas Beyer, Xiaohua Zhai, Thomas Unterthiner,      Zhang, Haifeng Chen, and Wei Wang.         Net-
+   Jessica Yung, Andreas Peter Steiner, Daniel Key-    walk: A flexible deep embedding approach for
+   sers, Jakob Uszkoreit, Mario Lucic, and Alexey      anomaly detection in dynamic networks.       In
+   Dosovitskiy. MLP-mixer: An all-MLP architec-        Proceedings of the 24th ACM SIGKDD Inter-
+   ture for vision. In A. Beygelzimer, Y. Dauphin,     national Conference on Knowledge Discovery &
+   P. Liang, and J. Wortman Vaughan, editors, Ad-      Data Mining, KDD ’18, page 2672–2681, New
+   vances in Neural Information Processing Systems,    York, NY, USA, 2018. Association for Comput-
+   2021. URL https://openreview.net/forum?id=          ing Machinery. ISBN 9781450355520. doi: 10.
+   EI2KOXKdnP.                                         1145/3219819.3220024. URL https://doi.org/
+                                                       10.1145/3219819.3220024.
+Lucina Q Uddin, DR Dajani, W Voorhies, H Bed-
+   narz, and RK Kana. Progress and roadblocks in the Seongjun Yun, Minbyul Jeong, Raehyun Kim, Jae-
+   search for brain-based biomarkers of autism and     woo Kang, and Hyunwoo J Kim. Graph trans-
+   attention-deficit/hyperactivity disorder. Transla-  former networks. Advances in neural information
+   tional psychiatry, 7(8):e1218–e1218, 2017.          processing systems, 32, 2019.
+David C Van Essen, Stephen M Smith, Deanna M George Zerveas, Srideepika Jayaraman, Dhaval Patel,
+  Barch, Timothy EJ Behrens, Essa Yacoub, Kamil      Anuradha Bhamidipaty, and Carsten Eickhoff. A
+  Ugurbil, Wu-Minn HCP Consortium, et al. The        transformer-based framework for multivariate time
+  wu-minn human connectome project: an overview.     series representation learning. In Proceedings of
+  Neuroimage, 80:62–79, 2013.                        the 27th ACM SIGKDD conference on knowledge
+                                                     discovery & data mining, pages 2114–2124, 2021.
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob
+  Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Michael Zhang, Khaled Kamal Saab, Michael Poli,
+  Kaiser, and Illia Polosukhin. Attention is all you Tri Dao, Karan Goel, and Christopher Re. Ef-
+  need. Advances in neural information processing    fectively modeling time series with simple dis-
+  systems, 30, 2017.                                 crete state spaces. In The Eleventh Interna-
+                                                     tional Conference on Learning Representations,
+Junxiong Wang, Jing Yan, Albert Gu, and Alexan-      2023. URL https://openreview.net/forum?id=
+  der Rush. Pretraining without attention. In        2EpjkjzdCAa.
+  Houda Bouamor, Juan Pino, and Kalika Bali, ed-
+  itors, Findings of the Association for Computa- Haoyi Zhou, Shanghang Zhang, Jieqi Peng, Shuai
+  tional Linguistics: EMNLP 2023, pages 58–69,       Zhang, Jianxin Li, Hui Xiong, and Wancai Zhang.
+  Singapore, December 2023. Association for Com-     Informer: Beyond efficient transformer for long se-
+  putational Linguistics. doi: 10.18653/v1/2023.     quence time-series forecasting. In Proceedings of
+
+
+                                                    246
+                                               BrainMamba
+
+
+
+
+  the AAAI conference on artificial intelligence, vol-     • ADHD (Milham et al., 2011): ADHD (Milham
+  ume 35, pages 11106–11115, 2021.                           et al., 2011) contains resting-state fMRI of 250
+                                                             subjects in the ADHD group and 450 subjects
+Yanqiao Zhu, Hejie Cui, Lifang He, Lichao Sun, and           in the typically developed (TD) control group.
+  Carl Yang. Joint embedding of structural and func-         We follow the standard pre-processing steps (Cui
+  tional brain networks with graph neural networks           et al., 2022) to obtain brain networks. For the
+  for mental illness diagnosis. In 2022 44th Annual          edge and node anomaly detection tasks, we use
+  International Conference of the IEEE Engineer-             synthetic anomalies, while for the graph anomaly
+  ing in Medicine & Biology Society (EMBC), pages            detection task we label brain networks of the typ-
+  272–276. IEEE, 2022.                                       ically developed control group as “Normal” and
+                                                             brain networks of the ADHD group as “Anoma-
+                                                             lous”.
+Appendix A. Details of Datasets                            • TUH-EEG (Shah et al., 2018): The seizure de-
+                                                             tection TUH-EEG dataset (Shah et al., 2018)
+A.1. Datasets
+                                                             consists of EEG data with 31 channels of 642
+We use seven real-world datasets with different neu-         subjects. For the edge and node anomaly detec-
+roimage modalities and downstream tasks, whose de-           tion tasks, we use synthetic anomalies, while for
+scriptions are as follows:                                   the graph anomaly detection task we label brain
+                                                             networks of people with and without seizure as
+  • BVFC (Behrouz et al., 2023): BVFC is a task-             “Anomalous” and “Normal”, respectively.
+    based fMRI dataset that includes voxel activ-
+    ity timeseries and functional connectivity of 3        • MPI-EEG: MPI-EEG (Babayan et al., 2019)
+    subjects when looking at the 8460 images from            consists of 204 EEG data (two healthy groups
+    720 categories. For the multi-class classification       (1) young with age 25.1±3.1 and (2) elderly with
+    task, we aim to predict the label of the seen            age 67.6 ± 4.7) with 62 chennels.
+    image (9 labels) using the fMRI response of a
+    human subject (3 subjects). For the node-level         • HCP (Van Essen et al., 2013): HCP (Van Essen
+    anomaly detection tasks, we use synthetic in-            et al., 2013) contains data from 7440 neuroimag-
+    jected anomalies and for the graph anomaly de-           ing samples each of which is associated with one
+    tection, we aim to detect GAN generated images           of the seven ground-truth mental states. Follow-
+    using the fMRI response. We label brain activi-          ing previous studies (Said et al., 2023), we define
+    ties that correspond to seeing a GAN generated           two downstream multi-class classification tasks:
+    image (resp. natural image) as “Anomalous”                1 Mental states prediction, in which we aim
+    (resp. “Normal”). In multi-class classification          to predict the mental state using the fMRI. In
+    tasks, the labels are “Food”, “Human Body”,              these tasks, the labels are “Emotion Processing”,
+    “Car”, “Fruit”, “Animals”, “Verdure”, “Acces-            “Gambling”, “Language”, “Motor”, “Relational
+    sories”, “Fish”, and “Misc.”.                            Processing”, “Social Cognition”, and “Working
+                                                             Memory”. 2 We aim to predict the age of hu-
+  • BVFC-MEG (Behrouz et al., 2023): BVFC-                   man subjects using their fMRI. In this tasks, we
+    MEG is the MEG counterpart of the BVFC. For              split the age into 5 groups, balancing the num-
+    the multi-class classification task, we aim to pre-      ber of samples in each class. Similar to other
+    dict the label of the seen image (9 labels) us-          datasets, we use synthetic anomalies for the edge
+    ing the MEG response of a human subject (4               and node anomaly detection tasks.
+    subjects). For the node-level anomaly detection
+    tasks, we use synthetic injected anomalies and
+    for the graph anomaly detection, we aim to de-
+    tect natural scenes using the MEG response. We Appendix B. Details of Baselines
+    label MEG response that correspond to seeing
+    natural scenes as “Anomalous” and seeing other Since BrainMamba combines functional connectiv-
+    objects as “Normal”. The labels in multiclass ity and voxel timeseries activity, we compare our
+    classification tasks are the same as BVFC.          method to fourteen previous state-of-the-art methods
+
+
+                                                     247
+                                                         BrainMamba
+
+
+
+
+                                                Table 5: Datasets statistics.
+
+                                                                                      Number of Classes           Ground-Truth Anomaly
+ Datasets   Number of Graphs   Average Number of Nodes   Average Number of Edges
+                                                                                   (Multi-class Classification)   (Binary Classification)
+ BVFC            25380                  11776                    352479                       9                            Yes
+ BVFC-MEG        88992                   272                      9841                        9                            Yes
+ ADHD             700                    400                      6194                        -                            Yes
+ TUH-EEG           642                    31                       252                        -                            Yes
+ MPI-EEG           204                    62                      2419                        -                            Yes
+                  7440                                            7635                 7 (Mental states)
+ HCP                                    1000                                                                               Yes
+                  1067                                            8041                     5 (Age)
+
+
+
+
+and baselines on the timeseries, functional connectiv-                 maps regional and cross-regional functional con-
+ity, and graph encoding:                                               nectivity patterns. Li et al. (2021) propose a
+                                                                       novel clustering-based embedding method in the
+ 1. BrainMixer (Behrouz et al., 2023): BrainMixer                      graph convolutional layer as well as a graph node
+    uses two encoders, one for timeseries encoding                     pooling to learn ROI encodings in the brain. The
+    and one for graph encoding based on the MLP-                       model with code can be found in here.
+    Mixer architecture. Then maximizes the mutual
+    information of these two encoders to learn the                  6. BrainNetCnn (Kawahara et al., 2017):
+    timeseries encodings.                                              BrainNetCnn is a CNN-based approach that
+                                                                       uses novel edge-to-edge, edge-to-node and node-
+ 2. Graph MLP-Mixer (GMM) (He et al., 2023):
+                                                                       to-graph convolutional filters that leverage the
+    Graph MLP-Mixer uses graph partitioning algo-
+                                                                       topological locality of structural brain networks.
+    rithms to split the input graph into overlapping
+    graph patches (subgraphs) and then employs a                    7. ADMire (Behrouz and Seltzer, 2023b): AD-
+    graph neural network to encode each patch. It                      Mire is a random walk-based approach that
+    then uses an MLP to fuse information across                        models brain connectivity networks as multiplex
+    patch encodings. The model with code can be                        graphs. It uses inter-view and intra-view walks
+    found in here. Note that Graph MLP-Mixer can-                      to capture the causality between different neu-
+    not take advantage of temporal properties of the                   roimage modalities or different frequency band
+    graph as it is designed for static networks.                       filters.
+ 3. GraphMixer (Cong et al., 2023): Graph-
+                                                                    8. BNTransformer (Kan et al., 2022b): BN-
+    Mixer is a simple method that concatenates
+                                                                       Transformer adapts Transformers (Vaswani
+    the 1-hop temporal connections and their time
+                                                                       et al., 2017) to brain networks, so it can use
+    encoding of each node as its representative ma-
+                                                                       unique properties of brain networks. BNTrans-
+    trix. It then uses an MLPMixer to encode each
+                                                                       former use connection profiles as node fea-
+    representative matrix to obtain node encodings.
+                                                                       tures to provide low-cost positional information
+    The model with code can be found in here.
+                                                                       and then learns pair-wise connection strengths
+ 4. FbNetGen (Kan et al., 2022a): FbNetGen is                          among ROIs with efficient attention weights. It
+    a graph neural network based generative model                      further uses a novel READOUT operation based
+    for functional brain networks from fMRI data                       on self-supervised soft clustering and orthonor-
+    that includes three components: a dimension                        mal projection. The model with code can be
+    reduction phase to denoise the raw time-series                     found in here.
+    data, a graph generator for brain networks gen-
+    eration from the encoded features, and a GNN                    9. PTGB (Yang et al., 2023): PTGB is an unsuper-
+    predictor for predictions based on the generated                   vised pre-training method designed specifically
+    brain networks. The model with code can be                         for brain networks using contrastive learning and
+    found in here.                                                     maximizing the mutual information between an
+                                                                       anchor point of investigation X from a data dis-
+ 5. BrainGnn (Li et al., 2021): BrainGnn is                            tribution H and its positive samples, while min-
+    a graph neural network-based framework that                        imizing its mutual information with its negative
+
+
+                                                              248
+                                                 BrainMamba
+
+
+
+
+    samples. The model with code can be found in                                         BrainTransformer   BrainMixer   BrainMamba
+
+
+
+
+                                                         Number Of Parameters (M)
+    here.                                                                           10
+
+
+
+                                                           5
+ 10. Usad (Audibert et al., 2020): Usad is an unsu-
+     pervised representation learning method in time       0
+                                                                  BVFC-MEG          HCP-Mental       HCP-Age
+     series, which utilizes an encoder-decoder archi-
+     tecture within an adversarial training framework
+                                                        Figure 5: The number of parameters in Brain-
+     that allows it to take advantage of both.
+                                                        Mamba and its main competitors, BrainMixer and
+                                                        BNTransformer.
+ 11. Time Series Transformer (TST) (Zerveas et al.,
+     2021): TST is a transformer-based framework
+     for unsupervised representation learning of mul- Appendix D. Details of Training
+     tivariate time series, which is capable of pre-
+     training and can be employed on varius down-          In the training of BrainMamba, We randomly
+     stream tasks.                                      split 70% of the datasets for training, 10% for
+                                                        validation, and the remaining 20% are utilized as
+ 12. Mvts (Potter et al., 2022): Mvts is an unsu- the test set (making sure that there is no over-
+     pervised transformer-based model for time se- lap between training and test sets.). We employ
+     ries learning, which utilizes special properties AdamW (Loshchilov and Hutter, 2019) with a mo-
+     of EEGs for seizure identification. It uses an mentum of 0.9, and a weight decay of 0.05 to opti-
+     autoencoder mechanism involving a transformer mize BrainMamba. The batch size is set as 64.
+     encoder and an unsupervised loss function for While we use the same batch size for all baselines,
+     training.                                          particularly, BNTransformer, GraphS4mer, and
+                                                        BrainMixer face out of memory issue on BVFC
+   We use the same hyperparameter selection process dataset. The main reason is the number of voxels
+as BrainMamba. Also, we fine tune their training in this dataset (> 10000), which due to the quadratic
+parameters as their original papers using grid search. space complexity of Transformers used in these mod-
+For the sake of fair comparison, we use the same els results in OOM issue. For this method, we also
+training, testing and validation data for all the base- tried batch size of 8, which did not solve this OOM
+lines (including same data augmentation and negative issue.
+sampling). Also, for PTGB (Yang et al., 2023) and
+BrainMixer (Behrouz et al., 2023), which also are ca- Appendix E. Limitations & Future
+pable of pre-training, we use the same datasets and
+                                                                             Work
+settings as we use for BrainMamba.
+                                                           The success of BrainMamba in binary and multi-
+                                                        class classification tasks raises many interesting direc-
+                                                        tions for future studies: 1 Wider variety of neurolog-
+Appendix C. Model Size                                  ical conditions: For the sake of space and time, the
+                                                        current experiments are limited to benchmark stud-
+   To show the efficiency of BrainMamba and to ies on ADHD, Seizure, and mental state detection, as
+compare it with competitors with respect to the well as visual cortex decoding. To further show the
+model size, we report the number of parameters usefulness of BrainMamba in wider variety of neu-
+of BrainMamba, BrainMixer, and BNTrans- rological conditions, we plan to apply BrainMamba
+former in Figure 5. Mamba backbone of Brain- for Alzheimer’s disease, Autism Spectrum Disorder
+Mamba avoids attention module and with less (ASD), and Schizophrenia, which all are known to be
+number of parameters provides better performance. correlated with functional connectivity. 2 The cur-
+These results futher support that the superior perfor- rent method is based on pre-defined brain network
+mance of BrainMamba over baselines is not because connectivity using Pearson’s correlation. In our fu-
+of the large number of parameters, but it is because ture study, we plan to learn the functional connec-
+of its architectural design.                            tivity network in a data-driven and end-to-end man-
+                                                        ner. This end-to-end design results in more flexibility
+
+
+                                                      249
+                                                  BrainMamba
+
+
+
+
+and generalizibility of the framework. 3 The cur-
+rent framework treats each subject the same in the
+training process, while the neuroimaging of a subject
+might be noisy, due to special conditions in the time
+of data collection. To address it, one future direc-
+tion is to investigate the possibility of robust training
+across different populations using attention mecha-
+nism. 4 BrainMamba is based on sequence encod-
+ing and translates both voxel activity and functional
+connectivity to sequences. Potentially, this idea can
+be extended to other modalities like historical med-
+ical record (text), and/or multimodal neuroimages
+(fMRI + structural MRI, fMRI + EEG, etc.). One
+future direction is to extend BrainMamba frame-
+work to support multiple modalities, which can help
+to improve the generalizibility and performance. 5
+The evaluation of the robustness of BrainMamba
+with respect to distribution shifts is left for future
+studies. We hypothesize that due to the nature of
+architecture design of existing methods as well as
+BrainMamba, they all might perform poorly with
+respect to distribution shifts; We expect, however,
+BrainMamba, due to its selection mechanism, gen-
+eralize better than existing methods (Behrouz et al.,
+2023; Kan et al., 2022b) and further our suggestion
+in 3 can make the model more robust with respect
+to distribution shifts. For the sake of space, we leave
+this evaluation for future work.
+
+
+
+
+                                                        250
+

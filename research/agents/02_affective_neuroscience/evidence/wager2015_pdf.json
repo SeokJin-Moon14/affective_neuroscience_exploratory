@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2015_Wager_Kang_etal_Emotion_Meta_BSPP/Wager_2015_PlosCompBiology.PDF",
+  "verified_on": "2026-11-12T03:36:32.321778+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2015_Wager_Kang_etal_Emotion_Meta_BSPP/Wager_2015_PlosCompBiology.PDF",
+  "bytes": 1361587,
+  "sha256": "e0cce6f3eb8786d12d2bcdc2b621bb584bb76a33454cafc523b56ada7d12d390",
+  "content_type": "application/octet-stream",
+  "source_file": "wager2015_pdf.source"
+}

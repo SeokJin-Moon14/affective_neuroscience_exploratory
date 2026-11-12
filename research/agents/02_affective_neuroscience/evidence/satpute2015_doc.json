@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2015_Satpute_Barett_Emotion_Valence/contents_description.md",
+  "verified_on": "2026-11-12T03:35:38.532748+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2015_Satpute_Barett_Emotion_Valence/contents_description.md",
+  "bytes": 2511,
+  "sha256": "cea2c9b1806195fce173b9e8cd46be169bcce550f548baa56768416e79c5b69a",
+  "content_type": "text/plain; charset=utf-8",
+  "source_file": "satpute2015_doc.source"
+}

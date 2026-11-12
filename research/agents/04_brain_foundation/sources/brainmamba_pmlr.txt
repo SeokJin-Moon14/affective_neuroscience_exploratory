@@ -1,0 +1,57 @@
+---
+title: 'Brain-Mamba: Encoding Brain Activity via Selective State Space Models'
+abstract: 'Representation learning of brain activity is a key step toward unleashing
+  machine learning models for use in the diagnosis of neurological diseases/disorders.
+  Diagnosis of different neurological diseases/disorders, however, might require paying
+  more attention to either spatial or temporal resolutions of brain activity. Accordingly,
+  a generalized brain activity learner requires the ability of learning from both
+  resolutions. Most existing studies, however, use domain knowledge to design brain
+  encoders, and so are limited to a single neuroimage modality (e.g., EEG or fMRI)
+  and its single resolution. Furthermore, their architecture design either: (1) uses
+  self-attention mechanism with quadratic time with respect to input size, making
+  its scalability limited, (2) is \emph{purely} based on message-passing graph neural
+  networks, missing long-range dependencies and temporal resolution, and/or (3) encode
+  brain activity in each unit of brain (e.g., voxel) separately, missing the dependencies
+  of brain regions. In this study, we present BrainMamba, an attention free, scalable,
+  and powerful framework to learn brain activity multivariate timeseries. BrainMamba
+  uses two modules: (i) A novel multivariate timeseries encoder that leverage an MLP
+  to fuse information across variates and an Selective Structured State Space (S4)
+  architecture to encode each timeseries. (ii) A novel graph learning framework that
+  leverage message-passing neural networks along with S4 architecture to selectively
+  choose important brain regions. Our experiments on 7 real-world datasets with 3
+  modalities show that BrainMamba attains outstanding performance and outperforms
+  all baselines in different downstream tasks.'
+year: '2024'
+volume: '248'
+publisher: PMLR
+series: Proceedings of Machine Learning Research
+software: https://github.com/GraphMamba/BrainMamba
+layout: inproceedings
+issn: 2640-3498
+id: behrouz24a
+month: 0
+tex_title: 'Brain-Mamba: Encoding Brain Activity via Selective State Space Models'
+firstpage: 233
+lastpage: 250
+page: 233-250
+order: 233
+cycles: false
+bibtex_author: Behrouz, Ali and Hashemi, Farnoosh
+author:
+- given: Ali
+  family: Behrouz
+- given: Farnoosh
+  family: Hashemi
+date: 2024-07-24
+address:
+container-title: Proceedings of the fifth Conference on Health, Inference, and Learning
+genre: inproceedings
+issued:
+  date-parts:
+  - 2024
+  - 7
+  - 24
+pdf: https://raw.githubusercontent.com/mlresearch/v248/main/assets/behrouz24a/behrouz24a.pdf
+extras: []
+# Format based on Martin Fenner's citeproc: https://blog.front-matter.io/posts/citeproc-yaml-for-bibliographies/
+---

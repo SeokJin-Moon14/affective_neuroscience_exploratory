@@ -1,0 +1,664 @@
+[
+  {
+    "connection_id": "UC10-1",
+    "source_field": "순차 Bayesian 실험설계와 개념 질의",
+    "original_computational_goal": "P077은 설계–관측 history에서 다음 실험을 고르는 정책으로 반복 설계 비용을 줄인다. P083 §8은 인간 질의로 개념을 학습·정제할 가능성을 논의한다.",
+    "imported_structure": "다음 자극을 생성하는 대신 어떤 독립 중립 관계 주석을 다음에 수집할지 선택한다. 후보 관계 질의의 기대 정보가 관계특이 중복 가설과 일반 타깃설명력 가설을 얼마나 구별하는지 훈련 자료에서 평가한다.",
+    "new_neural_question": "제한된 추가 의미 주석 예산에서 어떤 관계를 확인해야 정서 관련 N-D 감소의 두 설명을 가장 잘 구분하는가?",
+    "why_not_same_as_round2": "Round2는 미리 정한 객체/관계 특징을 비교했다. 여기서는 미측정 의미 중 다음 관측을 적응적으로 선택하는 측정 정책 자체를 새로 도입한다. 단순 모델·데이터명 교체가 아니다.",
+    "candidate_ids": [
+      "C10-02"
+    ],
+    "source_papers": [
+      "P077",
+      "P083",
+      "P100"
+    ],
+    "assumptions": [
+      "관계 주석은 뇌·정서라벨을 보지 않는 별도 주석자가 제공",
+      "주석 likelihood와 불확실성을 정의할 수 있어야 정확한 Bayesian 설계 명칭 사용 가능",
+      "P077의 연속 설계·조건부 독립·명시적 likelihood 가정이 이산·상관 주석에 자동 성립하지 않음",
+      "불충족 시 이산 enumeration 또는 disagreement 휴리스틱으로 명칭을 낮추고 exact EIG를 주장하지 않음"
+    ],
+    "discriminating_test": "동일 주석비용에서 random/내용 coverage/단순 disagreement/가능하면 명시적 정보기준 정책을 훈련 자료에만 적용한다. 고정된 외부 자극·주석에서 두 경쟁 설명의 판별 손실과 잘못된 선택 비율을 비교한다. adaptive 선택의 성능을 선택에 사용한 신경 자료로 평가하지 않는다.",
+    "failure_interpretation": "단순 coverage와 같으면 적응 설계의 필요성이 없다. 비용 감소만 있고 신경 가설 판별이 나아지지 않으면 주석 효율 방법으로 제한한다."
+  },
+  {
+    "connection_id": "UC10-2",
+    "source_field": "잡음 역문제의 복수 해와 신경 지도 정렬",
+    "original_computational_goal": "P076은 잡음 관측과 diffusion prior를 결합해 신호를 근사 복원한다. P062는 좌표가 다른 뇌 지도의 변환·비교를 다루며 개인/집단 변환의 한계를 밝힌다.",
+    "imported_structure": "관측과 양립하는 자극 후보의 복수성이라는 구조를 자극 대신 신경 mapping의 복수성으로 옮긴다. 독립 calibration에서 비슷한 손실을 갖는 mapping family를 사전에 허용하고 이후 의미 일반화 결론이 모든 허용 mapping에서 유지되는지 본다.",
+    "new_neural_question": "특정 정렬 하나에서 보이는 새 의미조합의 정서 신경 예측 실패는 calibration으로 구별할 수 없는 다른 mapping에서도 유지되는가?",
+    "why_not_same_as_round2": "Round2는 개인/공유 mapping 중 선택한 모형의 요인 비교였다. 여기서는 선택을 하나로 고정하지 않고 허용 mapping 전체에서의 결론 범위를 주타깃으로 바꾸었다. P076의 원신호 생성과도 다른 추정 대상이다.",
+    "candidate_ids": [
+      "C10-05"
+    ],
+    "source_papers": [
+      "P076",
+      "P062",
+      "P100"
+    ],
+    "assumptions": [
+      "독립 calibration 관측과 noise/reliability 기반 사전 허용오차",
+      "후보 mapping family의 유한 coverage 한계를 명시",
+      "같은 test 성능으로 허용 mapping을 선택하지 않음",
+      "허용집합을 posterior 또는 진짜 신경 등가군으로 해석하지 않음"
+    ],
+    "discriminating_test": "mapping을 생성한 훈련 자료와 허용여부를 정하는 calibration, 의미일반화를 평가하는 test를 분리한다. calibration 손실이 비슷한 mapping들에서 새 관계조합 대비의 부호·크기 범위를 보고 단일 최선 mapping 결론과 비교한다.",
+    "failure_interpretation": "mapping에 따라 결론이 바뀌면 의미 실패의 귀속이 정렬 선택에 의존한다. 모두 같은 실패라도 공통 누락과 주석차이가 남으므로 뇌의 의미코드 부재를 확정하지 않는다."
+  },
+  {
+    "connection_id": "UC05-01",
+    "source_field": "통계적 식별성과 표현 유사도",
+    "original_computational_goal": "P053은 무감독 latent disentanglement의 식별 한계를, P051은 신경망 표현 비교의 적절한 불변성을 다룬다. P037은 shared/private task 정보를 보존한다.",
+    "imported_structure": "좌표 재표현과 정보원 접근을 분리한다. 같은 정보를 보유한 직교 좌표 변환은 대조이고, 정보원 가림과 병목 크기는 실질 조작이다.",
+    "new_neural_question": "private 축 이름이 달라도 추가 모달리티 접근의 정서 신경 대비 이득이 공유 병목 용량에 걸쳐 유지되는가?",
+    "why_not_same_as_round2": "Round2는 gate와 특정 private latent의 필요성을 동시에 물었다. 새 연결은 gate를 제거하고 좌표별 특수성 대신 정보원 접근의 충분성 곡선을 추정한다.",
+    "candidate_ids": [
+      "C05-01"
+    ],
+    "source_papers": [
+      "P053",
+      "P051",
+      "P037"
+    ],
+    "assumptions": [
+      "가역 직교 변환은 정보원을 추가하지 않는 대조이며 새로운 신경기전 검정은 아님",
+      "유한 readout family에서의 충분성만 추정",
+      "원문 이론을 정서 신경표상 식별 정리로 확장한 주장은 E3"
+    ],
+    "discriminating_test": "원 feature와 직교 재표현에서 동등 readout을 적합한 후 source ablation×bottleneck 곡선을 비교한다. 좌표에만 민감하면 분해/규제 효과, 정보원 제거에 견고하면 해당 모형계열의 정보원 의존이다.",
+    "failure_interpretation": "축 안정성 실패는 생물학적 private 정보 부재가 아니다. shared 용량 확장으로 이득이 사라지면 압축손실 회수 설명을 지지한다."
+  },
+  {
+    "connection_id": "UC05-02",
+    "source_field": "시스템 식별·표현모형 선택",
+    "original_computational_goal": "P034/P089의 상태 갱신은 효율적 시퀀스 계산/영상 예측을 위한 구조이며 P101은 encoding·PCM·RSA를 표현모형 비교 틀로 연결한다.",
+    "imported_structure": "서로 다른 잠재 기전의 합성 데이터를 같은 관측 family에 통과시키고 각 대립모형이 nuisance 파라미터를 train에서 최적으로 적합하도록 허용한 뒤 복구 혼동을 검사한다.",
+    "new_neural_question": "모달리티 기억 차이나 경계 forgetting의 필요성이 encoder filter·HRF·초기상태 prior가 조정된 경쟁 설명에서도 관측상 남는가?",
+    "why_not_same_as_round2": "Round2의 공통 HRF와 matched reset만으로 충분하다고 두지 않는다. 실제 자기상관을 유지한 대립 생성세계와 모형별 nuisance 재적합을 포함해 설명 가능한 동등성을 먼저 찾아낸다.",
+    "candidate_ids": [
+      "C05-02",
+      "C05-03"
+    ],
+    "source_papers": [
+      "P034",
+      "P089",
+      "P101",
+      "P100"
+    ],
+    "assumptions": [
+      "합성 세계는 실제 뇌를 확정하는 모델이 아님",
+      "개발 자료로 정한 노이즈·효과마진과 실제 자극 구조를 사용",
+      "공통 family가 동일 nuisance 값 강제를 뜻하지 않음"
+    ],
+    "discriminating_test": "공통 기억+상이 encoder filter와 상이 기억+공통 filter, 연속 state+유연한 관측필터와 reset state를 각각 생성하고 동일 pipeline의 혼동행렬·held-out paired risk를 측정한다. 신경검정에서 구별 가능한 최소 효과 범위를 사전 설정한다.",
+    "failure_interpretation": "복구 실패는 현 관측범위에서의 판별 불가이며 신경 기억/경계 계산 부재가 아니다. 이때 시간관측 방법후보로 분리한다."
+  },
+  {
+    "connection_id": "UC05-03",
+    "source_field": "비선형 ICA의 보조변수 식별·시퀀스 대응",
+    "original_computational_goal": "P054는 auxiliary variables를 사용한 nonlinear ICA 식별을, P042는 속도가 다른 시퀀스의 cycle correspondence를 다룬다.",
+    "imported_structure": "외부 landmark를 좌표의 방향/상대 진행을 제한하는 보조 앵커로 두고 완료된 미래 시퀀스가 아닌 현재까지 관찰된 landmark 이력으로 진행을 표현한다.",
+    "new_neural_question": "미래 종료점을 모르는 상황에서도 독립 landmark 이력이 시계시간 이상의 정서 신경 대비를 설명하는가?",
+    "why_not_same_as_round2": "단순 full-sequence TCC 정렬이 아니라 prefix state와 retrospective 좌표를 분리하고 외부 앵커의 측정 타당성부터 검증한다. C01-02 병합 설계의 새 식별 조건이다.",
+    "candidate_ids": [
+      "C05-04",
+      "C01-02"
+    ],
+    "source_papers": [
+      "P054",
+      "P042",
+      "P053"
+    ],
+    "assumptions": [
+      "landmark는 정서/BOLD를 보지 않고 정의",
+      "독립 landmark의 인과적 관찰 시점을 기록",
+      "nonlinear ICA 정리의 조건이 뇌 사건 상태에 만족된다고 주장하지 않음"
+    ],
+    "discriminating_test": "관찰된 landmark까지의 prefix로 held-out landmark와 원시간 신경 대비를 예측하고 elapsed/event identity와 비교한다. 미래 종료점을 쓰는 normalized-time oracle의 이득은 별도 결과로 분리한다.",
+    "failure_interpretation": "landmark 검증 실패는 단계 측정 실패다. oracle만 이기면 사후 정렬 가치는 남아도 온라인 사건진행 설명은 지지되지 않는다."
+  },
+  {
+    "connection_id": "UC01-01",
+    "source_field": "조건부 계산·도메인 일반화",
+    "original_computational_goal": "P093은 입력별 일부 전문가를 활성화하여 계산량과 전체 용량을 분리하고 P098은 환경 밖 일반화를 평가한다.",
+    "imported_structure": "입력descriptor가 공유 파라미터를 조절하는 구조를 미관측 내용군의 관측변환 예측으로 전이한다.",
+    "new_neural_question": "고정 정서 방향이 실패해도 내용descriptor에 의해 조절되는 같은 연산은 새 내용군으로 전이하는가?",
+    "why_not_same_as_round2": "내용 그룹/검색 후보 정의를 넘어 held-out 내용군에 존재하지 않는 dummy 계수 문제를 해결하는 함수 구조를 도입했다.",
+    "candidate_ids": [
+      "C01-01",
+      "C01-05"
+    ],
+    "source_papers": [
+      "P093",
+      "P098",
+      "P051"
+    ],
+    "assumptions": [
+      "descriptor 공통 지지",
+      "조건부 함수는 train에서만 적합",
+      "MoE 성능은 신경 routing 근거가 아님"
+    ],
+    "discriminating_test": "고정·제한 관측변환·관계변형의 새 내용/자극 대비 예측을 동일 자료량으로 비교한다.",
+    "failure_interpretation": "descriptor 조건부 일반화가 실패하면 특정 함수와 관측모형의 한계이며 공통 뇌 코드 전체의 부재는 아니다.",
+    "evidence_scope": "원 계산문제는 기존 문헌/공식 코드 기록, 신경 전이는 E3"
+  },
+  {
+    "connection_id": "UC01-02",
+    "source_field": "순차 영상 예측·시간 대응 학습",
+    "original_computational_goal": "P089은 과거 영상에서 다음 입력을 예측하고 P042는 비디오 단계의 순환 일관적 대응을 학습한다.",
+    "imported_structure": "현재 입력집합을 과거 prefix로 제한하는 예측 구조와 전체 시퀀스 대응을 분리하여 실제 종료를 아는 oracle를 독립 대조로 둔다.",
+    "new_neural_question": "정서 신경 대비의 사건단계 이득은 현재에 계산 가능한 상태에서 오나 사후 정렬에서만 오나?",
+    "why_not_same_as_round2": "기하 재매개화의 평가에서 입력 정보의 시간 방향을 검정하는 반사실 비교로 바뀌었다.",
+    "candidate_ids": [
+      "C01-02"
+    ],
+    "source_papers": [
+      "P089",
+      "P042",
+      "P066"
+    ],
+    "assumptions": [
+      "prefix 경계 감사",
+      "예상 duration은 train에서 추정",
+      "실제 종료는 oracle만 사용"
+    ],
+    "discriminating_test": "elapsed·expected duration·prefix semantics·actual-end oracle를 새 영화의 같은 neural contrast에서 평가한다.",
+    "failure_interpretation": "oracle만 성공하면 offline 표현 방법의 이득으로 낮춘다.",
+    "evidence_scope": "공식 코드 수준의 원리 기록에 근거한 E3 신경 전이; 새 신경결과 없음"
+  },
+  {
+    "connection_id": "UC01-03",
+    "source_field": "Bayesian experimental design·비대응 형상 정합",
+    "original_computational_goal": "P077은 관측 이력에서 다음 설계를 골라 정보 획득을 높이고 P057은 서로 다른 거리행렬을 수송으로 정렬한다.",
+    "imported_structure": "비슷한 수송비용인데 다른 정서/신경 대비를 예측하는 해들을 구별할 bridge를 고른다. likelihood/posterior가 없으면 heuristic disagreement임을 명시한다.",
+    "new_neural_question": "어떤 외부 측정이 공통 모양에서 정서 관계와 실제 신경 전이를 분리하는 데 필요한가?",
+    "why_not_same_as_round2": "불확실성을 보고하는 데서 끝나지 않고 그 불확실성을 줄일 새 측정의 종류와 독립 검증 단계를 설계한다.",
+    "candidate_ids": [
+      "C01-04"
+    ],
+    "source_papers": [
+      "P077",
+      "P057",
+      "P100"
+    ],
+    "assumptions": [
+      "후보 결합과 측정 noise model 명시",
+      "선택용 bridge와 최종평가 bridge 분리",
+      "신경 주장에는 양쪽 실제 neural anchor 필요"
+    ],
+    "discriminating_test": "동일 예산의 disagreement 대 무작위 bridge 선택 후 완전히 보류한 의미 및 신경 대비의 예측을 각각 비교한다.",
+    "failure_interpretation": "bridge가 의미만 개선하면 신경 전이 주장을 보류하고 mapping/측정 설계의 한계를 밝힌다.",
+    "evidence_scope": "원문/공식 자료의 기존 검증기록을 사용; 신경 bridge 설계는 E3"
+  },
+  {
+    "connection_id": "UC09-01",
+    "source_field": "역문제의 제약충족 탐색 × Bayesian 실험설계",
+    "original_computational_goal": "P076은 잡음 관측에 양립하는 신호의 근사 복원, P077은 순차 설계 전체의 정보 이득을 효율적으로 선택하는 것이 원 목표다.",
+    "imported_structure": "전체 해집합을 추정한다는 요구를 버리고 서로 다른 두 유효해라는 witness를 고정한 뒤 추가 관측으로 배제하는 반복 구조를 도입한다. 반례를 이용한 정제라는 연결은 E3이며 별도 형식검증 논문을 확인했다고 하지 않는다.",
+    "new_neural_question": "어떤 독립 반복/사전지정 contrast 관측이 정서에 관해 상반된 모델조건부 자극 설명을 처음으로 배제하는가?",
+    "why_not_same_as_round2": "Round2의 후보 최소–최대 범위는 탐색 완전성을 암묵적으로 요구했다. 새 연결은 이미 찾은 witness의 생존/탈락으로 추정량을 바꾸고 추가 측정의 가치를 구체적 양자 설명의 구별로 한정한다.",
+    "candidate_ids": [
+      "C09-02",
+      "C09-04"
+    ],
+    "source_papers": [
+      "P076",
+      "P077",
+      "P053",
+      "P100"
+    ],
+    "assumptions": [
+      "witness의 인간 주석 차이·자연성 검증",
+      "별도 forward와 독립 관측의 calibration",
+      "새 관측을 보기 전에 witness 고정",
+      "유한 sampler의 미발견을 증명으로 쓰지 않음"
+    ],
+    "discriminating_test": "같은 discovery 관측에서 고정한 witness 쌍을 독립 반복에 순차 대조하고 무작위 관측 추가와 사전정의 contrast 추가의 배제율을 비교한다. 실제 연구에서는 관측 예측 적합도만 주장한다.",
+    "failure_interpretation": "모든 witness가 평가 encoder에서 즉시 탈락하면 탐색이 모델 취약점을 이용했을 가능성이 커진다. 미발견은 과학적 고유성 증명이 아닌 탐색상 음성이다."
+  },
+  {
+    "connection_id": "UC09-02",
+    "source_field": "분포 이동 학습 × 표상 통계의 모집단 추론 × 생성 편집",
+    "original_computational_goal": "P098은 서로 다른 domain·subpopulation에 대한 일반화 평가, P100은 참가자·자극 모집단의 표상 추론, P070은 구조를 보존하는 텍스트 편집이 원 목표다.",
+    "imported_structure": "편집 허용 필터를 품질검사만이 아니라 평가 대상 모집단을 바꾸는 선택 연산자로 취급한다. 조건부 효과·coverage·domain별 누락을 함께 정의한다.",
+    "new_neural_question": "의미 보존을 엄격하게 요구할수록 어떤 원본 내용·정서 강도 영역이 관측 가능한 신경대비 모집단에서 빠지며, 남은 허용영역의 대비는 두 구현에서 유지되는가?",
+    "why_not_same_as_round2": "Round2는 타당성 필터로 실패를 제거하면 평가가 개선된다는 구상이었다. 새 연결은 필터 자체가 결과의 적용 범위를 바꾼다는 질문으로 전환하며 pass/fail 효과와 원모집단 외삽을 철회한다.",
+    "candidate_ids": [
+      "C09-03",
+      "C09-05"
+    ],
+    "source_papers": [
+      "P098",
+      "P100",
+      "P070"
+    ],
+    "assumptions": [
+      "모든 편집 시도·실패·선별 규칙 기록",
+      "개발에서 허용영역과 target population 고정",
+      "A/내용/자연성 공통 support",
+      "선택확률 0인 영역에 가중치로 일반화하지 않음"
+    ],
+    "discriminating_test": "개발자료에서 허용 threshold별 내용·A 분포 coverage를 계산하고 고정 threshold의 독립 test에서 family별 paired 신경대비를 평가한다. 두 pipeline의 공통 영역과 각자만의 영역을 섞지 않는다.",
+    "failure_interpretation": "허용집합이 특정 정서·내용으로 붕괴하면 효과 부재가 아니라 조작 가능한 모집단이 좁다는 결과다. 넓은 모집단의 신경 일반화 주장은 축소한다."
+  },
+  {
+    "connection_id": "UC06-01",
+    "source_field": "표현 불변성과 서로 다른 학습 계산의 기능 등가성",
+    "original_computational_goal": "P051은 표현 유사성 지표의 불변성을, P096의 확인된 코드/서지는 다른 학습 계산과 역전파 비교를 다룬다. 프로그램 동등성 일반이론을 새로 검증했다고 주장하지 않는다.",
+    "imported_structure": "입출력 함수를 보존하는 재매개화를 음성 대조로 삼아, 같은 예측을 구현하는 여러 내부 좌표에서 개별 feature 중요도가 얼마나 달라지는지 시험한다.",
+    "new_neural_question": "동일 모델 함수가 정서 신경 대비를 똑같이 예측하면서 다른 개념 중요도를 부여하면 어떤 수준의 개념–신경 대응만 식별되는가?",
+    "why_not_same_as_round2": "Round2는 SAE seed/width의 경험적 안정성과 제거 효과를 병렬 측정했다. 새 연결은 함수 보존을 수학적으로 정의한 control과 decoder 역변환을 넣어 좌표 변화만으로 해석이 바뀌는지를 직접 반박한다.",
+    "candidate_ids": [
+      "C06-03",
+      "C06-04"
+    ],
+    "source_papers": [
+      "P051",
+      "P096",
+      "P101"
+    ],
+    "evidence_scope": "P051 기존 선택 본문 E1; P096/P101 기존 공식 코드 범위. 신경 개입 control과 통합은 E3 새 제안.",
+    "assumptions": [
+      "허용 재매개화가 모델 후속 출력·복원 함수를 실제로 보존하는지 수치 확인",
+      "임의 회전이 sparse 분포를 보존한다고 가정하지 않음",
+      "동등성은 고정 입력·readout·오차허용폭에 한정"
+    ],
+    "discriminating_test": "가역 feature 변환과 decoder/후속 역변환에서 무개입 출력 동등성을 먼저 확인하고, 좌표 단위 ablation 및 invariant subspace intervention의 신경 대비와 모델 손실을 비교한다.",
+    "failure_interpretation": "함수 보존 control에서 단위 중요도만 변하면 named concept의 고유성 기각. 함수 자체가 바뀌면 control 실패로 처리하고 과학적 결과로 세지 않는다."
+  },
+  {
+    "connection_id": "UC06-02",
+    "source_field": "잠재요인 역문제의 식별성·생성모형 회복과 실험 지지 설계",
+    "original_computational_goal": "P055는 보조 정보 아래 잠재요인의 식별 조건을 다루고 P101은 공통 생성모형·잡음 조건에서 표현모형 비교를 구현한다. 두 문헌이 본 bilinear 조합의 식별 정리를 제공한다는 뜻은 아니다.",
+    "imported_structure": "데이터를 나눈 뒤 예측을 보는 순서에 앞서, 알려진 생성 신호가 관측 연산자와 train 조합 설계를 통과해 회복되는지 검사하고 지지가 있는 pair 유보만 신경 가설 검정으로 삼는다.",
+    "new_neural_question": "정서 조합의 실패가 실제 가산 코드 때문인지 훈련 조합에서 공유 관계 연산을 추정할 수 없었기 때문인지 구별할 수 있는가?",
+    "why_not_same_as_round2": "Round2의 low-rank라는 방법명만으로는 미관측 pair의 예측식을 정하지 못했다. 새 연결은 공유 함수·gauge·설계조건수·positive recovery를 정의하여 음성 결과의 의미를 바꾼다.",
+    "candidate_ids": [
+      "C06-05",
+      "C06-01"
+    ],
+    "source_papers": [
+      "P055",
+      "P101",
+      "P100"
+    ],
+    "evidence_scope": "P055/P100은 기존 선택 본문, P101은 공식 코드 범위의 근거. 조합 지원 그래프·shared operator·회복 gate는 E3 설계.",
+    "assumptions": [
+      "연결 그래프만으로 식별성을 보장하지 않음",
+      "synthetic recovery는 지정한 생성모형 범위의 검증일 뿐 뇌가 그 모형이라는 증거가 아님",
+      "관측 HRF·주석 잡음·표집 구조가 simulation에 반영되어야 함"
+    ],
+    "discriminating_test": "같은 unseen-pair split에 가산/성분 내부 비선형/공유 bilinear 신호를 각각 주입하고 오류율·검출력·예측범위를 비교한다. 회복 가능한 조건에서만 실제 신경 ΔR²의 영효과를 해석한다.",
+    "failure_interpretation": "회복 실패는 해당 조합 설계를 보류할 근거이며 구성 신경 가설의 폐기 근거가 아니다. 회복 가능해도 실제 영효과면 지정 관계 함수의 필요성을 제한한다."
+  },
+  {
+    "connection_id": "UC12-01",
+    "source_field": "식별 가능한 표현학습·비선형 ICA",
+    "original_computational_goal": "P055는 보조변수로 조건화한 latent prior와 명시적 모형 가정 아래 비선형 잠재요인의 식별성을 연구한다. P053는 무감독 disentanglement의 식별 한계를 다룬다.",
+    "imported_structure": "목표 출력에 맞춘 잠재축 대신 독립 보조 anchor와 공유 제약을 먼저 정하고 여러 미사용 표적이 동일 구조를 만족하는지 검정한다. 맥락 합성규칙은 이 문헌이 입증한 뇌 결과가 아니라 새 E3 확장이다.",
+    "new_neural_question": "정서 독립 anchor가 고정한 맥락 변환은 학습하지 않은 맥락 조합에서 여러 정서 신경 대비를 동시에 예측하는가?",
+    "why_not_same_as_round2": "Round2의 단일 조건부 readout 비교는 재매개화로 동등할 수 있었다. 독립 anchor 고정·다중 표적·미관측 요소 합성이라는 추가 예측을 도입하며 제목과 주장을 실질적으로 좁혔다.",
+    "candidate_ids": [
+      "C12-01"
+    ],
+    "source_papers": [
+      "P055",
+      "P053",
+      "P051"
+    ],
+    "assumptions": [
+      "anchor는 정서 test target과 독립적으로 정의한다.",
+      "변환군·기준좌표·복잡도·합성규칙은 train 내부에서 사전 고정한다.",
+      "iVAE의 생성모형·보조변수 가정을 뇌자료가 충족한다고 가정하지 않는다.",
+      "맥락 조합의 공통 지지와 독립 다중 대비가 필요하다."
+    ],
+    "discriminating_test": "같은 T로 여러 held-out 대비를 예측하고 T(c1,c2)의 사전 합성이 자유 조건부 함수와 다른 예측을 내는 새 조합을 검정한다.",
+    "failure_interpretation": "실패는 지정 anchor/변환/합성 family의 전이를 반박한다. 신경 공통연산 부재나 모든 잠재모형의 비식별성을 보인 것은 아니다.",
+    "evidence_boundary": "P053/P055 확인된 본문 범위 E1; P051 기존 검토 본문 E1; 신경 전이·합성 검정 E3; 이번 라운드 새 원문 검증 없음"
+  },
+  {
+    "connection_id": "UC12-02",
+    "source_field": "부분 관측 제어의 world model·잠재 rollout 재사용",
+    "original_computational_goal": "P048의 공식 DreamerV3 코드/문서는 환경 상호작용의 world model 및 상상 rollout을 통한 제어 학습을 다룬다. P013 공식 V-JEPA2 문서는 영상 이해·예측·계획을 위한 잠재 모델을 제공한다. 논문 본문·Discussion은 이번 작업에서 확인하지 않았다.",
+    "imported_structure": "하나의 상태가 한 출력만 맞추는 것이 아니라 복수 후속 경로에 재사용되는 제약을 가져온다. 수동 관람자에게 action/reward를 부여하지 않고, 실험자가 교차 배치한 후속 사건군에 대해 동일 prefix 상태의 다중 예측을 고정한다.",
+    "new_neural_question": "같은 현재 장면에서 과거 이력이 남긴 상태는 단순 HRF 잔류 이상으로 여러 후속 사건군의 정서 관련 신경 상호작용을 공통 규칙으로 예측하는가?",
+    "why_not_same_as_round2": "Round2는 동일현재/상이과거의 단일 현재 대비였다. 이제 이력×후속사건군을 교차해 한 상태가 독립 후속 분기들에 동시에 적용되는지 검정한다. 별도 RQ 수를 늘리지 않고 C12-03의 발견 확장으로 포함한다.",
+    "candidate_ids": [
+      "C12-03"
+    ],
+    "source_papers": [
+      "P048",
+      "P013",
+      "P089",
+      "P100"
+    ],
+    "assumptions": [
+      "후속 사건은 이력 조건과 counterbalance하며 같은 현재 probe와 지연을 유지한다.",
+      "과거/후속 자극의 정서 주석은 모델에서 생성하지 않고 독립 측정한다.",
+      "모든 비교 상태는 현재까지의 prefix만 보고, 후속 실제 입력을 허용하는 진단과 분리한다.",
+      "일반 적응·의미상태와 HRF/FIR family가 같은 상호작용을 설명하는지 비교한다."
+    ],
+    "discriminating_test": "이력1/2×후속사건군1/2에서 공통 상태의 독립 predicted neural contrast interaction을 평가한다. 단순 과거 HRF 잔류 및 현재내용 모형과 다른 부호·크기의 상호작용을 발견자료에서 선택하고 새 자료에 고정한다.",
+    "failure_interpretation": "후속별 자유 readout만 성공하거나 HRF/일반 적응이 충분하면 공통 rollout 상태 해석을 축소한다. 성공해도 인간이 Dreamer 알고리즘으로 계획한다는 뜻은 아니다.",
+    "evidence_boundary": "P048/P013/P089 E1은 기존 공식 코드·문서 범위, 논문 본문 E0; P100 기존 본문 E1; 신경 상호작용 제안 E3"
+  },
+  {
+    "connection_id": "UC04-01",
+    "source_field": "역문제·관측 영공간 감사",
+    "original_computational_goal": "P076은 잡음 있는 역문제에서 관측 제약과 생성 prior를 결합해 가능한 해를 찾는다. 정확한 posterior 보장이나 fMRI 적용 결과는 확인되지 않았다.",
+    "imported_structure": "관측 연산이 같은 값을 내는 방향을 직접 구성하고 그 방향이 외부 표적을 바꾸는 witness인지 검사한다. 여기서는 생성기 대신 알려진 parcel 평균 행렬의 null space를 정확히 구성한다.",
+    "new_neural_question": "동일한 parcel 평균을 유지하면서 바뀌는 재현 공간 대비가 A 관련 예측을 바꾸는가?",
+    "why_not_same_as_round2": "단순 표현 유사도/병목 전후 성능이 아니라 Gr=0인 소거 성분을 정의해 재추가하는 판별 조작이 새로 생겼다. 일반 평균화와 atlas 특수성을 별도 가설로 분해한다.",
+    "candidate_ids": [
+      "C04-03"
+    ],
+    "source_papers": [
+      "P076",
+      "P026",
+      "P060"
+    ],
+    "assumptions": [
+      "알려진 비중첩 평균 행렬과 동일 dense 관측",
+      "독립 반복에서 r의 신뢰도를 검증",
+      "신경 측정공간 밖 숨은 신호나 실제 뇌 압축 연산으로 일반화하지 않음"
+    ],
+    "discriminating_test": "m/m+r_k/m+noise를 실제/random atlas에서 비교하고 A·matched 비정서 대비를 외부 자극에서 평가한다.",
+    "failure_interpretation": "r의 추가 예측이 없으면 지정한 관측/추정 조건에서 평균의 충분성을 지지한다. random atlas에서도 효과면 일반 평균 상쇄이고 atlas 특이성은 아니다.",
+    "evidence_scope": "P076 공식 코드/초록 기반 원리 및 P026 공식 구현; null-space 설계와 신경 전이는 E3."
+  },
+  {
+    "connection_id": "UC04-02",
+    "source_field": "알고리즘 비교의 관측 동치 통제·가역 좌표군",
+    "original_computational_goal": "P051은 어떤 변환을 허용해야 표현 비교가 구별력을 가지는지, P096은 predictive coding과 backprop 계산을 비교하는 문제를 다룬다. P096의 원문 등가 정리 전체는 미확인이다.",
+    "imported_structure": "표현의 좌표/관측 map만 다른 모형과 추가 상태가 필요한 모형을 분리하고, 알려진 동치 생성자료를 음성대조로 사용한다.",
+    "new_neural_question": "안정된 개인 잔차는 공통 latent의 gain/rotation/affine 관측 차이로 설명되는가, 그 지정군을 넘어서는 개인 성분이 필요한가?",
+    "why_not_same_as_round2": "shared/private 잔차의 재현성만 검사했던 질문에 명시적 허용 좌표군과 coordinate-only recovery 대조를 도입해 새 경쟁모형을 만든다.",
+    "candidate_ids": [
+      "C04-04"
+    ],
+    "source_papers": [
+      "P051",
+      "P055",
+      "P096"
+    ],
+    "assumptions": [
+      "가역군은 동일 차원에서 명시하고 condition number 제약을 고정",
+      "관측 head와 공유 latent 학습은 training-only",
+      "선택한 군의 실패를 모든 nonlinear 가역군 실패로 확장하지 않음"
+    ],
+    "discriminating_test": "known B_s z 모의 관측과 known-private 관측을 구별하는지 먼저 검사한 뒤 공통+affine 대 공통+private의 외부 A neural slope 손실을 비교한다.",
+    "failure_interpretation": "affine map으로 충분하면 개인 적응의 이득을 추가 계산보다 관측 좌표 보정으로 해석한다.",
+    "evidence_scope": "좌표 불변성은 P051 본문 기록, P096은 공식 코드/문서 기록에 한정; 신경 전이는 E3."
+  },
+  {
+    "connection_id": "UC04-03",
+    "source_field": "계산 구조의 동치/비동치와 recurrence 대 depth 비교",
+    "original_computational_goal": "P090은 얕은 재귀 시각모형의 계산 성능을, P096은 다른 학습 계산의 대응을, P034는 입력 의존 selective sequence 계산을 다룬다.",
+    "imported_structure": "최종 예측 성능이 다른 경우 비선형성의 존재와 위치를 별도 요인으로 고정하여 어느 계산 경로가 필요한지 반례를 찾는다.",
+    "new_neural_question": "A 관련 이력 예측의 이득은 nonlinear observation만으로 충분한가, 고정 전이의 gated input 또는 입력 의존 전이가 추가로 필요한가?",
+    "why_not_same_as_round2": "관측격자×fixed/selective 이분법에 input gate와 transition gate를 분리하는 세 함수족 대조를 추가해 용량 혼동을 직접 겨냥한다.",
+    "candidate_ids": [
+      "C04-05"
+    ],
+    "source_papers": [
+      "P090",
+      "P096",
+      "P034"
+    ],
+    "assumptions": [
+      "공통 nonlinear input/output 및 같은 real-time context",
+      "고정 수렴/예산 결과 구분",
+      "gate shuffle OOD와 재학습 제어 구분"
+    ],
+    "discriminating_test": "F0/F1/F2와 nonlinear AR를 같은 격자·대역폭에서 비교하고 A contrast 이득이 전이 선택성에만 남는지 본다.",
+    "failure_interpretation": "F1 또는 nonlinear AR로 충분하면 선택 전이 기전 주장을 버리고 더 단순한 관측 예측 함수군을 채택한다.",
+    "evidence_scope": "P090/P096/P034의 기존 공식 코드 검토 범위이며 논문 전체 등가성 재검증 아님; 신규 함수족 실험은 E3."
+  },
+  {
+    "connection_id": "UC02-01",
+    "source_field": "표현학습의 식별성 이론·비선형 ICA",
+    "original_computational_goal": "P053은 가정 없는 분리표현의 비유일성을, P055는 보조변수와 명시적 분포·혼합 가정 아래 식별 조건을 연구한다.",
+    "imported_structure": "좌표 수가 남는 것과 같은 요인이 남는 것을 구분하고, 복수 조건화 설명 아래 동일 외부 대비의 기능적 전이라는 과잉 제약을 둔다.",
+    "new_neural_question": "내용모형별 잔차 rank가 아니라 같은 정서 관련 neural contrast가 공통 좌표에서 교차 설명에 살아남는가?",
+    "why_not_same_as_round2": "Round2의 generative inverse 후보집합을 반복하지 않는다. 서로 직교한 양의 rank라는 반례로 원 하한 주장을 철회하고 고정 방향의 전이행렬을 새 추정량으로 삼는다.",
+    "candidate_ids": [
+      "C02-03"
+    ],
+    "source_papers": [
+      "P053",
+      "P055",
+      "P001",
+      "P007"
+    ],
+    "assumptions": [
+      "신경 좌표 고정·평가 중 정렬 금지",
+      "독립 정서 대비와 조건화 모델의 사전정의",
+      "식별 정리의 fMRI 적용은 주장하지 않음"
+    ],
+    "discriminating_test": "공유 rank1/직교 rank1 모의대조와 실제 cross-fitted 방향전이를 비교하고 joint content encoder로 남는 대비를 평가한다.",
+    "failure_interpretation": "rank는 남고 대비전이는 없으면 내용모형별 잔차의 수와 동일 정보는 별개다. 이론적 요인 부재나 모든 의미 밖 차원 0을 뜻하지 않는다.",
+    "evidence_scope": "Agent07 원보고서의 P053/P055 본문 확인 범위를 읽었으며 본 Agent의 새 원문 열람은 아니다. 신경 전이는 E3."
+  },
+  {
+    "connection_id": "UC02-02",
+    "source_field": "비모수 조건부독립 검정과 국소 순열",
+    "original_computational_goal": "P102는 조건부 mutual information의 추정과 국소 permutation을 이용한 검정 calibration을 다룬다. 고차원 조건집합과 표본수 제약이 있다.",
+    "imported_structure": "무조건 교란 대신 사전정의 내용·SNR 지지 안에서 신경 입력의 조건부 관계만 깨는 null을 만들어 라벨 우회와 실제 brain 경로를 구별한다.",
+    "new_neural_question": "조건부 지역 readout의 이득은 C가 주어졌을 때 신경 패턴 B와 독립 정서주석 A의 추가 관계를 필요로 하는가?",
+    "why_not_same_as_round2": "Round2는 V-MoE의 gate 구조를 수입했다. 이번에는 통계 검정의 교환가능성 구조를 가져와 gate 성능이 content→A 우회인지 진짜 B 의존인지 반박하며 A를 조건으로 고정하지 않는 이유까지 명시한다.",
+    "candidate_ids": [
+      "C02-05"
+    ],
+    "source_papers": [
+      "P102",
+      "P093",
+      "P005"
+    ],
+    "assumptions": [
+      "B|C의 근사 교환·support가 사전 calibration되어야 함",
+      "run·참가자 의존성을 보존하고 train/test 분리",
+      "정확한 CMI나 조건부독립 검정이 검증되었다고 주장하지 않음"
+    ],
+    "discriminating_test": "real/조건부 교환 brain×static/conditional readout의 점수 차분과 content-only를 비교한다. 공통원인만 있는 모의자료에서 거짓 양성률을 확인하고 외삽 교환의 손실과 분리한다.",
+    "failure_interpretation": "교환 뒤 이득이 유지되면 gate가 실제 신경정보를 필요로 하지 않는 설명을 지지한다. null calibration 실패면 생물학적 해석이 아니라 방법 미식별로 보류한다.",
+    "evidence_scope": "Agent12 원보고서의 P102 §1–2·§5 검토와 catalog를 읽은 범위이다. 조건부 neural exchange 설계는 E3이고 실행하지 않았다."
+  },
+  {
+    "connection_id": "UC07-01",
+    "source_field": "순차 Bayesian experimental design",
+    "original_computational_goal": "비싼 posterior 재계산 없이 과거 설계·관측에 따라 정보획득을 높이는 다음 실험을 선택한다(P077).",
+    "imported_structure": "정렬결합을 확정해야 할 미지 가설로 두고 다음 비정서 anchor를 선택하는 순차 측정정책; 적합도 최대화 대신 보류 대비의 식별가능성 증가를 목표로 한다.",
+    "new_neural_question": "감각/의미 관계의 어떤 관측을 추가하면 독립 정서 신경대응이 결정되며 정서 감독은 불필요해지는가?",
+    "why_not_same_as_round2": "Round2는 수송해 비유일성과 anchor 수 증가를 비교했다. 이제 동일 개수의 anchor 선택 목적·종류를 바꾸고 비정서 감독으로 미사용 정서 대비가 전이하는지를 주표적으로 삼는다.",
+    "candidate_ids": [
+      "C07-04"
+    ],
+    "source_papers": [
+      "P077",
+      "P057",
+      "P052"
+    ],
+    "assumptions": [
+      "E1은 기존 P077 선택본문과 P057 본문 범위이며 현재 신경전이는 E3.",
+      "Bayesian EIG를 쓰려면 명시 likelihood/prior·설계 조건 가정 필요; 단순 다중시작해를 posterior라 하지 않음.",
+      "미사용 정서평가를 anchor 선택에 노출하지 않는다."
+    ],
+    "discriminating_test": "같은 예산의 random/coverage/적응 비정서 anchor와 정서감독 대조를 비교해 보류 정서 대비의 위험·예측동치류 범위가 달라지는지 검사한다.",
+    "failure_interpretation": "coverage만으로 설명되면 적응설계의 필요성이 없고, 모든 비정서 선택이 실패해도 별도 정서코드 존재가 아니라 주어진 anchor family의 불충분성이다."
+  },
+  {
+    "connection_id": "UC07-02",
+    "source_field": "비모수 조건부독립 검정과 변수집합 충분성",
+    "original_computational_goal": "연속 변수의 비선형 의존이 조건변수에 의해 설명되는지 local permutation/CMI로 검정한다(P102).",
+    "imported_structure": "특정 predictor의 개선과 정보원의 조건부 추가의존을 별개로 평가하는 두 단계; 본인 신경이력을 타참가자 공통자극 관측으로 치환하여 조건집합을 강화한다.",
+    "new_neural_question": "미래 정서 관련 신경대비에 본인 과거 관측이 필요한가, 풍부한 자극·다른 참가자·nuisance 이력으로 충분한가?",
+    "why_not_same_as_round2": "Round2의 joint 대 additive 모델위험 비교만으로는 누락입력과 함수표현의 효과가 섞였다. 새로운 연결은 조건부 의존과 함수계열 내 비가산성을 다른 estimand로 두고 본인/타인 정보원 치환을 도입한다.",
+    "candidate_ids": [
+      "C07-05"
+    ],
+    "source_papers": [
+      "P102",
+      "P027",
+      "P037"
+    ],
+    "assumptions": [
+      "P102의 기존 본문 검토는 일반 조건부검정의 범위이며 fMRI 특수조건은 E3.",
+      "TR을 i.i.d.로 취급하지 않는다. 독립 영화/블록의 유효표본과 local permutation 타당성을 별도 검증한다.",
+      "고차원 BOLD 직접 CMI는 계획하지 않고 사전 정의 저차원 투영이 충분할 때만 보조 검정한다."
+    ],
+    "discriminating_test": "shared-input·HRF·nuisance만 있는 생성 null에서 false-positive를 확인하고, 독립 영화에서 본인/타인 조건 치환의 정서대비 통계와 별도 조건부검정의 일관성을 평가한다.",
+    "failure_interpretation": "조건부의존이 없다고 판정되면 주어진 조건집합에서 과거뇌의 추가정보 필요성이 약해진다. 의존이 남아도 미측정 자극·개인 HRF가 배제되지 않아 내부상태 원인이나 인과를 확정하지 않는다."
+  },
+  {
+    "connection_id": "UC08-01",
+    "source_field": "표현학습의 비식별성·불변성 및 시스템 식별",
+    "original_computational_goal": "P053은 관측만으로 잠재 요인 분해가 유일하지 않은 문제를, P051은 표현 비교에서 허용 변환에 따라 동등성이 달라지는 문제를 다룬다. P028은 상태공간의 예측 표현을 제공한다.",
+    "imported_structure": "예측이 같은 두 생성설명을 먼저 명시하고 그 동치류를 깨는 독립 측정을 요구한다. 예: 같은 합성커널을 만드는 HRF/신경필터 두 분해, 같은 목적함수를 만드는 graph 공동 재색인.",
+    "new_neural_question": "어떤 정서 문맥·관계 효과가 관측 동치류를 넘어 식별되며 어떤 생리적 해석은 추가 정보 없이는 불가능한가?",
+    "why_not_same_as_round2": "Round2는 대체모형의 성능 비교였다. 이번 연결은 정확히 같은 관측을 만드는 모의쌍/공동 재색인을 음성대조로 고정하고 원래 신경시간상수·경로 주장을 축소한다.",
+    "candidate_ids": [
+      "C08-01",
+      "C08-02",
+      "C08-05"
+    ],
+    "source_papers": [
+      "P051",
+      "P053",
+      "P028"
+    ],
+    "assumptions": [
+      "convolution 분해는 E3 예시이며 문헌이 정서 HRF 실험을 수행했다는 뜻이 아니다.",
+      "모의 동치쌍의 동일성이 수학적으로 또는 수치적으로 확인되어야 한다.",
+      "생리적 분해는 독립 HRF 제약 등 추가 자료가 있어야 한다."
+    ],
+    "discriminating_test": "동일 BOLD 합성커널 쌍을 분석이 잘못 구별하는지 검사하고, 공동 graph 재색인의 objective/예측 동일성을 검증한다. 이 대조를 통과한 뒤 실제 이력/edge 변경만 평가한다.",
+    "failure_interpretation": "동일 관측을 서로 다른 기제로 확신해 구별하면 분석/해석을 기각한다. 구별하지 못하는 것은 실패가 아니라 올바른 비식별 판정이다.",
+    "evidence_scope": "원문 검증 범위는 기존 catalog 계승; 이 신경 전이와 수학적 대조 설계는 새 E3 연결이며 미실행"
+  },
+  {
+    "connection_id": "UC08-02",
+    "source_field": "정적 표현기하 비교와 확률과정의 시간전이 식별",
+    "original_computational_goal": "P051은 표현간 기하 비교를, P067은 잠재 관측상태의 시간 조직을, P066은 사건분절을 다룬다.",
+    "imported_structure": "같은 emissions·점유분포 또는 같은 정적 공간기하를 가진 과정도 iid/연속/이산 전이가 다를 수 있다는 구조를 사용한다. 정적 분포를 고정하고 시간정보만 남는 예측을 검사한다.",
+    "new_neural_question": "정서 주석 예측에 필요한 것은 비정규 공간분포의 압축인가, 비대각 시간구조 또는 전이가 제공하는 추가 정보인가?",
+    "why_not_same_as_round2": "Round2의 mean/covariance HMM 비교는 진폭·분포·전이를 함께 바꿨다. 새 연결은 같은 공간관측을 만드는 동등 emissions와 시간변화를 분리하고 이산 HMM 실재 주장을 검증 대상으로 낮춘다.",
+    "candidate_ids": [
+      "C08-04",
+      "C08-03"
+    ],
+    "source_papers": [
+      "P051",
+      "P066",
+      "P067"
+    ],
+    "assumptions": [
+      "동일 emissions mixture와 HMM 비교는 점유분포·model capacity를 맞춘다.",
+      "연속 null의 주변분포·자기상관 적합성이 확인되어야 한다.",
+      "state label 순열에 불변인 예측통계만 해석한다."
+    ],
+    "discriminating_test": "공간 emissions 고정 iid mixture, 연속 covariance, 이산 HMM을 과거 filtering 기반 보류 run의 순차 점수와 독립 정서 대비로 비교한다. 공간 QC에는 같은 기하/다른 위치 신호를 넣어 통계가 무엇에 민감한지 확인한다.",
+    "failure_interpretation": "동일 정적분포로 충분하면 전이/이산 상태의 필요성을 줄인다. HMM 우위가 있어도 생물학적 실재나 인과 통신으로 승격하지 않는다.",
+    "evidence_scope": "기존 공식 코드·논문 검증 범위를 계승한 E3 설계; 실제 연속·이산 모의 검정은 미실행"
+  },
+  {
+    "connection_id": "UC11-01",
+    "source_field": "표현 비교의 불변성·계산 그래프 검증",
+    "original_computational_goal": "P051은 신경망 표현 유사성 비교를, P096은 예측부호화와 역전파 계산 관계를 다룬다. P090의 반복 블록은 유한 계산 그래프로 펼칠 수 있는 구현이다.",
+    "imported_structure": "같은 정보·함수에 대한 재매개화와 정확한 계산 경로 변환을 검정의 등가 통제로 삼는다.",
+    "new_neural_question": "표현 좌표의 효율과 인간 신경 계산 구현의 식별을 나눴을 때, 독립 정서 대비가 실제로 제약하는 것은 어느 수준인가?",
+    "why_not_same_as_round2": "Round2의 모델 변수 분해를 넘어, 동일 함수이면 같아야 하는 검정 불변성 조건을 도입하고 그 조건을 통과한 뒤 학습 효율만 비교한다.",
+    "candidate_ids": [
+      "C11-01",
+      "C11-02",
+      "C11-03",
+      "C11-04"
+    ],
+    "source_papers": [
+      "P051",
+      "P096",
+      "P090"
+    ],
+    "assumptions": [
+      "exact-unroll은 모든 상태갱신·정규화·초기상태를 보존해야 함",
+      "readout family가 변환을 흡수하는 조건과 제한 예산의 조건을 분리",
+      "P096의 근사 정리를 모든 구현의 exact equivalence로 일반화하지 않음"
+    ],
+    "discriminating_test": "동등 정보/동일 함수 통제가 신경 평가에서 차이를 만드는지 먼저 확인하고, 차이가 있으면 분석/학습 좌표 효과를 조사한다. 이후 자료량·길이 OOD의 학습제약 효과만 비교한다.",
+    "failure_interpretation": "등가통제 실패는 미시 신경 발견이 아니라 구현·readout·평가 절차의 문제다.",
+    "evidence_scope": "P051 본문 검증은 기존 catalog 기록; Agent11이 이번에 재열람하지 않음. P090/P096은 직접 읽은 공식 코드 범위. 신경 전이는 E3."
+  },
+  {
+    "connection_id": "UC11-02",
+    "source_field": "자극 기반 대체 측정과 교사 신호 검증",
+    "original_computational_goal": "P027은 자극에서 집단 피질반응을 예측하고 P050은 metadata로 표현의 보존/억제를 지도한다. P100은 표현 추론의 일반화 단위를 다룬다.",
+    "imported_structure": "비용이 큰 실제 신경 교사와 자극만으로 예측한 대체 신경 교사를 cross-fit해 동일 adapter에서 비교한다.",
+    "new_neural_question": "신경 측정이 제공하는 감독의 효용은 풍부한 의미로 예측 가능한 교사 정보로 충분한가, 지정된 대체 교사를 넘는 안정된 추가 효용이 있는가?",
+    "why_not_same_as_round2": "Round2의 neural/semantic/random guide 비교를 대체 신경 교사와 실제 교사의 같은 target 형식 비교로 바꾸고 교사 생성과 평가의 cross-fitting을 명시했다.",
+    "candidate_ids": [
+      "C11-05"
+    ],
+    "source_papers": [
+      "P027",
+      "P050",
+      "P100"
+    ],
+    "assumptions": [
+      "자극 predictor와 guide는 outer 평가 신경 데이터를 보지 않음",
+      "잔차는 순수 정서 또는 완전한 신경 고유정보가 아님",
+      "교사 신뢰도·공분산·예측되는 자극정보를 보고하되 완전 정보량 매칭을 주장하지 않음"
+    ],
+    "discriminating_test": "실제 neural, cross-fit predicted neural, cross-fit residual, 풍부한 의미 교사의 모델 전이 손실과 새 사람×새 자극의 정서 신경 대비 손실을 공동 비교한다.",
+    "failure_interpretation": "대체 교사로 충분하면 지정 비교에서 신경 측정의 추가 감독 효용을 지지하지 않는다. 인간 신경 계산의 의미 환원을 증명하지는 않는다.",
+    "evidence_scope": "P027/P050 공식 문서 확인 및 P100 본문 확인은 기존 역할/catalog 기록을 계승; 이번 신규 원문 확인 없음. 대체 교사 연결은 E3."
+  },
+  {
+    "connection_id": "UC03-01",
+    "source_field": "표현 기하의 불변성 분석 × 변환 기반 소프트웨어 검증",
+    "original_computational_goal": "P051은 표현 유사도의 불변성과 구별력을 분석하고 P100은 유연 표현모형의 보류 조건·참가자 평가를 다룬다. 아래 신경 검사를 원논문의 결과로 주장하지 않는다.",
+    "imported_structure": "구성상 정보보존이 알려진 가역 혼합과 일부 입력을 제거한 비가역 절단을 만들고 probe ladder의 오판을 측정하는 양성·음성 대조(E3). CKA가 일반 가역 변환에 불변이라고 가정하지 않는다.",
+    "new_neural_question": "정서 대비의 판독 저하는 정렬 목표의 효과인가, 좌표 재표현을 정보삭제로 오판하는 probe의 한계인가?",
+    "why_not_same_as_round2": "Round2의 내용 일반화에는 정보보존의 정답이 없었다. 새 연결은 알려진 가역성을 이용해 측정 절차 자체의 실패를 대조한다. 새 정리나 완전한 정보손실 검증은 아니다.",
+    "candidate_ids": [
+      "C03-01",
+      "C03-04"
+    ],
+    "source_papers": [
+      "P051",
+      "P100",
+      "P015"
+    ],
+    "assumptions": [
+      "가역 변환의 차원·수치 조건을 기록하고 train/test에서 동일 적용한다.",
+      "probe 튜닝은 평가 fold 밖에서 한다.",
+      "대조 통과는 모든 비선형 재부호화에 대한 충분성 보증이 아니다."
+    ],
+    "discriminating_test": "원표현/가역 혼합/좌표 절단의 선형→비선형 및 학습량 회복곡선을 비교한다. 정렬 효과가 가역 대조처럼 회복되면 접근성 변화 설명을 지지한다.",
+    "failure_interpretation": "가역 대조도 회복하지 못하면 정보손실 판정 도구가 불충분하다. 절단 효과도 감지하지 못하면 목표 대비 또는 검정력이 약하다."
+  },
+  {
+    "connection_id": "UC03-02",
+    "source_field": "통계적 모형 선택 편향 × 비유일 역문제",
+    "original_computational_goal": "P097은 선택 이후 평가 편향의 서지 근거(E2)이고 P100의 확인 보고서는 유연 모형과 참가자·조건 일반화를 구분한다. P076의 역문제 후보 생성에 이를 옮긴다.",
+    "imported_structure": "후보 universe 구성·거리문턱 보정·최종 신경 판별을 분리하고 정답을 포함한 중첩 자연 후보군 U1⊂U2⊂U3에서 고정 문턱 허용집합을 감사한다(E3).",
+    "new_neural_question": "정서 대비의 배제는 같은 신경자료를 후보 선택에 재사용하지 않고도 유지되며 의미 일치 반례를 늘려도 유지되는가?",
+    "why_not_same_as_round2": "Round2는 prior와 후보 다양성을 비교했다. 새 연결은 선택 후 평가 편향을 명시적 경쟁 원인으로 만들고 중첩 후보군의 집합 단조성과 독립 참조 유지율을 검사한다. 단순 sampler 교체가 아니다.",
+    "candidate_ids": [
+      "C03-02",
+      "C03-03"
+    ],
+    "source_papers": [
+      "P097",
+      "P100",
+      "P076"
+    ],
+    "assumptions": [
+      "중첩 비교에서 거리함수·문턱·encoder를 고정한다.",
+      "후보별 점수 정규화를 universe마다 바꾸지 않는다.",
+      "U가 전체 자극공간을 덮는다는 보장은 없고 경험적 calibration을 test에서 확인한다."
+    ],
+    "discriminating_test": "고정 검사의 허용집합은 U를 확장할 때 줄지 않아야 한다. 정서범위 축소가 재최적화에서만 생기거나 의미 반례 추가에 사라지면 선택 편향/후보 제한 설명을 지지한다.",
+    "failure_interpretation": "참조 유지 실패는 관측모형·문턱 문제다. 유지율을 충족하나 범위가 넓으면 해당 유한공간의 판별 한계다. 둘 다 인간 뇌 정보 부재가 아니다."
+  }
+]

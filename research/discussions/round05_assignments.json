@@ -1,0 +1,242 @@
+[
+  {
+    "role": "03",
+    "proposal_id": "RP01",
+    "rq_id": "RQ09",
+    "debate_role": "제안자",
+    "candidate_id": "C03-01",
+    "title": "시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건"
+  },
+  {
+    "role": "12",
+    "proposal_id": "RP01",
+    "rq_id": "RQ09",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C03-01",
+    "title": "시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건"
+  },
+  {
+    "role": "01",
+    "proposal_id": "RP01",
+    "rq_id": "RQ09",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C03-01",
+    "title": "시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건"
+  },
+  {
+    "role": "10",
+    "proposal_id": "RP02",
+    "rq_id": "RQ12",
+    "debate_role": "제안자",
+    "candidate_id": "C10-02",
+    "title": "관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별"
+  },
+  {
+    "role": "07",
+    "proposal_id": "RP02",
+    "rq_id": "RQ12",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C10-02",
+    "title": "관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별"
+  },
+  {
+    "role": "12",
+    "proposal_id": "RP02",
+    "rq_id": "RQ12",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C10-02",
+    "title": "관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별"
+  },
+  {
+    "role": "05",
+    "proposal_id": "RP03",
+    "rq_id": "RQ18",
+    "debate_role": "제안자",
+    "candidate_id": "C05-03",
+    "title": "경계 단서와 과거 소거를 분리한 상태 갱신의 필요성"
+  },
+  {
+    "role": "11",
+    "proposal_id": "RP03",
+    "rq_id": "RQ18",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C05-03",
+    "title": "경계 단서와 과거 소거를 분리한 상태 갱신의 필요성"
+  },
+  {
+    "role": "08",
+    "proposal_id": "RP03",
+    "rq_id": "RQ18",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C05-03",
+    "title": "경계 단서와 과거 소거를 분리한 상태 갱신의 필요성"
+  },
+  {
+    "role": "05",
+    "proposal_id": "RP04",
+    "rq_id": "RQ16",
+    "debate_role": "제안자",
+    "candidate_id": "C05-01",
+    "title": "공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성"
+  },
+  {
+    "role": "06",
+    "proposal_id": "RP04",
+    "rq_id": "RQ16",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C05-01",
+    "title": "공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성"
+  },
+  {
+    "role": "04",
+    "proposal_id": "RP04",
+    "rq_id": "RQ16",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C05-01",
+    "title": "공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성"
+  },
+  {
+    "role": "04",
+    "proposal_id": "RP05",
+    "rq_id": "RQ13",
+    "debate_role": "제안자",
+    "candidate_id": "C04-02",
+    "title": "독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?"
+  },
+  {
+    "role": "10",
+    "proposal_id": "RP05",
+    "rq_id": "RQ13",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C04-02",
+    "title": "독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?"
+  },
+  {
+    "role": "01",
+    "proposal_id": "RP05",
+    "rq_id": "RQ13",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C04-02",
+    "title": "독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?"
+  },
+  {
+    "role": "02",
+    "proposal_id": "RP06",
+    "rq_id": "RQ05",
+    "debate_role": "제안자",
+    "candidate_id": "C02-01",
+    "title": "내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리"
+  },
+  {
+    "role": "01",
+    "proposal_id": "RP06",
+    "rq_id": "RQ05",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C02-01",
+    "title": "내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리"
+  },
+  {
+    "role": "12",
+    "proposal_id": "RP06",
+    "rq_id": "RQ05",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C02-01",
+    "title": "내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리"
+  },
+  {
+    "role": "09",
+    "proposal_id": "RP07",
+    "rq_id": "RQ10",
+    "debate_role": "제안자",
+    "candidate_id": "C09-02",
+    "title": "독립 관측이 배제하는 정서 상반 witness 쌍"
+  },
+  {
+    "role": "03",
+    "proposal_id": "RP07",
+    "rq_id": "RQ10",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C09-02",
+    "title": "독립 관측이 배제하는 정서 상반 witness 쌍"
+  },
+  {
+    "role": "07",
+    "proposal_id": "RP07",
+    "rq_id": "RQ10",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C09-02",
+    "title": "독립 관측이 배제하는 정서 상반 witness 쌍"
+  },
+  {
+    "role": "04",
+    "proposal_id": "RP08",
+    "rq_id": "RQ14",
+    "debate_role": "제안자",
+    "candidate_id": "C04-03",
+    "title": "parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?"
+  },
+  {
+    "role": "08",
+    "proposal_id": "RP08",
+    "rq_id": "RQ14",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C04-03",
+    "title": "parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?"
+  },
+  {
+    "role": "11",
+    "proposal_id": "RP08",
+    "rq_id": "RQ14",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C04-03",
+    "title": "parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?"
+  },
+  {
+    "role": "07",
+    "proposal_id": "RP09",
+    "rq_id": "RQ03",
+    "debate_role": "제안자",
+    "candidate_id": "C07-04",
+    "title": "비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가"
+  },
+  {
+    "role": "02",
+    "proposal_id": "RP09",
+    "rq_id": "RQ03",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C07-04",
+    "title": "비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가"
+  },
+  {
+    "role": "08",
+    "proposal_id": "RP09",
+    "rq_id": "RQ03",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C07-04",
+    "title": "비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가"
+  },
+  {
+    "role": "09",
+    "proposal_id": "RP10",
+    "rq_id": "RQ27",
+    "debate_role": "제안자",
+    "candidate_id": "C09-03",
+    "title": "사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비"
+  },
+  {
+    "role": "06",
+    "proposal_id": "RP10",
+    "rq_id": "RQ27",
+    "debate_role": "회의적비판자",
+    "candidate_id": "C09-03",
+    "title": "사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비"
+  },
+  {
+    "role": "10",
+    "proposal_id": "RP10",
+    "rq_id": "RQ27",
+    "debate_role": "데이터통계검토자",
+    "candidate_id": "C09-03",
+    "title": "사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비"
+  }
+]

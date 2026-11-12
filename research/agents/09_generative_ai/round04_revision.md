@@ -1,0 +1,485 @@
+# Agent09 Round 4 실제 비판 응답과 수정
+
+2026-11-12. Agent04·08의 실제 비판을 반영했다. C09-02·03을 과학RQ 후보로, C09-01·04·05를 방법후보로 보존한다. 분석·생성·새 뇌 측정은 미실행이다.
+
+## 읽은 파일
+
+- `discussions/ROUND04_PROTOCOL.md`
+- `discussions/round_03/collected.json`
+- `agents/09_generative_ai/round02_exchange.json`
+- `agents/09_generative_ai/round03_critique.json`
+- `axis_map/reference_catalog.csv`
+- `agents/07_geometry_information/report.md`
+- `agents/12_adversarial_review/report.md`
+
+## 응답 C09-01 — 수정
+근거 비판: R3-04-C09-01, R3-08-C09-01
+
+수용한 수정:
+
+- 개인별 forward mean·noise covariance와 사전고정 정서 neural contrast의 오차를 독립 반복에서 calibration한다. 평균 피질 simulator를 개인 likelihood로 대체하지 않는다.
+- 전체 관측 적합도와 정서 대비 적합도를 분리하고 guidance 값 대신 개발자료의 적합도 허용영역에서 prior를 비교한다.
+- 실제/감각·의미 matched 관측 교환/관측 제거 × unconditional/원자극 의미 조건 prior를 구분한다. 독립 encoder의 학습자료·특징 공유를 기록한다.
+- 자연자극 retrieval 및 직접 brain-to-feature ridge와 같은 proposal·forward 호출 예산에서 비교한다.
+
+남은 이견:
+
+- 완전한 encoder 독립성은 비공개 학습자료 때문에 보장할 수 없다. 제한된 검증모형하의 attribution으로만 해석한다.
+- 독립 신경 질문을 추가하지 않은 prior 감사는 과학RQ 확정 대신 방법후보로 분류한다.
+
+판정 이유: 두 검토자의 likelihood·contrast 불일치 반론을 수용하고 정보출처 감사의 범위를 명확히 한다.
+
+## 응답 C09-02 — 수정
+근거 비판: R3-04-C09-02, R3-08-C09-02
+
+수용한 수정:
+
+- 구간의 외부 경계/보편 식별 하한을 삭제하고 사전지정 정서 주석 차이 이상의 두 compatible 후보 witness 존재를 일차 결과로 바꾼다.
+- 유한 탐색 집합은 전체 가능한 집합의 내부 근사다. 좁은 범위나 witness 미발견은 식별 성공이나 비식별 가설 반증이 아니다.
+- 독립 반복을 추가했을 때 이미 고정한 witness가 탈락하는지 평가한다. 극값 생성과 평가 forward·인간 주석을 분리한다.
+- 알려진 작은 합성 문제에서 탐색 검출력만 측정하고 실뇌 coverage 보장으로 확대하지 않는다.
+
+남은 이견:
+
+- witness는 검증된 모델에서 원 관측에 양립함을 뜻한다. 새 후보의 실제 뇌반응이 같다는 주장은 추가 측정 없이는 수용하지 않는다.
+- 뇌 관측 증가에 따라 witness가 탈락하는 결과도 encoding 오차와 분리한 조건부 해석에 한정한다.
+
+판정 이유: 존재와 부재의 증거 비대칭을 보존하며 추가 관측의 판별력을 측정 가능한 핵심으로 재정의한다.
+
+## 응답 C09-03 — 수정
+근거 비판: R3-04-C09-03, R3-08-C09-03
+
+수용한 수정:
+
+- pass/fail 비교를 보조 분석으로 낮추고 개발자료에서 고정한 허용영역 내 원본 family별 목표/비목표/무편집 paired contrast를 일차로 둔다.
+- 독립 A 변화량·감각 변형량·보존·자연성·원본 복잡도의 공통 지지에서만 비교한다.
+- 전체 생성시도·실패·누락·선별규칙·표본선택 확률을 보존하며 허용집합으로 바뀐 모집단을 명시한다.
+- 독립 주석과 실제 새 뇌표본에서 확인하며 보존 점수는 연속 moderator로 보고한다.
+
+남은 이견:
+
+- 의미 보존 차원과 목표 정서 단서의 완전한 분리는 보장할 수 없다. 선택된 자극 대비의 효과만 주장한다.
+- 결정론적 필터의 탈락영역은 양의 선택확률이 없으므로 가중치로 원모집단 효과를 자동 복구할 수 없다.
+
+판정 이유: 허용집합 선별편향과 조작 강도 감소를 분리하고 새로운 실제 자극 효과의 estimand를 제한한다.
+
+## 응답 C09-04 — 수정·방법후보
+근거 비판: R3-04-C09-04, R3-08-C09-04
+
+수용한 수정:
+
+- 독립 과학RQ 권고를 철회하고 C09-03의 구체적 신경 모형 비교를 돕는 방법후보로 낮춘다.
+- M0 내용충분 모형과 M1 독립 정서 주석의 조건부 추가항 모형을 같은 신경대비·잡음 likelihood로 명시한다. 정보 이득 표적은 모형 지표 m이다.
+- DAD 학습정책은 제거하고 작은 유한 후보 pool의 비학습 Monte Carlo Bayesian batch selection부터 시작한다.
+- 정책과 독립된 공통 평가 pool, neither-model 적합성 검사, 자연/생성 pool 분기와 전체 비용 예산을 추가한다.
+
+남은 이견:
+
+- Agent04의 보류와 Agent08의 수정 의견을 함께 보존한다. 아래 구체화는 문헌 설계 수준이며 실행과 shortlist 과학RQ 승격은 여전히 보류한다.
+- 실제 뇌 참모형을 모르므로 모형 선택의 진실 발견률을 보고하지 않는다. 예측 calibration과 상대적 관측 지지만 평가한다.
+
+판정 이유: 구체적 모형·공통 평가집합이 없는 EIG를 과학RQ로 확정할 수 없다는 비판을 수용한다.
+
+## 응답 C09-05 — 수정
+근거 비판: R3-04-C09-05, R3-08-C09-05
+
+수용한 수정:
+
+- 두 pipeline 비교를 fixed-domain replication으로 제한하고 생성기 모집단 random effect 일반화는 삭제한다.
+- backbone/text encoder/VAE/weights·학습자료 공개 여부를 별도 기록하고 seed를 독립 family로 세지 않는다.
+- 두 pipeline의 독립 A 변화·감각 변화·보존·자연성 공통 지지에서 paired 신경대비를 비교한다.
+- 자연 matched 대조, 사전 동등성 허용범위, 고정 test prompt 및 전체 선별/실패 로그를 추가한다.
+
+남은 이견:
+
+- 두 pipeline에 공통 artifact가 남을 수 있으며 artifact classifier 실패는 결손 부재의 증거가 아니다.
+- 자연 대조는 생성 자극과 완전 교환가능하지 않으므로 불일치가 곧 생성 artifact의 인과 입증은 아니다.
+
+판정 이유: 소수 도구의 재현성을 보편적 생성기 불변성과 구분하여 방법후보로 보존한다.
+
+## 새 연결 UC09-01
+
+**source_field:** 역문제의 제약충족 탐색 × Bayesian 실험설계
+
+**original_computational_goal:** P076은 잡음 관측에 양립하는 신호의 근사 복원, P077은 순차 설계 전체의 정보 이득을 효율적으로 선택하는 것이 원 목표다.
+
+**imported_structure:** 전체 해집합을 추정한다는 요구를 버리고 서로 다른 두 유효해라는 witness를 고정한 뒤 추가 관측으로 배제하는 반복 구조를 도입한다. 반례를 이용한 정제라는 연결은 E3이며 별도 형식검증 논문을 확인했다고 하지 않는다.
+
+**new_neural_question:** 어떤 독립 반복/사전지정 contrast 관측이 정서에 관해 상반된 모델조건부 자극 설명을 처음으로 배제하는가?
+
+**why_not_same_as_round2:** Round2의 후보 최소–최대 범위는 탐색 완전성을 암묵적으로 요구했다. 새 연결은 이미 찾은 witness의 생존/탈락으로 추정량을 바꾸고 추가 측정의 가치를 구체적 양자 설명의 구별로 한정한다.
+
+**candidate_ids:** C09-02; C09-04
+
+**source_papers:** P076; P077; P053; P100
+
+**assumptions:** witness의 인간 주석 차이·자연성 검증; 별도 forward와 독립 관측의 calibration; 새 관측을 보기 전에 witness 고정; 유한 sampler의 미발견을 증명으로 쓰지 않음
+
+**discriminating_test:** 같은 discovery 관측에서 고정한 witness 쌍을 독립 반복에 순차 대조하고 무작위 관측 추가와 사전정의 contrast 추가의 배제율을 비교한다. 실제 연구에서는 관측 예측 적합도만 주장한다.
+
+**failure_interpretation:** 모든 witness가 평가 encoder에서 즉시 탈락하면 탐색이 모델 취약점을 이용했을 가능성이 커진다. 미발견은 과학적 고유성 증명이 아닌 탐색상 음성이다.
+
+## 새 연결 UC09-02
+
+**source_field:** 분포 이동 학습 × 표상 통계의 모집단 추론 × 생성 편집
+
+**original_computational_goal:** P098은 서로 다른 domain·subpopulation에 대한 일반화 평가, P100은 참가자·자극 모집단의 표상 추론, P070은 구조를 보존하는 텍스트 편집이 원 목표다.
+
+**imported_structure:** 편집 허용 필터를 품질검사만이 아니라 평가 대상 모집단을 바꾸는 선택 연산자로 취급한다. 조건부 효과·coverage·domain별 누락을 함께 정의한다.
+
+**new_neural_question:** 의미 보존을 엄격하게 요구할수록 어떤 원본 내용·정서 강도 영역이 관측 가능한 신경대비 모집단에서 빠지며, 남은 허용영역의 대비는 두 구현에서 유지되는가?
+
+**why_not_same_as_round2:** Round2는 타당성 필터로 실패를 제거하면 평가가 개선된다는 구상이었다. 새 연결은 필터 자체가 결과의 적용 범위를 바꾼다는 질문으로 전환하며 pass/fail 효과와 원모집단 외삽을 철회한다.
+
+**candidate_ids:** C09-03; C09-05
+
+**source_papers:** P098; P100; P070
+
+**assumptions:** 모든 편집 시도·실패·선별 규칙 기록; 개발에서 허용영역과 target population 고정; A/내용/자연성 공통 support; 선택확률 0인 영역에 가중치로 일반화하지 않음
+
+**discriminating_test:** 개발자료에서 허용 threshold별 내용·A 분포 coverage를 계산하고 고정 threshold의 독립 test에서 family별 paired 신경대비를 평가한다. 두 pipeline의 공통 영역과 각자만의 영역을 섞지 않는다.
+
+**failure_interpretation:** 허용집합이 특정 정서·내용으로 붕괴하면 효과 부재가 아니라 조작 가능한 모집단이 좁다는 결과다. 넓은 모집단의 신경 일반화 주장은 축소한다.
+
+## C09-01 수정안 — 개인 관측과 정서 대비를 따로 calibration한 생성 prior 감사
+
+**axis_ids:** ["AS04", "AS20", "AS29", "AS30"]
+
+**research_question:** 개인 BOLD 전체 적합도와 독립 정서 neural contrast 적합도를 분리했을 때 관측×prior 변화가 각각의 정보 회복에 기여하는 범위는 무엇인가?
+
+**neural_target:** 기존 자극의 참가자별 분산 BOLD 패턴과 독립 정서 주석에 연결된 사전정의 neural contrast; 원본 이미지 정서 예측과 구별
+
+**external_principle:** Agent07 비식별성 + Agent12 total/conditional estimand 구분
+
+**model_application:** 개인별 검증 forward/noise와 감각·의미 matched 관측 교환으로 prior 비교; guidance 값이 아니라 실제 적합도·자연성 허용영역을 맞춘다.
+
+**scientific_question:** 원 자극 주석 회복과 관측된 정서 neural contrast의 회복 중 무엇이 prior가 아니라 실제 관측에 의존하는지 감사한다.
+
+**assumption_challenge:** 전체 BOLD likelihood 일치가 정서 정보 제약의 일치이며 공개 평균 피질 예측이 개인 likelihood라는 가정을 거부한다.
+
+**main_hypothesis:** calibration을 통과한 특정 신경 대비에서는 matched 관측 교환보다 실제 관측의 회복 이득이 prior를 바꾸어도 유지될 수 있다.
+
+**alternative:** 공통 의미 prior·개인 forward 오지정·전체 적합도가 대비 오차를 가리는 현상이 이득을 설명한다.
+
+**measurable_contrast:** 원본 family·참가자를 단위로 실제/조건부 교환/관측 제거 × prior family를 비교한다. 전체 likelihood와 고정 contrast likelihood를 별도 보고하고 각 적합도 층을 섞지 않는다. 원본 A 회복과 neural contrast 회복은 별도 표적으로 평가한다.
+
+**falsification:** 검증된 신뢰도·공통 지지에서 직접 ridge/retrieval 또는 의미조건 prior-only와 동일하면 생성 기반 관측 특이 attribution 필요성을 낮춘다. forward calibration 실패는 뇌 정보 부재의 증거가 아니다.
+
+**baseline:** ["자연자극 matched retrieval", "직접 brain-to-feature/정서주석 ridge", "unconditional prior-only", "원본 의미조건 prior-only", "내용·SNR matched 관측 교환"]
+
+**dataset_plan:** Horikawa 실제 자극ID·반복·BOLD·주석을 확인 후 기존 관측 감사로 진행 가능. 미확인 전체뇌 foundation model을 likelihood로 가정하지 않는다. 조건을 충족 못하면 자연 retrieval와 직접 decoder로 축소; 새 생성 자극의 실측 BOLD로 해석하지 않는다.
+
+**missing_conditions:** ["개인별 mean/noise covariance 및 contrast calibration", "지원 피질/ROI·실제 출력공간 확인; 평균피질을 임의 voxel/subcortex로 확대 금지", "생성 최적화와 다른 자료/특징의 평가 forward", "원본 family·참가자·독립 주석", "계산/후보수/호출 예산 동일화"]
+
+**source_papers:** ["P076", "P053", "P100", "P071"]
+
+**closest_prior_ids:** ["P076", "P053"]
+
+**what_is_new:** 생성 성능 순위가 아니라 관측 대 prior의 기여가 독립 정서 대비에서 어떻게 달라지는지 감사를 일차 목표로 설정.
+
+**novelty_risk:** brain decoding prior 감사 선행과 겹칠 수 있음; 단순 guidance ablation이면 기술 검증으로 낮춤. 세계 최초 아님.
+
+**conceptual_signature:** {"관측대상": "개인 BOLD 전체/독립 정서대비의 회복", "조작": "matched 관측 교환×prior 변경", "경쟁설명": "실제 관측 기여 대 공통 prior·forward 오지정"}
+
+**eight_questions:** {"q1": "미시도 여부 미확인; 개인 likelihood와 contrast calibration의 비용이 장애 후보다.", "q2": "복수 생성 prior와 독립 평가경로를 비교할 수 있다.", "q3": "전체 적합도가 정서 대비 제약과 같다는 가정.", "q4": "많은 관측조건 자극 후보를 제안하지만 생성이 필수인지 직접 decoder와 비교한다.", "q5": "독립 대비 중 prior가 안정적으로 회복하지 못하는 부분은 후보이나 미측정이다.", "q6": "개인 측정 calibration을 생성 attribution으로 전이한다.", "q7": "기존 반복으로 likelihood·대비 회복을 감사할 수 있다.", "q8": "신경에서 읽었다고 말할 정보의 범위를 제한하는 방법 기여다."}
+
+**status:** E3 수정 설계; 모델·뇌 분석·새 측정 미실행; 신규성 역검색 미실행
+
+**shortlist_recommendation:** {"recommend": false, "reason": "범위가 제한된 방법후보 또는 새 측정 부담으로 우선순위를 낮춤."}
+
+**uncertainty_scope:** 서지·접근 수준은 기존 catalog 범위. 원자료 스키마·weights·계보·실행 비용은 미확인.
+
+**research_role:** 방법후보
+
+**reverse_search_query_en:** brain decoding generative prior attribution matched observation swap affective neural contrast calibration
+
+| 평가 | 점수 | 근거 | 불확실성·출처 |
+|---|---:|---|---|
+| novelty | 2 | 기존 prior 감사와 가까워 방법 신규성만 제한적으로 기대한다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| neuro_importance | 3 | 정서 neural contrast의 정보출처를 명확히 하지만 메커니즘 판별은 아니다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| ai_necessity | 2 | 자연 retrieval·직접 ridge가 같은 질문에 답할 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| data_feasibility | 3 | 기존 반복과 독립 주석이 확인되면 시작 가능하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| rigor | 4 | 전체/대비 likelihood와 평가자료를 분리하도록 수정했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| falsifiability | 4 | 신뢰도 충분 조건의 matched-swap 차이로 실패 기준이 구체적이다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| interpretability | 3 | attribution은 calibration된 모델 범위로만 해석한다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| generalization | 2 | 여러 prior가 공통 학습편향을 공유할 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| technical_feasibility | 2 | 개인 forward와 noise model 구축·생성 비용이 미확인이다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+| exploration_value | 3 | 생성물의 정서 정보를 과잉 해석하는 경계를 드러낸다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P100 |
+
+## C09-02 수정안 — 독립 관측이 배제하는 정서 상반 witness 쌍
+
+**axis_ids:** ["AS20", "AS15", "AS13", "AS30"]
+
+**research_question:** 원 관측 일부와 양립하면서 독립 정서 주석이 다른 두 자극 witness를 찾았을 때 추가 독립 반복은 그 모호성을 얼마나 배제하는가?
+
+**neural_target:** 분산 BOLD 관측에 양립하는 자극 집합과 사전정의 정서 관련 contrast; 특정 latent 축을 신경 원인으로 부르지 않음
+
+**external_principle:** Agent07 근접 최적 결합의 비유일성·허용변환 + Agent12 측정이 구분할 수 있는 최소 차이
+
+**model_application:** 유한 생성 탐색은 반대 주석의 witness 쌍을 제안하는 도구로만 사용하고, 원 관측 중 보류한 반복과 별도 forward family로 적합도를 검증한다.
+
+**scientific_question:** 정서에 관한 상반 설명을 배제하는 정보가 기존 신경 관측의 어떤 추가 반복/사전지정 공간에서 제공되는지 묻는다.
+
+**assumption_challenge:** 좁은 sampler 범위를 신경 식별성의 증거로 해석하는 가정을 폐기하고 존재 witness와 미발견을 비대칭적으로 취급한다.
+
+**main_hypothesis:** 일부 모델조건부 witness 쌍은 독립 반복의 정서 contrast 관측이 추가될 때 사전정의 오차 허용범위에서 한쪽이 탈락한다.
+
+**alternative:** witness는 encoder 외삽 취약점이며 어떤 독립 forward에서든 탈락하거나, 관측 증가에도 충분한 신뢰도에서 둘 모두 남는다.
+
+**measurable_contrast:** 첫 관측 집합으로 고정한 두 후보가 held-out 반복 및 사전정의 contrast에서 허용오차를 통과하는지 평가한다. 추가 관측 전후 기존 witness 배제율·후보별 예측오차를 보고한다. 생성 후보 정서 차이는 별도 인간 주석으로 측정한다.
+
+**falsification:** 원 관측에서만 통과하고 독립 평가 forward/반복에서는 처음부터 실패하면 모델조건부 모호성의 외적 타당성이 약화된다. 추가 반복이 witness를 배제하지 못하면 그 관측량의 구별 이득은 지지되지 않는다. witness 미발견은 비식별성 부재의 반증이 아니다.
+
+**baseline:** ["자연 matched witness", "작은 알려진 합성 식별/비식별 문제의 탐색 검출력", "같은 budget의 다중 초기값", "감각 contrast가 다른 witness 대 정서주석 차이 witness", "독립 반복 증가 대 단순 동일자료 재사용"]
+
+**dataset_plan:** Horikawa 등 실제 반복이 있는 보유본에서 원 관측 일부/독립 보류 반복으로 검사한다. 반복 부족이면 추가 반복 측정 조건으로 보존한다. 후보의 실제 뇌반응 동일성은 이 검정으로 말할 수 없으며 두 새 후보를 직접 제시·측정해야 별도 평가할 수 있다.
+
+**missing_conditions:** ["독립 반복과 train-only 신뢰도 mask", "별도 forward family 및 contrast별 오차 calibration", "후보 독립 인간 정서·의미 주석", "사전고정 witness 최소 주석차이·적합오차", "추가 ROI 관측은 잡음 의존성 반영; ROI 분할만으로 독립이라 부르지 않음"]
+
+**source_papers:** ["P076", "P053", "P055", "P057", "P100"]
+
+**closest_prior_ids:** ["P076", "P053", "P057"]
+
+**what_is_new:** prior 기여율과 별도로 관측이 허용하는 정서 대비 범위 자체를 추정하여 실패한 reconstruction을 측정 설계의 문제로 재정의.
+
+**novelty_risk:** 기존 inverse problem uncertainty와 중복 가능. 엄밀한 식별 집합의 증명이 아닌 경험적 범위를 이론적 bound로 포장하지 않음.
+
+**conceptual_signature:** {"관측대상": "고정 witness 쌍의 독립 관측 양립 여부", "조작": "독립 반복/사전지정 관측 추가", "경쟁설명": "관측 정보에 의한 모호성 축소 대 encoder 취약점·탐색 실패"}
+
+**eight_questions:** {"q1": "미시도는 미확인; 전체 해집합 추정과 탐색 실패를 구별하기 어려웠다.", "q2": "여러 proposal과 독립 forward로 상반 witness를 찾는 도구가 생겼다.", "q3": "witness 미발견이 고유 식별이라는 가정.", "q4": "해공간의 반례를 제안하며 완전성은 보장하지 않는다.", "q5": "현재 관측모형이 동일시한 자극을 실제 뇌가 구별할지는 별도 측정 질문이다.", "q6": "역문제의 witness와 추가관측 설계를 연결한다.", "q7": "독립 반복을 보류해 witness 배제에 활용한다.", "q8": "어떤 추가 관측이 정서 관련 상반 설명을 배제하는지 조건부로 밝힌다."}
+
+**status:** E3 수정 설계; 모델·뇌 분석·새 측정 미실행; 신규성 역검색 미실행
+
+**shortlist_recommendation:** {"recommend": true, "reason": "부정적 탐색의 논리적 한계를 수용하면서 추가 독립 관측의 정서 관련 구별능력을 직접 비교하는 후보; 기존 반복이 확인될 때 우선 검토."}
+
+**uncertainty_scope:** 서지·접근 수준은 기존 catalog 범위. 원자료 스키마·weights·계보·실행 비용은 미확인.
+
+**research_role:** 과학RQ후보
+
+**reverse_search_query_en:** neural inverse reconstruction affective ambiguity witness pairs independent repeated measurements identifiability
+
+**finite_search_statement:** 탐색 집합은 가능한 전체 집합의 내부 근사이며 샘플 최소–최대값은 전체 식별 구간의 외부 경계가 아니다. witness 존재는 모델조건부 반례이고 미발견은 불확정이다.
+
+| 평가 | 점수 | 근거 | 불확실성·출처 |
+|---|---:|---|---|
+| novelty | 3 | witness 배제 추정량은 기존 inverse uncertainty와 가까워 선행 역검색이 필요하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| neuro_importance | 4 | 추가 관측이 정서 관련 상반 설명을 구별하는지 묻는다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| ai_necessity | 3 | 생성 탐색은 자연 pool에 없는 witness를 제안할 수 있으나 필수성은 미확인이다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| data_feasibility | 3 | 독립 반복이 있으면 기존 자료로 모델조건부 검증 가능하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| rigor | 4 | 유한탐색의 내부근사와 독립 평가를 명시했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| falsifiability | 4 | 고정 witness의 생존/탈락은 판정 가능하고 미발견은 불확정으로 남긴다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| interpretability | 4 | 실제 뇌 동등성 대신 모델조건부 모호성으로 제한했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| generalization | 2 | 추가 관측 효과가 다른 encoding family에도 유지될지는 미확인이다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| technical_feasibility | 2 | differentiable forward·proposal·주석 비용이 크다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+| exploration_value | 4 | 탐색 실패와 신경 식별성을 혼동하는 관행을 바꿀 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P076;P053;P055 |
+
+## C09-03 수정안 — 사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비
+
+**axis_ids:** ["AS19", "AS29", "AS13", "AS31"]
+
+**research_question:** 개발자료에서 고정한 의미 보존·정서 조작량·감각 변화의 공통 지지 안에서 목표 편집 대 비목표 편집의 실제 신경 대비가 재현되는가?
+
+**neural_target:** 원본/무편집/목표/비목표 자극에 실제로 측정한 분산 neural contrast
+
+**external_principle:** Agent07 metric 불변성과 의미 대응의 차이 + Agent12 조건화 집합·overlap에 따른 estimand 차이
+
+**model_application:** 모든 생성시도를 기록하고 독립 개발 주석으로 허용집합을 고정한 뒤 family 내 목표/비목표/무편집을 실제 제시한다.
+
+**scientific_question:** 정서 주석 변화가 확인된 자극 대비가 지정된 의미·감각 보존 범위에서도 신경 반응 차이를 유지하는가?
+
+**assumption_challenge:** 편집 통과군은 원 자극 모집단을 대표하고 pass/fail 차이는 의미 보존의 인과효과라는 가정을 거부한다.
+
+**main_hypothesis:** 허용집합 내 동일 family의 목표 대 동강도 비목표 대비에서 사전정의 neural contrast가 재현된다.
+
+**alternative:** 선별이 조작 강도·난도·자연성을 바꾸었거나 미측정 의미 변화와 inversion artifact가 대비를 설명한다.
+
+**measurable_contrast:** 허용집합 S=1의 family별 목표−비목표 신경대비와 무편집 대비를 평가한다. 보존 연속점수×조작량의 관계는 보조 moderator 분석이다. 통과/실패 직접 차이를 일차 estimand로 쓰지 않는다.
+
+**falsification:** 독립 주석상 충분한 조작·신뢰도·공통 지지가 있으나 목표 대비가 사전 최소 의미 효과를 지지하지 않으면 시험한 허용영역의 신경 가설이 약화된다. overlap 실패는 조작 설계 실패이며 신경 정보 부재가 아니다.
+
+**baseline:** ["무편집 inversion 왕복", "동강도 비목표 편집", "독립 자연 matched 자극", "원본 family별 paired contrast", "허용조건 완화에 따른 coverage/효과 민감도(개발에서만 선택)"]
+
+**dataset_plan:** 보유 자극은 원본/자연 대조 pool 후보다. 새 편집물에는 새 인간 주석과 새 뇌 측정이 필수다. 기존 BOLD를 편집물에 붙이지 않는다. 자료 미확인은 제안 진행을 막지 않고 실행 전 확인 조건으로 남긴다.
+
+**missing_conditions:** ["전체 생성시도·실패·선별 로그", "독립 개발/검증 주석과 A 변화량·자연성·감각 변화의 공동 overlap", "사전 허용집합·최소 대비·표본단위 정의", "새 자극 실제 제시·새 인간 뇌 측정", "원본 family·참가자 계층 추론과 제시 순서 무작위화"]
+
+**source_papers:** ["P070", "P078", "P051", "P100", "P102"]
+
+**closest_prior_ids:** ["P070", "P078"]
+
+**what_is_new:** 편집 모델 성능이 아닌 조작 타당성 기준을 통과하면서 살아남는 신경 대비를 연구 대상으로 설정.
+
+**novelty_risk:** 일반 자극 통제 연구와 중복 가능. 의미의 완전 보존은 주장 불가; 명시된 측정 차원에서의 보존으로 제한.
+
+**conceptual_signature:** {"관측대상": "S=1 선택된 실제 자극의 신경대비", "조작": "허용집합 내 목표/비목표 실제 제시", "경쟁설명": "주석 관련 대비 대 선별·비목표 의미 변화"}
+
+**eight_questions:** {"q1": "미시도는 미확인; 검증된 편집·전체 실패 기록·새 BOLD 비용이 크다.", "q2": "편집과 독립 주석으로 허용영역을 구체화할 수 있다.", "q3": "타당성 통과군이 전체 원본 모집단을 대표한다는 가정.", "q4": "유사 목표의 여러 자극을 제안하지만 선택성은 주석으로 검증한다.", "q5": "미측정 의미 변화에 대한 신경 민감성이 잔여 대안이다.", "q6": "domain/population 추론으로 편집 필터의 적용범위를 정의한다.", "q7": "기존 원본을 후보 pool로 활용하고 편집 BOLD는 새로 수집한다.", "q8": "선택된 명시적 자극 범위에서 내용 보존과 정서 관련 신경 대비의 양립을 검정한다."}
+
+**status:** E3 수정 설계; 모델·뇌 분석·새 측정 미실행; 신규성 역검색 미실행
+
+**shortlist_recommendation:** {"recommend": true, "reason": "선별된 모집단과 실제 조작효과의 경계를 명시한 과학후보. 새 인간 측정이 필요한 discovery track으로 권고하며 단기 기존자료 pilot과 구분."}
+
+**uncertainty_scope:** 서지·접근 수준은 기존 catalog 범위. 원자료 스키마·weights·계보·실행 비용은 미확인.
+
+**research_role:** 과학RQ후보
+
+**reverse_search_query_en:** semantic preserving stimulus edits affective neural contrast selection bias acceptance overlap controls
+
+**selection_estimand:** {"target": "E[family별 목표−비목표 BOLD contrast | 개발에서 고정한 허용영역 S=1]", "coverage": "모든 시도와 원본 family별 통과율·누락분포를 함께 보고", "positivity": "S=0에서 선택확률이 0이면 원모집단으로 외삽하거나 역확률 가중으로 자동 복구하지 않음", "causal_boundary": "제시 무작위화는 선택된 자극 대비의 효과에 한정; 보존 여부나 정서만의 인과효과 및 회로 기전은 아님"}
+
+| 평가 | 점수 | 근거 | 불확실성·출처 |
+|---|---:|---|---|
+| novelty | 3 | 선별된 estimand가 분명하지만 통제 자극 신경과학의 연장일 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| neuro_importance | 4 | 내용 보존과 독립 정서 대비의 양립 여부를 실제 뇌에서 판별한다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| ai_necessity | 3 | 생성은 matched 후보 제작에 유용하나 자연 대조로 대체 가능한 범위도 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| data_feasibility | 2 | 새 주석과 새 인간 뇌 측정이 필수다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| rigor | 4 | 전체 실패 로그·overlap·조건부 모집단을 명시했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| falsifiability | 4 | 조작 성공과 신경대비 부재를 분리하는 기준이 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| interpretability | 3 | 정서 단일성분 또는 회로 인과를 주장하지 않는다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| generalization | 2 | 허용집합 밖으로 일반화하지 못한다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| technical_feasibility | 2 | 편집 통과율·실측 비용을 아직 계측하지 않았다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+| exploration_value | 4 | 유효한 개입이 가능한 자극 범위 자체를 과학적 제약으로 다룬다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P070;P078;P051 |
+
+## C09-04 수정안 — 명시적 내용충분 대 정서추가 모형을 위한 유한 pool 실험설계
+
+**axis_ids:** ["AS21", "AS30", "AS33", "AS29"]
+
+**research_question:** 동일 신경 contrast의 내용충분 M0와 독립 정서주석 추가 M1을 비교할 때 validity-aware 유한 pool 선택이 공통 평가집합의 예측 구분·calibration을 개선하는가?
+
+**neural_target:** 사전지정 감각/의미/정서 기여 경쟁 encoding 모형의 새 실제 신경 관측 예측 분포
+
+**external_principle:** Agent12 noise ceiling·경쟁 모형 판별 + DAD 전체 실험 정보 이득
+
+**model_application:** DAD 학습을 전제하지 않고 고정된 유한 후보 pool의 비학습 Monte Carlo 모형지표 정보 이득으로 batch를 선택한다.
+
+**scientific_question:** 이 방법 자체로 새 신경기제를 주장하지 않고 C09-03의 내용충분성 대 지정 정서주석 추가설명을 판별할 실험을 지원한다.
+
+**assumption_challenge:** 큰 정보 이득은 참 신경모형 발견이며 학습 정책이 필요한 기본값이라는 가정을 거부한다.
+
+**main_hypothesis:** 타당성이 다른 생성 pool에서만 validity-aware 선택이 동일 비용의 coverage보다 공통 test contrast 점수와 calibration을 개선한다.
+
+**alternative:** 쉬운 자극 선택 또는 두 모형 공통 오지정이 자신감 증가를 만들며 공통 test에서는 이득이 없다.
+
+**measurable_contrast:** 정책×자연/생성 pool을 비교하되 정책별 선택자료로 갱신한 M0/M1을 동일 독립 test 자극에서 proper log score·calibration·contrast 오차로 평가한다. model index의 posterior 집중은 별도 보조값이며 진실 발견률이 아니다.
+
+**falsification:** 공통 test에서 coverage/filter-only와 동등하면 복잡한 선택을 채택하지 않는다. 양 모형 calibration 실패면 과학 가설군을 수정하며 EIG 성공으로 분류하지 않는다.
+
+**baseline:** ["무작위", "coverage", "validity-filter-only", "단순 disagreement", "자연 유한 pool Monte Carlo EIG", "M0/M1 모두 틀린 알려진 합성 대조"]
+
+**dataset_plan:** 기존 보유본은 M0/M1 및 noise 개발 후보이고 새 선택자극의 실제 뇌 관측이 정책 검증에 필요하다. 해당 관측이 없으면 알려진 합성 검출력과 기존 pool의 retrospective 비교에 한정한다. 독립 과학RQ shortlist로 추천하지 않는다.
+
+**missing_conditions:** ["M0/M1을 구분할 관측 후 예측 차이·독립 noise calibration", "독립 인간 A와 내용 feature의 overlap", "정책 독립 공통 평가 pool", "새 실제 뇌 관측 및 전체 생성/주석/탈락/추론 비용", "학습 정책 추가 전 반복 설계 이득의 근거"]
+
+**source_papers:** ["P077", "P100", "P098", "P070"]
+
+**closest_prior_ids:** ["P077", "P100"]
+
+**what_is_new:** 실험 설계의 목적을 최대 반응에서 정서 관련 경쟁 설명 구분으로 바꾸고 편집 타당성 불확실성을 별도로 평가.
+
+**novelty_risk:** 기존 robust Bayesian design와 겹칠 수 있음; 실제 관측의 판별력 향상이 없으면 방법 복잡화.
+
+**conceptual_signature:** {"관측대상": "고정 neural contrast 공통test 예측분포", "조작": "유한 pool 선택정책", "경쟁설명": "유용한 모형지표 정보 대 쉬운분포 선택·공통오지정"}
+
+**eight_questions:** {"q1": "미시도는 미확인; 모형·likelihood·정책 오차가 함께 섞인다.", "q2": "작은 유한 pool에서 비학습 정보 이득 계산이 가능하다.", "q3": "정보 이득 최대화가 참 모형 발견이며 DAD가 필수라는 가정.", "q4": "후보 대비를 효율적으로 제안하나 단순 coverage와 비교해야 한다.", "q5": "M0/M1 모두 설명 못하는 test 반응은 가설군 부족의 신호다.", "q6": "실험설계를 구체적 내용충분성 대 정서추가 모형의 지원 방법으로 제한한다.", "q7": "기존 관측은 모형 개발, 실제 선택 이득은 새 관측으로 평가한다.", "q8": "독립 신경RQ가 아니라 관측적으로 판별 가능한 실험의 효율을 높이는 방법이다."}
+
+**status:** E3 수정 설계; 모델·뇌 분석·새 측정 미실행; 신규성 역검색 미실행
+
+**shortlist_recommendation:** {"recommend": false, "reason": "범위가 제한된 방법후보 또는 새 측정 부담으로 우선순위를 낮춤."}
+
+**uncertainty_scope:** 서지·접근 수준은 기존 catalog 범위. 원자료 스키마·weights·계보·실행 비용은 미확인.
+
+**research_role:** 방법후보
+
+**reverse_search_query_en:** Bayesian stimulus selection semantic sufficiency affective neural contrast common test model misspecification
+
+**competing_neural_models:** {"observation": "z_si=c_s^T y_si: 개발에서 고정한 ROI/분산 neural contrast. A_i는 뇌와 독립된 인간 자극 주석이며 z와 동일 변수가 아님.", "M0": "p(z_si|x_i)=Normal(g_s(v_i,semantic_i,motion_i),sigma_s^2). 충분히 유연한 내용 joint predictor; g와 sigma는 독립 개발/반복으로 추정.", "M1": "p(z_si|x_i,A_i)=Normal(g_s(v_i,semantic_i,motion_i)+beta_s*A_i,sigma_s^2). 동일 noise·표적에 사전고정 단일 A 항 추가.", "fairness": "M0에 같은 자유도의 sham/추가 내용항을 준 대조, 동일 nested selection 예산. A가 내용에 결정적이면 판별 질문 식별 불가.", "target_of_information_gain": "m in {M0,M1}라는 모형지표에 대한 예상 정보 이득. 실제 참 뇌모형을 안다고 가정하지 않음.", "observation_dependence": "먼저 시행 contrast의 유한 pool batch 설계. 시간자료로 확장할 때는 HRF·run 의존 covariance를 명시하고 조건부 독립을 가정하지 않음.", "neither_model": "독립 common test residual/calibration 실패와 두 모형 모두 틀린 합성 대조를 검사. 둘 중 하나 강제 선택 금지."}
+
+| 평가 | 점수 | 근거 | 불확실성·출처 |
+|---|---:|---|---|
+| novelty | 2 | robust Bayesian design와 근접해 독립 신규성을 낮게 본다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| neuro_importance | 2 | 특정 신경 가설을 돕는 방법이며 자체 신경발견은 아니다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| ai_necessity | 2 | 작은 pool 비학습 선택·coverage가 충분할 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| data_feasibility | 2 | 경쟁모형 적합·새 실측·공통 평가 pool이 필요하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| rigor | 4 | 모형지표·neither-model 검사·공통 test를 명시했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| falsifiability | 4 | coverage와 공통 test 동등이면 복잡한 정책을 기각 가능하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| interpretability | 3 | 큰 posterior 확신을 참모형 증거로 해석하지 않는다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| generalization | 2 | M0/M1과 선택 pool에 의존한다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| technical_feasibility | 2 | 이중 posterior Monte Carlo와 실제 관측 비용이 미확인이다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+| exploration_value | 3 | 과학질문 없이 설계 알고리즘을 추가하는 오류를 줄인다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P077;P100;P098 |
+
+## C09-05 수정안 — 확인한 두 편집 pipeline과 자연 대조의 고정 비교
+
+**axis_ids:** ["AS19", "AS28", "AS30", "AS13"]
+
+**research_question:** 두 지정 편집 pipeline의 공통 허용영역에서 정서 주석 변화량을 맞췄을 때 같은 신경 대비가 재현되며 자연 matched 대비와 양립하는가?
+
+**neural_target:** 사전정의 편집 neural contrast와 해당 모집단별 신뢰도; 전체 BOLD 예측 향상은 별도 보고
+
+**external_principle:** Agent12 domain generalization·nested model selection + Agent07 비교 불변성
+
+**model_application:** 두 pipeline을 고정효과로 두고 계보·지원분포·선별 coverage를 기록한 뒤 같은 원본 family의 실제 편집 신경대비를 비교한다.
+
+**scientific_question:** 도구 범위에서 자극 대비의 강건성을 감사하며 생성기 전체의 보편적 불변성을 주장하지 않는다.
+
+**assumption_challenge:** 서로 다른 이름의 두 편집기가 독립 모집단이며 seed 반복이 family 표본을 늘린다는 가정을 거부한다.
+
+**main_hypothesis:** 같은 A 변화량·의미 보존·자연성의 공통 영역에서 두 pipeline의 대비가 사전 동등성 문턱 안에 있고 자연 대조와 방향이 맞는다.
+
+**alternative:** 실제 의미 조작 불일치·SNR·공통 생성 artifact가 두 pipeline의 차이 또는 공통 효과를 설명한다.
+
+**measurable_contrast:** pipeline(고정2수준)×목표/비목표 contrast의 interaction·동등성 검정을 원본 family와 참가자 계층으로 평가한다. 자연 matched contrast는 별도 관찰 대조로 제시하고 교환가능성을 가정하지 않는다.
+
+**falsification:** 조작·신뢰도·overlap가 충분한데 두 pipeline 대비가 사전 의미 차이 문턱을 넘으면 해당 구현 범위의 재현성이 약화된다. 비유의함만으로 동등성을 선언하지 않는다.
+
+**baseline:** ["각 pipeline의 무편집/비목표", "자연 matched contrast", "같은 backbone 다른 seed", "독립 artifact feature", "domain별 신뢰도·동등성 검정"]
+
+**dataset_plan:** 보유 원본을 쓰되 두 생성물의 실제 반응은 새 측정이 필요하다. 계보 불명은 숨기지 않고 고정된 두 구현에만 결론을 제한한다. 자연 대조의 정서 주석이 없으면 새 독립 주석 후 사용한다.
+
+**missing_conditions:** ["두 pipeline backbone/text encoder/VAE/weights·학습자료 공개여부", "공통 A/보존/자연성/감각변화 support", "독립 test에서 prompt 재조정 금지", "새 인간 주석·새 뇌 측정", "선택coverage·동등성 문턱·domain별 신뢰도"]
+
+**source_papers:** ["P078", "P070", "P098", "P099", "P100", "P051"]
+
+**closest_prior_ids:** ["P098", "P099", "P078"]
+
+**what_is_new:** 일반화 단위를 참가자·자극에 더해 생성기 계보로 선언하여 생성 도구가 만든 정서 신경 효과의 적용 범위를 평가.
+
+**novelty_risk:** 단순 두 모델 benchmark가 되지 않도록 family 효과와 신경 contrast의 상호작용을 일차 결과로 고정. 공유 학습자료 비공개면 독립성 미확인.
+
+**conceptual_signature:** {"관측대상": "고정 두 pipeline의 실제 신경대비", "조작": "같은 목표의 구현 변경·공통허용영역", "경쟁설명": "도구 강건성 대 실제조작 차이·공통artifact"}
+
+**eight_questions:** {"q1": "미시도는 미확인; 독립 도구 계보와 조작 overlap 확인이 어렵다.", "q2": "attention 편집과 flow 편집의 고정 구현 비교가 가능하다.", "q3": "두 pipeline 성공이 생성기 모집단 보편성이라는 가정.", "q4": "같은 목표의 다른 구현을 제공한다.", "q5": "공통 생성 artifact에 대한 실제 신경 민감성은 여전히 남는다.", "q6": "domain 구분과 모집단 추론을 구현 재현성 범위에 적용한다.", "q7": "기존 원본은 재사용 가능하지만 생성물은 새 뇌 측정 필요.", "q8": "확인된 도구·허용영역 안의 재현성과 적용 한계를 밝히는 방법 기여다."}
+
+**status:** E3 수정 설계; 모델·뇌 분석·새 측정 미실행; 신규성 역검색 미실행
+
+**shortlist_recommendation:** {"recommend": false, "reason": "범위가 제한된 방법후보 또는 새 측정 부담으로 우선순위를 낮춤."}
+
+**uncertainty_scope:** 서지·접근 수준은 기존 catalog 범위. 원자료 스키마·weights·계보·실행 비용은 미확인.
+
+**research_role:** 방법후보
+
+**reverse_search_query_en:** generative stimulus editing pipeline replication affective brain contrast natural controls equivalence
+
+| 평가 | 점수 | 근거 | 불확실성·출처 |
+|---|---:|---|---|
+| novelty | 2 | 고정 두 구현 replication은 기존 domain 검증의 전이다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| neuro_importance | 3 | 특정 자극 신경효과의 도구 의존성을 제한적으로 밝힌다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| ai_necessity | 2 | 두 구현 비교에 최신 생성 모델의 필수성은 낮다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| data_feasibility | 2 | 두 pipeline의 새 자극·인간 주석·BOLD 필요하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| rigor | 4 | 고정효과·동등성 문턱·선택coverage를 명시했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| falsifiability | 4 | 충분한 조작/신뢰도에서 의미 있는 대비 차이를 검정할 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| interpretability | 4 | 대상 도구 범위와 보편 모집단 주장을 분리했다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| generalization | 2 | 소수 pipeline·비공개 계보로 모집단 일반화는 불가하다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| technical_feasibility | 2 | weights·지원분포·공통 성공률을 확인하지 않았다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+| exploration_value | 3 | 도구 편향과 실제 조작 차이의 경계를 점검할 수 있다. | E3 사전 평가. 최신 선행 역검색·실제 schema·checkpoint·효과크기·비용 미확인; 점수 합산으로 선정하지 않음. P078;P070;P098 |
+
+## 한계
+
+- 실제 받은 Agent04/08 비판 10개에 응답했다. 두 검토자의 동의나 최종 합의가 성립했다고 기록하지 않는다.
+- 반례 정제와 허용집합 모집단 연결은 E3 결합이다. 개별 원 논문이 이 정서 신경 질문을 이미 제안했다고 하지 않는다.
+- 유한 sampler 범위는 내부 근사이며 좁음·미발견으로 식별 성공을 주장하지 않는다.
+- 영어 역검색어는 후보별 작성만 했고 네트워크 역검색을 실행하지 않았다. 새 원문·신규 서지 확인 없음.
+- EIG는 구체적 M0/M1 및 common test를 정의했지만 독립 과학RQ로 승격하지 않고 방법후보로 남긴다.
+- 새 생성물의 실제 BOLD·개인 정서·회로 인과는 모델 예측으로 대체하지 않는다.
+- 사용자 보유5종의 경로·버전·주석·반복 등은 실제 분석 전 확인 조건이며 이번 문헌·Axis·RQ 진행 차단이 아니다.
+- 모든 10항목 점수는 불확실한 사전 판단이며 자동 가중합을 계산하지 않았다. shortlist 자기후보는 C09-02/03 최대2개로 제한했다.
+- 전용 round04_revision.json/md만 작성했으며 공유 Git·공통 결과·EmoBrain은 수정하지 않았다.

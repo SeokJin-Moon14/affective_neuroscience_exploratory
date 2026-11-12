@@ -1,15 +1,15 @@
 {
   "format": 1,
-  "stage": "round03-critique",
-  "snapshot_id": "4e06dba7f617e8246b350ede6e6acc14e9c6be4ba28a6669448cc5f6eabab707",
-  "prepared_at_utc": "2026-11-12T06:32:46.345423+00:00",
-  "file_count": 1340,
-  "total_bytes": 196216680,
+  "stage": "round04-revisions",
+  "snapshot_id": "f6eeace6bc96685d3f54bb3655b7f57500d7b64cd8a8540c07a9b131ca99eaf0",
+  "prepared_at_utc": "2026-11-12T07:03:36.174611+00:00",
+  "file_count": 1388,
+  "total_bytes": 200072519,
   "files": [
     {
       "path": "AGENTS.md",
-      "size": 10985,
-      "sha256": "550dfd57bdabb7c12645291fcdb3679eb8e341e9600af34775eff749f9f26de0",
+      "size": 11686,
+      "sha256": "7030d09aeec95081c2043d0994a176fe053c8baa2765b8e274d35776adf66da1",
       "stored_path": "research/AGENTS.md"
     },
     {
@@ -38,8 +38,8 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 4276,
-      "sha256": "cda49df77ef13426548eec11adca591e2f9a3152679b8f0f37c26634f48c6687",
+      "size": 4325,
+      "sha256": "52175157d3f257c6c79a9ca758f65030696f1d9560cd47ae58c521ce13ab6218",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
@@ -3685,6 +3685,18 @@
       "stored_path": "research/agents/01_dataset/round03_critique.md"
     },
     {
+      "path": "agents/01_dataset/round04_revision.json",
+      "size": 84044,
+      "sha256": "33c67051f693250cf44d0fdfe48c36a199f7a36a6974f1b5ec01ab265aceb0de",
+      "stored_path": "research/agents/01_dataset/round04_revision.json"
+    },
+    {
+      "path": "agents/01_dataset/round04_revision.md",
+      "size": 50854,
+      "sha256": "c688e27c9d4d1b5d14bdaa0ab5c03f9025ab0a8bd784acf872b5b52747cb56cb",
+      "stored_path": "research/agents/01_dataset/round04_revision.md"
+    },
+    {
       "path": "agents/01_dataset/round1_independent_report.md",
       "size": 10591,
       "sha256": "0b47984ea7f5dde2e7dc1456f3bc88fc67040a91542ec58b5bf92f4d58c4ff33",
@@ -4393,6 +4405,18 @@
       "stored_path": "research/agents/02_affective_neuroscience/round03_critique.md"
     },
     {
+      "path": "agents/02_affective_neuroscience/round04_revision.json",
+      "size": 79763,
+      "sha256": "5836c57193a82c753d42ac9d05a33156547a2a7d36cab5a9416605b9d9e32c51",
+      "stored_path": "research/agents/02_affective_neuroscience/round04_revision.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/round04_revision.md",
+      "size": 55072,
+      "sha256": "b2eb68bbeef9ee3d1cbf69527e317ad55dd48a592a8fd35c3268cdac83289ea9",
+      "stored_path": "research/agents/02_affective_neuroscience/round04_revision.md"
+    },
+    {
       "path": "agents/02_affective_neuroscience/sources_index.csv",
       "size": 13541,
       "sha256": "0aab0ca56cf0678d89f397c5b7ee14c61dd64d63fff4ea089f8c3fcd428ca66e",
@@ -4481,6 +4505,18 @@
       "size": 38422,
       "sha256": "0b4283f153a6a4dc52a1e3267093505cf9a9cf1b8d713cf413bcc9da4f8d5e3b",
       "stored_path": "research/agents/03_vision_decoding/round03_critique.md"
+    },
+    {
+      "path": "agents/03_vision_decoding/round04_revision.json",
+      "size": 65012,
+      "sha256": "00f34781dca9031146cd85b5d2a5c7e88e5db93878515afb599bb0c21fc272d2",
+      "stored_path": "research/agents/03_vision_decoding/round04_revision.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/round04_revision.md",
+      "size": 43707,
+      "sha256": "32f89cbb090a8d539f2df97c0da817ad30b05d372cc30fadf20853e4000f4ea3",
+      "stored_path": "research/agents/03_vision_decoding/round04_revision.md"
     },
     {
       "path": "agents/03_vision_decoding/sources/README.md",
@@ -4763,6 +4799,18 @@
       "size": 41404,
       "sha256": "d0f873b08f12087c9418692980c4bfbba2c299296f81a9532fec4c7576e10036",
       "stored_path": "research/agents/04_brain_foundation/round03_critique.md"
+    },
+    {
+      "path": "agents/04_brain_foundation/round04_revision.json",
+      "size": 85363,
+      "sha256": "ba90bbf23e30fc9d4d6d5b47e4207930df7e3b59f70ceb640ff2940d1f6071b6",
+      "stored_path": "research/agents/04_brain_foundation/round04_revision.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/round04_revision.md",
+      "size": 49799,
+      "sha256": "344b0ae6dd581be03cfe63eeaced9bec35687669516c931536ba8cfd93f3e677",
+      "stored_path": "research/agents/04_brain_foundation/round04_revision.md"
     },
     {
       "path": "agents/04_brain_foundation/round1_report.md",
@@ -5449,6 +5497,18 @@
       "stored_path": "research/agents/05_multimodal_dynamics/round03_critique.md"
     },
     {
+      "path": "agents/05_multimodal_dynamics/round04_revision.json",
+      "size": 90766,
+      "sha256": "00502457f2ede065c45746e199ea798bf7e69c6d5b1be2954483c63ea1ce55bb",
+      "stored_path": "research/agents/05_multimodal_dynamics/round04_revision.json"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/round04_revision.md",
+      "size": 71860,
+      "sha256": "13350c3c2adc7cb6a7f4d34d687e1baa707e2f0b2ba4c0ddefbce7ef5aab1f82",
+      "stored_path": "research/agents/05_multimodal_dynamics/round04_revision.md"
+    },
+    {
       "path": "agents/06_frontier_ai/RESEARCH_STATUS.md",
       "size": 1330,
       "sha256": "34b6a7786d7739a1c9d0da6a07eb511668d783a6ce4c30d30f316e452b9a0d48",
@@ -5623,6 +5683,18 @@
       "stored_path": "research/agents/06_frontier_ai/round03_critique.md"
     },
     {
+      "path": "agents/06_frontier_ai/round04_revision.json",
+      "size": 74069,
+      "sha256": "eea5a52033d2d5d6309b819b6a3101e92b4d016ae6028584f93bdf107205fe8a",
+      "stored_path": "research/agents/06_frontier_ai/round04_revision.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/round04_revision.md",
+      "size": 57215,
+      "sha256": "9f98d99bbcc505a86ef79ba7eee0a5e35263b636d73fd34cea3b9f0b80f76b08",
+      "stored_path": "research/agents/06_frontier_ai/round04_revision.md"
+    },
+    {
       "path": "agents/06_frontier_ai/subaxes.csv",
       "size": 2227,
       "sha256": "6f329e6680b1793f713ba0b3902fbd747beb78b4e5aa0eaff4fc160989277a9c",
@@ -5693,6 +5765,18 @@
       "size": 31144,
       "sha256": "1a958ef2f0ff3078fa6d845d81b3176c018a447522574283cbc4bec8b1246cc3",
       "stored_path": "research/agents/07_geometry_information/round03_critique.md"
+    },
+    {
+      "path": "agents/07_geometry_information/round04_revision.json",
+      "size": 68861,
+      "sha256": "b0efc97a324e3548b6b352d2e89f608325262de9d76718521e62dc27a246d1f5",
+      "stored_path": "research/agents/07_geometry_information/round04_revision.json"
+    },
+    {
+      "path": "agents/07_geometry_information/round04_revision.md",
+      "size": 46248,
+      "sha256": "5f9cb762a5183624bb3af1b047a54bc8614367233333481fbce64751a1016ac1",
+      "stored_path": "research/agents/07_geometry_information/round04_revision.md"
     },
     {
       "path": "agents/07_geometry_information/sources/facco_code.txt",
@@ -5957,6 +6041,18 @@
       "size": 32946,
       "sha256": "ac314f13d703f4b5508da433aae08445b090b5a5dfee4cefd7553b3b2ef9c6fa",
       "stored_path": "research/agents/08_systems_neuroscience/round03_critique.md"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round04_revision.json",
+      "size": 72286,
+      "sha256": "846283468a4a9af6de78a2077148d90d0eef6ffdefcece32a0dfcb51fd790794",
+      "stored_path": "research/agents/08_systems_neuroscience/round04_revision.json"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round04_revision.md",
+      "size": 27715,
+      "sha256": "14002225a87caeae886811a233400cd0ed2f56dfd2126ba3b4eeb226f7347009",
+      "stored_path": "research/agents/08_systems_neuroscience/round04_revision.md"
     },
     {
       "path": "agents/08_systems_neuroscience/source_manifest.json",
@@ -6479,6 +6575,18 @@
       "stored_path": "research/agents/09_generative_ai/round03_critique.md"
     },
     {
+      "path": "agents/09_generative_ai/round04_revision.json",
+      "size": 72844,
+      "sha256": "67bf677a3f5a1fba21107914f9290f50f0ac4df3e6541fa82e5abbd19b6924aa",
+      "stored_path": "research/agents/09_generative_ai/round04_revision.json"
+    },
+    {
+      "path": "agents/09_generative_ai/round04_revision.md",
+      "size": 50892,
+      "sha256": "005440aab06a27a3e250b8a713b12a981d5ef586a1e71f27da854aac8a7393f2",
+      "stored_path": "research/agents/09_generative_ai/round04_revision.md"
+    },
+    {
       "path": "agents/09_generative_ai/subaxes.csv",
       "size": 3753,
       "sha256": "961d89d722fd6e3e461a692b2bd38b94501e7c4f043120f04e73a262cc00476f",
@@ -6537,6 +6645,18 @@
       "size": 30767,
       "sha256": "6cfe4eee347516635a9f7669eb6c631d87d8b5642077d1225c279665bc81ce61",
       "stored_path": "research/agents/10_llm_semantics/round03_critique.md"
+    },
+    {
+      "path": "agents/10_llm_semantics/round04_revision.json",
+      "size": 89532,
+      "sha256": "d68459871de2580a4e38b8d043fc535aa02f88baef79da1357729b8c80fae39f",
+      "stored_path": "research/agents/10_llm_semantics/round04_revision.json"
+    },
+    {
+      "path": "agents/10_llm_semantics/round04_revision.md",
+      "size": 51883,
+      "sha256": "c32daa46eafea177e02e180917f5e43b790ab876c35f652b350484c55fb26469",
+      "stored_path": "research/agents/10_llm_semantics/round04_revision.md"
     },
     {
       "path": "agents/10_llm_semantics/source_manifest.csv",
@@ -6813,6 +6933,18 @@
       "size": 31731,
       "sha256": "c3a87ce8faa7695c8deb69607d564dc9dad98888dbc891e2dfbca20254e9fc5d",
       "stored_path": "research/agents/11_brain_inspired/round03_critique.md"
+    },
+    {
+      "path": "agents/11_brain_inspired/round04_revision.json",
+      "size": 69082,
+      "sha256": "3f208018b81ebd23df5b79072b2f4d315c4002e73b4dd8bc6363bf36dbdfd651",
+      "stored_path": "research/agents/11_brain_inspired/round04_revision.json"
+    },
+    {
+      "path": "agents/11_brain_inspired/round04_revision.md",
+      "size": 40576,
+      "sha256": "436668d19d5456a632113b7efa5c88bc9442edc42c1a3a806811cb6df9f65f63",
+      "stored_path": "research/agents/11_brain_inspired/round04_revision.md"
     },
     {
       "path": "agents/11_brain_inspired/source_manifest.csv",
@@ -7125,6 +7257,18 @@
       "size": 44104,
       "sha256": "f55b521cef9142ca6946ca261a410865c99591113a8ced0bf5b7e5066237c268",
       "stored_path": "research/agents/12_adversarial_review/round03_critique.md"
+    },
+    {
+      "path": "agents/12_adversarial_review/round04_revision.json",
+      "size": 81912,
+      "sha256": "b7170b53d384359292b1aca827646bb159240ac5329b387fd3e92eec66db3111",
+      "stored_path": "research/agents/12_adversarial_review/round04_revision.json"
+    },
+    {
+      "path": "agents/12_adversarial_review/round04_revision.md",
+      "size": 43865,
+      "sha256": "82b6caeef1b982792d125133e78b63fedf1e6f878af9f1875d1ee8a820dc7cb1",
+      "stored_path": "research/agents/12_adversarial_review/round04_revision.md"
     },
     {
       "path": "agents/12_adversarial_review/source_manifest.csv",
@@ -7583,6 +7727,24 @@
       "stored_path": "research/combinations/README.md"
     },
     {
+      "path": "combinations/combination_matrix.csv",
+      "size": 76022,
+      "sha256": "5608e46ba9d7045fed71bf9914288856b4deef49a418c25163512b8d77d1a038",
+      "stored_path": "research/combinations/combination_matrix.csv"
+    },
+    {
+      "path": "combinations/literature_based.csv",
+      "size": 37460,
+      "sha256": "94f499dd861c62348fb4b94d0eebffbe38490240dad8b175363cd7c2e51ff643",
+      "stored_path": "research/combinations/literature_based.csv"
+    },
+    {
+      "path": "combinations/literature_based.json",
+      "size": 44925,
+      "sha256": "1335afa4a98081a26b414d171234ce1bce7d31b851d3377b3030fcf63903bb00",
+      "stored_path": "research/combinations/literature_based.json"
+    },
+    {
       "path": "combinations/random_draws.json",
       "size": 20452,
       "sha256": "8e0a3fb56d693cd823d44ca4a929220a3479a8797caa654c8bf8a41e1587f785",
@@ -7775,6 +7937,12 @@
       "stored_path": "research/discussions/round03_assignments.json"
     },
     {
+      "path": "discussions/round05_assignments.json",
+      "size": 7200,
+      "sha256": "d44f8f61bb37060a8af2f33576f3b05b57c4713eb6ad876ac9b860b1fa7021ac",
+      "stored_path": "research/discussions/round05_assignments.json"
+    },
+    {
       "path": "discussions/round_01/index.md",
       "size": 1660,
       "sha256": "72d671e88fc22bc50b32b626a19aa710060d1f449ca4557d7ecec88c1063cb47",
@@ -7809,6 +7977,30 @@
       "size": 2169,
       "sha256": "1daa45f65fbed7196d5da72243b008bd788083514b5ddf441a3fadb4bd5c38a8",
       "stored_path": "research/discussions/round_03/index.md"
+    },
+    {
+      "path": "discussions/round_04/SYNTHESIS.md",
+      "size": 1526,
+      "sha256": "e83e34333d53ac2cc1b485142fb3ae3f32344bf6c276372d795c66aa9185043c",
+      "stored_path": "research/discussions/round_04/SYNTHESIS.md"
+    },
+    {
+      "path": "discussions/round_04/collected.json",
+      "size": 753853,
+      "sha256": "80774d49c2a52642cb3ab62d9cf05d1bf0483b0d9acb1fd89ac539eb848c601b",
+      "stored_path": "research/discussions/round_04/collected.json"
+    },
+    {
+      "path": "discussions/round_04/index.md",
+      "size": 2168,
+      "sha256": "15147ee0dc9d9e5d350639c083bbd60471ea9ad4ec6a7f5938bb41730c7f1db2",
+      "stored_path": "research/discussions/round_04/index.md"
+    },
+    {
+      "path": "discussions/round_04/unexpected_connections.json",
+      "size": 52957,
+      "sha256": "62312716c42b5223f41116d2be837085a89e5c2ef3efa8d8511999ad8b0a55c9",
+      "stored_path": "research/discussions/round_04/unexpected_connections.json"
     },
     {
       "path": "literature/COVERAGE_AND_GAPS.md",
@@ -7889,6 +8081,12 @@
       "stored_path": "research/literature/schema.md"
     },
     {
+      "path": "literature/unresolved_problems.csv",
+      "size": 42159,
+      "sha256": "663e838daba3b609c9de048ba0b91609820da9a42694921f14b474a779eb3ac7",
+      "stored_path": "research/literature/unresolved_problems.csv"
+    },
+    {
       "path": "literature/verification_summary.json",
       "size": 766,
       "sha256": "0806b3acbdb5b3c7ff7e87e206cd208b0903cf74c2a15f37972f51a54cea80df",
@@ -7923,6 +8121,12 @@
       "size": 991,
       "sha256": "70274a74d9288c9508e4943dce9a9c439ebb27d77354b727130e353191a95e6e",
       "stored_path": "research/logs/network_draft.json"
+    },
+    {
+      "path": "pilots/AUTHORING_PROTOCOL.md",
+      "size": 2629,
+      "sha256": "db697e279149bcdf00f859b05855641297923fa253195b2752a52a43e1157209",
+      "stored_path": "research/pilots/AUTHORING_PROTOCOL.md"
     },
     {
       "path": "pilots/RESOURCE_AND_MODEL_PLAN.md",
@@ -7961,10 +8165,22 @@
       "stored_path": "research/pilots/model_evidence/manifest.json"
     },
     {
+      "path": "proposals/AUTHORING_PROTOCOL.md",
+      "size": 3314,
+      "sha256": "4798e73ff49268f124c2c9f265471bd1d97b1898b79e39bfb8d8a098555f2119",
+      "stored_path": "research/proposals/AUTHORING_PROTOCOL.md"
+    },
+    {
       "path": "research_questions/EVALUATION_RUBRIC.md",
       "size": 2326,
       "sha256": "4f0410ba7bae9d35ea1600699397a10ac37de80f5884ff88341d714901849033",
       "stored_path": "research/research_questions/EVALUATION_RUBRIC.md"
+    },
+    {
+      "path": "research_questions/LANDSCAPE.md",
+      "size": 242185,
+      "sha256": "26d6db8e5f4f802da1f345a2ac69c0faf3b2a8580ba257ea0558330be9f67945",
+      "stored_path": "research/research_questions/LANDSCAPE.md"
     },
     {
       "path": "research_questions/README.md",
@@ -7973,10 +8189,58 @@
       "stored_path": "research/research_questions/README.md"
     },
     {
+      "path": "research_questions/candidate_crosswalk.csv",
+      "size": 8349,
+      "sha256": "9f2b28a06f2d4d42b42ff018f4eb39025111c6a91a9ab94960359a0f196fa34c",
+      "stored_path": "research/research_questions/candidate_crosswalk.csv"
+    },
+    {
       "path": "research_questions/curation_plan.json",
       "size": 18545,
       "sha256": "eb7919f5f6f18d3376382d18548e571282c6d8eed648d294b073512e6944e375",
       "stored_path": "research/research_questions/curation_plan.json"
+    },
+    {
+      "path": "research_questions/direction_aliases.json",
+      "size": 99,
+      "sha256": "8f43971cc4a025d30fdb4896682ab7fbfcd70678a95e278812490843b6732064",
+      "stored_path": "research/research_questions/direction_aliases.json"
+    },
+    {
+      "path": "research_questions/directions.csv",
+      "size": 28066,
+      "sha256": "1efb15f8beff51316c511ff9d4f4db2cde83a4cdc110681965970a61a1332992",
+      "stored_path": "research/research_questions/directions.csv"
+    },
+    {
+      "path": "research_questions/landscape.csv",
+      "size": 371664,
+      "sha256": "bde98fc39fe2087490851f2dbb73ea810379f2da095edc055e8396a0cb0d44a2",
+      "stored_path": "research/research_questions/landscape.csv"
+    },
+    {
+      "path": "research_questions/landscape.json",
+      "size": 439332,
+      "sha256": "7db3d106adb9b520306352065a8f02e281fed587841f6feb73c91d2763010c1a",
+      "stored_path": "research/research_questions/landscape.json"
+    },
+    {
+      "path": "research_questions/rankings.csv",
+      "size": 26424,
+      "sha256": "da0ec73e728dc8cf6a6e0d6825d32b5c7868d4ce3f45b7e082aebdde088246b3",
+      "stored_path": "research/research_questions/rankings.csv"
+    },
+    {
+      "path": "research_questions/shortlist.csv",
+      "size": 2312,
+      "sha256": "ee3e7321d757c87c24562f08509176568307a24e5d80fec391669458f91c3dad",
+      "stored_path": "research/research_questions/shortlist.csv"
+    },
+    {
+      "path": "research_questions/shortlist.json",
+      "size": 143152,
+      "sha256": "b830ebad858b51119c71171ed074eebcf04f9f5953a63cf4b986f7367d469a75",
+      "stored_path": "research/research_questions/shortlist.json"
     },
     {
       "path": "scripts/build_axis_connections.py",
@@ -7992,9 +8256,15 @@
     },
     {
       "path": "scripts/build_opportunity_map.py",
-      "size": 6528,
-      "sha256": "85b81331a1c3fc7e121c83986fc3f2c12a1460cc29b9a056781f5441ad5acbb3",
+      "size": 6489,
+      "sha256": "6d1c4fb7d365417bd35e1d55fc93024cc33f5e385b2aa61c0aa5cdee5fbc7622",
       "stored_path": "research/scripts/build_opportunity_map.py"
+    },
+    {
+      "path": "scripts/build_research_landscape.py",
+      "size": 12683,
+      "sha256": "5df4824252235e10dfe2e262267a3169359969272dcfa0d7e32e78b935e8fbbf",
+      "stored_path": "research/scripts/build_research_landscape.py"
     },
     {
       "path": "scripts/checkpoint_backup.py",
@@ -8039,10 +8309,28 @@
       "stored_path": "research/scripts/novelty_reverse_search.py"
     },
     {
+      "path": "scripts/render_proposals_pilots.py",
+      "size": 6837,
+      "sha256": "60c00c1c33e927e36c182ad7f2134954bbdf910b2403a59350726055b843f6e6",
+      "stored_path": "research/scripts/render_proposals_pilots.py"
+    },
+    {
       "path": "scripts/restore_backup.py",
       "size": 4178,
       "sha256": "7b3fbde264ae11a0aeb607beea33eb336600409d8a7cfa9cb546a00cd4eb96ee",
       "stored_path": "research/scripts/restore_backup.py"
+    },
+    {
+      "path": "synthesis/OPPORTUNITY_MAP.md",
+      "size": 3045,
+      "sha256": "68912faa6ae69a9cd80a7c0230ab2c0d8c8286361825b724067eb8513892607a",
+      "stored_path": "research/synthesis/OPPORTUNITY_MAP.md"
+    },
+    {
+      "path": "synthesis/assumption_inventory.csv",
+      "size": 23547,
+      "sha256": "c3e403ada90d56a58863ce7153308885c78999f548dffb5ee5743f0ac8e7a794",
+      "stored_path": "research/synthesis/assumption_inventory.csv"
     },
     {
       "path": "synthesis/gate_criteria.md",

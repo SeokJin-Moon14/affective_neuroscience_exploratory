@@ -1,0 +1,107 @@
+ranking,rank,rq_id,title,criterion_order,scores,meaning
+scientific_potential,1,RQ07,현재가 같고 이력이 다른 신경 대비에서 전이상태와 HRF 잔류를 구별할 수 있는가?,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[5, 5, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,2,RQ20,과거 제한 상태의 신경 충분성과 미래 지향 학습목표의 추가 역할,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[5, 5, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,3,RQ23,훈련에서 식별한 공유 관계 연산은 보지 않은 내용–정서 조합으로 전이되는가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[5, 5, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,4,RQ03,비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 5, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,5,RQ22,기저 불변 신경 대응과 모델 계산 사용을 구별하는 개념 분해,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 5, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,6,RQ14,parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,7,RQ01,미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,8,RQ04,개인별 정서 관련 tuning은 공통정보의 가역 좌표 차이로 충분한가?,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,9,RQ05,내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,10,RQ06,새 정서 대비와 환경에 재사용되는 공동 압축공간의 충분성,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,11,RQ08,내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,12,RQ10,독립 관측이 배제하는 정서 상반 witness 쌍,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,13,RQ11,고정 ROI 분할에서 정서 대비의 비가산 판독이 필요한가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,14,RQ12,관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,15,RQ13,독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,16,RQ15,관측격자를 넘어 필요한 이력 함수는 비선형 관측인가 선택적 상태 전이인가?,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,17,RQ16,공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,18,RQ17,인코더와 관측 필터를 구분한 모달리티별 유효 예측창,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,19,RQ18,경계 단서와 과거 소거를 분리한 상태 갱신의 필요성,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,20,RQ19,감각 불일치 조건의 비가산성: 공통 단위 paired risk 검정,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,21,RQ21,촬영·사건 metadata 억제에 따른 정서 대비의 선택적 손실 곡선,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,22,RQ26,정서 예측에 필요한 평균·분산·상관·시간전이의 최소 관측모형,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,23,RQ27,사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,24,RQ28,언어 병목에서 정서 신경 대비의 예측 접근성이 선택적으로 낮아지는가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,25,RQ29,최근성 가산 설명을 넘어선 사건 순서 관련 신경 예측,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,26,RQ32,실제 신경 guide는 의미로 예측한 신경 guide를 넘는 모델 제약인가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,27,RQ24,HRF 가정하 정서 문맥 대비의 피질 분포와 시간모형의 식별 경계,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[4, 4, 3]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,28,RQ02,평균을 넘는 외부 평정분포는 독립 신경 대비와 연관되는가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,29,RQ09,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,30,RQ31,유한 함수 동등성을 인정한 공유제약의 정서 대비 일반화 효율,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,31,RQ30,동일 입력정보에서 오차 좌표는 정서 신경 대비의 제한된 읽기 효율을 높이는가,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+scientific_potential,32,RQ25,완전한 내용 입력에서 gate 좌표의 효율과 재매개화 안정성,"[""neuro_importance"", ""exploration_value"", ""falsifiability""]","[3, 3, 3]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,1,RQ07,현재가 같고 이력이 다른 신경 대비에서 전이상태와 HRF 잔류를 구별할 수 있는가?,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 4, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,2,RQ20,과거 제한 상태의 신경 충분성과 미래 지향 학습목표의 추가 역할,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 4, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,3,RQ22,기저 불변 신경 대응과 모델 계산 사용을 구별하는 개념 분해,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 4, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,4,RQ03,비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,5,RQ23,훈련에서 식별한 공유 관계 연산은 보지 않은 내용–정서 조합으로 전이되는가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 5]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,6,RQ01,미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,7,RQ08,내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,8,RQ09,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,9,RQ10,독립 관측이 배제하는 정서 상반 witness 쌍,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,10,RQ12,관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,11,RQ15,관측격자를 넘어 필요한 이력 함수는 비선형 관측인가 선택적 상태 전이인가?,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,12,RQ16,공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,13,RQ18,경계 단서와 과거 소거를 분리한 상태 갱신의 필요성,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,14,RQ21,촬영·사건 metadata 억제에 따른 정서 대비의 선택적 손실 곡선,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,15,RQ26,정서 예측에 필요한 평균·분산·상관·시간전이의 최소 관측모형,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,16,RQ27,사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,17,RQ28,언어 병목에서 정서 신경 대비의 예측 접근성이 선택적으로 낮아지는가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,18,RQ29,최근성 가산 설명을 넘어선 사건 순서 관련 신경 예측,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,19,RQ31,유한 함수 동등성을 인정한 공유제약의 정서 대비 일반화 효율,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,20,RQ32,실제 신경 guide는 의미로 예측한 신경 guide를 넘는 모델 제약인가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,21,RQ02,평균을 넘는 외부 평정분포는 독립 신경 대비와 연관되는가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,22,RQ04,개인별 정서 관련 tuning은 공통정보의 가역 좌표 차이로 충분한가?,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,23,RQ05,내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,24,RQ06,새 정서 대비와 환경에 재사용되는 공동 압축공간의 충분성,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,25,RQ11,고정 ROI 분할에서 정서 대비의 비가산 판독이 필요한가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,26,RQ13,독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,27,RQ14,parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,28,RQ17,인코더와 관측 필터를 구분한 모달리티별 유효 예측창,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,29,RQ19,감각 불일치 조건의 비가산성: 공통 단위 paired risk 검정,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,30,RQ24,HRF 가정하 정서 문맥 대비의 피질 분포와 시간모형의 식별 경계,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,31,RQ25,완전한 내용 입력에서 gate 좌표의 효율과 재매개화 안정성,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[2, 3, 3]",설명용 사전순 비교; 자동 종합 선정 아님
+originality,32,RQ30,동일 입력정보에서 오차 좌표는 정서 신경 대비의 제한된 읽기 효율을 높이는가,"[""novelty"", ""ai_necessity"", ""exploration_value""]","[2, 2, 3]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,1,RQ12,관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[4, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,2,RQ11,고정 ROI 분할에서 정서 대비의 비가산 판독이 필요한가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,3,RQ14,parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,4,RQ16,공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,5,RQ19,감각 불일치 조건의 비가산성: 공통 단위 paired risk 검정,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 4, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,6,RQ01,미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,7,RQ05,내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,8,RQ06,새 정서 대비와 환경에 재사용되는 공동 압축공간의 충분성,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,9,RQ08,내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,10,RQ09,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,11,RQ17,인코더와 관측 필터를 구분한 모달리티별 유효 예측창,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,12,RQ18,경계 단서와 과거 소거를 분리한 상태 갱신의 필요성,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,13,RQ20,과거 제한 상태의 신경 충분성과 미래 지향 학습목표의 추가 역할,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,14,RQ21,촬영·사건 metadata 억제에 따른 정서 대비의 선택적 손실 곡선,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,15,RQ28,언어 병목에서 정서 신경 대비의 예측 접근성이 선택적으로 낮아지는가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,16,RQ29,최근성 가산 설명을 넘어선 사건 순서 관련 신경 예측,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,17,RQ30,동일 입력정보에서 오차 좌표는 정서 신경 대비의 제한된 읽기 효율을 높이는가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,18,RQ03,비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,19,RQ10,독립 관측이 배제하는 정서 상반 witness 쌍,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,20,RQ22,기저 불변 신경 대응과 모델 계산 사용을 구별하는 개념 분해,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[3, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,21,RQ02,평균을 넘는 외부 평정분포는 독립 신경 대비와 연관되는가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,22,RQ04,개인별 정서 관련 tuning은 공통정보의 가역 좌표 차이로 충분한가?,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,23,RQ23,훈련에서 식별한 공유 관계 연산은 보지 않은 내용–정서 조합으로 전이되는가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,24,RQ24,HRF 가정하 정서 문맥 대비의 피질 분포와 시간모형의 식별 경계,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,25,RQ26,정서 예측에 필요한 평균·분산·상관·시간전이의 최소 관측모형,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 3, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,26,RQ07,현재가 같고 이력이 다른 신경 대비에서 전이상태와 HRF 잔류를 구별할 수 있는가?,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,27,RQ13,독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,28,RQ15,관측격자를 넘어 필요한 이력 함수는 비선형 관측인가 선택적 상태 전이인가?,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,29,RQ27,사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,30,RQ31,유한 함수 동등성을 인정한 공유제약의 정서 대비 일반화 효율,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,31,RQ32,실제 신경 guide는 의미로 예측한 신경 guide를 넘는 모델 제약인가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
+short_term_feasibility,32,RQ25,완전한 내용 입력에서 gate 좌표의 효율과 재매개화 안정성,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 3]",설명용 사전순 비교; 자동 종합 선정 아님
+overall_priority,1,RQ09,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,Horikawa 우선으로 정렬 후 접근가능성과 비가역 손실을 구별하며 생성기 학습 없이 첫 대비를 구성할 수 있음.
+overall_priority,2,RQ12,관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,관계 의미 누락과 비가산 신경 예측 이득을 고정 타깃에서 구별하고 Mind Captioning을 조건부로 연결함.
+overall_priority,3,RQ18,경계 단서와 과거 소거를 분리한 상태 갱신의 필요성,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,현재 자극·연속 상태·사건경계 reset의 충돌하는 예측을 시간자료에서 검정함.
+overall_priority,4,RQ16,공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,모달리티 공유 통로의 충분성과 고유 경로 필요성을 강한 가산 기준으로 구별함.
+overall_priority,5,RQ13,독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,자극조건부와 신경조건부의 불일치를 의미 누락·공통자극과 경쟁시킴.
+overall_priority,6,RQ05,내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,정서 범주 경계의 신경 구조를 단순 고차원성보다 구체적인 국소 대비로 검정함.
+overall_priority,7,RQ10,독립 관측이 배제하는 정서 상반 witness 쌍,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,그럴듯한 단일 복원보다 관측이 제한하는 정서 정보의 식별 범위를 질문함.
+overall_priority,8,RQ14,parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,공간 평균의 null-space에 정서 대비가 남는지 검정하여 뇌 foundation model의 공간 병목을 해부학·신뢰도와 구별함.
+overall_priority,9,RQ03,비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,서로 다른 자료의 거리구조 일치와 정서 의미 대응을 구별하는 장기 기회를 보존함.
+overall_priority,10,RQ27,사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,사전 허용집합에서 의미 보존 편집의 실제 신경 대비를 검정하는 장기 경로; 선택한 모집단과 새 측정 조건을 명시함.

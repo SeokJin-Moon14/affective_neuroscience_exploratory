@@ -1,0 +1,1176 @@
+{
+  "role": "03_vision_decoding",
+  "read_files": [
+    "AGENTS.md",
+    "RESEARCH_MISSION.md",
+    "discussions/ROUND04_PROTOCOL.md",
+    "discussions/ROUND03_PROTOCOL.md",
+    "discussions/round_03/collected.json",
+    "agents/03_vision_decoding/round02_exchange.json",
+    "agents/03_vision_decoding/ROUND1_REPORT.md",
+    "agents/03_vision_decoding/MODEL_CARDS.md",
+    "agents/07_geometry_information/report.md (P051 관련 발췌)",
+    "agents/12_adversarial_review/report.md (P097/P100 관련 발췌)",
+    "axis_map/reference_catalog.csv"
+  ],
+  "responses": [
+    {
+      "candidate_id": "C03-01",
+      "critique_ids": [
+        "R3-02-C03-01",
+        "R3-10-C03-01"
+      ],
+      "accepted_changes": [
+        "일차 추정량을 지정 probe 함수계열의 외부 정서 대비 접근성으로 낮춘다.",
+        "원뇌/trunk/head × 선형/제한 비선형 probe × 훈련량을 교차하고 입력·자료·차원을 고정한다.",
+        "알려진 가역 혼합과 비가역 절단 대조, 독립 관계·사건 의미 및 자극가족 보류를 추가한다."
+      ],
+      "contested_points": [
+        "유한 probe 모두의 실패도 정보론적 삭제를 증명하지 않는다. 접근성 감소로만 보고한다.",
+        "C10-01과 상위 보존 질문은 공유한다. 정렬 목적과 언어 병목의 조작 차이가 사라지고 모달 교체만 남으면 독립 RQ로 세지 않는다."
+      ],
+      "final_status": "수정",
+      "reason": "정렬 목표에 따른 접근성 질문은 남지만 인간 뇌의 압축 기전 주장을 제거한다."
+    },
+    {
+      "candidate_id": "C03-02",
+      "critique_ids": [
+        "R3-02-C03-02",
+        "R3-10-C03-02"
+      ],
+      "accepted_changes": [
+        "정답을 포함한 고정 자연 universe에서 후보구성·문턱보정·평가 fold를 분리한다.",
+        "객체·사건·주석 강도를 맞춘 특정 정서 대비와 의미조건부 뇌교환을 사용한다.",
+        "참조 유지율·오배제율·고정 허용오류율의 집합 크기와 정서범위를 주결과로 한다.",
+        "ROI 분리 대신 별도 반복/run/참가자 검증을 우선하며 생성은 후보 확장 민감도로 제한한다."
+      ],
+      "contested_points": [
+        "유한 sampler의 허용 후보는 전체 허용 자극공간의 내부 탐색 근사이다. 전역 부분식별 bounds 또는 보정 posterior가 아니다.",
+        "참조 유지율은 해당 유한 universe에 한정된다. 의미×정서 교차 지지가 없으면 과학 주장은 보류하고 방법후보로 남긴다."
+      ],
+      "final_status": "수정",
+      "reason": "구체 정서 대비에 대한 유한 후보군의 관측 판별력만 평가한다."
+    },
+    {
+      "candidate_id": "C03-03",
+      "critique_ids": [
+        "R3-02-C03-03",
+        "R3-10-C03-03"
+      ],
+      "accepted_changes": [
+        "결합 정보를 지정 함수계열의 비가산 판독 이득으로 한정한다.",
+        "content-only 비선형·사건관계 모형 및 공통원인·상관 encoding 오차 null을 추가한다.",
+        "정서/객체 대비의 지지·난도를 독립적으로 맞추고 총/조건부 효과와 이득의 차이의 차이를 보고한다.",
+        "최소 효과와 동등성 정밀도를 정해 단순 비유의와 가산 충분성을 구분한다."
+      ],
+      "contested_points": [
+        "조건화가 공유 정서 관련 설명을 제거할 수 있으므로 조건부 효과만을 정서의 정의로 삼지 않는다.",
+        "C08-01과 상위 가산성 RQ를 통합하되 후보 배제 검사는 별도 assay로 둔다. PID 시너지·영역간 통신·회로 인과를 주장하지 않는다."
+      ],
+      "final_status": "유지",
+      "reason": "두 검토자의 유지 의견을 수용하고 공통원인 대조와 주장 범위를 보강한다."
+    },
+    {
+      "candidate_id": "C03-04",
+      "critique_ids": [
+        "R3-02-C03-04",
+        "R3-10-C03-04"
+      ],
+      "accepted_changes": [
+        "생성 전후 출처 감사의 방법후보로 분리한다.",
+        "독립 원자극 주석을 주타깃으로 고정하고 생성물 주석은 별도 출력 관측으로 둔다.",
+        "같은 사건집합·길이의 순서 교환과 경계/비경계 길이 일치 reset을 추가한다.",
+        "원뇌/latent/출력에 probe ladder를 적용하고 HRF·미래 접근·시계 변환을 검사한다."
+      ],
+      "contested_points": [
+        "생성 전 비유의/출력 유의만으로 정보 생성 위치를 확정하지 않는다. 접근성과 오차 차이를 먼저 시험한다.",
+        "동일 현재/다른 과거 신경 질문은 C02-04 계열에 통합하며 영상 모달리티라는 이유로 과학 RQ를 중복 계수하지 않는다."
+      ],
+      "final_status": "수정",
+      "reason": "시간 정보 출처 검사와 신경 경로의존성 질문을 분리한다."
+    },
+    {
+      "candidate_id": "C03-05",
+      "critique_ids": [
+        "R3-02-C03-05",
+        "R3-10-C03-05"
+      ],
+      "accepted_changes": [
+        "관계 변화 크기×정서 대비 유무의 교차 설계와 관계 graph content 모형을 추가한다.",
+        "목표 관계 의미와 보존할 비목표 의미·위치·가림·크기·motion을 구분한다.",
+        "자연 matched pair 우선; 편집물은 새 BOLD를 측정하며 원본 BOLD를 전용하지 않는다.",
+        "EIG 선택 효율은 신경 주가설에서 분리해 부차 방법 결과로 둔다."
+      ],
+      "contested_points": [
+        "일반 의미와 완전히 분리된 순수 정서를 요구하지 않는다. 총·공유 및 조건부 설명을 함께 보고한다.",
+        "C10-02의 조건화 변경과 자극 관계 변경은 조작이 다르나 모달 교체만 남으면 같은 상위 질문으로 통합한다."
+      ],
+      "final_status": "수정",
+      "reason": "일반 장면 관계 처리를 정서 전용 계산으로 재명명하지 않도록 교차 대비를 요구한다."
+    }
+  ],
+  "new_connections": [
+    {
+      "connection_id": "UC03-01",
+      "source_field": "표현 기하의 불변성 분석 × 변환 기반 소프트웨어 검증",
+      "original_computational_goal": "P051은 표현 유사도의 불변성과 구별력을 분석하고 P100은 유연 표현모형의 보류 조건·참가자 평가를 다룬다. 아래 신경 검사를 원논문의 결과로 주장하지 않는다.",
+      "imported_structure": "구성상 정보보존이 알려진 가역 혼합과 일부 입력을 제거한 비가역 절단을 만들고 probe ladder의 오판을 측정하는 양성·음성 대조(E3). CKA가 일반 가역 변환에 불변이라고 가정하지 않는다.",
+      "new_neural_question": "정서 대비의 판독 저하는 정렬 목표의 효과인가, 좌표 재표현을 정보삭제로 오판하는 probe의 한계인가?",
+      "why_not_same_as_round2": "Round2의 내용 일반화에는 정보보존의 정답이 없었다. 새 연결은 알려진 가역성을 이용해 측정 절차 자체의 실패를 대조한다. 새 정리나 완전한 정보손실 검증은 아니다.",
+      "candidate_ids": [
+        "C03-01",
+        "C03-04"
+      ],
+      "source_papers": [
+        "P051",
+        "P100",
+        "P015"
+      ],
+      "assumptions": [
+        "가역 변환의 차원·수치 조건을 기록하고 train/test에서 동일 적용한다.",
+        "probe 튜닝은 평가 fold 밖에서 한다.",
+        "대조 통과는 모든 비선형 재부호화에 대한 충분성 보증이 아니다."
+      ],
+      "discriminating_test": "원표현/가역 혼합/좌표 절단의 선형→비선형 및 학습량 회복곡선을 비교한다. 정렬 효과가 가역 대조처럼 회복되면 접근성 변화 설명을 지지한다.",
+      "failure_interpretation": "가역 대조도 회복하지 못하면 정보손실 판정 도구가 불충분하다. 절단 효과도 감지하지 못하면 목표 대비 또는 검정력이 약하다."
+    },
+    {
+      "connection_id": "UC03-02",
+      "source_field": "통계적 모형 선택 편향 × 비유일 역문제",
+      "original_computational_goal": "P097은 선택 이후 평가 편향의 서지 근거(E2)이고 P100의 확인 보고서는 유연 모형과 참가자·조건 일반화를 구분한다. P076의 역문제 후보 생성에 이를 옮긴다.",
+      "imported_structure": "후보 universe 구성·거리문턱 보정·최종 신경 판별을 분리하고 정답을 포함한 중첩 자연 후보군 U1⊂U2⊂U3에서 고정 문턱 허용집합을 감사한다(E3).",
+      "new_neural_question": "정서 대비의 배제는 같은 신경자료를 후보 선택에 재사용하지 않고도 유지되며 의미 일치 반례를 늘려도 유지되는가?",
+      "why_not_same_as_round2": "Round2는 prior와 후보 다양성을 비교했다. 새 연결은 선택 후 평가 편향을 명시적 경쟁 원인으로 만들고 중첩 후보군의 집합 단조성과 독립 참조 유지율을 검사한다. 단순 sampler 교체가 아니다.",
+      "candidate_ids": [
+        "C03-02",
+        "C03-03"
+      ],
+      "source_papers": [
+        "P097",
+        "P100",
+        "P076"
+      ],
+      "assumptions": [
+        "중첩 비교에서 거리함수·문턱·encoder를 고정한다.",
+        "후보별 점수 정규화를 universe마다 바꾸지 않는다.",
+        "U가 전체 자극공간을 덮는다는 보장은 없고 경험적 calibration을 test에서 확인한다."
+      ],
+      "discriminating_test": "고정 검사의 허용집합은 U를 확장할 때 줄지 않아야 한다. 정서범위 축소가 재최적화에서만 생기거나 의미 반례 추가에 사라지면 선택 편향/후보 제한 설명을 지지한다.",
+      "failure_interpretation": "참조 유지 실패는 관측모형·문턱 문제다. 유지율을 충족하나 범위가 넓으면 해당 유한공간의 판별 한계다. 둘 다 인간 뇌 정보 부재가 아니다."
+    }
+  ],
+  "revised_candidates": [
+    {
+      "candidate_id": "C03-01",
+      "title": "시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건",
+      "axis_ids": [
+        "AS01",
+        "AS05",
+        "AS07",
+        "AS29"
+      ],
+      "research_question": "동일 자료·입력·용량에서 정렬 목표를 바꾸면 내용군을 넘어 일반화하는 정서 대비의 접근성이 probe 함수계열과 학습량에 따라 어떻게 달라지는가?",
+      "neural_target": "동일 시행 원뇌/trunk/head의 독립 정서 주석 총 예측과 의미조건부 증분; 정보량 자체가 아님",
+      "external_principle": "내용 일반화·총/조건부 설명 구분에 UC03-01의 알려진 가역 변환 검사를 결합(E3).",
+      "model_application": "동일 자료·입력의 masked/contrastive 목표와 원뇌/trunk/head × probe family × 훈련량을 비교한다. 가역 혼합·비가역 절단 대조로 측정 실패를 확인한다.",
+      "scientific_question": "독립 정서 대비를 읽는 표현·표본 복잡도가 시각 정렬과 내용환경에 따라 달라지는가?",
+      "assumption_challenge": "검색 성공과 probe 실패만으로 정보 충분성 또는 불가역 삭제를 판정할 수 있다는 가정.",
+      "main_hypothesis": "원뇌에서 신뢰 가능한 대비가 있을 때 정렬 목표에 따른 접근성 차이가 사전 정의 probe·학습량 범위와 내용군 보류에서 재현된다.",
+      "alternative": "가역 재부호화·SNR·훈련량·관계 의미 누락·작은 시각 단서 차이이다.",
+      "measurable_contrast": "동일 외부 정서 타깃의 단계별 보류 로그점수 차이를 probe·학습량별 보고한다. 총 예측과 사건·관계 조건부 증분을 병기하고 정서/내용 대비 난도와 검색 정확도도 따로 기록한다.",
+      "falsification": "비선형 probe나 자료량 증가로 차이가 회복되면 삭제 해석을 기각한다. 충분한 정밀도의 무차이는 시험 범위의 목표 효과를 낮춘다. 원뇌 신호 미확인은 식별불가이다.",
+      "baseline": [
+        "원 뇌의 정규화 선형 readout",
+        "동일 차원의 무작위 projection",
+        "ridge→CLIP",
+        "시각·의미만으로 정서 주석 예측",
+        "동일 architecture의 masked/contrastive 비교",
+        "가역 혼합/비가역 절단",
+        "관계·사건 및 난도 일치 내용 대비"
+      ],
+      "dataset_plan": {
+        "possession": "Horikawa·Emo-FilM·Mind Captioning·NSD·Spacetop 다섯 보유본을 전제로 진행",
+        "primary": "Horikawa의 자극 단위 주석과 뇌 반응으로 총/조건부 추정량 정의",
+        "validation": "Emo-FilM 및 Spacetop은 각 측정 단위별 독립 재검증; 공통 척도를 가정하지 않음",
+        "controls": "NSD는 시각 정렬/신뢰도 대조; Mind Captioning은 정확한 식별과 제공 주석 확인 뒤 의미 통제 후보",
+        "fallback": "학습 checkpoint를 못 쓰면 고정 시각 특징+작은 ridge와 원 뇌 readout으로 보존 경계부터 검증"
+      },
+      "missing_conditions": [
+        "원영상 내용군·dupidx와 처리 Label 대응",
+        "정서 주석 단위와 reliability 추정 가능 자료",
+        "독립 fold 안 전처리·조건화·차원 선택",
+        "각 보유본 voxel adapter와 split 정의",
+        "실행 전 확인: 동일 훈련조건·반복 대응과 신규성 역검색 미완료."
+      ],
+      "source_papers": [
+        "P001",
+        "P008",
+        "P015",
+        "P022",
+        "P051",
+        "P100"
+      ],
+      "closest_prior_ids": [
+        "P001",
+        "P015",
+        "P022"
+      ],
+      "what_is_new": "UC03-01은 정보 삭제 질문을 알려진 가역 대조에 비춘 접근성 곡선으로 바꾼다. C10-01과 상위 보존 질문을 공유하고 모달 교체는 신규성으로 세지 않는다.",
+      "novelty_risk": "기존 transfer·probe 감사의 재평가일 수 있어 목적함수×내용 대비 효과가 없으면 방법후보로 축소.",
+      "conceptual_signature": {
+        "observation": "독립 정서 대비의 단계별 판독",
+        "manipulation": "정렬 목표×probe×학습량 및 가역 대조",
+        "competing_explanations": "접근성 변화 대 재부호화·SNR·누락 의미"
+      },
+      "eight_questions": {
+        "q1": "선행 비교는 존재하므로 미시도라 단정하지 않는다; 복원 성능과 정서 보존의 분리 평가가 확인 문헌의 공백이다.",
+        "q2": "공유 피험자 디코더와 masked 뇌 표현의 공개 구현으로 단계별 readout 비교가 가능해졌다.",
+        "q3": "정렬 성공과 probe 실패만으로 정보 충분성·삭제를 판정하는 가정.",
+        "q4": "정렬 표현 비교는 필요하지만 readout은 ridge부터 시작하며 거대모형 필요성을 가정하지 않는다.",
+        "q5": "전체 정보가 아닌 지정 probe의 접근 가능한 대비를 측정한다.",
+        "q6": "가역성의 정답이 있는 변환 기반 검사를 표현 기하에서 수입한다.",
+        "q7": "보유 자료를 복원 benchmark 대신 학습 목적의 정보 선택성을 시험하는 자료로 쓴다.",
+        "q8": "모형 목표와 접근성의 경계를 제한하며 인간 뇌의 압축 기전으로 일반화하지 않는다."
+      },
+      "status": "수정: 주장 범위 축소와 대조 보강",
+      "revision_history": [
+        {
+          "round": 4,
+          "critique_ids": [
+            "R3-02-C03-01",
+            "R3-10-C03-01"
+          ],
+          "changes": [
+            "일차 추정량을 지정 probe 함수계열의 외부 정서 대비 접근성으로 낮춘다.",
+            "원뇌/trunk/head × 선형/제한 비선형 probe × 훈련량을 교차하고 입력·자료·차원을 고정한다.",
+            "알려진 가역 혼합과 비가역 절단 대조, 독립 관계·사건 의미 및 자극가족 보류를 추가한다."
+          ],
+          "remaining_disagreement": [
+            "유한 probe 모두의 실패도 정보론적 삭제를 증명하지 않는다. 접근성 감소로만 보고한다.",
+            "C10-01과 상위 보존 질문은 공유한다. 정렬 목적과 언어 병목의 조작 차이가 사라지고 모달 교체만 남으면 독립 RQ로 세지 않는다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "Brain visual alignment affective decoding probe accessibility invertible transformations content generalization",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommended": false,
+        "reason": "중복·방법 중심성·실행 비용을 고려해 자기후보 최상위 두 개에서는 제외."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "정렬 목표와 접근성 곡선의 교차가 기여지만 transfer 감사와 가깝다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "neuro_importance": {
+          "score": 3,
+          "reason": "관심 대비 보존 조건을 제한하나 인간 압축 기전은 아니다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "정렬 표현은 필요하지만 작은 readout으로 시작한다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "동일 시행 latent·반복·내용군 대응이 실행 조건이다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "가역 대조와 probe·학습량 교차가 재부호화를 시험한다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "probe 강화로 차이가 회복되면 삭제 해석이 실패한다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "interpretability": {
+          "score": 4,
+          "reason": "외부 대비 점수로 한정해 정보론적 과장을 줄인다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "자극가족·참가자를 보류하되 데이터 간 척도 등가는 없다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 3,
+          "reason": "작은 모형부터 가능하나 동일 훈련조건 구성에 비용이 든다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "관심 정보 보존 평가의 취약점을 반증 가능한 형태로 바꾼다.",
+          "uncertainty": "분석 미실행; 동일 훈련조건·반복 대응과 신규성 역검색 미완료.",
+          "source_papers": [
+            "P001",
+            "P008",
+            "P100"
+          ]
+        }
+      }
+    },
+    {
+      "candidate_id": "C03-02",
+      "title": "유한 자연 후보군에서 뇌 관측이 지지하는 의미 일치 정서 대비",
+      "axis_ids": [
+        "AS04",
+        "AS20",
+        "AS29",
+        "AS33"
+      ],
+      "research_question": "정답을 포함한 고정 자연 universe에서 객체·사건·강도를 맞춘 특정 정서 대비를 독립 뇌관측이 어느 오류율로 배제하거나 유지하는가?",
+      "neural_target": "사전 지정 정서 대비의 후보별 관측 거리와 별도 반복의 참조 유지·오배제",
+      "external_principle": "비유일 역문제에 UC03-02 선택/보정/평가 분리와 중첩 후보군 검사를 결합(E3).",
+      "model_application": "train으로 encoder, calibration으로 문턱을 고정하고 test 반복/run/참가자로 평가한다. 생성기는 후보확장 민감도에만 사용한다.",
+      "scientific_question": "같은 사건 의미를 공유하는 특정 정서 대비를 현재 fMRI 관측 수준에서 얼마나 구별하는가?",
+      "assumption_challenge": "한 장의 재구성에서 정서 특징이 보이면 그 특징이 뇌로부터 복원되었다는 가정.",
+      "main_hypothesis": "유사 강도의 사전 지정 범주 대비 또는 연속 주석 대비에서 진짜 관측은 의미조건부 교환보다 참조 유지율을 유지하면서 잘못된 대비를 더 잘 배제한다.",
+      "alternative": "객체 판별의 부수효과·후보선택 자료 재사용·문턱 오보정·sampler collapse가 범위를 줄인다.",
+      "measurable_contrast": "같은 허용오류율에서 참조 유지율·오배제율·집합 크기·독립 정서범위를 진짜/의미조건부 교환/prior-only에서 비교한다. 대비 이름과 강도 기준은 주석 확인 후 분석 전에 고정하며 가용성을 추정하지 않는다. 연속 주석 범위는 사전 지정 좌표의 허용 후보 최소·최대이고, 범주형이면 허용 범주 목록과 오배제율을 보고한다. 후보 분산 축소를 집합 축소와 동일시하지 않는다.",
+      "falsification": "참조 유지 실패는 calibration 실패다. 유지율을 충족하나 의미 일치 반례 배제력이 없으면 유한 universe 판별 주장을 낮춘다. 반례 확장으로 범위가 넓어지면 후보선택 의존성을 보고한다.",
+      "baseline": [
+        "자연 자극 matched retrieval",
+        "prior-only 후보",
+        "자극 블록 내 shuffled observation",
+        "선형 Gaussian encoding의 시뮬레이션 정답",
+        "생성기와 독립적인 주석/시각 모델",
+        "참조 포함 자연 hard negative",
+        "의미조건부 관측 교환",
+        "독립 반복/run/참가자"
+      ],
+      "dataset_plan": {
+        "possession": "다섯 보유본의 접근 여부를 개념 생성 차단 조건으로 삼지 않음",
+        "primary": "Horikawa의 실제 관측과 자연 영상 pool에서 관측 등가 후보 평가",
+        "extension": "Emo-FilM은 사건 구간 단위, Spacetop은 clip 단위로 별도 평가",
+        "controls": "NSD는 시각 역해 calibration 대조; Mind Captioning은 확인된 caption/뇌 대응이 있을 경우 의미 등가 후보 생성에 활용",
+        "fallback": "자연 retrieval로 유한 universe 판별력부터 평가한다. 내부 탐색 근사의 기준은 고정 encoder와 문턱이 정의한 허용집합이며 실제 뇌의 참 허용집합과 동일하다고 가정하지 않는다. 전역 부분식별 bounds나 posterior라 부르지 않는다."
+      },
+      "missing_conditions": [
+        "특정 대비의 범주/연속 주석·강도·의미 교차 지지",
+        "선택·보정과 독립인 반복/run/참가자",
+        "참조 포함 universe·독립 정서 주석",
+        "생성 후보 확대의 포함 범위"
+      ],
+      "source_papers": [
+        "P015",
+        "P019",
+        "P076",
+        "P008",
+        "P097",
+        "P100"
+      ],
+      "closest_prior_ids": [
+        "P076",
+        "P015"
+      ],
+      "what_is_new": "일반 posterior 분산을 정서로 바꾸는 대신 특정 대비의 유한 후보군 오류를 고정한다. UC03-02가 자료 재사용과 universe 확장을 구체 반증으로 추가한다.",
+      "novelty_risk": "전역 부분식별이 아닌 유한 후보군 상대적 판별 연구다. 의미×정서 교차 지지가 없으면 방법후보로 전환.",
+      "conceptual_signature": {
+        "observation": "독립 반복에서 참조 유지와 대비 배제",
+        "manipulation": "의미조건부 뇌교환·고정 문턱·중첩 후보군",
+        "competing_explanations": "관측 판별력 대 의미 부수효과·선택 편향"
+      },
+      "eight_questions": {
+        "q1": "비유일 역문제는 선행 문제이며 특정 정서 대비의 유한 판별력에 대한 역검색이 남는다.",
+        "q2": "관측 조건부 생성과 복수 시각 prior를 모듈별로 비교할 수 있다.",
+        "q3": "재구성의 정서 내용이 곧 신경정보라는 가정.",
+        "q4": "생성은 후보 확대에 유용하지만 자연 retrieval로 주검정이 가능하다.",
+        "q5": "generator 표현으로 동일해 보여도 실제 뇌가 구분하는 미세 단서가 후보이나 직접 관측으로 검증한다.",
+        "q6": "역문제에 선택 이후 평가 편향 통제를 결합한다.",
+        "q7": "기존 보유 뇌 반응을 새 자극 반응으로 재사용하지 않고 원관측에 대한 허용 후보를 평가한다.",
+        "q8": "유한 후보군의 관측 판별 경계를 얻으며 전역 부분식별·뇌 정보 부재로 확대하지 않는다."
+      },
+      "status": "수정: 주장 범위 축소와 대조 보강",
+      "revision_history": [
+        {
+          "round": 4,
+          "critique_ids": [
+            "R3-02-C03-02",
+            "R3-10-C03-02"
+          ],
+          "changes": [
+            "정답을 포함한 고정 자연 universe에서 후보구성·문턱보정·평가 fold를 분리한다.",
+            "객체·사건·주석 강도를 맞춘 특정 정서 대비와 의미조건부 뇌교환을 사용한다.",
+            "참조 유지율·오배제율·고정 허용오류율의 집합 크기와 정서범위를 주결과로 한다.",
+            "ROI 분리 대신 별도 반복/run/참가자 검증을 우선하며 생성은 후보 확장 민감도로 제한한다."
+          ],
+          "remaining_disagreement": [
+            "유한 sampler의 허용 후보는 전체 허용 자극공간의 내부 탐색 근사이다. 전역 부분식별 bounds 또는 보정 posterior가 아니다.",
+            "참조 유지율은 해당 유한 universe에 한정된다. 의미×정서 교차 지지가 없으면 과학 주장은 보류하고 방법후보로 남긴다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "Finite candidate brain reconstruction affective contrast calibrated rejection semantic matching uncertainty",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommended": true,
+        "reason": "특정 정서 대비의 관측 판별력을 직접 묻는다; 참조 유지·교차 지지를 충족할 때 우선."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "특정 정서 대비로 좁혔지만 역문제 불확실성 연구와 가깝다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "관측이 구별하는 정서 대비를 직접 제한한다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "생성 AI 없이 자연 retrieval로 일차 검정이 가능하다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "반복 관측과 의미·정서 교차 지지를 확인해야 한다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "독립 보정과 참조 유지 검사가 collapse를 성공으로 세지 못하게 한다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "참조 유지·오배제·반례 확장이 구체 반증이다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "interpretability": {
+          "score": 4,
+          "reason": "유한 universe 상대적 결과라 전역 posterior 해석을 배제한다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "generalization": {
+          "score": 2,
+          "reason": "후보 universe와 주석 척도에 따라 판별 범위가 달라진다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 3,
+          "reason": "자연 후보 단계는 작지만 encoder calibration이 필요하다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "출력 정서가 뇌 관측에서 지지되는지 직접 검사할 가치가 있다.",
+          "uncertainty": "분석 미실행; 유한 후보군 밖 coverage와 의미·정서 교차 지지 미확인.",
+          "source_papers": [
+            "P015",
+            "P019",
+            "P100"
+          ]
+        }
+      }
+    },
+    {
+      "candidate_id": "C03-03",
+      "title": "분산 영역의 정서 대비 판독에서 비가산 결합이 필요한 조건",
+      "axis_ids": [
+        "AS03",
+        "AS16",
+        "AS20",
+        "AS30"
+      ],
+      "research_question": "정서와 객체 대비에서 비가산 판독 이득은 가산 증거·공통원인·상관오차로 설명되는가?",
+      "neural_target": "지정 함수계열의 ROI별/결합 정서 대비 보류 로그점수",
+      "external_principle": "Agent02의 분산 코드 중복/결합 구분과 Agent09의 관측 등가 후보 집합",
+      "model_application": "ROI별 후보 거리는 유한 후보군 기준이며 전역 관측등가 집합이 아니다. 용량 일치 가산/비가산 readout을 공통원인·상관 encoding 오차 null과 비교한다.",
+      "scientific_question": "신뢰도와 의미 단서를 맞춘 분산 관측의 예측에 가산 readout을 넘어선 조합이 필요한가?",
+      "assumption_challenge": "ROI를 합쳐 복원이 좋아지면 정보 시너지 또는 생물학적 필수성이 있다는 가정.",
+      "main_hypothesis": "독립 선정·난도 일치 정서 대비에서 비가산 로그점수 이득이 공통원인·상관오차 가산 null을 넘는다.",
+      "alternative": "일반 관계 의미의 결합·상관 encoding 오차·SNR·자유도 차이이다.",
+      "measurable_contrast": "일차는 정서 대비의 joint−additive 로그점수; 이차는 정서 이득−객체 이득이다. 총 효과와 관계·사건 조건부 효과를 함께 보고한다.",
+      "falsification": "관계 content-only 또는 공통원인 null이 이득을 설명하면 추가 정서 판독 범위를 축소한다. 사전 정의 최소효과 안의 정밀한 동등성만 가산 충분성을 지지하며 비유의만으로 충분하지 않다.",
+      "baseline": [
+        "capacity 일치 nonlinear additive 모형",
+        "동일 ROI 내부 무작위 voxel 분할",
+        "noise covariance를 맞춘 합성 additive 양성/음성 대조",
+        "단일 ROI와 voxel 수 일치 pooled ROI",
+        "시각 정체성 후보 판별",
+        "관계 content-only 비선형 모형",
+        "공통원인·상관 encoding 오차 null"
+      ],
+      "dataset_plan": {
+        "possession": "다섯 데이터 보유를 전제",
+        "primary": "Horikawa에서 코드상 ROI와 실제 coverage를 확인한 후 영역별 후보 제약",
+        "extension": "Emo-FilM/Spacetop은 독립 측정 단위의 복제 후보",
+        "controls": "NSD는 시각적 증거 결합 대조; Mind Captioning은 의미 대비 자료가 확인될 때 언어 설명 가능한 결합과 비교",
+        "fallback": "복잡한 정보분해 estimator 대신 보류 predictive log score의 가산/비가산 차이로 주장을 제한"
+      },
+      "missing_conditions": [
+        "영역 coverage와 voxel 수·신뢰도 보정",
+        "정서 대비와 객체 대비의 충분한 교차 지지",
+        "후보 선택과 ROI 선택의 완전 train-fold 격리",
+        "noise covariance와 참가자·자극 계층 불확실성",
+        "실행 전 확인: null 적합성과 반복 기반 오차 추정 가능성 미확인."
+      ],
+      "source_papers": [
+        "P005",
+        "P009",
+        "P017",
+        "P076"
+      ],
+      "closest_prior_ids": [
+        "P005",
+        "P009",
+        "P017"
+      ],
+      "what_is_new": "영역 복원 개선을 대비별 가산성으로 바꾼다. C08-01과 상위 RQ를 통합하고 본 후보는 후보 배제 assay를 제공해 중복 RQ 수를 늘리지 않는다.",
+      "novelty_risk": "multi-ROI 가산성 선행과 가깝다. C08-01 병합을 권고하며 정서/객체 대비와 공통원인 대조가 차별점.",
+      "conceptual_signature": {
+        "observation": "정서·객체 대비의 영역별 로그점수",
+        "manipulation": "가산/비가산 및 관계 조건화",
+        "competing_explanations": "판독 비가산성 대 공통원인·상관오차·일반 의미"
+      },
+      "eight_questions": {
+        "q1": "분산성은 이미 알려졌고 영역 결합 이득의 원인 분리는 추정기·관측잡음 때문에 어렵다.",
+        "q2": "공식 decoder와 관측 조건부 후보 집합을 통해 이득이 어떤 자극 대비에서 생기는지 조사할 수 있다.",
+        "q3": "판독 비가산성을 PID 시너지·지역간 통신으로 읽는 가정.",
+        "q4": "작은 bilinear·커널 모형부터 검증할 수 있다.",
+        "q5": "단일 시각 latent의 지정 probe에서 접근하기 어려운 영역 간 대비가 후보이며 정보 삭제를 전제하지 않는다.",
+        "q6": "증거 결합과 공통원인 null을 수입하며 새 정보분해 정리는 주장하지 않는다.",
+        "q7": "보유 fMRI를 영역 중요도 순위 대신 영역이 배제하는 자극 해의 구조로 평가한다.",
+        "q8": "가산 충분성 또는 지정 함수계열의 비가산 필요성을 제한하며 회로 인과를 말하지 않는다."
+      },
+      "status": "유지: 상위 가산성 RQ 병합 권고",
+      "revision_history": [
+        {
+          "round": 4,
+          "critique_ids": [
+            "R3-02-C03-03",
+            "R3-10-C03-03"
+          ],
+          "changes": [
+            "결합 정보를 지정 함수계열의 비가산 판독 이득으로 한정한다.",
+            "content-only 비선형·사건관계 모형 및 공통원인·상관 encoding 오차 null을 추가한다.",
+            "정서/객체 대비의 지지·난도를 독립적으로 맞추고 총/조건부 효과와 이득의 차이의 차이를 보고한다.",
+            "최소 효과와 동등성 정밀도를 정해 단순 비유의와 가산 충분성을 구분한다."
+          ],
+          "remaining_disagreement": [
+            "조건화가 공유 정서 관련 설명을 제거할 수 있으므로 조건부 효과만을 정서의 정의로 삼지 않는다.",
+            "C08-01과 상위 가산성 RQ를 통합하되 후보 배제 검사는 별도 assay로 둔다. PID 시너지·영역간 통신·회로 인과를 주장하지 않는다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "Distributed affective brain decoding additive nonlinear readout correlated noise semantic controls",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommended": true,
+        "reason": "가산성 질문이 명확하고 작은 실험부터 가능하다; C08-01과 하나의 RQ로 통합."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "multi-ROI 선행 및 C08-01과 통합해야 하나 대비별 가산성은 남는다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "분산 관측을 설명하는 최소 판독 계산을 구별한다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "ai_necessity": {
+          "score": 2,
+          "reason": "작은 가산·bilinear·커널로 핵심 대비를 검사할 수 있다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "ROI와 반복 covariance 및 교차 주석 지지가 필요하다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "공통원인·상관오차 null과 난도 매칭을 추가했다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "정밀한 가산 동등성이 비가산 필요 가설을 낮춘다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "interpretability": {
+          "score": 4,
+          "reason": "함수계열의 점수차로 한정해 회로 인과를 배제한다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "참가자·자극가족 보류와 다른 보유본별 복제를 계획한다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 4,
+          "reason": "고비용 생성 없이 ROI와 작은 판독기로 시작한다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "긍정·음성 결과 모두 분산 판독의 최소 설명을 제한한다.",
+          "uncertainty": "분석 미실행; null 적합성과 반복 기반 오차 추정 가능성 미확인.",
+          "source_papers": [
+            "P005",
+            "P009",
+            "P076"
+          ]
+        }
+      }
+    },
+    {
+      "candidate_id": "C03-04",
+      "title": "시간 복원에서 원자극 정서 대비의 단계별 접근성 출처 감사",
+      "axis_ids": [
+        "AS02",
+        "AS06",
+        "AS23",
+        "AS32",
+        "AS35"
+      ],
+      "research_question": "사건 내용량과 순서를 통제할 때 독립 원자극 정서 대비의 판독은 원뇌·latent·출력에서 어떻게 달라지는가?",
+      "neural_target": "원자극 독립 주석에 대한 단계별 외부 decoding; 생성물 주석은 별도 출력 특성",
+      "external_principle": "시간 출처 분리에 UC03-01 probe 접근성 검사를 결합하고 경로의존성 과학 질문의 측정 모듈로 배치.",
+      "model_application": "사건집합·길이 일치 원순서/교환 및 경계/비경계 reset을 비교한다. 동일 probe ladder를 적용하고 미래 접근·HRF·평정 지연을 검사한다.",
+      "scientific_question": "신경 시간 경로 연구에서 생성모형이 어떤 관측 근거를 보존하거나 추가하는지 판별할 수 있는가? 현재 방법 질문이며 지속 상태 인과 주장은 별도이다.",
+      "assumption_challenge": "매끄러운 고FPS 복원이 실제 뇌 시간상태를 복원했다는 가정과 양방향 모델의 성공을 미래예측으로 읽는 가정.",
+      "main_hypothesis": "일부 출력 정서 시간 대비는 원뇌·latent 판독 이득보다 prior-only 시간 보간으로 설명된다.",
+      "alternative": "생성 전 접근성 부족·내용량·HRF 잔류·미래 누출이 단계 차이를 만든다.",
+      "measurable_contrast": "같은 원자극 타깃의 단계×순서×reset 보류 점수를 bag-of-events·사건 의미·FIR HRF·prior-only와 비교한다. 생성물 주석으로 주타깃을 대체하지 않는다.",
+      "falsification": "probe 강화·길이/내용량 일치 후 차이가 사라지면 prior 출처 주장을 낮춘다. 생성 전 비유의만으로 정보 부재를 말하지 않는다. 공통 지지 부족은 별도 신경 시간 검정을 보류한다.",
+      "baseline": [
+        "프레임 평균",
+        "현재 프레임+FIR HRF",
+        "motion·사건경계 누적",
+        "동일 관찰 길이의 과거 전용 모형",
+        "prior-only 시간 보간",
+        "같은 사건집합 bag-of-events",
+        "비경계 길이 일치 reset",
+        "같은 강도 probe ladder"
+      ],
+      "dataset_plan": {
+        "possession": "다섯 보유본을 전제로 시간 질문을 설계",
+        "primary": "Emo-FilM의 영화축 주석과 scanner축 반응을 구분해 적용",
+        "extension": "동일 현재/상이한 과거는 자연 공통 지지 확인 후 상위 RQ로 검정한다. 공통 tail 길이별 새 제시가 필요하면 추가 측정 계획으로 둔다. Spacetop clip 평정을 순간 궤적으로 확장하지 않는다.",
+        "controls": "NSD는 정적 대조; Mind Captioning은 정확한 식별 후 사건 구간/시계열 자료가 있을 때 시간 의미 통제",
+        "fallback": "연속 정서 주석이 없는 보유본에서는 clip수준 이력 대비만 분석하고 순간 전환 주장은 후속 주석/측정 조건으로 유지"
+      },
+      "missing_conditions": [
+        "영화·scanner onset 및 HRF/평정 지연 모형",
+        "실제 과거 전용 feature 추출과 bidirectional 경로 검사",
+        "같은 현재 내용/다른 이력의 공통 지지",
+        "영화·자극 family 보류와 자기상관 보존 null",
+        "실행 전 확인: 모델 입력·시간 지연·자연 공통 지지 미확인."
+      ],
+      "source_papers": [
+        "P008",
+        "P024",
+        "P073",
+        "P015"
+      ],
+      "closest_prior_ids": [
+        "P008",
+        "P024",
+        "P073"
+      ],
+      "what_is_new": "C02-04 계열에 붙는 시간 출처 방법 모듈로 재배치한다. UC03-01로 접근성 오판을 검사하고 영상/언어 모달 교체로 과학 RQ를 중복 생성하지 않는다.",
+      "novelty_risk": "복원 QC가 주기여다. 동일 현재/다른 이력의 공통 tail 새 신경관측은 상위 과학 RQ에 귀속한다.",
+      "conceptual_signature": {
+        "observation": "원자극 타깃의 원뇌/latent/출력 접근성",
+        "manipulation": "사건·길이 일치 순서/reset와 probe",
+        "competing_explanations": "prior 기여 대 접근성·HRF·내용량"
+      },
+      "eight_questions": {
+        "q1": "시간 상태 질문과 출처 QC를 분리해야 중복 계수와 과도한 해석을 피한다.",
+        "q2": "연속 뇌→영상 잠재와 attention 기반 영상 조작을 별도 단계로 비교할 구현이 있다.",
+        "q3": "생성 전 비유의/생성 후 유의로 정보 출처를 확정하는 가정.",
+        "q4": "장면·motion·사건 순서의 복합 의존을 계산할 수 있다.",
+        "q5": "이 방법후보만으로 AI에 없는 인간 고유 상태를 발견했다고 하지 않는다.",
+        "q6": "시간 출처 검사에 알려진 가역 변환 대조를 수입한다.",
+        "q7": "연속 보유본을 출력FPS benchmark 대신 정보의 시간적 출처 감사에 쓴다.",
+        "q8": "시간 복원의 관측 범위를 좁히는 방법 결과이며 뇌 지속상태의 인과 증명이 아니다."
+      },
+      "status": "수정: 방법후보로 분리",
+      "revision_history": [
+        {
+          "round": 4,
+          "critique_ids": [
+            "R3-02-C03-04",
+            "R3-10-C03-04"
+          ],
+          "changes": [
+            "생성 전후 출처 감사의 방법후보로 분리한다.",
+            "독립 원자극 주석을 주타깃으로 고정하고 생성물 주석은 별도 출력 관측으로 둔다.",
+            "같은 사건집합·길이의 순서 교환과 경계/비경계 길이 일치 reset을 추가한다.",
+            "원뇌/latent/출력에 probe ladder를 적용하고 HRF·미래 접근·시계 변환을 검사한다."
+          ],
+          "remaining_disagreement": [
+            "생성 전 비유의/출력 유의만으로 정보 생성 위치를 확정하지 않는다. 접근성과 오차 차이를 먼저 시험한다.",
+            "동일 현재/다른 과거 신경 질문은 C02-04 계열에 통합하며 영상 모달리티라는 이유로 과학 RQ를 중복 계수하지 않는다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "Brain video reconstruction temporal prior provenance common tail history matched decoding",
+      "research_role": "방법후보",
+      "shortlist_recommendation": {
+        "recommended": false,
+        "reason": "중복·방법 중심성·실행 비용을 고려해 자기후보 최상위 두 개에서는 제외."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 2,
+          "reason": "고유 기여는 시간 출처 QC이며 새 신경 RQ로 세지 않는다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "neuro_importance": {
+          "score": 3,
+          "reason": "시간 상태 연구의 근거를 보호하나 독립 신경 결론은 아니다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "시간 생성경로 감사가 필요하지만 단순 대조가 핵심이다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "Emo-FilM을 쓰되 사건집합·길이 매칭 지지가 미확인이다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "원자극 타깃·길이 일치 reset·probe 검사를 결합했다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "내용량·probe를 맞춰 사라지는 차이는 prior 해석을 낮춘다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "interpretability": {
+          "score": 3,
+          "reason": "시간축·HRF·접근성이 얽혀 완전 출처 분해는 어렵다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "generalization": {
+          "score": 2,
+          "reason": "입력 접근과 시간 주석에 따라 적용 범위가 좁다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 2,
+          "reason": "과거 전용 feature와 생성경로 감사 비용이 높다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        },
+        "exploration_value": {
+          "score": 3,
+          "reason": "상위 경로의존성 연구의 검사 모듈로 가치가 있다.",
+          "uncertainty": "분석 미실행; 모델 입력·시간 지연·자연 공통 지지 미확인.",
+          "source_papers": [
+            "P008",
+            "P024",
+            "P015"
+          ]
+        }
+      }
+    },
+    {
+      "candidate_id": "C03-05",
+      "title": "장면 관계 변화의 일반 의미 효과와 정서 관련 신경 대비",
+      "axis_ids": [
+        "AS19",
+        "AS21",
+        "AS24",
+        "AS29"
+      ],
+      "research_question": "객체 가족 안에서 관계 변화 크기와 정서 대비가 교차할 때 관계-aware 일반 의미모형으로 실제 정서 관련 신경 대비를 얼마나 설명하는가?",
+      "neural_target": "감각·객체 가산/관계 graph/관계 결합 모형의 실제 신경 대비 예측; 총 및 조건부 정서 관련 설명",
+      "external_principle": "Agent09의 의미 보존 검증과 기대 정보이득 설계; Agent02의 정서 schema와 내용 조건부 해석",
+      "model_application": "자연 matched pair를 관계 변화 크기×정서 대비 큰/작음으로 고른다. 새 편집은 비목표 의미·위치·가림·크기·motion 검증 및 새 BOLD를 요구한다. EIG는 부차 선택 효율이다.",
+      "scientific_question": "일반 관계 처리로 정서 관련 장면 대비를 설명하는 범위와 추가 조합이 필요한 범위는 무엇인가?",
+      "assumption_challenge": "객체/캡션 목록을 맞추면 의미가 완전히 같고 남은 차이는 순수 정서라는 가정 및 decoder activation 극대화가 가설 판별이라는 가정.",
+      "main_hypothesis": "같은 객체 가족의 교차 지지 안에서 관계-aware 모형의 신경 대비 예측 이득은 독립 정서 대비 크기에 따라 달라질 수 있다.",
+      "alternative": "관계 이득은 일반 장면 의미·위치·가림·크기·motion으로 충분히 설명된다.",
+      "measurable_contrast": "관계 변화 크기×정서 대비의 교차 조건별 신경 로그점수와 정서 관련 효과를 보고하고 총 및 조건부 효과를 병기한다. 선택 정책의 효율은 별도 결과이다.",
+      "falsification": "일반 관계모형이 정서 대비까지 충분히 설명하면 정서 전용 추가 계산을 요구하지 않는다. 편집 검증 실패는 신경가설 실패가 아니다. 교차 지지 부족은 특이성 판단을 보류한다.",
+      "baseline": [
+        "비선형 additive 객체/감각 모형",
+        "관계 특징 없는 동일 capacity 모형",
+        "자연 자극 matched pair",
+        "무편집 inversion",
+        "동일 강도 비목표 편집",
+        "random·coverage·단순 disagreement 자극 선택",
+        "관계 graph 모형",
+        "정서 대비 작음/관계 변화 같음 대조",
+        "위치·가림·크기·동작 대조"
+      ],
+      "dataset_plan": {
+        "possession": "다섯 보유본으로 먼저 자연 자극 비교와 관측모형을 개발",
+        "primary": "Horikawa에서 객체 목록이 비슷하고 관계/정서 주석이 다른 자연 자극군 탐색",
+        "extension": "Emo-FilM/Spacetop은 사건 또는 clip단위 자연 대비; 같은 neural estimand로 강제 통합하지 않음",
+        "controls": "NSD는 시각·관계 encoding 대조; Mind Captioning은 보유본의 실제 설명 단위 확인 후 객체 목록과 관계 설명 비교에 활용",
+        "new_measurement": "편집 효과의 뇌검증은 새 자극의 실제 제시·측정이 필요; 원본 BOLD 전용 금지",
+        "fallback": "생성기 실행 없이 보유 자연자극의 matched observational contrast로 시작하고 인과 주장을 제외"
+      },
+      "missing_conditions": [
+        "객체 목록·공간/사건관계·정서 주석의 독립 측정",
+        "내용·편집 강도의 공통 지지 및 자연성 문턱 사전 고정",
+        "선택에 쓰지 않은 encoding 모형·피험자·자극 평가",
+        "새 편집 자극에 대한 실제 뇌 측정 및 관측 likelihood 검증",
+        "실행 전 확인: 관계 주석·교차 지지·새 편집 신경 측정 필요."
+      ],
+      "source_papers": [
+        "P008",
+        "P001",
+        "P070",
+        "P077"
+      ],
+      "closest_prior_ids": [
+        "P008",
+        "P070",
+        "P077"
+      ],
+      "what_is_new": "객체 가산을 이기는지를 넘어 일반 관계 처리와 정서 대비의 교차로 좁힌다. EIG와 분리하며 편집 모달리티 교체를 신규성으로 세지 않는다.",
+      "novelty_risk": "P008 장면 schema 재평가 위험이 높다. 강한 관계 baseline과 독립 교차 대비 없이는 별도 과학 기여를 추천하지 않는다.",
+      "conceptual_signature": {
+        "observation": "관계·정서 교차 신경 대비",
+        "manipulation": "관계 변화 크기×정서 대비·의미모형 구성",
+        "competing_explanations": "정서 관련 추가 조합 대 일반 관계·감각 변화"
+      },
+      "eight_questions": {
+        "q1": "장면 schema와 adversarial 자극은 이미 있었고 보존 검증과 새 뇌측정 비용이 주요 제약이다; 최초성을 주장하지 않는다.",
+        "q2": "attention 편집과 amortized design으로 여러 후보를 만들고 실제 경쟁 예측을 비교할 수 있다.",
+        "q3": "객체 일치가 의미 전체 보존이고 관계 편집이 순수 정서 조작이라는 가정.",
+        "q4": "자연 대비와 작은 관계모형으로 먼저 검사할 수 있어 생성 AI 필수성은 낮다.",
+        "q5": "동일 객체 설명에 압축되지 않는 관계 의존 신경 대비가 후보이며 시각모형 오류와 비교한다.",
+        "q6": "설계 최적화는 부차 결과로 두고 관계 의미와 정서 대비의 교차를 우선한다.",
+        "q7": "다섯 보유본을 자연 통제군·관측모형·신뢰도 추정에 쓰되 새 편집 반응은 별도로 측정한다.",
+        "q8": "일반 관계 설명의 충분성도 의미 있으며 정서 전용 회로를 주장하지 않는다."
+      },
+      "status": "수정: 주장 범위 축소와 대조 보강",
+      "revision_history": [
+        {
+          "round": 4,
+          "critique_ids": [
+            "R3-02-C03-05",
+            "R3-10-C03-05"
+          ],
+          "changes": [
+            "관계 변화 크기×정서 대비 유무의 교차 설계와 관계 graph content 모형을 추가한다.",
+            "목표 관계 의미와 보존할 비목표 의미·위치·가림·크기·motion을 구분한다.",
+            "자연 matched pair 우선; 편집물은 새 BOLD를 측정하며 원본 BOLD를 전용하지 않는다.",
+            "EIG 선택 효율은 신경 주가설에서 분리해 부차 방법 결과로 둔다."
+          ],
+          "remaining_disagreement": [
+            "일반 의미와 완전히 분리된 순수 정서를 요구하지 않는다. 총·공유 및 조건부 설명을 함께 보고한다.",
+            "C10-02의 조건화 변경과 자극 관계 변경은 조작이 다르나 모달 교체만 남으면 같은 상위 질문으로 통합한다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "Affective scene relation neural encoding object matched relational semantics controlled edits",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommended": false,
+        "reason": "중복·방법 중심성·실행 비용을 고려해 자기후보 최상위 두 개에서는 제외."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 2,
+          "reason": "장면 schema 선행과 가까워 신규성을 낮게 평가한다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "관계 구성으로 정서 관련 반응을 설명하는 수준을 묻는다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "ai_necessity": {
+          "score": 2,
+          "reason": "자연 대비와 작은 관계 graph로 일차 질문을 검정한다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "data_feasibility": {
+          "score": 2,
+          "reason": "자연 교차 지지가 미확인이고 편집은 새 BOLD가 필요하다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "관계×정서 교차와 강한 의미 baseline이 대안을 비교한다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "일반 관계모형 충분성과 자연쌍 재현 실패가 반증이다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "interpretability": {
+          "score": 3,
+          "reason": "공유 의미와 정서 효과가 겹쳐 전용성 결론은 제한한다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "객체가족과 자연/편집 사이 복제는 가능하나 지지가 필요하다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 2,
+          "reason": "독립 주석·타당 편집·새 측정의 비용이 높다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        },
+        "exploration_value": {
+          "score": 3,
+          "reason": "차별성은 낮지만 일반 관계 설명의 경계를 정할 가치가 있다.",
+          "uncertainty": "분석 미실행; 관계 주석·교차 지지·새 편집 신경 측정 필요.",
+          "source_papers": [
+            "P008",
+            "P001",
+            "P077"
+          ]
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "새 네트워크 탐색·신경자료 분석을 수행하지 않았다. 실제 받은 두 검토자의 비판 10개에 대한 Round4 응답이다.",
+    "P051/P100은 타 역할의 E1 본문 검증 보고 발췌를 읽었으며 이 라운드에서 내가 원문 전체를 재열람한 것은 아니다. P097은 E2 서지이며 본문·Discussion 미확인이다. 새 신경 전이는 E3이다.",
+    "MindEye2 공식 정정 retrieval: brain→image 1h57.4%/40h98.3%, image→brain79.0%/98.8%; 자체 재현이나 정서 성능이 아니다.",
+    "Horikawa·Emo-FilM·Mind Captioning·NSD·Spacetop 다섯 보유본을 전제한다. 실제 접근·버전·스키마는 실행조건이며 문헌·Axis 작업 차단조건이 아니다.",
+    "Mind Captioning 정체·주석과 checkpoint 접근·라이선스·자원 미확인을 보존한다. 데이터가 미보유라고 단정하지 않는다.",
+    "유한 probe/sampler 결과는 인간 뇌 정보 부재·전역 부분식별·posterior 보정을 증명하지 않는다.",
+    "점수는 주관적 기획 입력이며 자동 가중합으로 선정하지 않는다. 신규성·실현성은 역검색과 스키마 확인 후 수정 가능하다.",
+    "공유 파일·타 역할 폴더·Git을 수정하지 않았다. 최종 선정과 중복 통합은 Coordinator 담당이다."
+  ]
+}

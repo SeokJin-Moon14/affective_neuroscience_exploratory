@@ -1,0 +1,759 @@
+[
+  {
+    "combination_id": "L01",
+    "generation_path": "문헌 기반:Technology Transfer",
+    "axis_ids": [
+      "A",
+      "C",
+      "D",
+      "F",
+      "K",
+      "L",
+      "M",
+      "O",
+      "P",
+      "Q",
+      "S",
+      "T",
+      "V",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "고정된 정렬 예산에서 시각·의미 anchor만으로 미사용 정서 신경대비의 대응을 결정할 수 있는가, 아니면 정서 감독을 추가해야 하는가?",
+    "external_field_concept": "최적수송; 서로 다른 좌표계의 거리관계를 비교하는 계산을 정서 의미 대응의 비유일성 검정으로 전이",
+    "ai_model_or_method": "같은 목적함수의 ε-cost 수송해를 고정 평가함수의 예측동치류로 묶는다. 개발자료에서만 random·coverage·disagreement 기반 비정서 anchor 선택정책을 정하고 별도 참가자/자극의 보류 정서 대비를 평가한다. 정서 anchor는 수·신뢰도·support를 맞춘 별도 감독 대조다.",
+    "neural_target": "자극·참가자·자료 집합 간 신경 거리구조와 보류 정서 측정의 대응",
+    "available_dataset": "보유 Horikawa–Emo-FilM–Spacetop의 관계기하를 각 자료 내부 관측단위에 맞춰 비교. 독립 공통 anchor가 없으면 Horikawa 내부 내용그룹/참가자 분할에서 먼저 실행하고 자료간 의미주장은 제한. NSD는 시각 정합 보정. Mind Captioning은 identifier·ontology 확인 후 노드 추가.",
+    "measurable_contrast": "동일 예산의 비정서 random/coverage/적응선택 대 정서감독 대조에서, 정렬에 쓰지 않은 정서 대비의 예측위험과 예측동치류 사이의 범위를 비교한다. ε-cost는 train-only noise calibration과 고정 목적함수로 정한다.",
+    "falsifiable_prediction": "비정서 anchor가 충분히 support를 덮고 수치수렴이 확인돼도 미사용 정서 대비를 결정하지 못하면 해당 관측범위의 비정서 제약 충분성을 반박한다. 이것만으로 별도 정서코드 존재를 증명하지 않는다. 정책 개선이 coverage 대조로 설명되면 적응설계의 필요성은 기각한다.",
+    "baseline": [
+      "random non-affective anchors",
+      "coverage-matched non-affective anchors",
+      "same-budget affective anchors evaluated on other affective contrasts",
+      "예측동등 permutation 대조와 알려진 대칭/비대칭 기하",
+      "같은 objective 다중 초기값·Procrustes"
+    ],
+    "source_papers": [
+      "P057",
+      "P052",
+      "P042",
+      "P055",
+      "P077"
+    ],
+    "missing_assumptions": [
+      "독립 공통 정서/의미 anchor와 척도 대응",
+      "최적화 수렴·다중해 탐색은 전체 해집합 포괄이 아님",
+      "수송 결합 entropy와 해에 대한 불확실성은 다른 양",
+      "test geometry를 사용하는 transductive 평가와 새 자극 일반화 분리",
+      "선택정책 development와 평가 anchor 완전 분리",
+      "적응 Bayesian 방법을 쓸 경우 likelihood/prior/조건독립 가정 명시; 충족하지 않으면 fixed disagreement heuristic 사용"
+    ],
+    "novelty_risk": "active alignment·experimental design 선행과 중복 가능. 정서 anchor 학습적합도는 기여가 아니며 보류 정서 대비의 독립 전이가 필요하다.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C07-04"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L02",
+    "generation_path": "문헌 기반:Methodological Inversion",
+    "axis_ids": [
+      "A",
+      "F",
+      "G",
+      "H",
+      "K",
+      "L",
+      "M",
+      "O",
+      "Q",
+      "R",
+      "T",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "원 관측 일부와 양립하면서 독립 정서 주석이 다른 두 자극 witness를 찾았을 때 추가 독립 반복은 그 모호성을 얼마나 배제하는가?",
+    "external_field_concept": "inverse problems; 단일 복원 성공을 같은 관측을 만족하는 여러 후보의 식별범위 문제로 뒤집음",
+    "ai_model_or_method": "유한 생성 탐색은 반대 주석의 witness 쌍을 제안하는 도구로만 사용하고, 원 관측 중 보류한 반복과 별도 forward family로 적합도를 검증한다.",
+    "neural_target": "분산 BOLD 관측에 양립하는 자극 집합과 사전정의 정서 관련 contrast; 특정 latent 축을 신경 원인으로 부르지 않음",
+    "available_dataset": "Horikawa 등 실제 반복이 있는 보유본에서 원 관측 일부/독립 보류 반복으로 검사한다. 반복 부족이면 추가 반복 측정 조건으로 보존한다. 후보의 실제 뇌반응 동일성은 이 검정으로 말할 수 없으며 두 새 후보를 직접 제시·측정해야 별도 평가할 수 있다.",
+    "measurable_contrast": "첫 관측 집합으로 고정한 두 후보가 held-out 반복 및 사전정의 contrast에서 허용오차를 통과하는지 평가한다. 추가 관측 전후 기존 witness 배제율·후보별 예측오차를 보고한다. 생성 후보 정서 차이는 별도 인간 주석으로 측정한다.",
+    "falsifiable_prediction": "원 관측에서만 통과하고 독립 평가 forward/반복에서는 처음부터 실패하면 모델조건부 모호성의 외적 타당성이 약화된다. 추가 반복이 witness를 배제하지 못하면 그 관측량의 구별 이득은 지지되지 않는다. witness 미발견은 비식별성 부재의 반증이 아니다.",
+    "baseline": [
+      "자연 matched witness",
+      "작은 알려진 합성 식별/비식별 문제의 탐색 검출력",
+      "같은 budget의 다중 초기값",
+      "감각 contrast가 다른 witness 대 정서주석 차이 witness",
+      "독립 반복 증가 대 단순 동일자료 재사용"
+    ],
+    "source_papers": [
+      "P076",
+      "P053",
+      "P055",
+      "P057",
+      "P100"
+    ],
+    "missing_assumptions": [
+      "독립 반복과 train-only 신뢰도 mask",
+      "별도 forward family 및 contrast별 오차 calibration",
+      "후보 독립 인간 정서·의미 주석",
+      "사전고정 witness 최소 주석차이·적합오차",
+      "추가 ROI 관측은 잡음 의존성 반영; ROI 분할만으로 독립이라 부르지 않음"
+    ],
+    "novelty_risk": "기존 inverse problem uncertainty와 중복 가능. 엄밀한 식별 집합의 증명이 아닌 경험적 범위를 이론적 bound로 포장하지 않음.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C09-02"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L03",
+    "generation_path": "문헌 기반:Representation Competition",
+    "axis_ids": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "H",
+      "I",
+      "P",
+      "Q",
+      "R",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "사전 정의한 자극모형 S에 신경 문맥 N을 추가할 때, 독립 반복 간에 전달되는 A 관련 신경 대비의 예측 이득이 같은 반복 잡음 공유와 구별되는가?",
+    "external_field_concept": "조건부 예측과 정보원 비교; 자극으로 설명되는 변동과 과거 신경으로 설명되는 변동을 같은 test에서 경쟁",
+    "ai_model_or_method": "TRIBE v2의 video/audio/text→평균 fsaverage5 피질 출력을 target 공간에 맞추고 train-only 개인 보정을 적용한다. CortexMAE/Brain-JEPA latent를 사용한 N→Y head는 별도 구현이다. masking을 normalization·smoothing·tokenization보다 앞에 적용하며 pretrained 모델이 그 mask를 처리하는지 단위 실행 검증을 요구한다. 미지원이면 masked raw-context ridge로 축소한다.",
+    "neural_target": "공통 피질 mask의 target 공간 블록 Y와 독립 A 가중 신경 대비. 우선 동시 공간완성으로 한정하며 과거 예측은 별도 후속 가지다.",
+    "available_dataset": {
+      "ownership": "Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop 보유는 최신 사용자 진술로 확인. 실제 로컬 경로·버전·스키마를 확인한 것은 아니다.",
+      "primary": "Horikawa 우선. 독립 정서 주석 A, 자극 ID, 신경 Y, 런/반복 구조를 확보한 분석 단위에서 시작한다.",
+      "fallback": "자극 단위 beta만 있으면 정적 대비만 수행하고 연속 BOLD 입력을 요구하는 모형에는 넣지 않는다. 주석이나 신뢰도 추정이 없으면 방법 검증으로 범위를 축소한다.",
+      "additional": "Emo-FilM은 연속 시계열·시간 정렬 확인 뒤 동적 전이; NSD는 정서 주석 확인 전 의미/공간 방법 대조만; Spacetop은 과제별 실제 주석 확인 뒤 일반화; Mind Captioning은 정확한 식별자·버전·주석 사전 확인 전 특정 실험에 배정하지 않는다."
+    },
+    "measurable_contrast": "각 held-out 자극 집합에서 사전 고정한 A 대비 가중치 w(합0, 제곱합1)로 c_A(Y)=Σ_i w_iY_i를 계산한다. w는 독립 주석의 고정 차원/고저 대비로 만들며 test BOLD나 model fit에 맞춰 고르지 않는다. L_A=||c_A(Y)-c_A(Yhat)||²_Q에서 Q는 training-only noise precision이다. Δ_A=L_A(S)-L_A(S+N)을 동일 반복 N, 독립 반복 N, 같은 run 다른 자극 N에서 비교한다. 전체 Y 손실과 A 비관련 일치 대비의 개선을 별도로 보고한다. 의미 보강×mask 폭 전체 곡선을 제시한다.",
+    "falsifiable_prediction": "독립 반복 N의 Δ_A가 사전 최소효과 이하라는 충분히 좁은 CI를 보이면 반복 전이 이득 가설을 반박한다. 동일 반복에만 남으면 공통 측정변동 설명을 강화한다. 의미 보강으로 사라지면 지정 S의 부족으로 분류한다. 반복·A 신뢰도가 부족하면 미식별이며 모든 자극모형 충분성은 주장하지 않는다.",
+    "baseline": [
+      "저수준+사건 의미+FIR ridge",
+      "TRIBE 공개 평균 출력에 train-only 개인별 선형 보정",
+      "masked raw-neighbor ridge",
+      "자기상관을 보존한 surrogate",
+      "단순 nonlinear 자극 encoding",
+      "S+독립 반복 N",
+      "S+다른 자극/동일 run N",
+      "target 거리별 사전 masking과 global/run nuisance",
+      "동일 입력을 갖는 raw-context ridge"
+    ],
+    "source_papers": [
+      "P026",
+      "P027",
+      "P029",
+      "P053",
+      "P080",
+      "P083"
+    ],
+    "missing_assumptions": [
+      "공통 cortical mask와 시간 정렬",
+      "TRIBE checkpoint의 최종 TR/config와 5초 offset 처리",
+      "brain model의 실제 mask token/보류 블록 동작",
+      "개인 평균 출력과 개인 Y 차이의 통제",
+      "독립 반복 및 개념 probe용 별도 자극",
+      "반복 a/b의 동일 자극 대응과 nuisance 독립성",
+      "A 대비 w와 loss Q의 사전 정의",
+      "전처리 이전 mask가 feature 전파를 차단하는 실제 동작"
+    ],
+    "novelty_risk": "variance partitioning 재적용 위험이 높다. target 누출 방지와 의미 강화에 따른 불일치의 감소/잔존을 일차 판별로 고정한다.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C04-02"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L04",
+    "generation_path": "문헌 기반:Scale Bridging",
+    "axis_ids": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "I",
+      "N",
+      "Q",
+      "V",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "지정 HRF family와 정서 입력이력을 고정했을 때 자극 문맥 길이에 따른 정서 주석 추가예측 대비는 독립 cortical gradient와 어떻게 관계하는가?",
+    "external_field_concept": "계층 시간범위 비교; 영상 문맥의 길이를 감각–transmodal 위치별 정서 대비와 연결하되 HRF·공간null을 경쟁",
+    "ai_model_or_method": "동일 현재 자극·과거 문맥 길이 L을 갖는 M_X(L)와 M_X(L)+A_fixed를 비교한다. 일차 A_fixed는 자극시점 현재 주석 A_t이며 모든 모형에서 같은 HRF family로 관측화한다. 고정 길이 H의 과거 A는 독립 이차 분석이며 L과 함께 늘리지 않는다.",
+    "neural_target": "피질 parcel별 독립 정서 주석 관련 encoding 이득 지도와 개인별 gradient; 피질하에는 동일 좌표를 강제로 부여하지 않음",
+    "available_dataset": {
+      "primary": "Emo-FilM 보유본에서 연속 BOLD·자극 onset·시간 주석을 확인할 때 우선",
+      "horikawa": "연속 신호 및 주석 시간격자가 확인되는 범위에만 적용; 시행 beta 순서를 연속 시간으로 만들지 않음",
+      "other_owned": "Spacetop의 clip 평정을 연속 궤적으로 간주하지 않음; NSD/Mind Captioning은 연속성 미확인으로 시간 질문 적용 보류"
+    },
+    "measurable_contrast": "주추정량은 Δ_A(long)−Δ_A(short)와 고정 gradient의 관계이며 Δ_A의 감소도 긴 문맥 X가 A와 공유한 정보를 설명한 결과로 보고한다. 전체 예측 이득과 A의 조건부 이득을 분리하며 순수정서라 명명하지 않는다.",
+    "falsifiable_prediction": "독립 HRF 제약과 회복 simulation에서 식별력을 확보한 영역에서만 추가 문맥 필요성의 동등성을 평가한다. 동일 BOLD를 내는 convolution 동치쌍을 구별했다면 파이프라인을 기각한다. 유연한 HRF에서 효과 소실만으로 신경 통합 부재를 주장하지 않는다.",
+    "baseline": [
+      "짧은 신경필터+넓은 HRF와 긴 필터+좁은 HRF의 동일 합성커널 쌍",
+      "neural history 유무×지역 HRF 차이 유무 2×2 회복",
+      "현재입력 일치·과거 이력 상이한 held-out 대비",
+      "native TR의 FIR/과거전용 문맥 모형",
+      "gradient 부호 고정·근접 고유값 부분공간 민감도"
+    ],
+    "source_papers": [
+      "P028",
+      "P051",
+      "P053",
+      "P061",
+      "P063",
+      "P066",
+      "P068"
+    ],
+    "missing_assumptions": [
+      "원 TR·HRF 추정 범위·run 경계",
+      "시간 정서 주석의 실제 척도와 해상도",
+      "개인 gradient의 독립 추정 자료 또는 고정 외부 atlas",
+      "Brain-Mamba 공식 코드 가용성 미확인: 원리 검정은 작은 고정/선택적 SSM 또는 문맥 ridge로 대체",
+      "독립 HRF 제약의 존재와 허용범위; 없으면 생리적 필터 분해 결론 제외",
+      "정서 이력 H와 자극 문맥 L을 독립 고정한 설계",
+      "각 HRF/이력 모의조건의 회복력; 모의결과 미실행"
+    ],
+    "novelty_risk": "temporal receptive window 및 자연주의 정서 encoding과 중복 가능. gradient 상관만 남으면 기존 연구의 반복이다.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C08-02"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L05",
+    "generation_path": "문헌 기반:Dynamics & Geometry",
+    "axis_ids": [
+      "C",
+      "D",
+      "E",
+      "F",
+      "H",
+      "K",
+      "M",
+      "Q",
+      "T",
+      "V",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "고정 시간창의 H0 요약이 관측통계 대조를 구별하는 데 유용하며 같은 정보를 담는 MST/거리 표현보다 실질적 이점이 있는가?",
+    "external_field_concept": "지연공간 위상과 null; 정적 점구름 도식에서 시간 지연의 연결구조가 관측과정을 넘는지로 전환",
+    "ai_model_or_method": "run 경계를 넘지 않는 고정 창에서 lag embedding을 만든 뒤 사전 정한 H0 death-length 분위수/최대값을 산출한다. 주석도 같은 영화시간 창의 사전 고정 평균/변화량으로 대응하고 그 둘의 보류영화 연계를 평가한다. overlapping window를 독립 표본으로 세지 않는다.",
+    "neural_target": "정서 관련 신경대비의 측정/추정 강건성; 특정 신경기전 식별은 현재 목표가 아님",
+    "available_dataset": "보유 Emo-FilM을 우선 연속 경로로 사용하며 film-relative 주석과 scanner onset을 분리. Horikawa는 실제 연속 BOLD가 있는 런에서만 지연분석; beta 시행배열 대체 금지. Spacetop은 클립후 평정에 맞춘 클립구조 관계로 제한. NSD는 시간위상 대신 측정 null 보정. Mind Captioning은 실재 시계열/시간축 확인 후 추가.",
+    "measurable_contrast": "알려진 연속/전환 모형과 density-only/HRF null에서 동일 window 요약을 사용한 보류 판별위험·calibration; 실제 자료에서는 보류영화의 독립 정서 window 대비 예측을 보조 평가한다. H0 death multiset과 전체 MST edge multiset 사이의 등가성은 sanity check로 둔다.",
+    "falsifiable_prediction": "같은 MST 정보 대비 성능 차이는 정보량 증가가 아니라 요약/정규화/최적화 차이로 해석한다. 거리·density·covariance 대조에 추가 이점이 없으면 topology-specific 주장을 포기한다. null 기각만으로 정서 상태나 attractor를 지지하지 않는다.",
+    "baseline": [
+      "같은 filtration의 전체 MST edge multiset",
+      "kNN 거리/국소밀도",
+      "lag-distance·recurrence·window covariance",
+      "같은 2차통계/HRF의 연속 상태 대 전환 모형",
+      "비정상 분산·밀도·사건길이 null"
+    ],
+    "source_papers": [
+      "P056",
+      "P042",
+      "P026",
+      "P060",
+      "P063"
+    ],
+    "missing_assumptions": [
+      "연속 BOLD와 run 경계",
+      "독립 정서 시간주석의 측정단위",
+      "null의 보존통계가 실제로 맞는지 확인",
+      "lag/차원/ROI 선택의 외부평가",
+      "H1·방향성·attractor는 별도 증거 전 주장하지 않음",
+      "H0 요약·window 길이·주석집계 및 비중첩 독립 평가단위",
+      "null 적합의 공간/시간 비정상성 진단"
+    ],
+    "novelty_risk": "TDA/거리 통계의 기존 관계를 재확인할 가능성이 높고 독립 과학 RQ 수에서 제외한다.",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C07-03"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L06",
+    "generation_path": "문헌 기반:Cross-Dataset Discovery",
+    "axis_ids": [
+      "A",
+      "F",
+      "K",
+      "M",
+      "O",
+      "Q",
+      "S",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "기하적으로 동등한 여러 정렬을 구별하도록 선택한 bridge가 완전히 보류한 정서 관계와 양쪽 실제 신경 대비의 전이를 식별하는가?",
+    "external_field_concept": "관계쌍·측정 불변성; 같은 라벨 이름 대신 독립 anchor·관계쌍을 비교 단위로 사용",
+    "ai_model_or_method": "train-only GW coupling T로 target 훈련 신경거리 D_B를 공통 좌표 E_B로 임베딩하고, source 훈련 stimulus descriptor z_A에서 T E_B를 예측하는 정규화 함수 f를 fit한다. 새 자극은 f(z_test)만으로 예측하며 target test neural geometry는 학습/튜닝/bridge 선택에 쓰지 않는다. 해당 단순 barycentric map의 왜곡은 별도 검증한다.",
+    "neural_target": "데이터셋별 자극쌍 신경 거리와 독립 공통 정서 대비의 외부 전이",
+    "available_dataset": {
+      "현재": "사용자 보유 5종을 전제하되 현재 bridge의 양쪽 신경관측 실재는 미확인이다. 현재 산출물은 모형 및 bridge 설계 방법후보다.",
+      "bridge": "fitting용·설계 선택용·최종검증용 bridge를 별도 분리한다. 평정-only는 의미 단계만 검증하며 양쪽 fMRI 또는 사전 지정 대응 신경 대비의 실측이 있어야 신경단계 검정이 가능하다.",
+      "inductive": "신규자극의 비신경 descriptor만 f에 입력한다. test neural distance는 최종 평가값이다. source/target modality가 다르면 공통 descriptor의 범위를 먼저 명시한다.",
+      "fallback": "neural bridge 부재 시 기하/의미 정렬 방법으로만 남는다. MindCaptioning의 ID·모달리티·주석을 추정하지 않는다."
+    },
+    "measurable_contrast": "최종 bridge에서 의미 관계 오차와 신경 대비 오차를 별도로 측정한다. 비슷한 train GW비용의 adversarial 의미순열 결합·감각-only map·무작위 bridge 선택과 비교한다. mapping uncertainty는 탐색한 해집합에 조건부인 값으로 표기한다.",
+    "falsifiable_prediction": "의미는 맞아도 실제 neural anchor 예측이 실패하면 신경 전이를 기각한다. 둘 다 실패하면 현 transport/extension의 의미 전이부터 실패한 것이다. 공통 뇌 코드의 부재는 결론내리지 않는다.",
+    "baseline": [
+      "감각-only inductive map",
+      "비슷한 비용의 의미순열/adversarial coupling",
+      "Procrustes+동일 inductive regression",
+      "무작위/균등 bridge 선택",
+      "평정-only 대 의미+양쪽 실측 신경 anchor"
+    ],
+    "source_papers": [
+      "P001",
+      "P002",
+      "P057",
+      "P077",
+      "P100"
+    ],
+    "missing_assumptions": [
+      "실제 양쪽 neural bridge 및 공통 대비 정의",
+      "평정/신경 bridge의 세 분할",
+      "descriptor 기반 inductive map 검증",
+      "의미순열/대칭 반례의 탐색범위",
+      "신규 bridge 선택의 비용과 실제 측정 계획"
+    ],
+    "novelty_risk": "active alignment/optimal experimental design과 겹칠 수 있다. 두 집단의 실제 신경 전이 검정 없이 독립 신경과학 RQ로 세지 않는다.",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C01-04"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L07",
+    "generation_path": "문헌 기반:Counterfactual Modeling",
+    "axis_ids": [
+      "A",
+      "B",
+      "C",
+      "F",
+      "K",
+      "L",
+      "O",
+      "P",
+      "Q",
+      "S",
+      "T",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "개발자료에서 고정한 의미 보존·정서 조작량·감각 변화의 공통 지지 안에서 목표 편집 대 비목표 편집의 실제 신경 대비가 재현되는가?",
+    "external_field_concept": "생성 편집 타당성; 모델 latent 편집과 실제 자극의 감각·사건 보존을 나눈 뒤 선택적 신경 대비를 설계",
+    "ai_model_or_method": "모든 생성시도를 기록하고 독립 개발 주석으로 허용집합을 고정한 뒤 family 내 목표/비목표/무편집을 실제 제시한다.",
+    "neural_target": "원본/무편집/목표/비목표 자극에 실제로 측정한 분산 neural contrast",
+    "available_dataset": "보유 자극은 원본/자연 대조 pool 후보다. 새 편집물에는 새 인간 주석과 새 뇌 측정이 필수다. 기존 BOLD를 편집물에 붙이지 않는다. 자료 미확인은 제안 진행을 막지 않고 실행 전 확인 조건으로 남긴다.",
+    "measurable_contrast": "허용집합 S=1의 family별 목표−비목표 신경대비와 무편집 대비를 평가한다. 보존 연속점수×조작량의 관계는 보조 moderator 분석이다. 통과/실패 직접 차이를 일차 estimand로 쓰지 않는다.",
+    "falsifiable_prediction": "독립 주석상 충분한 조작·신뢰도·공통 지지가 있으나 목표 대비가 사전 최소 의미 효과를 지지하지 않으면 시험한 허용영역의 신경 가설이 약화된다. overlap 실패는 조작 설계 실패이며 신경 정보 부재가 아니다.",
+    "baseline": [
+      "무편집 inversion 왕복",
+      "동강도 비목표 편집",
+      "독립 자연 matched 자극",
+      "원본 family별 paired contrast",
+      "허용조건 완화에 따른 coverage/효과 민감도(개발에서만 선택)"
+    ],
+    "source_papers": [
+      "P070",
+      "P078",
+      "P051",
+      "P100",
+      "P102"
+    ],
+    "missing_assumptions": [
+      "전체 생성시도·실패·선별 로그",
+      "독립 개발/검증 주석과 A 변화량·자연성·감각 변화의 공동 overlap",
+      "사전 허용집합·최소 대비·표본단위 정의",
+      "새 자극 실제 제시·새 인간 뇌 측정",
+      "원본 family·참가자 계층 추론과 제시 순서 무작위화"
+    ],
+    "novelty_risk": "일반 자극 통제 연구와 중복 가능. 의미의 완전 보존은 주장 불가; 명시된 측정 차원에서의 보존으로 제한.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C09-03"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L08",
+    "generation_path": "문헌 기반:Brain-to-AI Reverse Inspiration",
+    "axis_ids": [
+      "A",
+      "C",
+      "F",
+      "H",
+      "I",
+      "J",
+      "N",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "풍부한 자극 의미로 cross-fit 예측한 neural guide와 통계구조를 맞춘 뒤에도 실제 신경 guide는 새 내용×새 피험자에서 모델 상태예측과 독립 정서 신경 대비에 추가 효용을 주는가?",
+    "external_field_concept": "신경정보 보존 제약; 예측기가 신경자료에 맞는지를 넘어 신경 제약이 모델의 맥락 일반화를 바꾸는지 검정",
+    "ai_model_or_method": "훈련 fold 내부에서 자극만으로 neural target을 예측하는 teacher를 cross-fit한다. 같은 adapter에 실제 neural target, cross-fit 예측 target, 그 잔차, 풍부한 독립 의미 guide 및 통계구조 일치 sham을 각각 제공한다.",
+    "neural_target": "훈련과 분리된 피험자/자극의 독립 정서 대비; 신경 유도 모델의 보류 맥락 일반화",
+    "available_dataset": "Horikawa 보유 자료에서 독립 정서 대비·반복·자극 분리가 확인되면 소형 adapter 계획을 구체화한다. NSD는 정서 라벨을 가정하지 않는 감각 대조; Mind Captioning은 식별자·주석 미확인 상태로 후속 의미 대조 후보만 유지한다.",
+    "measurable_contrast": "동일 adapter의 보류 상태예측 손실과 새 피험자×새 자극의 정서 신경 대비 손실을 각각 사전 고정한다. 두 지표 개선을 공동 요구한다. guide별 rank·공분산·smoothness·반복 신뢰도·손실 scale과 자극 속성 예측력을 보고하되 완전 정보량 일치를 주장하지 않는다.",
+    "falsifiable_prediction": "semantic-predicted neural guide로 충분하면 지정 비교에서 신경 측정의 추가 감독 효용을 지지하지 않는다. 신경 정렬만 좋아지면 계산 사용 주장을 낮춘다. 손상량 일치/분포 내 ablation에서 효용이 사라지면 제거 효과의 해석을 보류한다.",
+    "baseline": [
+      "cross-fitted stimulus-only predicted neural guide",
+      "외부 검수 객체·관계·사건 의미 guide",
+      "실제 neural guide와 cross-fitted residual guide",
+      "공분산/신뢰도/smoothness 일치 sham",
+      "동일 adapter·손실 scale·학습 예산",
+      "손상량 일치 및 분포 내 feature 교체"
+    ],
+    "source_papers": [
+      "P027",
+      "P049",
+      "P050",
+      "P083",
+      "P100",
+      "DOC-CIRCUIT"
+    ],
+    "missing_assumptions": [
+      "독립 정서 대비의 구성 타당성·신뢰도",
+      "훈련/검증/외부평가 피험자·자극 분리",
+      "모델 checkpoint·adapter 지원·비정서 예측 목표",
+      "신경 guide와 의미 guide의 정보량 매칭",
+      "훈련-only cross-fitting과 outer 피험자×내용 분리",
+      "의미 guide는 자극/독립 사람이 만든 설명이며 같은 뇌에서 만든 캡션 제외",
+      "guide의 신뢰도·공분산과 자극속성 예측력 보고",
+      "완전 의미 제거 불가에 대한 잔여 한계 명시"
+    ],
+    "novelty_risk": "높음: neural-guided learning 선행연구를 추가 역검색해야 한다. 세계 최초·뇌 메커니즘 발견은 주장하지 않는다.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C11-05"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L09",
+    "generation_path": "문헌 기반:Model Disagreement",
+    "axis_ids": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "H",
+      "J",
+      "L",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "T",
+      "V",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "같은 현재 probe에 도달하는 과거 순서·지연을 교차했을 때, prefix-only 상태 모형은 명시적 자극이력+HRF 모형과 다른 독립 정서 신경 대비를 예측하는가?",
+    "external_field_concept": "모형 불일치와 능동 설계; 기존 관측에서 동등한 모형의 차이가 가장 큰 안전한 자극 대비를 찾음",
+    "ai_model_or_method": "정해진 표적·자극분포에서 예측위험 차이의 CI가 사전 허용오차 안에 있는 현재내용/상태 모델을 발견자료로 선정한다. 이는 국소적 위험동등성이다. 과거 전체+HRF 계열을 넣고 별도 자극에서 최소 pairwise 예측차이가 큰 대비를 선택한다.",
+    "neural_target": "동일/근접 현재 내용에서 선행 이력과 가능한 후속 상태에 따른 독립 정서주석 관련 neural contrast; 현재 BOLD 평균과 후속 구간을 사전 분리",
+    "available_dataset": "보유 Emo-FilM은 기존 자연 자료에서 두 모델의 동등성과 자연적 이력 대비를 찾는 경로다. 동일 현재내용/다른 이력의 식별 가능한 대비가 없으면 새로운 통제 영상 제시·신경 측정이 필요한 제안으로 보존한다. Spacetop clip 후 평정을 영상 내 연속 궤적으로 사용하지 않는다. Horikawa는 기존 visual schema 기준과 비교하는 정적 가지로 제한한다.",
+    "measurable_contrast": "동일 현재 probe, 과거 순서 counterbalance, 지연 간격을 교차한다. HRF/FIR 범위에서 nuisance로 설명되지 않는 사전 부호/크기 대비를 모델만으로 선택하고 독립 참가자·자극 측정에서 검증한다. UC12-02 확장은 이력×후속 사건군 상호작용을 하나의 고정 상태가 복수 readout으로 예측하는지 추가한다. 양방향 모델은 미래 접근 진단으로만 보고한다.",
+    "falsifiable_prediction": "명시적 과거+HRF 모형과 충분한 정밀도로 동등하면 해당 대비에서 상태의 추가 필요성을 지지하지 못한다. 신경차이가 일반 사건/감각 적응으로만 설명되면 정서 관련 가설을 축소한다. 낮은 정밀도는 미결정이며 모델의 전역 동등성이나 상태 부재를 뜻하지 않는다.",
+    "baseline": "현재내용+전체 과거 자극 FIR; 여러 HRF family; bag-of-events; 시간순서/에너지 일치; 일반 의미상태; 적응 모형; prefix-only 입력. 미래 양방향은 별도 진단.",
+    "source_papers": [
+      "P008",
+      "P013",
+      "P048",
+      "P100",
+      "P053",
+      "P089"
+    ],
+    "missing_assumptions": [
+      "충분한 연속 시간축·영화 onset·정서주석 관측 단위의 대응",
+      "동일 내용/다른 이력 대비의 실제 존재; 없으면 새 측정이 필요한 장기 실험",
+      "prefix-only 입력과 모델 사전학습 시간 방향 확인; action/reward를 수동 관람에 가정하지 않음",
+      "동일 probe의 과거순서×지연 교차; UC12-02는 후속사건군까지 교차하는 새 자극 실측 조건."
+    ],
+    "novelty_risk": "Agent02의 이력 질문·Agent06 RQ-FAI1과 매우 가까움. 별도 독립 RQ가 아니라 그 후보의 식별 설계로 합칠 가능성을 Round3에서 검토한다.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C12-03"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L10",
+    "generation_path": "문헌 기반:Hidden Structure Discovery",
+    "axis_ids": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "H",
+      "J",
+      "M",
+      "Q",
+      "V",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "동일한 현재·과거 입력에서 기억용 압축과 미래 예측용 상태가 독립 정서 대비의 신경반응에 서로 다른 설명력을 제공하는가?",
+    "external_field_concept": "예측상태 추상화; 정서 라벨을 쓰지 않은 상태를 만든 뒤 독립 정서–신경 대비로 검증",
+    "ai_model_or_method": "같은 prefix·backbone·학습자료·계산예산에서 과거 복원, 순서보존 기억, 실제 미래 예측, target 미래 순열 학습을 비교한다. 공개 JEPA/VideoMAE checkpoint 비교는 후보 선택용이며 목표함수 효과의 본검정은 소형 통제학습이다.",
+    "neural_target": "사전 정의 감각 및 transmodal parcel의 자극별 BOLD 패턴과 독립 정서 주석 대비; 전체 BOLD 예측 증가와 정서 대비 설명을 별도 보고",
+    "available_dataset": "Horikawa 시행평균은 상태 요약 비교로 제한한다. Emo-FilM은 실제 시간정합·별도 평정 코호트와 지연을 명시한 leave-film-out; train/test buffer는 최대 과거창과 HRF 지연 이상으로 설정한다. Spacetop의 clip 평정은 clip 수준 검정이며 연속 정서 궤적으로 취급하지 않는다.",
+    "measurable_contrast": "두 사전 대비: (1) 동일 과거를 보는 order-aware state 대 recency-weighted bag의 정서 신경 예측 손실차; (2) 같은 입력/예산에서 미래 예측 대 과거 복원 상태의 손실차. 상태 h_t, 미래 예측 zhat(t+h|t), 도착 후 e(t+h)를 별도 모델로 비교하고 독립 비정서 대비도 같은 자극에서 보고한다.",
+    "falsifiable_prediction": "미래 목표의 이득이 기억/순서 기준 또는 미래 target 순열 조건과 실질적 동등 범위면 목표 특이성을 기각한다. oracle만 개선되면 사후 정보 이득으로 제한하며 past-only 우위가 없다고 뇌 예측 자체의 부재를 결론내리지 않는다.",
+    "baseline": [
+      "현재-only",
+      "동일 prefix의 recency-weighted bag",
+      "순서보존 causal memory",
+      "동일 backbone의 과거 복원/미래 예측/미래 target 순열",
+      "미래허용 oracle",
+      "같은 HRF family·입력길이·유효차원"
+    ],
+    "source_papers": [
+      "P046",
+      "P045",
+      "P013",
+      "P008",
+      "P066"
+    ],
+    "missing_assumptions": [
+      "연속 BOLD와 HRF 모델에 충분한 run 길이 여부",
+      "prefix-only feature 추출 구현 및 미래 token 접근 감사",
+      "자극 timing·motion·독립 정서 주석 정렬",
+      "모델 학습데이터·구조가 다른 비교의 식별 한계",
+      "목표함수 통제 소형 학습의 입력/예산 고정",
+      "과거 기억과 다음 사건 구별을 독립 probe로 측정할 공통 지지",
+      "raw time에서 HRF 후 두 상태 효과 회복가능성"
+    ],
+    "novelty_risk": "Kragel2019의 recurrent feedback 및 기존 시간적 encoding과 중복 가능. 최근 원문 역검색 미실행으로 신규성 미확정.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C06-01"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L11",
+    "generation_path": "문헌 기반:Unresolved Discussion Transfer",
+    "axis_ids": [
+      "C",
+      "D",
+      "F",
+      "I",
+      "J",
+      "K",
+      "M",
+      "N",
+      "Q",
+      "T",
+      "V"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "정확히 펼친 유한 반복망과의 함수 동등성을 확인한 뒤, 가중치 공유라는 학습 제약은 새 사건 길이·조합에서 독립 정서 신경 대비의 예측 효율을 바꾸는가?",
+    "external_field_concept": "재귀 계산 비교; P008 Discussion의 recurrent feedback 후속 제안을 유효 문맥·계산량이 같은 재귀/비재귀 비교로 연결",
+    "ai_model_or_method": "같은 가중치를 복사한 exact-unroll에서 출력과 대응 중간상태 일치를 확인한다. 그 후 같은 함수에서 시작한 공유/비공유 모델을 데이터량·반복 길이별로 학습한다.",
+    "neural_target": "사건 단계별 정서 대비와 연결된 신경 표현의 일반화; 실제 시간 해상도가 허용하는 범위",
+    "available_dataset": "Horikawa에서 자극별 계산 비교를 먼저 계획한다. 실제 연속 timing·사건 다양성이 있는 보유 자료에서 단계 비교를 수행하며, 속도 조작 실측이 없으면 속도 불변성의 인과 주장은 하지 않는다.",
+    "measurable_contrast": "학습 자료량×공유 제약×반복수 요인에서 보류 사건 길이/조합의 정서 대비 손실과 일반 시각 대비 손실을 비교한다. 파라미터/FLOPs/정확도 맞춤 결과는 별도 보고하고 내부 step을 신경 시간으로 변환하지 않는다.",
+    "falsifiable_prediction": "exact-unroll 출력 불일치면 구현 점검 단계에서 중단한다. OOD 효율이 비공유·일반 규제·순서무관 대조와 같으면 공유제약의 해당 범위 필요성을 지지하지 않는다.",
+    "baseline": [
+      "동일 가중치 exact-unroll",
+      "동일 함수 초기화 비공유 모델",
+      "일반 parameter regularization",
+      "공유가중치 순서무관 pooling",
+      "학습량/길이 및 인식 성능 맞춤 대조",
+      "독립 단계·position-only·동일 사건집합 순서교환"
+    ],
+    "source_papers": [
+      "P090",
+      "P042",
+      "P043",
+      "P096",
+      "P008"
+    ],
+    "missing_assumptions": [
+      "사건 경계/단계 주석 또는 비신경 독립 추정",
+      "연속 자료와 run 경계",
+      "동일 목표/학습자료의 통제 모델 생성 비용",
+      "모든 상태갱신·정규화·초기상태를 보존한 정확 펼침",
+      "길이 OOD와 자극 의미 OOD의 분리",
+      "외부 사건 단계 및 순서 정의"
+    ],
+    "novelty_risk": "중간~높음: 재귀와 깊이 비교는 기존 주제. 정서 대비와 단계 shortcut의 동시 판별이 차별 후보지만 최초성 미검증.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C11-03"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  },
+  {
+    "combination_id": "L12",
+    "generation_path": "문헌 기반:Assumption Reversal",
+    "axis_ids": [
+      "A",
+      "B",
+      "C",
+      "E",
+      "H",
+      "I",
+      "J",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "X"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "scientific_construct": "동일 시청각 정보원과 읽기모형 예산에서 공유 병목을 확대해도 전체 모달리티 정보 또는 분해 잔차가 독립 정서 신경 대비를 추가 설명하는가?",
+    "external_field_concept": "공유/고유 정보 통로; 공통 공간이 충분하다는 전제를 고유 경로가 필요한지의 판별로 뒤집음",
+    "ai_model_or_method": "같은 동결 V,A에서 공유 S_k와 operational residual을 만들고, 사전 소수 bottleneck k×잔차 포함을 비교한다. full V,A의 같은 유효 용량 readout과 shared-only의 유연한 nonlinear readout을 둔다. FactorCL은 감독 사용 확인 뒤 전체 학습을 nested split에 넣거나 학습 없는 cross-fitted 투영으로 대체한다.",
+    "neural_target": "공통 기준으로 표준화한 held-out 정서 신경 대비 z_A 및 전체 parcel 패턴 Y의 별도 예측 위험.",
+    "available_dataset": {
+      "primary": "Horikawa의 실제 시청각 자극 가용성부터 확인하여 자극 단위 검정. 시각-only 보유본이면 이 데이터에서 멀티모달 검정을 하지 않는다.",
+      "validation": "Emo-FilM에서 영화 단위 분할 및 정렬 가능한 시간 집계로 재검증. Spacetop은 실제 task의 clip 수준 뇌·평정 대응으로만 재검증한다.",
+      "auxiliary": "NSD는 시각 경로의 내용·신뢰도 대조만. Mind Captioning은 정확한 자료 식별·모달리티·주석 확인 이후 의미 통제 후보다.",
+      "fallback": "공개 분해의 감독 사용/가중치가 미확인이면 고정 V,A의 train-only 공유 투영과 잔차를 operational 대조로 사용한다. private factor의 실재 추론은 하지 않는다."
+    },
+    "measurable_contrast": "D_k=mean_i[loss(z_Ai,pred_Sk,i)−loss(z_Ai,pred_Sk+residual,i)]를 동일 test 표본과 공통 척도에서 구한다. k×정보원 접근의 곡선을 전체 V,A 대조와 비교한다. 총 모델 용량·정규화·유효 자유도 민감도를 보고하고 gate는 고정한다.",
+    "falsifiable_prediction": "큰 병목 또는 유연한 shared readout에서 D_k의 사전 최소 효과 상한이 작아지면 이 범위의 잔차 필요성은 지지되지 않는다. 잔차 효과가 seed/분해에 불안정하면 특정 private 정보 해석을 보류한다. 전체 모형도 신뢰 가능한 대비를 못 예측하면 식별불가다.",
+    "baseline": [
+      "고정 gate shared-only 용량곡선",
+      "전체 V,A 동일 유효 용량 nonlinear readout",
+      "strict nonlinear additive",
+      "같은 정보량의 직교 좌표변환과 readout 재적합",
+      "독립 사건 의미·감각 품질 probe"
+    ],
+    "source_papers": [
+      "P035",
+      "P037",
+      "P053",
+      "P051",
+      "P083",
+      "P100"
+    ],
+    "missing_assumptions": [
+      "각 보유본의 실제 오디오·영상 제공 범위와 재생 조건",
+      "독립 정서주석·반복 신뢰도",
+      "분해의 seed/회전 안정성",
+      "Horikawa dupidx와 내용군 매핑",
+      "FactorCL 학습에 사용되는 타깃·출력 경로와 nested feature learning",
+      "독립 대비 정의·평가 분할 및 bottleneck k 범위",
+      "공유분해 seed/읽기모형 충분성 감사"
+    ],
+    "novelty_risk": "shared/private encoding과 정보보존 감사의 엄격한 재평가일 수 있다. 특정 분해의 잔차를 생물학적 고유 경로로 해석하지 않으며 신규성은 미확정이다.",
+    "decision": "발전",
+    "rejection_reason": "",
+    "candidate_ids": [
+      "C05-01"
+    ],
+    "transfer_claim": "E3 전이; 저자 제안 직접 확인은 L11의 P008 지정 절만 해당"
+  }
+]

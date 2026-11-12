@@ -6,7 +6,7 @@ path=root/'discussions/round_04/collected.json'
 cs={c['candidate_id']:c for c in json.loads(path.read_text())}
 axes={a['axis_id']:a for a in json.loads((root/'axis_map/integrated_subaxes.json').read_text())}
 strategies=[
- ('Technology Transfer','C07-04','最適輸送'.replace('最適輸送','최적수송'),'서로 다른 좌표계의 거리관계를 비교하는 계산을 정서 의미 대응의 비유일성 검정으로 전이'),
+ ('Technology Transfer','C07-04','최적수송','서로 다른 좌표계의 거리관계를 비교하는 계산을 정서 의미 대응의 비유일성 검정으로 전이'),
  ('Methodological Inversion','C09-02','inverse problems','단일 복원 성공을 같은 관측을 만족하는 여러 후보의 식별범위 문제로 뒤집음'),
  ('Representation Competition','C04-02','조건부 예측과 정보원 비교','자극으로 설명되는 변동과 과거 신경으로 설명되는 변동을 같은 test에서 경쟁'),
  ('Scale Bridging','C08-02','계층 시간범위 비교','영상 문맥의 길이를 감각–transmodal 위치별 정서 대비와 연결하되 HRF·공간null을 경쟁'),

@@ -1,0 +1,1481 @@
+{
+  "role": "10_llm_semantics",
+  "read_files": [
+    "discussions/ROUND04_PROTOCOL.md",
+    "discussions/round_03/collected.json",
+    "agents/10_llm_semantics/round02_exchange.json",
+    "literature/papers.csv"
+  ],
+  "responses": [
+    {
+      "candidate_id": "C10-01",
+      "critique_ids": [
+        "R3-05-C10-01",
+        "R3-09-C10-01"
+      ],
+      "accepted_changes": [
+        "두 검토자의 지적대로 실제 신경반응의 신뢰도는 고정된 측정 특성으로 두고 압축 단계의 종속변수에서 제거한다.",
+        "불명확한 보존율 대신 독립 신경 대비에 대한 held-out 예측손실 차이를 정의한다. 선형 접근성 저하와 평가한 비선형 probe에서도 회복되지 않는 차이를 구분한다.",
+        "객체 외 관계·질감 대비 및 distortion와 비정서 판별력을 맞춘 비언어 병목을 포함한다.",
+        "캡션의 생성 입력·seed·길이·available time·뇌/정서라벨 비사용을 기록한다. 전체 결말을 본 설명은 온라인 분석과 분리한다."
+      ],
+      "contested_points": [
+        "정보의 완전 부재나 언어에 본질적으로 없는 정서정보를 유한 probe로 입증할 수 없다는 두 검토자의 이견을 수용해 강한 정보소실 주장은 철회한다.",
+        "비정서 대비로 모든 의미를 같게 만들 수 없으므로 결론은 명시한 비교·readout family에 한정한다."
+      ],
+      "final_status": "수정",
+      "reason": "질문은 유지하되 실제 뇌 정보의 소실에서 특정 표현의 정서 대비 예측 접근성으로 주장을 축소한다."
+    },
+    {
+      "candidate_id": "C10-02",
+      "critique_ids": [
+        "R3-05-C10-02",
+        "R3-09-C10-02"
+      ],
+      "accepted_changes": [
+        "원 정서 주석 A를 모든 의미 조건에서 고정하고 잔차 타깃의 분산 변경을 비교하지 않는다.",
+        "객체·중립 관계·정서결론 포함 설명을 분리하고 뇌·정서 라벨을 입력하지 않은 설명만 주분석에 사용한다.",
+        "의미-only, 의미+D, 의미+N의 동일 보류 표본 예측을 비교한다. 감소는 조건부 예측의 통계적 중복으로 해석하며 원 N-D가 허위였다고 하지 않는다.",
+        "타깃 예측력·길이·내용량을 맞춘 비관계 설명과 공통입력×HRF null을 추가한다. UC10-1로 제한된 추가 관계 주석의 선택 원리를 제안한다."
+      ],
+      "contested_points": [
+        "관계 의미를 지우면 더 순수한 정서가 된다는 해석은 철회한다. 공유정보와 비가산성이 공존할 수 있다는 이견을 보존한다.",
+        "관계별 감소의 특이성을 확인해도 의미가 인과적으로 신경 상호작용을 매개했다는 주장은 하지 않는다."
+      ],
+      "final_status": "수정",
+      "reason": "추정량이 바뀐다는 지적을 수용해 고정 원타깃의 nested predictor 대비로 실질 수정한다."
+    },
+    {
+      "candidate_id": "C10-03",
+      "critique_ids": [
+        "R3-05-C10-03",
+        "R3-09-C10-03"
+      ],
+      "accepted_changes": [
+        "마지막 k개 사건·현재 구간을 고정한 먼 과거 순서 교환과 identity×lag 가산 baseline을 추가한다.",
+        "원순서 paraphrase, 검수된 대체순서, 특징 smoothness·개연성 대조를 별도로 둔다.",
+        "사건 설명은 시점 t까지 관찰한 부분만 사용하며 completion·generation 시각을 기록한다. full-film oracle은 회고 조건이다.",
+        "Emo-FilM 연속 주석과 Spacetop clip 수준 평정 계획을 분리하고, 원시간 HRF family와 fold buffer를 적용한다."
+      ],
+      "contested_points": [
+        "시간순서와 순서가 만드는 사건 관계 의미를 완전히 분리한다는 주장은 철회한다. 관심대상을 최근성 가산 설명을 넘어선 순서 관련 관계 표현의 증분으로 좁힌다.",
+        "모델 순서 변형이 인간의 순서 개입을 대신하지 않는다는 이견을 수용한다."
+      ],
+      "final_status": "수정",
+      "reason": "원 사건집합 비교만으로 recency와 순서를 가를 수 없다는 실제 비판을 반영한다."
+    },
+    {
+      "candidate_id": "C10-04",
+      "critique_ids": [
+        "R3-05-C10-04",
+        "R3-09-C10-04"
+      ],
+      "accepted_changes": [
+        "Agent05의 핵심 유지와 Agent09의 교환 OOD 수정 요구를 함께 반영한다.",
+        "같은 피험자·런·SNR·사건단계·내용 공통지지 안에서 독립 metadata로 교환 후보를 고정한다. 평균/영 조건은 주분석에서 제외한다.",
+        "원 뇌 readout·생성 전 latent·캡션의 외부 판별을 나누고 latent/출력 성공의 네 경우를 사전 정의한다.",
+        "Agent09 C09-01과 정보출처 서명 중복을 인정해 독립 최상위 RQ 수에 추가하지 않는 방법/하위 비교 후보로 분리한다."
+      ],
+      "contested_points": [
+        "Agent05는 유지, Agent09는 수정·상위 가족 병합을 권고했다. 과학적 동기를 버리지 않지만 후보 중복을 줄이기 위해 방법후보로 분류한다.",
+        "latent 실패·출력 성공을 prior 보충으로 단정하지 않는다. latent probe의 접근성 실패도 가능한 소수 설명으로 남긴다."
+      ],
+      "final_status": "수정",
+      "reason": "교환의 분포 적합성 개선과 관측–prior 가족의 하위 캡션 비교라는 범위 조정을 수용한다."
+    },
+    {
+      "candidate_id": "C10-05",
+      "critique_ids": [
+        "R3-05-C10-05",
+        "R3-09-C10-05"
+      ],
+      "accepted_changes": [
+        "zero-shot anatomy-only, 평가 내용과 독립인 calibration k-shot, 피험자 내 기준을 분리하고 예산을 맞춘다.",
+        "새 ID·새 관계조합·새 성분을 구분하고 실제 참가자×자극 관측 cell만 사용한다. 없는 cell을 예측으로 채워 검정하지 않는다.",
+        "같은 시험 자극의 자극-only 관계 판별을 추가해 표현·신경 mapping·측정의 세 층을 구분한다.",
+        "UC10-2로 단일 최선 정렬 대신 독립 calibration에서 허용된 복수 mapping에 걸쳐 유지되는 결론을 평가하도록 확장한다."
+      ],
+      "contested_points": [
+        "정렬 뒤 남은 실패를 곧 언어 조합 결손으로 특정한다는 원 표현을 철회한다.",
+        "Agent09는 개념 유지, Agent05는 calibration 명세 수정을 요구했다. 개념은 유지하지만 단일 mapping 귀속을 피하도록 실질 수정한다.",
+        "측정 불변성이 충분하지 않으면 의미/좌표만으로 원인을 완전히 분해할 수 없다는 이견을 남긴다."
+      ],
+      "final_status": "수정",
+      "reason": "가설을 실제 관측 가능한 cell의 일반화 대비로 제한하고 mapping 불확실성을 새 연구 차원으로 추가한다."
+    }
+  ],
+  "new_connections": [
+    {
+      "connection_id": "UC10-1",
+      "source_field": "순차 Bayesian 실험설계와 개념 질의",
+      "original_computational_goal": "P077은 설계–관측 history에서 다음 실험을 고르는 정책으로 반복 설계 비용을 줄인다. P083 §8은 인간 질의로 개념을 학습·정제할 가능성을 논의한다.",
+      "imported_structure": "다음 자극을 생성하는 대신 어떤 독립 중립 관계 주석을 다음에 수집할지 선택한다. 후보 관계 질의의 기대 정보가 관계특이 중복 가설과 일반 타깃설명력 가설을 얼마나 구별하는지 훈련 자료에서 평가한다.",
+      "new_neural_question": "제한된 추가 의미 주석 예산에서 어떤 관계를 확인해야 정서 관련 N-D 감소의 두 설명을 가장 잘 구분하는가?",
+      "why_not_same_as_round2": "Round2는 미리 정한 객체/관계 특징을 비교했다. 여기서는 미측정 의미 중 다음 관측을 적응적으로 선택하는 측정 정책 자체를 새로 도입한다. 단순 모델·데이터명 교체가 아니다.",
+      "candidate_ids": [
+        "C10-02"
+      ],
+      "source_papers": [
+        "P077",
+        "P083",
+        "P100"
+      ],
+      "assumptions": [
+        "관계 주석은 뇌·정서라벨을 보지 않는 별도 주석자가 제공",
+        "주석 likelihood와 불확실성을 정의할 수 있어야 정확한 Bayesian 설계 명칭 사용 가능",
+        "P077의 연속 설계·조건부 독립·명시적 likelihood 가정이 이산·상관 주석에 자동 성립하지 않음",
+        "불충족 시 이산 enumeration 또는 disagreement 휴리스틱으로 명칭을 낮추고 exact EIG를 주장하지 않음"
+      ],
+      "discriminating_test": "동일 주석비용에서 random/내용 coverage/단순 disagreement/가능하면 명시적 정보기준 정책을 훈련 자료에만 적용한다. 고정된 외부 자극·주석에서 두 경쟁 설명의 판별 손실과 잘못된 선택 비율을 비교한다. adaptive 선택의 성능을 선택에 사용한 신경 자료로 평가하지 않는다.",
+      "failure_interpretation": "단순 coverage와 같으면 적응 설계의 필요성이 없다. 비용 감소만 있고 신경 가설 판별이 나아지지 않으면 주석 효율 방법으로 제한한다."
+    },
+    {
+      "connection_id": "UC10-2",
+      "source_field": "잡음 역문제의 복수 해와 신경 지도 정렬",
+      "original_computational_goal": "P076은 잡음 관측과 diffusion prior를 결합해 신호를 근사 복원한다. P062는 좌표가 다른 뇌 지도의 변환·비교를 다루며 개인/집단 변환의 한계를 밝힌다.",
+      "imported_structure": "관측과 양립하는 자극 후보의 복수성이라는 구조를 자극 대신 신경 mapping의 복수성으로 옮긴다. 독립 calibration에서 비슷한 손실을 갖는 mapping family를 사전에 허용하고 이후 의미 일반화 결론이 모든 허용 mapping에서 유지되는지 본다.",
+      "new_neural_question": "특정 정렬 하나에서 보이는 새 의미조합의 정서 신경 예측 실패는 calibration으로 구별할 수 없는 다른 mapping에서도 유지되는가?",
+      "why_not_same_as_round2": "Round2는 개인/공유 mapping 중 선택한 모형의 요인 비교였다. 여기서는 선택을 하나로 고정하지 않고 허용 mapping 전체에서의 결론 범위를 주타깃으로 바꾸었다. P076의 원신호 생성과도 다른 추정 대상이다.",
+      "candidate_ids": [
+        "C10-05"
+      ],
+      "source_papers": [
+        "P076",
+        "P062",
+        "P100"
+      ],
+      "assumptions": [
+        "독립 calibration 관측과 noise/reliability 기반 사전 허용오차",
+        "후보 mapping family의 유한 coverage 한계를 명시",
+        "같은 test 성능으로 허용 mapping을 선택하지 않음",
+        "허용집합을 posterior 또는 진짜 신경 등가군으로 해석하지 않음"
+      ],
+      "discriminating_test": "mapping을 생성한 훈련 자료와 허용여부를 정하는 calibration, 의미일반화를 평가하는 test를 분리한다. calibration 손실이 비슷한 mapping들에서 새 관계조합 대비의 부호·크기 범위를 보고 단일 최선 mapping 결론과 비교한다.",
+      "failure_interpretation": "mapping에 따라 결론이 바뀌면 의미 실패의 귀속이 정렬 선택에 의존한다. 모두 같은 실패라도 공통 누락과 주석차이가 남으므로 뇌의 의미코드 부재를 확정하지 않는다."
+    }
+  ],
+  "revised_candidates": [
+    {
+      "candidate_id": "C10-01",
+      "title": "언어 병목에서 정서 신경 대비의 예측 접근성이 선택적으로 낮아지는가",
+      "axis_ids": [
+        "AS22",
+        "AS05",
+        "AS07",
+        "AS30"
+      ],
+      "research_question": "비정서 판별력과 일반 압축 오차를 맞췄을 때 언어 병목에서 독립 정서 신경 대비에 대한 외부 예측손실이 선택적으로 증가하는가?",
+      "neural_target": "반복 또는 독립 자료로 신뢰도를 추정해 고정한 정서·객체·관계·질감 신경 대비; 모델 단계가 실제 신뢰도를 바꾼다고 가정하지 않음",
+      "external_principle": "Agent03의 정렬 정보보존 감사와 생성 전후 이중 평가; BLIP-2의 시각→Q-Former 언어 병목",
+      "model_application": "distortion와 비정서 판별력 일치 비언어 병목; 선형/소형 비선형 probe; 가역 재표현 대조; 관계·질감 과제; 다수 seed와 길이 일치 캡션을 사용해 동일 held-out 자극에서 각 신경 대비에 고정한 척도의 예측손실 L을 계산한다. 단계별 L(병목)-L(직접특징)을 정서/비정서 대비와 언어/비언어 병목 사이에서 비교한다. 대비 척도·noise ceiling은 훈련/독립 반복으로 고정하고 분모가 불명확한 잔차비율을 만들지 않는다. 용량×선형/소형 비선형 probe×훈련량 곡선을 함께 보고한다.",
+      "scientific_question": "비정서 판별력과 일반 압축 오차를 맞췄을 때 언어 병목에서 독립 정서 신경 대비에 대한 외부 예측손실이 선택적으로 증가하는가?",
+      "assumption_challenge": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 질문은 유지하되 실제 뇌 정보의 소실에서 특정 표현의 정서 대비 예측 접근성으로 주장을 축소한다.",
+      "main_hypothesis": "일반 압축 오차와 비정서 대비의 난이도·신뢰도를 맞춘 뒤에도 언어 병목의 정서 대비 예측손실 증가가 비언어 병목보다 크고 평가한 readout family에서 남는다.",
+      "alternative": "차이는 일반 압축, 관계 누락, 표현 좌표, 유한 표본 probe 접근성 또는 캡션 입력범위의 차이다.",
+      "measurable_contrast": "동일 held-out 자극에서 각 신경 대비에 고정한 척도의 예측손실 L을 계산한다. 단계별 L(병목)-L(직접특징)을 정서/비정서 대비와 언어/비언어 병목 사이에서 비교한다. 대비 척도·noise ceiling은 훈련/독립 반복으로 고정하고 분모가 불명확한 잔차비율을 만들지 않는다. 용량×선형/소형 비선형 probe×훈련량 곡선을 함께 보고한다.",
+      "falsification": "비선형 probe에서 회복되면 선형 접근성 차이이며 소실 주장을 철회한다. 비언어 병목 또는 관계·질감 대비에서도 같은 감소가 나면 정서·언어 선택성은 지지되지 않는다. 원 신경 대비 신뢰도 부족은 식별불가다.",
+      "baseline": "distortion와 비정서 판별력 일치 비언어 병목; 선형/소형 비선형 probe; 가역 재표현 대조; 관계·질감 과제; 다수 seed와 길이 일치 캡션",
+      "dataset_plan": "Horikawa를 정서 대비의 우선 자료로 설계. NSD는 시각 식별/압축 대조 후보. Mind Captioning은 실제 신경–자극–텍스트 대응이 있는 경우 추가 경로로 연결하며 이름으로 구조를 확정하지 않는다.",
+      "missing_conditions": [
+        "실제 단계/용량별 특징과 checkpoint",
+        "캡션 available time·입력 provenance",
+        "독립 신경 대비·주석 및 신뢰도",
+        "distortion·비정서 난이도의 공통 지지"
+      ],
+      "source_papers": [
+        "P081",
+        "P015",
+        "P079",
+        "P051",
+        "P100"
+      ],
+      "closest_prior_ids": [
+        "P081",
+        "P015",
+        "P051"
+      ],
+      "what_is_new": "고정된 실제 신경 대비의 예측손실에 대한 병목 종류×대비 종류의 상호작용으로 좁혔다. 단계 성능 차이를 인간 뇌의 정보 소실로 해석하지 않는다.",
+      "novelty_risk": "정렬 정보보존 연구와 중복될 수 있다. 단순 차원 감소 효과라면 정서 선택성 주장을 철회하고 방법 비교로 축소.",
+      "conceptual_signature": {
+        "관측대상": "고정 신경 대비의 외부 예측손실",
+        "조작": "언어성×병목용량×probe 유연성",
+        "경쟁설명": "선택적 접근성 저하 대 일반 압축·표현 좌표"
+      },
+      "eight_questions": {
+        "q1": "최초성은 미확인이다. 정렬 정보보존 연구와 중복될 수 있다. 단순 차원 감소 효과라면 정서 선택성 주장을 철회하고 방법 비교로 축소.",
+        "q2": "P081의 명시적 병목과 P015 공식 중간 경로가 동일 입력의 압축 비교를 구체화한다.",
+        "q3": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 질문은 유지하되 실제 뇌 정보의 소실에서 특정 표현의 정서 대비 예측 접근성으로 주장을 축소한다.",
+        "q4": "언어 관련 시각 정보 선택을 여러 압축 단계에서 관측할 수 있다; 뇌 설명의 우월성은 미검증이다.",
+        "q5": "언어 목적이 버리는 반복 가능한 대비가 후보지만 잡음·미측정 시각 정보를 먼저 배제한다.",
+        "q6": "실제 Round4 신규 연결: Agent03의 정렬 정보보존 감사와 생성 전후 이중 평가; BLIP-2의 시각→Q-Former 언어 병목",
+        "q7": "Horikawa를 정서 대비의 우선 자료로 설계. NSD는 시각 식별/압축 대조 후보. Mind Captioning은 실제 신경–자극–텍스트 대응이 있는 경우 추가 경로로 연결하며 이름으로 구조를 확정하지 않는다.",
+        "q8": "비선형 probe에서 회복되면 선형 접근성 차이이며 소실 주장을 철회한다. 비언어 병목 또는 관계·질감 대비에서도 같은 감소가 나면 정서·언어 선택성은 지지되지 않는다. 원 신경 대비 신뢰도 부족은 식별불가다."
+      },
+      "status": "Round4 실제 비판 응답 후 수정; E3; 연구 제안과 실행 계획이며 분석 미실행",
+      "revision_history": [
+        {
+          "round": "Round4",
+          "critique_ids": [
+            "R3-05-C10-01",
+            "R3-09-C10-01"
+          ],
+          "previous_values": {
+            "title": "언어 출력 병목의 선택적 신경정보 손실",
+            "research_question": "시각적 식별력을 맞춘 조건에서도 언어 출력을 위한 압축은 정서 주석 관련 신경 대비를 선택적으로 약화시키는가?",
+            "neural_target": "독립 자극에서 재현되는 voxel/parcel 신경반응의 정서 주석 관련 대비; 직접 특징과 각 압축 단계의 예측 성분을 같은 방향으로 비교",
+            "main_hypothesis": "시각/객체 식별이 보존되는 용량 범위에서도 정서 관련 신경 대비의 재현성 또는 특징으로 예측되는 대비가 감소한다.",
+            "alternative": "차이는 특징 차원·readout의 정규화·전체 정보 감소나 측정 잡음으로 설명된다.",
+            "measurable_contrast": "같은 외부 자극 분할에서 차원·유효 복잡도를 맞추고 병목 용량별 전체 신경 예측과 사전 정의 정서 대비 예측의 보존 곡선을 함께 비교; 직접 신경 대비의 신뢰도도 별도 추정.",
+            "falsification": "원 신경반응에 대비가 재현되지 않으면 손실 여부 식별 불가. 정서·객체 대비가 동일 곡선으로 줄면 선택적 손실 설명 약화.",
+            "baseline": "PCA 또는 무작위 투영의 같은 차원 압축; 객체/장면 기준; 동일 ridge와 강한 비선형 readout; 생성기 없는 시각 검색.",
+            "what_is_new": "층별 성능순위 대신 시각 식별 보존 구간에서 관심 신경 대비만 감소하는 이중 비교를 제시한다. 기존 연구 부재는 확인하지 못했다.",
+            "source_papers": [
+              "P081",
+              "P015",
+              "P079"
+            ],
+            "closest_prior_ids": [
+              "P081",
+              "P015"
+            ],
+            "conceptual_signature": {
+              "관측대상": "신경 대비의 단계별 보존",
+              "조작": "언어 병목 단계·용량",
+              "경쟁설명": "선택적 손실 대 일반 용량·잡음"
+            },
+            "missing_conditions": [
+              "압축 단계별 체크포인트와 특징 접근",
+              "반복 또는 별도 신뢰도 추정",
+              "정서 주석 단위와 시각 내용의 공통 지지",
+              "정서 주석 미확인 자료는 일반 압축 대조만 수행"
+            ]
+          },
+          "changes": [
+            "두 검토자의 지적대로 실제 신경반응의 신뢰도는 고정된 측정 특성으로 두고 압축 단계의 종속변수에서 제거한다.",
+            "불명확한 보존율 대신 독립 신경 대비에 대한 held-out 예측손실 차이를 정의한다. 선형 접근성 저하와 평가한 비선형 probe에서도 회복되지 않는 차이를 구분한다.",
+            "객체 외 관계·질감 대비 및 distortion와 비정서 판별력을 맞춘 비언어 병목을 포함한다.",
+            "캡션의 생성 입력·seed·길이·available time·뇌/정서라벨 비사용을 기록한다. 전체 결말을 본 설명은 온라인 분석과 분리한다."
+          ],
+          "remaining_disagreement": [
+            "정보의 완전 부재나 언어에 본질적으로 없는 정서정보를 유한 probe로 입증할 수 없다는 두 검토자의 이견을 수용해 강한 정보소실 주장은 철회한다.",
+            "비정서 대비로 모든 의미를 같게 만들 수 없으므로 결론은 명시한 비교·readout family에 한정한다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "language bottleneck selective affective neural prediction loss nonlinear probes semantic controls",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommend": false,
+        "reason": "이번 자기 후보 최상위2개에는 제안하지 않음; 비교·하위 검증으로 보존"
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "병목과 정서 대비의 상호작용은 판별적이나 표현 보존 연구와 가깝다.",
+          "uncertainty": "새 외부 검색 미실행",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "언어적 설명의 신경 충분성 경계를 좁힌다.",
+          "uncertainty": "정서 대비의 측정 타당성 미확정",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "명시적 언어 병목이 유용하지만 소형 비언어 기준이 충분할 수 있다.",
+          "uncertainty": "최신 모델 필수성 없음",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "기존 자극·BOLD로 설계 가능하다.",
+          "uncertainty": "반복·주석·활성 접근 미확인",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "고정 타깃과 distortion·probe 대조를 추가했다.",
+          "uncertainty": "완전 의미 일치 불가",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "비선형 회복과 일반 압축이 명시적 반증이다.",
+          "uncertainty": "검출력 제한",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "interpretability": {
+          "score": 3,
+          "reason": "접근성으로 제한해 과잉 해석을 줄였다.",
+          "uncertainty": "정보 부재 식별 불가",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "새 자극 family에서 보존 곡선을 검정한다.",
+          "uncertainty": "내용 coverage 불확실",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 3,
+          "reason": "고정 특징과 작은 readout으로 시작할 수 있다.",
+          "uncertainty": "용량별 checkpoint 미확인",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "정서 선택적 압축 주장의 해석 범위를 시험한다.",
+          "uncertainty": "최초성 미확정",
+          "source_papers": [
+            "P081",
+            "P015",
+            "P079",
+            "P051",
+            "P100"
+          ]
+        }
+      },
+      "reverse_search_record": {
+        "query": "language bottleneck selective affective neural prediction loss nonlinear probes semantic controls",
+        "method": "기존 canonical 제목에 영어 토큰2개 이상 포함 여부로 로컬 역대조; 근접 ID 직접 대조 병행",
+        "local_hits": [
+          "P085",
+          "P087"
+        ],
+        "closest_prior_ids": [
+          "P081",
+          "P015",
+          "P051"
+        ],
+        "external_search_performed": false,
+        "interpretation": "로컬 불일치 또는 적은 결과는 선행연구 부재의 증거가 아님; 외부 query는 후속 실행용"
+      }
+    },
+    {
+      "candidate_id": "C10-02",
+      "title": "관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별",
+      "axis_ids": [
+        "AS24",
+        "AS16",
+        "AS29"
+      ],
+      "research_question": "고정된 독립 정서 주석에 대해 관계 설명이 추가될 때 영역 간 비가산 예측 이득의 변화는 일반 의미 설명력 증가와 구별되는가?",
+      "neural_target": "같은 원 정서 주석 A를 예측하는 신경 D/N의 외부 로그손실 또는 사전 고정 손실; 의미 조건에 따라 A를 잔차화해 바꾸지 않음",
+      "external_principle": "Agent08의 지역/분산 가산/상호작용 경쟁과 개념 병목의 불완전 개념 감사",
+      "model_application": "독립 중립 관계 설명; 길이·예측력 일치 비관계 설명; 정서결론 포함 민감도 조건; 유연한 영역 내 가산 모형; 공통입력×HRF 합성 null; cross-fitting을 사용해 조건 S마다 동일 원타깃 A에 대해 L(S), L(S+D), L(S+N)을 같은 외부 표본에서 측정한다. g(S)=L(S+D)-L(S+N). 주 비교는 [g(O)-g(O+R)]와 예측력 일치 비관계 대조의 감소 차이이며, 모든 총손실·증분도 병기한다. 관계·정서 불일치의 공통 지지 층을 따로 평가한다.",
+      "scientific_question": "고정된 독립 정서 주석에 대해 관계 설명이 추가될 때 영역 간 비가산 예측 이득의 변화는 일반 의미 설명력 증가와 구별되는가?",
+      "assumption_challenge": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 추정량이 바뀐다는 지적을 수용해 고정 원타깃의 nested predictor 대비로 실질 수정한다.",
+      "main_hypothesis": "객체 의미 O에서 관계 의미 R로 확장할 때 N-D 이득이 감소하며, 그 감소는 타깃 예측력을 맞춘 비관계 정보 추가보다 크다.",
+      "alternative": "어떤 타깃 예측력 높은 설명도 동일 감소를 만들거나 관계 추가 후에도 N-D가 유지된다. 감소는 공유정보 대체이며 가짜 신경 효과의 증거가 아니다.",
+      "measurable_contrast": "조건 S마다 동일 원타깃 A에 대해 L(S), L(S+D), L(S+N)을 같은 외부 표본에서 측정한다. g(S)=L(S+D)-L(S+N). 주 비교는 [g(O)-g(O+R)]와 예측력 일치 비관계 대조의 감소 차이이며, 모든 총손실·증분도 병기한다. 관계·정서 불일치의 공통 지지 층을 따로 평가한다.",
+      "falsification": "예측력 일치 비관계 설명도 동일 감소를 만들면 관계 특이 가설 약화. 원래 g(O)가 없으면 감소 가설을 식별할 기준점이 없다. 관계 후 g가 남아도 조건부 비가산 필요성만 시사한다.",
+      "baseline": "독립 중립 관계 설명; 길이·예측력 일치 비관계 설명; 정서결론 포함 민감도 조건; 유연한 영역 내 가산 모형; 공통입력×HRF 합성 null; cross-fitting",
+      "dataset_plan": "Horikawa 우선으로 시행 단위 대비를 설계하고 Emo-FilM·Spacetop에서는 실제 주석 단위에 맞춰 확장한다. Mind Captioning에 설명 자료가 있다면 출처·내용을 검수하는 후보이나 정서 주석을 있다고 가정하지 않는다.",
+      "missing_conditions": [
+        "설명 생성의 독립 provenance와 중립성 검수",
+        "의미 조건 공통 표본·타깃 척도",
+        "관계와 정서가 불일치하는 지지",
+        "ROI 신뢰도 및 주석 cohort",
+        "UC10-1의 별도 주석예산·외부 평가표본"
+      ],
+      "source_papers": [
+        "P083",
+        "P084",
+        "P066",
+        "P067",
+        "P100",
+        "P102",
+        "P077"
+      ],
+      "closest_prior_ids": [
+        "P083",
+        "P067",
+        "P102"
+      ],
+      "what_is_new": "타깃을 고정한 nested 손실로 의미 추가의 일반 효과와 관계 특이 중복을 구별한다. UC10-1은 다음 관계 주석을 선택하는 별도 측정 설계로 추가되며 원 신경 질문을 대체하지 않는다.",
+      "novelty_risk": "사건 의미와 정서가 공선적이면 잔차의 고유성은 식별되지 않는다. N 이득도 BOLD 조건부 통계 상호작용이며 인과적 통신은 아니다.",
+      "conceptual_signature": {
+        "관측대상": "고정 A에서 의미 조건별 N-D 손실차",
+        "조작": "중립 관계 정보 대 예측력 일치 비관계 정보",
+        "경쟁설명": "관계 특정 중복 대 일반 타깃 설명력 증가"
+      },
+      "eight_questions": {
+        "q1": "최초성은 미확인이다. 사건 의미와 정서가 공선적이면 잔차의 고유성은 식별되지 않는다. N 이득도 BOLD 조건부 통계 상호작용이며 인과적 통신은 아니다.",
+        "q2": "P083/P084의 명시적 개념 경로와 P066/P067의 상태·패턴 분석 도구가 비교 틀을 제공한다.",
+        "q3": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 추정량이 바뀐다는 지적을 수용해 고정 원타깃의 nested predictor 대비로 실질 수정한다.",
+        "q4": "객체 간 관계·사건 역할을 명시적 특징으로 만들 수 있으나 인간 검수가 필요하다.",
+        "q5": "개념 확장 뒤 재현되는 신경 조합 정보가 후보이며 공통 입력·잡음이 경쟁 설명이다.",
+        "q6": "실제 Round4 신규 연결: UC10-1 다음 자극을 생성하는 대신 어떤 독립 중립 관계 주석을 다음에 수집할지 선택한다. 후보 관계 질의의 기대 정보가 관계특이 중복 가설과 일반 타깃설명력 가설을 얼마나 구별하는지 훈련 자료에서 평가한다.",
+        "q7": "Horikawa 우선으로 시행 단위 대비를 설계하고 Emo-FilM·Spacetop에서는 실제 주석 단위에 맞춰 확장한다. Mind Captioning에 설명 자료가 있다면 출처·내용을 검수하는 후보이나 정서 주석을 있다고 가정하지 않는다.",
+        "q8": "예측력 일치 비관계 설명도 동일 감소를 만들면 관계 특이 가설 약화. 원래 g(O)가 없으면 감소 가설을 식별할 기준점이 없다. 관계 후 g가 남아도 조건부 비가산 필요성만 시사한다."
+      },
+      "status": "Round4 실제 비판 응답 후 수정; E3; 연구 제안과 실행 계획이며 분석 미실행",
+      "revision_history": [
+        {
+          "round": "Round4",
+          "critique_ids": [
+            "R3-05-C10-02",
+            "R3-09-C10-02"
+          ],
+          "previous_values": {
+            "title": "사건 관계의 누락과 분산 신경 조합의 구별",
+            "research_question": "객체 목록으로 설명되지 않은 정서 관련 신경 대비는 사건 관계를 추가하면 소멸하는가, 그리고 그 추가 정보는 영역별 신호의 합으로 충분한가?",
+            "neural_target": "같은 독립 정서 주석을 예측하는 사전 정의 ROI/parcel의 L·D·N 모형; 독립 자극에서 평가하고 encoding 점수와 합산하지 않음",
+            "main_hypothesis": "객체만 통제할 때의 N-D 예측 이득이 관계·사건 설명을 추가하면 감소한다. 누락된 사건 구조가 신경 상호작용처럼 보이는 일부 효과를 설명한다.",
+            "alternative": "관계·사건 의미와 영역 내 비선형을 충분히 모형화해도 N-D 이득이 유지된다. 또는 객체 조건화 단계부터 D로 충분해 상호작용 이득 자체가 없다.",
+            "measurable_contrast": "객체 조건화/관계·사건 조건화 × L/D/N의 요인 비교; D에 영역 내 비선형 허용, N의 유효 복잡도 일치; 내용 매칭과 불확실성을 보고한다.",
+            "falsification": "관계·사건 설명을 추가해도 신뢰도 범위 밖에서 N-D 이득이 유지되면 누락 사건이 상호작용 이득을 설명한다는 주가설을 약화한다. N이 처음부터 D를 넘지 못하면 상호작용 필요성은 지지되지 않으며 감소 효과를 검사할 여지도 없다.",
+            "baseline": "bag-of-objects; 관계 없는 길이 일치 설명; 관계 그래프; 영역 내 비선형 가산 모형; 공통 입력을 갖는 모의 null.",
+            "what_is_new": "명명된 개념 추가의 효과와 신경 조합 방식의 효과를 교차해 의미 누락과 상호작용 주장을 분리한다.",
+            "source_papers": [
+              "P083",
+              "P084",
+              "P066",
+              "P067"
+            ],
+            "closest_prior_ids": [
+              "P083",
+              "P067"
+            ],
+            "conceptual_signature": {
+              "관측대상": "독립 정서 주석을 예측하는 신경 조합",
+              "조작": "관계·사건 정보 포함 여부 및 L/D/N",
+              "경쟁설명": "누락 사건 대 가산 분산 대 상호작용"
+            },
+            "missing_conditions": [
+              "객체·관계·사건 설명의 독립 검수",
+              "정서 주석과 관계 정보의 공통 지지",
+              "ROI 정의·신뢰도·파라미터수",
+              "동일 뇌로 생성한 설명을 독립 조건화 변수로 쓰지 않을 provenance"
+            ]
+          },
+          "changes": [
+            "원 정서 주석 A를 모든 의미 조건에서 고정하고 잔차 타깃의 분산 변경을 비교하지 않는다.",
+            "객체·중립 관계·정서결론 포함 설명을 분리하고 뇌·정서 라벨을 입력하지 않은 설명만 주분석에 사용한다.",
+            "의미-only, 의미+D, 의미+N의 동일 보류 표본 예측을 비교한다. 감소는 조건부 예측의 통계적 중복으로 해석하며 원 N-D가 허위였다고 하지 않는다.",
+            "타깃 예측력·길이·내용량을 맞춘 비관계 설명과 공통입력×HRF null을 추가한다. UC10-1로 제한된 추가 관계 주석의 선택 원리를 제안한다."
+          ],
+          "remaining_disagreement": [
+            "관계 의미를 지우면 더 순수한 정서가 된다는 해석은 철회한다. 공유정보와 비가산성이 공존할 수 있다는 이견을 보존한다.",
+            "관계별 감소의 특이성을 확인해도 의미가 인과적으로 신경 상호작용을 매개했다는 주장은 하지 않는다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "relational semantics conditional neural interaction affect prediction additive nonlinear encoding baseline",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommend": true,
+        "reason": "고정 원타깃의 관계×신경조합 대비가 해석 가능한 양성·음성 결과를 제공하며 기존 관측으로 시작할 수 있어 자기 최상위 후보로 제안한다."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "의미 조건×신경 조합은 구별되나 기존 variance partitioning과 가깝다.",
+          "uncertainty": "관계 특정 신규성 역검색 필요",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "정서 관련 비가산성 주장이 누락 의미에 의존하는지 시험한다.",
+          "uncertainty": "조건부 예측은 기전 아님",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "개념 모델이 주석을 구조화하지만 인간 관계 그래프도 충분할 수 있다.",
+          "uncertainty": "LLM 필요성 미확정",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "data_feasibility": {
+          "score": 4,
+          "reason": "기존 관측에 독립 관계 주석을 추가하는 축소안이 있다.",
+          "uncertainty": "실제 overlap·주석예산 미확인",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "고정 타깃과 nested 손실로 estimand 변경을 피했다.",
+          "uncertainty": "공선성과 의미 완전성 제한",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "비관계 대조와 기준 N-D 부재가 명확한 반증·비식별 조건이다.",
+          "uncertainty": "표본 수·검출력 필요",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "interpretability": {
+          "score": 4,
+          "reason": "결론을 정보 중복과 모형 내 비가산성에 한정한다.",
+          "uncertainty": "공유정보의 이론적 해석 남음",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "내용군·피험자 외부 평가를 계획한다.",
+          "uncertainty": "관계 조합 support 불확실",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 4,
+          "reason": "소형 readout과 검수 주석으로 첫 비교 가능하다.",
+          "uncertainty": "ROI·주석 독립성 확인 필요",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "순수 잔차 대신 공유 의미의 역할을 드러내는 질문이다.",
+          "uncertainty": "선행 중복 가능",
+          "source_papers": [
+            "P083",
+            "P084",
+            "P066",
+            "P067",
+            "P100",
+            "P102",
+            "P077"
+          ]
+        }
+      },
+      "reverse_search_record": {
+        "query": "relational semantics conditional neural interaction affect prediction additive nonlinear encoding baseline",
+        "method": "기존 canonical 제목에 영어 토큰2개 이상 포함 여부로 로컬 역대조; 근접 ID 직접 대조 병행",
+        "local_hits": [
+          "P005"
+        ],
+        "closest_prior_ids": [
+          "P083",
+          "P067",
+          "P102"
+        ],
+        "external_search_performed": false,
+        "interpretation": "로컬 불일치 또는 적은 결과는 선행연구 부재의 증거가 아님; 외부 query는 후속 실행용"
+      }
+    },
+    {
+      "candidate_id": "C10-03",
+      "title": "최근성 가산 설명을 넘어선 사건 순서 관련 신경 예측",
+      "axis_ids": [
+        "AS23",
+        "AS17",
+        "AS32",
+        "AS35"
+      ],
+      "research_question": "현재·최근 사건을 고정하고 사건 identity별 lag 기여를 허용해도 순서 관련 관계 표현이 독립 정서 신경 대비의 예측을 추가하는가?",
+      "neural_target": "과거 입력에 대응하는 시간별 voxel/parcel 반응 및 정서 주석 관련 대비; gradient는 독립적으로 정의한 이차 공간 분석",
+      "external_principle": "Agent08의 문맥 길이 대 HRF 관측모형 경쟁; Agent10의 사건 순서 대 의미량 비교",
+      "model_application": "현재+최근 k사건; identity×lag 가산모형; causal unordered 표현; 원순서 paraphrase; 개연성 일치 대체순서; 동일 smoothness/FIR; full-film oracle 분리을 사용해 현재와 마지막 k개 사건을 고정한 원순서/먼 과거 교환/lag 가중 bag/원순서 paraphrase를 동일 외부 영화에서 비교한다. 주 추정량은 고정 신경 대비의 예측손실 차이이며 전체 서사 예측도 별도 보고한다. 사건별 available time과 HRF 연산자를 공유하고 train/test 경계에 지원구간 buffer를 둔다.",
+      "scientific_question": "현재·최근 사건을 고정하고 사건 identity별 lag 기여를 허용해도 순서 관련 관계 표현이 독립 정서 신경 대비의 예측을 추가하는가?",
+      "assumption_challenge": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 원 사건집합 비교만으로 recency와 순서를 가를 수 없다는 실제 비판을 반영한다.",
+      "main_hypothesis": "past-only 원순서 표현이 최근성·개연성·smoothness·동일 HRF family를 통제한 기준보다 독립 영화의 정서 신경 대비를 더 잘 예측한다.",
+      "alternative": "이득은 recency-weighted 내용, 잘못된 순서 입력의 OOD, 미래/완결 사건 서술 또는 관측 평활화 때문이다.",
+      "measurable_contrast": "현재와 마지막 k개 사건을 고정한 원순서/먼 과거 교환/lag 가중 bag/원순서 paraphrase를 동일 외부 영화에서 비교한다. 주 추정량은 고정 신경 대비의 예측손실 차이이며 전체 서사 예측도 별도 보고한다. 사건별 available time과 HRF 연산자를 공유하고 train/test 경계에 지원구간 buffer를 둔다.",
+      "falsification": "identity×lag 기준과 동등하면 순서 관계 표현의 추가 필요성은 약화된다. 자연스러움·smoothness 일치 후 사라지면 표현 OOD 설명을 지지한다. full-film에서만 나타나면 온라인 과거 주장 기각.",
+      "baseline": "현재+최근 k사건; identity×lag 가산모형; causal unordered 표현; 원순서 paraphrase; 개연성 일치 대체순서; 동일 smoothness/FIR; full-film oracle 분리",
+      "dataset_plan": "보유5종을 기반으로 계속 설계한다. Emo-FilM은 실제 연속 주석·평정지연을 사용하는 시간 분석 후보; Spacetop은 확인된 평정 단위에 맞춘 clip 요약 대비로 제한하며 clip 평정을 매 TR 복제하지 않는다. Horikawa는 실제 시행 정보에 맞춘 축소안, NSD는 정적 대조, Mind Captioning은 실제 시점·출처가 있는 경우만 시간 의미 통제로 연결한다.",
+      "missing_conditions": [
+        "사건 onset/completion 및 caption generation time",
+        "실제 prefix·최근 사건 공통 지지",
+        "독립 영화·주석 cohort·지연",
+        "개연성·smoothness 대조",
+        "실제 HRF 지원구간"
+      ],
+      "source_papers": [
+        "P085",
+        "P086",
+        "P066",
+        "P100",
+        "P002"
+      ],
+      "closest_prior_ids": [
+        "P085",
+        "P086",
+        "P066"
+      ],
+      "what_is_new": "같은 사건집합의 원순서 우위를 recency·OOD·시간관측과 경쟁시키도록 좁혔다. 순서 자체와 순서의 의미를 완전히 분리했다는 주장은 하지 않는다.",
+      "novelty_risk": "서사 encoding과 중복 위험. 순서를 바꾼 모델 특징의 예측 차이를 실제로 순서를 바꿔 본 뇌의 인과 반응으로 해석할 수 없다.",
+      "conceptual_signature": {
+        "관측대상": "최근성 기준을 넘는 고정 신경 대비 예측",
+        "조작": "현재/최근 사건 고정 후 먼 과거 순서",
+        "경쟁설명": "순서 관련 관계 대 lag가산·OOD·회고정보"
+      },
+      "eight_questions": {
+        "q1": "최초성은 미확인이다. 서사 encoding과 중복 위험. 순서를 바꾼 모델 특징의 예측 차이를 실제로 순서를 바꿔 본 뇌의 인과 반응으로 해석할 수 없다.",
+        "q2": "문맥별 특징 추출 코드와 사건 분절·공간 null 구현이 비교를 구체화한다.",
+        "q3": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 원 사건집합 비교만으로 recency와 순서를 가를 수 없다는 실제 비판을 반영한다.",
+        "q4": "문맥 순서에 조건부인 관계를 표현할 수 있지만 그 신경 필요성은 시험 대상이다.",
+        "q5": "모델이 잘못된 과거 압축을 하는 경우 남는 시간 대비가 후보이나 HRF와 분리해야 한다.",
+        "q6": "실제 Round4 신규 연결: Agent08의 문맥 길이 대 HRF 관측모형 경쟁; Agent10의 사건 순서 대 의미량 비교",
+        "q7": "보유5종을 기반으로 계속 설계한다. Emo-FilM은 실제 연속 주석·평정지연을 사용하는 시간 분석 후보; Spacetop은 확인된 평정 단위에 맞춘 clip 요약 대비로 제한하며 clip 평정을 매 TR 복제하지 않는다. Horikawa는 실제 시행 정보에 맞춘 축소안, NSD는 정적 대조, Mind Captioning은 실제 시점·출처가 있는 경우만 시간 의미 통제로 연결한다.",
+        "q8": "identity×lag 기준과 동등하면 순서 관계 표현의 추가 필요성은 약화된다. 자연스러움·smoothness 일치 후 사라지면 표현 OOD 설명을 지지한다. full-film에서만 나타나면 온라인 과거 주장 기각."
+      },
+      "status": "Round4 실제 비판 응답 후 수정; E3; 연구 제안과 실행 계획이며 분석 미실행",
+      "revision_history": [
+        {
+          "round": "Round4",
+          "critique_ids": [
+            "R3-05-C10-03",
+            "R3-09-C10-03"
+          ],
+          "previous_values": {
+            "title": "같은 사건집합에서 시간 순서가 필요한 신경 문맥",
+            "research_question": "현재 입력과 과거 사건의 내용량이 같을 때, 사건 순서가 독립 정서 주석 관련 신경 변화에 필요한가?",
+            "main_hypothesis": "순서 보존 특징의 정서 대비 예측 이득이 내용량·유연한 HRF·자기상관 대조 뒤에도 독립 영화에서 남는다.",
+            "alternative": "순서 효과는 내용 중복, 표현의 문법 자연스러움, 미래 접근, HRF가 만드는 저주파 차이로 설명된다.",
+            "measurable_contrast": "시점 t까지의 동일 사건·길이·현재 구간을 고정한 원순서/시간순서 교환을 비교; 잘못된 문법을 만들지 않는 사건 단위 교환과 표현 품질 대조; 영화 단위 외부 분리.",
+            "falsification": "bag-of-events 또는 HRF 모형이 동일 예측이면 순서 필요성 약화. 미래를 허용할 때만 이득이면 관찰 가능한 과거의 설명을 기각.",
+            "baseline": "현재 프레임/사건; 사건 평균 임베딩; 이동평균·FIR; 동일 과거 창의 단순 causal 모델; 자기상관을 보존하는 시간 대조.",
+            "dataset_plan": "Emo-FilM·Spacetop을 연속 문맥 후보로 두고 실제 타임베이스별 계획을 분기한다. Horikawa는 가능한 시행 구조에 맞춰 정적/짧은 맥락 대조. Mind Captioning은 실제 시간 순서가 있을 때만 연결한다.",
+            "what_is_new": "문맥 길이 효과에서 내용집합·순서·관측지연을 분리하며 gradient의 위치는 설명의 독립 차원으로 취급한다.",
+            "missing_conditions": [
+              "사건·자극·BOLD·주석 시간 좌표",
+              "독립 영화 수와 시간 주석 해상도",
+              "과거만 사용하는 특징 추출",
+              "순서 조작 전후 의미량·문법 자연스러움의 검수"
+            ],
+            "conceptual_signature": {
+              "관측대상": "시간별 정서 관련 신경 대비",
+              "조작": "고정 사건집합의 과거 순서",
+              "경쟁설명": "순서 의존 대 내용량·HRF·미래누수"
+            },
+            "source_papers": [
+              "P085",
+              "P086",
+              "P066",
+              "P063"
+            ],
+            "closest_prior_ids": [
+              "P085",
+              "P066"
+            ]
+          },
+          "changes": [
+            "마지막 k개 사건·현재 구간을 고정한 먼 과거 순서 교환과 identity×lag 가산 baseline을 추가한다.",
+            "원순서 paraphrase, 검수된 대체순서, 특징 smoothness·개연성 대조를 별도로 둔다.",
+            "사건 설명은 시점 t까지 관찰한 부분만 사용하며 completion·generation 시각을 기록한다. full-film oracle은 회고 조건이다.",
+            "Emo-FilM 연속 주석과 Spacetop clip 수준 평정 계획을 분리하고, 원시간 HRF family와 fold buffer를 적용한다."
+          ],
+          "remaining_disagreement": [
+            "시간순서와 순서가 만드는 사건 관계 의미를 완전히 분리한다는 주장은 철회한다. 관심대상을 최근성 가산 설명을 넘어선 순서 관련 관계 표현의 증분으로 좁힌다.",
+            "모델 순서 변형이 인간의 순서 개입을 대신하지 않는다는 이견을 수용한다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "narrative order recency weighted event representations affective brain encoding temporal controls",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommend": false,
+        "reason": "이번 자기 후보 최상위2개에는 제안하지 않음; 비교·하위 검증으로 보존"
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "recency를 분리한 정서 문맥 대비가 후보 차별점이다.",
+          "uncertainty": "서사 순서 선행 최신 역검색 필요",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "사건 관계가 필요한 시간적 표현의 범위를 규정한다.",
+          "uncertainty": "HRF 해상도 제한",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "문맥 LLM이 유용하지만 lag 가중 단순 기준이 충분할 수 있다.",
+          "uncertainty": "단순 기준 우위 가능",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "연속 자료와 clip 요약의 두 계획이 있다.",
+          "uncertainty": "사건 available time·주석 해상도 미확인",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "recency·OOD·미래·buffer 대조를 추가했다.",
+          "uncertainty": "순서와 의미 완전 분리 불가",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "lag와 oracle 비교가 분명한 반증을 제공한다.",
+          "uncertainty": "통계적 동등성 검출력 필요",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "interpretability": {
+          "score": 3,
+          "reason": "관찰적 순서 특징 증분으로 해석을 제한한다.",
+          "uncertainty": "모델 개연성과 의미 변화 남음",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "외부 영화 전이를 계획한다.",
+          "uncertainty": "독립 영화 수 불확실",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 3,
+          "reason": "특징 추출·사건 주석 비용이 요구된다.",
+          "uncertainty": "시간별 caption 경로 미확인",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "느린 BOLD를 긴 통합으로 해석하는 가정을 시험한다.",
+          "uncertainty": "실제 순서 개입은 별도 측정",
+          "source_papers": [
+            "P085",
+            "P086",
+            "P066",
+            "P100",
+            "P002"
+          ]
+        }
+      },
+      "reverse_search_record": {
+        "query": "narrative order recency weighted event representations affective brain encoding temporal controls",
+        "method": "기존 canonical 제목에 영어 토큰2개 이상 포함 여부로 로컬 역대조; 근접 ID 직접 대조 병행",
+        "local_hits": [
+          "P009",
+          "P028",
+          "P029",
+          "P066"
+        ],
+        "closest_prior_ids": [
+          "P085",
+          "P086",
+          "P066"
+        ],
+        "external_search_performed": false,
+        "interpretation": "로컬 불일치 또는 적은 결과는 선행연구 부재의 증거가 아님; 외부 query는 후속 실행용"
+      }
+    },
+    {
+      "candidate_id": "C10-04",
+      "title": "관측–prior 비교의 하위 검사: 캡션 단계에서 신경 조건을 사용하는가",
+      "axis_ids": [
+        "AS04",
+        "AS20",
+        "AS22"
+      ],
+      "research_question": "동일 관측 support의 신경 조건을 교환할 때 생성 전 판별 가능한 정서 관련 내용이 캡션 출력에 보존되는가?",
+      "neural_target": "보류 신경 관측에서 외부 자극 참조·독립 주석과 대응하는 정보; 캡션으로 같은 Y를 다시 설명하는 encoding 순환은 금지",
+      "external_principle": "Agent03의 prior-only/조건 교환 및 생성 전후 이중 평가",
+      "model_application": "생성 없는 latent retrieval; 원 뇌 readout; 같은 사람/런·SNR·관계·사건단계 matched swap; 비정서 hard-negative; 다수 seed; 동일 prior 설정을 사용해 같은 사람/런의 독립 metadata 매칭 support에서 실제/교환 조건×prior 설정을 비교한다. 고정된 외부 정서 대비와 비정서 내용 판별의 손실을 원 뇌·latent·출력에서 따로 측정한다. latent+/출력+는 보존, latent+/출력-는 출력 손실, latent-/출력+는 prior 보충 또는 probe 한계, 양쪽-는 출처 미식별로 보고한다. 원 뇌 기준의 성공 여부도 병기한다.",
+      "scientific_question": "동일 관측 support의 신경 조건을 교환할 때 생성 전 판별 가능한 정서 관련 내용이 캡션 출력에 보존되는가?",
+      "assumption_challenge": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 교환의 분포 적합성 개선과 관측–prior 가족의 하위 캡션 비교라는 범위 조정을 수용한다.",
+      "main_hypothesis": "신뢰도·내용·사건단계를 맞춘 유효 신경 조건의 외부 판별 이득이 생성 전 latent와 캡션에 함께 나타난다.",
+      "alternative": "교환 OOD·신호품질·decoder 접근성 또는 언어 prior의 보충이 차이를 만든다.",
+      "measurable_contrast": "같은 사람/런의 독립 metadata 매칭 support에서 실제/교환 조건×prior 설정을 비교한다. 고정된 외부 정서 대비와 비정서 내용 판별의 손실을 원 뇌·latent·출력에서 따로 측정한다. latent+/출력+는 보존, latent+/출력-는 출력 손실, latent-/출력+는 prior 보충 또는 probe 한계, 양쪽-는 출처 미식별로 보고한다. 원 뇌 기준의 성공 여부도 병기한다.",
+      "falsification": "matched support에서 실제 조건 이득이 없으면 해당 decoder의 신경 조건 사용을 지지하지 못한다. 원 뇌 정보 부재로 확장하지 않는다. 적합한 교환 표본이 없으면 swap 결론을 내리지 않는다.",
+      "baseline": "생성 없는 latent retrieval; 원 뇌 readout; 같은 사람/런·SNR·관계·사건단계 matched swap; 비정서 hard-negative; 다수 seed; 동일 prior 설정",
+      "dataset_plan": "Mind Captioning의 정확한 식별자·조건 경로·참조가 실제 확인되면 이 하위 검사를 적용한다. 이름만으로 생성 과제·주석·기억 과제를 가정하지 않는다. 적합한 경로 또는 matched support가 없으면 보유 자극의 생성 없는 latent retrieval 방법 검증으로 축소한다.",
+      "missing_conditions": [
+        "실제 Mind Captioning 태스크·조건 경로·가중치·prompt",
+        "독립 원자극 참조·정서 주석",
+        "같은 참가자·런·SNR의 교환 support",
+        "캡션 prefix/full-clip provenance",
+        "생성 전 probe의 검출력"
+      ],
+      "source_papers": [
+        "P015",
+        "P021",
+        "P087",
+        "P076",
+        "P100"
+      ],
+      "closest_prior_ids": [
+        "P015",
+        "P087",
+        "P076"
+      ],
+      "what_is_new": "독립적인 새 최상위 RQ로 세기보다 관측–prior 식별 가족에서 캡션 출력의 선택적 보존과 실패 위치를 검사하는 하위 방법으로 정리했다.",
+      "novelty_risk": "기존 decoder ablation 반복일 수 있다. 정서 대비가 없으면 일반 정보출처 분석에 한정하며 Mind Captioning의 특정 논문을 안다고 가정하지 않는다.",
+      "conceptual_signature": {
+        "관측대상": "latent에서 출력으로 전달되는 외부 판별 정보",
+        "조작": "support 내 조건 교환×prior 설정",
+        "경쟁설명": "출력 사용 실패 대 prior보충·probe한계·OOD"
+      },
+      "eight_questions": {
+        "q1": "최초성은 미확인이다. 기존 decoder ablation 반복일 수 있다. 정서 대비가 없으면 일반 정보출처 분석에 한정하며 Mind Captioning의 특정 논문을 안다고 가정하지 않는다.",
+        "q2": "P015/P021의 공개 경로와 P087의 신경–언어 연결 코드가 조건 비교를 가능하게 한다.",
+        "q3": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 교환의 분포 적합성 개선과 관측–prior 가족의 하위 캡션 비교라는 범위 조정을 수용한다.",
+        "q4": "불완전한 신경 조건을 언어로 완성하지만 바로 그 능력이 정보 기원 혼동을 만든다.",
+        "q5": "모델이 표준 문장으로 평탄화하는 미묘한 대비가 후보이며 생성 전 latent와 비교해야 한다.",
+        "q6": "실제 Round4 신규 연결: Agent03의 prior-only/조건 교환 및 생성 전후 이중 평가",
+        "q7": "Mind Captioning의 정확한 식별자·조건 경로·참조가 실제 확인되면 이 하위 검사를 적용한다. 이름만으로 생성 과제·주석·기억 과제를 가정하지 않는다. 적합한 경로 또는 matched support가 없으면 보유 자극의 생성 없는 latent retrieval 방법 검증으로 축소한다.",
+        "q8": "matched support에서 실제 조건 이득이 없으면 해당 decoder의 신경 조건 사용을 지지하지 못한다. 원 뇌 정보 부재로 확장하지 않는다. 적합한 교환 표본이 없으면 swap 결론을 내리지 않는다."
+      },
+      "status": "Round4 실제 비판 응답 후 수정; E3; 연구 제안과 실행 계획이며 분석 미실행",
+      "revision_history": [
+        {
+          "round": "Round4",
+          "critique_ids": [
+            "R3-05-C10-04",
+            "R3-09-C10-04"
+          ],
+          "previous_values": {
+            "title": "생성된 정서 서술의 신경 조건과 언어 prior 분리",
+            "research_question": "뇌 조건 생성 캡션에 나타나는 정서 관련 사건 서술은 신경 조건이 제공한 내용인가, 언어 생성기의 보충인가?",
+            "main_hypothesis": "실제 신경 조건이 의미가 비슷한 외부 후보의 구별에 추가 기여하며 그 차이가 생성 전 latent에서도 관찰된다.",
+            "alternative": "언어 prior가 사건의 통상적 정서 서술을 생성해 유창성과 표면적 타당성을 만든다; 뇌 조건 이득은 자극 식별만 반영할 수 있다.",
+            "measurable_contrast": "실제/의미 매칭 신경 조건 교환/비신경 의미 조건 × 생성 전·후 평가; 객체·장면이 유사하고 독립 주석이 다른 후보에서 내용 판별; OOD 대조 진단.",
+            "falsification": "유창성만 유지되고 실제 조건의 외부 내용 판별 이득이 없으면 신경 기원 지지 없음. 원 신경 조건의 신뢰도가 낮으면 prior 지배와 정보 부재를 구분 못함.",
+            "baseline": "언어 prior; 자극 의미만 준 생성; 생성 없는 latent retrieval; 평균/영 조건은 OOD 여부를 확인하는 보조 대조.",
+            "dataset_plan": "Mind Captioning은 보유 명칭만 확인된 상태이므로 실제 신경 조건 생성 출력·조건·참조가 있으면 분석한다. 없으면 Horikawa의 정서 주석과 허용된 별도 decoder로 설계하거나 생성 단계 없이 latent 정보출처 비교로 축소한다. NSD는 정서 주석 미확인 시 시각내용 대조만.",
+            "what_is_new": "정서적으로 적절한 서술의 생성 품질을 정보 기원 증거와 분리하고, 의미 매칭 후보에서 생성 전·후를 교차 검증한다.",
+            "missing_conditions": [
+              "Mind Captioning의 실제 과제·버전·입출력 provenance",
+              "출력 생성기와 조건 경로 접근",
+              "독립 참조와 정서 주석",
+              "조건 교환의 분포 적합성 및 의미 매칭 공통 지지"
+            ],
+            "conceptual_signature": {
+              "관측대상": "생성 캡션의 외부검증 가능한 정서 관련 내용",
+              "조작": "뇌 조건 출처·교환 및 생성 단계",
+              "경쟁설명": "신경 증분 대 언어 prior 보충"
+            },
+            "source_papers": [
+              "P015",
+              "P021",
+              "P087"
+            ],
+            "closest_prior_ids": [
+              "P015",
+              "P087"
+            ]
+          },
+          "changes": [
+            "Agent05의 핵심 유지와 Agent09의 교환 OOD 수정 요구를 함께 반영한다.",
+            "같은 피험자·런·SNR·사건단계·내용 공통지지 안에서 독립 metadata로 교환 후보를 고정한다. 평균/영 조건은 주분석에서 제외한다.",
+            "원 뇌 readout·생성 전 latent·캡션의 외부 판별을 나누고 latent/출력 성공의 네 경우를 사전 정의한다.",
+            "Agent09 C09-01과 정보출처 서명 중복을 인정해 독립 최상위 RQ 수에 추가하지 않는 방법/하위 비교 후보로 분리한다."
+          ],
+          "remaining_disagreement": [
+            "Agent05는 유지, Agent09는 수정·상위 가족 병합을 권고했다. 과학적 동기를 버리지 않지만 후보 중복을 줄이기 위해 방법후보로 분류한다.",
+            "latent 실패·출력 성공을 prior 보충으로 단정하지 않는다. latent probe의 접근성 실패도 가능한 소수 설명으로 남긴다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "brain conditioned caption emotion content provenance matched condition swaps distribution shift",
+      "research_role": "방법후보",
+      "shortlist_recommendation": {
+        "recommend": false,
+        "reason": "이번 자기 후보 최상위2개에는 제안하지 않음; 비교·하위 검증으로 보존"
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 2,
+          "reason": "관측–prior 분리와 서명이 겹쳐 독립 RQ 수에 추가하지 않는다.",
+          "uncertainty": "상위 가족의 최종 병합은 Coordinator 판단",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "neuro_importance": {
+          "score": 3,
+          "reason": "정서 서술의 신경 기원 과장을 막는 검사다.",
+          "uncertainty": "해당 경로 미확인",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "모듈 접근이 필요하지만 생성 없는 검색으로 일부 대체 가능하다.",
+          "uncertainty": "생성 모델 필수성 제한",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "data_feasibility": {
+          "score": 2,
+          "reason": "조건·참조·matched support가 있어야 실행된다.",
+          "uncertainty": "Mind Captioning 스키마 미확인",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "OOD와 단계별 실패를 명시했다.",
+          "uncertainty": "완전한 내용·SNR 매칭 불가",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "단계별 외부 판별과 실제 조건 이득으로 검정 가능하다.",
+          "uncertainty": "낮은 신뢰도와 정보 부재 미분리",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "interpretability": {
+          "score": 3,
+          "reason": "방법 범위로 낮춰 인과·정보기원 주장을 제한한다.",
+          "uncertainty": "출력만 성공하는 경우 원인 미식별",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "generalization": {
+          "score": 3,
+          "reason": "여러 seed·내용군·prior를 계획한다.",
+          "uncertainty": "decoder 간 비교 가능한 support 불확실",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 2,
+          "reason": "실제 conditioner와 checkpoint 접근이 필요하다.",
+          "uncertainty": "실행 환경·가중치 미검증",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        },
+        "exploration_value": {
+          "score": 3,
+          "reason": "주장 감사에 유용하지만 상위 질문의 하위 비교다.",
+          "uncertainty": "최상위 연구로 중복될 위험",
+          "source_papers": [
+            "P015",
+            "P021",
+            "P087",
+            "P076",
+            "P100"
+          ]
+        }
+      },
+      "reverse_search_record": {
+        "query": "brain conditioned caption emotion content provenance matched condition swaps distribution shift",
+        "method": "기존 canonical 제목에 영어 토큰2개 이상 포함 여부로 로컬 역대조; 근접 ID 직접 대조 병행",
+        "local_hits": [
+          "P001",
+          "P010",
+          "P022",
+          "P098"
+        ],
+        "closest_prior_ids": [
+          "P015",
+          "P087",
+          "P076"
+        ],
+        "external_search_performed": false,
+        "interpretation": "로컬 불일치 또는 적은 결과는 선행연구 부재의 증거가 아님; 외부 query는 후속 실행용"
+      }
+    },
+    {
+      "candidate_id": "C10-05",
+      "title": "의미 조합 일반화의 실패는 허용 가능한 신경 mapping들에 공통적인가",
+      "axis_ids": [
+        "AS28",
+        "AS31",
+        "AS24",
+        "AS15"
+      ],
+      "research_question": "독립 calibration에서 허용되는 여러 신경 mapping과 0/k-shot 조건을 고려할 때 새 관계조합의 정서 대비 예측 저하가 자극표현·mapping·측정 중 어느 설명과 양립하는가?",
+      "neural_target": "독립 내용 그룹·참가자에서 측정되는 정서 주석 관련 신경 예측 또는 고정 대비; 훈련에서 정한 평가방향 유지",
+      "external_principle": "Agent03의 새 피험자+새 자극 이중 보류와 Agent08의 개인/집단 좌표 변환 구분",
+      "model_application": "anatomy-only zero-shot; 독립 예산 일치 k-shot; 참가자 내 ridge; 자극-only 객체/관계 예측; 여러 허용 정렬; 내용 fingerprint 분할; 반복 신뢰도 일치을 사용해 관측된 공통 자극 cell에서 anatomy-only 0-shot/독립 calibration k-shot/피험자 내 mapping을 평가한다. 허용 mapping은 평가 내용과 분리된 calibration 손실의 사전 허용오차로 정의하고 test로 선택하지 않는다. 새 ID/새 관계조합/새 성분별 고정 정서 대비 손실과 자극-only 관계 손실을 병기한다. 허용 mapping별 결과 범위를 보고하며 이를 posterior나 뇌의 참된 등가군으로 부르지 않는다.",
+      "scientific_question": "독립 calibration에서 허용되는 여러 신경 mapping과 0/k-shot 조건을 고려할 때 새 관계조합의 정서 대비 예측 저하가 자극표현·mapping·측정 중 어느 설명과 양립하는가?",
+      "assumption_challenge": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 가설을 실제 관측 가능한 cell의 일반화 대비로 제한하고 mapping 불확실성을 새 연구 차원으로 추가한다.",
+      "main_hypothesis": "일부 조합 일반화 차이는 독립 calibration에서 허용된 모든 평가 mapping에서 같은 방향으로 남고 자극-only 조합 판별의 실패와 함께 나타난다.",
+      "alternative": "실패가 calibration 예산·mapping 선택으로 회복되거나 자극-only는 성공하지만 신경 mapping 또는 주석·신뢰도 차이가 설명한다.",
+      "measurable_contrast": "관측된 공통 자극 cell에서 anatomy-only 0-shot/독립 calibration k-shot/피험자 내 mapping을 평가한다. 허용 mapping은 평가 내용과 분리된 calibration 손실의 사전 허용오차로 정의하고 test로 선택하지 않는다. 새 ID/새 관계조합/새 성분별 고정 정서 대비 손실과 자극-only 관계 손실을 병기한다. 허용 mapping별 결과 범위를 보고하며 이를 posterior나 뇌의 참된 등가군으로 부르지 않는다.",
+      "falsification": "허용 mapping에 따라 결론 방향이 바뀌면 mapping에 강건한 조합 실패 가설은 약화된다. 자극-only 성공·calibration 회복이면 언어표현 결손 귀속을 철회한다. 충분한 교차 cell이 없으면 참가자 내 의미 대비만 검정한다.",
+      "baseline": "anatomy-only zero-shot; 독립 예산 일치 k-shot; 참가자 내 ridge; 자극-only 객체/관계 예측; 여러 허용 정렬; 내용 fingerprint 분할; 반복 신뢰도 일치",
+      "dataset_plan": "Horikawa에서 관측 cell과 내용 조합을 확인해 참가자 내 비교부터 시작한다. 공통 자극이 있는 보유본에서만 개인/공유 mapping을 교차한다. NSD는 의미·시각 대조 후보이고 정서 주석을 가정하지 않는다. 다섯 자료의 공통 ontology·참가자·자극을 가정해 pooling하지 않으며 Mind Captioning은 실제 대응이 확인되면 설명 출처 비교에만 연결한다.",
+      "missing_conditions": [
+        "실제 참가자×자극 cell과 calibration 별도 표본",
+        "각 test성분의 train 등장 여부·관계 조합 support",
+        "주석 cohort·개인 신뢰도",
+        "calibration 허용오차와 mapping family 사전정의",
+        "공통 관측 없으면 참가자 내 fallback"
+      ],
+      "source_papers": [
+        "P015",
+        "P062",
+        "P083",
+        "P079",
+        "P076",
+        "P098",
+        "P100"
+      ],
+      "closest_prior_ids": [
+        "P015",
+        "P062",
+        "P076",
+        "P100"
+      ],
+      "what_is_new": "Round2의 단일 정렬×의미 실패 비교를 UC10-2의 허용 mapping 집합에 대한 결론 안정성으로 확장했다. 표현·mapping·측정 중 하나를 무리하게 원인으로 확정하지 않고 가설과 양립하는 범위를 줄인다.",
+      "novelty_risk": "도메인 일반화·alignment 연구와 중복 가능. 미확인 공통 ontology나 공동 자극 없이 직접 pooling하면 설계가 무효화된다.",
+      "conceptual_signature": {
+        "관측대상": "새 조합 대비의 mapping별 일반화 범위",
+        "조작": "0/k-shot·허용 mapping family·의미 조합",
+        "경쟁설명": "표현 결손 대 mapping 비유일성·측정 차이"
+      },
+      "eight_questions": {
+        "q1": "최초성은 미확인이다. 도메인 일반화·alignment 연구와 중복 가능. 미확인 공통 ontology나 공동 자극 없이 직접 pooling하면 설계가 무효화된다.",
+        "q2": "공유 피험자 decoder와 개인/집단 지도 도구 및 명시적 개념 특징이 두 축의 분리를 구체화한다.",
+        "q3": "고정 타깃·관측 support·독립 주석에서 경쟁 설명을 구별한다. 가설을 실제 관측 가능한 cell의 일반화 대비로 제한하고 mapping 불확실성을 새 연구 차원으로 추가한다.",
+        "q4": "객체·관계의 조합을 표현하고 독립 시험군을 설계할 수 있으나 의미 동등성은 검수해야 한다.",
+        "q5": "개인 공간에 남고 공유 좌표에서 지워지는 재현 가능한 대비가 후보다.",
+        "q6": "실제 Round4 신규 연결: UC10-2 관측과 양립하는 자극 후보의 복수성이라는 구조를 자극 대신 신경 mapping의 복수성으로 옮긴다. 독립 calibration에서 비슷한 손실을 갖는 mapping family를 사전에 허용하고 이후 의미 일반화 결론이 모든 허용 mapping에서 유지되는지 본다.",
+        "q7": "Horikawa에서 관측 cell과 내용 조합을 확인해 참가자 내 비교부터 시작한다. 공통 자극이 있는 보유본에서만 개인/공유 mapping을 교차한다. NSD는 의미·시각 대조 후보이고 정서 주석을 가정하지 않는다. 다섯 자료의 공통 ontology·참가자·자극을 가정해 pooling하지 않으며 Mind Captioning은 실제 대응이 확인되면 설명 출처 비교에만 연결한다.",
+        "q8": "허용 mapping에 따라 결론 방향이 바뀌면 mapping에 강건한 조합 실패 가설은 약화된다. 자극-only 성공·calibration 회복이면 언어표현 결손 귀속을 철회한다. 충분한 교차 cell이 없으면 참가자 내 의미 대비만 검정한다."
+      },
+      "status": "Round4 실제 비판 응답 후 수정; E3; 연구 제안과 실행 계획이며 분석 미실행",
+      "revision_history": [
+        {
+          "round": "Round4",
+          "critique_ids": [
+            "R3-05-C10-05",
+            "R3-09-C10-05"
+          ],
+          "previous_values": {
+            "title": "새로운 의미 조합과 새로운 사람을 구분한 신경 일반화",
+            "research_question": "의미상 새로운 객체–사건 조합에서 정서 관련 신경 대비가 전이되지 않는 이유는 언어표현의 조합 실패인가, 개인 신경 좌표 정렬의 실패인가?",
+            "main_hypothesis": "내용 조합 교체와 참가자 정렬 교체의 효과가 분리되어 특정 의미 관계의 전이 실패가 좌표 정렬 변경 뒤에도 남는다.",
+            "alternative": "전이 실패는 내용 중복·분포 이동·주석 척도·개인 신뢰도·공간 좌표 차이로 충분히 설명된다.",
+            "measurable_contrast": "내용 일반화(새 ID/새 관계조합/새 내용) × 참가자 내/새 참가자 × 개인/공유 공간 비교; 정렬·개념 선택·규제는 훈련에 제한하고 시험 주석으로 조합을 선택하지 않는다.",
+            "falsification": "좌표 정렬·신뢰도를 맞추면 의미 조합 차이가 사라질 경우 의미 특이 실패 설명 약화. ID 분할에서만 이득이면 조합 일반화 주장을 기각.",
+            "baseline": "내용 fingerprint 그룹 분할; 객체 평균·관계 그래프; 참가자 내 ridge; 단순 정렬; 동일 유효 자료량·차원 기준.",
+            "dataset_plan": "Horikawa에서 내용 그룹 대비를 우선 구성하고 NSD는 의미/시각 일반화의 대조 후보로 사용. 다섯 보유 자료를 공통 자극·같은 주석으로 가정하지 않고 각 자료 내 대비를 먼저 검정한다. Mind Captioning의 자극·설명 대응은 실제 확인되는 경우에만 의미 연결로 활용.",
+            "what_is_new": "단순 교차자료 성능 대신 의미 조합과 신경 좌표의 두 일반화 축을 교차해 실패의 원인을 분리한다.",
+            "missing_conditions": [
+              "실제 자극 내용 중복·관계 조합의 지원 범위",
+              "참가자별 반복·신뢰도",
+              "정렬 학습의 독립 데이터",
+              "자료 간 주석 대상·척도·집계 수준 및 공통 의미의 타당성"
+            ],
+            "conceptual_signature": {
+              "관측대상": "새 내용·새 참가자의 신경 대비 재현",
+              "조작": "의미 조합과 신경 좌표의 일반화 범위",
+              "경쟁설명": "조합표현 실패 대 좌표·측정 실패"
+            },
+            "source_papers": [
+              "P015",
+              "P062",
+              "P083",
+              "P079"
+            ],
+            "closest_prior_ids": [
+              "P015",
+              "P062"
+            ]
+          },
+          "changes": [
+            "zero-shot anatomy-only, 평가 내용과 독립인 calibration k-shot, 피험자 내 기준을 분리하고 예산을 맞춘다.",
+            "새 ID·새 관계조합·새 성분을 구분하고 실제 참가자×자극 관측 cell만 사용한다. 없는 cell을 예측으로 채워 검정하지 않는다.",
+            "같은 시험 자극의 자극-only 관계 판별을 추가해 표현·신경 mapping·측정의 세 층을 구분한다.",
+            "UC10-2로 단일 최선 정렬 대신 독립 calibration에서 허용된 복수 mapping에 걸쳐 유지되는 결론을 평가하도록 확장한다."
+          ],
+          "remaining_disagreement": [
+            "정렬 뒤 남은 실패를 곧 언어 조합 결손으로 특정한다는 원 표현을 철회한다.",
+            "Agent09는 개념 유지, Agent05는 calibration 명세 수정을 요구했다. 개념은 유지하지만 단일 mapping 귀속을 피하도록 실질 수정한다.",
+            "측정 불변성이 충분하지 않으면 의미/좌표만으로 원인을 완전히 분해할 수 없다는 이견을 남긴다."
+          ]
+        }
+      ],
+      "reverse_search_query_en": "compositional semantic generalization cross subject brain alignment calibration mapping ambiguity affect",
+      "research_role": "과학RQ후보",
+      "shortlist_recommendation": {
+        "recommend": true,
+        "reason": "단일 최선 정렬에 따른 설명 귀속을 여러 허용 mapping의 안정성 문제로 바꾸며 음성 결과도 해석 가능해 자기 최상위 후보로 제안한다."
+      },
+      "evaluation": {
+        "novelty": {
+          "score": 3,
+          "reason": "허용 mapping별 결론 안정성은 기존 전이 비교를 확장한다.",
+          "uncertainty": "부분 식별·정렬 문헌 중복 미확인",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "neuro_importance": {
+          "score": 4,
+          "reason": "신경 일반화 실패의 표현·좌표·측정 설명을 좁힌다.",
+          "uncertainty": "완전 인과 분해 불가",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "ai_necessity": {
+          "score": 3,
+          "reason": "복수 mapping과 개념 모델이 유용하지만 단순 정렬도 핵심 기준이다.",
+          "uncertainty": "대형 AI 필수 아님",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "data_feasibility": {
+          "score": 3,
+          "reason": "참가자 내 축소안으로 시작할 수 있다.",
+          "uncertainty": "교차 cell과 calibration 자료 미확인",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "rigor": {
+          "score": 4,
+          "reason": "test와 독립된 mapping 허용집합·고정 평가를 정의했다.",
+          "uncertainty": "허용오차와 후보 family 의존",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "falsifiability": {
+          "score": 4,
+          "reason": "mapping 간 방향 불일치와 calibration 회복이 반증이다.",
+          "uncertainty": "허용집합 coverage 한계",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "interpretability": {
+          "score": 4,
+          "reason": "원인 확정 대신 양립 가능한 설명의 범위를 보고한다.",
+          "uncertainty": "측정 불변성 미확인",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "generalization": {
+          "score": 4,
+          "reason": "새 성분·관계조합·참가자를 명시적으로 분리한다.",
+          "uncertainty": "보유본의 support가 불완전할 수 있음",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "technical_feasibility": {
+          "score": 3,
+          "reason": "여러 소형 mapping의 비교는 가능하나 계산량이 늘어난다.",
+          "uncertainty": "개인 자료형·정렬 도구 접근 미확인",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        },
+        "exploration_value": {
+          "score": 4,
+          "reason": "일반화 실패의 과잉 신경 해석을 줄이는 새로운 질문이다.",
+          "uncertainty": "최초성 미확정",
+          "source_papers": [
+            "P015",
+            "P062",
+            "P083",
+            "P079",
+            "P076",
+            "P098",
+            "P100"
+          ]
+        }
+      },
+      "reverse_search_record": {
+        "query": "compositional semantic generalization cross subject brain alignment calibration mapping ambiguity affect",
+        "method": "기존 canonical 제목에 영어 토큰2개 이상 포함 여부로 로컬 역대조; 근접 ID 직접 대조 병행",
+        "local_hits": [
+          "P001",
+          "P009",
+          "P012",
+          "P023",
+          "P087"
+        ],
+        "closest_prior_ids": [
+          "P015",
+          "P062",
+          "P076",
+          "P100"
+        ],
+        "external_search_performed": false,
+        "interpretation": "로컬 불일치 또는 적은 결과는 선행연구 부재의 증거가 아님; 외부 query는 후속 실행용"
+      }
+    }
+  ],
+  "limitations": [
+    "본 산출물은 실제 Agent05·09의 비판10개를 읽고 후보5개에 응답한 Round4다. 두 의견의 차이와 미해결 해석을 보존했다. Round5 완료는 주장하지 않는다.",
+    "후보5개 필수필드를 보존했고 평가10항목과 영어 역검색어를 추가했다. 새 외부 웹 검색은 수행하지 않았다. 실제 실행한 검색은 로컬 canonical 제목 토큰 매칭과 근접 문헌 역대조이며 세계 최초를 확정하지 않는다.",
+    "UC10-1·UC10-2의 원문 근거는 기존 catalog의 본문/코드 범위를 계승한다. 새 신경 연결과 적응 주석·허용 mapping 설계는 E3이며 실행하지 않았다.",
+    "최상위 자기 추천은 C10-02·C10-05 두 개다. C10-04는 관측–prior 가족의 방법후보로 분리해 별도 최고위 연구 수를 늘리지 않는다. 점수는 자동 가중합이 아니다.",
+    "보유5종은 사용자 진술로 반영한다. Mind Captioning의 식별자·주석·입출력·기억/심상 과제는 추정하지 않으며 스키마 확인은 실제 분석 조건으로 남긴다.",
+    "모델·뇌 분석·신규 주석·생성 실험·새 인간 측정은 수행하지 않았다. 같은 뇌→캡션→같은 뇌의 순환, 동일 주석의 선택/평가 재사용을 금지한다.",
+    "자기 round04_revision.json/md만 작성했으며 공유/Git/상대 파일은 수정하지 않았다."
+  ]
+}

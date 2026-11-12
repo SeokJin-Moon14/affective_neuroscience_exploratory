@@ -1,0 +1,492 @@
+# Agent02 Round4 — 실제 비판 응답과 수정 제안
+
+2026-11-12. 5후보 모두 실제 두 비판에 응답했다. C02-02의 동시 결합 확증은 보류하고 방법 모듈을 남긴다. 과학 후보 4개 가운데 C02-01과 C02-04를 상위 검토에 추천한다.
+
+## 실제 비판 응답
+
+### C02-01
+
+비판 ID: R3-01-C02-01, R3-09-C02-01
+
+수용: 다중 독립 내용 metric과 matched pseudo-boundary; 주석자 split/불확실성 재표집; 비정서 semantic 경계와 길이·motion 매칭; 원안의 모호한 국소 굽음 주장을 철회하고 독립 경계 초과거리라는 제한된 표적을 도입했다. 실제 검증 경로 없이 곡률을 산출하지 않는다.
+
+남은 이견: 거리 증분으로 범위를 낮추는 데 동의한다. 향후 검증된 경로와 충분한 실제 관측이 있으면 곡률 질문을 별도 후보로 검토할 수 있지만 현재 결과에 포함하지 않는다.
+
+판정: 과학RQ후보: 수정 유지: E3 조건부 경계 대비; 실제 분석 미실행
+
+이유: 분류 가능성, 거리 증가, 곡률을 동일시하지 않는다. 경계 추가효과의 부재는 해당 범위의 연속 설명 충분성을 뜻하며 범주 존재를 반박하지 않는다.
+
+### C02-02
+
+비판 ID: R3-01-C02-02, R3-09-C02-02
+
+수용: 주석자 혼합+평정창+HRF의 세 층 관측모형; 단서 수·강도와 감각 포화의 nonlinear additive; 독립 코더의 단서 공존·교대 표시; 혼합 범주의 동시 결합이라는 원래 확증 주장을 보류하고, 주석자 집계와 시간집계 두 층을 명시한 관측 조건 연구로 범위를 변경했다.
+
+남은 이견: 과학 확증 보류에 동의하지만 평균 혼합 후보발굴·관측조건 방법연구는 기각하지 않는다. 개인의 정서 동시성 질문은 연구범위로 확장하지 않는다.
+
+판정: 보류: 동시 결합 과학 확증 보류; 관측·주석 식별성 방법 모듈 유지; 실제 분석 미실행
+
+이유: 여러 주석자의 두 범주 평균이 함께 높다는 사실은 단서 공존도 개인의 동시적 정서도 보증하지 않는다. 해당 인과·개인 상태 주장은 제거한다.
+
+### C02-03
+
+비판 ID: R3-01-C02-03, R3-09-C02-03
+
+수용: 공유 rank1 대 직교 rank1 잔차 모의대조; 모든 내용 특징의 joint encoder; 고정 방향의 교차모형 대비전이와 principal angles; 원안의 최소rank 하한을 삭제했다. 비지도 요인 식별의 반례 구조를 가져와 동일 기능적 대비의 외부 전이라는 별도 추정대상으로 바꿨다.
+
+남은 이견: 두 비판자의 직교 rank1 반례를 전적으로 수용한다. 기능적 대비 전이도 보편 의미 밖 성분이나 수학적 공통공간 차원의 증거는 아니다.
+
+판정: 과학RQ후보: 중대한 정의 수정 후 유지; 공통공간 하한·순수 정서 성분 주장은 철회
+
+이유: rank(A)=rank(B)=1이어도 직교한 A·B의 공통공간은 0이다. min rank>0을 공통 차원·보편 내용 밖 차원의 하한으로 부르는 주장을 철회한다.
+
+### C02-04
+
+비판 ID: R3-01-C02-04, R3-09-C02-04
+
+수용: 독립 HRF calibration; 정서차이×일반 사건차이 교차; 같은 종점의 반복노출·순서 counterbalance; 누적 예측오차와 상태모형의 관측후 동등성 검사; 동일 종점 경로라는 원리를 유지하되 정서/일반 사건 경로를 교차하고 상태–오차 관측 등가성을 명시했다. 소멸 곡선만으로 기전을 구별한다는 해석을 낮췄다.
+
+남은 이견: 일반 사건/정서 경로가 완전히 독립 조작 가능한지는 미확인이다. 가능한 주석 차원에서 교차하고 효과는 자극경로 개입에 한정하며 상태변수 인과성을 주장하지 않는다.
+
+판정: 과학RQ후보: 수정 유지: Discovery 후보; 동일종점 실측 미확인 시 새 측정 필요
+
+이유: 오래 남는 차이만으로 정서 상태나 attractor를 주장하지 않는다. 상태와 오차 모형이 같은 관측을 예측하면 그 데이터로 둘을 식별하지 못한다.
+
+### C02-05
+
+비판 ID: R3-01-C02-05, R3-09-C02-05
+
+수용: content-only 및 조건부 brain 교환; 동일 지지집합 내 matched 교환과 support 밖 교환 분리; seed별 예측함수 동등성과 expert permutation-invariant 요약; Round2의 무조건 gate 교환을 핵심근거에서 내리고 조건부 검정의 국소 교환 구조를 수입해 gate의 라벨 우회와 실제 뇌 정보의 필요성을 분리한다.
+
+남은 이견: 내용·정서 범위를 맞추라는 비판은 overlap 확인에 수용하지만 정확한 결과라벨을 조건으로 뇌를 교환하면 관심 brain–label 관계가 보존되어 null이 약해진다. 교환은 사전정의 내용·SNR 조건으로 제한하고 결과라벨 균형은 평가표본 수준에서 다룬다. 고정 중복과 조건부 접근의 공존을 인정한다.
+
+판정: 과학RQ후보: 수정 유지: 조건부 예측 접근성에 한정; 생물학적 routing 주장은 제외
+
+이유: gate 우위나 임의 gate 교환 손실이 신경 routing 증거라는 주장을 철회한다. 고정 중복성과 조건부 판독은 공존할 수 있으며 생물학적 양자택일이 아니다.
+
+## 새 분야 연결
+
+### UC02-01 — 표현학습의 식별성 이론·비선형 ICA
+
+**original_computational_goal:** P053은 가정 없는 분리표현의 비유일성을, P055는 보조변수와 명시적 분포·혼합 가정 아래 식별 조건을 연구한다.
+
+**imported_structure:** 좌표 수가 남는 것과 같은 요인이 남는 것을 구분하고, 복수 조건화 설명 아래 동일 외부 대비의 기능적 전이라는 과잉 제약을 둔다.
+
+**new_neural_question:** 내용모형별 잔차 rank가 아니라 같은 정서 관련 neural contrast가 공통 좌표에서 교차 설명에 살아남는가?
+
+**why_not_same_as_round2:** Round2의 generative inverse 후보집합을 반복하지 않는다. 서로 직교한 양의 rank라는 반례로 원 하한 주장을 철회하고 고정 방향의 전이행렬을 새 추정량으로 삼는다.
+
+**candidate_ids:** C02-03
+
+**source_papers:** P053; P055; P001; P007
+
+**assumptions:** 신경 좌표 고정·평가 중 정렬 금지; 독립 정서 대비와 조건화 모델의 사전정의; 식별 정리의 fMRI 적용은 주장하지 않음
+
+**discriminating_test:** 공유 rank1/직교 rank1 모의대조와 실제 cross-fitted 방향전이를 비교하고 joint content encoder로 남는 대비를 평가한다.
+
+**failure_interpretation:** rank는 남고 대비전이는 없으면 내용모형별 잔차의 수와 동일 정보는 별개다. 이론적 요인 부재나 모든 의미 밖 차원 0을 뜻하지 않는다.
+
+**evidence_scope:** Agent07 원보고서의 P053/P055 본문 확인 범위를 읽었으며 본 Agent의 새 원문 열람은 아니다. 신경 전이는 E3.
+
+### UC02-02 — 비모수 조건부독립 검정과 국소 순열
+
+**original_computational_goal:** P102는 조건부 mutual information의 추정과 국소 permutation을 이용한 검정 calibration을 다룬다. 고차원 조건집합과 표본수 제약이 있다.
+
+**imported_structure:** 무조건 교란 대신 사전정의 내용·SNR 지지 안에서 신경 입력의 조건부 관계만 깨는 null을 만들어 라벨 우회와 실제 brain 경로를 구별한다.
+
+**new_neural_question:** 조건부 지역 readout의 이득은 C가 주어졌을 때 신경 패턴 B와 독립 정서주석 A의 추가 관계를 필요로 하는가?
+
+**why_not_same_as_round2:** Round2는 V-MoE의 gate 구조를 수입했다. 이번에는 통계 검정의 교환가능성 구조를 가져와 gate 성능이 content→A 우회인지 진짜 B 의존인지 반박하며 A를 조건으로 고정하지 않는 이유까지 명시한다.
+
+**candidate_ids:** C02-05
+
+**source_papers:** P102; P093; P005
+
+**assumptions:** B|C의 근사 교환·support가 사전 calibration되어야 함; run·참가자 의존성을 보존하고 train/test 분리; 정확한 CMI나 조건부독립 검정이 검증되었다고 주장하지 않음
+
+**discriminating_test:** real/조건부 교환 brain×static/conditional readout의 점수 차분과 content-only를 비교한다. 공통원인만 있는 모의자료에서 거짓 양성률을 확인하고 외삽 교환의 손실과 분리한다.
+
+**failure_interpretation:** 교환 뒤 이득이 유지되면 gate가 실제 신경정보를 필요로 하지 않는 설명을 지지한다. null calibration 실패면 생물학적 해석이 아니라 방법 미식별로 보류한다.
+
+**evidence_scope:** Agent12 원보고서의 P102 §1–2·§5 검토와 catalog를 읽은 범위이다. 조건부 neural exchange 설계는 E3이고 실행하지 않았다.
+
+## C02-01 — 내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리
+
+연구 역할: 과학RQ후보. 상태: 수정 유지: E3 조건부 경계 대비; 실제 분석 미실행
+
+**research_question:** 독립 주석으로 정의한 정서 범주 경계를 가로지르는 자극쌍은 같은 내용거리·강도·밀도의 경계 내 쌍 및 pseudo-boundary 쌍보다 더 큰 신경 거리를 갖는가?
+
+**neural_target:** 독립 반복으로 추정한 crossvalidated neural distance의 경계 초과량; 곡률·방향변화는 일차 추정대상이 아님
+
+**external_principle:** Agent09의 타당성 제약 편집·모형 구별 설계
+
+**model_application:** 독립 내용 metric들을 개발 자료에서 고정한 후 matched pair와 nonlinear smooth baseline을 구성하고, 주석자 split으로 정한 경계의 초과거리를 사건 가족 보류로 평가한다.
+
+**scientific_question:** 범주를 판독할 수 있는 신경표상에서 범주 경계의 추가 분화가 연속 내용거리보다 필요한가?
+
+**assumption_challenge:** 분류 가능성, 거리 증가, 곡률을 동일시하지 않는다. 경계 추가효과의 부재는 해당 범위의 연속 설명 충분성을 뜻하며 범주 존재를 반박하지 않는다.
+
+**main_hypothesis:** 내용·주석 불확실성을 맞춘 경계쌍의 초과 crossvalidated distance가 비정서 semantic 경계 및 matched pseudo-boundary를 넘어 독립 사건 가족에서 재현된다.
+
+**alternative:** 내용 metric의 누락·경로 선택·motion·길이·밀도·주석자의 경계 불확실성이 초과거리를 만든다.
+
+**measurable_contrast:** 훈련 fold에서 fit한 smooth content distance가 예측한 신경거리 대비 잔여거리의 평균을 경계쌍과 matched pseudo-boundary쌍 사이에서 차분한다. 비교쌍 매칭과 경계 정의는 test 신경값을 보지 않고 고정하며 공유 자극쌍 의존성은 family 단위 재표집으로 처리한다.
+
+**falsification:** 원뇌의 정서 대비는 신뢰 가능하지만 경계 초과량이 사전정의 최소효과와 동등한 0 범위이면 해당 경계의 추가 분화를 지지하지 않는다. metric·주석 split·내용군에 따라 소실되면 조건 의존 결과로 보고하고 범주 고유기하를 기각한다.
+
+**baseline:** valence–arousal 및 category 선형 모형; 시각·의미 smooth kernel/스플라인; 주석 경계 무작위화와 동일 밀도 매칭; 원본/무편집 왕복/목표/동강도 비목표 편집; 다중 독립 내용 metric과 matched pseudo-boundary; 주석자 split/불확실성 재표집; 비정서 semantic 경계와 길이·motion 매칭
+
+**dataset_plan:** 기존 관측: Horikawa에서 실제 category/dimension 주석과 신경 자극 ID를 확인한 뒤 자연 자극쌍만 분석한다. NSD는 내용 거리 보정용이며 정서 주석 존재를 전제하지 않는다. / 후속 확증: 자연 자료의 경계 밀도가 부족하면 독립 주석으로 검증된 편집 가족과 새 뇌 측정이 필요하다. / round4_boundary: 기존 자연 자극쌍 분석과 새 편집 경로의 새 BOLD를 분리한다. 새 자극 무작위 배정은 측정된 자극변경 효과를 추정하며 순수 정서 요인 또는 신경 회로 인과를 입증하지 않는다.
+
+**missing_conditions:** 자극별 주석 분포·반복 신뢰도; 경계 부근 충분한 독립 자극 가족; 편집 비목표 변화의 독립 검사; 새 편집 자극 BOLD; 주석자 수준 데이터가 없으면 독립 새 경계주석 필요; 자극쌍 비독립성·metric 선택의 훈련 fold 격리; 생성 경로의 의미보존은 사전정의 측정차원에 한정
+
+**source_papers:** P001; P008; P070; P077; P100
+
+**closest_prior_ids:** P001; P008
+
+**what_is_new:** 원안의 모호한 국소 굽음 주장을 철회하고 독립 경계 초과거리라는 제한된 표적을 도입했다. 실제 검증 경로 없이 곡률을 산출하지 않는다.
+
+**novelty_risk:** categorical geometry 선행과 중복 가능성이 높다. 국소 거리초과의 신규성은 미확정이며 곡률 주장은 제거했다.
+
+**conceptual_signature:** 관측대상: 독립 반복으로 추정한 crossvalidated neural distance의 경계 초과량; 곡률·방향변화는 일차 추정대상이 아님 / 조작: 독립 경계/내용매칭 pseudo-boundary / 경쟁설명: 내용 metric의 누락·경로 선택·motion·길이·밀도·주석자의 경계 불확실성이 초과거리를 만든다.
+
+**shortlist_recommendation:** recommend: True / reason: 기존 실제 자극·BOLD에서 시작할 수 있고 범주 판독과 경계 분화를 분리하는 명확한 대비가 있다. AI 필요성은 제한적이므로 과장하지 않는다.
+
+### 여덟 질문
+
+1. **왜 아직 시도되지 않았는가?** 미시도는 미확인이다. 경계·metric·밀도의 독립 통제가 어려웠다.
+2. **최근에야 가능해진 것은 무엇인가?** 복수 내용모형과 독립 편집 경로가 통제 후보를 늘렸으나 AI가 필수는 아니다.
+3. **기존 가정 중 무엇이 틀렸을 수 있는가?** 분류가능성·거리초과·곡률은 다르다.
+4. **AI가 기존 뇌과학 모델보다 잘 포착할 수 있는 것은 무엇인가?** 복잡한 내용 거리를 더 강한 경쟁 baseline으로 제공한다.
+5. **뇌가 표상하지만 AI가 놓칠 수 있는 것은 무엇인가?** 내용 거리로 예측되지 않는 신뢰 가능한 경계 대비가 후보다.
+6. **다른 분야 방법은 무엇을 밝히는가?** 통계 기하의 불확실성 추론을 경계 초과량에 전이한다.
+7. **기존 자료의 새 용도는 무엇인가?** 자연 자극을 독립 범주경계와 pseudo-boundary의 매칭 풀로 쓴다.
+8. **신경 계산 이해가 어떻게 달라지는가?** 해당 범주경계의 추가 분화가 필요한지를 제한적으로 판단한다.
+
+### 평가
+
+| 항목 | 점수 | 이유 | 불확실성 |
+|---|---:|---|---|
+| novelty | 3 | 범주 판독과 경계 초과거리의 구분은 유익하나 categorical geometry 선행과 겹칠 수 있다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| neuro_importance | 4 | 연속 내용 표상만으로 정서 범주 분화를 설명할 수 있는지 검정한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| ai_necessity | 2 | 새 AI는 강한 내용 baseline에 유용하지만 RSA·matching만으로 핵심검정이 가능하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| data_feasibility | 3 | Horikawa 자연쌍으로 시작할 수 있으나 독립 경계주석·반복·밀도가 미확인이다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| rigor | 4 | 경계·metric·선택의 독립성과 family 재표집을 지정했다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| falsifiability | 4 | 유효 원뇌 대비가 있으나 경계초과가 동등한 0이면 제한된 가설을 반박한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| interpretability | 3 | 거리 초과는 명확하지만 누락 내용과의 분리는 불완전하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| generalization | 4 | 사건 가족·내용 metric 보류로 전이를 요구한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| technical_feasibility | 3 | 소규모 거리분석은 가능하나 독립 신뢰도 추정과 강한 내용모형이 필요하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+| exploration_value | 4 | 범주 대 연속 설명의 좁은 판별점이 있다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 일차 표적은 관찰적 거리이다. |
+
+**영어 역검색:** emotion category boundary neural distance continuous semantic content fMRI representational geometry
+
+실제 요청: https://api.openalex.org/works?search=emotion+category+boundary+neural+distance+continuous+semantic+content+fMRI+representational+geometry&per-page=2
+
+실패: <urlopen error Tunnel connection failed: 403 Forbidden>
+
+## C02-02 — 정서 관련 단서 공존과 교대를 구별할 수 있는 관측 조건
+
+연구 역할: 보류. 상태: 동시 결합 과학 확증 보류; 관측·주석 식별성 방법 모듈 유지; 실제 분석 미실행
+
+**research_question:** 독립 코더가 확인한 자극 단서 공존과 같은 평균 단서량의 시간 교대는 평정 집계·HRF 이후 실제로 구별 가능한 신경 대비를 예측하는가?
+
+**neural_target:** 정서 관련 두 단서의 동시 제시 대비와 교대 제시 대비의 사전 예측차; 기존 평균 혼합 주석은 후보 선별 변수일 뿐 동시성 표적이 아님
+
+**external_principle:** Agent11의 관측 연산자 이후 식별성; Agent09의 시간 편집 타당성
+
+**model_application:** 단서시간→주석자별 지연·평정창→집계와 단서시간→감각비선형·HRF→BOLD의 별도 관측모형을 구성해 후보별 판별가능 효과를 계산하는 계획이다.
+
+**scientific_question:** 현재 측정에서 정서 관련 단서 공존의 비가산성을 시간·평정자 혼합과 구별할 수 있는가?
+
+**assumption_challenge:** 여러 주석자의 두 범주 평균이 함께 높다는 사실은 단서 공존도 개인의 동시적 정서도 보증하지 않는다. 해당 인과·개인 상태 주장은 제거한다.
+
+**main_hypothesis:** 독립 코더가 확인한 공존/교대 조건 중 일부에서 평정연산자와 HRF 후 예측차가 관측 신뢰도 대비 사전정의한 최소효과를 넘는다. 이는 아직 실행하지 않은 식별성 가설이다.
+
+**alternative:** 주석 smoothing·평정자 혼합·감각 포화·HRF가 두 조건을 관측상 구별되지 않게 만든다.
+
+**measurable_contrast:** 고정 평균 단서량에서 교대속도·공존길이에 따른 관측모형 예측차를 독립 신뢰도 범위와 비교한다. 효과가 구별 가능한 조건에 한해 실제 BOLD의 nonlinear-additive 대비를 후속 추정한다.
+
+**falsification:** 관측 후 모형 예측이 사전정의 동등성 범위에 들거나 단서 공존의 독립 주석이 없으면 신경 결합 확증은 보류한다. 판별 가능한 실측에서도 감각포화+교대 설명이 충분하면 추가 결합항의 필요성을 낮춘다.
+
+**baseline:** 범주별 nonlinear additive 모델; 교대 상태+HRF convolution; 사건 수·전환율·motion 모델; 차원·파라미터·정규화를 맞춘 joint 모델; 주석자 혼합+평정창+HRF의 세 층 관측모형; 단서 수·강도와 감각 포화의 nonlinear additive; 독립 코더의 단서 공존·교대 표시
+
+**dataset_plan:** 발견: Horikawa는 영상 평균의 혼합 후보를 찾는 데만 사용한다. 시간 주석이 없으면 동시성을 주장하지 않는다. / 판별: Emo-FilM 보유본에서 실제 시간별 독립 주석과 BOLD 정렬이 있는 경우 검정한다. Spacetop의 clip 평정을 연속 주석으로 대체하지 않는다. / 후속: 시간 집계 후 판별력이 부족하면 새 자극·새 측정 또는 더 높은 시간해상도 자료가 필요하다. / round4_boundary: Horikawa 평균 혼합은 발견에만 사용한다. Emo-FilM의 1Hz consensus가 있더라도 동시성으로 쓰지 않고 문항별 평정창·평정자와 독립 코딩을 확인한다. 자료에 구별 조건이 없으면 새 주석·새 자극 제시가 필요하다.
+
+**missing_conditions:** 시간별 범주 주석·주석자 분포; TR/HRF/시행 길이; 동시/교대 조건의 내용 매칭; 관측상 구분 가능성 시뮬레이션; 문항별 실제 평정자 집합·평정창·지연; 집계주석과 별개의 단서 공존 코딩; 동시/교대 조건이 실제로 제시되었는지와 관측후 분리감도
+
+**source_papers:** P001; P008; P073; P089; P100
+
+**closest_prior_ids:** P001; P008
+
+**what_is_new:** 혼합 범주의 동시 결합이라는 원래 확증 주장을 보류하고, 주석자 집계와 시간집계 두 층을 명시한 관측 조건 연구로 범위를 변경했다.
+
+**novelty_risk:** 집계 민감도 분석 자체의 신규성은 낮다. 단서 공존의 관측상 판별이 확보되기 전에는 독립 과학 발견으로 세지 않는다.
+
+**conceptual_signature:** 관측대상: 정서 관련 두 단서의 동시 제시 대비와 교대 제시 대비의 사전 예측차; 기존 평균 혼합 주석은 후보 선별 변수일 뿐 동시성 표적이 아님 / 조작: 공존·교대시간 및 평정/HRF 관측 / 경쟁설명: 주석 smoothing·평정자 혼합·감각 포화·HRF가 두 조건을 관측상 구별되지 않게 만든다.
+
+**shortlist_recommendation:** recommend: False / reason: 단서 공존 측정과 관측 후 예측분리 여부가 미확인이며 현재는 방법 설계가 일차 산출물이다.
+
+### 여덟 질문
+
+1. **왜 아직 시도되지 않았는가?** 집계 주석과 HRF 때문에 동시/교대가 관측상 같아질 수 있었다.
+2. **최근에야 가능해진 것은 무엇인가?** 원시 타이밍·주석자 정보를 합친 관측모형 비교를 구체화할 수 있다.
+3. **기존 가정 중 무엇이 틀렸을 수 있는가?** 평균 범주중첩이 단서공존이나 개인 동시상태라는 가정이다.
+4. **AI가 기존 뇌과학 모델보다 잘 포착할 수 있는 것은 무엇인가?** 영상 단서의 시간배치를 체계적으로 모사하지만 동시성을 확인하지는 않는다.
+5. **뇌가 표상하지만 AI가 놓칠 수 있는 것은 무엇인가?** 관측상 구별될 때만 추가 비가산 신경대비가 후보다.
+6. **다른 분야 방법은 무엇을 밝히는가?** 측정 연산자 설계로 어떤 실험에서 원 질문을 검증할 수 있는지 묻는다.
+7. **기존 자료의 새 용도는 무엇인가?** 기존 혼합 평균을 후보 선별에만 쓰고 시간주석 provenance를 검사한다.
+8. **신경 계산 이해가 어떻게 달라지는가?** 현재는 계산 발견보다 식별 가능한 실험조건을 제공하는 방법 기여다.
+
+### 평가
+
+| 항목 | 점수 | 이유 | 불확실성 |
+|---|---:|---|---|
+| novelty | 3 | 시간집계와 주석자집계를 구별하지만 정서 혼합 논쟁과 중복 가능성이 있다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| neuro_importance | 4 | 공존의 추가 결합 필요성이 확인되면 의미 있으나 현재 확증은 보류다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| ai_necessity | 2 | 관측모형 시뮬레이션은 고급 AI 없이도 가능하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| data_feasibility | 2 | 동시 단서 코딩·실제 공존/교대 조건의 보유본 존재가 미확인이다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| rigor | 4 | 평정자·시간창·HRF를 분리하고 관측 등가시 중단한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| falsifiability | 4 | 예측차가 신뢰도보다 작은 조건은 검정불가로 명확히 분류한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| interpretability | 3 | 식별실패는 해석 가능하지만 잠재 동시 계산 자체는 확인되지 않는다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| generalization | 2 | 특정 시간창·단서 종류·관측 설정에 묶인다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| technical_feasibility | 3 | 관측 시뮬레이션은 가능하나 실제 HRF·주석 provenance가 필요하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+| exploration_value | 3 | 더 큰 joint model을 적용하기 전에 불필요한 실험을 줄인다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 동시 결합 확증은 보류이다. |
+
+**영어 역검색:** emotional cue cooccurrence temporal alternation hemodynamic response annotation aggregation neural interaction
+
+실제 요청: https://api.openalex.org/works?search=emotional+cue+cooccurrence+temporal+alternation+hemodynamic+response+annotation+aggregation+neural+interaction&per-page=2
+
+실패: <urlopen error Tunnel connection failed: 403 Forbidden>
+
+## C02-03 — 서로 다른 내용 설명 뒤에도 같은 정서 관련 신경 대비가 전이되는가?
+
+연구 역할: 과학RQ후보. 상태: 중대한 정의 수정 후 유지; 공통공간 하한·순수 정서 성분 주장은 철회
+
+**research_question:** 사전정의 내용모형 A의 잔차에서 학습한 동일 신경 대비 방향은 다른 내용모형 B 및 결합 내용모형의 보류 신경잔차에서도 같은 독립 정서 대비를 예측하는가?
+
+**neural_target:** 동일 native neural coordinates에서 고정한 대비방향의 교차 내용모형·자극군 전이; 개별 잔차 rank는 별도 기술통계
+
+**external_principle:** Agent09의 관측 등가 집합·prior 교체를 내용모델 의존성 감사로 전이; Round4 UC02-01: 식별성 반례와 고정 대비의 교차모형 전이
+
+**model_application:** 각 내용 residualizer와 정서 대비 readout을 훈련 fold에서만 학습한다. A에서 고정한 방향을 B와 joint-content encoder의 held-out 잔차에 회전 없이 적용해 방향·효과 크기·예측손실을 평가한다.
+
+**scientific_question:** 내용조건화에 따라 잔차의 수가 남는다는 사실과 동일 정서 관련 정보가 남는다는 사실은 분리되는가?
+
+**assumption_challenge:** rank(A)=rank(B)=1이어도 직교한 A·B의 공통공간은 0이다. min rank>0을 공통 차원·보편 내용 밖 차원의 하한으로 부르는 주장을 철회한다.
+
+**main_hypothesis:** 일부 사전정의 독립 정서 대비의 readout이 여러 내용모형과 joint-content encoder 이후에도 같은 방향과 유의미한 예측 범위로 전이한다.
+
+**alternative:** 모델별 서로 다른 누락 내용이 다른 잔차를 남기며, 모델을 합치거나 방향을 고정하면 정서 대비 전이가 사라진다. 공통 누락 내용도 여전히 가능하다.
+
+**measurable_contrast:** 훈련 residualizer A에서 학습한 고정 w_A를 모든 held-out 잔차 r_B에 적용한 대비 효과와 예측점수 행렬을 구한다. 개별 rank, 고정 방향의 기능적 전이, joint encoder 뒤 대비를 분리 보고한다. principal angles는 보조 기하이며 동일 정보의 단독 증거가 아니다.
+
+**falsification:** 개별 rank가 양수여도 고정 방향의 교차모형 전이가 동등성 기준상 없으면 공통 대비 가설을 반박한다. joint-content encoder로 대비가 사라지면 각 모델의 불완전성 설명을 우선한다. 신뢰도가 부족하면 미식별로 남긴다.
+
+**baseline:** 공식 Horikawa visual object/semantic/category/dimension 기준; 복수 nonlinear 내용 모델; 모의 신호 주입으로 rank 복구·거짓양성 점검; 주석·신경 trial 교환 null; 공유 rank1 대 직교 rank1 잔차 모의대조; 모든 내용 특징의 joint encoder; 고정 방향의 교차모형 대비전이와 principal angles
+
+**dataset_plan:** 우선: Horikawa에서 자극·내용·주석·신경값을 정렬해 제한된 조건화 모델 집합을 비교한다. / 보조: NSD는 내용 표현의 지원 범위 확인에 사용할 수 있으나 정서 정답으로 쓰지 않는다. Mind Captioning은 정확한 자료 식별자와 텍스트 출처 확인 후 보조 의미 입력으로만 검토하며 같은 BOLD에서 생성한 캡션은 독립 통제가 아니다. / 외적평가: Emo-FilM에서 호환되는 주석 축이 확인되면 직접 라벨 합치기 대신 축별 별도 재현을 시도한다. / round4_boundary: 기존 보유자료의 공통 좌표·반복이 있으면 가능하다. rank 진단과 동일 대비 전이를 별도 보고하며 생성기는 필수 도구가 아니다.
+
+**missing_conditions:** 반복 또는 독립 신뢰도 추정; 내용군별 충분한 공통 지지집합; Mind Captioning의 ID·버전·텍스트 생성 출처; 전처리·rank 선택의 완전한 훈련 fold 제한; 공통 신경 좌표 및 평가 중 회전 금지; 대비 방향 선택과 모든 residualizer의 nested cross-fitting; 공통 누락 의미를 배제할 수 없다는 해석 경계
+
+**source_papers:** P001; P007; P071; P076; P053; P055; P051
+
+**closest_prior_ids:** P001; P007
+
+**what_is_new:** 원안의 최소rank 하한을 삭제했다. 비지도 요인 식별의 반례 구조를 가져와 동일 기능적 대비의 외부 전이라는 별도 추정대상으로 바꿨다.
+
+**novelty_risk:** 조건부 일반화·variance partitioning과 겹칠 수 있다. 고정 방향 전이는 보편적 공통공간 하한이나 순수 정서 요인의 식별이 아니다.
+
+**conceptual_signature:** 관측대상: 동일 native neural coordinates에서 고정한 대비방향의 교차 내용모형·자극군 전이; 개별 잔차 rank는 별도 기술통계 / 조작: 내용 residualizer 교체와 고정 대비 방향 전이 / 경쟁설명: 모델별 서로 다른 누락 내용이 다른 잔차를 남기며, 모델을 합치거나 방향을 고정하면 정서 대비 전이가 사라진다. 공통 누락 내용도 여전히 가능하다.
+
+**shortlist_recommendation:** recommend: False / reason: 실현 가능한 조건부 표상 연구지만 모든 내용모형이 공유하는 누락의 위험과 기존 variance partitioning 중복이 크다.
+
+### 여덟 질문
+
+1. **왜 아직 시도되지 않았는가?** 다른 모델의 잔차 차원이 같은 정보인지 검증하기 어려웠다. 미시도는 미확인이다.
+2. **최근에야 가능해진 것은 무엇인가?** 복수 강한 내용모형과 교차모형 held-out 평가가 가능하다.
+3. **기존 가정 중 무엇이 틀렸을 수 있는가?** min rank>0이 공통공간 차원>0이라는 주장은 잘못이다.
+4. **AI가 기존 뇌과학 모델보다 잘 포착할 수 있는 것은 무엇인가?** 복합 내용의 대립 설명을 강화할 수 있다.
+5. **뇌가 표상하지만 AI가 놓칠 수 있는 것은 무엇인가?** 모델들 전체에서 전이하는 동일 정서 대비가 제한된 후보다.
+6. **다른 분야 방법은 무엇을 밝히는가?** 요인 식별의 반례를 고정 대비방향의 과잉 검증으로 전이한다.
+7. **기존 자료의 새 용도는 무엇인가?** Horikawa의 여러 내용 특징을 순위 대신 같은 대비의 조건부 안정성 검정에 쓴다.
+8. **신경 계산 이해가 어떻게 달라지는가?** 조건화마다 다른 정보와 공통으로 접근 가능한 정보의 차이를 밝힌다.
+
+### 평가
+
+| 항목 | 점수 | 이유 | 불확실성 |
+|---|---:|---|---|
+| novelty | 3 | 잔차 차원에서 고정 대비 전이로 수정했지만 조건부 일반화 선행과 겹친다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| neuro_importance | 4 | 정서 관련 신경 대비가 내용통제 선택에 따라 바뀌는지 밝힌다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| ai_necessity | 3 | 복수 내용 AI는 강한 대립 설명을 제공하나 생성모형은 필수 아니다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| data_feasibility | 3 | 기존 보유자료의 공통 좌표·반복·내용지지가 있으면 가능하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| rigor | 4 | 직교 rank 반례와 joint encoder·고정 방향·cross-fitting을 요구한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| falsifiability | 4 | 개별 rank가 남아도 전이가 없으면 공통 대비 가설이 반박된다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| interpretability | 3 | 기능적 대비의 안정성까지는 명료하지만 순수 정서 원인은 아니다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| generalization | 4 | 내용모형·자극군·반복에 대한 전이를 직접 평가한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| technical_feasibility | 3 | 여러 residualizer와 nested CV가 필요하나 새 대규모 모델학습은 필수 아니다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+| exploration_value | 4 | 같은 차원 수와 같은 정보의 혼동을 교정한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 공통 누락 내용은 남는다. |
+
+**영어 역검색:** emotion neural contrast robustness semantic residualization shared subspace cross model generalization
+
+실제 요청: https://api.openalex.org/works?search=emotion+neural+contrast+robustness+semantic+residualization+shared+subspace+cross+model+generalization&per-page=2
+
+실패: <urlopen error Tunnel connection failed: 403 Forbidden>
+
+## C02-04 — 같은 종점의 정서 관련 경로 대비는 일반 사건 이력과 구별되는가?
+
+연구 역할: 과학RQ후보. 상태: 수정 유지: Discovery 후보; 동일종점 실측 미확인 시 새 측정 필요
+
+**research_question:** 같은 목표 영상에 이르는 선행 경로의 독립 정서 주석 차이가 일반 사건 내용차이·반복노출·HRF를 맞춘 뒤에도 목표구간 신경 패턴의 소멸 곡선을 바꾸는가?
+
+**neural_target:** 동일 목표구간에서 정서 경로 차이×일반 사건 차이×공통 tail 길이에 따른 신경 대비
+
+**external_principle:** Agent11의 상태–오차 분리와 Agent09의 판별 자극 선택
+
+**model_application:** 독립 자료로 상태·누적 오차·고정 convolution 모형을 fit하고 HRF 후 예측이 실제로 갈리는 경로만 개발 단계에서 선택한다. 동일목표의 실제 관측에서 예측을 비교하며 model reset은 별도 계산 조작으로 둔다.
+
+**scientific_question:** 장기 이력의 정서 관련 부분에 지속 상태 설명이 필요한가, 일반 사건 정보·적응·오차 누적으로 충분한가?
+
+**assumption_challenge:** 오래 남는 차이만으로 정서 상태나 attractor를 주장하지 않는다. 상태와 오차 모형이 같은 관측을 예측하면 그 데이터로 둘을 식별하지 못한다.
+
+**main_hypothesis:** 정서 주석 경로 차이가 일반 사건 경로 차이와 분리되어 같은 종점에서 재현되고, 관측상 구분 가능한 사전고정 모형 중 상태모형이 상대 예측에서 우세하다.
+
+**alternative:** 일반 기억·노출 적응·motion/cut·누적 오차·HRF 잔류가 전체 차이를 설명하거나 두 모형이 관측상 동등하다.
+
+**measurable_contrast:** 새 무작위 경로배정 또는 해당 조건이 실제 존재하는 자료에서 목표 영상은 고정하고 정서경로 차이와 일반사건 차이를 교차한다. 공통 tail 길이별 보류 neural contrast와 각 모형의 상대 예측점수를 평가하며 trial 순서·반복을 counterbalance한다.
+
+**falsification:** 일반 사건·HRF 대조로 정서경로 대비가 사라지면 정서 관련 지속 설명을 철회한다. 관측 후 상태·오차의 구분력이 부족하면 모형 판별을 보류한다. 충분한 대비가 없는 자연 매칭으로 동일종점 확증을 대체하지 않는다.
+
+**baseline:** 현재 내용+유연 HRF; 같은 입력 길이의 고정 temporal convolution; 과거전용 예측오차 모델; 상태 reset과 동일 문맥 길이 비재귀 모델; 독립 HRF calibration; 정서차이×일반 사건차이 교차; 같은 종점의 반복노출·순서 counterbalance; 누적 예측오차와 상태모형의 관측후 동등성 검사
+
+**dataset_plan:** 발견: Emo-FilM·Spacetop에서 실제 자극·타이밍·주석이 있을 때 자연 경로의 후보와 모형 불일치를 찾는다. / 엄격검정: 동일 목표 영상/서로 다른 선행 경로의 실측이 기존 보유본에 없다면 새 무작위 배정 자극 제시와 BOLD가 필요하다. Horikawa trial 평균을 연속 신경 시간자료로 나열하지 않는다. / round4_boundary: 기존 자연자료는 경로 후보·모형불일치 발굴만 수행한다. 동일종점 factorial 실측이 보유본에 없으면 새 측정이 확증 조건이다.
+
+**missing_conditions:** 동일 목표 구간의 실제 반복 조건; 연속 BOLD·시간 주석·run 경계; HRF 민감도와 모델 식별력 시뮬레이션; 모델 체크포인트·과거전용 입력 검증; 동일 목표 영상이 실제 두 경로에서 제시된 기록; 정서/일반 사건차이의 요인 지지와 독립 주석; 상태·오차 HRF후 예측차·최소검출효과 사전 평가
+
+**source_papers:** P008; P089; P090; P077; P100
+
+**closest_prior_ids:** P008; P089
+
+**what_is_new:** 동일 종점 경로라는 원리를 유지하되 정서/일반 사건 경로를 교차하고 상태–오차 관측 등가성을 명시했다. 소멸 곡선만으로 기전을 구별한다는 해석을 낮췄다.
+
+**novelty_risk:** 정서 맥락·일반 사건 기억·적응 선행과의 역대조가 필요하다. 지속 이력정보의 관찰과 특정 상태변수 기전은 다르다.
+
+**conceptual_signature:** 관측대상: 동일 목표구간에서 정서 경로 차이×일반 사건 차이×공통 tail 길이에 따른 신경 대비 / 조작: 정서/일반 사건 경로×공통 tail 길이 / 경쟁설명: 일반 기억·노출 적응·motion/cut·누적 오차·HRF 잔류가 전체 차이를 설명하거나 두 모형이 관측상 동등하다.
+
+**shortlist_recommendation:** recommend: True / reason: 일반 사건 이력과 정서 관련 이력을 같은 종점에서 구별하는 현상 중심 대비가 명확하다. 단기 파일럿은 모델 구별·설계 준비이며 실제 확증은 추가 측정 조건부다.
+
+### 여덟 질문
+
+1. **왜 아직 시도되지 않았는가?** 동일 종점과 서로 다른 정서/사건 경로의 실측을 확보하기 어렵다.
+2. **최근에야 가능해진 것은 무엇인가?** 명시적 상태·오차 변수로 실제 예측이 갈리는 자극을 설계할 수 있다.
+3. **기존 가정 중 무엇이 틀렸을 수 있는가?** 오래 남는 차이만으로 정서 지속상태를 추론하는 가정이다.
+4. **AI가 기존 뇌과학 모델보다 잘 포착할 수 있는 것은 무엇인가?** 긴 사건과 오차 누적을 경쟁 설명으로 표현한다.
+5. **뇌가 표상하지만 AI가 놓칠 수 있는 것은 무엇인가?** 일반 사건·HRF로 설명되지 않는 종점의 정서관련 경로대비가 후보다.
+6. **다른 분야 방법은 무엇을 밝히는가?** 시스템 식별의 관측 등가성 검사를 실험 설계에 적용한다.
+7. **기존 자료의 새 용도는 무엇인가?** 자연 영화는 엄격 동일종점 검정의 후보·불일치 개발 자료다.
+8. **신경 계산 이해가 어떻게 달라지는가?** 정서관련 경로 정보의 추가 설명 필요성을 좁히되 회로기전을 확정하지 않는다.
+
+### 평가
+
+| 항목 | 점수 | 이유 | 불확실성 |
+|---|---:|---|---|
+| novelty | 3 | 정서경로×일반 사건경로의 동일종점 비교는 좁지만 관련 맥락 연구 역검색이 필요하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| neuro_importance | 5 | 같은 현재 자극의 정서 관련 이력이 필요한지 직접 경쟁시킨다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| ai_necessity | 4 | 상태·오차의 예측분리와 자극선택에 계산모형이 핵심이다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| data_feasibility | 2 | 현재 보유본의 동일종점 요인 설계가 미확인이고 새 측정 가능성이 크다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| rigor | 4 | 독립모형·HRF·요인교차·순서균형과 모형등가 중단을 지정한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| falsifiability | 4 | 일반 사건 대조가 설명하면 정서 경로 추가효과를 기각한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| interpretability | 3 | 관찰적 경로정보는 해석 가능하나 특정 신경 상태변수는 식별되지 않는다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| generalization | 3 | 자극 가족·종점에 걸친 복제가 필요하며 모든 정서로 확장하지 않는다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| technical_feasibility | 2 | 새 영상조건과 신경측정의 비용이 크고 모델 호환도 미확인이다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+| exploration_value | 5 | 단순 성능순위에서 벗어난 판별 자극 설계 가치가 높다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 새 동일종점 실측이 필요할 수 있다. |
+
+**영어 역검색:** emotional context history identical stimuli neural persistence prediction error matched memory
+
+실제 요청: https://api.openalex.org/works?search=emotional+context+history+identical+stimuli+neural+persistence+prediction+error+matched+memory&per-page=2
+
+실패: <urlopen error Tunnel connection failed: 403 Forbidden>
+
+## C02-05 — 내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?
+
+연구 역할: 과학RQ후보. 상태: 수정 유지: 조건부 예측 접근성에 한정; 생물학적 routing 주장은 제외
+
+**research_question:** 새 내용군에서 나타나는 조건부 지역 readout의 정서 대비 이득은 내용으로 라벨을 직접 예측하는 경로를 넘어 실제 신경 패턴에 의존하는가?
+
+**neural_target:** 내용군 공통 지지 안에서 고정/조건부 readout의 실제/조건부 교환 뇌 입력에 따른 정서 대비 예측 차분
+
+**external_principle:** Agent11의 gate–content 분리와 expert permutation 불변 비교; Round4 UC02-02: 조건부 검정의 국소 교환과 지지집합
+
+**model_application:** 고정 가산·유연 additive·content-only·조건부 gate 모델을 같은 예산으로 비교한다. 독립 fold에서 내용/SNR 조건부 교환을 검증하고 실제 뇌를 요구하는 증분을 평가한다. gate 파라미터 대신 예측함수와 permutation-invariant 지역기여를 보고한다.
+
+**scientific_question:** 분산 정서 정보의 내용조건부 접근성이 존재하는가, 내용 라벨 상관과 가짜 brain 경로로 충분한가?
+
+**assumption_challenge:** gate 우위나 임의 gate 교환 손실이 신경 routing 증거라는 주장을 철회한다. 고정 중복성과 조건부 판독은 공존할 수 있으며 생물학적 양자택일이 아니다.
+
+**main_hypothesis:** 공통 내용·SNR 지지집합의 새 자극에서 조건부 readout이 고정/가산과 content-only를 넘고, 그 추가 이득이 실제 뇌 입력에서만 반복 재현된다.
+
+**alternative:** gate가 내용에서 정서 라벨을 직접 읽거나 내용별 SNR·지원범위 외 교환·비식별 파라미터가 이득을 만든다.
+
+**measurable_contrast:** 높을수록 좋은 held-out log score S에 대해 Δ=[S(conditional,real)-S(static,real)]-[S(conditional,conditional-shuffle)-S(static,conditional-shuffle)]를 정의한다. content-only 초과 및 real-vs-shuffle 성능도 별도 요구한다. 교환은 결과 라벨 A를 정확히 맞추지 않고 사전정의 내용 C·SNR strata 내에서 구성한다; A를 조건화하면 표적 brain–A 관계를 보존해 음성대조가 무력해질 수 있다.
+
+**falsification:** 교환 뒤에도 같은 조건부 이득이 남거나 content-only가 동등하면 brain-specific 접근성 주장을 기각한다. 교환손실이 support 밖에서만 생기면 모델 외삽 artifact로 분류한다. 조건부 null calibration 실패는 결과 판정을 보류한다.
+
+**baseline:** 고정 가산·nonlinear additive readout; 같은 용량 content-only 모델; 무작위/균등 gate; ROI voxel 수·SNR 매칭과 참가자별 평가; content-only 및 조건부 brain 교환; 동일 지지집합 내 matched 교환과 support 밖 교환 분리; seed별 예측함수 동등성과 expert permutation-invariant 요약
+
+**dataset_plan:** 우선: Horikawa의 실제 자극별 신경반응·정서 주석·독립 내용 분류로 내용군별 전이를 구성한다. / 검증: Emo-FilM은 영화 가족 단위 검증이 가능한 경우 사용하되 서로 다른 평정 척도를 직접 동일시하지 않는다. NSD는 정서 정답 없는 내용 대조로만 쓸 수 있다. / round4_boundary: 기존 신경자료로 관찰적 readout 검정이 가능하나 label overlap·조건부 교환 지지가 필수다. 실제 신경 개입은 계획 범위에 포함하지 않는다.
+
+**missing_conditions:** 각 내용군 내 정서 대비의 충분한 공통 지지; ROI 선택 독립성과 반복 신뢰도; train/test 내용군 정의 사전 고정; gate 신경 해석과 연결성 주장 분리; gate 입력 provenance와 결과라벨 직접 사용 금지; 내용/SNR 조건부 교환의 exchangeability·density overlap 검증; 교환 null은 train/test fold 안에서 같은 절차로 재학습·평가; 정확한 조건부독립 검정이라 가정하지 않음
+
+**source_papers:** P005; P009; P093; P090; P102; P053
+
+**closest_prior_ids:** P005; P009
+
+**what_is_new:** Round2의 무조건 gate 교환을 핵심근거에서 내리고 조건부 검정의 국소 교환 구조를 수입해 gate의 라벨 우회와 실제 뇌 정보의 필요성을 분리한다.
+
+**novelty_risk:** 조건부 decoder·mixed selectivity와 중복 가능성이 있다. support 내 교환도 비모수 정확검정이나 생물학적 routing을 보증하지 않는다.
+
+**conceptual_signature:** 관측대상: 내용군 공통 지지 안에서 고정/조건부 readout의 실제/조건부 교환 뇌 입력에 따른 정서 대비 예측 차분 / 조작: 조건부/gate readout×real/조건부교환 brain / 경쟁설명: gate가 내용에서 정서 라벨을 직접 읽거나 내용별 SNR·지원범위 외 교환·비식별 파라미터가 이득을 만든다.
+
+**shortlist_recommendation:** recommend: False / reason: 내용–정서 overlap과 조건부 교환의 calibration이 어렵고 gate 비식별성을 남겨 상위 두 후보보다 해석 부담이 크다.
+
+### 여덟 질문
+
+1. **왜 아직 시도되지 않았는가?** 내용 gate가 라벨을 직접 읽는 경로와 brain 경로의 분리가 어려웠다.
+2. **최근에야 가능해진 것은 무엇인가?** 열린 gate 구조와 조건부 국소교환 절차를 결합할 수 있다.
+3. **기존 가정 중 무엇이 틀렸을 수 있는가?** gate 우위·임의 교환손실이 실제 신경 routing이라는 가정이다.
+4. **AI가 기존 뇌과학 모델보다 잘 포착할 수 있는 것은 무엇인가?** 내용에 따라 달라지는 관찰 readout 규칙을 명시할 수 있다.
+5. **뇌가 표상하지만 AI가 놓칠 수 있는 것은 무엇인가?** content-only를 넘어 실제 brain에서만 나오는 접근성 이득이 후보다.
+6. **다른 분야 방법은 무엇을 밝히는가?** 조건부 검정의 국소 교환을 gate label 우회 진단으로 전이한다.
+7. **기존 자료의 새 용도는 무엇인가?** 보유내용군에서 고정/조건부 readout의 brain-specific 전이를 비교한다.
+8. **신경 계산 이해가 어떻게 달라지는가?** 분산 정보를 조건부로 읽는 데 실제 신경 패턴이 필요한지 밝힌다.
+
+### 평가
+
+| 항목 | 점수 | 이유 | 불확실성 |
+|---|---:|---|---|
+| novelty | 3 | 조건부 decoder 자체는 기존이나 label 우회를 통제한 분산 접근성 대비가 남는다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| neuro_importance | 4 | 분산 정보의 조건부 접근에 실제 신경 패턴이 필요한지 검정한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| ai_necessity | 3 | 조건부 모델은 중요하나 단순 mixture regression이 복잡한 MoE를 대체할 수 있다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| data_feasibility | 3 | 기존 자료로 가능하나 내용과 정서의 공통지지가 미확인이다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| rigor | 4 | support 내 교환과 content-only·static·additive 및 함수동등성을 검토한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| falsifiability | 4 | brain 교환 뒤 이득 유지시 신경 접근성 설명을 기각한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| interpretability | 3 | 예측 차분은 명확하지만 실제 routing과 동일시할 수 없다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| generalization | 4 | 새 내용군·참가자 반복에서 brain-specific 증분을 요구한다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| technical_feasibility | 3 | 고차원 조건부 교환 추정과 calibration이 어려워 단순화가 필요하다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+| exploration_value | 4 | 조건부 모델의 성공이 무엇을 이용했는지 새로운 반론을 만든다. | E3 잠정 평가; 신규성 역검색 403·분석 스키마·checkpoint 미검증. 조건부 교환의 정확성은 미입증이다. |
+
+**영어 역검색:** emotion distributed neural decoding context gating conditional permutation stimulus label shortcut
+
+실제 요청: https://api.openalex.org/works?search=emotion+distributed+neural+decoding+context+gating+conditional+permutation+stimulus+label+shortcut&per-page=2
+
+실패: <urlopen error Tunnel connection failed: 403 Forbidden>
+
+## 한계
+
+- 두 검토자의 실제 비판 10건에 응답했다. 상대가 수정에 동의했다거나 Round5 합의가 끝났다고 기록하지 않는다.
+- 영어 역검색어 11~12단어의 OpenAlex 요청 5건을 실제 실행했으나 모두 프록시 Tunnel connection failed: 403 Forbidden으로 실패했다. URL·오류를 후보별 보존한다. 외부 역검색 완료·신규성 확정은 아니다.
+- 실제 수행은 문헌·토론 응답과 계획 재구성이다. 모델·뇌 분석·자극생성·신규 측정은 실행하지 않았다.
+- 사용자 보유 5종은 전제이며 상세 스키마는 분석조건이다. C02-02 보류는 단순 파일 미확인이 아니라 집계주석과 신경 관측으로 동시성을 식별할 수 있다는 근거가 없는 데 따른다.
+- min individual rank는 공통 신경공간 하한이 아니다. 어떤 안정 잔차도 순수 정서 원인으로 부르지 않는다.
+- 의미보존 편집은 확인한 주석차원에서의 타당성만 보증한다. 생성모형 조작은 인간 뇌 인과가 아니며 실제 자극 무작위화도 신경회로·잠재 정서 요인의 선택적 인과성을 자동 입증하지 않는다.
+- 평가 점수 50개는 잠정이며 자동 가중합을 사용하지 않았다. 자기 shortlist 추천은 C02-01·C02-04 두 개로 제한했다.
+- 공유 결과·Git 파일을 수정하지 않았다.

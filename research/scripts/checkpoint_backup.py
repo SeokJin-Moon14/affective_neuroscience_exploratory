@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """연구 파일·증거를 전용 Git 브랜치에 저장하고 원격 HEAD를 검증한다.
 
-기본 동작은 로컬 준비만 수행한다. --push는 비공개 원격 확인 후 실행한다.
+기본 동작은 로컬 준비만 수행한다. --push는 사용자가 정한 공개 범위 확인 후 실행한다.
 """
 import argparse
 import hashlib
@@ -35,12 +35,20 @@ def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
 
-def verify_private(repo, config):
+def verify_remote(repo, config):
     owner_repo = config['github_repository']
     actual = run(repo, 'remote', 'get-url', 'origin')
     expected = f'https://github.com/{owner_repo}.git'
     if actual.rstrip('/') not in [expected, expected[:-4]]:
         raise RuntimeError('설정한 GitHub 원격과 origin이 다릅니다.')
+    if config.get('expected_visibility') == 'public':
+        if not config.get('public_backup_authorized_by_user'):
+            raise RuntimeError('공개 백업에 대한 사용자 지시가 설정되지 않았습니다.')
+        with urllib.request.urlopen(f'https://github.com/{owner_repo}', timeout=25) as r:
+            body = r.read().decode(errors='replace')
+        if not re.search(r'>Public</span>', body):
+            raise RuntimeError('설정된 공개 저장소를 확인하지 못했습니다.')
+        return '사용자가 원문 증거 포함 Public 백업 지시; GitHub 웹 Public 확인'
     if shutil.which('gh'):
         r = subprocess.run(['gh', 'api', f'repos/{owner_repo}', '--jq', '.private'],
                            text=True, capture_output=True, timeout=30)
@@ -157,7 +165,7 @@ def commit_pending(repo, config, manifest):
         print(f'로컬 커밋 {i}/{len(batches)}', flush=True)
 
 def push_pending(repo, config, manifest):
-    privacy = verify_private(repo, config)
+    privacy = verify_remote(repo, config)
     commit_pending(repo, config, manifest)
     branch = config['branch']
     remote_line = run(repo, 'ls-remote', 'origin', f'refs/heads/{branch}')

@@ -93,12 +93,12 @@
 
 ## 8. 사용자 요청에 따른 원격 백업·단계별 저장
 
-- 2026-11-12 사용자는 GitHub 원격 백업과 단계별 저장을 요청했고, 기존 저장소를 비공개로 바꿔 사용하기로 선택했다.
+- 2026-11-12 사용자는 GitHub 원격 백업과 단계별 저장을 요청했고, 최신 지시로 기존 공개 저장소에 우선 백업하고 계속 작업하도록 명시했다. 이전 비공개 전환 대기 지시는 이 지시로 대체한다.
 - 저장소: `SeokJin-Moon14/affective_neuroscience_exploratory`. 연구 전용 브랜치는 `research/independent-exploration-20261112`다. 기존 기본 브랜치는 덮어쓰지 않는다.
 - Coordinator는 역할 조사 묶음, 문헌 병합, 토론 라운드, 조합, 제안, 파일럿 계획의 각 완료 시점에 상태 파일을 갱신하고 `scripts/checkpoint_backup.py`로 커밋·푸시한다. 중단·차단 보고 전에도 같은 절차를 수행한다.
 - 백업 스크립트는 소스와 별도 Git 작업 폴더를 사용한다. 현재 소스는 `/workspace/Affective-Research-Exploration`, Git 작업 폴더는 `/workspace/affective_research_backup`이다. 새 세션에서는 실제 경로를 먼저 확인한다.
 - 원문 PDF·다운로드 증거도 백업한다. 16MiB 초과 파일은 해시로 식별한 조각으로 저장하고 `scripts/restore_backup.py`로 복원한다. 캐시·Git 내부정보·자격증명은 제외한다.
-- 업로드 전 비공개 상태를 확인한다. 푸시가 성공하고 `git ls-remote`의 원격 HEAD가 로컬 HEAD와 일치할 때만 원격 백업 완료라고 보고한다. 로컬 커밋만으로 원격 보존을 주장하지 않는다.
+- 업로드 전 원격 저장소와 사용자가 정한 공개 범위를 확인한다. 현재 설정은 원문 증거를 포함한 공개 백업 허용이다. 푸시가 성공하고 `git ls-remote`의 원격 HEAD가 로컬 HEAD와 일치할 때만 원격 백업 완료라고 보고한다. 로컬 커밋만으로 원격 보존을 주장하지 않는다.
 - 독립 Agent가 같은 백업 저장소에 동시에 커밋하지 않는다. Coordinator가 쓰기가 끝난 파일을 모아 저장한다. 변경 중인 파일을 감지하면 중단하고 다시 준비한다.
 - 새 세션에서는 저장소의 `backup/LAST_SUCCESS.json`, `backup/current_snapshot.json`, 복원된 `RESEARCH_STATUS.md`를 먼저 확인한다. 이전 Agent ID가 유지된다고 가정하지 않고, 새 Agent가 해당 역할 보고서를 읽고 이어가게 한다.
 - 이 절차는 작업 중 단계별 저장 규칙이다. 에이전트가 종료된 뒤 실행되는 상시 작업이나 ChatGPT 프로젝트의 자동 동기화라고 설명하지 않는다.

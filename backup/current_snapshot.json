@@ -1,21 +1,21 @@
 {
   "format": 1,
-  "stage": "stage02-backup-ready",
-  "snapshot_id": "3a5919c0f0c2c36678af33b671064ad195a83e5a7a510941501dd1a224dee743",
-  "prepared_at_utc": "2026-11-12T04:28:24.730132+00:00",
+  "stage": "stage02-public-backup",
+  "snapshot_id": "ec039dc792efca7b22fa1df1c84f9eb2b3db71bea95a17bff03e89c5477f9eea",
+  "prepared_at_utc": "2026-11-12T04:32:50.195559+00:00",
   "file_count": 1240,
-  "total_bytes": 193100638,
+  "total_bytes": 193101245,
   "files": [
     {
       "path": "AGENTS.md",
-      "size": 9598,
-      "sha256": "7db568f0d91ef0b0b6e4d0d6fcf56820e37963bdc32f437333cd388aa59dbd01",
+      "size": 9807,
+      "sha256": "44adfc307b99566fa2dba813da01f50215d47baa77ea2d3f07718f60c2c1b0c1",
       "stored_path": "research/AGENTS.md"
     },
     {
       "path": "BACKUP_STATUS.md",
-      "size": 1548,
-      "sha256": "0f0bb339196e47d563f326f5cdf4b1f1ea5595866d32bb499a67dd3c89f3aec4",
+      "size": 1275,
+      "sha256": "99aa61722a10d709d97ce94d44b8874f4e53481c937dc1263cd7ce371f236036",
       "stored_path": "research/BACKUP_STATUS.md"
     },
     {
@@ -26,8 +26,8 @@
     },
     {
       "path": "CHATGPT_PROJECT_BRIEF.md",
-      "size": 2914,
-      "sha256": "8b286445867ded9f7fdb97acc744199f1839071e36ed95389f78a18eaed0a8e5",
+      "size": 2959,
+      "sha256": "7254d000c591062cd6916a9d74e39077f64ad690f4ae3d5b5a92f415334f80a8",
       "stored_path": "research/CHATGPT_PROJECT_BRIEF.md"
     },
     {
@@ -7422,8 +7422,8 @@
     },
     {
       "path": "scripts/checkpoint_backup.py",
-      "size": 11690,
-      "sha256": "99b3e0dee2f3a2598359e948456b97ea425088dc9ba26ea340885f2e5381f02c",
+      "size": 12316,
+      "sha256": "f6f96ce5f54a737a53ded2bd299b2ac353e60251b8cb4717356483252067662c",
       "stored_path": "research/scripts/checkpoint_backup.py"
     },
     {

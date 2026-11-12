@@ -1,7 +1,9 @@
 {
   "github_repository": "SeokJin-Moon14/affective_neuroscience_exploratory",
   "branch": "research/independent-exploration-20261112",
-  "expected_visibility": "private",
+  "expected_visibility": "public",
   "base_commit": "9ada511b5e8a56c0c6b58fc55c58b06c526e9d78",
-  "private_confirmed_by_user": false
+  "private_confirmed_by_user": false,
+  "public_backup_authorized_by_user": true,
+  "authorization_note": "사용자 최신 지시: 그냥 백업해. public 으로 일단 작업하자. (2026-11-12)"
 }

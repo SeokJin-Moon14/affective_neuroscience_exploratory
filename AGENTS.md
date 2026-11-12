@@ -1,6 +1,6 @@
 # 연구 백업 저장소 운영
 
-사용자는 기존 GitHub 저장소를 비공개로 전환해 연구 결과와 원문 증거를 원격 백업하도록 요청했다.
+사용자는 최신 지시로 기존 공개 GitHub 저장소에 연구 결과와 원문 증거를 원격 백업하도록 요청했다. 비공개 전환 대기는 해제됐다.
 
 연구 지침은 `research/RESEARCH_MISSION.md`부터 읽고 `research/AGENTS.md`를 따른다. 현재 상태는 `research/RESEARCH_STATUS.md`, 마지막으로 검증한 원격 데이터 커밋은 `backup/LAST_SUCCESS.json`에 있다.
 

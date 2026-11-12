@@ -1,0 +1,28 @@
+{
+  "U001": {
+    "title": "Human and Machine Annotations Predict Brain Responses to Naturalistic Movies Across Development",
+    "authors": [
+      "Yiran Huang",
+      "Zeyong Zhang",
+      "Rounak Rahman",
+      "Bharat Biswal",
+      "Xin Di",
+      "Mengjia Xu"
+    ],
+    "id": "arXiv:2611.13637v1",
+    "url": "https://arxiv.org/html/2611.13637v1",
+    "access": "사용자 제공 요약. 직접 본문 접속은 현재 환경에서 403; 에이전트 본문 검증 완료 아님.",
+    "evidence": "revision_v4/evidence/U001_access.json"
+  },
+  "U002": {
+    "title": "Mind captioning: Evolving descriptive text of mental content from human brain activity",
+    "authors": [
+      "Tomoyasu Horikawa"
+    ],
+    "id": "10.1126/sciadv.adw1464",
+    "year": 2025,
+    "url": "https://github.com/horikawa-t/MindCaptioning",
+    "access": "저자 공식 README의 서지·공식 코드·데이터 문서·공개 캡션 확인. 논문 전체 본문·Discussion 직접 확인 아님.",
+    "evidence": "datasets/mind_captioning/evidence/official_README.md"
+  }
+}

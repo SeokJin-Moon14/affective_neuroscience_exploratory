@@ -1,0 +1,169 @@
+[
+  {
+    "session": "trainPerception01",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception01/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception02",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception02/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception03",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception03/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception04",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception04/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception05",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception05/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception06",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception06/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception07",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception07/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception08",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception08/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception09",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception09/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-05_events.tsv"
+    ]
+  },
+  {
+    "session": "trainPerception10",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-trainPerception10/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-01_events.tsv",
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-02_events.tsv",
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-03_events.tsv",
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-04_events.tsv",
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-05_events.tsv",
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-06_events.tsv",
+      "sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-07_events.tsv"
+    ]
+  },
+  {
+    "session": "testPerception01",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-testPerception01/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv",
+      "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv",
+      "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv",
+      "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv",
+      "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv",
+      "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv"
+    ]
+  },
+  {
+    "session": "testPerception02",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-testPerception02/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-01_events.tsv",
+      "sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-02_events.tsv",
+      "sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-03_events.tsv",
+      "sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-04_events.tsv"
+    ]
+  },
+  {
+    "session": "testImagery01",
+    "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-testImagery01/func",
+    "status": 200,
+    "events": [
+      "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+      "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv",
+      "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv",
+      "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv",
+      "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv",
+      "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv"
+    ]
+  }
+]

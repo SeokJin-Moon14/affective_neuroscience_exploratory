@@ -1,0 +1,26 @@
+{
+  "candidate_id": "D06-A",
+  "original_preserved": true,
+  "original_sha256": "196191fa23d0007d786f8f05f280273ef5ae274e18c1b9e3c6607b1e355ccd2e",
+  "revision_path": "agents/06_frontier_ai/revision_v4_revised.json",
+  "revision_sha256": "91ca13c0a7f7f9a69dd8a4eb858addfa9a015527ddd2be455088a35e09687a5d",
+  "decision": "통합",
+  "responses": [
+    {
+      "review_id": "R05-D06-A",
+      "recipient": "/root/dynamics_continuation",
+      "method": "collaboration.send_message",
+      "delivery_result": "성공",
+      "substance": "두 비판 수용. 일반 조직 원리 주장 삭제, 과제·항목·내용 한정, 실제 71개 비교 가능성은 미완료 선정 조건, 문서와 실제 반복 범위 및 누수 차이 반영. 다섯 A를 한 MC 연구로 통합."
+    },
+    {
+      "review_id": "DATA-V4-D06-A",
+      "recipient": "/root/dataset_priority",
+      "method": "collaboration.send_message",
+      "delivery_result": "성공",
+      "substance": "C1–C5 수용. 원 ID/조건부71/raw train 두 런/test 반복 실제 확인 범위와 cue→imagery→실제영상 순서 반영. MAT window와 전체 참가자 QC 미확인 유지."
+    }
+  ],
+  "recorded_at_utc": "2026-11-12T11:19:53.218698+00:00",
+  "checks": "필수 스키마·8문장 분석계획·canonical/U001/U002 참조·원안 해시 보존 확인. 신경 분석 실행 아님."
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "review_id": "R06-MC-GROUP",
+    "candidate_id": "D02-A",
+    "recipient": "/root/affective_reframe",
+    "method": "collaboration.send_message",
+    "delivery_result": "성공",
+    "sent_at_utc": "2026-11-12T11:16:02.108531+00:00",
+    "message_summary": "D02/04/06의 동일 핵심 비교·결론을 한 연구로 통합. 상대적 약화 대안을 유지. 최대 71개에서 경쟁 예측이 갈리는지 선정 전 확인. P008 imagery 선행을 새 기여와 구별.",
+    "review_path": "agents/06_frontier_ai/revision_v4_peer_review.json"
+  },
+  {
+    "review_id": "R06-MC-GROUP",
+    "candidate_id": "D03-A",
+    "recipient": "/root/vision",
+    "method": "collaboration.send_message",
+    "delivery_result": "성공",
+    "sent_at_utc": "2026-11-12T11:16:02.108542+00:00",
+    "message_summary": "같은 선택적 보존 질문으로 통합. 시각 ROI·latent 판독은 하위 설명 구별. latent 판독으로 신경 형식·경로를 입증하지 않음. 판독 가능성 매칭이 동일 추상도를 보장하지 않음.",
+    "review_path": "agents/06_frontier_ai/revision_v4_peer_review.json"
+  },
+  {
+    "review_id": "R06-MC-GROUP",
+    "candidate_id": "D04-A",
+    "recipient": "/root/foundation_continuation",
+    "method": "collaboration.send_message",
+    "delivery_result": "성공",
+    "sent_at_utc": "2026-11-12T11:16:02.108545+00:00",
+    "message_summary": "D02/04/06의 같은 장면 관계 검정을 하나로 통합. 반복 추정은 공통 핵심. 실제 71개에서 정서·의미가 다른 예측을 하는지가 선정 조건. P008 imagery 제안 인정.",
+    "review_path": "agents/06_frontier_ai/revision_v4_peer_review.json"
+  },
+  {
+    "review_id": "R06-MC-GROUP",
+    "candidate_id": "D05-A",
+    "recipient": "/root/dynamics_continuation",
+    "method": "collaboration.send_message",
+    "delivery_result": "성공",
+    "sent_at_utc": "2026-11-12T11:16:02.108546+00:00",
+    "message_summary": "시각 판독은 통합 연구의 보조 설명. 캡션 잔차는 비언어·정서 전용 정보가 아님. 71개에서 경쟁 예측 확인 필요. R05-D06-A 수신 및 수정 예정 응답.",
+    "review_path": "agents/06_frontier_ai/revision_v4_peer_review.json"
+  }
+]

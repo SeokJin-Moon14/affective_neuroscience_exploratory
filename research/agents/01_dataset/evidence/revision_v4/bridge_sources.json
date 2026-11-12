@@ -1,0 +1,101 @@
+{
+  "checked_at_utc": "2026-11-12T11:08:50.114530+00:00",
+  "sources": [
+    {
+      "path": "datasets/mind_captioning/evidence/caption_ck20.csv",
+      "sha256": "633ae47a361f6116aa6c0c145c013a95d70aad30861c95a420a4a05d9c9e3c39"
+    },
+    {
+      "path": "datasets/mind_captioning/evidence/data_README.md",
+      "sha256": "58195eb202514b0f3fbe68950fd2f39805f08001284a53ee4d3ee6fc5812254b"
+    },
+    {
+      "path": "datasets/mind_captioning/evidence/bids_README",
+      "sha256": "b5c7fcf475e246b3edcf011cc0c1b262a6693b3704660a2c7ce22a99cb704954"
+    },
+    {
+      "path": "agents/01_dataset/evidence/horikawa_batch.m",
+      "sha256": "1d08d0c6e305a9b9aa61f769b6c9a50662f05585c00a08656778279d89e337ff"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testPerception_func_tree.json",
+      "sha256": "19546547416854b04ad294eee2c38314e017e0c5e06e11a3741d9b841845d851"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/bids_sub01_tree.json",
+      "sha256": "7872eaa8e0b0167c484a2f59b1edd6f3b236baad918c378e331af17d769a0f0f"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testImagery_run01.json",
+      "sha256": "9c142ec32f0726210233b75c4528fe66593368bd1fedf30e2da61f4f44d8525e"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/caption_horikawa_join.json",
+      "sha256": "e79a6e64532b390f1992cebfefd2cc649c37657f3161d8e8daad32f01d69a790"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/trainPerception_run01.json",
+      "sha256": "9843ab1fef82e57d227f94e109ff3a0d22e70f054717a1f4aca9a366097690f7"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/matlab_tree.json",
+      "sha256": "cc31ab1bb1001686e9d89c1e14d2fa717c5f5ab36ea91f5149306111087ea512"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testPerception_run01.json",
+      "sha256": "70712e1ca8aa1ef4507c9523f4ea8fe3339e206e9d3ab411c1243434e724449f"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/bids_tree.json",
+      "sha256": "0784390e35d71bf733ef3c2d9a004f9749f62a564371e915389982b76e6bfccd"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_event_fetch.json",
+      "sha256": "1e11c32c138f2be7748099a3c7f1eba8e3b415d81b49c02b197276daca7fa530"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_setParams.json",
+      "sha256": "a8f7cb566d9ba1679bbf0d2a3777ff39a8ab10c0488fa2478d83810f4bd33582"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/matlab_readme.json",
+      "sha256": "97d818ca749913ef4be161877d808f411600de20249b3b4f85e4fd61fe5ad8ed"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_encoding_analysis.json",
+      "sha256": "b22c8ca19cc799f6b38e92e20822a8051803ff84d83027094865a464373f26d3"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_decoding_analysis.json",
+      "sha256": "8c50afab9cf4eb020f421edc3838db9b6fe75221488e56e44a8c353ec6e22e9d"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/trainPerception_func_tree.json",
+      "sha256": "b9860711b9a9ddf951312145fc86d553a66db5593fbb0621d1365bfca6a57655"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_event_manifest.json",
+      "sha256": "a30cdbe2e4ec4433df4137140b258f3ab436799166fef126b9adbdd4956e3b36"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testImagery_func_tree.json",
+      "sha256": "26e8b3b0e6f2e5469e714d64524e9aceed4584c39ba4a0fb26e20dea0c3209e9"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "sha256": "79aff9e9c4c7d2a81a745b6b86330ec91fb62826676734e457c61003790b5085"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_setParams.m",
+      "sha256": "dd2ae0636c6e2d9284cfe94bf0a3590ebbb051ef4d26f8c513489e5323a2f59d"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_decoding_analysis.m",
+      "sha256": "d408071068b527a064bbf079cbfeaf7d6445e0ce4d6dc03ad8355df809d08702"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_encoding_analysis.m",
+      "sha256": "2a4afb179600f1654b5c170fc2a6f2fd363570fc563cf5cb7fa4bf2d55de8246"
+    }
+  ]
+}

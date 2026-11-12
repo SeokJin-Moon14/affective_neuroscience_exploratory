@@ -1,0 +1,75 @@
+{
+  "recorded_at_utc": "2026-11-12T11:19:54.532467+00:00",
+  "delivery_tool": "collaboration.send_message",
+  "delivered_reviews": [
+    {
+      "review_id": "DATA-V4-D02-A",
+      "candidate_id": "D02-A",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D03-A",
+      "candidate_id": "D03-A",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D04-A",
+      "candidate_id": "D04-A",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D05-A",
+      "candidate_id": "D05-A",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D06-A",
+      "candidate_id": "D06-A",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D02-B",
+      "candidate_id": "D02-B",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D03-B",
+      "candidate_id": "D03-B",
+      "status": "저자에게 실제 직접 전달 완료"
+    },
+    {
+      "review_id": "DATA-V4-D04-B",
+      "candidate_id": "D04-B",
+      "status": "저자에게 실제 직접 전달 완료"
+    }
+  ],
+  "source_original_checks": [
+    {
+      "path": "agents/02_affective_neuroscience/revision_v4_candidates.json",
+      "unchanged": true
+    },
+    {
+      "path": "agents/03_vision_decoding/revision_v4_candidates.json",
+      "unchanged": true
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v4_candidates.json",
+      "unchanged": true
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/revision_v4_candidates.json",
+      "unchanged": true
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_candidates.json",
+      "unchanged": true
+    }
+  ],
+  "acknowledgment_received": [
+    {
+      "candidate_id": "D06-A",
+      "author": "/root/frontier_contribution",
+      "status": "공통C1–C5를읽고수정본에반영했다고실제메시지수신. 데이터담당자가수정본문전체를재검토한판정은아직아님."
+    }
+  ]
+}

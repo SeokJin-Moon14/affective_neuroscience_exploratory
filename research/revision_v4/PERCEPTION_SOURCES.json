@@ -1,0 +1,23 @@
+[
+  {
+    "path": "agents/02_affective_neuroscience/revision_v4_perception_candidate.json",
+    "sha256": "92362486a845e2ddaaa0572099680233e360e15f163cea659b147df96c42a695",
+    "candidate_ids": [
+      "D02-B"
+    ]
+  },
+  {
+    "path": "agents/03_vision_decoding/revision_v4_perception_candidate.json",
+    "sha256": "e2dc116ed55fc5b23fc2f1dc77e06162c7e205b6fa68982ee7b0ad643fc331f0",
+    "candidate_ids": [
+      "D03-B"
+    ]
+  },
+  {
+    "path": "agents/04_brain_foundation/revision_v4_perception_candidate.json",
+    "sha256": "4a9dc8597732f036be1d0e855cc1d8f7baf8def8001352c1ec25b7062772b9fd",
+    "candidate_ids": [
+      "D04-B"
+    ]
+  }
+]

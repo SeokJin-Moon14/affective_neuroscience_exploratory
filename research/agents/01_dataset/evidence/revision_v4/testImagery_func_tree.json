@@ -1,0 +1,37 @@
+{
+  "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-testImagery01/func",
+  "status": 200,
+  "sha256_downloaded": "6fa114cd391812f4b4263f484b790fe4bb7d5863028085983017ae286fddac50",
+  "items": [
+    {
+      "name": "sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+      "path": "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv",
+      "path": "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv",
+      "path": "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv",
+      "path": "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv",
+      "path": "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv",
+      "path": "sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv",
+      "contentType": "file"
+    }
+  ]
+}

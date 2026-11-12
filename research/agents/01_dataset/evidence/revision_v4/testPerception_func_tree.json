@@ -1,0 +1,37 @@
+{
+  "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01/ses-testPerception01/func",
+  "status": 200,
+  "sha256_downloaded": "6a4f09cf405a3f18e5aa3b502c2a4c658109edbfb462e6edd6af9ba938f01f93",
+  "items": [
+    {
+      "name": "sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv",
+      "path": "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv",
+      "path": "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv",
+      "path": "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv",
+      "path": "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv",
+      "path": "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv",
+      "contentType": "file"
+    },
+    {
+      "name": "sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv",
+      "path": "sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv",
+      "contentType": "file"
+    }
+  ]
+}

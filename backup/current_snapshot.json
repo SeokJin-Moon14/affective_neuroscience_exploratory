@@ -1,15 +1,15 @@
 {
   "format": 1,
-  "stage": "data_constraints_correction_withdraw_infeasible_v3",
-  "snapshot_id": "2aea0cddb8ee7b0baaa73da98630e54710b18967259fd479e91c257e8a6e5149",
-  "prepared_at_utc": "2026-11-12T10:57:09.787761+00:00",
-  "file_count": 1730,
-  "total_bytes": 210366420,
+  "stage": "v4_eight_proposals_data_and_peer_review",
+  "snapshot_id": "f6e98217f9b7fb05dbcee3ce779c4c41eaf201403c7dc7bea2d66d14546b564d",
+  "prepared_at_utc": "2026-11-12T11:27:35.795495+00:00",
+  "file_count": 1867,
+  "total_bytes": 211258316,
   "files": [
     {
       "path": "AGENTS.md",
-      "size": 16612,
-      "sha256": "5f9ad7cdeaf2266054bd2dba669bdee0bb8f37e1cb9cf5db54fd9e6aa21ae75b",
+      "size": 17771,
+      "sha256": "ba37cb8fc5f7aa787956d9b92679dc5570080eeef4879e43e3d3495a453cd6b3",
       "stored_path": "research/AGENTS.md"
     },
     {
@@ -38,8 +38,8 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 1639,
-      "sha256": "200f527e2d9fbd8a87b5c9d87aeda1a27a3b0916fec1204e1bd95526123a335b",
+      "size": 2247,
+      "sha256": "8942c15022065ac0b976b9d83524c326603028866fc5c9eac95324f1b48dd3a6",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
@@ -3529,6 +3529,612 @@
       "stored_path": "research/agents/01_dataset/evidence/repository_snapshots.tar.gz"
     },
     {
+      "path": "agents/01_dataset/evidence/revision_v4/bids_sub01_tree.json",
+      "size": 2536,
+      "sha256": "7872eaa8e0b0167c484a2f59b1edd6f3b236baad918c378e331af17d769a0f0f",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/bids_sub01_tree.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/bids_tree.json",
+      "size": 1302,
+      "sha256": "0784390e35d71bf733ef3c2d9a004f9749f62a564371e915389982b76e6bfccd",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/bids_tree.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/bridge_sources.json",
+      "size": 4245,
+      "sha256": "5c721e4d247168feb0e501c54ff21ce7d0bfc6bdd8b886dde511a262937efdfb",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/bridge_sources.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/caption_horikawa_join.json",
+      "size": 1328,
+      "sha256": "e79a6e64532b390f1992cebfefd2cc649c37657f3161d8e8daad32f01d69a790",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/caption_horikawa_join.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/matlab_readme.json",
+      "size": 254,
+      "sha256": "97d818ca749913ef4be161877d808f411600de20249b3b4f85e4fd61fe5ad8ed",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/matlab_readme.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/matlab_readme.md",
+      "size": 2684,
+      "sha256": "ac2695fbff3027afa5241eb2c5876b181981f64c15880620bef9fb6a0cb8a0e1",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/matlab_readme.md"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/matlab_tree.json",
+      "size": 1004,
+      "sha256": "cc31ab1bb1001686e9d89c1e14d2fa717c5f5ab36ea91f5149306111087ea512",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/matlab_tree.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_event_fetch.json",
+      "size": 29853,
+      "sha256": "1e11c32c138f2be7748099a3c7f1eba8e3b415d81b49c02b197276daca7fa530",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_event_fetch.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_event_manifest.json",
+      "size": 10808,
+      "sha256": "a30cdbe2e4ec4433df4137140b258f3ab436799166fef126b9adbdd4956e3b36",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_event_manifest.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+      "size": 1784,
+      "sha256": "25107146b304683767e665264d910c8f07557f16d12d79ef17d46b377a058e6c",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv",
+      "size": 1795,
+      "sha256": "9e8d5a1a27d99c193689a5b27208caaa90301423499c26228635ec3164f28fa1",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv",
+      "size": 1771,
+      "sha256": "8c47b9a61598d306fa830c3dbb1eb11167719b804f26ac715d05d55305e45a80",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv",
+      "size": 1777,
+      "sha256": "6d1be862e915b2df5c5b84724abb1faebc25065468cb20b3e51263f63d9ee4e9",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv",
+      "size": 1779,
+      "sha256": "5076d177279fe1344cf74b0e33be6d4ba19cf98a5a41036ac202224c2aef4c53",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv",
+      "size": 1765,
+      "sha256": "a7880d7581ef71482c010f97ebc1329fcd8ba2b5730b65112dc4d4b038313a1c",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv",
+      "size": 3910,
+      "sha256": "2f12991aa3c41704ae4943dcd42e1bed1574d643523f16d04bdeccd93b9995a2",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv",
+      "size": 3919,
+      "sha256": "1c6d00dcfa3bfa36a017b61596e8d56db314fa14c9ee51c320f39ac390761ce0",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv",
+      "size": 3915,
+      "sha256": "995692c05b5a61a174607afbc93e52382c9561392d2d66cdd181409ac3943d15",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv",
+      "size": 3908,
+      "sha256": "092ca2eb8cc78b714a7491473ca8c16fe1a01bd5607db3061ae958aeea3e6ecf",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv",
+      "size": 3918,
+      "sha256": "fc70cab6f5fa11e56dff5d23c5a8b527a59306b256e7857d918dd24643a6999d",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv",
+      "size": 3900,
+      "sha256": "cb2a27a77466d5524607bf7dd5554d0db7846c9d32da7799d42fe7ad6e53c1eb",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-01_events.tsv",
+      "size": 3904,
+      "sha256": "949d19ce0e56099e22fbfe794faac70134701b5fa487911124d096bd1615f138",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-02_events.tsv",
+      "size": 3916,
+      "sha256": "1f5c2bd66295002f777c3837d6595f6ae6ee72b6091bd240a13dcb2029f3f85e",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-03_events.tsv",
+      "size": 3911,
+      "sha256": "5fbd0ac1e30572c94f75b64442c59f9ab1d9853893f1ed701d8c40d336d2168c",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-04_events.tsv",
+      "size": 3921,
+      "sha256": "896824773a3a06ff25985cb9d2fa016c80a96f0b3c2c8c11b844eb97e25d0639",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-testPerception02_task-testPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-01_events.tsv",
+      "size": 3981,
+      "sha256": "c32febda067a39f5a313577f2fec8e0acfd873c5078f193157366b815e13c33d",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-02_events.tsv",
+      "size": 3957,
+      "sha256": "49997928632b0a45cd0cea301841c73dee5a403ec958660073ba2c2c8d012c8a",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-03_events.tsv",
+      "size": 3990,
+      "sha256": "03faf5fd37173e91979422c44861dd45b9d472e0495201cd29edd73b6e4bf3e1",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-04_events.tsv",
+      "size": 4001,
+      "sha256": "a70865a6f3206a7b3f488817e47a7510b183c2403ee9766178409b328af04a72",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-05_events.tsv",
+      "size": 3972,
+      "sha256": "d06ea75d003a540725b251a9062ca14dca72ffc90338c7a2a1de2bc4a31db9d6",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-06_events.tsv",
+      "size": 3956,
+      "sha256": "90cd9f87fdc291917c05f936a1f9236d9f035b90eb2749633566f135f08d59cf",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception01_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-01_events.tsv",
+      "size": 3970,
+      "sha256": "8d44aba8ed189bcf709bb867f255718b2edce2d8b9120d2c5bd2e37e101579a8",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-02_events.tsv",
+      "size": 3984,
+      "sha256": "02abacec28e895938c7084c6c840dc118568596adff55cfa1c7a43743f25a04c",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-03_events.tsv",
+      "size": 3983,
+      "sha256": "33f56c8d49e590e7fc0fcbe28222f9ee0d1ed9737a3299d4d1521dc757d06e27",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-04_events.tsv",
+      "size": 3988,
+      "sha256": "1e5da3751a5110eac7cfa9887a281e5798f53e75881e341b99b7b2967fc1d5f6",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-05_events.tsv",
+      "size": 3952,
+      "sha256": "5e6403526625f7c79f90d52a80f3a3a52034dbec47e89df6cb8ee0e5308da249",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-06_events.tsv",
+      "size": 3977,
+      "sha256": "53b4467a03d011f4b526d5fb0e417b408f0a0269db21bee72ed7b39e3aac9714",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception02_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-01_events.tsv",
+      "size": 3981,
+      "sha256": "8425420b0ca63cdef30c832c44869db3a34a535063f1ce96af882bebee796e1e",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-02_events.tsv",
+      "size": 3978,
+      "sha256": "3687143f4e542b6e4adfbc20662239554e5d04a5e59c5057dc2bd417e95f1798",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-03_events.tsv",
+      "size": 3969,
+      "sha256": "3fa61912fa19b3d7b4709b3a08e244d1539985af1e6cc537c7bf6d33e44e4259",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-04_events.tsv",
+      "size": 3979,
+      "sha256": "80dda50df6a7c5a89deec135dfb6335ec5f8bb26e3f72cda8a1d6c0505df2b99",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-05_events.tsv",
+      "size": 3951,
+      "sha256": "78aebe4ff3936d36e8c8bfeee4f7c907970c99bd26920024f6bfa47b9d408957",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-06_events.tsv",
+      "size": 3987,
+      "sha256": "3ec42020dbc5353bbef1f38c84c75242308ed055672cd4fd0d85df2416129e3f",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception03_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-01_events.tsv",
+      "size": 3990,
+      "sha256": "e64e29be489cbbec54ec3b9adc537b8f16f75ca1c408a7003c132ea15bfce3c9",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-02_events.tsv",
+      "size": 3986,
+      "sha256": "3243125d561ba783b6f58aba77eeddb7077f461ac002ba4133ba099f21f15015",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-03_events.tsv",
+      "size": 3975,
+      "sha256": "0d302b8d05a70fa3a91c3302b717f36a7d2c48f3be9f2db5568784e27365f395",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-04_events.tsv",
+      "size": 3966,
+      "sha256": "072285dd9165bd02aa94493d45c6ede5c252de4878760aa5c70bf094d09adf65",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-05_events.tsv",
+      "size": 3974,
+      "sha256": "d408da535a1c028c47ecbc4d891da8c8823141f3a9d85f49aaf7cde7c10b82dc",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-06_events.tsv",
+      "size": 3979,
+      "sha256": "d94411a42b02f6e0f3b7dd79901aada082eaaaa7a2d0020abe49cd92e2795451",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception04_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-01_events.tsv",
+      "size": 3979,
+      "sha256": "aec5532337214c8bddb9a002d63249d49c605bdd6620ca48e46596541fb31d81",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-02_events.tsv",
+      "size": 3993,
+      "sha256": "906e9d87691927b6b18c0d61822fc9718e0a7fa0232c408b7288dd0b9244c853",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-03_events.tsv",
+      "size": 3987,
+      "sha256": "694f319e8152d35fd6f71cb2b127c14575cc2fb51172f6df98aaed2f3aad91c5",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-04_events.tsv",
+      "size": 3972,
+      "sha256": "755033d26f78a1364750882707526f7ada28ec921d379653d8bfe1eef06ebac7",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-05_events.tsv",
+      "size": 3977,
+      "sha256": "e6c1dedf4de2282c61f3c6c0c79e46ca1f614a10286d5f50aeb2fa6b41061324",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-06_events.tsv",
+      "size": 3986,
+      "sha256": "18015e195cbe83f9ec5018042e7e710493091d21086d1c76140628786e84267e",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception05_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-01_events.tsv",
+      "size": 3939,
+      "sha256": "b13b26528478d20d804328e0e3fe39f7179c607cf68a82b3bd42cec977c65f33",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-02_events.tsv",
+      "size": 3951,
+      "sha256": "e4ca6d7de5489b42c88f74afb5baa5b2c509660a7e0935a840f894da205d70ce",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-03_events.tsv",
+      "size": 3961,
+      "sha256": "6a01bbf62860157e60399c2c9223c4bb043c0ecef45b6d73ced23492d050b962",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-04_events.tsv",
+      "size": 3967,
+      "sha256": "6e0c7ef15a414561908288b96038f2a843f316342766812a26b6235a1ef42dee",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-05_events.tsv",
+      "size": 3968,
+      "sha256": "f03d11c73cdf10bd132a9f4f10838be83b7063d49849d26741f37bbf1c2fccd0",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-06_events.tsv",
+      "size": 3966,
+      "sha256": "3bce5c23575f4853962c95e594dd145dd4dfa68ed94844b6356b0193c229b9ca",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception06_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-01_events.tsv",
+      "size": 3974,
+      "sha256": "7848162059d4f0097c99e6a9db1aca67c551240af3b5446b166e92e41036049a",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-02_events.tsv",
+      "size": 3987,
+      "sha256": "648f3ce2d6cb9dae3fb4b14c187816298e867a9c355e42b1f25c4d35e3d5bc8b",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-03_events.tsv",
+      "size": 3950,
+      "sha256": "b060f5e7160ab295bbe3831fe2f30cced6f6e12a5f0043ffc1a1e2753b0a2e16",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-04_events.tsv",
+      "size": 3985,
+      "sha256": "80f60a889c93c1f9496c995010d6cb40a37e6433424362082189946d762853a5",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-05_events.tsv",
+      "size": 3944,
+      "sha256": "81343465908065333804b6d05494d9facebff59dc44b584adb388aa00eeef116",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-06_events.tsv",
+      "size": 3965,
+      "sha256": "ee9e5293bf4371cd21716a4db0624251bb5783a9e90b62c15bceb1ddcce2b6f9",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception07_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-01_events.tsv",
+      "size": 3996,
+      "sha256": "2818a3f1ceebf1fae155f254bf3cb906e19d04cb40a41d13ccf5b569823b9b53",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-02_events.tsv",
+      "size": 3967,
+      "sha256": "05d5109030fc553a42f6972ec1d07f924c48b48a0167f8f999b094f1c2d02306",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-03_events.tsv",
+      "size": 3973,
+      "sha256": "d4018f1f8af1cbac7891e616003473d19b7aff41a248b0667a7d2d9f5d76238b",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-04_events.tsv",
+      "size": 3987,
+      "sha256": "d82e07162f34939d0f39d609108fa1f0ec9f7787f10983c86b88493acbffcd48",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-05_events.tsv",
+      "size": 3965,
+      "sha256": "85cb7ae48e28305330732f1ec6bb23ba71a9a5d1154eb1e0f71ecf370e1bacb0",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-06_events.tsv",
+      "size": 3988,
+      "sha256": "1a38d2385fdb1138babaa30680d940cd37e5bbe3c458bc922ba65ed1111ff436",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception08_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-01_events.tsv",
+      "size": 3986,
+      "sha256": "648cf231928254e1aa4ab5518319329a1960d17396883ef972908bc98be8ccda",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-02_events.tsv",
+      "size": 3989,
+      "sha256": "40da3d395548baf9d86691f8562399828aae4d3ed781d1b9fb49221cca45b308",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-03_events.tsv",
+      "size": 3986,
+      "sha256": "a9131b0a2f1b005a6e4fb16154abca3f77c459f1ae6dcdcdd401d577b78622bb",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-04_events.tsv",
+      "size": 3966,
+      "sha256": "47812f326d97dd5028798a7358c3980597432e21420861edd9f16e1aea1c7671",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-05_events.tsv",
+      "size": 3981,
+      "sha256": "31c11f69e724a97f2af11ac309010e6bc990f9313d749cfae7b14a10b4be7be9",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception09_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-01_events.tsv",
+      "size": 3989,
+      "sha256": "bf5ed0749a54b11240514df88ed14cd08f72431a895028b228c5835a93c5685d",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-01_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-02_events.tsv",
+      "size": 3993,
+      "sha256": "180f7dd5bf1e8d56601e6abf9cf18f735d3193c9014d7f6f74e5806b4c293da5",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-02_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-03_events.tsv",
+      "size": 3978,
+      "sha256": "63eeb579035fd445e27bd4972149a0994881aada7c0a5278173443ef43ce413f",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-03_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-04_events.tsv",
+      "size": 3986,
+      "sha256": "d6f70cc9b995b9b384fd2f917dc62a3f410738f34dface07dee512efa837cd59",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-04_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-05_events.tsv",
+      "size": 3975,
+      "sha256": "5af008cd1f2bd9487a46c0d567bd51f401d7744352232881156dd41ebc949c37",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-05_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-06_events.tsv",
+      "size": 3980,
+      "sha256": "4788c689568d7f930f8f869f9ab141e4adf4b3618cbec8a1102a4cd86268c867",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-06_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-07_events.tsv",
+      "size": 3976,
+      "sha256": "abbd1af2ef94ab06172f09b095981da5e7b0164fe9261d24b676277aa0dba763",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_events/sub-01_ses-trainPerception10_task-trainPerception_run-07_events.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "size": 29169,
+      "sha256": "79aff9e9c4c7d2a81a745b6b86330ec91fb62826676734e457c61003790b5085",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_decoding_analysis.json",
+      "size": 225,
+      "sha256": "8c50afab9cf4eb020f421edc3838db9b6fe75221488e56e44a8c353ec6e22e9d",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mcap_decoding_analysis.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_decoding_analysis.m",
+      "size": 826,
+      "sha256": "d408071068b527a064bbf079cbfeaf7d6445e0ce4d6dc03ad8355df809d08702",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mcap_decoding_analysis.m"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_encoding_analysis.json",
+      "size": 225,
+      "sha256": "b22c8ca19cc799f6b38e92e20822a8051803ff84d83027094865a464373f26d3",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mcap_encoding_analysis.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_encoding_analysis.m",
+      "size": 656,
+      "sha256": "2a4afb179600f1654b5c170fc2a6f2fd363570fc563cf5cb7fa4bf2d55de8246",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mcap_encoding_analysis.m"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_setParams.json",
+      "size": 222,
+      "sha256": "a8f7cb566d9ba1679bbf0d2a3777ff39a8ab10c0488fa2478d83810f4bd33582",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mcap_setParams.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/mcap_setParams.m",
+      "size": 2169,
+      "sha256": "dd2ae0636c6e2d9284cfe94bf0a3590ebbb051ef4d26f8c513489e5323a2f59d",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/mcap_setParams.m"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testImagery_func_tree.json",
+      "size": 1578,
+      "sha256": "26e8b3b0e6f2e5469e714d64524e9aceed4584c39ba4a0fb26e20dea0c3209e9",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/testImagery_func_tree.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testImagery_run01.json",
+      "size": 427,
+      "sha256": "9c142ec32f0726210233b75c4528fe66593368bd1fedf30e2da61f4f44d8525e",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/testImagery_run01.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv",
+      "size": 1784,
+      "sha256": "25107146b304683767e665264d910c8f07557f16d12d79ef17d46b377a058e6c",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/testImagery_run01.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testPerception_func_tree.json",
+      "size": 1671,
+      "sha256": "19546547416854b04ad294eee2c38314e017e0c5e06e11a3741d9b841845d851",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/testPerception_func_tree.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testPerception_run01.json",
+      "size": 665,
+      "sha256": "70712e1ca8aa1ef4507c9523f4ea8fe3339e206e9d3ab411c1243434e724449f",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/testPerception_run01.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/testPerception_run01.tsv",
+      "size": 3910,
+      "sha256": "2f12991aa3c41704ae4943dcd42e1bed1574d643523f16d04bdeccd93b9995a2",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/testPerception_run01.tsv"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/trainPerception_func_tree.json",
+      "size": 1702,
+      "sha256": "b9860711b9a9ddf951312145fc86d553a66db5593fbb0621d1365bfca6a57655",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/trainPerception_func_tree.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/trainPerception_run01.json",
+      "size": 668,
+      "sha256": "9843ab1fef82e57d227f94e109ff3a0d22e70f054717a1f4aca9a366097690f7",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/trainPerception_run01.json"
+    },
+    {
+      "path": "agents/01_dataset/evidence/revision_v4/trainPerception_run01.tsv",
+      "size": 3981,
+      "sha256": "c32febda067a39f5a313577f2fec8e0acfd873c5078f193157366b815e13c33d",
+      "stored_path": "research/agents/01_dataset/evidence/revision_v4/trainPerception_run01.tsv"
+    },
+    {
       "path": "agents/01_dataset/evidence/search_emofilm.html",
       "size": 213983,
       "sha256": "92f46c9474eb1730f218d49c7cb1351a48c47411346c42f7825aa366190fb8d6",
@@ -3719,6 +4325,36 @@
       "size": 73536,
       "sha256": "54f978de3d4e6d1b6391add66fb8d6a1dcf1bd6f72e6925162aca41435c8dbda",
       "stored_path": "research/agents/01_dataset/priority_recheck_sources.json"
+    },
+    {
+      "path": "agents/01_dataset/revision_v4_bridge_delivery.json",
+      "size": 651,
+      "sha256": "441437925c1743e292df99d3ef785d6622b7329a77ffc373c76c38549e453a06",
+      "stored_path": "research/agents/01_dataset/revision_v4_bridge_delivery.json"
+    },
+    {
+      "path": "agents/01_dataset/revision_v4_data_bridge.md",
+      "size": 7056,
+      "sha256": "5ac67a6761d286a14a2ba399bea83158dcaa0fcf2692587bd2514d6d2614939b",
+      "stored_path": "research/agents/01_dataset/revision_v4_data_bridge.md"
+    },
+    {
+      "path": "agents/01_dataset/revision_v4_data_common.md",
+      "size": 5901,
+      "sha256": "2e9a1eee7f6bb12dc8a3fd45986c89c5f81b34805ac0c5ca88e08fc121ad54a6",
+      "stored_path": "research/agents/01_dataset/revision_v4_data_common.md"
+    },
+    {
+      "path": "agents/01_dataset/revision_v4_data_review.json",
+      "size": 14453,
+      "sha256": "ffb3134d0c41faa392985640e018062b4a53b656ed10acf4fd1308ea26812511",
+      "stored_path": "research/agents/01_dataset/revision_v4_data_review.json"
+    },
+    {
+      "path": "agents/01_dataset/revision_v4_data_review_delivery.json",
+      "size": 2125,
+      "sha256": "ad6c87b44280c8418d8f3cea0791b40cb763eaa506d44fea2021bb9c3c8bd406",
+      "stored_path": "research/agents/01_dataset/revision_v4_data_review_delivery.json"
     },
     {
       "path": "agents/01_dataset/round02_exchange.json",
@@ -4507,6 +5143,36 @@
       "stored_path": "research/agents/02_affective_neuroscience/revision_v3_revised.json"
     },
     {
+      "path": "agents/02_affective_neuroscience/revision_v4_candidates.json",
+      "size": 20228,
+      "sha256": "505c3235da67f7d5338587786724503c0e38fc79cef4a1db4eccab677adc2915",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/revision_v4_peer_delivery.json",
+      "size": 493,
+      "sha256": "2f347103cdecd8022e0a967da15569995099a9bd2c179f21bc92e154479382ec",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_peer_delivery.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/revision_v4_peer_review.json",
+      "size": 4467,
+      "sha256": "bfffe54dd305a209bd2e1c9ad5e28f9e5636c4caac45de386ba11fba2fc512df",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_peer_review.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/revision_v4_perception_candidate.json",
+      "size": 18414,
+      "sha256": "92362486a845e2ddaaa0572099680233e360e15f163cea659b147df96c42a695",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_perception_candidate.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/revision_v4_revised.json",
+      "size": 41281,
+      "sha256": "0f6f935bbf2f22b0d5c7f1f5d5937355624af3d696adf404ef9bfadb9e06e627",
+      "stored_path": "research/agents/02_affective_neuroscience/revision_v4_revised.json"
+    },
+    {
       "path": "agents/02_affective_neuroscience/round02_exchange.json",
       "size": 44837,
       "sha256": "38917e302953cd3c809a04a454302145570cdb5c12f15b2f6a01fc7740aeed27",
@@ -4697,6 +5363,24 @@
       "size": 4675,
       "sha256": "6bddbf7794c6c0f50a53ff13957b4b5cb50c3937e414e0c0554bd5019ff20d6e",
       "stored_path": "research/agents/03_vision_decoding/revision_v3_revision_delivery.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/revision_v4_candidates.json",
+      "size": 24981,
+      "sha256": "9169d50e95c1d18349b0643aefd8ec9426641d2a74d969d79299b46bdce8a68f",
+      "stored_path": "research/agents/03_vision_decoding/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/revision_v4_peer_review.json",
+      "size": 7165,
+      "sha256": "c34e5ccc72109f781905439624afdd9784999cd40bacda7299f8dca9cd315e54",
+      "stored_path": "research/agents/03_vision_decoding/revision_v4_peer_review.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/revision_v4_perception_candidate.json",
+      "size": 23931,
+      "sha256": "e2dc116ed55fc5b23fc2f1dc77e06162c7e205b6fa68982ee7b0ad643fc331f0",
+      "stored_path": "research/agents/03_vision_decoding/revision_v4_perception_candidate.json"
     },
     {
       "path": "agents/03_vision_decoding/round02_exchange.json",
@@ -5075,6 +5759,24 @@
       "size": 33394,
       "sha256": "8cd0457992e54777b08cd22fdeed8821f831e670cf92621e858ce90f7d98ce36",
       "stored_path": "research/agents/04_brain_foundation/revision_v3_revised.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v4_candidates.json",
+      "size": 23028,
+      "sha256": "f0951e2ff0d98aa1d66ee5ae5edbe8c2ec0b03b880d4570c59874089762bad87",
+      "stored_path": "research/agents/04_brain_foundation/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v4_peer_review.json",
+      "size": 5787,
+      "sha256": "545981dc6535449fe86407de274f2ad1e5ebc01a92d4c2400667055715199c23",
+      "stored_path": "research/agents/04_brain_foundation/revision_v4_peer_review.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v4_perception_candidate.json",
+      "size": 20531,
+      "sha256": "4a9dc8597732f036be1d0e855cc1d8f7baf8def8001352c1ec25b7062772b9fd",
+      "stored_path": "research/agents/04_brain_foundation/revision_v4_perception_candidate.json"
     },
     {
       "path": "agents/04_brain_foundation/round02_exchange.json",
@@ -5857,6 +6559,18 @@
       "stored_path": "research/agents/05_multimodal_dynamics/revision_v3_revised.json"
     },
     {
+      "path": "agents/05_multimodal_dynamics/revision_v4_candidates.json",
+      "size": 21367,
+      "sha256": "a06382abbb79dcadbcf56e8bfa040d8fef633408a87ff945532c2a0b407f1802",
+      "stored_path": "research/agents/05_multimodal_dynamics/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/revision_v4_peer_review.json",
+      "size": 5951,
+      "sha256": "7ce38e705452dc9100bcc5a5788194c6d4e0f738b205987fe11e197e961e3ff3",
+      "stored_path": "research/agents/05_multimodal_dynamics/revision_v4_peer_review.json"
+    },
+    {
       "path": "agents/05_multimodal_dynamics/round02_exchange.json",
       "size": 38445,
       "sha256": "b20c4eabf885b8548536f2a22e7dc4cb2ea2afb73869921e61f49429d8cf8aca",
@@ -6113,6 +6827,36 @@
       "size": 28512,
       "sha256": "c755d3722b8549ef0f360a6de168a4eb761013522c35a246d45ac193a85529ba",
       "stored_path": "research/agents/06_frontier_ai/revision_v3_revised.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_author_responses.json",
+      "size": 1366,
+      "sha256": "380bab9c4bf42ab2abcc762ed5d70431ea2fc05009369d6ed41e037ec2c710fc",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_author_responses.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_candidates.json",
+      "size": 20811,
+      "sha256": "196191fa23d0007d786f8f05f280273ef5ae274e18c1b9e3c6607b1e355ccd2e",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_candidates.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_peer_delivery.json",
+      "size": 2224,
+      "sha256": "c1299ae1f3a9920d3128422424c67a73805e24970123b0ea6068d1d0d8182fda",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_peer_delivery.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_peer_review.json",
+      "size": 8649,
+      "sha256": "c90422cbbf165d82595b8c303509a9f3c6cbd4d02e406ba938a55fbc7f6554d7",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_peer_review.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v4_revised.json",
+      "size": 27164,
+      "sha256": "91ca13c0a7f7f9a69dd8a4eb858addfa9a015527ddd2be455088a35e09687a5d",
+      "stored_path": "research/agents/06_frontier_ai/revision_v4_revised.json"
     },
     {
       "path": "agents/06_frontier_ai/round02_exchange.json",
@@ -9348,8 +10092,8 @@
     },
     {
       "path": "discussions/AGENT_REGISTRY.json",
-      "size": 1502,
-      "sha256": "4af4a9b5256213d7c578ddbac9014d2a3d08b1cea31cb0d0b4b882605422ba6e",
+      "size": 1842,
+      "sha256": "54a3d2e56d6c0cfc9e6c2ab76ba9512bf9c4aa3556d56f0df39bff0954d977f1",
       "stored_path": "research/discussions/AGENT_REGISTRY.json"
     },
     {
@@ -10187,9 +10931,87 @@
       "stored_path": "research/revision_v4/DATA_FIT_REVIEW.md"
     },
     {
+      "path": "revision_v4/INITIAL_SOURCES.json",
+      "size": 1026,
+      "sha256": "999b2c9a95acad641985c0ab91adce3883e0c0fea5940448fe3e6e8be645ce1a",
+      "stored_path": "research/revision_v4/INITIAL_SOURCES.json"
+    },
+    {
+      "path": "revision_v4/PERCEPTION_SOURCES.json",
+      "size": 650,
+      "sha256": "7ca9def669c1274ae83e4cd1de81983026873f4e4e5b5c36ca1ec11e72a1a507",
+      "stored_path": "research/revision_v4/PERCEPTION_SOURCES.json"
+    },
+    {
+      "path": "revision_v4/PROTOCOL.md",
+      "size": 5203,
+      "sha256": "b194ebbe4e37384574cb7657662914c2efa7b48df87fbb414a314608fd68faba",
+      "stored_path": "research/revision_v4/PROTOCOL.md"
+    },
+    {
+      "path": "revision_v4/REFERENCES.json",
+      "size": 1064,
+      "sha256": "f87e5000c951f62cf0ef6c4e807e2e29429d1458b8bcd7010a41663a3a44afb0",
+      "stored_path": "research/revision_v4/REFERENCES.json"
+    },
+    {
+      "path": "revision_v4/USER_PRIOR_U001.md",
+      "size": 1944,
+      "sha256": "e32d9787d4fefcacab640d00aec2b9315e4095c45e6aad6fc09054783525e8e8",
+      "stored_path": "research/revision_v4/USER_PRIOR_U001.md"
+    },
+    {
+      "path": "revision_v4/evidence/U001_access.json",
+      "size": 208,
+      "sha256": "875689a75ec1f7f690252a105b1adb8629f626a7181f2aae55868f6c9f8f5e50",
+      "stored_path": "research/revision_v4/evidence/U001_access.json"
+    },
+    {
+      "path": "revision_v4/evidence/mc_code/mcap_get_feature_params.m",
+      "size": 884,
+      "sha256": "1b4b8c625a64046cbb26a4ed17ca66cbe37f1607ecb1ce97f00182a0b2a0b097",
+      "stored_path": "research/revision_v4/evidence/mc_code/mcap_get_feature_params.m"
+    },
+    {
+      "path": "revision_v4/evidence/mc_code/mcap_setParams.m",
+      "size": 2169,
+      "sha256": "dd2ae0636c6e2d9284cfe94bf0a3590ebbb051ef4d26f8c513489e5323a2f59d",
+      "stored_path": "research/revision_v4/evidence/mc_code/mcap_setParams.m"
+    },
+    {
+      "path": "revision_v4/evidence/mc_code/mcap_summary_decoding.m",
+      "size": 958,
+      "sha256": "08540a88d01ac201006db805922d5302324ba0cb6c56ef831fb6ae70fcc81c0a",
+      "stored_path": "research/revision_v4/evidence/mc_code/mcap_summary_decoding.m"
+    },
+    {
+      "path": "revision_v4/evidence/mc_code/mcap_summary_encoding.m",
+      "size": 759,
+      "sha256": "1381d83562b93bf3f5c10160a42e5ce1e76ed694d542cfa2e4d5d0d523426dc1",
+      "stored_path": "research/revision_v4/evidence/mc_code/mcap_summary_encoding.m"
+    },
+    {
+      "path": "revision_v4/evidence/mc_code/sources.json",
+      "size": 1123,
+      "sha256": "3507f705e2a4d8d2a72bdb641648dff9e181cab698f2c1ef0b48820d7a6f2a72",
+      "stored_path": "research/revision_v4/evidence/mc_code/sources.json"
+    },
+    {
+      "path": "revision_v4/independent_candidates.json",
+      "size": 110403,
+      "sha256": "79957d65745bd800d2993620111e1393c7155892cfc1f3dc4daac50c81727010",
+      "stored_path": "research/revision_v4/independent_candidates.json"
+    },
+    {
+      "path": "revision_v4/perception_candidates.json",
+      "size": 62870,
+      "sha256": "aad586922a77848fa7490541128b1ffaa001dd25cbae528bca2e2e2eb13a7b83",
+      "stored_path": "research/revision_v4/perception_candidates.json"
+    },
+    {
       "path": "revision_v4/version.json",
-      "size": 600,
-      "sha256": "9769c5c9e2a27a38a2f6a317efcc8a7807063d971718e052639958c98805ba48",
+      "size": 881,
+      "sha256": "690260995037fbcc6b9647bd477fd616c664e0e5cf2d94cf950ddd0864501047",
       "stored_path": "research/revision_v4/version.json"
     },
     {

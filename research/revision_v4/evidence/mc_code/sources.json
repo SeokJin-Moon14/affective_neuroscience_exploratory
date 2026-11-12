@@ -1,0 +1,26 @@
+[
+  {
+    "source_path": "code/matlab/util/mcap_setParams.m",
+    "local_path": "revision_v4/evidence/mc_code/mcap_setParams.m",
+    "commit": "4c39764ceb9a3be5763649bc77c9d556918881d0",
+    "sha256": "dd2ae0636c6e2d9284cfe94bf0a3590ebbb051ef4d26f8c513489e5323a2f59d"
+  },
+  {
+    "source_path": "code/matlab/util/mcap_get_feature_params.m",
+    "local_path": "revision_v4/evidence/mc_code/mcap_get_feature_params.m",
+    "commit": "4c39764ceb9a3be5763649bc77c9d556918881d0",
+    "sha256": "1b4b8c625a64046cbb26a4ed17ca66cbe37f1607ecb1ce97f00182a0b2a0b097"
+  },
+  {
+    "source_path": "code/matlab/mcap_summary_decoding.m",
+    "local_path": "revision_v4/evidence/mc_code/mcap_summary_decoding.m",
+    "commit": "4c39764ceb9a3be5763649bc77c9d556918881d0",
+    "sha256": "08540a88d01ac201006db805922d5302324ba0cb6c56ef831fb6ae70fcc81c0a"
+  },
+  {
+    "source_path": "code/matlab/mcap_summary_encoding.m",
+    "local_path": "revision_v4/evidence/mc_code/mcap_summary_encoding.m",
+    "commit": "4c39764ceb9a3be5763649bc77c9d556918881d0",
+    "sha256": "1381d83562b93bf3f5c10160a42e5ce1e76ed694d542cfa2e4d5d0d523426dc1"
+  }
+]

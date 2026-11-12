@@ -24,5 +24,13 @@
     "06_frontier_ai": "/root/frontier_contribution",
     "12_adversarial_review": "/root/auditor"
   },
-  "v3_note": "v3에서는 위 다섯 제안 역할과 기여 검토 역할이 실제 작업했다. 이전 12역할 조사와 새 검토를 구별한다. 세션이 바뀌면 파일을 읽어 새 에이전트로 재개한다."
+  "v3_note": "v3에서는 위 다섯 제안 역할과 기여 검토 역할이 실제 작업했다. 이전 12역할 조사와 새 검토를 구별한다. 세션이 바뀌면 파일을 읽어 새 에이전트로 재개한다.",
+  "v4_roles": {
+    "01_dataset": "/root/dataset_priority",
+    "02_affective_neuroscience": "/root/affective_reframe",
+    "03_vision_decoding": "/root/vision",
+    "04_brain_foundation": "/root/foundation_continuation",
+    "05_multimodal_dynamics": "/root/dynamics_continuation",
+    "06_frontier_ai": "/root/frontier_contribution"
+  }
 }

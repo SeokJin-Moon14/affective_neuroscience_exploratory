@@ -1,0 +1,63 @@
+{
+  "url": "https://github.com/OpenNeuroDatasets/ds005191",
+  "status": 200,
+  "sha256_downloaded": "85f6b8fe72b8f972b8ff91886b93e5e4ef14dfb9daa646ac8b7d030e04813f39",
+  "at": "2026-11-12T11:03:22.529892+00:00",
+  "items": [
+    {
+      "name": ".datalad",
+      "path": ".datalad",
+      "contentType": "directory"
+    },
+    {
+      "name": "sub-01",
+      "path": "sub-01",
+      "contentType": "directory"
+    },
+    {
+      "name": "sub-02",
+      "path": "sub-02",
+      "contentType": "directory"
+    },
+    {
+      "name": "sub-03",
+      "path": "sub-03",
+      "contentType": "directory"
+    },
+    {
+      "name": "sub-04",
+      "path": "sub-04",
+      "contentType": "directory"
+    },
+    {
+      "name": "sub-05",
+      "path": "sub-05",
+      "contentType": "directory"
+    },
+    {
+      "name": "sub-06",
+      "path": "sub-06",
+      "contentType": "directory"
+    },
+    {
+      "name": ".gitattributes",
+      "path": ".gitattributes",
+      "contentType": "file"
+    },
+    {
+      "name": "CHANGES",
+      "path": "CHANGES",
+      "contentType": "file"
+    },
+    {
+      "name": "README",
+      "path": "README",
+      "contentType": "file"
+    },
+    {
+      "name": "dataset_description.json",
+      "path": "dataset_description.json",
+      "contentType": "file"
+    }
+  ]
+}

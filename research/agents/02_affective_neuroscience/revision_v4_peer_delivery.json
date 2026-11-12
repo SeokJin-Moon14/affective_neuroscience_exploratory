@@ -1,0 +1,7 @@
+{
+  "sent_at_utc": "2026-11-12T11:19:03.591541+00:00",
+  "review_id": "R02-D03-B",
+  "recipient": "/root/vision",
+  "delivery_status": "collaboration.send_message 호출 성공; 열람 완료를 주장하지 않음",
+  "summary": "기존 관측으로 실행은 가능하지만 ROI 순위 복구가 중요한 정서 측정 결정을 어떻게 바꾸는지 불명확해 독립 RQ 채택 보류. 실제 decoder rank와 제목의 검정 범위도 지적. 새 뇌 실험을 요구하지 않음."
+}

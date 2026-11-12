@@ -1,0 +1,16 @@
+{
+  "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+  "status": 200,
+  "sha256": "25107146b304683767e665264d910c8f07557f16d12d79ef17d46b377a058e6c",
+  "rows": 86,
+  "headers": [
+    "onset",
+    "duration",
+    "trial_type",
+    "cueID",
+    "imageryID",
+    "stimID",
+    "accuracy",
+    "vividness"
+  ]
+}

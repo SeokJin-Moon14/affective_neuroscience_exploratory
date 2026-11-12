@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-11-12T11:09:49.260144+00:00",
+  "tool": "collaboration.send_message",
+  "recipients": [
+    "/root/affective_reframe",
+    "/root/vision",
+    "/root/foundation_continuation",
+    "/root/frontier_contribution"
+  ],
+  "status": "네 역할에 실제 호출로 전달 완료. 읽음·수용 여부는 이 기록에서 가정하지 않음.",
+  "summary": "raw trainPerception 2180에는 test72가 포함됨; 마지막2런 제외2108과공식processed/cv계약의일치; stimID/imageryID와stimLabel구별; Horikawa원분석제외를쓰면MCtest72중71개남음.",
+  "source": "agents/01_dataset/revision_v4_data_bridge.md"
+}

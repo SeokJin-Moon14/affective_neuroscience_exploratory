@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "v4_eight_proposals_data_and_peer_review",
+  "snapshot_id": "f6e98217f9b7fb05dbcee3ce779c4c41eaf201403c7dc7bea2d66d14546b564d",
+  "prepared_at_utc": "2026-11-12T11:27:35.795495+00:00",
+  "file_count": 1867,
+  "total_bytes": 211258316,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

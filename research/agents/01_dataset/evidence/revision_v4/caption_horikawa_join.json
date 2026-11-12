@@ -1,0 +1,54 @@
+{
+  "caption_rows": 43920,
+  "caption_ids": 2196,
+  "caption_count_per_original_video": {
+    "20": 2196
+  },
+  "horikawa_join": [
+    {
+      "subject": "sub-01",
+      "events": 2196,
+      "original_ids": 2196,
+      "caption_join_coverage": 2196,
+      "missing_caption_ids": [],
+      "name_index_disagreements": 0
+    },
+    {
+      "subject": "sub-02",
+      "events": 2196,
+      "original_ids": 2196,
+      "caption_join_coverage": 2196,
+      "missing_caption_ids": [],
+      "name_index_disagreements": 0
+    },
+    {
+      "subject": "sub-03",
+      "events": 2196,
+      "original_ids": 2196,
+      "caption_join_coverage": 2196,
+      "missing_caption_ids": [],
+      "name_index_disagreements": 0
+    },
+    {
+      "subject": "sub-04",
+      "events": 2196,
+      "original_ids": 2196,
+      "caption_join_coverage": 2196,
+      "missing_caption_ids": [],
+      "name_index_disagreements": 0
+    },
+    {
+      "subject": "sub-05",
+      "events": 2196,
+      "original_ids": 2196,
+      "caption_join_coverage": 2196,
+      "missing_caption_ids": [],
+      "name_index_disagreements": 0
+    }
+  ],
+  "limits": [
+    "원 영상 본체 해시 대조가 아닌 공개 ID 대응",
+    "Horikawa 정서 점수 본체 미확인",
+    "MC 처리본 stimLabel을 원 video_id와 같은 값으로 쓰면 안 됨"
+  ]
+}

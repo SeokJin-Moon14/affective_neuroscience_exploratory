@@ -1,0 +1,534 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+    "path": "sub-01_ses-testImagery01_task-testImagery_run-01_events.tsv",
+    "status": 200,
+    "bytes": 1784,
+    "sha256": "25107146b304683767e665264d910c8f07557f16d12d79ef17d46b377a058e6c"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv",
+    "path": "sub-01_ses-testImagery01_task-testImagery_run-02_events.tsv",
+    "status": 200,
+    "bytes": 1795,
+    "sha256": "9e8d5a1a27d99c193689a5b27208caaa90301423499c26228635ec3164f28fa1"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv",
+    "path": "sub-01_ses-testImagery01_task-testImagery_run-03_events.tsv",
+    "status": 200,
+    "bytes": 1771,
+    "sha256": "8c47b9a61598d306fa830c3dbb1eb11167719b804f26ac715d05d55305e45a80"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv",
+    "path": "sub-01_ses-testImagery01_task-testImagery_run-04_events.tsv",
+    "status": 200,
+    "bytes": 1777,
+    "sha256": "6d1be862e915b2df5c5b84724abb1faebc25065468cb20b3e51263f63d9ee4e9"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv",
+    "path": "sub-01_ses-testImagery01_task-testImagery_run-05_events.tsv",
+    "status": 200,
+    "bytes": 1779,
+    "sha256": "5076d177279fe1344cf74b0e33be6d4ba19cf98a5a41036ac202224c2aef4c53"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testImagery01/func/sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv",
+    "path": "sub-01_ses-testImagery01_task-testImagery_run-06_events.tsv",
+    "status": 200,
+    "bytes": 1765,
+    "sha256": "a7880d7581ef71482c010f97ebc1329fcd8ba2b5730b65112dc4d4b038313a1c"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv",
+    "path": "sub-01_ses-testPerception01_task-testPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3910,
+    "sha256": "2f12991aa3c41704ae4943dcd42e1bed1574d643523f16d04bdeccd93b9995a2"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv",
+    "path": "sub-01_ses-testPerception01_task-testPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3919,
+    "sha256": "1c6d00dcfa3bfa36a017b61596e8d56db314fa14c9ee51c320f39ac390761ce0"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv",
+    "path": "sub-01_ses-testPerception01_task-testPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3915,
+    "sha256": "995692c05b5a61a174607afbc93e52382c9561392d2d66cdd181409ac3943d15"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv",
+    "path": "sub-01_ses-testPerception01_task-testPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3908,
+    "sha256": "092ca2eb8cc78b714a7491473ca8c16fe1a01bd5607db3061ae958aeea3e6ecf"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv",
+    "path": "sub-01_ses-testPerception01_task-testPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3918,
+    "sha256": "fc70cab6f5fa11e56dff5d23c5a8b527a59306b256e7857d918dd24643a6999d"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception01/func/sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv",
+    "path": "sub-01_ses-testPerception01_task-testPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3900,
+    "sha256": "cb2a27a77466d5524607bf7dd5554d0db7846c9d32da7799d42fe7ad6e53c1eb"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-01_events.tsv",
+    "path": "sub-01_ses-testPerception02_task-testPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3904,
+    "sha256": "949d19ce0e56099e22fbfe794faac70134701b5fa487911124d096bd1615f138"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-02_events.tsv",
+    "path": "sub-01_ses-testPerception02_task-testPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3916,
+    "sha256": "1f5c2bd66295002f777c3837d6595f6ae6ee72b6091bd240a13dcb2029f3f85e"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-03_events.tsv",
+    "path": "sub-01_ses-testPerception02_task-testPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3911,
+    "sha256": "5fbd0ac1e30572c94f75b64442c59f9ab1d9853893f1ed701d8c40d336d2168c"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-testPerception02/func/sub-01_ses-testPerception02_task-testPerception_run-04_events.tsv",
+    "path": "sub-01_ses-testPerception02_task-testPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3921,
+    "sha256": "896824773a3a06ff25985cb9d2fa016c80a96f0b3c2c8c11b844eb97e25d0639"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception01_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3981,
+    "sha256": "c32febda067a39f5a313577f2fec8e0acfd873c5078f193157366b815e13c33d"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception01_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3957,
+    "sha256": "49997928632b0a45cd0cea301841c73dee5a403ec958660073ba2c2c8d012c8a"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception01_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3990,
+    "sha256": "03faf5fd37173e91979422c44861dd45b9d472e0495201cd29edd73b6e4bf3e1"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception01_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 4001,
+    "sha256": "a70865a6f3206a7b3f488817e47a7510b183c2403ee9766178409b328af04a72"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception01_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3972,
+    "sha256": "d06ea75d003a540725b251a9062ca14dca72ffc90338c7a2a1de2bc4a31db9d6"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception01_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3956,
+    "sha256": "90cd9f87fdc291917c05f936a1f9236d9f035b90eb2749633566f135f08d59cf"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception02_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3970,
+    "sha256": "8d44aba8ed189bcf709bb867f255718b2edce2d8b9120d2c5bd2e37e101579a8"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception02_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3984,
+    "sha256": "02abacec28e895938c7084c6c840dc118568596adff55cfa1c7a43743f25a04c"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception02_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3983,
+    "sha256": "33f56c8d49e590e7fc0fcbe28222f9ee0d1ed9737a3299d4d1521dc757d06e27"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception02_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3988,
+    "sha256": "1e5da3751a5110eac7cfa9887a281e5798f53e75881e341b99b7b2967fc1d5f6"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception02_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3952,
+    "sha256": "5e6403526625f7c79f90d52a80f3a3a52034dbec47e89df6cb8ee0e5308da249"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception02/func/sub-01_ses-trainPerception02_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception02_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3977,
+    "sha256": "53b4467a03d011f4b526d5fb0e417b408f0a0269db21bee72ed7b39e3aac9714"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception03_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3981,
+    "sha256": "8425420b0ca63cdef30c832c44869db3a34a535063f1ce96af882bebee796e1e"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception03_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3978,
+    "sha256": "3687143f4e542b6e4adfbc20662239554e5d04a5e59c5057dc2bd417e95f1798"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception03_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3969,
+    "sha256": "3fa61912fa19b3d7b4709b3a08e244d1539985af1e6cc537c7bf6d33e44e4259"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception03_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3979,
+    "sha256": "80dda50df6a7c5a89deec135dfb6335ec5f8bb26e3f72cda8a1d6c0505df2b99"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception03_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3951,
+    "sha256": "78aebe4ff3936d36e8c8bfeee4f7c907970c99bd26920024f6bfa47b9d408957"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception03/func/sub-01_ses-trainPerception03_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception03_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3987,
+    "sha256": "3ec42020dbc5353bbef1f38c84c75242308ed055672cd4fd0d85df2416129e3f"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception04_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3990,
+    "sha256": "e64e29be489cbbec54ec3b9adc537b8f16f75ca1c408a7003c132ea15bfce3c9"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception04_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3986,
+    "sha256": "3243125d561ba783b6f58aba77eeddb7077f461ac002ba4133ba099f21f15015"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception04_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3975,
+    "sha256": "0d302b8d05a70fa3a91c3302b717f36a7d2c48f3be9f2db5568784e27365f395"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception04_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3966,
+    "sha256": "072285dd9165bd02aa94493d45c6ede5c252de4878760aa5c70bf094d09adf65"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception04_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3974,
+    "sha256": "d408da535a1c028c47ecbc4d891da8c8823141f3a9d85f49aaf7cde7c10b82dc"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception04/func/sub-01_ses-trainPerception04_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception04_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3979,
+    "sha256": "d94411a42b02f6e0f3b7dd79901aada082eaaaa7a2d0020abe49cd92e2795451"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception05_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3979,
+    "sha256": "aec5532337214c8bddb9a002d63249d49c605bdd6620ca48e46596541fb31d81"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception05_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3993,
+    "sha256": "906e9d87691927b6b18c0d61822fc9718e0a7fa0232c408b7288dd0b9244c853"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception05_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3987,
+    "sha256": "694f319e8152d35fd6f71cb2b127c14575cc2fb51172f6df98aaed2f3aad91c5"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception05_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3972,
+    "sha256": "755033d26f78a1364750882707526f7ada28ec921d379653d8bfe1eef06ebac7"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception05_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3977,
+    "sha256": "e6c1dedf4de2282c61f3c6c0c79e46ca1f614a10286d5f50aeb2fa6b41061324"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception05/func/sub-01_ses-trainPerception05_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception05_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3986,
+    "sha256": "18015e195cbe83f9ec5018042e7e710493091d21086d1c76140628786e84267e"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception06_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3939,
+    "sha256": "b13b26528478d20d804328e0e3fe39f7179c607cf68a82b3bd42cec977c65f33"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception06_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3951,
+    "sha256": "e4ca6d7de5489b42c88f74afb5baa5b2c509660a7e0935a840f894da205d70ce"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception06_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3961,
+    "sha256": "6a01bbf62860157e60399c2c9223c4bb043c0ecef45b6d73ced23492d050b962"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception06_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3967,
+    "sha256": "6e0c7ef15a414561908288b96038f2a843f316342766812a26b6235a1ef42dee"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception06_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3968,
+    "sha256": "f03d11c73cdf10bd132a9f4f10838be83b7063d49849d26741f37bbf1c2fccd0"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception06/func/sub-01_ses-trainPerception06_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception06_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3966,
+    "sha256": "3bce5c23575f4853962c95e594dd145dd4dfa68ed94844b6356b0193c229b9ca"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception07_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3974,
+    "sha256": "7848162059d4f0097c99e6a9db1aca67c551240af3b5446b166e92e41036049a"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception07_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3987,
+    "sha256": "648f3ce2d6cb9dae3fb4b14c187816298e867a9c355e42b1f25c4d35e3d5bc8b"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception07_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3950,
+    "sha256": "b060f5e7160ab295bbe3831fe2f30cced6f6e12a5f0043ffc1a1e2753b0a2e16"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception07_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3985,
+    "sha256": "80f60a889c93c1f9496c995010d6cb40a37e6433424362082189946d762853a5"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception07_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3944,
+    "sha256": "81343465908065333804b6d05494d9facebff59dc44b584adb388aa00eeef116"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception07/func/sub-01_ses-trainPerception07_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception07_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3965,
+    "sha256": "ee9e5293bf4371cd21716a4db0624251bb5783a9e90b62c15bceb1ddcce2b6f9"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception08_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3996,
+    "sha256": "2818a3f1ceebf1fae155f254bf3cb906e19d04cb40a41d13ccf5b569823b9b53"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception08_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3967,
+    "sha256": "05d5109030fc553a42f6972ec1d07f924c48b48a0167f8f999b094f1c2d02306"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception08_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3973,
+    "sha256": "d4018f1f8af1cbac7891e616003473d19b7aff41a248b0667a7d2d9f5d76238b"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception08_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3987,
+    "sha256": "d82e07162f34939d0f39d609108fa1f0ec9f7787f10983c86b88493acbffcd48"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception08_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3965,
+    "sha256": "85cb7ae48e28305330732f1ec6bb23ba71a9a5d1154eb1e0f71ecf370e1bacb0"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception08/func/sub-01_ses-trainPerception08_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception08_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3988,
+    "sha256": "1a38d2385fdb1138babaa30680d940cd37e5bbe3c458bc922ba65ed1111ff436"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception09_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3986,
+    "sha256": "648cf231928254e1aa4ab5518319329a1960d17396883ef972908bc98be8ccda"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception09_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3989,
+    "sha256": "40da3d395548baf9d86691f8562399828aae4d3ed781d1b9fb49221cca45b308"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception09_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3986,
+    "sha256": "a9131b0a2f1b005a6e4fb16154abca3f77c459f1ae6dcdcdd401d577b78622bb"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception09_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3966,
+    "sha256": "47812f326d97dd5028798a7358c3980597432e21420861edd9f16e1aea1c7671"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception09/func/sub-01_ses-trainPerception09_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception09_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3981,
+    "sha256": "31c11f69e724a97f2af11ac309010e6bc990f9313d749cfae7b14a10b4be7be9"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-01_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-01_events.tsv",
+    "status": 200,
+    "bytes": 3989,
+    "sha256": "bf5ed0749a54b11240514df88ed14cd08f72431a895028b228c5835a93c5685d"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-02_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-02_events.tsv",
+    "status": 200,
+    "bytes": 3993,
+    "sha256": "180f7dd5bf1e8d56601e6abf9cf18f735d3193c9014d7f6f74e5806b4c293da5"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-03_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-03_events.tsv",
+    "status": 200,
+    "bytes": 3978,
+    "sha256": "63eeb579035fd445e27bd4972149a0994881aada7c0a5278173443ef43ce413f"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-04_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-04_events.tsv",
+    "status": 200,
+    "bytes": 3986,
+    "sha256": "d6f70cc9b995b9b384fd2f917dc62a3f410738f34dface07dee512efa837cd59"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-05_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-05_events.tsv",
+    "status": 200,
+    "bytes": 3975,
+    "sha256": "5af008cd1f2bd9487a46c0d567bd51f401d7744352232881156dd41ebc949c37"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-06_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-06_events.tsv",
+    "status": 200,
+    "bytes": 3980,
+    "sha256": "4788c689568d7f930f8f869f9ab141e4adf4b3618cbec8a1102a4cd86268c867"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception10/func/sub-01_ses-trainPerception10_task-trainPerception_run-07_events.tsv",
+    "path": "sub-01_ses-trainPerception10_task-trainPerception_run-07_events.tsv",
+    "status": 200,
+    "bytes": 3976,
+    "sha256": "abbd1af2ef94ab06172f09b095981da5e7b0164fe9261d24b676277aa0dba763"
+  }
+]

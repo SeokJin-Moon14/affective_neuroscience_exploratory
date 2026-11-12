@@ -1,0 +1,98 @@
+{
+  "url": "https://github.com/OpenNeuroDatasets/ds005191/tree/master/sub-01",
+  "status": 200,
+  "sha256_downloaded": "f1e145ef4aaef0978e78554b328a63144c3ef6a7e89ed2947fecb069f21084da",
+  "items": [
+    {
+      "name": "ses-anat/anat",
+      "path": "sub-01/ses-anat/anat",
+      "contentType": "directory",
+      "hasSimplifiedPath": true
+    },
+    {
+      "name": "ses-testImagery01",
+      "path": "sub-01/ses-testImagery01",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-testImagery02",
+      "path": "sub-01/ses-testImagery02",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-testImagery03",
+      "path": "sub-01/ses-testImagery03",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-testImagery04",
+      "path": "sub-01/ses-testImagery04",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-testImagery05",
+      "path": "sub-01/ses-testImagery05",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-testPerception01",
+      "path": "sub-01/ses-testPerception01",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-testPerception02",
+      "path": "sub-01/ses-testPerception02",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception01",
+      "path": "sub-01/ses-trainPerception01",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception02",
+      "path": "sub-01/ses-trainPerception02",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception03",
+      "path": "sub-01/ses-trainPerception03",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception04",
+      "path": "sub-01/ses-trainPerception04",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception05",
+      "path": "sub-01/ses-trainPerception05",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception06",
+      "path": "sub-01/ses-trainPerception06",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception07",
+      "path": "sub-01/ses-trainPerception07",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception08",
+      "path": "sub-01/ses-trainPerception08",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception09",
+      "path": "sub-01/ses-trainPerception09",
+      "contentType": "directory"
+    },
+    {
+      "name": "ses-trainPerception10",
+      "path": "sub-01/ses-trainPerception10",
+      "contentType": "directory"
+    }
+  ]
+}

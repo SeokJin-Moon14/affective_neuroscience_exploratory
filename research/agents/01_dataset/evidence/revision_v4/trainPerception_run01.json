@@ -1,0 +1,28 @@
+{
+  "url": "https://raw.githubusercontent.com/OpenNeuroDatasets/ds005191/master/sub-01/ses-trainPerception01/func/sub-01_ses-trainPerception01_task-trainPerception_run-01_events.tsv",
+  "status": 200,
+  "sha256": "c32febda067a39f5a313577f2fec8e0acfd873c5078f193157366b815e13c33d",
+  "rows": 82,
+  "headers": [
+    "onset",
+    "duration",
+    "trial_type",
+    "stimID",
+    "stimLabel",
+    "evalScore01",
+    "evalScore02",
+    "evalScore03",
+    "evalScore04",
+    "evalScore05",
+    "evalStim01",
+    "evalStim02",
+    "evalStim03",
+    "evalStim04",
+    "evalStim05",
+    "evalSent01",
+    "evalSent02",
+    "evalSent03",
+    "evalSent04",
+    "evalSent05"
+  ]
+}

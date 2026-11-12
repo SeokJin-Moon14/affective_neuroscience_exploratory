@@ -1,0 +1,38 @@
+{
+  "url": "https://github.com/horikawa-t/MindCaptioning/tree/main/code/matlab",
+  "status": 200,
+  "sha256_downloaded": "fe55ebd364b879953c0e05817899f0e7930aaa6f0a9d25043630b4045498192f",
+  "at": "2026-11-12T11:03:21.855138+00:00",
+  "items": [
+    {
+      "name": "util",
+      "path": "code/matlab/util",
+      "contentType": "directory"
+    },
+    {
+      "name": "README.md",
+      "path": "code/matlab/README.md",
+      "contentType": "file"
+    },
+    {
+      "name": "mcap_decoding_analysis.m",
+      "path": "code/matlab/mcap_decoding_analysis.m",
+      "contentType": "file"
+    },
+    {
+      "name": "mcap_encoding_analysis.m",
+      "path": "code/matlab/mcap_encoding_analysis.m",
+      "contentType": "file"
+    },
+    {
+      "name": "mcap_summary_decoding.m",
+      "path": "code/matlab/mcap_summary_decoding.m",
+      "contentType": "file"
+    },
+    {
+      "name": "mcap_summary_encoding.m",
+      "path": "code/matlab/mcap_summary_encoding.m",
+      "contentType": "file"
+    }
+  ]
+}

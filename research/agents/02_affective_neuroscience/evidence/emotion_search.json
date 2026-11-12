@@ -1,0 +1,11 @@
+{
+  "url": "https://github.com/search?q=neural+emotion+representation&type=repositories",
+  "verified_on": "2026-11-12T03:31:30.453297+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://github.com/search?q=neural+emotion+representation&type=repositories",
+  "bytes": 211715,
+  "sha256": "7e5792caf1a9c6adb75390ee68d02a36e6082424bf4079104a013f59c37bc1a0",
+  "content_type": "text/html; charset=utf-8",
+  "source_file": "emotion_search.source"
+}

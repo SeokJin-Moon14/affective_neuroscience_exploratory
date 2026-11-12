@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2008_Kober_Emotion_163_studies/contents_description.md",
+  "verified_on": "2026-11-12T03:35:38.533150+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/CANlab_Meta_analysis_maps/2008_Kober_Emotion_163_studies/contents_description.md",
+  "bytes": 3624,
+  "sha256": "5df06cd4bb914fae888948b1b8c32461518a888eca08ee26d8272da6a049188d",
+  "content_type": "text/plain; charset=utf-8",
+  "source_file": "kober2008_doc.source"
+}

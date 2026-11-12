@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/contents_description.md",
+  "verified_on": "2026-11-12T03:32:58.269128+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/canlab/Neuroimaging_Pattern_Masks/master/Multivariate_signature_patterns/2015_Kragel_emotionClassificationBPLS/contents_description.md",
+  "bytes": 3210,
+  "sha256": "e4f60f197a3e1422b6ac008864e92fcd12cbec4cbf467b1139311f750a78f9c1",
+  "content_type": "text/plain; charset=utf-8",
+  "source_file": "kragel2015_doc.source"
+}

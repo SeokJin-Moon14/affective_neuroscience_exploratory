@@ -1,0 +1,11 @@
+{
+  "url": "https://github.com/search?q=Alan+Cowen&type=users",
+  "verified_on": "2026-11-12T03:32:32.677344+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://github.com/search?q=Alan+Cowen&type=users",
+  "bytes": 162690,
+  "sha256": "6d19779029b1e7a148a8ca32786ef81d16acc8cd7b3649a39a8a87a2c84ae99f",
+  "content_type": "text/html; charset=utf-8",
+  "source_file": "cowen_search_users.source"
+}

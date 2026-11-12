@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/openai/CLIP/main/README.md",
+  "verified_on": "2026-11-12T03:34:56.246553+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/openai/CLIP/main/README.md",
+  "bytes": 7306,
+  "sha256": "f82c5c75e140532eb37a7d943921e1bdd57d740c6b40d0030985bc5b5d11d6f1",
+  "content_type": "text/plain; charset=utf-8",
+  "source_file": "clip_readme.source"
+}

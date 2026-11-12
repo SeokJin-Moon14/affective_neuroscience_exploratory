@@ -1,0 +1,7 @@
+{
+  "url": "https://doi.org/10.1073/pnas.1702247114",
+  "verified_on": "2026-11-12T03:33:26.462790+00:00",
+  "origin_agent": "02_affective_neuroscience",
+  "status": "요청실패",
+  "error": "URLError(OSError('Tunnel connection failed: 403 Forbidden'))"
+}

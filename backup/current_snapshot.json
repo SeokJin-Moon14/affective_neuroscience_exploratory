@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "stage": "round02-exchange",
-  "snapshot_id": "e86379ebbdf4dbb3bd7c206a8cf0ca7c7065ff829b816d898decd9963cfce5cb",
-  "prepared_at_utc": "2026-11-12T06:14:33.474599+00:00",
-  "file_count": 1302,
-  "total_bytes": 194850718,
+  "stage": "round03-critique",
+  "snapshot_id": "4e06dba7f617e8246b350ede6e6acc14e9c6be4ba28a6669448cc5f6eabab707",
+  "prepared_at_utc": "2026-11-12T06:32:46.345423+00:00",
+  "file_count": 1340,
+  "total_bytes": 196216680,
   "files": [
     {
       "path": "AGENTS.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 3974,
-      "sha256": "42f2b6e636223b53ac55ed66dbfac3794c0466718e83df4116d728c1064a1242",
+      "size": 4276,
+      "sha256": "cda49df77ef13426548eec11adca591e2f9a3152679b8f0f37c26634f48c6687",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
@@ -3673,6 +3673,18 @@
       "stored_path": "research/agents/01_dataset/round02_exchange.md"
     },
     {
+      "path": "agents/01_dataset/round03_critique.json",
+      "size": 31759,
+      "sha256": "22c7d3e40e41f8dbf354924f4cfe26bb905a51edea36579c18a19e5cacbd8ae2",
+      "stored_path": "research/agents/01_dataset/round03_critique.json"
+    },
+    {
+      "path": "agents/01_dataset/round03_critique.md",
+      "size": 29982,
+      "sha256": "658fe045e2a139ae825c86c4ff22b20264f187029a6f90b3cac4de533b3a38e9",
+      "stored_path": "research/agents/01_dataset/round03_critique.md"
+    },
+    {
       "path": "agents/01_dataset/round1_independent_report.md",
       "size": 10591,
       "sha256": "0b47984ea7f5dde2e7dc1456f3bc88fc67040a91542ec58b5bf92f4d58c4ff33",
@@ -4369,6 +4381,18 @@
       "stored_path": "research/agents/02_affective_neuroscience/round02_exchange.md"
     },
     {
+      "path": "agents/02_affective_neuroscience/round03_critique.json",
+      "size": 38325,
+      "sha256": "5863c0d52860db7c30e24188b529fce119bbc6e156daf8c6f7e2132d67420a54",
+      "stored_path": "research/agents/02_affective_neuroscience/round03_critique.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/round03_critique.md",
+      "size": 30000,
+      "sha256": "68fefe221e4b6528e56ab17a061aaf94a5a6bba5c2dae38b912567efd312f8d3",
+      "stored_path": "research/agents/02_affective_neuroscience/round03_critique.md"
+    },
+    {
       "path": "agents/02_affective_neuroscience/sources_index.csv",
       "size": 13541,
       "sha256": "0aab0ca56cf0678d89f397c5b7ee14c61dd64d63fff4ea089f8c3fcd428ca66e",
@@ -4445,6 +4469,18 @@
       "size": 33870,
       "sha256": "6223224650b088f46eecbbfb90a9dfb5fcb6da141dd030d40d67931c7134180f",
       "stored_path": "research/agents/03_vision_decoding/round02_exchange.md"
+    },
+    {
+      "path": "agents/03_vision_decoding/round03_critique.json",
+      "size": 32688,
+      "sha256": "94101577acd9133bc208b47e8e50e2ed8b8ac21cec80a600ea988a7af4ad0576",
+      "stored_path": "research/agents/03_vision_decoding/round03_critique.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/round03_critique.md",
+      "size": 38422,
+      "sha256": "0b4283f153a6a4dc52a1e3267093505cf9a9cf1b8d713cf413bcc9da4f8d5e3b",
+      "stored_path": "research/agents/03_vision_decoding/round03_critique.md"
     },
     {
       "path": "agents/03_vision_decoding/sources/README.md",
@@ -4715,6 +4751,18 @@
       "size": 35106,
       "sha256": "d536a1329342fb879aaa87f21efae8d9a92facefc203c8c3bf84986a83b97514",
       "stored_path": "research/agents/04_brain_foundation/round02_exchange.md"
+    },
+    {
+      "path": "agents/04_brain_foundation/round03_critique.json",
+      "size": 44456,
+      "sha256": "d450b6e603409ee17189555c9f3057777897fa1111b38a187b56d3cbd938fdd6",
+      "stored_path": "research/agents/04_brain_foundation/round03_critique.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/round03_critique.md",
+      "size": 41404,
+      "sha256": "d0f873b08f12087c9418692980c4bfbba2c299296f81a9532fec4c7576e10036",
+      "stored_path": "research/agents/04_brain_foundation/round03_critique.md"
     },
     {
       "path": "agents/04_brain_foundation/round1_report.md",
@@ -5389,6 +5437,18 @@
       "stored_path": "research/agents/05_multimodal_dynamics/round02_exchange.md"
     },
     {
+      "path": "agents/05_multimodal_dynamics/round03_critique.json",
+      "size": 40927,
+      "sha256": "9e4b8ff0c0ad017867be3c4a3891958ce320c967c2001eebbe6696138ee8c253",
+      "stored_path": "research/agents/05_multimodal_dynamics/round03_critique.json"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/round03_critique.md",
+      "size": 45748,
+      "sha256": "be3f8671f894e824063de4c2c45b8e10efa956084a530de0f430829c50eff353",
+      "stored_path": "research/agents/05_multimodal_dynamics/round03_critique.md"
+    },
+    {
       "path": "agents/06_frontier_ai/RESEARCH_STATUS.md",
       "size": 1330,
       "sha256": "34b6a7786d7739a1c9d0da6a07eb511668d783a6ce4c30d30f316e452b9a0d48",
@@ -5551,6 +5611,18 @@
       "stored_path": "research/agents/06_frontier_ai/round02_exchange.md"
     },
     {
+      "path": "agents/06_frontier_ai/round03_critique.json",
+      "size": 31727,
+      "sha256": "d818f108cb2dcbb2f62903d3863b31f286ee54a9906166964b5a9c4fecc8bab7",
+      "stored_path": "research/agents/06_frontier_ai/round03_critique.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/round03_critique.md",
+      "size": 31085,
+      "sha256": "a5496c31e86a5c01b90129c787414b0850fafb1e50abce46f58fa0344cd65ff2",
+      "stored_path": "research/agents/06_frontier_ai/round03_critique.md"
+    },
+    {
       "path": "agents/06_frontier_ai/subaxes.csv",
       "size": 2227,
       "sha256": "6f329e6680b1793f713ba0b3902fbd747beb78b4e5aa0eaff4fc160989277a9c",
@@ -5609,6 +5681,18 @@
       "size": 30748,
       "sha256": "be6d8aea5ba29be43f9135e96c568256f212be611b4d94f50a2e8ea69e15c637",
       "stored_path": "research/agents/07_geometry_information/round02_exchange.md"
+    },
+    {
+      "path": "agents/07_geometry_information/round03_critique.json",
+      "size": 35158,
+      "sha256": "afe328b9be2aabbaccd2966e535eea4a73b57cb6f16d01de6f4c5698210a1381",
+      "stored_path": "research/agents/07_geometry_information/round03_critique.json"
+    },
+    {
+      "path": "agents/07_geometry_information/round03_critique.md",
+      "size": 31144,
+      "sha256": "1a958ef2f0ff3078fa6d845d81b3176c018a447522574283cbc4bec8b1246cc3",
+      "stored_path": "research/agents/07_geometry_information/round03_critique.md"
     },
     {
       "path": "agents/07_geometry_information/sources/facco_code.txt",
@@ -5861,6 +5945,18 @@
       "size": 29103,
       "sha256": "7f8ba34317af55894daf4f5ad67f0ffdd080e88afc0b9b8bc1848fd41d559299",
       "stored_path": "research/agents/08_systems_neuroscience/round02_exchange.md"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round03_critique.json",
+      "size": 33570,
+      "sha256": "583165a3a8e354dedec49af7eb1d6534f4fb16f50adb72d5ce31c09d14e985cf",
+      "stored_path": "research/agents/08_systems_neuroscience/round03_critique.json"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round03_critique.md",
+      "size": 32946,
+      "sha256": "ac314f13d703f4b5508da433aae08445b090b5a5dfee4cefd7553b3b2ef9c6fa",
+      "stored_path": "research/agents/08_systems_neuroscience/round03_critique.md"
     },
     {
       "path": "agents/08_systems_neuroscience/source_manifest.json",
@@ -6371,6 +6467,18 @@
       "stored_path": "research/agents/09_generative_ai/round02_exchange.md"
     },
     {
+      "path": "agents/09_generative_ai/round03_critique.json",
+      "size": 36616,
+      "sha256": "8f1fd04ed54aaa1b5f67792d71a794eac5e940c2c9842be2c0d5e3af56a4c582",
+      "stored_path": "research/agents/09_generative_ai/round03_critique.json"
+    },
+    {
+      "path": "agents/09_generative_ai/round03_critique.md",
+      "size": 32841,
+      "sha256": "49941349507492b9c14c2cdb6bed49b43fa190903b87a5e6f3c02502be8075a1",
+      "stored_path": "research/agents/09_generative_ai/round03_critique.md"
+    },
+    {
       "path": "agents/09_generative_ai/subaxes.csv",
       "size": 3753,
       "sha256": "961d89d722fd6e3e461a692b2bd38b94501e7c4f043120f04e73a262cc00476f",
@@ -6417,6 +6525,18 @@
       "size": 30317,
       "sha256": "a407609293ea6ba348cb99ca0d06d9afebced0788f606e9953bfd5e4f46d557b",
       "stored_path": "research/agents/10_llm_semantics/round02_exchange.md"
+    },
+    {
+      "path": "agents/10_llm_semantics/round03_critique.json",
+      "size": 31011,
+      "sha256": "26d751fe367b026d6998e0c0b7a96b300da21cf9daa07b14cdb8c3a685303390",
+      "stored_path": "research/agents/10_llm_semantics/round03_critique.json"
+    },
+    {
+      "path": "agents/10_llm_semantics/round03_critique.md",
+      "size": 30767,
+      "sha256": "6cfe4eee347516635a9f7669eb6c631d87d8b5642077d1225c279665bc81ce61",
+      "stored_path": "research/agents/10_llm_semantics/round03_critique.md"
     },
     {
       "path": "agents/10_llm_semantics/source_manifest.csv",
@@ -6683,6 +6803,18 @@
       "stored_path": "research/agents/11_brain_inspired/round02_exchange.md"
     },
     {
+      "path": "agents/11_brain_inspired/round03_critique.json",
+      "size": 31890,
+      "sha256": "53f6960f775cf8437465f67009f577a454eccfb0f5102326daead103fa12661d",
+      "stored_path": "research/agents/11_brain_inspired/round03_critique.json"
+    },
+    {
+      "path": "agents/11_brain_inspired/round03_critique.md",
+      "size": 31731,
+      "sha256": "c3a87ce8faa7695c8deb69607d564dc9dad98888dbc891e2dfbca20254e9fc5d",
+      "stored_path": "research/agents/11_brain_inspired/round03_critique.md"
+    },
+    {
       "path": "agents/11_brain_inspired/source_manifest.csv",
       "size": 17667,
       "sha256": "ce6a13db924f994073e5e5dc31daf1b5efbbab5ceeac27ac699ea9c00d50bd29",
@@ -6947,6 +7079,12 @@
       "stored_path": "research/agents/12_adversarial_review/build_catalog.py"
     },
     {
+      "path": "agents/12_adversarial_review/combination_curation_audit.md",
+      "size": 7530,
+      "sha256": "cfff8d5157108eae9aa001bfe022549f8052a2b030c2a06e087c0edf13d90d21",
+      "stored_path": "research/agents/12_adversarial_review/combination_curation_audit.md"
+    },
+    {
       "path": "agents/12_adversarial_review/papers.csv",
       "size": 20196,
       "sha256": "fa3f55b72a6e050f84429c968406ed68c10bb941ef5a942255aedfbb8e16febc",
@@ -6975,6 +7113,18 @@
       "size": 35195,
       "sha256": "1b2b5aa66a628ad39c17c67ecfd41733f646e579292a646bf4ddb1ef289a98ca",
       "stored_path": "research/agents/12_adversarial_review/round02_exchange.md"
+    },
+    {
+      "path": "agents/12_adversarial_review/round03_critique.json",
+      "size": 54753,
+      "sha256": "0fa2f1ed3d824275c81f102213f465738b7282fd1fdbb67cd135c96a937fd7a0",
+      "stored_path": "research/agents/12_adversarial_review/round03_critique.json"
+    },
+    {
+      "path": "agents/12_adversarial_review/round03_critique.md",
+      "size": 44104,
+      "sha256": "f55b521cef9142ca6946ca261a410865c99591113a8ced0bf5b7e5066237c268",
+      "stored_path": "research/agents/12_adversarial_review/round03_critique.md"
     },
     {
       "path": "agents/12_adversarial_review/source_manifest.csv",
@@ -7428,8 +7578,8 @@
     },
     {
       "path": "combinations/README.md",
-      "size": 272,
-      "sha256": "aa24596727a6248995a31d48cccd5af130865a7e35d42b558c486b05ad194fe2",
+      "size": 1281,
+      "sha256": "9b2d21d0e2492ac640e9f1acbd34628788807fcdb820608bd93968f3620772d0",
       "stored_path": "research/combinations/README.md"
     },
     {
@@ -7449,6 +7599,12 @@
       "size": 58563,
       "sha256": "7687c3cb5d768ffc65e561e947bc1a581be1e20a7296239a207599157137d0d1",
       "stored_path": "research/combinations/random_evaluated.json"
+    },
+    {
+      "path": "datasets/DATASET_INTELLIGENCE_REPORT.md",
+      "size": 5121,
+      "sha256": "decd3863b1b9bcf45fa64cc8315503bbaaff56adf36b192b5d6bf3c2646ba4e1",
+      "stored_path": "research/datasets/DATASET_INTELLIGENCE_REPORT.md"
     },
     {
       "path": "datasets/README.md",
@@ -7607,6 +7763,12 @@
       "stored_path": "research/discussions/ROUND04_PROTOCOL.md"
     },
     {
+      "path": "discussions/ROUND05_PROTOCOL.md",
+      "size": 1526,
+      "sha256": "6f5e03882b5ab671a798bb728e68d98cfa1e1a73af29335ee69d929425cd17a0",
+      "stored_path": "research/discussions/ROUND05_PROTOCOL.md"
+    },
+    {
       "path": "discussions/round03_assignments.json",
       "size": 1011,
       "sha256": "26f1da8d49a0f57d66722c1d2ba60349baca14b19927c04ca4b9da1ad56eb0dd",
@@ -7629,6 +7791,24 @@
       "size": 2168,
       "sha256": "d49e5af4ebcfa7c0d9254e70d5c93245df38c82199f924c05594584754e00065",
       "stored_path": "research/discussions/round_02/index.md"
+    },
+    {
+      "path": "discussions/round_03/SYNTHESIS.md",
+      "size": 2751,
+      "sha256": "53c46f8375e542d38faa6ff0d62f36a4c3a583ddc39820c16bf5325228429540",
+      "stored_path": "research/discussions/round_03/SYNTHESIS.md"
+    },
+    {
+      "path": "discussions/round_03/collected.json",
+      "size": 420524,
+      "sha256": "9cc6fabaf46cca4afc1b87ab4edee5ab1f593c228aad6ff8f9d2d05479fd2fbd",
+      "stored_path": "research/discussions/round_03/collected.json"
+    },
+    {
+      "path": "discussions/round_03/index.md",
+      "size": 2169,
+      "sha256": "1daa45f65fbed7196d5da72243b008bd788083514b5ddf441a3fadb4bd5c38a8",
+      "stored_path": "research/discussions/round_03/index.md"
     },
     {
       "path": "literature/COVERAGE_AND_GAPS.md",
@@ -7745,10 +7925,40 @@
       "stored_path": "research/logs/network_draft.json"
     },
     {
+      "path": "pilots/RESOURCE_AND_MODEL_PLAN.md",
+      "size": 3403,
+      "sha256": "b92b87a6cf35713a031a74518d399549020c72e73ddeafd90f3874aaa5d7b053",
+      "stored_path": "research/pilots/RESOURCE_AND_MODEL_PLAN.md"
+    },
+    {
       "path": "pilots/environment_observation.json",
-      "size": 180,
-      "sha256": "877fba722324e0f61282c65bc7f20b62c8b1734d5fc2032c16f47b4da6f5d916",
+      "size": 255,
+      "sha256": "dcb1556ddb22eeffdefd376b3b61ad43bebc9734f2911525e41a3a5254582dfc",
       "stored_path": "research/pilots/environment_observation.json"
+    },
+    {
+      "path": "pilots/model_evidence/clip_license.txt",
+      "size": 1064,
+      "sha256": "987e63b32f6c89ff5160e429458a872ff048e6860b590a3912e938f9da8f14db",
+      "stored_path": "research/pilots/model_evidence/clip_license.txt"
+    },
+    {
+      "path": "pilots/model_evidence/clip_loader.py",
+      "size": 9644,
+      "sha256": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6",
+      "stored_path": "research/pilots/model_evidence/clip_loader.py"
+    },
+    {
+      "path": "pilots/model_evidence/clip_model.py",
+      "size": 17374,
+      "sha256": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c",
+      "stored_path": "research/pilots/model_evidence/clip_model.py"
+    },
+    {
+      "path": "pilots/model_evidence/manifest.json",
+      "size": 651,
+      "sha256": "431c57e590bfb964de239421e785f4b369f6d51761a9987eb88c35e7f868d364",
+      "stored_path": "research/pilots/model_evidence/manifest.json"
     },
     {
       "path": "research_questions/EVALUATION_RUBRIC.md",
@@ -7763,6 +7973,12 @@
       "stored_path": "research/research_questions/README.md"
     },
     {
+      "path": "research_questions/curation_plan.json",
+      "size": 18545,
+      "sha256": "eb7919f5f6f18d3376382d18548e571282c6d8eed648d294b073512e6944e375",
+      "stored_path": "research/research_questions/curation_plan.json"
+    },
+    {
       "path": "scripts/build_axis_connections.py",
       "size": 9058,
       "sha256": "7150255ea62fa3a169fba0058eb0fe6920f050f141160e409389bf374925cf22",
@@ -7773,6 +7989,12 @@
       "size": 34081,
       "sha256": "6bd01e77bdd8dd650afd916087b9832c99bae237fac834cb0082c9f6952fd727",
       "stored_path": "research/scripts/build_axis_registry.py"
+    },
+    {
+      "path": "scripts/build_opportunity_map.py",
+      "size": 6528,
+      "sha256": "85b81331a1c3fc7e121c83986fc3f2c12a1460cc29b9a056781f5441ad5acbb3",
+      "stored_path": "research/scripts/build_opportunity_map.py"
     },
     {
       "path": "scripts/checkpoint_backup.py",
@@ -7809,6 +8031,12 @@
       "size": 4760,
       "sha256": "2d0674a01675a379883cc82eb71ea26e5fb3259c03b8f317f01ab645886fbd33",
       "stored_path": "research/scripts/merge_literature.py"
+    },
+    {
+      "path": "scripts/novelty_reverse_search.py",
+      "size": 4692,
+      "sha256": "8cc2c0710ac7aaa14e710d4e8c5c8d75aac2808115b3c70e290f01ff52d42c8f",
+      "stored_path": "research/scripts/novelty_reverse_search.py"
     },
     {
       "path": "scripts/restore_backup.py",

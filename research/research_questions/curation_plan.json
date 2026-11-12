@@ -1,0 +1,476 @@
+[
+  {
+    "direction_id": "D01",
+    "title": "자극 ID에서 내용 등가집합으로: 정서 신경 코드의 조합적 전이",
+    "candidate_ids": [
+      "C01-01",
+      "C10-05"
+    ],
+    "representative_candidate_id": "C01-01",
+    "merge_reason": "내용·사람 일반화의 관측 단위를 공유하며 두 분할을 한 설계의 요인으로 통합",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D02",
+    "title": "시간 샘플에서 사건 진행 단계로: 정서 신경 궤적의 시간척도",
+    "candidate_ids": [
+      "C01-02",
+      "C05-04"
+    ],
+    "representative_candidate_id": "C01-02",
+    "merge_reason": "사건 단계 대 시계시간이라는 같은 좌표 비교",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D03",
+    "title": "합의 평균에서 주석 분포로: 정서 구조의 혼합을 뇌가 구별하는가",
+    "candidate_ids": [
+      "C01-03"
+    ],
+    "representative_candidate_id": "C01-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D04",
+    "title": "라벨 좌표에서 관계쌍으로: 공통 정서 기하와 공통 신경 코드의 분리",
+    "candidate_ids": [
+      "C01-04",
+      "C07-04"
+    ],
+    "representative_candidate_id": "C01-04",
+    "merge_reason": "자료 간 정서 대응의 비유일성과 독립 anchor라는 같은 식별 문제",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D05",
+    "title": "자극 평균에서 참가자×자극으로: 개인화는 좌표 보정인가 정보 복원인가",
+    "candidate_ids": [
+      "C01-05",
+      "C04-04",
+      "C12-05"
+    ],
+    "representative_candidate_id": "C01-05",
+    "merge_reason": "공유 표현 밖 개인별 재현 정보와 신뢰도라는 같은 표적",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D06",
+    "title": "범주 경계의 국소 굽음은 내용 변화의 속도만으로 설명되는가?",
+    "candidate_ids": [
+      "C02-01"
+    ],
+    "representative_candidate_id": "C02-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D07",
+    "title": "혼합 범주의 비선형 신경반응은 동시 결합인가 시간 집계의 산물인가?",
+    "candidate_ids": [
+      "C02-02"
+    ],
+    "representative_candidate_id": "C02-02",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D08",
+    "title": "내용 설명이 바뀌어도 남는 정서 차원의 하한은 있는가?",
+    "candidate_ids": [
+      "C02-03",
+      "C07-02"
+    ],
+    "representative_candidate_id": "C02-03",
+    "merge_reason": "내용 조건화와 정보 압축으로 식별하는 정서 차원 하한·상한",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D09",
+    "title": "같은 현재 자극에 도달한 서로 다른 정서 경로는 신경 이력을 남기는가?",
+    "candidate_ids": [
+      "C02-04"
+    ],
+    "representative_candidate_id": "C02-04",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D10",
+    "title": "분산 정서 코드의 중복성은 내용에 따라 읽기 규칙이 바뀌어도 유지되는가?",
+    "candidate_ids": [
+      "C02-05"
+    ],
+    "representative_candidate_id": "C02-05",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D11",
+    "title": "시각 정렬이 보존하는 정서 정보와 버리는 정서 정보의 내용 일반화 경계",
+    "candidate_ids": [
+      "C03-01"
+    ],
+    "representative_candidate_id": "C03-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D12",
+    "title": "관측과 양립하는 여러 복원에서 정서 대비는 생성 prior와 독립적으로 식별되는가",
+    "candidate_ids": [
+      "C03-02",
+      "C09-02"
+    ],
+    "representative_candidate_id": "C03-02",
+    "merge_reason": "같은 신경 적합도의 후보 집합에서 정서 특징이 식별되는지라는 같은 역문제",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D13",
+    "title": "분산 뇌영역의 결합은 정서 대비를 새로 구별하는가, 같은 증거의 잡음만 줄이는가",
+    "candidate_ids": [
+      "C03-03",
+      "C08-01"
+    ],
+    "representative_candidate_id": "C03-03",
+    "merge_reason": "지역·분산·가산·joint의 설명력 경쟁",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D14",
+    "title": "복원 영상의 정서 전환은 뇌의 과거 상태 정보인가 생성기의 시간 보간인가",
+    "candidate_ids": [
+      "C03-04"
+    ],
+    "representative_candidate_id": "C03-04",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D15",
+    "title": "객체 목록을 보존한 장면 관계 변경은 정서 신경 대비에 별도 결합 계산을 요구하는가",
+    "candidate_ids": [
+      "C03-05",
+      "C10-02"
+    ],
+    "representative_candidate_id": "C03-05",
+    "merge_reason": "관계 의미 누락과 분산 결합 이득의 경쟁 설명",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D16",
+    "title": "사전학습 목표는 재현 가능한 정서 관련 신호를 선택적으로 압축하는가?",
+    "candidate_ids": [
+      "C04-01",
+      "C12-04"
+    ],
+    "representative_candidate_id": "C04-01",
+    "merge_reason": "학습목표 비교에 선택 자유도 검증을 포함; QC 후보를 별도RQ로 세지 않음",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D17",
+    "title": "자극조건부와 신경조건부 모형의 불일치는 의미 누락을 넘는가?",
+    "candidate_ids": [
+      "C04-02",
+      "C07-05"
+    ],
+    "representative_candidate_id": "C04-02",
+    "merge_reason": "자극과 과거 신경 조건의 고유·공유·결합 설명을 한 비교로 통합",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D18",
+    "title": "공간 평균은 정서 관련 분산 코드를 중립적으로 축약하는가?",
+    "candidate_ids": [
+      "C04-03"
+    ],
+    "representative_candidate_id": "C04-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D19",
+    "title": "관측시간격자와 선택적 상태 계산을 분리할 수 있는가?",
+    "candidate_ids": [
+      "C04-05"
+    ],
+    "representative_candidate_id": "C04-05",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D20",
+    "title": "공유 통로와 고유 경로의 필요성을 내용과 경로 선택에서 분리",
+    "candidate_ids": [
+      "C05-01"
+    ],
+    "representative_candidate_id": "C05-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D21",
+    "title": "모달리티별 과거 창의 비대칭과 측정 지연의 분리",
+    "candidate_ids": [
+      "C05-02"
+    ],
+    "representative_candidate_id": "C05-02",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D22",
+    "title": "사건경계 상태 초기화와 연속 기억의 경쟁",
+    "candidate_ids": [
+      "C05-03"
+    ],
+    "representative_candidate_id": "C05-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D23",
+    "title": "감각 불일치 조건에서만 필요한 비가산적 시청각 결합",
+    "candidate_ids": [
+      "C05-05"
+    ],
+    "representative_candidate_id": "C05-05",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D24",
+    "title": "정서 관련 신경정보는 현재 장면의 복원보다 과거에서 추론한 예측 상태를 보존하는가",
+    "candidate_ids": [
+      "C06-01"
+    ],
+    "representative_candidate_id": "C06-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D25",
+    "title": "제거해도 되는 환경과 보존해야 하는 맥락의 선택적 불변성 경계",
+    "candidate_ids": [
+      "C06-02"
+    ],
+    "representative_candidate_id": "C06-02",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D26",
+    "title": "해석 가능한 개념은 신경 정렬 방향인가 모델 계산에 쓰이는 안정된 성분인가",
+    "candidate_ids": [
+      "C06-03"
+    ],
+    "representative_candidate_id": "C06-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D27",
+    "title": "분포 밖 적응의 성공이 정서 관련 신경정보의 보존을 보장하는가",
+    "candidate_ids": [
+      "C06-04"
+    ],
+    "representative_candidate_id": "C06-04",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D28",
+    "title": "보지 않은 내용–정서 조합에서 신경표상은 성분의 합으로 구성되는가",
+    "candidate_ids": [
+      "C06-05"
+    ],
+    "representative_candidate_id": "C06-05",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D29",
+    "title": "측정척도에 따른 정서 신경기하의 분화 순위 역전",
+    "candidate_ids": [
+      "C07-01"
+    ],
+    "representative_candidate_id": "C07-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D30",
+    "title": "시간 지연공간의 정서 관련 위상은 관측 null을 넘는가",
+    "candidate_ids": [
+      "C07-03"
+    ],
+    "representative_candidate_id": "C07-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D31",
+    "title": "감각–transmodal gradient의 긴 문맥 이득은 신경 통합인가 관측시간 효과인가",
+    "candidate_ids": [
+      "C08-02"
+    ],
+    "representative_candidate_id": "C08-02",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D32",
+    "title": "정서관련 모델–뇌 지도의 공간 조직은 비정상적 신뢰도가 만든 모양인가",
+    "candidate_ids": [
+      "C08-03"
+    ],
+    "representative_candidate_id": "C08-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D33",
+    "title": "내용이 같은 모델에서 계산 경로의 제약이 정서관련 신경정보를 가르는가",
+    "candidate_ids": [
+      "C08-05",
+      "C11-02"
+    ],
+    "representative_candidate_id": "C08-05",
+    "merge_reason": "경로 선택 대 전문가 내용이라는 같은 계산 분해",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D34",
+    "title": "정서 변화와 동행하는 network-state는 자극 동기화 구조를 넘어서는가",
+    "candidate_ids": [
+      "C08-04"
+    ],
+    "representative_candidate_id": "C08-04",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D35",
+    "title": "생성 prior 변화에 대한 측정된 정서 정보의 기여 감사",
+    "candidate_ids": [
+      "C09-01",
+      "C10-04"
+    ],
+    "representative_candidate_id": "C09-01",
+    "merge_reason": "시각·언어 출력 차이는 생성 prior 기여라는 상위 질문의 평가 분기",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D36",
+    "title": "의미 보존 통과 여부가 바꾸는 정서 신경 대비",
+    "candidate_ids": [
+      "C09-03"
+    ],
+    "representative_candidate_id": "C09-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D37",
+    "title": "편집 실패 불확실성과 모형 정보 이득을 구분하는 설계",
+    "candidate_ids": [
+      "C09-04",
+      "C12-03"
+    ],
+    "representative_candidate_id": "C09-04",
+    "merge_reason": "관측상 동등한 모형을 가르는 자극 선택과 편집 타당성의 설계",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D38",
+    "title": "생성기 family를 건너는 정서 신경 대비의 일반화",
+    "candidate_ids": [
+      "C09-05"
+    ],
+    "representative_candidate_id": "C09-05",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D39",
+    "title": "언어 출력 병목의 선택적 신경정보 손실",
+    "candidate_ids": [
+      "C10-01"
+    ],
+    "representative_candidate_id": "C10-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D40",
+    "title": "같은 사건집합에서 시간 순서가 필요한 신경 문맥",
+    "candidate_ids": [
+      "C10-03"
+    ],
+    "representative_candidate_id": "C10-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D41",
+    "title": "예측오차의 방향은 상태 코드보다 추가적인 정서 신경정보를 갖는가",
+    "candidate_ids": [
+      "C11-01"
+    ],
+    "representative_candidate_id": "C11-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D42",
+    "title": "재귀의 이득은 공유 계산인가 사건 진행의 암기인가",
+    "candidate_ids": [
+      "C11-03"
+    ],
+    "representative_candidate_id": "C11-03",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D43",
+    "title": "생물학적 구현 차이가 신경 관측에서 남기는 식별 한계",
+    "candidate_ids": [
+      "C11-04"
+    ],
+    "representative_candidate_id": "C11-04",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D44",
+    "title": "정서 관련 신경정보를 보존하는 제약이 모델의 맥락 계산을 바꾸는가",
+    "candidate_ids": [
+      "C11-05"
+    ],
+    "representative_candidate_id": "C11-05",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D45",
+    "title": "내용 환경에서 좌표가 바뀌어도 정서 관련 연산은 전이하는가?",
+    "candidate_ids": [
+      "C12-01"
+    ],
+    "representative_candidate_id": "C12-01",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  },
+  {
+    "direction_id": "D46",
+    "title": "정서 대비를 설명하는 시각·맥락 정보는 nuisance인가 계산 입력인가?",
+    "candidate_ids": [
+      "C12-02"
+    ],
+    "representative_candidate_id": "C12-02",
+    "merge_reason": "원 후보의 관측대상·조작·경쟁설명·반증 대비를 독립 방향으로 보존",
+    "status": "Round3/4 반영 전 잠정 중복 통합"
+  }
+]

@@ -1,0 +1,340 @@
+{
+  "role": "03_vision_decoding",
+  "read_files": [
+    "discussions/ROUND03_PROTOCOL.md",
+    "discussions/round03_assignments.json",
+    "agents/03_vision_decoding/round02_exchange.json",
+    "agents/03_vision_decoding/round02_exchange.md",
+    "agents/04_brain_foundation/round02_exchange.json",
+    "agents/04_brain_foundation/round02_exchange.md",
+    "agents/08_systems_neuroscience/round02_exchange.json",
+    "agents/08_systems_neuroscience/round02_exchange.md",
+    "axis_map/reference_catalog.csv"
+  ],
+  "reviews": [
+    {
+      "review_id": "R3-03-C04-01",
+      "target_candidate_id": "C04-01",
+      "target_role": "04_brain_foundation",
+      "decision": "수정",
+      "checks": {
+        "q1": "P025/P026/P029는 표현 학습 원리를 제공하고 P051은 유사도 평가 문제를 다룬다. 특정 정서 대비의 목적함수별 보존 차이가 이미 해결됐다는 근거는 catalog에 없다.",
+        "q2": "동일 encoder 목적 ablation과 이중 표적 대비가 있어 단순 공개모델 순위는 피했다. 다만 C03-01과 관측·조작·반증이 대부분 중첩한다.",
+        "q3": "전체 Y 복원과 A 조건부 예측을 분리한 점은 타당하다. 주가설의 ‘소실’은 우선 제한된 readout에서의 접근성 감소로 써야 한다.",
+        "q4": "목적별 실제 입력·증강·mask·학습예산, A의 단위, raw Y 신뢰도, 자극 content group이 필요하다. 보유5종을 부정하는 조건은 아니다.",
+        "q5": "시각·의미 조건화가 공유 정서정보도 삭제할 수 있다. 독립 내용군 보류와 총/조건부 두 추정량이 필요하다.",
+        "q6": "논문 결과를 인간 뇌의 압축 목표로 동일시하지 않는 제한이 적절하다. 어떤 probe도 실패했다고 정보이론적 부재가 증명되지는 않는다.",
+        "q7": "동일 차원뿐 아니라 최적화 수렴과 readout 학습곡선을 맞추고 복원/정서 두 목표의 Pareto frontier를 비교하는 대조가 더 강하다.",
+        "q8": "충분한 검정력에서 목적 차이가 없으면 해당 입력·모형군의 정서 접근성 보존을 지지한다. raw Y가 불안정하면 식별 실패다."
+      },
+      "strongest_objection": "동일 검정력·수렴·readout 접근성을 맞추지 않은 목적함수×표적 차이를 선택적 정보 소실로 읽을 수 있다. 또한 C03-01과 고유 RQ로 이중 집계할 위험이 높다.",
+      "required_revision": [
+        "소실과 접근성 감소를 결론 단계에서 구분한다.",
+        "C03-01과 공통 상위가설로 묶고 neural-only 자기지도와 brain-to-visual 정렬을 사전학습 목표 요인으로 분리한다.",
+        "학습예산 일치 외에 수렴 진단·용량/자료량별 probe 학습곡선과 동등성 문턱을 고정한다."
+      ],
+      "better_discriminating_test": "같은 신경 입력·encoder에서 복원/잠재예측/시각대조 목적을 비교하되 readout 용량×표본수를 교차한다. 검색/복원 손실이 동등한 모형들의 보류 내용군 A 총예측 및 조건부 증분을 비교한다. 비선형 readout으로 회수되면 접근성 변화, 반복 신호 자체가 없으면 식별불가로 분류한다.",
+      "negative_result_value": "범용 표현이 관심 신호를 보존하는 조건을 제시하며, 실패가 readout 제한인지 학습목표인지 분리할 수 있다.",
+      "source_papers": [
+        "P015",
+        "P022",
+        "P025",
+        "P026",
+        "P029",
+        "P051"
+      ],
+      "unresolved_disagreement": "C03-01과 같은 상위 RQ로 통합할지, 뇌 자체 복원과 시각 정렬이라는 별도 목적 대비로 하위 가설을 유지할지 Coordinator 판단이 필요하다."
+    },
+    {
+      "review_id": "R3-03-C04-02",
+      "target_candidate_id": "C04-02",
+      "target_role": "04_brain_foundation",
+      "decision": "수정",
+      "checks": {
+        "q1": "P027 자극→뇌, P026/P029 brain-input 표현은 확인됐으나 불일치 잔차의 정서적 원인이 규명된 것은 아니다. 잔차 분할 자체의 신규성은 낮다.",
+        "q2": "의미 보강에 따른 잔차 감소곡선은 모형교체 이상의 판별을 제공한다. 단순 TRIBE 대 CortexMAE 승패로 축소하면 benchmark다.",
+        "q3": "‘N 추가예측과 A 대비가 겹침’을 지도 상관으로 검정하면 전체 BOLD 개선과 정서 관련 증분을 혼동할 수 있다. 하나의 사전 지정 조건부 추정량이 필요하다.",
+        "q4": "공통 target mask·offset·TR, neural context의 시간/공간 접근범위, 개인 보정 학습자료, A 및 사건 설명의 독립 출처가 필요하다.",
+        "q5": "공간 평활화와 양방향 temporal latent는 target를 지워도 정보를 전파할 수 있다. 마스크는 feature 추출 이전부터 적용해야 한다.",
+        "q6": "잔차를 정서 고유/내재 신호로 부르지 않는 점은 적절하다. neural context의 예측이 신경 전달이나 원인을 뜻하지 않는다.",
+        "q7": "동일 참가자 다른 반복의 neural context, 인접거리별 mask 확장, 의미 누락을 통제한 합성 recovery가 단순 neighbor ridge보다 더 판별적이다.",
+        "q8": "보강된 의미 모형이 효과를 소거하면 자극모형 부족을 확인한다. mask 확장으로 없어지면 누출 또는 국소 예측가능성이지 정서 부재는 아니다."
+      },
+      "strongest_objection": "N은 S보다 동일 관측의 잡음·평활화를 공유하기 쉬운 입력이다. 넓은 mask 한 번으로 이 비대칭을 통제했다고 보기 어렵고, ‘A와 겹친다’는 추정량이 불명확하다.",
+      "required_revision": [
+        "시간적 예측과 동시 공간적 완성을 별도 분석으로 나누고 N의 가용 시각을 명시한다.",
+        "N 추가 이득이 A 관련 대비에서 증가하는지를 별도 보류 데이터의 예측손실 교호작용으로 정의한다.",
+        "공간 변환·정규화·tokenization 전에 target와 buffer를 가리고 마스크 폭 민감도곡선을 보고한다."
+      ],
+      "better_discriminating_test": "자극모형 S, S+동일 반복 N, S+독립 반복 N을 같은 target에 비교한다. 독립 반복이 없으면 그 대조를 가능하다고 쓰지 않고 모의자료로 누출 검정력을 먼저 평가한다. A 관련 대비를 사전 고정하고 의미 설명 강화×mask 폭의 증분 예측곡선을 구한다.",
+      "negative_result_value": "신경조건부 우월성이 측정잡음 공유인지 불완전한 자극 표현인지 구분하고, 잔차의 해석 범위를 제한한다.",
+      "source_papers": [
+        "P026",
+        "P027",
+        "P029",
+        "P080",
+        "P083"
+      ],
+      "unresolved_disagreement": "어떤 의미 모형의 포화도 ‘의미 완전성’을 보장하지 않는다. 잔여 성분을 확인해도 검토한 모형군 밖의 정보로만 결론내리는 제한이 남는다."
+    },
+    {
+      "review_id": "R3-03-C04-03",
+      "target_candidate_id": "C04-03",
+      "target_role": "04_brain_foundation",
+      "decision": "수정",
+      "checks": {
+        "q1": "P026의 여러 공간 표현과 P051/P060의 표현평가는 기존 근거다. 평균에 상쇄되는 정서 대비를 직접 검증한 부분은 새 가설이다.",
+        "q2": "같은 dense Y에서 집계 연산만 바꾸므로 pretrained variant benchmark보다 구별력이 있다.",
+        "q3": "A 손실과 전체복원을 분리했지만 rank 일치를 정보량 일치라고 부르면 안 된다. SNR을 사후 동일화하면 평균의 신호 제거 효과를 통제해 버릴 수 있다.",
+        "q4": "native dense 좌표·atlas 대응·반복·평활화 provenance가 필요하다. 피질 전용 결과를 하위피질로 확대하지 않는 점은 적절하다.",
+        "q5": "등록오차와 공간 주파수 차이가 내용/정서 정보를 다르게 손상할 수 있어 별도 측정 nuisance 대조가 필요하다.",
+        "q6": "집계가 실측 코드에 미치는 표현 효과이며 뇌가 parcel 단위로 계산한다는 증거가 아니다.",
+        "q7": "parcel 평균과 parcel 내부 zero-sum 잔차를 분리하고 잔차 추가 복구를 보류 자료에서 시험하면 상쇄 기제를 더 직접 검증한다.",
+        "q8": "무작위 parcel도 같은 손실을 보이면 atlas 고유 효과는 약해지지만 공간 평균의 일반 상쇄 가설은 남는다. 현 반증 문장은 두 주장을 나눠야 한다."
+      },
+      "strongest_objection": "random parcel에서도 손실이 같다는 결과는 해부 atlas의 특이성을 반박할 뿐 공간 평균이 정서 정보를 상쇄한다는 주가설 전체를 반박하지 않는다.",
+      "required_revision": [
+        "일차 가설을 일반 공간평균 손실, 이차 가설을 atlas 경계 특이성으로 구분한다.",
+        "‘정보량 일치’를 ‘rank·복원능력·측정신뢰도 등 명시한 지표의 일치’로 바꾼다.",
+        "parcel 내 평균과 zero-sum 패턴의 추가 예측을 직접 평가하고 사후 SNR 보정 전후를 나눠 보고한다."
+      ],
+      "better_discriminating_test": "Y를 각 parcel의 평균 성분과 평균이 0인 잔차로 분해한다. 평균만/평균+rank-matched 잔차/평균+잡음 대조의 A 예측을 새 자극에서 비교하고 실제 atlas와 연속 random parcel을 교차한다. 잔차가 반복 가능하게 회수되면 평균 상쇄, atlas 차이까지 있으면 경계 특이성으로 판정한다.",
+      "negative_result_value": "평균으로 충분한지, 미세 공간 대비가 필요한지 또는 특정 atlas 선택만 문제인지 음성 결과를 세 수준으로 구분할 수 있다.",
+      "source_papers": [
+        "P026",
+        "P051",
+        "P060",
+        "P081"
+      ],
+      "unresolved_disagreement": "신뢰도를 맞추는 절차가 nuisance를 제거하는지 신호 손실의 일부를 제거하는지에 따라 estimand가 달라진다. 원효과와 보정효과를 병행하는 절충이 필요하다."
+    },
+    {
+      "review_id": "R3-03-C04-04",
+      "target_candidate_id": "C04-04",
+      "target_role": "04_brain_foundation",
+      "decision": "유지",
+      "checks": {
+        "q1": "개인화와 공유표현은 기존 과제(P027/P052)이나 정렬 강도와 보류 개인 tuning 손실의 교호작용이 구별되는 새 대비다.",
+        "q2": "단순 개인 head 향상이 아니라 정렬 강도를 조작하므로 모델교체로만 구성된 후보는 아니다.",
+        "q3": "자극집계 A로 개인 정서 평정을 예측했다고 하지 않는 제한이 명확하다. 개인별 A 관련 신경 tuning이라는 target를 유지한다.",
+        "q4": "개인내 독립 세션·공통 자극·nuisance·adaptation 예산이 필요하다. 반복 없는 보유본은 개인 안정성 분석에서 제외하고 다른 대비에 활용한다.",
+        "q5": "안정된 motion/site나 개인 평균 스케일이 residual로 남을 수 있어 공유+개인 intercept/scale 기준선이 필수다.",
+        "q6": "개인별 tuning의 안정성은 신경 인과나 개인별 상태의 측정이 아니다. 제안은 이를 명시하므로 수준 혼동을 피한다.",
+        "q7": "subject-label permutation은 피험자 일반화 estimand에 맞춰 층화해야 한다. 새 자극의 정서 대비에서 개인별 기울기 안정성을 평가하면 단순 ID 인식을 더 잘 배제한다.",
+        "q8": "일반화 residual이 없으면 해당 자료의 개인 head 필요성을 줄일 수 있다. 검정력 부족은 개인 정보 부재와 구분한다."
+      },
+      "strongest_objection": "정렬 강도와 평균화는 서로 다른 연산이다. 하나의 축으로 섞으면 안정된 개인 정보를 어느 연산이 지웠는지 불명확하다.",
+      "required_revision": [
+        "유지하되 정렬 regularization과 피험자 평균화를 두 요인으로 분리한다.",
+        "개인 intercept/scale을 넘는 A 대비 기울기의 새 자극·새 세션 안정성을 일차 지표로 고정한다."
+      ],
+      "better_discriminating_test": "정렬 강도×평균화 유무×개인 residual head를 교차하고 개인별 적응 표본수를 고정한다. A가 자극집계이면 동일 자극 대비의 개인별 neural slope를 반복 세션에서 검증하며 개인 상태 평정 해석은 제외한다.",
+      "negative_result_value": "공통표현만으로 충분한 범위와 개인 조정이 재현 가능한 이득을 주는 범위를 구분한다.",
+      "source_papers": [
+        "P027",
+        "P052",
+        "P053",
+        "P060",
+        "P086"
+      ],
+      "unresolved_disagreement": "개인 정서 주석이 없는 상태에서도 ‘정서 관련 개인 neural tuning’은 검증할 수 있지만 개인 정서 측정으로 읽히지 않도록 명칭을 지속 제한해야 한다."
+    },
+    {
+      "review_id": "R3-03-C04-05",
+      "target_candidate_id": "C04-05",
+      "target_role": "04_brain_foundation",
+      "decision": "유지",
+      "checks": {
+        "q1": "P028/P034는 상태 모델 원리, P026은 관측격자 처리 근거다. 이를 정서 이력 대비와 교차한 주장은 기존 문헌에서 확정된 사실이 아니다.",
+        "q2": "격자×고정/선택 상태 요인의 분리가 있어 단순 Mamba 교체가 아니다.",
+        "q3": "A 관련 외부 예측을 요구해 전체 시계열 예측과 구분했다. A의 시간단위에 맞는 예측 손실을 고정할 필요가 있다.",
+        "q4": "native TR·원 onset·평정 주기·과거전용 resampling·연속 길이가 필요하다. 시행 beta를 연속 시계열로 만들지 않는 fallback을 유지한다.",
+        "q5": "HRF·FIR·내용 bag·미래 보간을 구별하는 대조가 이미 강하다. 단순 spectrum 보존은 다변량 cross-spectrum까지 보존하는지 추가 명세한다.",
+        "q6": "선택적 SSM 이득이 실제 뇌의 선택 gate 존재를 입증하지 않는다. 가설을 상태 의존 예측의 필요성으로 유지한다.",
+        "q7": "같은 실제 시간/대역폭에서 고정 SSM+비선형 readout과 선택 SSM을 비교하고 선택 gate만 shuffle하는 대조가 더 직접적이다.",
+        "q8": "FIR로 충분하면 복잡한 상태 모형의 필요성을 낮출 수 있다. 격자 하나에서만 실패해도 모든 시간 정보 부재로 일반화하지 않는다."
+      },
+      "strongest_objection": "fixed 대 selective 모델은 effective capacity도 다를 수 있다. 격자에 견고한 이득만으로 신경 선택 상태의 특수성을 확정하기 어렵다.",
+      "required_revision": [
+        "유지하되 fixed SSM+비선형 readout 및 gate-shuffle 대조를 추가한다.",
+        "물리 시간 길이·대역폭·최적화 예산을 고정하고 multivariate surrogate의 보존 특성을 명시한다."
+      ],
+      "better_discriminating_test": "격자×모형을 교차하면서 선택 gate를 정적으로 고정/시행 간 교환한 모델을 같은 상태차원·연산예산으로 평가한다. 새 자극에서 A 대비의 이득이 gate 조작에 선택적으로 감소하고 일반 시각 예측과 구별되는지 본다.",
+      "negative_result_value": "관측 시간격자가 만든 이점과 입력 의존 예측의 실제 필요성을 분리해 동적 연구의 최소 모형을 좁힌다.",
+      "source_papers": [
+        "P026",
+        "P028",
+        "P034",
+        "P056",
+        "P086"
+      ],
+      "unresolved_disagreement": "C03-04는 생성 전후의 시간정보 출처, 이 후보는 관측격자×계산의 효과다. 공통 HRF 대조는 공유할 수 있지만 동일 RQ로 합칠 필요는 없다."
+    },
+    {
+      "review_id": "R3-03-C08-01",
+      "target_candidate_id": "C08-01",
+      "target_role": "08_systems_neuroscience",
+      "decision": "수정",
+      "checks": {
+        "q1": "P028/P067의 모델 원리만으로 분산 정서 코드 문제의 선행을 충분히 대표하지 못한다. 이미 catalog에 있는 P005/P009도 근접 신경 근거로 대조해야 한다.",
+        "q2": "영역내 비선형을 유지하고 영역간 결합만 바꾸는 점은 실질적 조작이다. 다만 C03-03의 관측·경쟁설명·반증과 매우 가깝다.",
+        "q3": "주지표를 A 예측 D−N으로 정하고 전체 BOLD를 보조로 둔 점은 타당하다. A가 자극집계일 경우 자극내용을 뇌에서 다시 읽는 경쟁 설명이 여전히 강하다.",
+        "q4": "ROI coverage·A단위·독립 content family·반복/SNR가 필요하다. 다섯 보유본의 공통 주석은 가정하지 않는다.",
+        "q5": "공통 입력과 HRF 외에 label-feature overlap을 맞춰야 한다. ID를 보류해도 같은 영상내용 군이 양쪽에 남을 수 있다.",
+        "q6": "비가산 예측 이득을 정보이론적 시너지나 생물학적 통신으로 부르지 않는 제한이 필요하다. ROI 결합은 인간 뇌 인과 실험이 아니다.",
+        "q7": "영역별 허용 후보의 교집합을 additive evidence가 설명하는지와 비가산 readout이 추가하는지 비교하면 C03-03과 공통 판별틀을 만들 수 있다.",
+        "q8": "잘 검정된 동등성은 해당 대비에서 가산 충분성을 지지한다. low reliability는 결합 부재의 증거가 아니라 식별불가다."
+      },
+      "strongest_objection": "C03-03과 원 뇌·영역결합 조작·가산 대 상호작용·SNR 통제라는 핵심 서명이 중복한다. 별도 신경 질문 두 건으로 수량 집계하기 어렵다.",
+      "required_revision": [
+        "P005/P009를 closest prior 역대조에 추가한다.",
+        "C03-03과 하나의 상위 RQ로 통합하고 direct A loss와 관측 등가 후보 판별을 두 독립 assay로 둔다.",
+        "비가산 predictive gain과 시너지/신경 전달 용어를 분리한다."
+      ],
+      "better_discriminating_test": "같은 자극군과 split에서 두 assay를 함께 고정한다. direct A readout과 정서가 상반된 후보 판별 양쪽 모두에 가산 대비 비가산 이득이 있어야 강한 결합 주장으로 발전시킨다. 같은 객체/다른 A와 같은 A/다른 객체 대비를 병행한다.",
+      "negative_result_value": "두 assay가 불일치하면 생성/후보 선택 또는 label readout의 편향을 찾을 수 있고, 일치한 음성 결과는 가산 설명의 충분성을 강화한다.",
+      "source_papers": [
+        "P005",
+        "P009",
+        "P017",
+        "P028",
+        "P067",
+        "P077"
+      ],
+      "unresolved_disagreement": "두 assay를 독립 연구로 유지할지 같은 RQ의 검증 경로로 병합할지는 통합 단계 판단이지만, 현재 서명에서는 병합을 권고한다."
+    },
+    {
+      "review_id": "R3-03-C08-02",
+      "target_candidate_id": "C08-02",
+      "target_role": "08_systems_neuroscience",
+      "decision": "수정",
+      "checks": {
+        "q1": "P066/P068의 사건·공간시간 조직과 P061/P063의 gradient/공간검정은 기존 근거다. 정서 대비×문맥×gradient의 조건부 상호작용은 확인된 기존 결과가 아니다.",
+        "q2": "단순 gradient 상관을 넘어 HRF/문맥 요인을 분리한 점은 개선이다. 그래도 지도가 유의하다는 결과만 남으면 기존 temporal receptive 연구의 반복이다.",
+        "q3": "정서 주석 추가/제거 대비를 명시했으나 A의 과거 이력도 같이 늘리는지 현재 A만 쓰는지 불명확하다. 이 선택에 따라 추정량이 달라진다.",
+        "q4": "개인 gradient의 독립 추정, A 시간단위, onset·HRF 허용범위, 새 영화 split과 지역 신뢰도가 필요하다.",
+        "q5": "HRF 유연성은 confound 제거와 신경 이력 효과 흡수를 동시에 할 수 있다. 더 유연한 HRF에서 소실됐다고 신경 통합이 없다는 결론은 성립하지 않는다.",
+        "q6": "관측 fMRI의 문맥 이득은 계산적 필요성의 제약이며 영역별 실제 신경 시간상수의 직접 추정이 아니다.",
+        "q7": "신경 이력 있음/없음×HRF 지역차 있음/없음의 회복 시뮬레이션으로 두 설명을 구별할 파라미터 영역을 먼저 규정해야 한다.",
+        "q8": "자료가 두 설명을 식별 못하면 기각 대신 한계로 남긴다. 식별 검정력 있는 조건에서 HRF만으로 충분할 때 장기 통합 필요성을 낮춘다."
+      },
+      "strongest_objection": "현재 반증은 유연한 HRF가 실제 neural history 효과까지 흡수하는 경우와 HRF confound를 제거하는 경우를 구분하지 못한다.",
+      "required_revision": [
+        "현재 A와 과거 A의 입력 허용범위 및 문맥 길이별 nested 대비를 명시한다.",
+        "공동 관측모형 회복 실험으로 HRF와 신경 이력의 식별 구간을 정한다.",
+        "gradient를 학습 자료나 독립 atlas에서 고정하고 spatial/subject uncertainty를 함께 평가한다."
+      ],
+      "better_discriminating_test": "네 가지 생성 조건(신경 이력 유무×지역 HRF 차이 유무)에 실제 자극 시간스펙트럼을 넣어 분석 전체를 반복한다. 신경 이력이 있는 조건에서도 HRF 조정으로 효과가 항상 사라지면 해당 실자료 반증 규칙을 폐기한다. 식별 가능한 범위에서만 실제 정서 문맥×gradient 효과를 검정한다.",
+      "negative_result_value": "긴 문맥 효과를 신경 통합으로 읽을 수 있는 측정 조건과 불가능한 조건을 분리하며, 음성 결과의 과잉 해석을 막는다.",
+      "source_papers": [
+        "P028",
+        "P061",
+        "P063",
+        "P066",
+        "P068"
+      ],
+      "unresolved_disagreement": "현재 자료만으로 HRF와 neural history가 식별되지 않으면 새 측정 없이 둘 중 하나를 선택할 수 없다. 모델 성능 우열과 생리 시간상수 주장을 계속 분리해야 한다."
+    },
+    {
+      "review_id": "R3-03-C08-03",
+      "target_candidate_id": "C08-03",
+      "target_role": "08_systems_neuroscience",
+      "decision": "보류",
+      "checks": {
+        "q1": "P062/P063/P064가 공간변환·spatial null 비교 문제를 이미 다룬다. 특정 정서 조직의 상반 생물학 예측은 아직 구체적이지 않다.",
+        "q2": "단순 모델교체는 아니지만 현재 일차 지표가 제1종 오류/검정력인 방법 검증이다. 독립 생물학 RQ 수량과 구분해야 한다.",
+        "q3": "정서 조건부 이득 지도라는 입력은 있지만 어느 정서 대비의 어떤 위치 예측을 가르는지 부족하다. 지도 하나의 유의성은 정서 계산을 설명하지 않는다.",
+        "q4": "위치별 반복 신뢰도·surface/native 변환·mask·parcel 면적·평활도와 A 지도 생성 split이 필요하다.",
+        "q5": "nuisance-only 모형을 실자료 정서 지도까지 보고 맞추면 진짜 구조를 null에 흡수할 수 있다. null 모수는 독립 자료에서 추정해야 한다.",
+        "q6": "거짓 양성 보정은 구조적/인과적 신경 기제 증명이 아니다. 후보 자체가 이 제한을 인정한 점은 적절하다.",
+        "q7": "효과 없는 null뿐 아니라 위치를 아는 여러 진짜 signal을 주입해 보정의 power와 공간 편향을 검증해야 한다.",
+        "q8": "보정 후 효과 부재는 원 공간 주장의 불안정성일 수 있지만 null 과대보정·낮은 power와 구분해야 한다."
+      },
+      "strongest_objection": "현 형태는 중요한 공통 측정 게이트이지만 생물학적 경쟁 설명의 차별 예측보다 오류율 검증이 중심이다. 별도 과학 발견 후보로 세면 기여 수준을 과장할 수 있다.",
+      "required_revision": [
+        "독립 생물학 RQ로는 보류하고 C08-02 등 공간 주장 후보의 필수 방법 게이트로 유지한다.",
+        "다시 과학 후보로 올릴 때 감각 중심 대 transmodal 중심 등 사전 정의한 특정 대비의 상반 위치 예측을 명시한다.",
+        "null 모수 추정과 효과 검정 자료를 분리하고 positive signal injection을 추가한다."
+      ],
+      "better_discriminating_test": "독립 반복에서 잡음/평활도 모수를 추정한 뒤, 효과 없음·고정 위치 효과·gradient 효과를 각각 주입해 false positive와 recovery를 평가한다. 그 검정력이 충분한 영역에서 실제 정서 지도 주장을 평가하며 단순 QC 성공을 별도 생물학 발견으로 세지 않는다.",
+      "negative_result_value": "어떤 공간 해석이 허용되는지 경계를 정하는 공통 산출물이 되며, 부정 결과도 후속 지도 연구의 주장 강도를 제한한다.",
+      "source_papers": [
+        "P026",
+        "P062",
+        "P063",
+        "P064"
+      ],
+      "unresolved_disagreement": "특정 생물학 지도가 아직 없다는 이유로 방법 자체를 기각하지 않는다. 단독 RQ 수량 포함 여부만 보류하며 실질 검증 작업은 유지한다."
+    },
+    {
+      "review_id": "R3-03-C08-04",
+      "target_candidate_id": "C08-04",
+      "target_role": "08_systems_neuroscience",
+      "decision": "수정",
+      "checks": {
+        "q1": "P066 사건분절과 P067 상태모형은 기존 근거다. 자극잔차의 정서 동행만으로 새 내재 상태를 발견했다는 결론은 불가하다.",
+        "q2": "mean-only/covariance-only/both의 대립은 실질적이다. 다만 covariance 변화가 대각 variance 변화인지 off-diagonal coupling인지 분리하지 않았다.",
+        "q3": "A 변화 log score와 BOLD likelihood를 나눈 점은 타당하다. 상태 추정에 A를 안 썼더라도 상태 수·모델 선택에 test A가 들어가면 독립성이 깨진다.",
+        "q4": "연속 run 길이·평정단위·run onset·motion·nuisance와 상태 추정의 causal filtering/smoothing 선택이 필요하다.",
+        "q5": "잔차의 시간별 진폭 변화·평균 모형 오지정만으로 covariance HMM이 이길 수 있다. stationary covariance 대조만으로 이를 제거하지 못한다.",
+        "q6": "network-state는 측정모형의 잠재상태이며 실제 내재 회로나 정서 상태라는 이름으로 승격하면 안 된다.",
+        "q7": "mean-only 외에 시간가변 diagonal covariance와 고정 상관구조·가변 variance 모형을 추가해 off-diagonal 기여를 직접 비교해야 한다.",
+        "q8": "가변 variance 모형이 충분하면 동적 결합 필요성이 약해진다. 뇌 likelihood만 좋아지면 일반 신호모형으로 이동한다."
+      },
+      "strongest_objection": "공분산 상태의 이득은 영역간 결합이 아니라 각 영역의 시간별 진폭/분산 변화일 수 있다. 현재 mean-only 대 covariance-only 대비만으로 이를 구별할 수 없다.",
+      "required_revision": [
+        "stationary covariance, time-varying diagonal, fixed correlation+time-varying variance, full covariance 상태를 계층적으로 비교한다.",
+        "상태수·regularization은 training BOLD/내부 validation에서 고정하고 test A로 선택하지 않는다.",
+        "forward-backward smoothing 결과는 오프라인 동행 추정으로 표기하고 미래 예측을 주장할 때는 과거 filtering만 사용한다."
+      ],
+      "better_discriminating_test": "같은 평균·주변분포·시간스펙트럼을 맞춘 가변 분산 null을 만들고 전체 잔차화→상태학습→A 평가를 반복한다. full covariance가 diagonal 모형을 독립 영화/런에서 넘어설 때만 동적 결합 필요성을 논한다.",
+      "negative_result_value": "정서 관련 신호가 평균 전환·진폭 변화·상관구조 중 어떤 최소 상태모형을 요구하는지 구분할 수 있다.",
+      "source_papers": [
+        "P027",
+        "P029",
+        "P066",
+        "P067"
+      ],
+      "unresolved_disagreement": "full covariance의 추가 예측도 미측정 공통입력으로 설명될 수 있으므로 관측자료만으로 신경 결합의 원인을 확정할 수 없다는 제한이 남는다."
+    },
+    {
+      "review_id": "R3-03-C08-05",
+      "target_candidate_id": "C08-05",
+      "target_role": "08_systems_neuroscience",
+      "decision": "수정",
+      "checks": {
+        "q1": "P028/P029의 graph ordering/gradient 위치 원리는 기존이다. 경로에 대한 생물학적 의미는 해당 모델 성능에서 바로 따라오지 않는다.",
+        "q2": "내용 성능을 맞춘 관계 prior 비교는 단순 benchmark를 넘을 수 있다. 그러나 같은 scalar retrieval 점수는 같은 내용표현을 보장하지 않는다.",
+        "q3": "A 추가/제거 encoding 대비는 적절하나 입력이 자극 feature인지 관측 brain ROI인지 불명확하다. 후자는 같은 target Y 예측에 정보를 누출할 수 있다.",
+        "q4": "feature 출처·node 의미·공통 cortical/subcortical 범위·train-only graph·실제 입력 방향을 고정해야 한다. 공식 Brain-Mamba 코드 미확인은 작은 원리 검정으로 대체 가능하다.",
+        "q5": "경로 prior는 receptive field·정규화·순서 접근성도 바꾼다. 내용 성능 사후 매칭으로 모형을 고르면 선택 편향도 생긴다.",
+        "q6": "AI graph/scan의 차이가 실제 뇌 전달경로의 증거가 아님을 명확히 제한한 점은 유지한다.",
+        "q7": "동일 인코더 출력을 고정한 readout topology 비교와 degree/경로길이/거리 보존 graph 재배선이 더 강한 대조다.",
+        "q8": "제약 효과가 없으면 해당 정보/예산에서 content-only 충분성을 지지한다. 특정 seed에서만 차이면 안정된 관계 prior 가설을 약화한다."
+      },
+      "strongest_objection": "서로 다른 입력방향의 Brain-Mamba와 stimulus encoding을 한 실험처럼 묶으면 target leakage와 내용 동등성 문제가 생긴다. 동일 retrieval 점수만으로 내용이 같다고 말할 수도 없다.",
+      "required_revision": [
+        "하나의 일차 방향을 선택한다: 고정 자극 feature→ROI 반응 예측, 또는 관측 ROI→A decoding. 양자를 한 추정량으로 합치지 않는다.",
+        "자극→ROI로 할 경우 brain graph는 training 자료나 외부 atlas에서만 만들고 test Y는 입력하지 않는다.",
+        "일반 내용 성능 동등화의 개발셋 기준·허용범위를 사전 고정하고 여러 내용 task/probe를 병행한다."
+      ],
+      "better_discriminating_test": "고정 자극 embedding을 공통 입력으로 하고 ROI별 output head 사이의 topology만 바꾼다. 동일 edge 수·거리·차수·경로 길이를 보존한 null graphs와 경쟁시키고 새 자극에서 정서 관련 대비×topology 효과를 검정한다. 생성기 기반 자극 확장은 새 실제 반응을 얻은 뒤만 평가한다.",
+      "negative_result_value": "내용 표현을 고정한 상태에서 관계 prior의 최소 필요성을 판별하며, 음성 결과는 모델 경로를 신경 기제로 확대하는 주장을 줄인다.",
+      "source_papers": [
+        "P028",
+        "P029",
+        "P061",
+        "P070",
+        "P077"
+      ],
+      "unresolved_disagreement": "동일한 입력·용량이어도 최적화 난도가 달라 관계 효과가 될 수 있다. 수렴/seed 재현 이후에도 계산 제약의 유용성까지만 주장한다."
+    }
+  ],
+  "round_limitations": [
+    "배정된 두 역할의 JSON과 Markdown 및 자기 Round2를 실제 읽었다. 열 개 후보 모두 개별 checks8개를 작성했다.",
+    "비판은 기존 catalog와 후보 내용의 설계 논리를 대조한 E3 판단이다. 해당 원문을 새로 정독하거나 새로운 문헌을 검색했다고 주장하지 않는다.",
+    "다섯 보유 데이터의 존재를 인정하며 schema·반복·측정단위는 분석 실행조건으로만 기록했다. 미확인 자체를 기각 사유로 사용하지 않았다.",
+    "공유 파일·다른 역할·다른 라운드·Git은 수정하지 않았다. 실제 분석·모형 실행·뇌 인과 검증은 수행하지 않았다.",
+    "유지 결정도 실증 성공이나 신규성 확정을 뜻하지 않는다. 보류 C08-03은 공통 방법 게이트로 유지하며 불확실성만으로 연구를 폐기한 것이 아니다."
+  ]
+}

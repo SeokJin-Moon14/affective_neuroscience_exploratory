@@ -1,0 +1,35 @@
+# 시각과 맥락은 뇌의 정서 표현을 어떻게 만드는가?
+
+첫 연구로 검토할 질문은 **장면을 알아보는 데 쓰이는 뇌 정보가 그 장면의 정서도 설명할 수 있는가**이다. 뇌 활동에서 시각 정보를 읽는 vision decoder에 emotion head를 붙여, 시각과 정서가 공유하는 정보와 추가로 필요한 정보를 비교한다.
+
+예를 들어 장면에 무엇이 등장하는지는 잘 읽어냈는데 그 장면의 정서 평정은 잘 예측하지 못할 수 있다. 이때 다른 뇌 영역의 정보를 더하면 예측이 나아지는지 본다. 반대로 시각 정보를 거친 경로만으로도 새로운 장면의 정서를 잘 예측한다면, 그 범위에서 시각 표현이 정서 설명에도 충분히 유용하다는 근거가 된다. 모델의 성공을 뇌의 처리 순서나 인과 기제의 증명으로 해석하지는 않는다.
+
+## 함께 검토할 질문
+
+[RP03](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/proposals/RP03.md)은 장면의 내용이 달라져도 같은 정서와 관련된 뇌 패턴이 유지되는지 묻는다. 어떤 동물 영상에서 배운 패턴이 전혀 다른 내용의 영상에서도 통하는지가 예다. RP01이 시각 정보를 담은 표현의 충분성을 묻는다면, RP03은 내용에 따라 정서 표현 자체가 달라지는지를 묻는다.
+
+[RP05](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/proposals/RP05.md)는 앞선 맥락이 현재 장면의 정서 관련 뇌 반응을 설명하는지 묻는다. 현재 화면의 모양과 사물을 잘 설명해도 앞에서 무슨 일이 있었는지를 모르면 놓치는 반응이 있는지 조사한다. 기존 영화 자료에서는 관계를 탐색하고, 같은 장면을 서로 다른 맥락 뒤에 보여주는 후속 실험에서 직접 확인한다.
+
+시각 요소를 바꾸는 [RP02](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/proposals/RP02.md), 서로 다른 정서를 전하는 영상과 소리의 결합을 다루는 [RP08](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/proposals/RP08.md)도 중요한 실험 후보다. 이들은 무엇을 보여주거나 들려주느냐를 직접 바꿀 수 있어 경쟁 설명을 구별하기 좋지만, 새로운 주석과 신경 측정이 필요하다.
+
+나머지 제안은 정서 점수의 조합, 앞선 장면의 영향, 사건의 예상 가능성, 여러 뇌 영역의 정보 조합, 개인차를 다룬다. [핵심 질문 10개](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/proposals/README.md)에서 질문과 예상 결과를 먼저 읽을 수 있다.
+
+## AI 모델의 역할
+
+시각 모델은 색·움직임·사물·장면을 수치로 표현한다. video model은 앞선 사건과 시간에 따른 변화를 표현한다. 뇌 모델은 이런 정보가 실제 신경반응과 얼마나 대응하는지 시험한다. 생성 모델은 기존 자료에서 찾은 후보 요소를 바꾼 새 자극을 만드는 데 사용할 수 있다.
+
+모델을 붙여 예측 정확도가 오른 사실만으로 연구의 기여를 정하지 않는다. 어떤 뇌 영역에 어떤 정보가 있고, 내용과 맥락이 바뀌어도 무엇이 유지되는지를 설명해야 한다. 분석 방법과 재현성 점검은 [공통 방법](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/pilots/METHODS.md)에 두었다.
+
+## 보유 자료와 선행연구
+
+Horikawa를 첫 분석에, Emo-FilM을 맥락과 시간 변화 분석에 우선 사용한다. Spacetop은 실제 자극·평정 단위를 확인해 후속 비교에 검토한다. NSD는 시각 모델의 학습·점검에 활용할 수 있지만 인간 정서 라벨이 있다고 가정하지 않는다. Mind Captioning은 정확한 태스크와 텍스트 출처를 확인해야 한다. 사용자가 다섯 자료를 보유한다는 점을 전제로 계획했으며, 현재 클라우드에서 실제 데이터 분석은 하지 않았다.
+
+시각과 정서의 관계, 내용에 공통인 정서 패턴, 분산된 정서표상은 이미 연구된 주제다. 각 제안은 기존 결과에 무엇을 더할지 적고 가까운 선행연구를 연결했다. 이번 재구성은 기존 문헌 조사를 활용했으며 새 포괄적 학술 검색을 마쳤다고 주장하지 않는다. 특히 RP03과 RP09는 선행연구와 차별되는 기여가 남는지 더 확인해야 한다.
+
+[문헌 확인 범위](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/literature/REVISION_V2_SOURCES.md) · [제안별 선행연구 비교](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/literature/novelty/REVISION_V2_REVIEW.md)
+
+## 현재 상태
+
+이 보고서는 v2 연구 기획이다. 질문 10개와 상세 제안, 파일럿 계획 3개를 다시 구성했다. 실제 모델 학습·추론과 뇌 분석은 아직 수행하지 않았다. v1의 질문 30개, 5라운드 토론과 감사는 [이전 기록](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/archive/v1/README.md)에 보존했으며 새 기획을 검증한 이력으로 세지 않는다.
+
+[첫 분석 계획](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/pilots/README.md) · [수정 내역](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/revision_v2/CHANGELOG.md) · [현재 검토 기록](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/synthesis/FINAL_AUDIT.md)

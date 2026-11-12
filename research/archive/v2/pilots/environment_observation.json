@@ -1,0 +1,11 @@
+{
+  "cpu_count": 5,
+  "memory": {
+    "MemTotal": "34906004 kB",
+    "MemAvailable": "34013944 kB"
+  },
+  "cuda_visible_devices_configured": false,
+  "nvidia_smi_present": false,
+  "cgroup_memory.max": "34359738368",
+  "cgroup_cpu.max": "400000 100000"
+}

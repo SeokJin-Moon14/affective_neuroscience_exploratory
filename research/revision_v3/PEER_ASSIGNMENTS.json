@@ -1,0 +1,103 @@
+{
+  "original_sources": [
+    {
+      "path": "agents/02_affective_neuroscience/revision_v3_candidates.json",
+      "agent": "/root/affective_reframe",
+      "sha256": "180b80a278dc562d5596cc05e289724e07ebe60c88770159db5ef157426daf19"
+    },
+    {
+      "path": "agents/03_vision_decoding/revision_v3_candidates.json",
+      "agent": "/root/vision",
+      "sha256": "8dfd6c7f82f315928fb5edc397264f2b1f016363302c54123d5c715c54530bf2"
+    },
+    {
+      "path": "agents/04_brain_foundation/revision_v3_candidates.json",
+      "agent": "/root/foundation_continuation",
+      "sha256": "86ae22a8d99a5af63b3553c60de9479c4fdd9beb575657b54fd2a2731fa17b6e"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/revision_v3_candidates.json",
+      "agent": "/root/dynamics_continuation",
+      "sha256": "bb5da12e2f293f040be7f923f5200160a1ba341da00309a9cfeb5cd5cc55c7bd"
+    },
+    {
+      "path": "agents/06_frontier_ai/revision_v3_candidates.json",
+      "agent": "/root/frontier_contribution",
+      "sha256": "e9064d3572dfa16a80465d38120f37828b000b840e9669174ca40fd5dae0d108"
+    }
+  ],
+  "candidate_map": {
+    "C02-A": {
+      "source": "agents/02_affective_neuroscience/revision_v3_candidates.json",
+      "author": "/root/affective_reframe",
+      "question": "정서를 측정하는 뇌 지표의 점수는 자극 종류가 바뀌어도 같은 뜻일까?"
+    },
+    "C02-B": {
+      "source": "agents/02_affective_neuroscience/revision_v3_candidates.json",
+      "author": "/root/affective_reframe",
+      "question": "뇌는 여러 정서를 표현할 때 사건의 의미를 같은 요소들로 나누어 조합할까?"
+    },
+    "C03-A": {
+      "source": "agents/03_vision_decoding/revision_v3_candidates.json",
+      "author": "/root/vision",
+      "question": "부정정서를 나타낸다는 뇌 지표가 영상의 위협 단서를 따라가는 경우를 구별할 수 있을까?"
+    },
+    "C03-B": {
+      "source": "agents/03_vision_decoding/revision_v3_candidates.json",
+      "author": "/root/vision",
+      "question": "위험을 예상할 때의 뇌 반응은 막연한 경고 신호일까, 아직 보지 않은 구체적인 결과를 담고 있을까?"
+    },
+    "C04-A": {
+      "source": "agents/04_brain_foundation/revision_v3_candidates.json",
+      "author": "/root/foundation_continuation",
+      "question": "함께 나타나는 정서 범주에 대한 뇌반응은 각 범주에서 배운 성분을 조합해 예측할 수 있는가, 아니면 조합마다 새로운 신경 패턴을 배워야 하는가?"
+    },
+    "C04-B": {
+      "source": "agents/04_brain_foundation/revision_v3_candidates.json",
+      "author": "/root/foundation_continuation",
+      "question": "정서 신경지표가 가리키는 값과 그 지표의 목표 평정이 반대로 나타날 자극을 미리 찾아 시험하면, 그 지표를 어떤 조건에서 정서의 증거로 사용할 수 있는지 바뀌는가?"
+    },
+    "C05-A": {
+      "source": "agents/05_multimodal_dynamics/revision_v3_candidates.json",
+      "author": "/root/dynamics_continuation",
+      "question": "위험한 장면을 볼 때 뇌는 위험물의 종류를 표현할까, 아니면 피해로 이어지는 경로를 표현할까?"
+    },
+    "C05-B": {
+      "source": "agents/05_multimodal_dynamics/revision_v3_candidates.json",
+      "author": "/root/dynamics_continuation",
+      "question": "정서 뇌 지표가 무엇을 구별하는지, 서로 반대 예측을 만드는 장면으로 직접 시험할 수 있을까?"
+    },
+    "C06-A": {
+      "source": "agents/06_frontier_ai/revision_v3_candidates.json",
+      "author": "/root/frontier_contribution",
+      "question": "장면의 정서가 바뀔 때 뇌 활동이 변하는 규칙은, 새로운 장면에서도 통할까?"
+    },
+    "C06-B": {
+      "source": "agents/06_frontier_ai/revision_v3_candidates.json",
+      "author": "/root/frontier_contribution",
+      "question": "지금 쓰는 정서 이름이 같아도, 뇌는 서로 다른 정서적 상황을 구별하고 있을까?"
+    }
+  },
+  "assignments": {
+    "/root/affective_reframe": [
+      "C03-A",
+      "C04-B"
+    ],
+    "/root/vision": [
+      "C04-A",
+      "C05-B"
+    ],
+    "/root/foundation_continuation": [
+      "C05-A",
+      "C06-B"
+    ],
+    "/root/dynamics_continuation": [
+      "C06-A",
+      "C02-B"
+    ],
+    "/root/frontier_contribution": [
+      "C02-A",
+      "C03-B"
+    ]
+  }
+}

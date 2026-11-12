@@ -1,27 +1,11 @@
 # 연구 진행 상태
 
-2026-11-12. 사용자 피드백에 따라 정서신경과학 질문을 중심으로 기획을 다시 구성했다. 현재 원고는 핵심 질문 NQ01–NQ10, 상세 제안 RP01–RP10, 파일럿 계획 3개다. 실제 사용자 데이터의 뇌 분석·모델 학습·추론은 수행하지 않았다.
+현재는 v3의 다양한 연구 질문을 발굴하고 토론하는 단계다. 사용자는 RP03을 중심으로 선택하지 않았으며, 모든 후보에 필요성·중요한 관찰·조건부 Conclusion·Affective Neuroscience 기여를 요구했다. v2의 첫 파일럿 순위는 확정 선택에서 해제했다.
 
-## 현재 기획
+다섯 역할이 각자 주제를 정해 독립 후보를 만든 뒤, 다른 역할의 비판과 원저자의 응답·수정을 거친다. Coordinator는 실제 토론과 선정·통합·보류·탈락 이유를 기록한다. [작업 기준](revision_v3/PROTOCOL.md)과 [기여 평가 기준](agents/12_adversarial_review/revision_v3_criteria.md).
 
-첫 분석은 시각 정보를 읽는 뇌 모델에 emotion head를 붙여 시각과 정서가 공유하는 정보를 조사하는 RP01이다. RP03은 내용이 바뀌어도 유지되는 정서 패턴을, RP05는 앞선 맥락이 정서 관련 반응을 설명하는지 다룬다. [제안 목록](proposals/README.md)과 [파일럿](pilots/README.md).
+v2는 [이전 기록](archive/v2/README.md)에 보존했다. 당시의 '중대한 오류 없음'은 연구 가치나 신규성이 확인됐다는 판정이 아니었다. 이전 v1의 12역할·5라운드·문헌 조사도 새 질문의 검토 이력으로 세지 않는다.
 
-이번 수정에서는 vision, affective neuroscience, dynamics 담당자가 새 카드 원고를 작성하고 Coordinator가 기획·문장·파일럿을 통합했다. 별도 검토자는 질문의 과학적 논리와 데이터 해석을 검토했다. 실제 검토 내용과 반영 여부는 [검토 기록](synthesis/FINAL_AUDIT.md)에 남긴다.
+사용자는 Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 보유한다. 실제 원자료의 마운트·스키마와 모델 가중치는 확인 전이며, 이번 작업은 연구 기획이다. 실제 뇌 분석·모델 실험을 수행하지 않았다.
 
-## 이전 작업의 보존
-
-v1에서 수행한 12개 역할의 조사, 문헌 100편의 서지·출처 확인, 5라운드 토론, 실제 무작위 조합, 질문 30개와 방법 감사는 [이전 기록](archive/v1/README.md)에 있다. 이 숫자와 검토 이력을 새 기획의 검증 완료로 사용하지 않는다. 지정 본문·한계 부분을 직접 확인한 문헌은 27편이며, 100편을 모두 원문 완독한 것은 아니다.
-
-새 제안은 기존 문헌을 바탕으로 구성했다. 새로운 포괄적 학술 검색은 수행하지 않았다. 제안별 신규성은 아직 확인이 필요하며, RP03·RP09처럼 선행연구와 특히 가까운 질문을 명시했다.
-
-## 실행 전에 확인할 것
-
-사용자는 Horikawa, Emo-FilM, Mind Captioning, NSD, Spacetop을 보유한다. 이 클라우드에서 보유본의 실제 경로·버전·배열을 확인하거나 모델 가중치를 로드한 상태는 아니다. 확인할 항목은 각 파일럿에 적었으며 기획 작업을 중단하는 이유로 쓰지 않았다.
-
-## 저장과 재개
-
-정본은 GitHub `SeokJin-Moon14/affective_neuroscience_exploratory`의 `research/independent-exploration-20261112` 브랜치다. 마지막 원격 저장 성공은 저장소 `backup/LAST_SUCCESS.json`에서 확인한다. 현재 소스는 `/workspace/Affective-Research-Exploration`, Git 작업 폴더는 `/workspace/affective_research_backup`이다.
-
-현재 문서 원고는 `revision_v2/cards.json`과 `revision_v2/pilots.json`이다. `scripts/render_neuroscience_v2.py`로 다시 만들고 `scripts/validate_neuroscience_v2.py`로 형식·문헌·링크를 확인한다. v1 작성 스크립트로 현재 문서를 덮어쓰지 않는다.
-
-새 세션은 이 파일과 원격 성공 기록을 읽고 이어간다. ChatGPT 프로젝트는 GitHub와 자동 동기화되지 않으며, 채팅을 닫은 뒤 무기한 작업이 계속된다고 보장하지 않는다. [프로젝트 설정 안내](CHATGPT_PROJECT_BRIEF.md).
+원격 정본은 GitHub SeokJin-Moon14/affective_neuroscience_exploratory의 research/independent-exploration-20261112 브랜치다. 마지막 저장 성공은 저장소 backup/LAST_SUCCESS.json을 따른다. 사용자 컴퓨터에 자료를 내려받을 필요는 없다.

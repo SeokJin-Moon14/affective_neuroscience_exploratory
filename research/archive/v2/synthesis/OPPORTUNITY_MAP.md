@@ -1,0 +1,16 @@
+# 질문에서 모델과 데이터로
+
+| 신경과학 질문 | AI로 구별할 설명 | 우선 자료 | 제안 |
+|---|---|---|---|
+| 시각 정보가 정서 설명에도 충분한가 | 시각 표현을 거친 예측과 추가 뇌 정보의 기여 | Horikawa | RP01 |
+| 어떤 장면 요소가 중요한가 | 감각 특징, 사물, 행동·관계 | Horikawa와 후속 조작 실험 | RP02 |
+| 내용이 달라도 정서 표현이 유지되는가 | 공통 패턴과 내용별 패턴 | Horikawa | RP03 |
+| 여러 정서의 조합은 어떻게 표현되는가 | 각 정서 패턴의 합과 조합에 따른 변화 | 주석 분포를 확인한 Horikawa | RP04 |
+| 앞선 맥락은 무엇을 바꾸는가 | 현재 화면만의 설명과 과거 사건을 포함한 설명 | Emo-FilM | RP05 |
+| 앞선 정서 맥락은 다음 반응에 얼마나 남는가 | 현재 자극, 일반적 과거 정보, 정서 관련 이력 | Emo-FilM과 후속 실험 | RP06 |
+| 예상 밖의 사건은 정서에 따라 다르게 처리되는가 | 일반적인 놀람과 정서에 따른 차이 | Emo-FilM, 추가 평가 | RP07 |
+| 영상과 소리의 정서 단서는 어떻게 합쳐지는가 | 감각별 정보의 합과 결합에 따른 변화 | Emo-FilM, 시청각 조작 실험 | RP08 |
+| 여러 영역의 조합은 정서마다 다른가 | 공통된 영역 조합과 정서별 조합 | Horikawa | RP09 |
+| 개인별 신경 반응의 차이가 내용이 바뀌어도 유지되는가 | 일반적 시각 반응 차이와 정서 관련 차이 | Horikawa, 더 많은 참가자·세션 | RP10 |
+
+[상세 제안](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/proposals/README.md) · [먼저 할 분석](https://github.com/SeokJin-Moon14/affective_neuroscience_exploratory/blob/bd56335c91f309620fd37ed2c30b2767c7f98e20/research/pilots/README.md)

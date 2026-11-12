@@ -1,0 +1,211 @@
+{
+  "version": 2,
+  "source_commit": "bd56335c91f309620fd37ed2c30b2767c7f98e20",
+  "note": "Markdown 내부 링크만 이전 GitHub 커밋으로 고정. 해시는 변경 전 원본 기준.",
+  "files": [
+    {
+      "path": "proposals/RP01.md",
+      "sha256_original": "02e1dc98902b95878601d8af28cc4ec5da14721161c39d689eca7f670b9c0e8d"
+    },
+    {
+      "path": "proposals/RP03.md",
+      "sha256_original": "e520c1f985fc95ca9880583e3a56fa2f8fd11ef513df8c30b86a095e16c79494"
+    },
+    {
+      "path": "proposals/RP07.md",
+      "sha256_original": "c17aa307089775e69da4428f9d5eec6269d188dd24f991b2cb15cafdac1e8cde"
+    },
+    {
+      "path": "proposals/RP02.md",
+      "sha256_original": "be706300bc007b699c2cbdebc02a121b4b5e12ba328df19e9345400188d96218"
+    },
+    {
+      "path": "proposals/cards.json",
+      "sha256_original": "da9bfd9590e3c4924116a07b8272f56c0e917800a541aaf50abd0a9600df26c7"
+    },
+    {
+      "path": "proposals/RP10.md",
+      "sha256_original": "5bd954a678693387c7d74fc4a10dd9bd35b5adb23f1bc74672ea9a4dabcb517a"
+    },
+    {
+      "path": "proposals/RP06.md",
+      "sha256_original": "f2dde69b40ffd986ab1273d8b542daa17af44826f8f63d6c6f7954cd90114abb"
+    },
+    {
+      "path": "proposals/RP09.md",
+      "sha256_original": "f97954c5886ab6f75318dea885b019e015fbeab9d49ae2d675b77544d7d270a5"
+    },
+    {
+      "path": "proposals/README.md",
+      "sha256_original": "cb52b35e9dfabfc0c31fd4d56d416f1045b2207026b3d2f16322d5454fdc3c18"
+    },
+    {
+      "path": "proposals/AUTHORING_PROTOCOL.md",
+      "sha256_original": "0fb4aaa90101a1c9f49dbb39cbd70166c81996cf3a5768d4fd307eaf4ca76b18"
+    },
+    {
+      "path": "proposals/RP08.md",
+      "sha256_original": "98a62052f53d4b1b9d7ff7f677449e4c9adf6d110446abaecdc7538679ba0492"
+    },
+    {
+      "path": "proposals/RP05.md",
+      "sha256_original": "f6dc41b499240e7d9ba70fd6ab43887a4a55c06ba94d6124bf97b52e5b4cbe11"
+    },
+    {
+      "path": "proposals/RP04.md",
+      "sha256_original": "f012eb116779083e7de400e0f3776b790ca3c8dd27964edae40aa6f8fcd4e3e3"
+    },
+    {
+      "path": "pilots/PILOT03.md",
+      "sha256_original": "a12fa4a4540d03e095c9d1e233227ca1760233af930663a98e9186843785f740"
+    },
+    {
+      "path": "pilots/PILOT02.md",
+      "sha256_original": "15580509f436f7f792981d482bdfb806f110a9dca2e558355411cfcbe033c6df"
+    },
+    {
+      "path": "pilots/PILOT01.md",
+      "sha256_original": "1b823f5284bc841d6a84a1464033f09b02a80e92df7f94680cb45bdbf8ba1838"
+    },
+    {
+      "path": "pilots/plans.json",
+      "sha256_original": "16b236810c9970e8d1c6e184843200574d6cd42252aeac9180042972c200e8bd"
+    },
+    {
+      "path": "pilots/SELECTION.md",
+      "sha256_original": "770a18faacff09d3d6f20b331e8b7794952317ab846ba087c9cb07c97b78dfaf"
+    },
+    {
+      "path": "pilots/environment_observation.json",
+      "sha256_original": "dcb1556ddb22eeffdefd376b3b61ad43bebc9734f2911525e41a3a5254582dfc"
+    },
+    {
+      "path": "pilots/README.md",
+      "sha256_original": "fac6f28e187b5820beaec36176dac896a6cd58839a55d4f7a4d2bd645342df16"
+    },
+    {
+      "path": "pilots/AUTHORING_PROTOCOL.md",
+      "sha256_original": "0a9d741d5cdb0e2fbea1c7b5780543888a4f4d57273e9d913854c85002e4c78b"
+    },
+    {
+      "path": "pilots/RESOURCE_AND_MODEL_PLAN.md",
+      "sha256_original": "6ba95e252d0f4837a57124a65578bffcbc090749113a7afbb63288e8f8b32937"
+    },
+    {
+      "path": "pilots/METHODS.md",
+      "sha256_original": "ae426a697407902e1940000c969b34b1bdee2836f82b85e1b328c058550e41a4"
+    },
+    {
+      "path": "pilots/model_evidence/clip_license.txt",
+      "sha256_original": "987e63b32f6c89ff5160e429458a872ff048e6860b590a3912e938f9da8f14db"
+    },
+    {
+      "path": "pilots/model_evidence/manifest.json",
+      "sha256_original": "431c57e590bfb964de239421e785f4b369f6d51761a9987eb88c35e7f868d364"
+    },
+    {
+      "path": "pilots/model_evidence/clip_model.py",
+      "sha256_original": "9902cbe5ee90a1da2aa3e6f043e8a23dc1f8831193b963785c9af03d5c7bef2c"
+    },
+    {
+      "path": "pilots/model_evidence/clip_loader.py",
+      "sha256_original": "9540f200fbf8145479fa655382a56dab048d238cc698b9cbd8df3b6d86d3f1b6"
+    },
+    {
+      "path": "research_questions/shortlist.csv",
+      "sha256_original": "392c14d701b0686461739f7b8bffbc3d75a613f10011893eea567dd4258bd87c"
+    },
+    {
+      "path": "research_questions/landscape.csv",
+      "sha256_original": "392c14d701b0686461739f7b8bffbc3d75a613f10011893eea567dd4258bd87c"
+    },
+    {
+      "path": "research_questions/README.md",
+      "sha256_original": "65deb6ed9225d164ce8e2d90edc8c66f4b7b5e7d5bfc1555f00f24e20a5b6127"
+    },
+    {
+      "path": "research_questions/LANDSCAPE.md",
+      "sha256_original": "1f6e24c0f1d761a1a855178568c040f6225a0bdceefc89b7e83719046fdb070b"
+    },
+    {
+      "path": "research_questions/shortlist.json",
+      "sha256_original": "e7dce63d884a4da3342e90dabfa1710a83c12d2bc9738e8406d7d15a32996129"
+    },
+    {
+      "path": "research_questions/RANKINGS.md",
+      "sha256_original": "9a466597c6f67f8c9fbf4fb3af58df08ee5eb7288da61022fdaa03f263da332a"
+    },
+    {
+      "path": "research_questions/landscape.json",
+      "sha256_original": "e7dce63d884a4da3342e90dabfa1710a83c12d2bc9738e8406d7d15a32996129"
+    },
+    {
+      "path": "synthesis/validation_report.json",
+      "sha256_original": "e6c600b4a75d5d4c708a4e5ad310636078238586b948d25d653dfb4395fb00a7"
+    },
+    {
+      "path": "synthesis/deliverables_manifest.json",
+      "sha256_original": "37003896223ed98fe5a68f4481d62b3f8ae7db211da4646cbd358140421f56c2"
+    },
+    {
+      "path": "synthesis/OPPORTUNITY_MAP.md",
+      "sha256_original": "4c1693f8f76793486be5e3ca98a95266a3364d3ab48027e13971e37c15848239"
+    },
+    {
+      "path": "synthesis/link_check.json",
+      "sha256_original": "5c3775d5335c2263b069ff02fc814d0ba244d76942964fce84c423439ac7c3f4"
+    },
+    {
+      "path": "synthesis/FINAL_REPORT.md",
+      "sha256_original": "4c554c778006ef2f32f1e230fddb3d8c701281e7ea7009483b7d78e7a9ca8c78"
+    },
+    {
+      "path": "synthesis/FINAL_AUDIT.md",
+      "sha256_original": "8bde552bbd536863ec156b9fe669de81ce361b02ffa549f4de1ad98dfe9cf945"
+    },
+    {
+      "path": "synthesis/DIVERSITY_AUDIT.md",
+      "sha256_original": "021f24fdf32e5e8a410aff47fe6447470a751db9d1c6a2615a60a24f989e7416"
+    },
+    {
+      "path": "revision_v2/AUTHORING.md",
+      "sha256_original": "7001d4f189ae9b6450f80923500f25ef0d61dbf60cd5dd21cbe9695e21717689"
+    },
+    {
+      "path": "revision_v2/CHANGELOG.md",
+      "sha256_original": "d3538d2fbad0ff882c8cf43a3c881a88727702b34dfdf8392ad53eeeff31b211"
+    },
+    {
+      "path": "revision_v2/version.json",
+      "sha256_original": "39e73c4d6b13b8fb7231a108309b3b2090e95dd1a5ee9614419219e141a0c4fd"
+    },
+    {
+      "path": "revision_v2/cards.json",
+      "sha256_original": "da9bfd9590e3c4924116a07b8272f56c0e917800a541aaf50abd0a9600df26c7"
+    },
+    {
+      "path": "revision_v2/WORK_LOG.json",
+      "sha256_original": "d15dd7446d32961c808be0eca2cbb0a7eb5d2dfe40584dc6ddac8cfc3ea82626"
+    },
+    {
+      "path": "revision_v2/REMOTE_VERIFICATION.json",
+      "sha256_original": "da4e42c3e2b05265194bc47e086346646b32a7d132804c5d2bcb54c040181354"
+    },
+    {
+      "path": "revision_v2/pilots.json",
+      "sha256_original": "16b236810c9970e8d1c6e184843200574d6cd42252aeac9180042972c200e8bd"
+    },
+    {
+      "path": "START_HERE.md",
+      "sha256_original": "0199ff0f419439e2e18c97e256bf5013217577de4d4cce765a0eadff2f596123"
+    },
+    {
+      "path": "RESEARCH_STATUS.md",
+      "sha256_original": "9822f9fb0ca9c127ac4dd8b5fd8df5ffee75ea15b90f4af537ac0e510a8faac4"
+    },
+    {
+      "path": "CHATGPT_PROJECT_BRIEF.md",
+      "sha256_original": "4e3342bc333099f94e9fa8c499292625ed5e6f6af08b129ddde2a7fb21f270f0"
+    }
+  ]
+}

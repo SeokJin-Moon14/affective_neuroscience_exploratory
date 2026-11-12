@@ -1,0 +1,159 @@
+{
+  "role": "12_adversarial_review",
+  "round": 5,
+  "date": "2026-11-12",
+  "read_files": [
+    "discussions/ROUND05_PROTOCOL.md",
+    "discussions/round05_assignments.json",
+    "research_questions/shortlist.json",
+    "literature/novelty/TOP10_REVIEW.md",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "datasets/horikawa/verified_spec.md",
+    "datasets/ownership_and_readiness.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md"
+  ],
+  "read_file_sha256": {
+    "discussions/ROUND05_PROTOCOL.md": "6f5e03882b5ab671a798bb728e68d98cfa1e1a73af29335ee69d929425cd17a0",
+    "discussions/round05_assignments.json": "d44f8f61bb37060a8af2f33576f3b05b57c4713eb6ad876ac9b860b1fa7021ac",
+    "research_questions/shortlist.json": "35ce2f2d30fe3188dff92e35b92036e894beec6bea67015a6a1e66647a1bc8d7",
+    "literature/novelty/TOP10_REVIEW.md": "82065b401c09af68ebb14bc2450f9d1a76b8c643c56fa627e28e896c74681164",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md": "decd3863b1b9bcf45fa64cc8315503bbaaff56adf36b192b5d6bf3c2646ba4e1",
+    "datasets/horikawa/verified_spec.md": "0e7b50a4e6135f42b50495285c3893c9b45d1821bf0064fb516b8147358aa2aa",
+    "datasets/ownership_and_readiness.md": "9f3eb214f89bad1d5e68105d88ff30da55b036b746763729df93aa305976695c",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md": "b92b87a6cf35713a031a74518d399549020c72e73ddeafd90f3874aaa5d7b053"
+  },
+  "positions": [
+    {
+      "proposal_id": "RP01",
+      "rq_id": "RQ09",
+      "debate_role": "회의적비판자",
+      "claim": "시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는지는 검정 가능하지만, 현재 비교의 직접 결론은 학습된 뇌→표현 변환과 제한 readout의 측정 특성이다. 접근성 변화만으로 정서의 신경 계산 원리나 인간 뇌의 정보 삭제를 밝혔다는 주장은 성립하지 않는다.",
+      "best_evidence": [
+        "P001",
+        "P015",
+        "P022",
+        "P051",
+        "P100"
+      ],
+      "weakest_assumption": "원뇌/trunk/head의 정서 예측 차이를 시각 목표의 정서 선택적 효과로 읽는다. 일반 SNR·차원·정규화·모형적합 난도·표본 복잡도 차이만으로 동일 패턴이 생길 수 있다. 동일 architecture라는 조건만으로 학습자료·입력 접근·최적화·총 선택예산까지 일치하지 않는다.",
+      "strongest_alternative": "뇌에 이미 있는 동일 정서 관련 신호가 가역적으로 재부호화되어 지정 probe가 접근하기 어려워졌거나 일반 예측 가능한 신호 전체가 줄었을 뿐이다. 의미 라벨과 신경정보가 공통 자극으로 상관된 경우 높은 decode 점수도 정서 고유 신경 계산을 뜻하지 않는다.",
+      "already_known": "시각 복원·교차 참가자 정렬은 P015/P022 계열의 기존 목표이고, 표현 비교의 불변성과 측정 선택 문제는 P051/P100에 근접한다. 목표/모델 교체나 probe learning curve 자체만으로 독창성을 확보하지 못한다. TOP10_REVIEW의 직접/전이 근거 구별을 유지한다.",
+      "discriminating_prediction": "동일 외부 자극과 원 정서 타깃을 고정하고 정렬 목표×타깃종류(정서/비정서 내용)×probe family/학습량의 대비를 본다. 원뇌 예측난도·표본량을 개발자료에서 맞춘 비정서 타깃보다 정서 타깃 접근성 변화가 크고, 같은 내용군 보류에서 재현되어야 선택성을 지지한다. 알려진 직교회전은 재적합 등방 ridge에서, 알려진 가역 비선형변환은 정확 역변환에서 예측이 복구되어야 한다.",
+      "judgment": "수정",
+      "required_change": [
+        "첫 baseline의 역할을 원뇌/특징 접근성 감사와 동일조건 목표함수 비교로 분리한다. 원뇌→CLIP ridge가 가능하다는 사실은 masked/contrastive 목적의 효과를 검정한 것이 아니다.",
+        "목표함수만 다른 비교에는 같은 자료·입력·구조·dimension·최적화·총 선택예산을 요구한다. 불가능하면 frozen 모델군의 조건부 접근성 비교로 제목과 결론을 좁힌다.",
+        "정서 및 난도 일치 비정서 대비를 사전 고정하고 전체 성능저하를 선택적 정서 손실과 구별한다. 난도 매칭은 독립 개발자료에서 한다.",
+        "동일 Gram·정확 가역변환 양성대조와 실제 rank 절단 대조를 추가한다. nonlinear probe의 회복 실패는 정보부재의 증명이 아니다.",
+        "정서 타깃의 척도에 맞는 하나의 proper loss를 정하고 총/의미조건부 손실을 같은 타깃·표본·단위로 보고한다. 모델이나 타깃별 표준화·분모 차이를 차감하지 않는다.",
+        "Horikawa의 독립 반복이 확인되지 않으면 개인별 repeat ceiling을 가정하지 않는다. 원뇌의 보류자극 판독 가능성과 참 신뢰도 상한을 구별한다."
+      ],
+      "observation_unit": "참가자×원자극 시행의 뇌 관측과 자극 수준 독립 정서 주석이다. 같은 자극 주석을 5명에게 대응했다고 주석 관측이 5배 독립적이 되는 것은 아니다. trunk/head는 같은 시행에서 파생되므로 paired 비교한다.",
+      "inference_plan": "내용군/중복 영상 가족을 outer split 단위로 묶고, 전처리·차원선택·타깃 난도 매칭·probe 선택은 train/development에 격리한다. 같은 outer test에서 모든 단계·모형의 paired loss를 산출한다. 사람 모집단 추론과 자극 모집단 추론을 따로 표시한다.",
+      "positive_result_interpretation": "시험한 표현·probe·학습량 범위에서 시각 정렬과 정서 대비 접근성의 선택적 관계를 지지한다. 인간 뇌에서 정서 정보가 삭제되었다거나 특정 neural algorithm을 식별했다는 결론은 아니다.",
+      "negative_result_interpretation": "가역 복원이나 비선형/자료량 증가로 회복되면 삭제 가설을 폐기하고 접근성 변화로 남긴다. 정밀한 동등성은 지정 범위의 목표 효과를 제한한다. 원뇌 대비가 검출되지 않으면 신호 부재와 저검출력을 구분할 수 없다.",
+      "evidence_that_changes_judgment": "같은 조건의 목표함수 쌍에서 일반 시각/의미 타깃은 보존되고 독립 정서 대비만 내용군을 건너 선택적 접근성 변화를 보이며, 가역 대조와 반복/검출력 검사가 정상일 때 과학적 우선순위를 높인다. 반대로 차이가 비정서 타깃 전체에도 같거나 목표쌍을 확보하지 못하면 방법 모듈로 낮춘다.",
+      "unresolved_disagreement": "제안자는 접근성 곡선 자체를 신경과학 질문으로 볼 수 있다. 나는 신경기전 경쟁설명이나 정서 선택성이 없으면 독립적인 새 신경과학 RQ보다 측정방법 감사에 가깝다고 판단한다. 최상위 과학 카드 유지에 조건을 남긴다.",
+      "resource_feasibility": {
+        "now": "기존 특징과 작은 ridge/가역변환 검사는 현재 4 CPU분량·32GiB 범위에서 실제 shape를 확인하며 계획할 수 있다. 아직 실행하지 않았다.",
+        "conditional": "목표만 다른 brain-to-vision 모델쌍과 Horikawa adapter는 별도 확보·실행 검증이 필요하다. CLIP ViT-B/32 공식 loader/해시는 확인됐지만 가중치 load·추론은 미확인이다.",
+        "boundary": "현 환경 GPU 실행 미확인은 사용자의 외부 GPU 미보유를 뜻하지 않는다. 원뇌/특징 검증으로 먼저 판별력을 확인하되 이를 목적함수 효과의 완료로 보고하지 않는다."
+      }
+    },
+    {
+      "proposal_id": "RP02",
+      "rq_id": "RQ12",
+      "debate_role": "데이터통계검토자",
+      "claim": "고정 원타깃 A에서 관계 의미가 영역 간 비가산 예측 이득을 얼마나 대체하는지 같은 표본의 손실차로 정의한 것은 타당하다. 성립 조건은 가산/비가산 함수계열의 정확한 정의, 관계/비관계 정보의 독립 매칭, 자극 및 사람 수준의 의존성 처리다.",
+      "best_evidence": [
+        "P001",
+        "P008",
+        "P083",
+        "P084",
+        "P100",
+        "P102"
+      ],
+      "weakest_assumption": "관계 정보와 비관계 정보의 타깃 예측력만 같으면 충분히 교환 가능한 대조라는 가정이다. 관계 정보는 길이·측정오차·조건부 overlap·신경입력과의 중복이 다를 수 있으며 test 타깃으로 맞추면 선택 편향이 생긴다.",
+      "strongest_alternative": "일반 의미의 추가 예측력과 신경 신호의 공통 자극원/비선형 관측 혼합이 관계 특이적 중복처럼 보인다. N-D 이득은 생물학적 영역 결합이나 정보이론적 synergy를 식별하지 않는다.",
+      "discriminating_prediction": "g(S)=L(S+D)-L(S+N)으로 정의하고 같은 외부 test에서 δ=[g(O)-g(O+R)]-[g(O)-g(O+B)]=g(O+B)-g(O+R)를 추정한다. B는 독립 개발자료에서 길이·조건부 타깃 예측력·정보량을 맞춘 비관계 대조다. δ>0가 내용군 보류 및 관계/정서 불일치 지지층에서 재현되어야 관계 특이적 대체와 부합한다. g(O)와 각 총손실도 별도 보고한다.",
+      "judgment": "조건부",
+      "required_change": [
+        "D/N을 수식과 입력으로 고정한다. 예: D=b(S)+Σ_r f_r(X_r,S)는 영역 간 상호작용이 없는 유연한 가산모형이고, N은 동일 S·각 영역 입력에 교차영역 항만 추가한 모형이다. S×영역 상호작용을 N에만 허용하면 의미 조건화와 영역 비가산성이 섞인다.",
+        "같은 proper loss·타깃 척도·test 표본을 사용하고 δ를 paired loss의 단일 contrast로 계산한다. 조건별 ΔR² 분모나 서로 다른 residualized 타깃을 차감하지 않는다.",
+        "관계 R와 비관계 B의 비교 가능성은 O가 있는 상태의 증분 예측력으로 개발자료에서 확인한다. test A로 description 선택/매칭하지 않는다. δ의 g(O) 소거와 별개로 감소 주장에는 충분한 g(O)의 기준점과 정밀도가 필요하다.",
+        "ROI 선정·차원축소·정규화·내용조건화·hyperparameter 선택을 inner fold에서 시행한다. N과 D의 총 예산과 학습곡선을 보고하고 복잡도/최적화 실패를 신경 계산 부재로 해석하지 않는다.",
+        "정서주석의 범주/확률/연속 평정 구조를 확인한 뒤 한 loss를 지정한다. 다중 정서축·ROI·내용 metric·probe 중 최고값을 본 뒤 주가설을 정하지 않는다.",
+        "주석 라벨의 독립성과 중립 설명 provenance를 기록한다. 같은 뇌로 생성한 Mind Captioning을 독립 R로 넣지 않는다. 외부 정서 consensus를 개인별 정답으로 쓰지 않는다."
+      ],
+      "observation_unit": "기본 손실은 참가자×자극 시행이며 정서 A와 R/B는 보통 자극 수준의 측정이다. 5명×2,196행을 모든 축에서 독립 n=10,980으로 취급하지 않는다. 같은 자극의 개인 손실과 재사용 ROI를 묶고, 동일 자극에서 여섯 조건의 손실을 paired 비교한다.",
+      "inference_plan": {
+        "split": "중복·내용 가족을 모두 한 outer fold에 묶고 주석/설명 생성·선택 자료는 외부 신경평가에서 분리한다. 사람별 새 자극 일반화와 새 사람 일반화는 별도 estimand다.",
+        "null": "일반적인 A 무작위화는 모든 예측신호의 부재를 시험하며 δ=0의 관계 특이 null과 다르다. 주추론은 가족 단위 paired δ와 CI, 개발자료의 matched B 대조, 공통잠재입력+개인/ROI 혼합+잡음공분산+HRF 합성 null을 병행한다. 관계 라벨을 교환하려면 O/불확실성/길이 등 조건에서 교환가능성을 정당화해야 한다.",
+        "reliability": "Horikawa 독립 반복이 없는 경로에서도 독립 자극 test prediction은 가능하다. 그러나 반복 없는 개인별 ceiling·crossnobis는 전제하지 않는다. 주석 불확실성은 실제 rater 자료가 있을 때만 별도 재표집하며 없으면 고정집계의 한계로 남긴다.",
+        "resolution_power": "확인된 참가자는 5명이다. 독립 사람 효과의 정확 양측 sign-flip은 2^5 패턴에서 최소 2/32=0.0625로 보통 0.05 문턱에 못 미친다. 자극 가족에 대한 많은 관측은 고정된 5명에서 자극 일반화 정밀도를 높일 수 있지만 사람 모집단 n을 늘리지 않는다. 5명 hierarchical bootstrap이 이를 해결한다고 주장하지 않는다. δ 최소 의미효과와 가족/사람 의존성을 보존한 모의자료로 CI 폭·검출력을 계획하며 실제 수치는 아직 산출하지 않았다.",
+        "multiple_testing": "주 정서타깃·ROI 집합·loss·δ를 사전 지정하고 나머지는 이차분석으로 분리한다. 개인 결과와 전체 자극 가중 결과를 함께 보고한다."
+      },
+      "positive_result_interpretation": "고정 A와 지정 함수계열에서 관계 정보가 비가산 신경 예측의 추가 이득과 선택적으로 중복됨을 지지한다. 일반 의미가 가짜 신경효과를 만들었다는 결론이나 영역 간 신경인과·PID synergy 주장은 아니다.",
+      "negative_result_interpretation": "δ의 CI가 사전 동등성 범위 안이면 지정 R/B 대조의 관계 특이적 대체를 지지하지 않는다. g(O)가 불분명하면 감소 질문은 미결정이다. g(O+R)가 남으면 조건부 비가산 예측 필요성만 남으며 진짜 의미 밖 정보라고 일반화하지 않는다.",
+      "evidence_that_changes_judgment": "정확히 정의한 D/N에 대해 합성 null의 거짓 양성률과 대조 검출력을 확인하고, 독립 개발자료에서 O조건부 R/B 매칭이 성립하며, 충분한 독립 가족과 고정 A에서 δ가 검정 가능함이 드러나면 추진으로 바꾼다. R/B overlap이 없거나 R이 A를 누출하면 해당 비교를 수정/보류한다.",
+      "unresolved_disagreement": "관계 예측력 매칭은 중복 구조까지 같게 만들 수 없다. 결과가 실제 관계 계산의 특수성을 가리킨다는 강한 해석에는 동의하지 않으며 예측함수의 조건부 중복으로 제한한다. 정확한 최근 직접 선행연구 공백도 남는다.",
+      "resource_feasibility": {
+        "now": "기존 ROI/시각·의미 feature가 있으면 작은 ridge·GAM·제한 상호작용과 paired loss 파이프라인을 CPU에서 설계할 수 있다. 데이터/모델 fit는 이번 토론에서 실행하지 않았다.",
+        "conditional": "ROI array shape, 자극 ID 매핑, 독립 설명 R/B, 주석 척도가 첫 실행 조건이다. 대형 LLM이나 GPU가 반드시 있어야 하는 질문은 아니다.",
+        "boundary": "CLIP loader 확인은 관계 설명의 타당성이나 D/N 모델의 실행 검증이 아니다. Emo-FilM 연속 consensus와 Spacetop clip 평정을 원 A와 바로 합치지 않는다."
+      }
+    },
+    {
+      "proposal_id": "RP06",
+      "rq_id": "RQ05",
+      "debate_role": "데이터통계검토자",
+      "claim": "현재 확인된 Horikawa 경로에서 독립 반복을 전제한 개인별 자극 crossnobis를 주추정량으로 즉시 실행할 수 없다. 정서 경계 초과거리 질문은 유지하되 반복이 있는 확인 경로와 반복 없는 탐색 경로의 추정대상을 분리해야 한다.",
+      "best_evidence": [
+        "P001",
+        "P004",
+        "P008",
+        "P060",
+        "P100",
+        "P101"
+      ],
+      "weakest_assumption": "단 한 번 관측된 각 자극 패턴을 독립 반복 두 벌로 나눌 수 있다고 가정한다. 확인된 events는 참가자별 2,196개 자극 ID/name이 서로 다르며, 처리본에 별도 반복이 있다는 증거를 이 감사에서 보지 못했다. 내용 중복 15개 제외와 실제 영상 동일성은 독립 반복 설계를 대신하지 않는다.",
+      "strongest_alternative": "경계쌍에 따른 이분산 잡음·run/session·stimulus duration 차이가 단일 관측 거리의 양의 편향을 다르게 만들고, 누락된 내용 metric·표본밀도·평정 불확실성과 결합해 경계 초과거리처럼 보인다.",
+      "discriminating_prediction": "독립 반복 추정 β_i^(a),β_i^(b)가 있다면 d_ij=(β_i^(a)-β_j^(a))ᵀΣ_train^(-1)(β_i^(b)-β_j^(b))를 정규화된 crossvalidated distance로 정의하고, 훈련 내용모형 잔여거리의 경계쌍−matched pseudo-boundary 차이를 새 자극 가족에서 검정한다. 반복 없는 경로의 raw distance나 held-out prediction은 이 d_ij와 다른 추정량이며 같은 이름으로 보고하지 않는다.",
+      "judgment": "수정",
+      "required_change": [
+        "shortlist의 neural_target·main_hypothesis·conceptual_signature에서 Horikawa 개인별 crossvalidated distance를 무조건 가능한 것처럼 두지 않는다. 독립 반복/독립 condition estimate가 실제 확인된 분기에서만 사용한다.",
+        "같은 event의 odd/even TR, 서로 다른 voxel 반쪽, 별도 평정자, 임의 trial fold는 동일 자극의 독립 신경 반복을 자동 제공하지 않는다. 시계열 autocorrelation과 HRF 잔류를 고려해야 한다.",
+        "여러 자극을 같은 조건으로 묶어 run별 condition mean을 만들 수는 있으나 이는 개별 자극쌍 경계거리와 다른 condition-level 모집단 평균 대비다. 구성자극의 내용 차이와 조건의 반복 지지를 확인하고 별도 제목/추정량으로 남긴다.",
+        "다른 참가자를 독립 분할로 쓰면 공통 좌표로 정렬된 집단 공유 패턴의 교차거리이지 개인 내 거리가 아니다. alignment 선택을 독립화하고 참가자별 좌표차이·n=5의 정밀도를 보고한다. 이를 반복 fallback으로 조용히 치환하지 않는다.",
+        "반복 없는 Horikawa는 독립 경계·내용매칭 가능성, 자극 가족 수, held-out 내용/경계 모형의 예측 차이를 탐색할 수 있다. raw Mahalanobis/RSA 잔여거리의 경계효과는 이분산 잡음 민감도로 한정하고 unbiased crossnobis로 부르지 않는다.",
+        "경계·pseudo-boundary·metric·pair matching을 test 신경값과 독립적으로 고정한다. 주석자 자료가 없으면 split-rater 불확실성을 생성하지 말고 독립 새 경계주석을 조건으로 둔다.",
+        "NSD 보유 반복은 시각 방법 대조로 활용 가능하나 측정 정서 주석을 새로 확보하지 않은 채 정서 경계의 확증 자료로 바꾸지 않는다."
+      ],
+      "observation_unit": "개별 거리는 자극쌍 edge지만 독립 단위는 참가자와 원자극/내용 가족이다. n개 자극에서 n(n−1)/2개의 거리를 얻어도 그 수만큼 독립 관측이 생기지 않는다. 같은 자극이 다수 쌍에 반복되며 pair family가 서로 endpoint를 공유하면 단순 edge bootstrap은 잘못된 독립성을 가정한다.",
+      "inference_plan": {
+        "split": "outer split은 stimulus family의 모든 endpoint를 묶는다. train/test 사이 endpoint나 편집 가족을 공유하지 않도록 한다. 여러 영상이 family를 연결하면 연결성분 단위로 묶거나 중복 없는 pair 설계로 줄인다. 내용 metric 적합·noise covariance·whitening·경계 선택은 train에 격리한다.",
+        "null": "pseudo-boundary는 내용거리·주석 불확실성·밀도·duration·motion·run 특성이 경계쌍과 겹쳐야 한다. null 재표집은 자극 노드/가족과 참가자 구조를 보존하고 필요시 matching 전체를 다시 수행한다. 무작위 pair label shuffle은 endpoint 의존성과 내용조건부 exchangeability를 깨뜨릴 수 있다.",
+        "reliability": "crossnobis의 독립 estimate 조건, covariance 정칙화와 시계열 오차 가정을 확인한다. split-half 개인 신뢰도가 없으면 집단간 일치도를 그 대체치로 쓰지 않는다. 관측거리의 반복가능성과 내용조건부 경계 초과량의 반복가능성도 별개다.",
+        "resolution_power": "참가자 5명의 양측 exact sign-flip 최솟값은 0.0625다. 자극/가족 일반화는 고정 참가자에 조건부로 추론할 수 있으나 사람 모집단 확증은 제한된다. 27범주/다중경계·metric을 탐색하면 선택과 다중비교 비용이 커진다. 효과가 없어 보인다는 주장에는 최소 의미 경계거리와 CI가 필요하며 좁은 경계 인근 support 부족은 가설 기각이 아니라 식별불가다.",
+        "conditional_start": "문헌·설계는 진행한다. 현 보유 Horikawa에서는 우선 ID·경계·내용매칭·가족 수의 설계 감사/관측적 탐색을 시작할 수 있다. 반복 기반 거리 확증은 보유 처리본의 실제 독립 추정치 확인 또는 새 반복 측정 분기로 둔다."
+      },
+      "positive_result_interpretation": "반복·내용·주석·null 조건이 충족되면 지정 내용모형으로 설명되지 않는 범주경계 초과거리를 지지한다. 불연속적인 순수 정서 코드, 곡률, 회로 인과를 입증하지 않는다.",
+      "negative_result_interpretation": "신뢰도와 정밀도가 충분한 독립 반복에서 초과량이 최소효과와 동등한 0이면 해당 경계의 추가 분화 가설을 제한한다. 반복 부재·불충분한 경계 support·넓은 CI는 미결정이며 범주구조 부재를 뜻하지 않는다.",
+      "evidence_that_changes_judgment": "동일 자극/사전 정의 조건의 독립 신경 반복과 그 처리 mapping이 확인되고, test 독립 noise covariance·충분한 endpoint family·독립 경계주석 및 적절한 null의 검출력 점검이 확보되면 crossnobis 확증을 추진한다. 현 경로에 반복이 없으면 개인별 crossnobis 계획은 폐기하고 다른 명시적 추정량 또는 새 반복 설계를 택한다.",
+      "unresolved_disagreement": "자연 자극쌍에서 곧바로 시작할 수 있다는 제안은 matching·표현 탐색에 대해서만 동의한다. 동일 제목 아래 independent crossvalidated distance를 확증하는 즉시 실행 주장에는 동의하지 않는다. 사람 모집단과 자극 모집단을 구분한 조건부 결과는 가치가 있다.",
+      "resource_feasibility": {
+        "now": "자극 특징·주석 기반 matching과 소수 ROI의 탐색은 CPU 경로로 가능하다. N=2,196의 dense pair 행렬은 약482만 원소로 float32 약18.4MiB이나, 모델/참가자/재표집 복제 및 voxel covariance 비용은 별도로 계산해야 한다.",
+        "conditional": "자극쌍 행렬의 메모리 가능성은 독립 반복·검정력의 대체가 아니다. sample covariance는 작은 n에 비해 voxel 수가 크므로 ROI 축소·shrinkage·block 처리를 사전 지정한다.",
+        "boundary": "새 반복 뇌측정은 별도 후속 실험의 시간·비용 조건이며 현 개념 작업을 막지 않는다. 인간 분석·거리 계산은 이번 토론에서 실행하지 않았다."
+      }
+    }
+  ],
+  "limitations": [
+    "세 입장은 Agent12의 독립 실제 검토다. 다른 역할의 Round5 입장을 읽거나 가상 합의로 구성하지 않았다. 제안자의 실제 rebuttal과 Coordinator 최종 합성은 아직 대기한다.",
+    "공식 metadata·기존 코드/문헌 확인 범위와 사용자 보유 진술을 사용했다. 보유본 숫자행렬·checkpoint 실행·신경분석·검정력 시뮬레이션·새 문헌 검증은 하지 않았다.",
+    "Horikawa 2,196개 고유 event ID는 실제 영상내용이 모두 고유함을 입증하지 않는다. 다만 지금 확인된 경로는 요구되는 동일 자극 독립 신경 반복을 제공하지 않으므로 이를 임의 생성하지 않는다.",
+    "5명 sign-flip 해상도는 독립 참가자 효과와 유효한 대칭 null을 가정한 양측 정확 검정에 대한 진술이다. 모든 가능한 통계모형에서 p<0.05가 불가능하다는 뜻이 아니다.",
+    "Horikawa·Emo-FilM·Mind Captioning·NSD·Spacetop의 사용자 보유는 유지한다. 필요한 스키마·반복·주석 조건은 실제 분석 분기에 기록하고 개념 작업의 선행 차단으로 사용하지 않았다.",
+    "RP01의 방법연구 대 과학RQ 지위, RP02의 관계특이 해석, RP06의 반복 없는 즉시 확증에는 소수 의견을 보존한다. 공유파일/Git 수정 없음."
+  ]
+}

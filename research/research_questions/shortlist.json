@@ -233,8 +233,11 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C03-01: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "같은 작은 뇌 encoder·같은 입력/시각표적에서 contrastive와 회귀 손실을 비교할 때만 목표함수 효과를 검정한다. cache/ridge는 접근성 기준이다. 유한 probe 실패를 비가역 정보소실로 해석하지 않는다.",
+    "round05_rejected_claim": "비가역 정보소실의 증명, 다른 backbone 순위에 의한 목표효과",
+    "round4_original_fields": {},
     "proposal_id": "RP01",
-    "coordinator_selection_reason": "Horikawa 우선으로 정렬 후 접근가능성과 비가역 손실을 구별하며 생성기 학습 없이 첫 대비를 구성할 수 있음.",
+    "coordinator_selection_reason": "Horikawa 우선으로 같은 입력·시각표적에서 정렬 전후 정서 대비의 판독 접근성을 검정한다. 유한 probe로 비가역 정보 소실을 입증하지 않으며, 작은 학습목표 비교와 cache 기준부터 조건부 착수할 수 있음.",
     "priority_group": "우선5"
   },
   {
@@ -551,6 +554,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C03-05: 과학RQ후보; C10-02: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "고정 A·같은 proper loss·paired test에서 D=b(S)+Σf_r(X_r,S), N은 교차영역 항을 더한 함수족으로 명시한다. 관계/비관계 설명의 조건부 예측력 matching은 개발자료에서만 한다. δ는 정보분해나 신경영역 결합의 인과량이 아니다.",
+    "round05_rejected_claim": "영역 비가산 예측=실제 영역 간 결합, 관계 설명 추가=정서 기전 식별",
+    "round4_original_fields": {},
     "proposal_id": "RP02",
     "coordinator_selection_reason": "관계 의미 누락과 비가산 신경 예측 이득을 고정 타깃에서 구별하고 Mind Captioning을 조건부로 연결함.",
     "priority_group": "우선5"
@@ -804,6 +810,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C05-03: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "모든 주 비교에 같은 경계정보 접근을 주고 강한 연속 boundary×state 대조와 HRF 이후 회복을 요구한다. 미래를 본 경계와 온라인 경계를 구별한다. 명시적 forgetting을 흡수한 exact functional control을 포함하고 관측적으로 같은 모형의 점수 차이는 구현·최적화 차이로 먼저 조사한다.",
+    "round05_rejected_claim": "reset 모델 우세=인간 기억의 실제 소거",
+    "round4_original_fields": {},
     "proposal_id": "RP03",
     "coordinator_selection_reason": "현재 자극·연속 상태·사건경계 reset의 충돌하는 예측을 시간자료에서 검정함.",
     "priority_group": "우선5"
@@ -1055,6 +1064,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C05-01: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "고정한 shared rank/readout/표본량 범위의 접근성만 검정한다. S+residual이 full V,A의 가역 재표현이면 같은 정보입력 대조다. 실제 스캐너 음원 제시를 확인한다.",
+    "round05_rejected_claim": "operational private 잔차=생물학적 고유 경로 또는 PID 고유정보",
+    "round4_original_fields": {},
     "proposal_id": "RP04",
     "coordinator_selection_reason": "모달리티 공유 통로의 충분성과 고유 경로 필요성을 강한 가산 기준으로 구별함.",
     "priority_group": "우선5"
@@ -1330,6 +1342,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C04-02: 과학RQ후보; C07-05: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "같은 사람·같은 자극의 실제 독립 반복과 target-free 전처리가 필요하다. Horikawa 내용 중복은 반복이 아니다. A 동시 공간완성과 B 과거→미래는 관측 계약이 다르다.",
+    "round05_rejected_claim": "반복 없는 Horikawa에서 즉시 독립 신경 문맥 회수 확증",
+    "round4_original_fields": {},
     "proposal_id": "RP05",
     "coordinator_selection_reason": "자극조건부와 신경조건부의 불일치를 의미 누락·공통자극과 경쟁시킴.",
     "priority_group": "우선5"
@@ -1343,12 +1358,12 @@
       "AS21"
     ],
     "research_question": "독립 주석으로 정의한 정서 범주 경계를 가로지르는 자극쌍은 같은 내용거리·강도·밀도의 경계 내 쌍 및 pseudo-boundary 쌍보다 더 큰 신경 거리를 갖는가?",
-    "neural_target": "독립 반복으로 추정한 crossvalidated neural distance의 경계 초과량; 곡률·방향변화는 일차 추정대상이 아님",
+    "neural_target": "독립 동일 자극/정확히 같은 대비의 반응 추정치가 실제 확인될 때만 개인 내 crossvalidated neural distance의 경계 초과량. 현재 Horikawa는 경계·내용 지지집합과 측정오차를 명시한 탐색부터 시작하며 개인별 crossnobis 확증을 가정하지 않음.",
     "external_principle": "Agent09의 타당성 제약 편집·모형 구별 설계",
     "model_application": "독립 내용 metric들을 개발 자료에서 고정한 후 matched pair와 nonlinear smooth baseline을 구성하고, 주석자 split으로 정한 경계의 초과거리를 사건 가족 보류로 평가한다.",
     "scientific_question": "범주를 판독할 수 있는 신경표상에서 범주 경계의 추가 분화가 연속 내용거리보다 필요한가?",
     "assumption_challenge": "분류 가능성, 거리 증가, 곡률을 동일시하지 않는다. 경계 추가효과의 부재는 해당 범위의 연속 설명 충분성을 뜻하며 범주 존재를 반박하지 않는다.",
-    "main_hypothesis": "내용·주석 불확실성을 맞춘 경계쌍의 초과 crossvalidated distance가 비정서 semantic 경계 및 matched pseudo-boundary를 넘어 독립 사건 가족에서 재현된다.",
+    "main_hypothesis": "독립 반응 반복이 확보된 설계에서 내용·주석 불확실성을 맞춘 경계쌍의 초과 crossvalidated distance가 비정서 경계와 pseudo-boundary를 넘어 재현된다. 해당 반복이 없는 관측은 이 확증가설을 직접 검정하지 않는다.",
     "alternative": "내용 metric의 누락·경로 선택·motion·길이·밀도·주석자의 경계 불확실성이 초과거리를 만든다.",
     "measurable_contrast": "훈련 fold에서 fit한 smooth content distance가 예측한 신경거리 대비 잔여거리의 평균을 경계쌍과 matched pseudo-boundary쌍 사이에서 차분한다. 비교쌍 매칭과 경계 정의는 test 신경값을 보지 않고 고정하며 공유 자극쌍 의존성은 family 단위 재표집으로 처리한다.",
     "falsification": "원뇌의 정서 대비는 신뢰 가능하지만 경계 초과량이 사전정의 최소효과와 동등한 0 범위이면 해당 경계의 추가 분화를 지지하지 않는다. metric·주석 split·내용군에 따라 소실되면 조건 의존 결과로 보고하고 범주 고유기하를 기각한다.",
@@ -1362,9 +1377,9 @@
       "비정서 semantic 경계와 길이·motion 매칭"
     ],
     "dataset_plan": {
-      "기존 관측": "Horikawa에서 실제 category/dimension 주석과 신경 자극 ID를 확인한 뒤 자연 자극쌍만 분석한다. NSD는 내용 거리 보정용이며 정서 주석 존재를 전제하지 않는다.",
-      "후속 확증": "자연 자료의 경계 밀도가 부족하면 독립 주석으로 검증된 편집 가족과 새 뇌 측정이 필요하다.",
-      "round4_boundary": "기존 자연 자극쌍 분석과 새 편집 경로의 새 BOLD를 분리한다. 새 자극 무작위 배정은 측정된 자극변경 효과를 추정하며 순수 정서 요인 또는 신경 회로 인과를 입증하지 않는다."
+      "현재Horikawa": "같은 자극 개인 내 반복 미확인. 독립 경계·내용매칭·자극가족 지지집합과 held-out 모형차이의 탐색은 가능하나 unbiased crossnobis로 부르지 않음.",
+      "확증조건": "실제 반복/독립 condition estimate를 확인하거나 후속 측정. condition mean/다른 사람 공유패턴은 별도 표적이며 바꾼 계약을 공개.",
+      "NSD": "반복을 활용한 시각 방법교정만; 새 인간 정서 주석 전 정서 경계 확증 아님."
     },
     "missing_conditions": [
       "자극별 주석 분포·반복 신뢰도",
@@ -1389,9 +1404,9 @@
     "what_is_new": "원안의 모호한 국소 굽음 주장을 철회하고 독립 경계 초과거리라는 제한된 표적을 도입했다. 실제 검증 경로 없이 곡률을 산출하지 않는다.",
     "novelty_risk": "categorical geometry 선행과 중복 가능성이 높다. 국소 거리초과의 신규성은 미확정이며 곡률 주장은 제거했다.",
     "conceptual_signature": {
-      "관측대상": "독립 반복으로 추정한 crossvalidated neural distance의 경계 초과량; 곡률·방향변화는 일차 추정대상이 아님",
-      "조작": "독립 경계/내용매칭 pseudo-boundary",
-      "경쟁설명": "내용 metric의 누락·경로 선택·motion·길이·밀도·주석자의 경계 불확실성이 초과거리를 만든다."
+      "관측대상": "독립 신경 반복이 확인된 경로의 국소 경계거리; 현재 보유본은 확인 전 조건부",
+      "조작": "독립 정서 경계·내용매칭·확실성 일치 비정서 경계",
+      "경쟁설명": "미측정 의미·이분산 신경잡음·밀도·matching 선택·주석 불확실성"
     },
     "eight_questions": {
       "Q1": {
@@ -1598,6 +1613,22 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C02-01: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "현재 확인한 Horikawa 이벤트는 개인별 동일 자극의 독립 반복을 보장하지 않는다. crossnobis 확증은 실제 독립 반응 추정치가 확인된 경로에만 한정한다. 조건 평균·다른 참가자 대비는 별도 추정대상이며 자동 fallback이 아니다.",
+    "round05_rejected_claim": "odd/even TR·voxel·별도 평정자·다른 사람을 개인 내 신경 반복으로 치환",
+    "round4_original_fields": {
+      "neural_target": "독립 반복으로 추정한 crossvalidated neural distance의 경계 초과량; 곡률·방향변화는 일차 추정대상이 아님",
+      "main_hypothesis": "내용·주석 불확실성을 맞춘 경계쌍의 초과 crossvalidated distance가 비정서 semantic 경계 및 matched pseudo-boundary를 넘어 독립 사건 가족에서 재현된다.",
+      "conceptual_signature": {
+        "관측대상": "독립 반복으로 추정한 crossvalidated neural distance의 경계 초과량; 곡률·방향변화는 일차 추정대상이 아님",
+        "조작": "독립 경계/내용매칭 pseudo-boundary",
+        "경쟁설명": "내용 metric의 누락·경로 선택·motion·길이·밀도·주석자의 경계 불확실성이 초과거리를 만든다."
+      },
+      "dataset_plan": {
+        "기존 관측": "Horikawa에서 실제 category/dimension 주석과 신경 자극 ID를 확인한 뒤 자연 자극쌍만 분석한다. NSD는 내용 거리 보정용이며 정서 주석 존재를 전제하지 않는다.",
+        "후속 확증": "자연 자료의 경계 밀도가 부족하면 독립 주석으로 검증된 편집 가족과 새 뇌 측정이 필요하다.",
+        "round4_boundary": "기존 자연 자극쌍 분석과 새 편집 경로의 새 BOLD를 분리한다. 새 자극 무작위 배정은 측정된 자극변경 효과를 추정하며 순수 정서 요인 또는 신경 회로 인과를 입증하지 않는다."
+      }
+    },
     "proposal_id": "RP06",
     "coordinator_selection_reason": "정서 범주 경계의 신경 구조를 단순 고차원성보다 구체적인 국소 대비로 검정함.",
     "priority_group": "확장5"
@@ -1857,6 +1888,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C03-02: 과학RQ후보; C09-02: 과학RQ후보; C09-01: 방법후보; C10-04: 방법후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "유한 자연 후보부터 참조 유지/하나 배제/둘다 배제/참조 배제를 분리한다. 개인 내 반복과 정서 주석을 함께 확보한 경로가 필요해 첫3파일럿에서는 제외하고 Discovery 카드로 유지한다.",
+    "round05_rejected_claim": "witness 미발견=유일성, 생성 후보의 forward 적합=실제 동일 뇌반응",
+    "round4_original_fields": {},
     "proposal_id": "RP07",
     "coordinator_selection_reason": "그럴듯한 단일 복원보다 관측이 제한하는 정서 정보의 식별 범위를 질문함.",
     "priority_group": "확장5"
@@ -1915,9 +1949,9 @@
     "what_is_new": "단순 P/F/V 성능 비교에서 집계 연산의 영공간에 실제 예측 가능한 대비가 존재하는지 묻는 witness 검사로 변경했다. 일반 평균 상쇄·경계 특이성·정서 선택성에 서로 다른 반증을 부여한다.",
     "novelty_risk": "기존 multivoxel 대 ROI-average 비교와 가까우므로 신규성은 중간 이하로 둔다. 독립 반복의 null-space witness와 세 가설의 분리가 없으면 방법 QC로 낮춘다.",
     "conceptual_signature": {
-      "관측대상": "parcel 평균의 영공간에 남는 반복 신경 대비",
-      "조작": "zero-mean 성분 재추가×atlas 경계",
-      "경쟁설명": "일반 평균 상쇄 대 경계 특이성 대 비특이 고주파 신호"
+      "관측대상": "parcel 평균과 내부 공간잔차의 보류 자극 정서 대비 예측; 반복 재현 주장은 독립 반복 확인 시만",
+      "조작": "면적가중 zero-mean 성분 재추가×atlas경계",
+      "경쟁설명": "일반 평균상쇄·atlas경계·신뢰도·고주파 잡음·정서비선택성"
     },
     "eight_questions": {
       "q1": "관련 방법 선행이 존재하고 최초 여부는 미확정이다. 영어 역검색은 시도했으나 proxy 403으로 실패했고 기존 canonical 근접 문헌만 대조했다.",
@@ -2112,6 +2146,15 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C04-03: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "면적가중 G/P를 명세하고 평균-only 강한 nonlinear 대조, train-only k곡선과 H1일반상쇄/H2atlas/H3정서선택성 각각을 검정한다. 반복 미확보 시 신뢰도 상한을 만들지 않는다.",
+    "round05_rejected_claim": "r_k의 음성결과=전체 영공간 정보부재",
+    "round4_original_fields": {
+      "conceptual_signature": {
+        "관측대상": "parcel 평균의 영공간에 남는 반복 신경 대비",
+        "조작": "zero-mean 성분 재추가×atlas 경계",
+        "경쟁설명": "일반 평균 상쇄 대 경계 특이성 대 비특이 고주파 신호"
+      }
+    },
     "proposal_id": "RP08",
     "coordinator_selection_reason": "공간 평균의 null-space에 정서 대비가 남는지 검정하여 뇌 foundation model의 공간 병목을 해부학·신뢰도와 구별함.",
     "priority_group": "확장5"
@@ -2352,6 +2395,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C01-04: 방법후보; C07-04: 과학RQ후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "정서 감독 미사용의 범위를 alignment/selection으로 제한하고 anchor-only/ID/Procrustes 대조를 포함한다. anchor 수와 유효정보 예산을 구별하며 inductive extension과 transductive targetgeometry 접근을 공개한다.",
+    "round05_rejected_claim": "유한 다중시작의 좁은 예측범위=전역 의미 유일성",
+    "round4_original_fields": {},
     "proposal_id": "RP09",
     "coordinator_selection_reason": "서로 다른 자료의 거리구조 일치와 정서 의미 대응을 구별하는 장기 기회를 보존함.",
     "priority_group": "확장5"
@@ -2601,6 +2647,9 @@
     },
     "remaining_disagreement": "각 원안의 역할 판정은 병합 후에도 보존한다. C09-03: 과학RQ후보; C09-05: 방법후보",
     "claim_status": "E3 수정된 연구 질문; 신경 결과·세계 최초 미확정",
+    "round05_condition": "새 인간 주석·실제 새 BOLD가 필요하다. 결과전 family 수준 허용집합을 고정하고 생성 실패·독립realization·비목표 의미변화·선택된모집단을 명세한다.",
+    "round05_rejected_claim": "원본 BOLD 재사용, 허용된 자극묶음의 효과=순수 정서의 신경 인과효과",
+    "round4_original_fields": {},
     "proposal_id": "RP10",
     "coordinator_selection_reason": "사전 허용집합에서 의미 보존 편집의 실제 신경 대비를 검정하는 장기 경로; 선택한 모집단과 새 측정 조건을 명시함.",
     "priority_group": "확장5"

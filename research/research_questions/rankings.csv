@@ -95,7 +95,7 @@ short_term_feasibility,29,RQ27,사전 허용집합 안에서 검증하는 정서
 short_term_feasibility,30,RQ31,유한 함수 동등성을 인정한 공유제약의 정서 대비 일반화 효율,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
 short_term_feasibility,31,RQ32,실제 신경 guide는 의미로 예측한 신경 guide를 넘는 모델 제약인가,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 4]",설명용 사전순 비교; 자동 종합 선정 아님
 short_term_feasibility,32,RQ25,완전한 내용 입력에서 gate 좌표의 효율과 재매개화 안정성,"[""data_feasibility"", ""technical_feasibility"", ""rigor""]","[2, 2, 3]",설명용 사전순 비교; 자동 종합 선정 아님
-overall_priority,1,RQ09,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,Horikawa 우선으로 정렬 후 접근가능성과 비가역 손실을 구별하며 생성기 학습 없이 첫 대비를 구성할 수 있음.
+overall_priority,1,RQ09,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,"Horikawa 우선으로 같은 입력·시각표적에서 정렬 전후 정서 대비의 판독 접근성을 검정한다. 유한 probe로 비가역 정보 소실을 입증하지 않으며, 작은 학습목표 비교와 cache 기준부터 조건부 착수할 수 있음."
 overall_priority,2,RQ12,관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,관계 의미 누락과 비가산 신경 예측 이득을 고정 타깃에서 구별하고 Mind Captioning을 조건부로 연결함.
 overall_priority,3,RQ18,경계 단서와 과거 소거를 분리한 상태 갱신의 필요성,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,현재 자극·연속 상태·사건경계 reset의 충돌하는 예측을 시간자료에서 검정함.
 overall_priority,4,RQ16,공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성,Coordinator 내용·다양성·반증·착수조건 판단,가중합 사용 안 함,모달리티 공유 통로의 충분성과 고유 경로 필요성을 강한 가산 기준으로 구별함.

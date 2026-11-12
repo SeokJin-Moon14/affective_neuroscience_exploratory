@@ -1,0 +1,241 @@
+{
+  "role": "05_multimodal_dynamics",
+  "round": 5,
+  "verified_on": "2026-11-12",
+  "read_files": [
+    "discussions/ROUND05_PROTOCOL.md",
+    "discussions/round05_assignments.json",
+    "research_questions/shortlist.json (RP03·RP04 전체)",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md",
+    "agents/05_multimodal_dynamics/round04_revision.json",
+    "literature/papers.csv"
+  ],
+  "positions": [
+    {
+      "proposal_id": "RP03",
+      "rq_id": "RQ18",
+      "candidate_id": "C05-03",
+      "debate_role": "제안자",
+      "title": "경계 단서와 과거 소거를 분리한 상태 갱신의 필요성",
+      "claim": "경계의 존재를 입력으로 준 것만으로 충분한 설명과, 경계에 따라 과거 정보의 영향력을 줄이는 상태표현이 추가로 필요한 설명을 독립 정서 관련 신경 대비에서 경쟁시킬 가치가 있다. 주장은 지정한 모델·관측 범위의 유효 이력 가중에 관한 것이며, 인간 뇌가 기억을 실제로 삭제한다는 결론은 아니다.",
+      "best_evidence": [
+        "P089",
+        "P034",
+        "P066",
+        "P044",
+        "P002",
+        "P101",
+        "P100"
+      ],
+      "best_evidence_scope": [
+        {
+          "papers": [
+            "P089",
+            "P034"
+          ],
+          "verified_scope": "기존 보고서가 확인한 공식 코드의 재귀/선택적 상태 연산이 비교 가능한 계산 변수를 제공한다. 본 라운드에서 가중치 실행·실측 검증은 하지 않았다.",
+          "supports": "동일 입력에서 state update와 초기상태를 명시적으로 대조할 구현 원리",
+          "does_not_support": "정서 관련 인간 뇌에서 reset 기전이 작동한다는 주장"
+        },
+        {
+          "papers": [
+            "P066",
+            "P002"
+          ],
+          "verified_scope": "사건 구조 분석 도구와 Emo-FilM의 외부 연속 주석·fMRI 관측 단위는 기존 공식 문서 범위다.",
+          "supports": "경계·연속 신경반응·독립 주석을 연결하는 조건부 설계",
+          "does_not_support": "기존 데이터에 독립 causal boundary 주석이나 개인별 정서 정답이 이미 있다는 주장"
+        },
+        {
+          "papers": [
+            "P101",
+            "P100"
+          ],
+          "verified_scope": "표현모형 비교와 일반화 불확실성 평가의 근거다.",
+          "supports": "모델별 관측 파라미터 적합과 held-out 차이 평가",
+          "does_not_support": "예측 승리만으로 특정 상태 알고리즘을 신경 기전으로 식별한다는 주장"
+        }
+      ],
+      "why_new_neural_question": "원래 영상 예측/효율적 시퀀스 계산의 목표를 더 높은 encoding 점수로 바꾸는 것이 아니다. 경계 반응을 추가하는 설명과 이력의 기여를 재배분하는 설명이 독립 정서 신경 대비에서 서로 다른 예측을 내는지를 묻는다. 사건분절과 맥락 갱신 자체는 선행 질문이고 세계 최초를 주장하지 않는다. Agent11 BI-RQ08 계열과 동일 조작이면 하나의 RQ로 처리한다.",
+      "weakest_assumption": "관측 가능한 BOLD와 정서 대비가 이력 보존 후 선택적 readout과 실제 상태 감소를 구별할 수 있다는 가정이 가장 약하다. 더 유연한 연속 상태모형은 경계 조건부 가중을 재현할 수 있고 HRF가 차이를 더 줄일 수 있다.",
+      "strongest_alternative": {
+        "explanation": "연속 상태는 과거 정보를 보유한 채 boundary×state 상호작용으로 현재 필요한 내용만 읽는다. reset 우위는 경계 입력을 이용하는 더 강한 비선형 readout, 초기상태 prior 또는 reset 학습 노출에서 나오며 기억 소거는 필요하지 않다.",
+        "why_existing_control_is_not_enough": "never-reset 모델에 선형 boundary indicator만 더하는 것은 reset gate가 수행하는 boundary×state 연산보다 약한 대조다. 또한 gate가 경계 위치를 받는 순간, readout indicator=0이어도 모형 전체에는 경계 정보가 들어간다.",
+        "stronger_control": "주요 비교에서는 모든 모형에 같은 causal boundary 정보를 제공한다. 연속 상태의 readout에도 용량이 통제된 boundary×state·경과시간 상호작용을 허용하고, 같은 차수의 비선형 이력 가중 기준을 둔다. 이를 이기지 못하면 reset이라는 말 대신 경계조건부 이력 가중의 충분성으로 해석한다."
+      },
+      "discriminating_prediction": {
+        "primary": "개발자료에서 고정한 독립 정서 신경 대비 z_A에 대해 경계정보 접근이 같은 두 모형의 paired squared-error 차이 D_B=E[(z_A−pred_cont,B)^2−(z_A−pred_forget,B)^2]가 독립 영화에서 사전 최소 효과보다 크다. 연속 기준에는 boundary×state 읽기를 허용한다.",
+        "location_specificity": "같은 forgetting 연산을 경계 위치와 norm/age/과거예측오차·컷·음향 onset을 맞춘 임의 위치에 적용한 손실 차이도 별도로 평가한다. 임의 위치 선정에는 test 신경반응과 정서 타깃을 사용하지 않는다.",
+        "training_exposure": "reset-aware 학습과 test-time-only 조작을 구분하며 train 자료·목표·optimizer·예산·seed를 맞춘다. theta,h0,rho와 readout/HRF 적합 범위를 명시한다.",
+        "observation": "공통 HRF/FIR family는 동일 nuisance 값을 강제하는 것이 아니다. 각 후보에 같은 train/development 적합 예산을 주고 test에서 고정한다. 실제 자극 자기상관·run구조·개발자료 잡음으로 만든 reset/연속 생성세계에서 이 절차의 복구 가능성을 먼저 확인한다.",
+        "emotional_specificity": "전체 parcel BOLD 손실과 z_A 손실을 따로 보고한다. 전체 예측만 개선되고 고정 정서 대비는 개선되지 않으면 정서 관련 추가 기여를 주장하지 않는다."
+      },
+      "judgment": "조건부",
+      "required_change": [
+        "2×2의 이름을 모형 전체의 경계정보 유무가 아니라 readout에 대한 직접 경계노출×상태 update 방식으로 정확히 고친다. 주검정은 모든 모형의 경계 접근이 같은 조건이다.",
+        "경계 정보를 받는 연속 상태모형에 제한된 boundary×state 상호작용을 허용한다. 강한 연속 대조가 reset을 재현하면 기억 소거 주장을 철회한다.",
+        "zero·train-fit initial state·soft forgetting의 정확한 연산과 학습 노출을 기록한다. VideoPrism 자체를 reset 가능한 recurrent model로 기술하지 않는다.",
+        "경계는 비정서 자극 또는 독립 주석으로 정의하고 time_available을 기록한다. 완성 영화를 본 retrospective boundary가 당시 관찰자에게 이미 알려졌다고 간주하지 않는다.",
+        "u_A·대비 선택규칙·주석 lag·HRF·state/readout 선택은 개발/훈련 안에서 고정한다. held-out 신경패턴이나 정서 전이를 보고 유리한 경계·시간폭을 다시 고르지 않는다.",
+        "실제 과거 접근은 전처리·normalization·encoder·caption/event detection까지 감사한다. 미래 예측오차는 해당 입력 도착 이후의 변수이며 과거 상태에 소급 배치하지 않는다."
+      ],
+      "positive_result_interpretation": "강한 연속 대조·경계 위치 대조·훈련 노출·관측복구를 통과하고 정서 대비의 개선이 재현되면, 지정한 모델 family에서 경계에 따른 이력 재가중이 필요한 예측 설명이라고 판단한다. 기억 삭제·신경회로 reset·정서만의 인과 메커니즘을 입증하지는 않는다.",
+      "negative_result_interpretation": "충분한 정밀도에서 boundary-aware 연속모형 또는 유한창/soft decay와 동등하면 해당 측정·모델 범위에서 경계특이 forgetting이 필수라는 가설을 낮춘다. 연속모형 우위도 정식 결과다. reset-aware 학습 뒤 차이가 없어지면 OOD 조작 설명으로 이동한다.",
+      "inconclusive_result_interpretation": "독립 정서 대비 자체가 신뢰 가능하지 않거나 합성 복구에서 생성세계를 구별하지 못하면 신경 reset의 부재로 해석하지 않는다. 시간관측·모형 식별성 방법 결과로 제한한다.",
+      "evidence_that_changes_my_judgment": [
+        {
+          "evidence": "held-out 영화에서 boundary×state를 허용한 연속 기준이 reset과 최소효과 마진 내에서 동등하다.",
+          "change": "reset 우선 제안을 철회하고 더 단순한 경계조건부 이력 읽기를 우선한다."
+        },
+        {
+          "evidence": "원자료 timing/주석 검증 결과 prefix 경계를 정의할 수 없고 완성 영화의 경계만 이용 가능하다.",
+          "change": "온라인 갱신 질문을 보류하고 retrospective 사건 설명으로 분리한다."
+        },
+        {
+          "evidence": "실제 특징 기반 복구는 성공하며 경계 위치특이 이득이 독립 영화·참가자 범위와 정서 대비에서 재현된다.",
+          "change": "제한된 계산 설명의 후속 검증을 추진하되 인간 기전 주장은 유지하지 않는다."
+        },
+        {
+          "evidence": "동일한 boundary×state 대조·독립 정서 대비·관측복구를 이미 수행한 선행연구가 확인된다.",
+          "change": "최초성 주장을 하지 않고 재현/일반화 범위를 명시하거나 shortlist 우선순위를 낮춘다."
+        }
+      ],
+      "unresolved_disagreement": "계산모형의 유효 과거정보 가중과 인간의 실제 내부 기억 보존은 관찰상 동등할 수 있다. 현재 제안자도 이 차이를 BOLD만으로 해결했다고 주장하지 않는다. Agent11·Agent08의 이번 Round5 입장은 아직 읽거나 수용한 것으로 기록하지 않는다.",
+      "resource_feasibility": {
+        "environment": "공통 자원보고서 기준 CPU 노출5·cgroup 4 CPU분량·32GiB, nvidia-smi 없음 및 GPU 추론 미실행이다. GPU가 다른 장비에도 없다는 의미는 아니다.",
+        "data_primary": "Emo-FilM: fMRI30명·주석44명·14영화/50열/1Hz는 기존 공식 감사의 사실이다. 외부 consensus를 개인별 연속 정답으로 사용하지 않는다. 두 코호트의 사람 비중복도 명단 대조 없이 확정하지 않는다. film-relative annotation과 scanner onset을 실제 보유본에서 맞춘다.",
+        "data_limits": "Horikawa는 원시 시간계열·자극이 확인되면 clip 내부 검증에 쓸 수 있지만 시행 경계를 자연 사건 reset으로 취급하지 않는다. Spacetop clip 후 평정은 연속 전이 정답이 아니고 NSD는 이 시간 질문의 주자료가 아니다.",
+        "model_first_path": "이미 추출된 causal visual feature가 있으면 이를 캐시해 작은 state head와 readout부터 설계한다. 없으면 CLIP ViT-B/32의 공식 loader/해시가 확인된 경로에서 프레임별 특징을 얻는 선택지가 있으나 가중치 load/추론 성공과 실제 속도는 미확인이다. 음악·환경음은 실제 재생 확인 뒤 확장하며 첫 시각 시간검정에 필수로 요구하지 않는다.",
+        "model_limit": "CLIP은 state model이 아니고 신규 head가 이력 계산을 담당한다. VideoPrism·PredNet·Mamba 공개 문서 존재와 본 환경의 체크포인트/입출력 실행 성공을 구분한다.",
+        "memory_accounting": "N=20,000,K=1,024 float32 feature 한 개는 약78.13MiB, K=64 state cache는 약4.88MiB라는 산술 예시다. 원본·voxel·CV 복사·모델 activation을 포함하지 않고 실제 shape에서 총량을 다시 산출한다. 시간점 N은 독립 표본수가 아니다.",
+        "conditional_start": "시간 매핑·prefix feature provenance·독립 대비 신뢰도·복구 가능성을 확인한 뒤 신경 검정을 시작한다. 문헌 토론은 이 미확인을 이유로 중단하지 않는다. 비용이 큰 backbone 재학습은 첫 비교의 판별력이 확인될 때만 검토한다.",
+        "scope": "세 입장이 모이기 전 상세카드/파일럿을 확정하지 않는다. 이 파일은 제안자 입장과 조건부 자원 검토이며 실제 분석 결과가 아니다."
+      },
+      "statistical_commitments": {
+        "unit": "독립성 단위는 영화/내용군과 참가자다. 인접 시간점을 표본수 증가로 계산하지 않는다. 영화 단위 외부 split, 참가자 일반화는 별도 층으로 구분한다.",
+        "loss": "train 기준 공통 표준화의 동일 z_A 타깃에 대한 표본별 paired loss를 사용한다. 조건별 다른 R² 분모의 차이로 주가설을 평가하지 않는다.",
+        "uncertainty": "영화/참가자 구조를 보존한 재표집 또는 적절한 계층 추론을 사전 고정한다. 최대 입력창+관측지연을 고려한 buffer를 적용하고 불확실한 HRF/주석 lag는 train에서만 조정한다.",
+        "power": "검정력 숫자를 만들어내지 않는다. 개발 신뢰도·실제 자극 자기상관·경계 간격·잡음으로 효과주입 복구를 계획하고 최소 중요 효과와 동등성 마진을 test 전에 고정한다."
+      }
+    },
+    {
+      "proposal_id": "RP04",
+      "rq_id": "RQ16",
+      "candidate_id": "C05-01",
+      "debate_role": "제안자",
+      "title": "공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성",
+      "claim": "공유 시청각 표현의 용량과 읽기모형 유연성을 넓혀도 추가 모달리티 정보가 독립 정서 신경 대비를 예측하는 데 필요한지 검정해야 한다. 양성 결과의 범위는 선택한 공유 표현·readout family의 불충분성이며, 생물학적 private 경로 또는 고유 정서 정보의 실재는 아니다.",
+      "best_evidence": [
+        "P035",
+        "P037",
+        "P053",
+        "P051",
+        "P083",
+        "P100",
+        "P101"
+      ],
+      "best_evidence_scope": [
+        {
+          "papers": [
+            "P035",
+            "P037"
+          ],
+          "verified_scope": "기존 공식 코드/문서에서 공통 embedding 및 shared/private task 정보 보존 원리가 확인됐다. 현재 자료에서 학습·추론을 재현하지 않았다.",
+          "supports": "동일 자극에서 공유 표현과 추가 정보원의 접근을 비교할 계산 틀",
+          "does_not_support": "ImageBind 출력이 FactorCL private feature라는 주장이나 shared/private 분해가 뇌 경로와 일대일이라는 주장"
+        },
+        {
+          "papers": [
+            "P053",
+            "P051"
+          ],
+          "verified_scope": "분해 식별 한계와 표현 비교의 불변성이 기존 원문 검토 근거다.",
+          "supports": "특정 latent 이름보다 정보원 접근·좌표 변화·readout 의존성을 분리할 필요",
+          "does_not_support": "직교 회전 대조만 통과하면 생물학적 고유정보가 식별된다는 주장"
+        },
+        {
+          "papers": [
+            "P083",
+            "P100",
+            "P101"
+          ],
+          "verified_scope": "개념 경유 표현 및 신경 표현 평가·불확실성의 방법 근거다.",
+          "supports": "개념 누락·동일 타깃·일반화 추정의 대조",
+          "does_not_support": "특정 shared 병목의 유한 평가로 정보론적 충분성을 증명한다는 주장"
+        }
+      ],
+      "why_new_neural_question": "공통 multimodal retrieval 성능이 좋은 표현을 신경 encoding에 적용하는 것이 아니라, modality-invariant 정보만으로 정서 관련 신경 대비가 충분히 읽히는지 그 경계를 규정한다. 병목 크기를 늘렸을 때 회복되는 대비와 추가 원정보가 있어야만 접근되는 대비를 구분하면 공통표상으로 압축한 모델이 설명할 수 있는 신경정보의 범위가 달라진다. 관련 shared/private encoding 선행이 있을 수 있어 신규성은 잠정적이다.",
+      "weakest_assumption": "공유 병목 S_k를 늘려도 그것이 실제로 두 모달리티에 공통인 정보만 담는다는 보장은 없다. 반대로 선택한 shared 학습목표가 유용한 의미를 일부러 버렸다면 잔차 이득은 그 구현의 underfitting일 뿐이다.",
+      "strongest_alternative": {
+        "explanation": "추가 경로는 정서 특이 또는 생물학적 private 정보가 아니라 shared 훈련목표·좁은 차원·선형 readout이 놓친 사건 의미와 감각 품질을 더 쉽게 읽게 한다. 총 파라미터·정규화·표본수 차이도 같은 현상을 만든다.",
+        "why_existing_control_is_not_enough": "동일 dimension과 한 retrieval 정확도를 맞추는 것만으로 shared 정보의 범위가 같아지지 않는다. k가 커지면 S_k가 사실상 원정보를 모두 담는 경우에는 full-information 수준의 동등성이 당연하며 공유정보 충분성이라고 부를 수 없다.",
+        "stronger_control": "k마다 독립 cross-modal predictability/correspondence와 비정서 사건 probe를 함께 보고 shared의 operational 정의를 고정한다. same-information readout·비선형 readout·학습량 곡선을 비교하고, shared+residual이 원입력을 가역 복원하는 설정이면 이를 full-information 대조와 동등한 접근으로 명시한다."
+      },
+      "discriminating_prediction": {
+        "primary": "동일 held-out 자극의 공통 척도 z_A에서 D_k=E[loss(z_A,pred_Sk)−loss(z_A,pred_Sk+Rk)]를 평가한다. gate는 고정하고 readout 계열·유효 용량·정규화 선택 예산을 맞춘다. 전체 V,A 대조를 함께 둔다.",
+        "sufficiency_frontier": "개발자료에서 정한 소수 k와 선형/제한 비선형 readout·훈련량 범위에서 D_k 곡선을 보고한다. k 최고점을 test 정서 성능으로 고르지 않는다. 각 k의 shared correspondence를 별도 보고하여 private 정보를 담아 커진 모델을 공유성의 승리로 오인하지 않는다.",
+        "stronger_prediction": "공통 지지의 내용군과 참가자에서, 사건 의미·감각 품질을 통제한 정서 대비 이득이 여러 분해/seed와 readout 범위에서 남는다. 이 결과도 검토한 표현 family의 불충분성만 지지한다.",
+        "scope_of_additivity": "strict additive f(V,C)+g(A,C)와 전체정보 joint를 비교해 일반 modality 결합의 이득을 따로 본다. 하지만 RP04의 주질문은 shared 정보 접근의 충분성이며 C05-05의 congruence별 결합규칙 RQ로 바꾸지 않는다."
+      },
+      "judgment": "조건부",
+      "required_change": [
+        "shared의 operational 정의를 추가한다. 예컨대 train에서만 적합한 두 view의 공유 투영을 쓰고 독립 cross-modal 예측 가능성과 rank를 각 k에서 보고한다. 이 정의가 유일한 정보이론적 공유분해라는 주장은 금지한다.",
+        "추가 잔차는 특정 분해의 R_k로 명명한다. S_k+R_k가 원 V,A의 가역 재표현이면 full input과 정보 접근이 같은 대조임을 명시하고 독립된 세 정보원처럼 세지 않는다.",
+        "동일 시청각 입력과 readout 예산을 지키고 shared bottleneck 크기·readout 비선형성·훈련량을 나누어 비교한다. 직교 좌표변환에서 ridge가 불변인 부분은 이론적 대조/구현 감사이지 새 신경 발견이 아니다.",
+        "FactorCL에 정서 또는 신경 타깃 감독이 있으면 모든 feature 학습을 외부 split 안에 넣는다. 감독 사용 미확인 상태에서 unsupervised frozen feature라고 기술하지 않는다.",
+        "원래 스캔 때 실제 음원을 재생했는지 확인한다. 파일에 오디오 트랙이 있다는 사실과 참가자가 그 소리를 들었다는 사실은 다르다.",
+        "gate 비교는 일차분석에서 제외한다. 고정 공유 표현과 잔차의 추가 예측만으로 신경경로·PID 고유정보·정서 고유 원인을 주장하지 않는다."
+      ],
+      "positive_result_interpretation": "shared correspondence가 유지되는 k 범위와 강한 readout·내용 대조에서 D_k가 재현되면 그 공통표현으로는 해당 정서 신경 대비를 충분히 읽을 수 없으며 추가 원정보 접근이 유용하다고 판단한다. 원 뇌의 별도 통로나 modality-specific 감정 기전이 입증된 것은 아니다.",
+      "negative_result_interpretation": "충분한 정밀도에서 병목 확대·비선형 readout·학습량 증가로 이득이 회복/소멸하면 추가 경로 필요성보다 압축 또는 접근성 설명을 지지한다. 다만 S_k의 공유성이 무너져 원정보를 모두 포함한 경우는 shared-only 충분성의 증거로 세지 않는다.",
+      "inconclusive_result_interpretation": "원 신경 대비의 신뢰도가 낮거나 분해/seed에 따른 효과 부호가 불안정하면 고유정보의 부재를 결론내지 않는다. sharedness 조건 자체를 충족하지 못하면 해당 분해를 측정도구로 보류한다.",
+      "evidence_that_changes_my_judgment": [
+        {
+          "evidence": "참가자가 오디오를 듣지 않았거나 실제 replay provenance를 확보할 수 없다.",
+          "change": "그 데이터에서 audiovisual 신경 질문을 실행하지 않는다. 시각만의 압축 대조는 방법 검정으로 남기고, 실제 시청각 보유본으로 과학 검정을 옮긴다."
+        },
+        {
+          "evidence": "동일 shared representation의 충분한 nonlinear readout 또는 학습량에서 잔차 이득이 사라진다.",
+          "change": "정보원 필요성 주장을 낮추고 readout 접근성 또는 표본 효율의 문제로 재분류한다."
+        },
+        {
+          "evidence": "shared correspondence와 사건 의미 접근성을 유지한 큰 k에서도 여러 분해에 걸쳐 정서 대비의 추가 이득이 독립 내용군에서 반복된다.",
+          "change": "검토한 공통 표현의 불충분성에 대한 후속 검증을 추진한다. biological private path 주장은 여전히 제외한다."
+        },
+        {
+          "evidence": "동일 source-access×shared capacity×readout 대비를 독립 정서 신경 타깃에서 이미 시행한 선행연구가 확인된다.",
+          "change": "새 질문의 우선순위를 낮추고 재현/새 데이터에서의 일반화 계획으로 정리한다."
+        }
+      ],
+      "unresolved_disagreement": "유한 shared 모델과 readout의 실패를 어디까지 공통정보의 불충분성으로 부를지 남는다. 보편적인 정보론적 충분성·고유분의 신경적 실재는 현재 설계로 해결하지 못한다. Agent06·Agent04의 이번 Round5 입장은 아직 읽거나 반박했다고 기록하지 않는다.",
+      "resource_feasibility": {
+        "environment": "공통 자원보고서의 4 CPU분량·32GiB에서 기존 feature cache와 작은 projection/readout 비교를 먼저 검토한다. GPU 사용·대형모델 load 성공은 확인하지 않았다.",
+        "data_primary": "Horikawa를 우선 감사하되 실제 시청각 재생과 독립 정서주석이 모두 확인되는 경우에만 RP04를 실행한다. 공식 이벤트 stim_index 및 내용 중복 제거를 반영하고 2,196 이벤트를 독립 자극수로 사용하지 않는다. 실제 제외 목록/처리본 대응은 분석 전 확인한다.",
+        "data_fallback": "Horikawa가 시각 제시였다면 Emo-FilM에서 실제 동시 시청각 재생·시간 대응을 확인하여 주자료로 전환한다. 외부 연속 consensus와 참가자 clip 평정을 섞지 않는다. Spacetop은 확인된 task의 clip 단위만 검정하고 NSD는 시각 대조만 둔다. Mind Captioning 정체·모달리티를 가정하지 않는다.",
+        "model_first_path": "이미 추출된 V,A 특징의 provenance를 먼저 확인한다. 학습 없는 train-only 공유 투영/잔차와 작은 readout으로 충분성 곡선을 구성하는 fallback이 있다. CLIP ViT-B/32는 시각 특징 경로만 제공하며 비음성 audio encoder를 대신하지 못한다.",
+        "audio_condition": "재생된 음악/환경음의 특징이 없으면 실제 audio model identity·checkpoint·라이선스·입출력을 추가 확인해야 한다. ImageBind/FactorCL 문서 존재를 본 환경 추론 성공으로 표시하지 않는다. 음성 세부 특징 분석을 새 의제로 도입하지 않는다.",
+        "memory_accounting": "예시 N=20,000,K=1,024인 두 float32 모달리티 cache는 합계 약156.25MiB다. 파생 S/R·voxel·CV 복사·모델 activation은 별도이며 실제 shape와 streaming 계획으로 다시 산정한다. N은 저장행 수이지 독립 표본수의 보장이 아니다.",
+        "conditional_start": "동시 재생 provenance, 주석/신경 ID join, 신뢰도, 내용군 split 및 feature 학습 감독을 확인해야 실제 검정에 착수한다. 미확인 필드를 이미 존재하는 원데이터 컬럼처럼 만들지 않는다.",
+        "scope": "이 파일은 배정된 제안자 입장이다. 상세카드와 파일럿은 세 입장이 수집된 뒤 실제 비판 응답을 거쳐 작성하며 현재 실행 완료로 기록하지 않는다."
+      },
+      "statistical_commitments": {
+        "unit": "동일 내용 중복·영상 family를 함께 묶는 외부 split을 고정한다. 영화 자료이면 전체 영화를 보류하고 participant 일반화를 별도로 평가한다.",
+        "fixed_target": "훈련에서 정한 정서 대비 u_A·선택규칙을 test에서 고정하고 같은 z_A를 모든 표현에 사용한다. 표현별로 잘 맞는 정서 축을 새로 골라 비교하지 않는다. A의 신뢰도와 타깃 단위도 별도로 확인한다.",
+        "loss": "공통 train 표준화의 paired loss를 주지표로 사용한다. 총 Y·정서 z_A·비정서 사건 대비의 결과를 구별하며 조건부 잔차만을 순수 정서라고 부르지 않는다.",
+        "null_and_power": "feature 수가 늘어 생기는 과적합은 nested tuning과 동일 검증 예산으로 대조한다. 개발자료에서 가역 재표현·알려진 정보 절단의 회복 가능성을 검사한다. 실제 noise ceiling과 효과주입으로 검정력을 정하고 충분한 정밀도의 동등성과 불충분한 자료를 구분한다."
+      }
+    }
+  ],
+  "limitations": [
+    "두 입장은 배정된 제안자가 규약·shortlist·자원계획을 읽고 독립 작성한 Round5 최초 입장이다. 아직 비판자·데이터통계 검토자의 Round5 발언을 읽거나 답한 것으로 서술하지 않았다.",
+    "RP03은 RQ18/C05-03, RP04는 RQ16/C05-01이며 이전 자기 shortlist의 C05-05와 RP04를 혼동하지 않았다.",
+    "상세카드·파일럿·rebuttal은 이 파일에서 만들지 않는다. 세 입장이 모인 뒤 Coordinator가 전달한 실제 비판에 응답한다.",
+    "문헌 근거는 기존 canonical 검증 범위다. 이 라운드에서 새 외부 역검색·모델 실행·신경분석·숫자 데이터 전수 확인을 하지 않았다. Round4 Crossref 403 실패는 연구 부재의 증거가 아니다.",
+    "다섯 데이터 보유는 사용자 진술로 유지한다. 미확인 파일·스키마·재생 provenance는 실제 분석 착수 조건이며 문헌 토론의 차단 조건이 아니다.",
+    "자원 수치·CLIP 경로/해시는 공통 보고서에서 확인한 범위다. 현재 담당자가 이번 라운드에 환경계측·가중치 load를 실행했다고 주장하지 않는다. 저장량은 명시된 shape의 산술 견적이다.",
+    "예측·표상 대응·모델 내부 연산과 인간 신경 인과를 구분한다. prefix 경계/미래입력·HRF·주석 지연, Spacetop clip 단위 및 Emo-FilM 별도 코호트 제약을 유지한다.",
+    "Speech Features와 미션의 제외 연구축을 새로 도입하지 않는다. 정서 AI 점수는 실측 정서 정답을 대체하지 않는다.",
+    "자기 폴더 round05_debate.json/md 두 파일만 작성하며 공통 산출물·다른 역할 파일·Git을 수정하지 않는다."
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "role": "09_generative_ai",
+  "round": 5,
+  "date": "2026-11-12",
+  "read_files": [
+    "discussions/ROUND05_PROTOCOL.md",
+    "discussions/round05_assignments.json",
+    "research_questions/shortlist.json",
+    "literature/novelty/TOP10_REVIEW.md",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md",
+    "agents/09_generative_ai/round04_revision.json"
+  ],
+  "read_file_sha256": {
+    "discussions/ROUND05_PROTOCOL.md": "6f5e03882b5ab671a798bb728e68d98cfa1e1a73af29335ee69d929425cd17a0",
+    "discussions/round05_assignments.json": "d44f8f61bb37060a8af2f33576f3b05b57c4713eb6ad876ac9b860b1fa7021ac",
+    "research_questions/shortlist.json": "35ce2f2d30fe3188dff92e35b92036e894beec6bea67015a6a1e66647a1bc8d7",
+    "literature/novelty/TOP10_REVIEW.md": "82065b401c09af68ebb14bc2450f9d1a76b8c643c56fa627e28e896c74681164",
+    "datasets/DATASET_INTELLIGENCE_REPORT.md": "decd3863b1b9bcf45fa64cc8315503bbaaff56adf36b192b5d6bf3c2646ba4e1",
+    "pilots/RESOURCE_AND_MODEL_PLAN.md": "b92b87a6cf35713a031a74518d399549020c72e73ddeafd90f3874aaa5d7b053",
+    "agents/09_generative_ai/round04_revision.json": "67bf677a3f5a1fba21107914f9290f50f0ac4df3e6541fa82e5abbd19b6924aa"
+  },
+  "positions": [
+    {
+      "proposal_id": "RP07",
+      "rq_id": "RQ10",
+      "debate_role": "제안자",
+      "claim": "진행할 가치는 단일 생성물의 품질이나 sampler 다양성이 아니라, 독립 정서 주석이 상반된 두 고정 후보 중 어느 설명을 실제 추가 신경 관측이 배제하는지에 있다. 단, 주장은 검증된 forward 모형과 유한 후보 pool에 조건부인 witness 검정이며 전체 신경 정보 상한이나 실제 후보 자극의 뇌반응 동등성이 아니다.",
+      "best_evidence": [
+        "P076",
+        "P053",
+        "P015",
+        "P100",
+        "P008"
+      ],
+      "weakest_assumption": "독립 반복을 가진 동일 원본 자극의 개인별 forward/noise 모형이 후보 자극에도 calibration을 유지한다는 가정이다. 현재 Horikawa 내용 중복은 이 독립 반복 조건을 충족하지 않으며, NSD의 정서 ground truth는 확보되어 있지 않다.",
+      "discriminating_prediction": "발견용 관측으로 고정한 정서 상반 witness 쌍에 대해, 같은 원본 자극의 독립 보류 반복을 추가하면 사전정의 오차 허용영역에서 적어도 한 후보가 탈락하는 경우가 늘어난다. 이 변화는 동일자료 재사용·동일 호출예산 대조와 구별되어야 하며, matched 감각 차이 witness의 배제와 비교해 정서 관련 정보 제약의 특성을 평가한다.",
+      "judgment": "조건부",
+      "required_change": [
+        "카드의 Horikawa 등 반복이 있는 보유본이라는 문구를 실제 same-stimulus repeat 확인 이후로 명시적으로 제한한다. 같은 콘텐츠의 다른 장면·중복 이름·다른 참가자는 개인 내 독립 재측정의 대체가 아니다.",
+        "첫 단계는 NSD 보유본의 정확 stimulus ID·반복 세션/런·개인별 처리공간을 확인한 시각 역문제 방법검정이다. NSD 정서 라벨을 가정하거나 CLIP 정서점수로 대체하지 않는다.",
+        "정서 신경질문으로 승격하려면 NSD 원본과 후보 또는 새 반복자료에 독립 인간 자극 정서주석을 확보하거나, 실제 정서주석과 독립 반복이 함께 있는 별도 보유 경로를 확인한다. 주석을 얻기 전 NSD 결과는 비정서 방법 결과다.",
+        "발견·선택용 관측, calibration용 반복, 최종 평가 반복을 실제 독립 단위로 나눈다. 반복 수가 부족하면 세 용도를 겹쳐 해결하지 않고 별도 calibration 자극/추가 측정 또는 교차적합 범위를 명시한다.",
+        "극값 탐색 뒤 고정한 전체 witness 목록과 실패를 유지하며 최종 반복을 보고 후보·prior·오차문턱을 다시 고르지 않는다. 전체 BOLD와 고정 정서 neural contrast의 적합도를 별도 보고한다.",
+        "primary endpoint를 사전정의 주석 차이를 갖는 고정 witness의 held-out 양립/배제와 오차 변화로 둔다. 미발견·좁은 샘플 범위는 식별 성공으로 세지 않는다.",
+        "P076의 공식 inverse sampler가 개인 brain likelihood를 제공한다는 표현을 금지한다. 미분가능 forward를 새로 구성해야 하며 먼저 자연 후보 retrieval로 같은 질문이 풀리는지 확인한다."
+      ],
+      "unresolved_disagreement": "이 결과가 신경표상 제약을 보여주는지 잘못된 encoder의 교정만 보여주는지는 독립 forward/실측 calibration에 달려 있다. 제안자로서도 방법검정만 성공하면 과학RQ가 입증되었다는 판정에는 반대한다. merged C09-01·C10-04는 정보출처 감사의 방법 분기로 보존하고 별도 신경결론으로 합산하지 않는다.",
+      "resource_feasibility": {
+        "current": "공통 계획의 실제 관측은 CPU quota 4분량·32GiB, GPU 추론 미실행이다. 환경의 nvidia-smi 부재는 사용자의 다른 GPU 자원이 없다는 뜻이 아니다.",
+        "first_step": "이미 추출된 특징·작은 사전정의 신경 contrast와 자연 후보 pool로 retrieval 및 calibration 설계를 먼저 검정한다. 전체 영상·전체 voxel·새 생성 학습을 첫 전제로 두지 않는다.",
+        "model_identity": "공통 CLIP ViT-B/32 공식 checkpoint URL·SHA 규칙은 확인되어 있으나 weights load·추론은 미확인이다. cache 해시와 입력1개의 shape·수치·peak memory를 확인한 뒤 사용한다. CLIP 점수는 정서 측정이 아니다.",
+        "extension": "calibrated 개인 forward와 자연 후보 단계가 유익할 때만 DPS 형태의 후보 제안으로 확장한다. 생성 prior·지원입력·license·weights와 forward 호출/peak VRAM/시간을 실제 측정 후 budget을 정한다.",
+        "data_gate": "Horikawa는 독립 반복이 확인되기 전 RP07 확증 경로에서 제외한다. NSD는 시각 반복 방법검정만 착수 후보이고 정서 질문은 새 주석 조건이다.",
+        "fallback": "신뢰도/반복·정서주석 부족이면 합성 검출력과 자연 pool의 일반 inverse 검정으로 낮추거나 추가 반복·주석 계획을 남긴다. 원자료 분석을 실행했다고 보고하지 않는다."
+      },
+      "why_new_neuroscience": "역문제 비식별성과 prior 기여는 알려져 있다. 남길 질문은 정서에 관한 두 양립 설명을 배제하는 관측 정보가 어떤 추가 반복·고정 신경대비에서 얻어지는가이다. 같은 관측량에서 감각적으로만 다른 후보와 대비하면 단순 reconstruction 점수의 개선과 구별되는 측정 수준의 정서정보 제약을 논할 수 있다. 최신 선행 전수 역검색은 완료되지 않아 신규성을 확정하지 않는다.",
+      "strongest_alternative": "관측을 추가하면서 한 후보가 탈락해도 그 후보는 실제 가능한 자극 설명이 아니라 encoder의 adversarial/off-manifold 취약점이었을 수 있다. 또는 모든 종류 후보가 반복 평균의 SNR 개선만으로 같은 비율로 탈락하여 정서 특이 신경 질문이 남지 않을 수 있다.",
+      "positive_outcome": "자연성과 독립 인간 주석을 통과한 고정 witness가 다른 forward family에서도 첫 관측에 양립하고, 추가 실제 반복이 사전정의 contrast에서 한쪽을 일관되게 배제하면 해당 관측모형·자극범위에서 추가 측정의 판별력을 지지한다. 실제 두 후보의 신경반응이 같거나 정서 요인이 유일하다는 뜻은 아니다.",
+      "negative_outcomes": [
+        "후보 미발견: 탐색상 음성이다. 단일 해·정서 정보 완전 식별을 주장하지 않는다.",
+        "평가 forward에서 모든 후보가 즉시 실패: 생성 최적화가 모델 취약점을 이용했거나 calibration이 부적절하다. 신경 정보 한계로 해석하지 않는다.",
+        "충분한 신뢰도에서 추가 관측에도 둘 모두 양립: 시험한 관측량의 구별 이득이 약하다. 전체 가능한 자극의 비식별성 증명은 아니다.",
+        "배제효과가 감각 witness와 동일하고 독립 정서 대비에서 특이 차이가 없음: 일반 inverse measurement 방법 결과로 축소한다.",
+        "반복 신뢰도가 낮음: 정서정보 부재가 아닌 측정 부족으로 판정한다."
+      ],
+      "evidence_that_would_change_judgment": {
+        "upgrade_to_proceed": "실제 같은 자극의 독립 반복·독립 정서주석·forward calibration이 확인되고 자연 pool에서 사전고정 witness 검정이 유의미한 판별력과 신뢰도를 보일 때.",
+        "downgrade_to_method_only": "자연 retrieval/직접 decoder로 모든 결과가 설명되거나 신경 대비의 정서 관련성이 검증되지 않을 때.",
+        "reject_claim": "test 반복을 사용해 witness·contrast·허용오차를 선택했거나 내용 중복을 독립 반복으로 사용한 설계는 해당 확증 주장 자체를 기각한다."
+      },
+      "observation_units_and_tests": "원본 stimulus family×개인별 독립 반복이 단위다. seed·후보수는 독립 신경 표본이 아니다. 발견용 후보 선택을 train에 제한하고 반복/런 의존성을 보존한 null 및 참가자·원본 단위 불확실성을 사용한다. 실제 검정력은 반복별 residual covariance와 사전 최소 주석차이/오차효과로 산정하며 숫자를 미리 꾸미지 않는다.",
+      "new_measurement_boundary": "원본의 검증된 독립 반복이 있으면 그 반복에 대한 witness 배제는 기존 관측으로 가능하다. 새 후보 자체의 실제 뇌반응 동등성·차이를 주장하려면 두 후보를 실제 제시한 새 인간 뇌 측정이 별도로 필요하다.",
+      "evidence_scope": "P076/P015는 공식 코드·문서의 확인 범위를 상속하며 새 본문 검증이 아니다. P053/P100/P008은 기존 문헌 catalog의 접근 범위에 따른다. NSD 보유·반복 관련 조건은 datasets/DATASET_INTELLIGENCE_REPORT.md를 근거로 하며 해당 문서에 있는 P103 표기는 현재 reference_catalog에 없어 best_evidence canonical 배열에서 제외했다. 이 입장은 E3 제안이다.",
+      "pilot_recommendation": {
+        "position": "RP07을 현재 3개 첫 파일럿에서 제외하고 장기 상세카드의 단계로 유지 권고.",
+        "reason": "개인 내 독립 반복·정서 주석의 동시 확보를 현재 보유본 사실로 가정할 수 없다. 집단 관측 분기는 다른 표적이며 즉시 착수로 포장하지 않는다.",
+        "coordinator_update": "Coordinator는 PILOT01=RP01, PILOT02=RP03, PILOT03=RP08로 확정했다고 전달했다. RP07/RP10은 장기발견 경로와 상세카드로 유지한다.",
+        "boundary": "RP08의 실제 voxel/parcel 공간·신뢰도·split 확인 역시 필요하며 그 분석을 실행한 것은 아니다."
+      },
+      "existing_data_group_branch": {
+        "target": "개인 내 같은 자극 재측정이 아니라 같은 자극에 대한 독립 참가자 추가 관측이 집단 공통 반응 설명의 witness를 배제하는가라는 별도 표적.",
+        "available_basis": "Horikawa는 공식 events상 5명 각각 2196 자극 이벤트와 실제 stim_index 헤더가 확인되었고 사용자 보유가 확인되었다. 각 참가자의 정확 공통 자극ID·처리 BOLD 대응은 실제 보유본에서 대조해야 한다.",
+        "concrete_contrast": "공통 자극이 확인되면 발견 참가자 집합으로 고정한 witness 쌍을 보류 참가자의 같은 원본 자극 반응에 대조한다. 주된 값은 보류 참가자에서 두 후보의 calibrated likelihood 차이 및 양립/배제 여부다. 같은 자극에 대한 집단 일반화 증거이며 개인 반복 효과가 아니다.",
+        "mapping": "참가자별 mapping·encoding과 공통 좌표 정렬은 평가 자극을 제외한 공통 훈련 자극에서만 학습하고, 보류 참가자의 calibration도 별도 자극/런을 사용한다. 평가 반응으로 정렬·ROI·witness를 고르지 않는다.",
+        "controls": "참가자별 평균·분산·개인차 covariance, 같은 자극 의미만의 prior, 자연 witness와 참가자 identity/SNR 대조를 둔다. 개인차 때문에 탈락한 후보를 정서정보가 증가했다고 바로 해석하지 않는다.",
+        "statistical_limit": "5명은 5개의 참가자 관측이며 자극수나 seed로 참가자 표본수를 늘리지 않는다. leave-one-person-out 결과의 변동을 보존하고 넓은 참가자 모집단 결론을 제한한다.",
+        "status": "보유 자료로 정의할 수 있는 조건부 관찰 분기다. 실제 mapping/공통자극·개인차 calibration을 확인하기 전 첫 파일럿으로 확정하지 않는다."
+      }
+    },
+    {
+      "proposal_id": "RP10",
+      "rq_id": "RQ27",
+      "debate_role": "제안자",
+      "claim": "실제 BOLD를 보기 전에 의미·감각 보존과 독립 정서주석 변화량의 허용집합을 고정하고, 그 집합 안의 목표/비목표/무편집 자극을 실제 제시하여 얻는 신경대비를 검정할 가치가 있다. 결론은 선택된 자극 묶음의 차이에 한정하며 정서 latent의 순수 인과효과·보존 여부의 처치효과·신경 회로 기전을 주장하지 않는다.",
+      "best_evidence": [
+        "P070",
+        "P071",
+        "P078",
+        "P100",
+        "P098",
+        "P097"
+      ],
+      "weakest_assumption": "정서 관련 단서의 변화와 보존해야 할 사건·의미의 경계를 사전 측정 차원에서 실제로 운영할 수 있고, 목표/비목표 편집의 조작량·자연성·감각 변화에 공통 지지가 있다는 가정이다. 이 공통 지지는 아직 실증되지 않았다.",
+      "discriminating_prediction": "BOLD 비공개 상태에서 동결한 허용집합 S=1의 원본 family 내 목표−비목표 대비가 독립 사람 정서주석의 목표 변화와 연결되고, 무편집 inversion 및 같은 감각 변형량의 비목표 대조를 넘어서 사전정의 neural contrast에서 재현된다. 두 지정 pipeline을 쓰는 경우 대비의 차이/동등성을 고정효과로 평가하며 자연 matched 대비를 별도로 대조한다.",
+      "judgment": "조건부",
+      "required_change": [
+        "첫 pilot을 자극·주석 타당성 검정과 새 신경 실험의 두 단계로 분리한다. 새 주석 없이 모델의 정서 점수를 측정 정답으로 삼지 않으며 기존 원본 BOLD를 편집물에 배정하지 않는다.",
+        "공식적으로 확인할 하나의 정서 주석 축/범주대비와 의미·감각 보존 차원, 최소 조작량·자연성·동등성 허용범위를 독립 개발자료에서 정한다. 아직 특정 데이터 label이 존재한다고 채워 넣지 않는다.",
+        "전 생성시도·seed·실패·제외 이유·원본 family·모델 버전·선별 확률을 보존하고, 결정론적 S=0 영역을 가중치로 복구해 원모집단에 일반화하지 않는다.",
+        "primary estimand를 E[원본 family별 실제 목표−비목표 신경대비 | 개발에서 고정한 S=1]로 둔다. pass/fail 효과와 허용 threshold를 test BOLD에 맞춘 최적화는 금지한다.",
+        "새 신경 측정 전에 독립 검증 주석에서 조작 성공·공통 지지·coverage를 확인한다. 실패하면 허용영역을 결과에 맞춰 몰래 바꾸지 않고 새 개발 라운드로 기록한다.",
+        "새 실제 자극 제시 순서를 무작위화하고 참가자·원본 family·반복·run 의존성을 반영한다. 반복 노출/순서·HRF carryover를 포함한 제시 설계를 고정한다.",
+        "통합된 C09-05는 두 지정 pipeline의 강건성 방법 분기로 유지한다. 두 pipeline을 생성기 모집단의 무작위 표본으로 취급하거나 seed를 family 수로 세지 않는다."
+      ],
+      "unresolved_disagreement": "사건 의미와 정서 관련 단서가 정의상 얽혀 있으면 비목표 의미를 완전히 고정한 정서 조작은 불가능할 수 있다. 이 경우 제안자는 순수 정서 요인 분리 주장을 버리고 명시적으로 검증된 자극 대비와 선택된 모집단의 결과로 범위를 낮추는 데 동의한다. 자연 대조와 생성물의 교환가능성도 가정하지 않는다.",
+      "resource_feasibility": {
+        "current": "공통 환경은 CPU quota 4·32GiB이며 GPU 생성은 실행하지 않았다. 연구 계획·소규모 특징/선별 로그 점검은 가능하나 대량 diffusion/flow 편집의 속도·VRAM은 미측정이다.",
+        "first_step": "사용권·원본 접근이 확인된 소수 독립 family를 대상으로 목표/비목표/무편집 후보 제작 계획과 독립 개발/검증 주석을 준비한다. 보유 원본은 pool이며 새 후보는 실제 만들어 확인해야 한다.",
+        "model_identity": "Prompt-to-Prompt 및 Null-text Inversion의 공식 구현, FlowEdit의 SD3/FLUX 경로는 확인되었다. 개별 weights·기반 모델 라이선스·API 버전·입출력 호환성과 현재 장비 실행은 별도 확인 조건이다.",
+        "cost_gate": "먼저 실제 장비에서 단일 family의 추론시간·peak memory·후보당 통과율을 측정하고, 독립 주석과 실패 후보를 포함한 비용을 기록한다. 원 논문의 GPU 수치를 본 환경 최소 요구량으로 바꾸지 않는다.",
+        "data_gate": "RP10은 새 독립 인간 정서/의미/자연성 주석과 새 편집 자극 인간 뇌 측정이 필수다. Horikawa·NSD 등의 기존 관측만으로 편집효과를 검정할 수 없다.",
+        "fallback": "주석상 공통 지지가 없으면 자극 타당성 방법 결과로 종료하거나 자연 matched 자극 대비로 과학 질문을 축소한다. 새 뇌 측정 계획이 없으면 신경 효과 결과를 약속하지 않는다."
+      },
+      "why_new_neuroscience": "생성형 편집과 자극 통제는 이미 알려져 있다. 남길 판별 질문은 지정한 의미·감각 보존 범위에서 독립 정서주석 대비가 실제 신경반응 차이와 함께 유지되는가이며, 선별된 모집단·실패·원본 family를 명시해 어떤 자극 범위까지 그 설명을 지지할 수 있는지 밝힌다. 이 범위를 넘는 신규성·세계 최초는 확정하지 않는다.",
+      "strongest_alternative": "허용필터가 쉬운 원본·낮은 조작량·특정 정서 강도만 남겨 효과를 만들거나 없앨 수 있다. 또 측정하지 않은 사건 의미와 공통 생성 artifact가 목표−비목표 대비를 설명할 수 있다. 무작위 제시는 이러한 단일요인 해석을 자동으로 해결하지 않는다.",
+      "positive_outcome": "독립 검증 주석과 새로운 신경표본에서 paired 대비가 재현되고 inversion/비목표/자연 대조와 비교 가능하면 S=1의 실제 자극 차이에 대한 신경증거를 지지한다. 두 pipeline에서 유지되면 그 두 구현 범위의 강건성만 추가한다. 정서만의 원인이나 보편적인 편집 불변성은 결론이 아니다.",
+      "negative_outcomes": [
+        "목표 정서주석 변화와 의미 보존의 공통 지지를 만들지 못함: 자극조작의 실현성 실패이며 뇌에 정서정보가 없다는 증거가 아니다.",
+        "충분한 독립 조작 확인·신뢰도에서 neural contrast가 사전 최소효과와 동등하게 작음: 해당 S=1 자극범위에서 제안 대비의 추가 신경 설명력이 약함.",
+        "무편집/비목표에서도 같은 효과: inversion artifact·일반 감각 변화 설명을 우선한다.",
+        "두 pipeline은 재현되지만 자연 대조와 불일치: 공통 생성 artifact 또는 실제 의미조작 불일치가 남으며 보편적 정서 대비 주장을 낮춘다.",
+        "선택coverage가 좁음: 신경효과가 있더라도 적용할 수 있는 내용·강도 범위를 제한한다."
+      ],
+      "evidence_that_would_change_judgment": {
+        "upgrade_to_proceed": "새 BOLD를 보지 않은 독립 검증 주석에서 충분한 원본 family의 목표/비목표 공동 overlap와 조작 신뢰도가 확인되고, 실제 새 뇌 수집·검정력 계획이 준비될 때.",
+        "downgrade_to_method_only": "편집 성공률·metric 비교만 가능하거나 새 뇌 관측 계획이 없고 자연 matched 대비 이상의 구체적 neural prediction이 없을 때.",
+        "reject_claim": "test BOLD를 보고 허용집합·prompt·ROI를 정했거나 원본 BOLD를 편집물에 복사했다면 해당 확인적 신경효과 주장을 기각한다. 목표 정서와 보존 차원의 operational 분리가 전혀 불가능하면 순수선택적 개입 주장도 철회한다."
+      },
+      "observation_units_and_tests": "독립 원본 family와 참가자가 추론 단위이며 같은 family의 seed/편집 variant는 종속 관측이다. 개발/검증/test는 family 단위로 분리하고 test 후보는 새 BOLD 전에 동결한다. 제시 무작위화에 맞는 family 내 처치대비 null과 계층 불확실성을 사용한다. 원본·평정자 신뢰도 및 최소 신경효과를 이용한 설계별 검정력 계산 전 참가자 수를 임의 확정하지 않는다.",
+      "new_measurement_boundary": "새 독립 자극 정서·의미·자연성 주석과 편집 자극의 새 인간 뇌 측정이 필수이다. 표본 구성·제시·측정 계획을 수립하는 단계이며 실행 완료가 아니다.",
+      "evidence_scope": "P070 본문 한계는 직접 확인한 기존 근거, P071/P078은 공식 코드·프로젝트 문서 근거다. P098/P100의 모집단/추론 원리는 해당 역할의 확인 범위를 상속한다. P097은 현재 코퍼스에서 E2 서지 범위이며 논문 본문 검증으로 격상하지 않는다."
+    }
+  ],
+  "limitations": [
+    "배정된 RP07/RP10 제안자 입장만 실제 작성했다. 회의적 비판자·데이터통계 검토자의 Round5 응답을 아직 전달받지 않았으므로 반론 수용·합의가 완료되었다고 기록하지 않는다.",
+    "두 후보 모두 조건부 유지이며 즉시 인간 뇌 분석·실험 착수를 선언하지 않는다.",
+    "RP07의 Horikawa 내용 중복은 독립 반복이 아니며, NSD의 정서 ground truth는 현재 제공된 것으로 취급하지 않는다.",
+    "RP10은 기존 자극·뇌 데이터의 재분석만으로 완성할 수 없으며 새 주석·실제 편집 자극의 새 뇌 측정을 요구한다.",
+    "외부 신규성 검색·새 원문 검증·원자료 분석·생성·모형 실행·인간 실험은 이번 라운드에서 수행하지 않았다.",
+    "실제 critic/statistics 입장이 전달되면 별도 round05_rebuttal 파일에서 응답한다. 현재 발언을 향후 합의로 소급하지 않는다.",
+    "자기 round05_debate.json/md만 작성; 공유 카드·파일럿·Git은 수정하지 않았다.",
+    "후속 Coordinator 결정에 따라 RP07/RP10은 상세카드·장기발견 경로로 유지하고 별도 첫 파일럿 작성 대상은 아니다. 집단 관측 분기는 개인 내 반복으로 재명명하지 않는다."
+  ]
+}

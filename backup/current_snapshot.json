@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "stage": "round04-revisions",
-  "snapshot_id": "f6eeace6bc96685d3f54bb3655b7f57500d7b64cd8a8540c07a9b131ca99eaf0",
-  "prepared_at_utc": "2026-11-12T07:03:36.174611+00:00",
-  "file_count": 1388,
-  "total_bytes": 200072519,
+  "stage": "round05-positions",
+  "snapshot_id": "cece16e60b89545b1fad235cfc1d2a22dacb7c2a885bb6251de9481761d23cd0",
+  "prepared_at_utc": "2026-11-12T07:24:49.545303+00:00",
+  "file_count": 1438,
+  "total_bytes": 202394869,
   "files": [
     {
       "path": "AGENTS.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 4325,
-      "sha256": "52175157d3f257c6c79a9ca758f65030696f1d9560cd47ae58c521ce13ab6218",
+      "size": 4448,
+      "sha256": "499e53a70ccb2f889a9f55218b1b06f8b4a8196bbde8b428322c4ef24186ef59",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
@@ -3697,6 +3697,18 @@
       "stored_path": "research/agents/01_dataset/round04_revision.md"
     },
     {
+      "path": "agents/01_dataset/round05_debate.json",
+      "size": 33179,
+      "sha256": "e697d08c87734ac38f037561789c69aeb844227d24e4c8ad80f5e417584a3b82",
+      "stored_path": "research/agents/01_dataset/round05_debate.json"
+    },
+    {
+      "path": "agents/01_dataset/round05_debate.md",
+      "size": 25591,
+      "sha256": "490f67f0a9ab84d065ae277b50a2ec40f8aea726ac2313eb3982cf5810d46b0a",
+      "stored_path": "research/agents/01_dataset/round05_debate.md"
+    },
+    {
       "path": "agents/01_dataset/round1_independent_report.md",
       "size": 10591,
       "sha256": "0b47984ea7f5dde2e7dc1456f3bc88fc67040a91542ec58b5bf92f4d58c4ff33",
@@ -4417,6 +4429,18 @@
       "stored_path": "research/agents/02_affective_neuroscience/round04_revision.md"
     },
     {
+      "path": "agents/02_affective_neuroscience/round05_debate.json",
+      "size": 17899,
+      "sha256": "f017099f624a0e6b444e846f7a3f76a6d4912873a1dbe69204bc2ef25e8e4a09",
+      "stored_path": "research/agents/02_affective_neuroscience/round05_debate.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/round05_debate.md",
+      "size": 16709,
+      "sha256": "5eadff23789f95b5ecaba89217200d4c45007a58a13c41de6e6824c5e7fd8829",
+      "stored_path": "research/agents/02_affective_neuroscience/round05_debate.md"
+    },
+    {
       "path": "agents/02_affective_neuroscience/sources_index.csv",
       "size": 13541,
       "sha256": "0aab0ca56cf0678d89f397c5b7ee14c61dd64d63fff4ea089f8c3fcd428ca66e",
@@ -4517,6 +4541,18 @@
       "size": 43707,
       "sha256": "32f89cbb090a8d539f2df97c0da817ad30b05d372cc30fadf20853e4000f4ea3",
       "stored_path": "research/agents/03_vision_decoding/round04_revision.md"
+    },
+    {
+      "path": "agents/03_vision_decoding/round05_debate.json",
+      "size": 19782,
+      "sha256": "3069c0122ce75f204b245687086350e4b730e0b5a9522f3a4c1770c1b6639291",
+      "stored_path": "research/agents/03_vision_decoding/round05_debate.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/round05_debate.md",
+      "size": 18519,
+      "sha256": "3a498445237d762d14cb774540f454e47f9406ae6448a485595d750dc1c99a58",
+      "stored_path": "research/agents/03_vision_decoding/round05_debate.md"
     },
     {
       "path": "agents/03_vision_decoding/sources/README.md",
@@ -4811,6 +4847,18 @@
       "size": 49799,
       "sha256": "344b0ae6dd581be03cfe63eeaced9bec35687669516c931536ba8cfd93f3e677",
       "stored_path": "research/agents/04_brain_foundation/round04_revision.md"
+    },
+    {
+      "path": "agents/04_brain_foundation/round05_debate.json",
+      "size": 31252,
+      "sha256": "a5a2764c4e825a15532715715c1e594ce7b5122994389550595053ba599bcd35",
+      "stored_path": "research/agents/04_brain_foundation/round05_debate.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/round05_debate.md",
+      "size": 28685,
+      "sha256": "d488b6476b46190a51e7c7980cbd06900d2ea5d7b5983d6c4fcd72bb4e323824",
+      "stored_path": "research/agents/04_brain_foundation/round05_debate.md"
     },
     {
       "path": "agents/04_brain_foundation/round1_report.md",
@@ -5509,6 +5557,18 @@
       "stored_path": "research/agents/05_multimodal_dynamics/round04_revision.md"
     },
     {
+      "path": "agents/05_multimodal_dynamics/round05_debate.json",
+      "size": 28475,
+      "sha256": "44e9732ebb02ea7f4632550931a7b2b4114021505ad2a907d247c53e364c75ed",
+      "stored_path": "research/agents/05_multimodal_dynamics/round05_debate.json"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/round05_debate.md",
+      "size": 28495,
+      "sha256": "47650a178494f3288688cb3f52c5e92650999863218f00c18d6b4855844ea93b",
+      "stored_path": "research/agents/05_multimodal_dynamics/round05_debate.md"
+    },
+    {
       "path": "agents/06_frontier_ai/RESEARCH_STATUS.md",
       "size": 1330,
       "sha256": "34b6a7786d7739a1c9d0da6a07eb511668d783a6ce4c30d30f316e452b9a0d48",
@@ -5695,6 +5755,18 @@
       "stored_path": "research/agents/06_frontier_ai/round04_revision.md"
     },
     {
+      "path": "agents/06_frontier_ai/round05_debate.json",
+      "size": 21916,
+      "sha256": "2388e4b6bd3f72ad95ab39429d6b22525b711817227cfc6ea00f63b0e2c4b295",
+      "stored_path": "research/agents/06_frontier_ai/round05_debate.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/round05_debate.md",
+      "size": 21605,
+      "sha256": "eb3c405279168cc3e2cd8b359ec4eec988fd958c55937dd2e134f9a2220811ff",
+      "stored_path": "research/agents/06_frontier_ai/round05_debate.md"
+    },
+    {
       "path": "agents/06_frontier_ai/subaxes.csv",
       "size": 2227,
       "sha256": "6f329e6680b1793f713ba0b3902fbd747beb78b4e5aa0eaff4fc160989277a9c",
@@ -5777,6 +5849,18 @@
       "size": 46248,
       "sha256": "5f9cb762a5183624bb3af1b047a54bc8614367233333481fbce64751a1016ac1",
       "stored_path": "research/agents/07_geometry_information/round04_revision.md"
+    },
+    {
+      "path": "agents/07_geometry_information/round05_debate.json",
+      "size": 30345,
+      "sha256": "c06d261fcf08fcda4de14d84fd3913f4424aa3fb149f0e8ff9be7ac9d8563d4a",
+      "stored_path": "research/agents/07_geometry_information/round05_debate.json"
+    },
+    {
+      "path": "agents/07_geometry_information/round05_debate.md",
+      "size": 29117,
+      "sha256": "bebd7c9522008dc26da2f4b37648ceaa83fa95fe817a17e1f04c87bda7afbf27",
+      "stored_path": "research/agents/07_geometry_information/round05_debate.md"
     },
     {
       "path": "agents/07_geometry_information/sources/facco_code.txt",
@@ -6053,6 +6137,18 @@
       "size": 27715,
       "sha256": "14002225a87caeae886811a233400cd0ed2f56dfd2126ba3b4eeb226f7347009",
       "stored_path": "research/agents/08_systems_neuroscience/round04_revision.md"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round05_debate.json",
+      "size": 26975,
+      "sha256": "e0592a8f2b2772adf9ea30a4f62552edeef683ff021b226e87515fa829ecf5e2",
+      "stored_path": "research/agents/08_systems_neuroscience/round05_debate.json"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round05_debate.md",
+      "size": 27505,
+      "sha256": "71e755698c1cfb841e9fff227f57a659f37e1dd356c263318ab41d4b96c2fbcd",
+      "stored_path": "research/agents/08_systems_neuroscience/round05_debate.md"
     },
     {
       "path": "agents/08_systems_neuroscience/source_manifest.json",
@@ -6587,6 +6683,30 @@
       "stored_path": "research/agents/09_generative_ai/round04_revision.md"
     },
     {
+      "path": "agents/09_generative_ai/round05_debate.json",
+      "size": 23532,
+      "sha256": "211a87c2ddefbe0abb1d6103c0f0b9ba76ce7cd970f1f9843cf892c667b94354",
+      "stored_path": "research/agents/09_generative_ai/round05_debate.json"
+    },
+    {
+      "path": "agents/09_generative_ai/round05_debate.md",
+      "size": 21554,
+      "sha256": "d28c7efc0c95339d848b77c7295f66220dcb49bdd9f6a0608dfd293dddabf6c5",
+      "stored_path": "research/agents/09_generative_ai/round05_debate.md"
+    },
+    {
+      "path": "agents/09_generative_ai/round05_rebuttal.json",
+      "size": 15223,
+      "sha256": "7ffdd46821da39daf9f66784083c7ff096e0b7230c8c69e364a24c8e8f41f136",
+      "stored_path": "research/agents/09_generative_ai/round05_rebuttal.json"
+    },
+    {
+      "path": "agents/09_generative_ai/round05_rebuttal.md",
+      "size": 12285,
+      "sha256": "626db508c6b05b4ad9ab941de4945392b00c7b5055a4f90f4284929f5456ec79",
+      "stored_path": "research/agents/09_generative_ai/round05_rebuttal.md"
+    },
+    {
       "path": "agents/09_generative_ai/subaxes.csv",
       "size": 3753,
       "sha256": "961d89d722fd6e3e461a692b2bd38b94501e7c4f043120f04e73a262cc00476f",
@@ -6657,6 +6777,18 @@
       "size": 51883,
       "sha256": "c32daa46eafea177e02e180917f5e43b790ab876c35f652b350484c55fb26469",
       "stored_path": "research/agents/10_llm_semantics/round04_revision.md"
+    },
+    {
+      "path": "agents/10_llm_semantics/round05_debate.json",
+      "size": 25963,
+      "sha256": "31fd526d0f5121c80b6fb201e222851791179a8b94e57b36e1f2407dbbde56b0",
+      "stored_path": "research/agents/10_llm_semantics/round05_debate.json"
+    },
+    {
+      "path": "agents/10_llm_semantics/round05_debate.md",
+      "size": 24850,
+      "sha256": "08b7a439ba7695e5628ed5ec98d5b1dcac1f46e98d6d3166264ef600a9216379",
+      "stored_path": "research/agents/10_llm_semantics/round05_debate.md"
     },
     {
       "path": "agents/10_llm_semantics/source_manifest.csv",
@@ -6945,6 +7077,18 @@
       "size": 40576,
       "sha256": "436668d19d5456a632113b7efa5c88bc9442edc42c1a3a806811cb6df9f65f63",
       "stored_path": "research/agents/11_brain_inspired/round04_revision.md"
+    },
+    {
+      "path": "agents/11_brain_inspired/round05_debate.json",
+      "size": 27129,
+      "sha256": "842b0a5e2393659ae37f3e73e847e20832480a87a84bf9ecf3f00c1e0bbceb27",
+      "stored_path": "research/agents/11_brain_inspired/round05_debate.json"
+    },
+    {
+      "path": "agents/11_brain_inspired/round05_debate.md",
+      "size": 28063,
+      "sha256": "a70b8dff5556f8aae178f3c974a58f467344824be313e40a622b8f3c4e7dd637",
+      "stored_path": "research/agents/11_brain_inspired/round05_debate.md"
     },
     {
       "path": "agents/11_brain_inspired/source_manifest.csv",
@@ -7269,6 +7413,18 @@
       "size": 43865,
       "sha256": "82b6caeef1b982792d125133e78b63fedf1e6f878af9f1875d1ee8a820dc7cb1",
       "stored_path": "research/agents/12_adversarial_review/round04_revision.md"
+    },
+    {
+      "path": "agents/12_adversarial_review/round05_debate.json",
+      "size": 24603,
+      "sha256": "562004d1a8c3400a8b261fc381b3aa2b634970558509cdf51937344b9ede8796",
+      "stored_path": "research/agents/12_adversarial_review/round05_debate.json"
+    },
+    {
+      "path": "agents/12_adversarial_review/round05_debate.md",
+      "size": 22361,
+      "sha256": "c8c318074dd299c3f1bbed6bcfb2da10e88a6fd19992b7842103a46db4917f19",
+      "stored_path": "research/agents/12_adversarial_review/round05_debate.md"
     },
     {
       "path": "agents/12_adversarial_review/source_manifest.csv",
@@ -7722,8 +7878,8 @@
     },
     {
       "path": "combinations/README.md",
-      "size": 1281,
-      "sha256": "9b2d21d0e2492ac640e9f1acbd34628788807fcdb820608bd93968f3620772d0",
+      "size": 1273,
+      "sha256": "5aed0088601982ab78cd81aa06a1039c37ba7107e4321a9e1ec7c3129fcb3bf4",
       "stored_path": "research/combinations/README.md"
     },
     {
@@ -7761,6 +7917,12 @@
       "size": 58563,
       "sha256": "7687c3cb5d768ffc65e561e947bc1a581be1e20a7296239a207599157137d0d1",
       "stored_path": "research/combinations/random_evaluated.json"
+    },
+    {
+      "path": "combinations/random_to_questions.csv",
+      "size": 4835,
+      "sha256": "9cf5a25202597b6d80d6b43822e40ed7d02fcdcc705bb8138e65f210572244d8",
+      "stored_path": "research/combinations/random_to_questions.csv"
     },
     {
       "path": "datasets/DATASET_INTELLIGENCE_REPORT.md",
@@ -8003,6 +8165,24 @@
       "stored_path": "research/discussions/round_04/unexpected_connections.json"
     },
     {
+      "path": "discussions/round_04/unexpected_connections.md",
+      "size": 37835,
+      "sha256": "9cc3abcde697818174494690b86b624801bda36cd790b10d5a9c144a281e48b6",
+      "stored_path": "research/discussions/round_04/unexpected_connections.md"
+    },
+    {
+      "path": "discussions/round_05/collected.json",
+      "size": 279403,
+      "sha256": "306965f4dd680da155d0965b9904b989cd33093d851b508e018ea2f04cfbbc9d",
+      "stored_path": "research/discussions/round_05/collected.json"
+    },
+    {
+      "path": "discussions/round_05/index.md",
+      "size": 2120,
+      "sha256": "7c8a3322c2105ef931c08d2a733a1ca9c47a330d2c06232b2a12b3fbdc76708f",
+      "stored_path": "research/discussions/round_05/index.md"
+    },
+    {
       "path": "literature/COVERAGE_AND_GAPS.md",
       "size": 2327,
       "sha256": "de00a19852b074da3b243365cb5c67cfa68c8e849117617182965488f79fdd8a",
@@ -8039,6 +8219,72 @@
       "stored_path": "research/literature/merge_audit.json"
     },
     {
+      "path": "literature/novelty/README.md",
+      "size": 6247,
+      "sha256": "2f263e42646a702ea88c35681041b9dd885656d1a841c8840325e625e05f4c4c",
+      "stored_path": "research/literature/novelty/README.md"
+    },
+    {
+      "path": "literature/novelty/RQ01_github_search.html",
+      "size": 134528,
+      "sha256": "1768da4f1ce04de06bb764c6d3333e7a2019fa165dffa533b0540688f0528eee",
+      "stored_path": "research/literature/novelty/RQ01_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ02_github_search.html",
+      "size": 134587,
+      "sha256": "2d580b3fabd08b4dd0acf1206f96e897f59eb2722db96f8ee6050c67bc57b8bc",
+      "stored_path": "research/literature/novelty/RQ02_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ03_github_search.html",
+      "size": 134671,
+      "sha256": "01a8045120ec75dc60ccba5d6a7b438528a6bf525775981dbf482e29aa6aa6d0",
+      "stored_path": "research/literature/novelty/RQ03_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ04_github_search.html",
+      "size": 134489,
+      "sha256": "44b92e993c34a1e2ba5892f2a06bd897bb1bfd04981ed8018cca852116915099",
+      "stored_path": "research/literature/novelty/RQ04_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ05_github_search.html",
+      "size": 134654,
+      "sha256": "850858f2591d8992a39c0f76b9d38cd438e8f01cff04d7e814c1967787634d33",
+      "stored_path": "research/literature/novelty/RQ05_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ06_github_search.html",
+      "size": 134519,
+      "sha256": "a989f8f21c3a93f8670c5a6b3f87696b690abfd3e1efb5f51fac932dfb4e994c",
+      "stored_path": "research/literature/novelty/RQ06_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ07_github_search.html",
+      "size": 134636,
+      "sha256": "851f5cb75abb7eae54cba262cc0e33f3859066c02f86f413a5c16e1637a3f257",
+      "stored_path": "research/literature/novelty/RQ07_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ08_github_search.html",
+      "size": 134623,
+      "sha256": "be47ea86bdecd5490de5d38fc26a4c8abff268918c8f3d7a4ec51412c80221c7",
+      "stored_path": "research/literature/novelty/RQ08_github_search.html"
+    },
+    {
+      "path": "literature/novelty/RQ09_github_search.html",
+      "size": 134857,
+      "sha256": "d4aeb7114d80d75008f4b3ce6519398f53678f94f891a6f65f4cb71f51f480d1",
+      "stored_path": "research/literature/novelty/RQ09_github_search.html"
+    },
+    {
+      "path": "literature/novelty/TOP10_REVIEW.md",
+      "size": 6680,
+      "sha256": "82065b401c09af68ebb14bc2450f9d1a76b8c643c56fa627e28e896c74681164",
+      "stored_path": "research/literature/novelty/TOP10_REVIEW.md"
+    },
+    {
       "path": "literature/novelty/curl_access_check.json",
       "size": 666,
       "sha256": "b0d5888808e7dc13968819608c60b86ed1921b412bf0db210220f18d489b15c2",
@@ -8049,6 +8295,18 @@
       "size": 851,
       "sha256": "d38b7a9a6c3e8a7c1c1d4d5b6e608849bf46c4b01023703a86291597b6a08957",
       "stored_path": "research/literature/novelty/external_access_check.json"
+    },
+    {
+      "path": "literature/novelty/reverse_search_records.json",
+      "size": 68785,
+      "sha256": "dd429058c3e360df50580dc5517fcc55fa6fd5f58bd7d6de1230c4f651508c87",
+      "stored_path": "research/literature/novelty/reverse_search_records.json"
+    },
+    {
+      "path": "literature/novelty/top10_coordinator_review.json",
+      "size": 8147,
+      "sha256": "688890091e2f9e5f4a735ec6b90b0e6bb275a37c8d975e04abfdbfa72501e60d",
+      "stored_path": "research/literature/novelty/top10_coordinator_review.json"
     },
     {
       "path": "literature/nsd_bibliography_evidence.json",
@@ -8135,6 +8393,12 @@
       "stored_path": "research/pilots/RESOURCE_AND_MODEL_PLAN.md"
     },
     {
+      "path": "pilots/SELECTION.md",
+      "size": 1822,
+      "sha256": "ae9ac69f1eb06ee19700a03d9a357690dc7fe521efca8763c2fc764dce448f2a",
+      "stored_path": "research/pilots/SELECTION.md"
+    },
+    {
       "path": "pilots/environment_observation.json",
       "size": 255,
       "sha256": "dcb1556ddb22eeffdefd376b3b61ad43bebc9734f2911525e41a3a5254582dfc",
@@ -8172,15 +8436,21 @@
     },
     {
       "path": "research_questions/EVALUATION_RUBRIC.md",
-      "size": 2326,
-      "sha256": "4f0410ba7bae9d35ea1600699397a10ac37de80f5884ff88341d714901849033",
+      "size": 2690,
+      "sha256": "970a35bd0cd75c354c5c2ea8b55494b6272d1711a5ce756b5a4f160532bac8a3",
       "stored_path": "research/research_questions/EVALUATION_RUBRIC.md"
     },
     {
       "path": "research_questions/LANDSCAPE.md",
-      "size": 242185,
-      "sha256": "26d6db8e5f4f802da1f345a2ac69c0faf3b2a8580ba257ea0558330be9f67945",
+      "size": 247876,
+      "sha256": "12b2df8a78559c610a0bc02d962b602f4cc0fc38586f791218cf273ccbcae5e5",
       "stored_path": "research/research_questions/LANDSCAPE.md"
+    },
+    {
+      "path": "research_questions/RANKINGS.md",
+      "size": 7867,
+      "sha256": "b0e12147868f1103b887968d6f6780b14a8f550fd51c293fd124a839ecc17844",
+      "stored_path": "research/research_questions/RANKINGS.md"
     },
     {
       "path": "research_questions/README.md",
@@ -8193,6 +8463,12 @@
       "size": 8349,
       "sha256": "9f2b28a06f2d4d42b42ff018f4eb39025111c6a91a9ab94960359a0f196fa34c",
       "stored_path": "research/research_questions/candidate_crosswalk.csv"
+    },
+    {
+      "path": "research_questions/clusters.csv",
+      "size": 6526,
+      "sha256": "e5410b28ec714695dc4fd3d5026c2898fe22323a584941e3276ba5f8b131b4ae",
+      "stored_path": "research/research_questions/clusters.csv"
     },
     {
       "path": "research_questions/curation_plan.json",
@@ -8214,32 +8490,38 @@
     },
     {
       "path": "research_questions/landscape.csv",
-      "size": 371664,
-      "sha256": "bde98fc39fe2087490851f2dbb73ea810379f2da095edc055e8396a0cb0d44a2",
+      "size": 377024,
+      "sha256": "282646f6e6f2eb26755d34481889c132f8d38506018cef11f1f73963d1795fdf",
       "stored_path": "research/research_questions/landscape.csv"
     },
     {
       "path": "research_questions/landscape.json",
-      "size": 439332,
-      "sha256": "7db3d106adb9b520306352065a8f02e281fed587841f6feb73c91d2763010c1a",
+      "size": 445552,
+      "sha256": "e6825b186b576e54c1a5593944cb566f9442514f2394eb6f24eef828104fd5fc",
       "stored_path": "research/research_questions/landscape.json"
     },
     {
       "path": "research_questions/rankings.csv",
-      "size": 26424,
-      "sha256": "da0ec73e728dc8cf6a6e0d6825d32b5c7868d4ce3f45b7e082aebdde088246b3",
+      "size": 26550,
+      "sha256": "75995c07d1ca784bb16978cb7c38509aa3f98652db568ea4d1013642a9aa0166",
       "stored_path": "research/research_questions/rankings.csv"
     },
     {
+      "path": "research_questions/round05_amendments.json",
+      "size": 6153,
+      "sha256": "79a763cdab7440b9cfd5312a4b27991f959fab689120e2b4e9ead13c2a8ff346",
+      "stored_path": "research/research_questions/round05_amendments.json"
+    },
+    {
       "path": "research_questions/shortlist.csv",
-      "size": 2312,
-      "sha256": "ee3e7321d757c87c24562f08509176568307a24e5d80fec391669458f91c3dad",
+      "size": 2438,
+      "sha256": "0cd6d43724bc943ae7f1bde65ce71edfd04367fca04b5aa852881a33afd17095",
       "stored_path": "research/research_questions/shortlist.csv"
     },
     {
       "path": "research_questions/shortlist.json",
-      "size": 143152,
-      "sha256": "b830ebad858b51119c71171ed074eebcf04f9f5953a63cf4b986f7367d469a75",
+      "size": 149496,
+      "sha256": "6fc26bce69b2219badb1566dc4041011b6e0519671603accc62688cba68d333e",
       "stored_path": "research/research_questions/shortlist.json"
     },
     {
@@ -8255,6 +8537,12 @@
       "stored_path": "research/scripts/build_axis_registry.py"
     },
     {
+      "path": "scripts/build_debate_synthesis.py",
+      "size": 8155,
+      "sha256": "9443a82c5fcf9872811c8466277219f2887dc4aceed6f51e6c3872dcd0008cf9",
+      "stored_path": "research/scripts/build_debate_synthesis.py"
+    },
+    {
       "path": "scripts/build_opportunity_map.py",
       "size": 6489,
       "sha256": "6d1c4fb7d365417bd35e1d55fc93024cc33f5e385b2aa61c0aa5cdee5fbc7622",
@@ -8262,8 +8550,8 @@
     },
     {
       "path": "scripts/build_research_landscape.py",
-      "size": 12683,
-      "sha256": "5df4824252235e10dfe2e262267a3169359969272dcfa0d7e32e78b935e8fbbf",
+      "size": 13620,
+      "sha256": "4237f96eaf66c6938cbc1040fb44684401ac10676ea28d0323a565789533e465",
       "stored_path": "research/scripts/build_research_landscape.py"
     },
     {
@@ -8319,6 +8607,18 @@
       "size": 4178,
       "sha256": "7b3fbde264ae11a0aeb607beea33eb336600409d8a7cfa9cb546a00cd4eb96ee",
       "stored_path": "research/scripts/restore_backup.py"
+    },
+    {
+      "path": "scripts/validate_final_deliverables.py",
+      "size": 6422,
+      "sha256": "5730d4737e645656ec13823bf671c4a6d64bf7600732533be8e26a14d90663d8",
+      "stored_path": "research/scripts/validate_final_deliverables.py"
+    },
+    {
+      "path": "synthesis/DIVERSITY_AUDIT.md",
+      "size": 2894,
+      "sha256": "f6631cbd0935547cf5b217434ac1a4f19049902ad6d3ed95b1ebc1539de3ac0d",
+      "stored_path": "research/synthesis/DIVERSITY_AUDIT.md"
     },
     {
       "path": "synthesis/OPPORTUNITY_MAP.md",

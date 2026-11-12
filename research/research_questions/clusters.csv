@@ -1,0 +1,33 @@
+rq_id,primary_cluster,title,track
+RQ02,측정·기하·사람 및 자료 간 대응,평균을 넘는 외부 평정분포는 독립 신경 대비와 연관되는가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ03,측정·기하·사람 및 자료 간 대응,비정서 anchor 선택으로 정서 의미 대응을 결정할 수 있는가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ04,측정·기하·사람 및 자료 간 대응,개인별 정서 관련 tuning은 공통정보의 가역 좌표 차이로 충분한가?,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ05,측정·기하·사람 및 자료 간 대응,내용 거리와 주석 불확실성을 맞춘 정서 경계의 초과 신경 거리,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ06,측정·기하·사람 및 자료 간 대응,새 정서 대비와 환경에 재사용되는 공동 압축공간의 충분성,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ23,측정·기하·사람 및 자료 간 대응,훈련에서 식별한 공유 관계 연산은 보지 않은 내용–정서 조합으로 전이되는가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ01,시간적 상태·관측 필터·사건 구조,미래 종료를 모르는 사건 진행 상태는 고정 시간창을 넘는가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ07,시간적 상태·관측 필터·사건 구조,현재가 같고 이력이 다른 신경 대비에서 전이상태와 HRF 잔류를 구별할 수 있는가?,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ15,시간적 상태·관측 필터·사건 구조,관측격자를 넘어 필요한 이력 함수는 비선형 관측인가 선택적 상태 전이인가?,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ17,시간적 상태·관측 필터·사건 구조,인코더와 관측 필터를 구분한 모달리티별 유효 예측창,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ18,시간적 상태·관측 필터·사건 구조,경계 단서와 과거 소거를 분리한 상태 갱신의 필요성,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ20,시간적 상태·관측 필터·사건 구조,과거 제한 상태의 신경 충분성과 미래 지향 학습목표의 추가 역할,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ24,시간적 상태·관측 필터·사건 구조,HRF 가정하 정서 문맥 대비의 피질 분포와 시간모형의 식별 경계,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ26,시간적 상태·관측 필터·사건 구조,정서 예측에 필요한 평균·분산·상관·시간전이의 최소 관측모형,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ29,시간적 상태·관측 필터·사건 구조,최근성 가산 설명을 넘어선 사건 순서 관련 신경 예측,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ08,판독·입력·표상 병목의 정보 접근성,내용조건부 정서 판독 이득은 실제 뇌 패턴을 필요로 하는가?,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ09,판독·입력·표상 병목의 정보 접근성,시각 정렬 목표가 정서 대비의 판독 접근성을 바꾸는 조건,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ11,판독·입력·표상 병목의 정보 접근성,고정 ROI 분할에서 정서 대비의 비가산 판독이 필요한가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ13,판독·입력·표상 병목의 정보 접근성,독립 반복의 신경 문맥이 자극모형 밖 정서 대비 예측을 회수하는가?,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ14,판독·입력·표상 병목의 정보 접근성,parcel 평균이 지운 내부 공간 대비는 정서 관련 예측에 필요한가?,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ21,판독·입력·표상 병목의 정보 접근성,촬영·사건 metadata 억제에 따른 정서 대비의 선택적 손실 곡선,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ28,판독·입력·표상 병목의 정보 접근성,언어 병목에서 정서 신경 대비의 예측 접근성이 선택적으로 낮아지는가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ12,모달리티·관계 의미의 통합,관계 의미의 설명력과 비가산 신경 예측의 중복을 고정 타깃에서 구별,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ16,모달리티·관계 의미의 통합,공유 병목의 용량을 넘어 남는 모달리티 정보의 예측 충분성,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ19,모달리티·관계 의미의 통합,감각 불일치 조건의 비가산성: 공통 단위 paired risk 검정,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ10,생성 역문제·편집의 관측 검증,독립 관측이 배제하는 정서 상반 witness 쌍,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ27,생성 역문제·편집의 관측 검증,사전 허용집합 안에서 검증하는 정서 관련 편집 신경 대비,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ22,모델 계산·좌표·학습 제약,기저 불변 신경 대응과 모델 계산 사용을 구별하는 개념 분해,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ25,모델 계산·좌표·학습 제약,완전한 내용 입력에서 gate 좌표의 효율과 재매개화 안정성,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ30,모델 계산·좌표·학습 제약,동일 입력정보에서 오차 좌표는 정서 신경 대비의 제한된 읽기 효율을 높이는가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ31,모델 계산·좌표·학습 제약,유한 함수 동등성을 인정한 공유제약의 정서 대비 일반화 효율,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ
+RQ32,모델 계산·좌표·학습 제약,실제 신경 guide는 의미로 예측한 신경 guide를 넘는 모델 제약인가,Discovery + 조건부 Feasibility; 상세 착수조건은 개별 RQ

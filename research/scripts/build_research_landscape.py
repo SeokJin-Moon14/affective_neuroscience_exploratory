@@ -70,6 +70,15 @@ for group in plan:
                       'decision_reason':excluded.get(did,group['merge_reason'])})
 assert len(directions)==40 and len(landscape)>=30 and len(trace)==60
 assert len({t['candidate_id'] for t in trace})==60
+amendment_path=out/'round05_amendments.json'
+if amendment_path.exists():
+    amendments=json.loads(amendment_path.read_text())
+    for q in landscape:
+        if q['rq_id'] not in amendments:continue
+        a=amendments[q['rq_id']]
+        q['round05_condition']=a['condition'];q['round05_rejected_claim']=a['rejected_claim']
+        q['round4_original_fields']={key:q[key] for key in a['field_overrides']}
+        q.update(a['field_overrides'])
 (out/'landscape.json').write_text(json.dumps(landscape,ensure_ascii=False,indent=2)+'\n')
 write_csv(out/'landscape.csv',landscape);write_csv(out/'directions.csv',directions);write_csv(out/'candidate_crosswalk.csv',trace)
 (out/'direction_aliases.json').write_text(json.dumps(merges,ensure_ascii=False,indent=2)+'\n')
@@ -98,10 +107,12 @@ for q in landscape:
         e=q['evaluation'][key]
         lines.append(f"| {key} | {e['score']} | {txt(e['reason']).replace('|','/')} | {txt(e['uncertainty']).replace('|','/')} |")
     lines += ['', '여덟 탐색 질문의 개별 답과 비판 수용/미해결 이력은 위 구조화 원본에 보존했다.']
+    if q.get('round05_condition'):
+        lines += ['', '**실제 Round5 반영 조건:** '+q['round05_condition'], '', '**철회한 강한 해석:** '+q['round05_rejected_claim'], '', '평가 점수는 Round4의 역할 판단이다. Round5 조건으로 실제 착수 가능성이 좁아진 경우 현재 점수 자체를 실현성 증명으로 읽지 않는다.']
 (out/'LANDSCAPE.md').write_text('\n'.join(lines)+'\n')
 short_dirs=['D11','D15','D22','D20','D17','D06','D12','D18','D04','D36']
 reasons=[
- 'Horikawa 우선으로 정렬 후 접근가능성과 비가역 손실을 구별하며 생성기 학습 없이 첫 대비를 구성할 수 있음.',
+ 'Horikawa 우선으로 같은 입력·시각표적에서 정렬 전후 정서 대비의 판독 접근성을 검정한다. 유한 probe로 비가역 정보 소실을 입증하지 않으며, 작은 학습목표 비교와 cache 기준부터 조건부 착수할 수 있음.',
  '관계 의미 누락과 비가산 신경 예측 이득을 고정 타깃에서 구별하고 Mind Captioning을 조건부로 연결함.',
  '현재 자극·연속 상태·사건경계 reset의 충돌하는 예측을 시간자료에서 검정함.',
  '모달리티 공유 통로의 충분성과 고유 경로 필요성을 강한 가산 기준으로 구별함.',

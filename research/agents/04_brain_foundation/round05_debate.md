@@ -1,0 +1,191 @@
+# Agent04 Round5 실제 입장
+
+2026-11-12. RP05/RP08 제안자와 RP04 데이터통계검토자 입장. 현재 신경분석 결과가 아니라 판별 설계이며, 타 역할의 Round5 입장을 받은 뒤의 반박문은 별도 작성한다.
+
+## RP05 / RQ13 — 제안자
+
+**판정:** 조건부. 근거: P026, P027, P029, P053, P080, P083, P100.
+
+**주장:** 지정한 자극모형 S의 밖에서 신경 문맥 N이 회수하는 독립 정서 대비를, 같은 반복의 공통 잡음과 다른 반복에 전달되는 재현 성분으로 구별하는 질문을 조건부로 추진한다. 이는 뇌에 자극과 독립인 정서 실체가 있다는 주장이 아니라 현재 자극표현의 관측 예측 충분성에 관한 질문이다.
+
+**새 신경과학 질문인 이유:** 기존 자극 encoding과 masked brain prediction은 각각 좋은 예측을 목표로 한다. 이 제안은 입력원의 승패보다 같은 자극을 반복한 독립 측정에서 A 관련 신경 대비가 전달되는지, 의미 보강과 mask 확장에 따라 어디서 소실되는지를 판별한다. 양성 결과도 지정 모형군의 충분성을 제한하는 수준이다. 기존 잔차분해와 가까우므로 최초성은 확정하지 않는다.
+
+**가장 약한 가정:** 같은 참가자의 같은 자극을 독립 측정한 반복 a/b와 신뢰 가능한 A 대비가 실제로 존재하고, 전처리가 target 신호를 N에 섞지 않았다는 가정이다. 현재 Horikawa 공식 이벤트 감사는 각 참가자의 2,196개 ID/name이 모두 다르다고 확인했으므로 이 조건의 충족을 증명하지 않는다.
+
+**가장 강한 대안:** N이 회수하는 것은 미측정 사건 의미·감각 이력 또는 run/global·평활화 잡음일 수 있다. 독립 반복에 전달되어도 안정적인 자극 유발 반응과 내재 상태의 기원을 구별하지 못하며, 이를 내부 정서 계산으로 명명해서는 안 된다.
+
+**판별 예측:** 고정 S와 target 공간에서 S+동일 반복 N, S+동일 자극 독립 반복 N, S+같은 run의 다른 자극 N을 비교한다. A 가중 신경 대비의 예측 이득이 독립 반복에 전달되고 다른 자극 N을 넘으며 의미 보강/전처리 이전 buffer mask에서도 남으면 특정 S에 대한 재현 추가 예측을 지지한다. 동일 반복만 양성이면 공통 측정변동, 의미 보강 뒤 소실이면 누락 자극 표현을 지지한다.
+
+**미해결 이견:** 반복을 확보하고 효과가 남아도 미모형화 자극과 상태의 기원 분리는 해결되지 않는다. 제안자는 이 제한을 수용한다. Top10에 포함된 과학적 다양성과 즉시 실행 우선순위는 다르며, RP05를 현재 보유본에서 곧바로 실행 가능한 후보라고 부르는 데에는 동의하지 않는다.
+
+**양성 결과:** 독립 반복 N이 같은 표적의 A 대비 예측손실을 줄이면 반복되는 신경 정보가 지정 자극표현보다 예측에 유용함을 지지한다. 정서 고유 정보·인과 신경 전달·개인별 정서 상태의 증거로 확장하지 않는다.
+
+**음성 결과:** 독립 반복 이득의 CI가 사전 최소효과 아래로 충분히 좁으면 해당 입력·표적·readout 범위의 추가 신경문맥 필요성을 낮춘다. 동일 반복만 이득이면 공유 잡음/국소 완성 설명이 유력하다. 반복 신뢰도가 낮거나 CI가 넓으면 정보 부재가 아니라 미결정이다.
+
+**필수 변경**
+
+- Horikawa 우선은 자료 탐색 순서다. dupidx나 비슷한 영상 내용을 같은 참가자 동일 자극의 독립 반복으로 대체하지 않는다. 참가자·stimulus hash/ID·run/session·repeat index의 실제 대응표가 필요하다.
+- 반복이 확인되지 않으면 RP05-A의 신경 가설 검증을 수행했다고 하지 않는다. 누출을 통제한 합성 회복과 자극모형/신경문맥의 방법 대조까지만 진행하고, 독립 반복 확보 또는 추가 측정을 실행 조건으로 남긴다.
+- C07-05 병합은 상위 연구질문 단위로 유지하되 RP05-A 동시 공간완성과 RP05-B 과거→미래 예측을 별도 가지로 표시한다. B의 own/other 과거 비교를 A의 독립 반복 대조로 대체하지 않는다.
+- A 대비·target mask·noise precision·의미 강화 단계·mask 폭·최소 효과를 개발 자료에서 고정한다. 평가 결과가 좋은 조건만 보고하지 않는다.
+- 이미 smoothing·전체 신호 normalization된 자료에서는 target를 feature extraction 때 지우기만 해도 누출이 제거되지 않는다. 원 전처리를 재구성할 수 있는지 확인하고 불가능하면 strict masking 결론을 낮춘다.
+
+**판단을 바꿀 증거**
+
+- upgrade: 동일 참가자·동일 자극의 독립 반복 mapping, target/r의 신뢰도, 충분한 새 자극 수, 전처리 이전 누출 통제가 확인되고 simulated shared-noise null에서 거짓 양성이 억제되면 신경 파일럿 추진으로 올린다.
+- downgrade: 반복을 찾지 못하거나 proxy 반복이 내용 중복뿐이면 주검정은 보류한다. 강화된 의미 baseline으로 이득이 모두 설명되면 model insufficiency 감사로 축소한다.
+- change_scientific_claim: 새 자극/상태를 독립 조작하고 실제 신경 관측을 수집하지 않는 한 내부 상태 또는 자극 독립 인과 주장으로 강화하지 않는다.
+
+**관측·통계**
+
+- unit: RP05-A는 참가자×동일 자극×독립 반복×target 공간블록이다. 참가자/자극이 추론 단위이며 voxel이나 반복 a→b/b→a 두 방향을 독립 표본으로 세지 않는다.
+- contrast: 독립 주석의 사전 고정 차원으로 w를 만들고 sum(w)=0, sum(w²)=1로 정규화한다. c_A(Y)=Σ_i w_iY_i, L_A=||c_A(Y)-c_A(Yhat)||²_Q, Δ_A=L_A(S)-L_A(S+N). Q는 training-only shrinkage noise precision이며 작은 표본이면 diagonal/identity 대조를 쓴다. 총 Y 손실과 matched 비정서 대비는 별도 결과다.
+- split: 자극 내용 family를 outer fold에 묶고 같은 자극의 모든 반복은 모델 적합의 train/test 경계를 함께 지킨다. test 반복 a의 N을 b 예측에 쓰는 것은 명시된 관측 입력이며 training label이나 test target는 아니다. 의미/feature/ROI/head 선택과 normalization은 train 안에서만 한다.
+- null: shared stimulus만 있는 합성 null, shared-run noise null, 내용군을 존중한 동일 run 다른 자극 N 대조로 측정 혼동을 검사한다. 무작위 TR shuffle이나 고차원 conditional permutation의 교환가능성을 가정하지 않는다.
+- reliability_power: 개발 자료의 반복·주석 신뢰도와 cluster 수로 모형 회복/최소효과 검정력을 산정한다. 참가자 5명 Horikawa는 개인별 효과와 자극 조건부 추론을 우선하며 집단 일반화의 CI가 넓을 수 있음을 밝힌다. 실제 효과크기·검정력은 아직 미측정이다.
+
+**모델의 실제 입출력 조건**
+
+- S baseline: 실제 자극의 cached low-level/검수 사건/시각 특징→같은 target Y 또는 c_A. image-only CLIP ViT-B/32는 시각 특징 기준이며 시청각 또는 시간 상태 전체를 제공하지 않는다.
+- TRIBE v2는 video/audio/text→평균 참가자 fsaverage5 피질 예측이다. 공개 output을 개인 target voxel이나 subcortex likelihood로 간주하지 않는다. 공통 cortical mapping·개인 보정·checkpoint config의 TR 및 5초 offset 확인이 필요하다.
+- CortexMAE는 fMRI→latent/복원, Brain-JEPA는 ROI 시계열→latent prediction이다. N→보류 Y readout과 target masking은 추가 구현이며 공개 weight가 beta 시행순서를 연속 신호로 처리할 수 있다고 가정하지 않는다.
+- 실행 전 load·입력 shape·mask 전파·반환 shape를 작은 batch에서 확인한다. 미지원이면 target 밖 raw-context ridge를 같은 공간에서 사용한다.
+
+**자원·착수 조건**
+
+- environment: 공통 자원 보고서 기준 CPU quota 4, memory.max 32GiB, nvidia-smi 없음. GPU 실행은 미실행이며 다른 사용자 장비의 부재를 뜻하지 않는다.
+- first_step: 기존 feature cache+작은 target parcel 블록의 S/S+N ridge로 시작한다. 반복 mapping이 없으면 모델을 확장하지 않는다. 가중치 다운로드를 사용자 로컬로 요구하지 않는다.
+- scaling: float32 특징행렬은 4NK bytes이며 target 신호·복제본·fold workspace는 별도다. V×V covariance를 피하고 training shrinkage/diagonal Q, 블록별 Y 처리를 사용한다.
+- extension: TRIBE upstream feature 추출과 CortexMAE inference는 별도 고비용 단계다. checkpoint availability·권한·peak memory·처리시간을 계측한 뒤 확장하며 현재 숫자 VRAM 요구량을 확정하지 않는다.
+- go_no_go: 자료 반복·A 신뢰도·누출 게이트가 충족되지 않으면 scientific pilot는 조건부 상태를 유지한다.
+
+**병합한 가지의 경계**
+
+- RP05-A: 동시 다른 공간 N→target Y의 독립 반복 전달. 연속 BOLD가 없더라도 실제 독립 시행 beta 반복이 있으면 정적 분석 가능.
+- RP05-B: 본인 과거/타인 같은 영화 과거/자극 과거→미래 Y. Emo-FilM scanner-time/film-time 정렬·HRF·과거 전용 전처리·외부 consensus의 단위가 필요. 독립 반복 검정과 다른 추정량이며 독립 RQ 수를 늘리지 않는다.
+
+## RP08 / RQ14 — 제안자
+
+**판정:** 추진. 근거: P026, P051, P060, P076, P100.
+
+**주장:** 지역 평균에서 정확히 소거되는 피질 내부 대비를 재추가했을 때 독립 A 예측이 회수되는지 직접 검정하는 작은 파일럿을 추진한다. 일반 평균 상쇄, 특정 atlas 경계 효과, 정서 대비 선택성을 서로 다른 가설로 둔다.
+
+**새 신경과학 질문인 이유:** multivoxel 패턴이 ROI 평균보다 좋다는 일반 결과를 반복하는 것이 아니라, 같은 관측에 알려진 평균 연산을 적용해 무엇이 제거되었는지 정확히 정의하고 그 잔차의 독립 반복 신뢰도와 A 대비 재사용을 검정한다. 이는 관측된 지역 평균의 충분성을 시험하며, 뇌가 실제로 평균 연산을 한다는 기전 주장은 아니다. 선행의 엄격한 재검증일 가능성과 낮은 대형 AI 필요성을 인정한다.
+
+**가장 약한 가정:** parcel 내부 잔차에 미측정 등록/혈관/공간 주파수 차이와 구별되는 재현 신호가 있으며, A 관련 이득이 일반적으로 분산된 자극 내용 정보만의 이득보다 구별된다는 가정이다.
+
+**가장 강한 대안:** 평균이 고주파 패턴을 지우고 더 많은 차원을 추가하면 성능이 오르는 것은 일반적인 선형대수·용량 효과다. 잔차가 안정적이어도 감각·의미 패턴 또는 해부학/혈관 혼합만으로 설명될 수 있다. 이 대안이 충분하면 독립 정서 계산 RQ보다 공간 측정 감사로 낮춰야 한다.
+
+**판별 예측:** H1: 같은 y에서 평균 m에 train-only k차원 잔차 r_k를 추가하면 A 예측손실이 matched noise·용량 대조를 넘어 감소하고 독립 반복에 재현된다. H2: 같은 공간 대역·rank 기준에서 실제 atlas와 random contiguous atlas의 H1 크기가 다르다. H3: 사전 고정한 비정서 대비와 비교해 A 관련 손실 회수의 조건부 차이가 남는다. H1 양성만으로 H2/H3를 주장하지 않는다.
+
+**미해결 이견:** 측정 수준의 충분성 질문을 독립 신경과학 RQ로 유지할지 다른 제안의 방법 검증 모듈로 둘지가 핵심 논점이다. 제안자는 A 조건부 대비의 재현성과 비정서 대조를 통과하면 과학후보로 유지하되, 일반 공간 주파수 손실만 확인되면 방법후보로 낮추는 판정을 수용한다.
+
+**양성 결과:** H1만 양성이면 지역 평균에 남지 않는 관측 공간패턴이 A 예측에 유용하다. H2까지 있으면 지정 atlas 경계 선택의 영향을 지지한다. H3까지 검정되면 검토한 대비군에서 A 관련 선택성을 제한적으로 말할 수 있다. neural circuitry나 하위피질 결과로 확대하지 않는다.
+
+**음성 결과:** 충분한 신뢰도와 정밀도에서 잔차 이득이 동등성 범위 안이면 지정 해상도/입력/읽기 모형에서 평균의 충분성을 지지한다. H1이 있으나 H2가 없으면 일반 평균 상쇄다. matched 비정서 대비와 같으면 정서 특수성은 약화된다. 데이터 신뢰도가 낮으면 미결정이다.
+
+**필수 변경**
+
+- 주분석은 겹치지 않는 cortical parcel로 한정한다. cortex+ROI 겹침 집합을 그대로 G로 사용하지 않으며 native/surface 좌표와 atlas 적용 provenance를 확인한다.
+- 실제 feature 입력은 평균 좌표 Gy와 잔차 좌표 U_kᵀr의 결합이다. 큰 dense P 행렬을 만들지 말고 parcel label별 평균을 원 좌표에 되돌려 r=y-Py를 계산한다.
+- 주효과는 정보량 자체가 아니라 지정 readout에서의 A 예측 접근성이다. raw/latent decoding 실패를 정보 부재로 읽지 않는다.
+- 가설 H1/H2/H3의 반증과 다중비교 family를 미리 나눈다. random atlas에서도 H1이면 atlas 특이성만 부정되며 평균 상쇄 자체는 남는다.
+- 독립 반복이 없으면 H1의 외부 자극 접근성 분석은 가능하지만 반복 재현/신호 대 잡음 주장은 보류한다. 다른 자료 NSD의 신뢰도를 Horikawa 잔차에 이식하지 않는다.
+
+**판단을 바꿀 증거**
+
+- upgrade: 다른 반복/새 자극에서 H1이 재현되고 가역 좌표·noise·공간대역·readout 용량 대조를 통과하며 H3가 충분한 precision으로 남으면 과학적 우선순위를 높인다.
+- downgrade: 공간 주파수 null 또는 raw feature 용량 증가가 A와 비정서 대비 모두를 설명하면 측정 감사 모듈로 낮춘다. 잔차의 반복 재현성이나 대조 표적 신뢰도가 확보되지 않으면 강한 선택성 주장을 보류한다.
+- reject_scope: parcel 전처리 이후 자료만 있어 dense 잔차를 복구할 수 없으면 그 보유본에서 이 조작은 수행할 수 없다. 존재하지 않는 dense y를 모델로 합성해 실측 잔차로 취급하지 않는다.
+
+**관측·통계**
+
+- unit: 참가자×원 자극/내용군×실제 반복. parcel/voxel/k개 잔차 성분을 표본수로 세지 않는다. Horikawa 5명에 대한 자극 일반화와 사람 모집단 일반화를 분리한다.
+- decomposition: 비중첩 G에서 P=Gᵀ(GGᵀ)⁻¹G, m=Py, r=(I-P)y, Gr=0. 이것은 선택한 무가중 평균의 항등식이다. surface area 가중 평균을 쓰면 그 metric/projection 정의를 별도로 적고 무가중 식을 자동 재사용하지 않는다.
+- contrast: 같은 held-out 표본에서 d_i=loss(A_i,pred_mean_i)-loss(A_i,pred_mean_plus_residual_i)를 구한다. A의 척도·다차원 결합/가중은 개발 자료에서 고정한다. V,S를 포함/미포함한 총·조건부 두 estimand를 별도 보고한다. neural pattern 자체를 표적으로 바꾸는 분석은 보조로 구분한다.
+- split: 원 자극 내용 family와 중복을 outer split에 묶는다. PCA U_k·whitening·A 차원 선택·정규화·ridge alpha·k·noise matching은 train-only/nested CV다. 같은 자극의 반복은 학습/평가에서 누출되지 않도록 함께 배치한다.
+- null: mean+noise, mean+동일 k의 통계 일치 비정서 신호, spatial spectrum와 parcel 크기를 명시해 맞춘 random contiguous atlas, 알려진 null-space 신호 주입 회복을 함께 사용한다. spatial autocorrelation을 파괴한 voxel 독립 shuffle 하나로 검증하지 않는다.
+- reliability_power: 반복 자료가 있는 경우 residual-A 관계를 독립 반복에서 확인하고, 개발 noise/cluster 크기로 H1-H3 효과 회복과 동등성 문턱 검정력을 시뮬레이션한다. 효과 크기를 현재 관측한 것처럼 쓰지 않는다. 주 신경 영역·A 대비 수를 적게 고정하고 다중비교를 통제한다.
+
+**모델의 실제 입출력 조건**
+
+- 첫 모델 입력: 실제 dense cortical y와 parcel index, training A/비정서/V,S 특징. 출력: held-out A 예측 및 paired loss. 연속 시계열이 없어도 실제 자극 단위 dense beta가 있으면 가능하다.
+- CortexMAE-P/F/V는 후속 표현 단계 비교 도구다. P=parcel, F=flatmap, V=cortex-only 배열이며 checkpoint·공간 reader가 자동으로 모든 native voxel/하위피질 입력을 지원하지 않는다.
+- CortexMAE의 기본 16 frame 및 1초 보간은 원자료의 시간해상도를 높이지 않는다. 이 파일럿에는 temporal foundation encoder가 필요하지 않으며 beta 순서를 연속 BOLD로 만들지 않는다.
+- CLIP ViT-B/32 같은 시각 특징은 V,S 기준의 일부로만 사용한다. 독립 A 주석을 AI 점수로 교체하지 않는다.
+
+**자원·착수 조건**
+
+- environment: CPU quota 4·32GiB 환경에서 작은 dense 영역과 캐시 feature의 선형 집계/저rank ridge는 설계 가능한 첫 경로다. 실제 shape·시간은 아직 계측하지 않았다.
+- first_step: 하나의 명시된 비중첩 cortical atlas와 소수 ROI/vertex 블록에서 평균·잔차를 생성하고 train-only 소수 k의 ridge를 비교한다. 대형 가중치가 첫 게이트가 아니다.
+- memory: dense NxV 신호는 4NV bytes이고 전체 V×V P 또는 covariance를 만들지 않는다. parcel group reduction·block/memmap·thin/randomized SVD를 사용하되 PCA는 train-only로 적합한다. 32GiB 안에 전체 자료가 맞는다고 미리 보장하지 않는다.
+- extension: H1이 검출·재현될 때만 다른 atlas/전뇌/CortexMAE 비교를 확장한다. null로 충분하거나 residual 신뢰도가 낮으면 모델 확장을 중단한다.
+- readiness: 계획 추진이며 실제 자료 분석 완료 또는 가중치 실행 성공을 뜻하지 않는다.
+
+## RP04 / RQ16 — 데이터통계검토자
+
+**판정:** 조건부. 근거: P001, P002, P035, P037, P051, P053, P083, P100.
+
+**주장:** 공유 병목×정보원 접근의 paired-risk 설계는 검정 가능하지만, 실제 제시 오디오·독립 A neural contrast·내용군 분할·동일 readout 비용을 확인한 뒤에만 신경 비교에 착수해야 한다. 현재 자료 보유만으로 멀티모달 입력과 충분한 반복이 확보됐다고 할 수 없다.
+
+**가장 약한 가정:** 비교하는 shared/residual이 같은 실제 시청각 입력에서 나온 것이고, z_A=u_AᵀY가 외부 평가에서 정서 관련 신뢰가능 표적으로 작동한다는 가정이다. z_A를 고르는 감독과 residual feature를 학습하는 감독이 test 정보를 포함하면 이 설계는 무너진다.
+
+**가장 강한 대안:** shared-only는 좁은 병목·낮은 nonlinear readout 용량 때문에 손해를 보고, residual은 추가 파라미터/미측정 사건 의미/음향 품질을 회수할 뿐이다. 큰 k에서 residual이 남아도 검토한 shared 함수족의 한계이지 별도 생물학적 경로의 증거는 아니다.
+
+**판별 예측:** 같은 V,A와 held-out 표본에서 D_k=mean(loss(z_A,pred_Sk)-loss(z_A,pred_Sk+Rk))를 추정한다. 병목 k 확대·shared nonlinear readout 강화·full V,A matched readout·정규화/유효자유도 대조 후에도 D_k가 여러 분해와 외부 내용군에서 남아야 제한된 공유표현 불충분성을 지지한다. k 증가로 소실되면 압축손실 회수가 충분한 설명이다.
+
+**미해결 이견:** 병목을 충분히 크게 했다는 유한 실험의 기준은 절대적인 정보 충분성을 증명하지 못한다. shared 함수족·probe family·k 범위를 명시한 예측 충분성 결론에만 동의한다. 초기 원안의 고유 신경 통로 필요성으로 되돌아가는 것은 허용하기 어렵다.
+
+**양성 결과:** 같은 target scale과 held-out cluster에서 안정된 D_k가 남으면 시험한 shared representation/readout 범위가 모달리티 전체 정보를 충분히 회수하지 못한다고 말할 수 있다. 정확 PID, 비언어 정서 실체, 신경경로의 필요성은 입증하지 않는다.
+
+**음성 결과:** shared k/비선형성 확대 후 D_k의 상한이 최소효과 아래면 이 범위에서 residual을 유지할 실용적 필요가 낮다. full V,A도 z_A를 못 예측하면 공유 충분성의 증명이 아니라 target 또는 감각 특징의 검정력 부족일 수 있다.
+
+**필수 변경**
+
+- Horikawa 영상에 오디오 파일이 있다는 사실과 참가자에게 그 오디오가 실제 제시됐다는 사실을 따로 확인한다. 청각 제시가 미확인/없으면 그 자료에서 시청각 신경 통합 해석을 하지 않는다. Emo-FilM 실제 동시 재생·scanner 정렬을 확인한 경로를 조건부 대안으로 둔다.
+- u_A의 학습/선택과 readout 학습 및 평가를 nested split으로 분리한다. u_A와 공통 target 표준화는 train에서 고정하고 test A/BOLD를 보고 대비를 다시 선택하지 않는다. u_A로 얻은 z_A가 외부 A와 재현 관계를 갖는지도 별도로 검증한다.
+- private를 operational residual로 표시하고 FactorCL의 target 감독·정확 output·checkpoint를 확인한다. A나 Y 감독이 쓰이면 분해 학습 전 과정을 outer train 안으로 넣는다.
+- shared-only 용량을 늘리는 효과와 정보원 추가의 효과를 구별한다. 총 파라미터 수뿐 아니라 effective df/정규화/학습곡선 및 full V,A nonlinear readout을 함께 보고한다.
+- gate는 고정하고 일차 k/ROI/A 대비 family를 작게 사전 지정한다. test에서 가장 좋은 k·seed·분해만 고르거나 각 조건에 다른 z_A 척도를 쓰지 않는다.
+
+**판단을 바꿀 증거**
+
+- upgrade: 실제 동시 제시 AV·독립 A 단위·u_A 외부 신뢰도·내용군과 중복 mapping·FactorCL 감독 경로·미래 접근 범위가 확인되고 shared-only 합성 null에서 D_k의 calibration이 맞으면 추진으로 올린다.
+- downgrade: 오디오가 미제시 자극의 부가물로만 존재하거나 A/Y 기반 target를 test에서 재선택했으면 현재 결과의 시청각/정서 주장은 기각하고 재설계한다. 분해 seed에 따라 결론이 뒤집히면 shared/private 해석을 보류한다.
+- precision: 표본수와 noise ceiling이 최소효과에 대한 동등성 검정력을 제공하지 못하면 무차이를 충분성 증거로 인정하지 않는다.
+
+**관측·통계**
+
+- unit: Horikawa는 참가자×자극/내용군의 시행 단위다. 2,196 이벤트 수와 내용 고유 수를 구별하며 2,185/2,181 불일치 및 dupidx를 실제 mapping 전 임의 정정하지 않는다. Emo-FilM은 참가자×영화×의존성 있는 시간블록이고 1Hz annotation 행을 독립 표본수로 세지 않는다.
+- labels: Horikawa의 코드상 category34/dimension14는 정확 label·척도·신뢰도 확인을 대신하지 않는다. Emo-FilM 외부 consensus는 개별 fMRI 참가자의 연속 정답이 아니다. Spacetop clip 평정을 프레임으로 복제하지 않고 NSD는 독립 정서 주석 확인 전 시각 기준만 사용한다.
+- split: Horikawa actual stim_index/stimulus_name와 별도 생성 content_group을 연결하여 모든 내용 중복을 fold에 묶는다. 원 Python 기본 CV의 누락된 nested selection을 보완한다. Emo-FilM은 전체 영화 외부 보류와 필요 시 최대 encoder창+HRF buffer를 두고 u_A/lag/feature 학습을 train으로 제한한다.
+- null: 같은 정보의 orthogonal 좌표 변화 후 readout 재적합은 좌표 접근성 대조다. known shared-only 및 known residual 신호를 합성 주입해 D_k의 거짓양성/검출력을 확인한다. residual 독립 shuffle은 V,A와의 조건부 의존을 파괴하므로 그것만으로 유일한 조건부 null을 구성하지 않는다.
+- inference: 동일 test sample의 paired loss를 원 단위로 유지하고 내용군/영화 및 참가자의 의존성을 반영한다. 사람 5명만 사용한 양측 exact subject sign-flip은 전부 2^5 배열일 때 최소 p=2/32=0.0625이므로 단순 p<0.05 기준을 약속하지 않는다. 개인별 효과와 자극 모집단 조건부 추론을 병기하고 cluster/subject 일반화 범위를 한정한다.
+- power_reliability: 정서 주석·z_A·전체 Y의 신뢰도를 별도로 추정한다. 개발 cluster 수·분산·유효자유도로 최소 관심 D_k 및 k interaction의 power/equivalence 시뮬레이션을 계획하고, ROI/k/A family 다중비교를 사전 고정한다. 다수 TR/voxel로 참가자 수 부족을 보충했다고 주장하지 않는다.
+- metric: 같은 train mean/scale의 z_A와 같은 loss를 모든 조건에 사용한다. 서로 다른 target variance를 분모로 갖는 R²의 차이는 주추정량으로 쓰지 않는다. 전체 Y score는 보조다.
+
+**모델의 실제 입출력 조건**
+
+- ImageBind는 모달리티별 입력→공통 embedding이고 imagebind_huge의 1024차원 출력·기본 영상 2frame 처리는 기존 코드 확인 범위다. 그 자체에 FactorCL private branch가 존재한다고 가정하지 않는다.
+- FactorCL은 multi-view 표현 학습 도구이며 정확 supervisory target와 output branch를 확인해야 한다. 공개 코드 존재를 학습된 뇌/정서 checkpoint의 존재로 취급하지 않는다.
+- 고정 V,A를 train-only projection으로 분해하는 fallback은 가능하나 통계적 shared/operational residual일 뿐 식별된 생물학적 요인이 아니다.
+- 오디오 모델은 실제 비음성 음악/환경음 구간과 sampling rate/clip 길이를 확인한다. full-clip 양방향 특징은 retrospective 자극 단위 비교에만 쓰고 causal online 해석을 붙이지 않는다.
+- CLIP ViT-B/32의 공식 URL·SHA256 규칙은 공통 계획에서 확인됐으나 weights load 성공은 미확인이다. 이 모델은 image/text baseline이며 audio branch를 대신하지 않는다.
+
+**자원·착수 조건**
+
+- environment: 현재 보고된 4 CPU quota·32GiB에서 이미 추출된 V,A와 작은 readout 비교부터 진행한다. nvidia-smi 부재를 사용자 전체 자원의 부재로 확대하지 않는다.
+- first_step: 정확한 시청각 cache가 있으면 사전 정한 소수 k와 residual 포함 유무, full V,A readout으로 first contrast를 구성한다. 예: 3개 k×2조건은 설계안이며 실행 결과가 아니다. 모든 outer fold와 hyperparameter 평가 횟수를 기록한다.
+- memory: N=2,196,K=1,024 float32 matrix 하나가 약8.58MiB라는 산술 견적은 유효하지만 neural matrix·fold copies·activations는 포함하지 않는다. 실제 V/A/Y shape로 총 peak를 측정한다.
+- extension: 시청각 feature가 없으면 ImageBind/오디오 인코더의 정확 checkpoint·license·입력 preprocessing·작은 batch memory/time을 확인한 별도 실행 환경이 필요하다. 현재 무GPU 환경의 전영상 처리 속도를 보장하지 않는다.
+- stop: full model도 신뢰가능 z_A를 예측하지 못하거나 AV 실제 제시가 확인되지 않으면 더 큰 FactorCL 학습을 통해 과학적 한계를 덮지 않는다.
+
+## 실행·검증 범위
+
+- 이번 파일은 배정된 제안자 2개·데이터통계검토자 1개의 실제 독립 입장이다. 아직 다른 Round5 역할의 발언을 전달받아 응답한 것은 아니며 rebuttal로 표시하지 않는다.
+- RP05의 실제 반복 조건 미확인을 명시했고 Coordinator에게 Horikawa 고유 ID/dupidx와 독립 반복의 차이를 전달했다. Coordinator도 조건부 유지와 시간 가지 분리에 동의했다.
+- RP05의 Top10 포함은 과학적 다양성의 종합선정이며 현재 즉시 실행 실현성 순위를 뜻하지 않는다. RP05-A/B는 다른 입력/시간 가정을 가진 같은 상위 질문의 가지이며 RQ 수를 추가하지 않는다.
+- 원자료 분석·feature 추출·모델 가중치 load·power simulation·신규 실험은 실행하지 않았다. CPU/메모리 관측은 공통 자원 보고서의 기록을 인용하며 이 라운드 독립 GPU 검증으로 세지 않는다.
+- 문헌 근거는 기존 canonical 기록의 본문/공식 코드 확인 범위다. 새 외부 역검색 또는 모델 지원 재실행은 하지 않았다.
+- 일반적인 개인정보/보안·신체 상태 등 제외 의제를 추가하지 않았다. 모든 A는 독립 측정 주석이며 AI 특징을 정답으로 승격하지 않는다.
+- 공유 산출물·Git·타 역할 폴더를 수정하지 않았고 자기 round05_debate.json/md만 작성했다.

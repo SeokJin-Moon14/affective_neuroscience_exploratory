@@ -1,0 +1,189 @@
+# Agent08 Round5 — 실제 대립 가설 검토
+
+배정: RP03·RP09 데이터통계 검토, RP08 회의적 비판. 세 입장은 다른 역할과의 합의문이 아니라 독립적으로 작성한 논점이다. 원자료 분석·모델 실행은 수행하지 않았다.
+
+## RP03 / RQ18 — 데이터통계검토자
+
+**판정: 조건부.** 조건부로 추진할 관측모형 비교다. 경계 indicator가 주어진 상태에서 실제 history forgetting의 추가 예측 이득은 검정할 수 있으나, BOLD 관측만으로 인간 기억의 reset 연산을 식별했다고 판정하지 않는다.
+
+**가장 약한 전제:** 사건 위치 forgetting과 경계 반응·연속 gating·유한창 필터가 HRF 관측 이후 충분히 다른 예측을 낸다는 전제다. 모든 모형에 같은 현재입력·경계 cue를 주어도 유연한 continuous head가 reset을 근사하거나 HRF가 차이를 지울 수 있다.
+
+**강한 대안:** never-reset보다 boundary-reset이 좋은 것은 경계와 정서 전이의 공변동, 유효 시간창 조절, 초기상태 prior 또는 reset 노출에 맞춘 regularization 때문일 수 있다. 연속 boundary-aware gating이 같은 예측을 내면 명시적 소거의 필요성은 없다.
+
+**판별 예측:** 동일한 비정서 feature·causal 경계 cue·학습예산·관측모형을 갖는 head들에서 indicator=1의 boundary forgetting만이 matched-random forgetting·유한창·boundary-aware continuous gate보다 새 영화의 사전지정 정서 전이 대비 위험을 줄여야 위치특이 forgetting의 관측적 필요성이 남는다. 공통 HRF와 각 모형 최적 HRF의 결과를 모두 보고하며, 관측 회복력이 없는 조건은 판정하지 않는다.
+
+**필수 수정:**
+
+- 연속 외부 consensus에서 정의하는 A 전이와 신경 타깃의 단위·지연·loss를 하나의 주검정으로 고정한다. 50개 주석열 전체 탐색 후 가장 잘 맞는 것을 고르지 않는다.
+- 2×2의 경계 cue가 readout에만 들어가는지 state update에도 들어가는지 명세한다. 경계 cue를 받은 연속 gate/no-hard-reset 모형을 추가하여 cue 접근의 불균형을 없앤다.
+- 사건 경계의 time_available을 기록한다. 전체 영화를 본 경계 annotation은 retrospective 대조이며 과거전용 경계검출과 같은 미래예측 실험으로 합치지 않는다.
+- 정서 주석은 개별 fMRI 참가자의 연속 정답이 아니다. 외부 consensus의 자극수준 대비와 개인 뇌반응을 연결하는 계층모형으로 기술한다.
+- 훈련 reset 노출, 초기상태, 파라미터수, feature window, HRF/FIR 자유도를 개발자료에서 고정하고 matched random 위치 선택도 test A 없이 수행한다.
+- 동일 관측을 만드는 모의쌍 및 상태기전×경계오차×HRF 폭의 회복 실험을 분석 착수 전 계획에 포함한다.
+
+**관측·독립 단위:** neural: 참가자×영화×run 내 연속 BOLD 관측; 분석 창과 TR은 상관된 측정점이다.; content: 새 내용 일반화의 독립 단위는 영화이며 경계는 영화 안에 중첩된다. 공식 consensus 14영화를 수천 개 독립 경계창처럼 세지 않는다.; annotation: 외부 consensus 한 시계열을 여러 fMRI 참가자에 복제해도 독립 정서표본 수는 증가하지 않는다.; inference: 참가자·영화의 교차 의존성을 반영한다. 영화가 적으면 영화별 효과와 불확실성을 우선 보고하며 계층 bootstrap의 소표본 안정성도 점검한다.
+
+**측정 신뢰도:** 원시 평정이 있으면 평정자 분할로 전이시점·크기의 신뢰도를 추정한다. 없으면 consensus의 측정오차를 0으로 두지 않고 lag/평활도 민감도 범위를 보고한다. 신경 대비는 독립 run/반복이 실제 있을 때 검증하고 반복을 가정하지 않는다.
+
+**독립 평가 분할:** 영화 전체 outer holdout을 우선하고 hyperparameter·경계검출 threshold·A 대비·HRF·reset 초기상태는 inner train 영화에서 정한다. 참가자 일반화는 별도 leave-participant 또는 명시적 개인 적응 평가로 분리한다. run 초기화는 자연 사건경계와 구분한다.
+
+**검정력과 동등성:** 사전 최소 의미있는 held-out loss 차이를 영화별 변동과 신뢰도에 연결해 정한다. 원시 관측 수로 검정력을 계산하지 않는다. 양성 회복 모의계에서 예상 효과를 구별 못하면 실자료 비유의 결과는 기각이 아니라 미식별이다. 동등성은 사전 범위 안 CI일 때만 판정한다.
+
+**모형·관측 동등성:** reset 상태와 연속 gate/finite-memory head가 같거나 HRF 이후 같은 예측을 낼 수 있다. 다른 hidden state를 사용했다는 사실은 다른 관측가설이 아니다. 개발자료에서 관측 예측차가 noise 범위보다 작은 모형은 하나의 동치류로 취급하고 그 내부 기전 선택은 보류한다.
+
+**양성 해석:** 관측적으로 구별 가능한 대조들을 이긴 경우 시험한 feature·head·관측범위에서 사건위치 forgetting이 정서 대비를 설명하는 유용한 제약이다. 실제 뇌가 기억을 영으로 초기화한다는 결과는 아니다.
+
+**음성 해석:** indicator 또는 연속 gate가 충분하면 명시적 소거의 필요성을 낮춘다. reset exposure를 맞춘 뒤 사라지면 훈련분포 효과다. HRF 이후 모두 동등하거나 신뢰도가 부족하면 상태기전은 판정불가다.
+
+**미해결 이견:** reset을 생물학 기제 대신 좋은 계산적 요약으로 해석하면 가치가 있다는 입장에는 동의한다. 다만 연속 gate와 관측동등할 때 기억 소거의 필요성이라는 명칭에는 동의하지 않는다.
+
+**null과 대조:**
+
+- 동일 경계 indicator와 causal 경계 cue를 받는 연속 gate
+- 경계없는 신경기전+경계성 HRF/감각 반응 모의계
+- 진짜 forgetting 기전의 양성 회복 모의계
+- duration·state age/norm·cut·음향 onset·자극 예상오차를 개발자료에서 맞춘 random forgetting
+- 시간 자기상관·경계수·A 전이 빈도를 보존한 명시적 null; 임의 TR shuffle 금지
+
+**판단을 바꿀 증거:**
+
+- 실제 timebase·주석 대응·독립 경계 time_available 확인, 양성/음성 회복 성공, boundary-aware gate와 동일관측 범위가 분리되면 첫 실측 분석 추진으로 바꾼다.
+- 새 영화에서 정서 대비는 없고 전체 BOLD만 좋아지거나 모든 기전이 같은 관측을 내면 일반 경계/시계열 방법 평가로 낮춘다.
+
+**자원·모델 착수조건:**
+
+- 공통 계획에 따르면 cgroup 4 CPU·32GiB이며 GPU 추론은 실행되지 않았다. 기존 feature cache로 작은 causal head와 FIR/ridge 비교부터 가능하다.
+- VideoPrism은 frozen clip encoder로만 사용하고 causal head는 신규 구현임을 표시한다. CLIP ViT-B/32의 공식 loader/해시 링크는 확인됐지만 가중치 load·영상 추론은 미검증이다.
+- 작은 영화 부분에서 feature/BOLD/timebase 계약과 관측 회복 시뮬레이션을 검토한다. 이것이 실제 분석 착수 조건이며 문헌 설계 완료를 막지는 않는다.
+- 연속 신호나 독립 A 전이가 없으면 RP03 신경 주장은 착수하지 않고 경계 cue의 예측 방법설계로 보존한다. Spacetop clip 후 평정과 NSD 정적 시행은 시간 전이 정답의 대체가 아니다.
+
+**근거:** P002, P066, P044, P034, P100, P101. P066은 직접 가까운 사건분절 선행이지만 현 catalog 검증은 공식 EventSegment 코드·tutorial이다. P044는 관련 방법·한계 본문을 기존 Agent가 읽었으며 frozen video encoder의 recurrent state를 보증하지 않는다. P100의 계층 표현통계 근거와 공식 데이터 감사는 설계의 근거이며 새 실험 결과는 아니다.
+
+## RP08 / RQ14 — 회의적비판자
+
+**판정: 수정.** 수정이 필요하다. 평균 projection의 영공간에 정보가 남는다는 사실은 자명하며 기존 MVPA 대 ROI 평균 비교와 매우 가깝다. 독립 반복에서 재현되는 잔차가 강한 평균 readout을 넘어 정서 대비에 선택적으로 기여하는 경우만 과학적 질문으로 유지한다.
+
+**가장 약한 전제:** train PCA에서 선택한 r_k와 특정 readout의 성능이 영공간 전체의 정서정보 또는 평균 m의 정보적 충분성을 대표한다는 가정이다. 양성은 추가 예측 가능성을 보이지만 음성은 선택한 k·basis·함수족에서의 실패일 수 있다.
+
+**강한 대안:** m+r_k는 단순히 더 많은 신뢰 가능한 시각 미세패턴과 더 유연한 예측기를 제공한다. A가 자극집계이고 감각/의미 표현이 불완전하면 정서와 상관된 객체·움직임 단서를 더 읽는 것만으로 이득이 생긴다. 강한 nonlinear m-only가 같은 이득을 회수할 수도 있다.
+
+**판별 예측:** 영공간 잔차의 반복 가능한 성분이 matched visual/semantic 타깃 및 신뢰도·scale를 맞춘 비정서 대비보다 정서 대비에서 추가 위험감소를 보이고, 강한 nonlinear m-only와 spatial-spectrum-matched residual null을 넘어 새 내용군에서도 유지되어야 정서관련 공간평균 부족을 지지한다. 실제 atlas 대 random atlas 차이는 이와 별개의 H2다.
+
+**필수 수정:**
+
+- 주장을 정보 손실 총량이 아니라 명시한 관측 표현·readout 클래스의 정서 대비 접근성으로 한정한다. m의 강한 nonlinear probe를 기준선에 추가하고 작은/big head별 결과를 분리한다.
+- P와 G가 어떤 metric·면적가중치를 쓰는지 명시한다. 동일 면적 Euclidean 평균과 surface vertex area-weighted 평균은 다른 관측연산이며 native/surface 변환·smoothing을 분해 이전에 고정한다.
+- 정서 선택성 대비는 서로 다른 타깃 loss를 그냥 빼지 말고 개발자료의 scale·신뢰도·난이도를 맞춘 사전 표준화 지표와 모델×타깃 상호작용으로 정의한다.
+- PCA r_k의 k 선택을 train에 제한하고 안정된 k 범위의 성능곡선을 보고한다. 전체 영공간의 정보 부재로 음성 결과를 확대하지 않는다.
+- 같은 반복에서 noise를 학습하고 신뢰도를 평가하지 않는다. 독립 반복/세션의 crossvalidated distance 또는 예측으로 재현성을 확인한다.
+- H1 일반 평균화, H2 atlas 경계 특이성, H3 정서 선택성의 별도 추정량·다중비교·판정표를 사전 고정한다. 공간 QC 모듈 AS18을 공통 적용한다.
+
+**관측·독립 단위:** 동일 참가자×독립 자극×실제 반복이 단위다. vertex·voxel·임의 atlas seed·PCA component는 독립 생물학 표본이 아니다. 자극 내용군을 train/test에 나누고 참가자 내 반복결과와 참가자 모집단 일반화를 분리한다.
+
+**신뢰도와 null:** zero-mean 잔차의 반복 신뢰도를 평균 성분과 별도로 추정한다. 공간 스펙트럼·rank가 같아도 정보량이 같지는 않으며 random-contiguous atlas는 smoothing·면적·parcel 크기 분포까지 명시한다. 독립 반복 차이로 noise field를 맞추고 위치를 아는 양성 신호 주입으로 과보정을 점검한다.
+
+**모형·관측 동등성:** P가 고정된 결정적 투영이면 m+r=y는 대수적 항등식이며 복원이 잘된 사실 자체는 발견이 아니다. r_k의 좌표를 가역 회전해도 충분히 유연한 readout의 예측은 같아야 하지만 ridge/PCA 선택·정규화 때문에 접근성은 달라질 수 있다. 기하 변화와 정보 부재를 같은 결론으로 묶지 않는다.
+
+**양성 해석:** 세 가설 중 H1만 양성이면 parcel 평균은 지정 정서 readout에 불충분하다. H2까지 양성이면 특정 atlas 경계와 관련된 추가 패턴이 있다. H3까지 양성일 때만 시험한 대조군 대비의 정서 선택성을 말하며 정서 전용 neural code나 실제 뇌 압축 연산은 주장하지 않는다.
+
+**음성 해석:** H1 음성은 충분한 r_k 신뢰도·power·probe 범위에서만 평균의 예측 충분성을 지지한다. H2 음성은 일반 평균화 손실을 반박하지 않는다. H3 음성은 정서 선택성을 낮추되 미세 공간정보의 일반 가치가 없다는 뜻은 아니다.
+
+**미해결 이견:** 제안자는 정확한 null-space witness가 반증을 명료하게 한다고 본다. 나는 이 분해만으로 신규성이 충분하지 않다고 본다. 독립 정서 대비·강한 평균 probe·공간 nuisance를 넘는 선택적 결과가 최종 분기다.
+
+**판단을 바꿀 증거:**
+
+- 동일 y의 projection 검증, 독립 반복에서 잔차 안정성, nonlinear m-only를 넘는 새 내용 정서 대비 및 H1/H2/H3 분리 판정이 확보되면 좁힌 과학 RQ 추진에 동의한다.
+- 이득이 모든 타깃에 동일하거나 nonlinear m-only로 회수되거나 독립 반복 잔차가 없으면 신경 발견 후보에서 방법 QC로 낮춘다.
+
+**자원·모델 착수조건:**
+
+- 4 CPU·32GiB 계획에서 작은 피질 subset과 이미 처리된 신경행렬의 projection/ridge/PCA는 원리상 가능하다. 실제 dense matrix shape와 반복 구조는 미확인이다.
+- CortexMAE checkpoint가 첫 검정에 필요하지 않다. P/F/V variant의 pretrained 입력지원·mask·학습차이는 나중에 별도 확인해야 하며 이 직접 집계 대비와 합치지 않는다.
+- P를 dense V×V 행렬로 만들지 말고 parcel scatter/gather로 m을 계산한다. P의 수학적 정의와 대규모 행렬 구현을 혼동하지 않는다. k차원 요약과 block 처리를 사용하되 메모리 사용은 실제 shape로 측정한다.
+- dense 대응 또는 독립 정서 주석이 없으면 방법 실험 계획으로 보존한다. NSD는 정서 ground truth 없이 공간방법 calibration만 가능하다.
+
+**근거:** P001, P026, P051, P060, P063, P100. P026은 다중 공간 표현 도구의 공식 코드 범위 근거다. P051은 표현 비교의 허용변환, P063은 공간 null의 근거다. P001의 신경표상 논문은 직접 가까운 주제이나 현 catalog의 원문 검증은 제한적이다. P081은 요약 병목의 전이 원리이지 이 공간평균 질문의 직접 선행이라고 부르지 않는다.
+
+## RP09 / RQ03 — 데이터통계검토자
+
+**판정: 조건부.** Discovery 단계의 조건부 후보로 유지한다. 먼저 한 자료 안에서 공통 자극 대응을 평가자만 알고 있는 제한된 정렬 실험을 정의하고 비정서 anchor 정책의 독립 정서 대비 예측을 비교해야 한다. 자료간 공통 신경코드는 bridge/측정모형 및 out-of-sample 확장 규칙 확인 전 주장하지 않는다.
+
+**가장 약한 전제:** 비정서/정서 anchor의 개수·신뢰도·coverage를 맞추면 두 감독 조건의 정보예산도 같고, 유한 다중 초기값의 작은 예측범위가 의미 대응을 결정했다는 전제다. 둘 다 자동으로 성립하지 않는다.
+
+**강한 대안:** 비정서 anchor의 성공은 풍부한 객체·장면 identity가 사실상 정서 목표와 강하게 상관된 대응 감독을 제공했거나, 평가자만 알아야 할 공통 stimulus ID/target geometry를 정렬이 이미 사용했기 때문일 수 있다. 실패는 정서특이 code보다 support·수치최적화·척도 차이를 반영할 수 있다.
+
+**판별 예측:** 개발에 전혀 사용하지 않은 내용군·정서 대비·참가자에서 non-affective coverage/선택정책이 동일한 주석비용의 random보다 위험을 줄이고 정서 anchor의 추가 이득이 사전 동등성 범위 이내여야 시험한 비정서 제약의 예측 충분성을 지지한다. 같은 기하를 가지되 의미 대응이 반대인 negative control에서는 적절한 anchor 없이는 확신하지 않아야 한다.
+
+**필수 수정:**
+
+- anchor 한 개가 어떤 관측인지 고정한다: pair correspondence, scalar judgment, vector annotation을 같은 개수라는 이유로 동일 정보예산이라 부르지 않는다. 동일 수집비용·오차·support 비교와 감독형태 차이 민감도를 보고한다.
+- 비정서는 정서 라벨을 정책 선택/학습에 직접 사용하지 않았다는 뜻으로 정의한다. 의미 feature가 정서정보와 통계적으로 독립하다고 주장하지 않는다.
+- 정렬 train, 정책 development, ε-cost calibration, 최종 정서/내용 평가를 분리한다. 데이터 join의 참 stimulus ID를 어디서 사용하는지 접근표로 명시하고 평가전용 대응을 모델에 노출하지 않는다.
+- GW coupling에서 새 자극으로 가는 extension map·입력 feature·kernel 규칙을 명세한다. test target 기하를 사용하면 transductive로 표시하고 새 자극 inductive 일반화와 분리한다.
+- 유한 다중시작의 예측범위는 발견된 해의 범위로만 표시한다. 발견한 반대 의미 해는 비유일성 witness이지만 발견 실패는 전역 유일성 증명이 아니다.
+- 공통 anchor 없는 cross-dataset 신경 주장 대신 Horikawa 내부의 실제 공통 coverage를 확인한 split부터 시작한다. 5명의 참가자를 대규모 모집단처럼 해석하지 않는다.
+
+**관측·독립 단위:** stimulus: 독립 내용군/원본 자극 family가 기본 평가단위이며 RDM의 O(n²) 쌍은 n²개의 독립 표본이 아니다.; participant: Horikawa의 공식 5명 범위에서는 개인 내 새 자극 결과와 참가자 간 전이를 분리하고 작은 참가자 수를 명시한다.; anchor: anchor들은 같은 자극을 공유해 의존하며 adaptive round는 독립 반복이 아니다.; dataset: Emo-FilM consensus, Horikawa 집계, Spacetop clip 평정의 측정 단위를 합치지 않는다. 공통 feature만으로 척도 동등성이 확보되지 않는다.
+
+**측정 신뢰도:** anchor response의 오류·내용 coverage와 정서 대비의 독립 측정 신뢰도를 각 조건에서 평가한다. ε-cost는 train-only noise calibration으로 고정하되 다른 objective/정규화 계수의 값과 같은 허용비용이라고 직접 비교하지 않는다.
+
+**독립 평가 분할:** 개발 자극에서 정책·feature·거리·정규화·anchor 개수를 고정한 뒤 별도 내용군에서 정책 성능을 평가한다. adaptive 선택에 최종 정서 target이나 hidden test 대응을 사용하지 않는다. 참가자 적응자료와 평가자료도 분리하며 within-dataset에서 검증 후 cross-dataset bridge로 확장한다.
+
+**검정력과 동등성:** 사전 최소 정서 anchor 추가효과를 개발자료의 target 신뢰도와 content-level 변동에서 정한다. 비정서 정책과 정서감독의 차이가 유의하지 않다는 이유로 충분성을 선언하지 않는다. paired content-level 위험과 조건부 동등성 CI를 보고하고 최적화 실패·해집합 탐색 실패의 모의율을 함께 제시한다.
+
+**모형·관측 동등성:** 같은 GW 비용의 여러 coupling이 보류 평가함수에 같은 예측을 내면 하나의 평가동치류로 합쳐도 된다. 단지 최적화 seed가 같거나 entropy가 작다는 이유로 해에 대한 불확실성이 낮다고 해석할 수 없다. 정서 대비가 다른 동등비용 해가 발견되면 해당 anchor 조건은 의미 대응을 식별하지 못한 것이다.
+
+**양성 해석:** 시험한 측정·내용·참가자 범위에서 정서 라벨을 직접 쓰지 않은 anchor가 특정 보류 정서 대비의 예측에 충분했다는 결론이다. 공유 신경코드의 전역 유일성, 의미와 정서의 독립성, 생물학적 같은 알고리즘은 결론이 아니다.
+
+**음성 해석:** coverage·신뢰도·수렴이 충분한데 정서감독만 낫다면 해당 비정서 제약이 부족하다. 별도 정서 code가 존재한다는 증거는 아니다. 모든 정책이 실패하거나 bridge가 없으면 측정/정렬 설계의 미식별이다.
+
+**미해결 이견:** C07-04는 좁힌 과학 질문으로 볼 여지가 있으나 병합 C01-04의 방법후보 판단도 유지한다. anchor 계약과 out-of-sample map이 없으면 두 지위를 같은 과학 완료로 합칠 수 없다.
+
+**null과 대조:**
+
+- 의미가 다른데 동일한 거리기하를 갖는 알려진 대칭계
+- 대칭을 실제로 깨는 informative anchor와 동일 수의 uninformative anchor
+- coverage·신뢰도·주석비용을 맞춘 random/coverage/disagreement 정책
+- 평가자만 실제 mapping을 아는 synthetic 및 실제 subset
+- 고정 objective의 multi-start 수렴·optimisation budget 민감도
+- test target geometry 없는 inductive와 test geometry를 쓰는 transductive의 별도 결과
+
+**판단을 바꿀 증거:**
+
+- 정확한 anchor 관측 계약·budget·평가전용 mapping 차단·extension 규칙 및 known-truth 모의계 회복이 확인되면 한 자료 내부의 작은 실측 비교를 추진한다.
+- target geometry 또는 ID가 정렬에 노출되거나 보류 정서 대비 없이 GW 비용만 줄어들면 정렬 방법후보로 낮춘다.
+- 독립 bridge가 양쪽 측정 단위와 실제 신경 대비를 연결하고 외부 평가에서 성립할 때만 cross-dataset 의미 주장을 확대한다.
+
+**자원·모델 착수조건:**
+
+- 4 CPU·32GiB에서 작은 고정 feature와 저차원 거리행렬의 다중시작 비교는 가능성 있으나 실제 크기·시간은 미측정이다.
+- DAD neural policy의 즉시 재사용을 전제하지 않는다. 초기에는 fixed random/coverage/disagreement 정책과 공개 수송 구현을 사용하고 버전·objective·convergence를 기록한다.
+- 거리와 coupling은 자극 수에 제곱으로 증가한다. content-stratified 작은 개발 subset에서 실제 배열 shape·peak memory를 측정하며 RDM 쌍을 통계 N으로 세지 않는다.
+- 공통 bridge 부재에서는 Horikawa 내부 mapping/내용 분할 또는 known-truth 모의 정렬로 범위를 제한한다. Mind Captioning 식별자·ontology는 추정하지 않는다.
+
+**근거:** P001, P002, P057, P052, P051, P077, P100. P057은 관계 수송의 수학적 근거이며 낮은 비용의 의미적 유일성을 보장하지 않는다. P077의 실제 원형은 likelihood·조건부 관측가정이 있으므로 일반 fMRI adaptive policy에 자동 이식할 수 없다. 데이터 소유 진술은 공통 anchor의 실재를 보증하지 않는다.
+
+## 완료 범위와 한계
+
+- Round5에 배정된 RP03 데이터통계, RP08 회의적비판, RP09 데이터통계의 세 입장을 실제 자료·계획과 대조해 작성했다. 다른 역할의 이번 발언을 읽거나 합의했다고 주장하지 않는다.
+- 원자료·모델 체크포인트·회복 시뮬레이션을 이번에 실행하지 않았다. 문헌 근거는 기존 canonical catalog의 검증 범위를 계승한다.
+- 데이터 5종 보유는 인정하며 실행 스키마·주석·반복·모델지원 확인을 후보별 조건으로 남긴다. 이 조건은 문헌·토론·파일럿 계획의 완료를 막지 않는다.
+- 기능연결·상태 reset·projection·optimal transport는 관측 및 모델 연산이다. 신경 인과·생물학적 상태 고유성·전역 의미 식별로 확대하지 않는다.
+- 이번 입장은 독립 판정이며 제안자의 후속 반박과 Coordinator 최종 판정이 필요하다. 공유 파일·Git을 수정하지 않았다.
+
+## canonical 근거 링크
+
+- P001: [The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions](https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json). 본문: 아니오; 프록시 403; Discussion: 아니오; 근거: E2
+- P002: [Emo-FilM: A multimodal dataset for affective neuroscience using naturalistic stimuli](https://raw.githubusercontent.com/OpenNeuroDatasets/ds004892/cdf68fe448ad180a476fa2371473a1a6ed063774/dataset_description.json). 본문: 아니오; 프록시 403; Discussion: 아니오; 근거: E2
+- P026: [Scaling Vision Transformers for Functional MRI with Flat Maps](https://github.com/MedARC-AI/CortexMAE). 본문: 아니오; 공식 README/코드만 확인; Discussion: 아니오; 근거: E1(공식 README/코드 범위; 논문 결과 검증과 구분)
+- P034: [Mamba: Linear-Time Sequence Modeling with Selective State Spaces](https://github.com/state-spaces/mamba). 본문: 아니오; 공식 README/코드만 확인; Discussion: 아니오; 근거: E1(공식 README/코드 범위; 논문 결과 검증과 구분)
+- P044: [VideoPrism: A Foundational Visual Encoder for Video Understanding](https://github.com/google-deepmind/videoprism). 본문: 예: 공식PMLR PDF27쪽 확보;§1–2.3,§3.5–3.6,§5 직접읽음;전문 전체 정독은 아님; Discussion: 전용 Discussion 절 없음;§3.6 Limitations,p8와§5 Conclusion,p9 직접읽음; 근거: E1(논문 방법·Limitations 직접+공식코드);신경전이는E3
+- P051: [Similarity of Neural Network Representations Revisited](https://proceedings.mlr.press/v97/kornblith19a.html). 본문: 예; 공식 PDF 직접 열람; Discussion: 예; 결론/한계 해당 절 직접 확인; 근거: E1(본문); 정서·뇌 전이는 E3
+- P052: [Position: The Platonic Representation Hypothesis](https://proceedings.mlr.press/v235/huh24a.html). 본문: 예; 공식 PDF 직접 열람; Discussion: 예; 결론/한계 해당 절 직접 확인; 근거: E1(본문); 정서·뇌 전이는 E3
+- P057: [Gromov-Wasserstein Averaging of Kernel and Distance Matrices](https://proceedings.mlr.press/v48/peyre16.html). 본문: 예; 공식 PDF 직접 열람; Discussion: 예; 결론/한계 해당 절 직접 확인; 근거: E1(본문); 정서·뇌 전이는 E3
+- P060: [A Python Toolbox for Representational Similarity Analysis](https://github.com/rsagroup/rsatoolbox). 본문: 아니오; E1은 공식 코드·문서만; Discussion: 아니오; 근거: E1(공식 코드/문서만); E2(서지); E3(전이)
+- P063: [Comparing spatial null models for brain maps](https://github.com/netneurolab/markello_spatialnulls/blob/master/manuscript/main.tex). 본문: 예; Abstract 및 Discussion 직접 읽음; 전체 방법 절을 정독했다고 주장하지 않음; Discussion: 예; Discussion 및 권고사항; 근거: E1-논문 본문 및 Discussion 직접 확인
+- P066: [Discovering event structure in continuous narrative perception and memory](https://github.com/brainiak/brainiak/blob/master/src/brainiak/eventseg/event.py). 본문: 아니오; 공식 문서/코드만 확인; Discussion: 아니오; 근거: E1-공식 코드 및 tutorial; 논문 본문·Discussion 미확인
+- P077: [Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design](https://proceedings.mlr.press/v139/foster21a.html). 본문: 예: 공식 PDF 확보; §2–4/§7 직접 열람; Discussion: 예: §7 Discussion 및 Limitations and Future Work p.9; 근거: E1
+- P100: [Statistical inference on representational geometries](https://elifesciences.org/articles/82566). 본문: 예: 공식 XML 저장·본문 검토; Discussion: 예: Discussion s3-1–s3-6; 근거: E1
+- P101: [Representational models: A common framework for understanding encoding, pattern-component, and representational-similarity analysis](https://github.com/rsagroup/rsaModelComparison). 본문: 아니오; Discussion: 아니오; 근거: E1

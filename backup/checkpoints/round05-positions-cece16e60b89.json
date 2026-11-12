@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "round05-positions",
+  "snapshot_id": "cece16e60b89545b1fad235cfc1d2a22dacb7c2a885bb6251de9481761d23cd0",
+  "prepared_at_utc": "2026-11-12T07:24:49.545303+00:00",
+  "file_count": 1438,
+  "total_bytes": 202394869,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

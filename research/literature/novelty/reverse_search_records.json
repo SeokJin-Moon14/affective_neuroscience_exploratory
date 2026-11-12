@@ -1,0 +1,1521 @@
+[
+  {
+    "rq_id": "RQ01",
+    "query_en": "Emotion brain event progress duration normalization online prediction future boundary leakage",
+    "executed_at": "2026-11-12T16:04:47.635566+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P041",
+        "title": "Audio-Visual Event Localization in Unconstrained Videos",
+        "retrieval_score": 12.5937
+      },
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 11.7156
+      },
+      {
+        "canonical_id": "P013",
+        "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+        "retrieval_score": 9.8176
+      },
+      {
+        "canonical_id": "P043",
+        "title": "VideoMamba: State Space Model for Efficient Video Understanding",
+        "retrieval_score": 9.7547
+      },
+      {
+        "canonical_id": "P085",
+        "title": "The neural architecture of language: Integrative modeling converges on predictive processing",
+        "retrieval_score": 8.0614
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P042",
+      "P066"
+    ],
+    "difference_claim": "Round2의 사후 시간 재매개화를 폐기하지 않고 offline 대조로 분리하며, 입력 시점의 정보 제한을 충족하는 온라인 상태의 충분성으로 질문을 좁혔다. C05-04와 병합한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Emotion+brain+event+progress+duration+normalization+online+prediction+future+boundary+leakage&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ01_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ02",
+    "query_en": "Affective ratings distribution neural representations rater delays ordinal scales consensus mean",
+    "executed_at": "2026-11-12T16:04:48.098970+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P062",
+        "title": "neuromaps: structural and functional interpretation of brain maps",
+        "retrieval_score": 8.2325
+      },
+      {
+        "canonical_id": "P068",
+        "title": "Neurophysiological signatures of cortical micro-architecture",
+        "retrieval_score": 8.2046
+      },
+      {
+        "canonical_id": "P002",
+        "title": "Emo-FilM: A multimodal dataset for affective neuroscience using naturalistic stimuli",
+        "retrieval_score": 7.7071
+      },
+      {
+        "canonical_id": "P067",
+        "title": "Brain network dynamics are hierarchically organized in time",
+        "retrieval_score": 7.1493
+      },
+      {
+        "canonical_id": "P057",
+        "title": "Gromov-Wasserstein Averaging of Kernel and Distance Matrices",
+        "retrieval_score": 5.5057
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P002",
+      "P100"
+    ],
+    "difference_claim": "평정분포의 추가 신경 연관은 유지하되 다중해석 코드라는 인과·표현 명명을 철회했다. 원평정 관측모형을 경쟁 설명으로 명시했다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Affective+ratings+distribution+neural+representations+rater+delays+ordinal+scales+consensus+mean&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ02_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ03",
+    "query_en": "non affective semantic anchors optimal transport neural emotion alignment active experimental design",
+    "executed_at": "2026-11-12T16:04:48.544218+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P023",
+        "title": "MindBridge: A Cross-Subject Brain Decoding Framework",
+        "retrieval_score": 19.8225
+      },
+      {
+        "canonical_id": "P078",
+        "title": "FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models",
+        "retrieval_score": 12.8705
+      },
+      {
+        "canonical_id": "P077",
+        "title": "Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design",
+        "retrieval_score": 11.691
+      },
+      {
+        "canonical_id": "P051",
+        "title": "Similarity of Neural Network Representations Revisited",
+        "retrieval_score": 8.5381
+      },
+      {
+        "canonical_id": "P057",
+        "title": "Gromov-Wasserstein Averaging of Kernel and Distance Matrices",
+        "retrieval_score": 8.2853
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P057",
+      "P052"
+    ],
+    "difference_claim": "단순 anchor수 증가의 감독이득에서 어떤 비정서 측정의 선택이 미사용 정서 대비를 식별하는지로 질문을 바꿨다. 순차 설계 원리를 도입하되 DAD 신경망 구현 자체가 필수라는 주장은 하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=non+affective+semantic+anchors+optimal+transport+neural+emotion+alignment+active+experimental+design&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ03_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ04",
+    "query_en": "shared neural representation individual affine observation mapping emotion tuning alignment",
+    "executed_at": "2026-11-12T16:04:48.996733+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P100",
+        "title": "Statistical inference on representational geometries",
+        "retrieval_score": 10.3608
+      },
+      {
+        "canonical_id": "P052",
+        "title": "Position: The Platonic Representation Hypothesis",
+        "retrieval_score": 9.668
+      },
+      {
+        "canonical_id": "P062",
+        "title": "neuromaps: structural and functional interpretation of brain maps",
+        "retrieval_score": 8.987
+      },
+      {
+        "canonical_id": "P017",
+        "title": "Brain-IT: Image Reconstruction from fMRI via Brain-Interaction Transformer",
+        "retrieval_score": 8.1349
+      },
+      {
+        "canonical_id": "P001",
+        "title": "The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions",
+        "retrieval_score": 8.0582
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P027",
+      "P052",
+      "P053"
+    ],
+    "difference_claim": "개인화 성능에서 관측 좌표군의 충분성 검정으로 주질문을 바꿨다. C12-05의 신뢰도 모듈과 통합 가능하지만 본 후보의 고유 하위 조작은 gain/rotation/affine 군 대 추가 성분이다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=shared+neural+representation+individual+affine+observation+mapping+emotion+tuning+alignment&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ04_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ05",
+    "query_en": "emotion category boundary neural distance continuous semantic content fMRI representational geometry",
+    "executed_at": "2026-11-12T16:04:49.394560+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 19.0933
+      },
+      {
+        "canonical_id": "P004",
+        "title": "Self-report captures 27 distinct categories of emotion bridged by continuous gradients",
+        "retrieval_score": 13.7845
+      },
+      {
+        "canonical_id": "P087",
+        "title": "Semantic reconstruction of continuous language from non-invasive brain recordings",
+        "retrieval_score": 11.147
+      },
+      {
+        "canonical_id": "P075",
+        "title": "Flow Matching Guide and Code",
+        "retrieval_score": 10.4085
+      },
+      {
+        "canonical_id": "P045",
+        "title": "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training",
+        "retrieval_score": 9.9752
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P001",
+      "P008"
+    ],
+    "difference_claim": "원안의 모호한 국소 굽음 주장을 철회하고 독립 경계 초과거리라는 제한된 표적을 도입했다. 실제 검증 경로 없이 곡률을 산출하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=emotion+category+boundary+neural+distance+continuous+semantic+content+fMRI+representational+geometry&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ05_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ06",
+    "query_en": "shared low rank neural emotion contrasts unseen task transfer target independent compression",
+    "executed_at": "2026-11-12T16:04:49.900211+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P035",
+        "title": "ImageBind: One Embedding Space To Bind Them All",
+        "retrieval_score": 10.1193
+      },
+      {
+        "canonical_id": "P037",
+        "title": "Factorized Contrastive Learning: Going Beyond Multi-view Redundancy",
+        "retrieval_score": 8.4535
+      },
+      {
+        "canonical_id": "P036",
+        "title": "Contrastive Audio-Visual Masked Autoencoder",
+        "retrieval_score": 7.5438
+      },
+      {
+        "canonical_id": "P078",
+        "title": "FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models",
+        "retrieval_score": 7.307
+      },
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 7.209
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P038",
+      "P059"
+    ],
+    "difference_claim": "단일표적 최소차원에서 다중 대비에 대한 고정 공간의 재사용성으로 질문이 실질 변경됐다. 최소rank의 절대값을 정서 차원의 수로 해석하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=shared+low+rank+neural+emotion+contrasts+unseen+task+transfer+target+independent+compression&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ06_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ07",
+    "query_en": "Matched stimulus histories distinguish predictive neural states from hemodynamic residual responses",
+    "executed_at": "2026-11-12T16:04:50.375272+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P028",
+        "title": "Brain-Mamba: Encoding Brain Activity via Selective State Space Models",
+        "retrieval_score": 11.7364
+      },
+      {
+        "canonical_id": "P069",
+        "title": "SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations",
+        "retrieval_score": 10.1665
+      },
+      {
+        "canonical_id": "P096",
+        "title": "Predictive Coding Approximates Backprop along Arbitrary Computation Graphs",
+        "retrieval_score": 10.0964
+      },
+      {
+        "canonical_id": "P067",
+        "title": "Brain network dynamics are hierarchically organized in time",
+        "retrieval_score": 9.859
+      },
+      {
+        "canonical_id": "P068",
+        "title": "Neurophysiological signatures of cortical micro-architecture",
+        "retrieval_score": 9.5038
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P008",
+      "P013",
+      "P048"
+    ],
+    "difference_claim": "예측 모델 순위 대신 기존 자료에서 동등한 두 계산 설명을 출발점으로 독립 disagreement 자극의 신경 대비를 검정한다. 관측 등가의 범위와 깨지는 대비를 명시한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Matched+stimulus+histories+distinguish+predictive+neural+states+from+hemodynamic+residual+responses&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ07_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ08",
+    "query_en": "emotion distributed neural decoding context gating conditional permutation stimulus label shortcut",
+    "executed_at": "2026-11-12T16:04:50.848168+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 17.4098
+      },
+      {
+        "canonical_id": "P093",
+        "title": "Scaling Vision with Sparse Mixture of Experts",
+        "retrieval_score": 14.5657
+      },
+      {
+        "canonical_id": "P001",
+        "title": "The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions",
+        "retrieval_score": 13.263
+      },
+      {
+        "canonical_id": "P028",
+        "title": "Brain-Mamba: Encoding Brain Activity via Selective State Space Models",
+        "retrieval_score": 9.0724
+      },
+      {
+        "canonical_id": "P081",
+        "title": "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models",
+        "retrieval_score": 8.3639
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P005",
+      "P009"
+    ],
+    "difference_claim": "Round2의 무조건 gate 교환을 핵심근거에서 내리고 조건부 검정의 국소 교환 구조를 수입해 gate의 라벨 우회와 실제 뇌 정보의 필요성을 분리한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=emotion+distributed+neural+decoding+context+gating+conditional+permutation+stimulus+label+shortcut&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ08_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ09",
+    "query_en": "Brain visual alignment affective decoding probe accessibility invertible transformations content generalization",
+    "executed_at": "2026-11-12T16:04:51.270392+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P026",
+        "title": "Scaling Vision Transformers for Functional MRI with Flat Maps",
+        "retrieval_score": 16.4774
+      },
+      {
+        "canonical_id": "P022",
+        "title": "Seeing Beyond the Brain: Masked Modeling Conditioned Diffusion Model for Human Vision Decoding",
+        "retrieval_score": 12.5416
+      },
+      {
+        "canonical_id": "P023",
+        "title": "MindBridge: A Cross-Subject Brain Decoding Framework",
+        "retrieval_score": 11.9826
+      },
+      {
+        "canonical_id": "P035",
+        "title": "ImageBind: One Embedding Space To Bind Them All",
+        "retrieval_score": 9.0001
+      },
+      {
+        "canonical_id": "P029",
+        "title": "Brain-JEPA: Brain Dynamics Foundation Model with Gradient Positioning and Spatiotemporal Masking",
+        "retrieval_score": 8.6754
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P001",
+      "P015",
+      "P022"
+    ],
+    "difference_claim": "UC03-01은 정보 삭제 질문을 알려진 가역 대조에 비춘 접근성 곡선으로 바꾼다. C10-01과 상위 보존 질문을 공유하고 모달 교체는 신규성으로 세지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Brain+visual+alignment+affective+decoding+probe+accessibility+invertible+transformations+content+generalization&type=repositories",
+      "status": "페이지 조회; 검색 인덱스 범위만 확인",
+      "http_status": 200,
+      "evidence_file": "literature/novelty/RQ09_github_search.html",
+      "result_count_reported": null,
+      "candidate_repository_names": []
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ10",
+    "query_en": "neural inverse reconstruction affective ambiguity witness pairs independent repeated measurements identifiability",
+    "executed_at": "2026-11-12T16:04:51.592894+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P076",
+        "title": "Diffusion Posterior Sampling for General Noisy Inverse Problems",
+        "retrieval_score": 12.6438
+      },
+      {
+        "canonical_id": "P083",
+        "title": "Concept Bottleneck Models",
+        "retrieval_score": 8.6185
+      },
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 8.186
+      },
+      {
+        "canonical_id": "P038",
+        "title": "Attention Bottlenecks for Multimodal Fusion",
+        "retrieval_score": 7.3174
+      },
+      {
+        "canonical_id": "P092",
+        "title": "Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-based optimization to spiking neural networks",
+        "retrieval_score": 6.4867
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P076",
+      "P053",
+      "P057"
+    ],
+    "difference_claim": "prior 기여율과 별도로 관측이 허용하는 정서 대비 범위 자체를 추정하여 실패한 reconstruction을 측정 설계의 문제로 재정의.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=neural+inverse+reconstruction+affective+ambiguity+witness+pairs+independent+repeated+measurements+identifiability&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ11",
+    "query_en": "distributed emotion brain representations additive nonlinear readout region interactions confounds",
+    "executed_at": "2026-11-12T16:04:51.867496+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P058",
+        "title": "Quantifying & Modeling Multimodal Interactions: An Information Decomposition Framework",
+        "retrieval_score": 11.1142
+      },
+      {
+        "canonical_id": "P054",
+        "title": "Nonlinear ICA Using Auxiliary Variables and Generalized Contrastive Learning",
+        "retrieval_score": 10.9208
+      },
+      {
+        "canonical_id": "P007",
+        "title": "Generalizable representations of pain, cognitive control, and negative emotion in medial frontal cortex",
+        "retrieval_score": 9.1541
+      },
+      {
+        "canonical_id": "P001",
+        "title": "The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions",
+        "retrieval_score": 7.9609
+      },
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 7.6387
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P005",
+      "P009",
+      "P017",
+      "P067"
+    ],
+    "difference_claim": "C03-03과 동일 상위 RQ의 direct readout assay다. 상위 질문의 두 assay를 독립 신경 발견 두 건으로 세지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=distributed+emotion+brain+representations+additive+nonlinear+readout+region+interactions+confounds&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ12",
+    "query_en": "relational semantics conditional neural interaction affect prediction additive nonlinear encoding baseline",
+    "executed_at": "2026-11-12T16:04:52.125621+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P077",
+        "title": "Deep Adaptive Design: Amortizing Sequential Bayesian Experimental Design",
+        "retrieval_score": 12.0796
+      },
+      {
+        "canonical_id": "P089",
+        "title": "Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning",
+        "retrieval_score": 11.7801
+      },
+      {
+        "canonical_id": "P046",
+        "title": "Revisiting Feature Prediction for Learning Visual Representations from Video",
+        "retrieval_score": 10.8791
+      },
+      {
+        "canonical_id": "P076",
+        "title": "Diffusion Posterior Sampling for General Noisy Inverse Problems",
+        "retrieval_score": 10.3094
+      },
+      {
+        "canonical_id": "P054",
+        "title": "Nonlinear ICA Using Auxiliary Variables and Generalized Contrastive Learning",
+        "retrieval_score": 9.5995
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P083",
+      "P067",
+      "P102"
+    ],
+    "difference_claim": "타깃을 고정한 nested 손실로 의미 추가의 일반 효과와 관계 특이 중복을 구별한다. UC10-1은 다음 관계 주석을 선택하는 별도 측정 설계로 추가되며 원 신경 질문을 대체하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=relational+semantics+conditional+neural+interaction+affect+prediction+additive+nonlinear+encoding+baseline&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ13",
+    "query_en": "stimulus encoding neural context independent repetition emotion prediction shared measurement noise",
+    "executed_at": "2026-11-12T16:04:52.340288+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P089",
+        "title": "Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning",
+        "retrieval_score": 17.6927
+      },
+      {
+        "canonical_id": "P086",
+        "title": "Scaling laws for language encoding models in fMRI",
+        "retrieval_score": 15.9373
+      },
+      {
+        "canonical_id": "P087",
+        "title": "Semantic reconstruction of continuous language from non-invasive brain recordings",
+        "retrieval_score": 13.6491
+      },
+      {
+        "canonical_id": "P067",
+        "title": "Brain network dynamics are hierarchically organized in time",
+        "retrieval_score": 11.0499
+      },
+      {
+        "canonical_id": "P085",
+        "title": "The neural architecture of language: Integrative modeling converges on predictive processing",
+        "retrieval_score": 10.5653
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P027",
+      "P026",
+      "P083"
+    ],
+    "difference_claim": "원 비교의 A 지도 겹침을 명시적 A contrast 예측손실로 바꾸고 동일/독립 반복 입력의 비대칭을 주조작으로 만든다. residual의 원인 분해를 완수했다는 주장은 철회한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=stimulus+encoding+neural+context+independent+repetition+emotion+prediction+shared+measurement+noise&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ14",
+    "query_en": "fMRI parcel averaging within parcel zero mean residual emotion representation",
+    "executed_at": "2026-11-12T16:04:52.548793+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P026",
+        "title": "Scaling Vision Transformers for Functional MRI with Flat Maps",
+        "retrieval_score": 9.7801
+      },
+      {
+        "canonical_id": "P096",
+        "title": "Predictive Coding Approximates Backprop along Arbitrary Computation Graphs",
+        "retrieval_score": 8.1317
+      },
+      {
+        "canonical_id": "P052",
+        "title": "Position: The Platonic Representation Hypothesis",
+        "retrieval_score": 6.8427
+      },
+      {
+        "canonical_id": "P086",
+        "title": "Scaling laws for language encoding models in fMRI",
+        "retrieval_score": 6.5246
+      },
+      {
+        "canonical_id": "P072",
+        "title": "InstructPix2Pix: Learning to Follow Image Editing Instructions",
+        "retrieval_score": 6.2407
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P026",
+      "P081",
+      "P051"
+    ],
+    "difference_claim": "단순 P/F/V 성능 비교에서 집계 연산의 영공간에 실제 예측 가능한 대비가 존재하는지 묻는 witness 검사로 변경했다. 일반 평균 상쇄·경계 특이성·정서 선택성에 서로 다른 반증을 부여한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=fMRI+parcel+averaging+within+parcel+zero+mean+residual+emotion+representation&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ15",
+    "query_en": "selective state space fMRI emotion nonlinear capacity hemodynamic sampling controls",
+    "executed_at": "2026-11-12T16:04:52.764662+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P028",
+        "title": "Brain-Mamba: Encoding Brain Activity via Selective State Space Models",
+        "retrieval_score": 31.7352
+      },
+      {
+        "canonical_id": "P093",
+        "title": "Scaling Vision with Sparse Mixture of Experts",
+        "retrieval_score": 16.946
+      },
+      {
+        "canonical_id": "P034",
+        "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+        "retrieval_score": 16.7451
+      },
+      {
+        "canonical_id": "P035",
+        "title": "ImageBind: One Embedding Space To Bind Them All",
+        "retrieval_score": 15.5754
+      },
+      {
+        "canonical_id": "P043",
+        "title": "VideoMamba: State Space Model for Efficient Video Understanding",
+        "retrieval_score": 11.6016
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P028",
+      "P034",
+      "P086"
+    ],
+    "difference_claim": "고정 대 선택 SSM의 이분법을 입력/관측 비선형, injection gate, 전이 gate의 위치별 함수족 경쟁으로 바꿨다. 상태 계산과 일반 용량을 구별할 수 있는 수준까지만 주장을 유지한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=selective+state+space+fMRI+emotion+nonlinear+capacity+hemodynamic+sampling+controls&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ16",
+    "query_en": "Shared private audiovisual representations emotional brain encoding bottleneck capacity information sufficiency",
+    "executed_at": "2026-11-12T16:04:52.971364+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P038",
+        "title": "Attention Bottlenecks for Multimodal Fusion",
+        "retrieval_score": 19.3056
+      },
+      {
+        "canonical_id": "P037",
+        "title": "Factorized Contrastive Learning: Going Beyond Multi-view Redundancy",
+        "retrieval_score": 14.5171
+      },
+      {
+        "canonical_id": "P086",
+        "title": "Scaling laws for language encoding models in fMRI",
+        "retrieval_score": 13.2555
+      },
+      {
+        "canonical_id": "P036",
+        "title": "Contrastive Audio-Visual Masked Autoencoder",
+        "retrieval_score": 10.3176
+      },
+      {
+        "canonical_id": "P084",
+        "title": "Label-free Concept Bottleneck Models",
+        "retrieval_score": 9.8869
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P035",
+      "P037",
+      "P053"
+    ],
+    "difference_claim": "Round2의 gate/private 혼합 조작을 정보원 접근×공유 병목의 충분성 경계로 재구성했다. 축 이름을 찾는 대신 동일 정보를 보존한 좌표 변화와 정보원 제거를 구분한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Shared+private+audiovisual+representations+emotional+brain+encoding+bottleneck+capacity+information+sufficiency&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ17",
+    "query_en": "Modality specific causal temporal windows emotion fMRI encoder smoothing hemodynamic identifiability",
+    "executed_at": "2026-11-12T16:04:53.181549+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P035",
+        "title": "ImageBind: One Embedding Space To Bind Them All",
+        "retrieval_score": 11.3213
+      },
+      {
+        "canonical_id": "P013",
+        "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+        "retrieval_score": 10.0342
+      },
+      {
+        "canonical_id": "P030",
+        "title": "Brain Harmony: A Multimodal Foundation Model Unifying Morphology and Function into 1D Tokens",
+        "retrieval_score": 9.8119
+      },
+      {
+        "canonical_id": "P018",
+        "title": "The Wisdom of a Crowd of Brains: A Universal Brain Encoder",
+        "retrieval_score": 8.2201
+      },
+      {
+        "canonical_id": "P054",
+        "title": "Nonlinear ICA Using Auxiliary Variables and Generalized Contrastive Learning",
+        "retrieval_score": 8.0734
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P038",
+      "P043",
+      "P002"
+    ],
+    "difference_claim": "일반 HRF 통제에서 나아가 서로 다른 생성기전이 각자 관측 파라미터를 적합한 뒤에도 구분되는지 검사한다. 유효 예측창과 신경 시간상수를 다른 결론으로 분리했다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Modality+specific+causal+temporal+windows+emotion+fMRI+encoder+smoothing+hemodynamic+identifiability&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ18",
+    "query_en": "Event boundary memory reset emotion fMRI forgetting state matched observation models",
+    "executed_at": "2026-11-12T16:04:53.391344+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 24.6482
+      },
+      {
+        "canonical_id": "P041",
+        "title": "Audio-Visual Event Localization in Unconstrained Videos",
+        "retrieval_score": 13.1894
+      },
+      {
+        "canonical_id": "P017",
+        "title": "Brain-IT: Image Reconstruction from fMRI via Brain-Interaction Transformer",
+        "retrieval_score": 12.5649
+      },
+      {
+        "canonical_id": "P043",
+        "title": "VideoMamba: State Space Model for Efficient Video Understanding",
+        "retrieval_score": 9.8735
+      },
+      {
+        "canonical_id": "P076",
+        "title": "Diffusion Posterior Sampling for General Noisy Inverse Problems",
+        "retrieval_score": 9.438
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P089",
+      "P044"
+    ],
+    "difference_claim": "기억 소거의 효과를 경계 단서 전달과 훈련 분포이탈에서 분리하고, 각 모형 관측 파라미터를 재적합한 후에도 필요한 최소 연산인지 검정한다. 기존 BI-RQ08 계열과 공동 설계로 통합한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Event+boundary+memory+reset+emotion+fMRI+forgetting+state+matched+observation+models&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ19",
+    "query_en": "Audiovisual incongruence emotional neural encoding additive interaction paired prediction loss comparison",
+    "executed_at": "2026-11-12T16:04:53.604806+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P038",
+        "title": "Attention Bottlenecks for Multimodal Fusion",
+        "retrieval_score": 10.3242
+      },
+      {
+        "canonical_id": "P092",
+        "title": "Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-based optimization to spiking neural networks",
+        "retrieval_score": 9.6622
+      },
+      {
+        "canonical_id": "P100",
+        "title": "Statistical inference on representational geometries",
+        "retrieval_score": 9.3247
+      },
+      {
+        "canonical_id": "P089",
+        "title": "Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning",
+        "retrieval_score": 8.3296
+      },
+      {
+        "canonical_id": "P076",
+        "title": "Diffusion Posterior Sampling for General Noisy Inverse Problems",
+        "retrieval_score": 8.1788
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P036",
+      "P038",
+      "P041"
+    ],
+    "difference_claim": "Round2의 조건별 R² 차이를 같은 표본의 공통 단위 손실 차이로 재정의하고 정보표현 차이와 결합 함수 차이를 분리했다. 이는 neural fusion 우열이 아니라 조건부 additive 충분성의 검정이다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=Audiovisual+incongruence+emotional+neural+encoding+additive+interaction+paired+prediction+loss+comparison&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ20",
+    "query_en": "affective neural encoding future prediction versus past memory matched causal video objectives",
+    "executed_at": "2026-11-12T16:04:53.928604+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P046",
+        "title": "Revisiting Feature Prediction for Learning Visual Representations from Video",
+        "retrieval_score": 15.7521
+      },
+      {
+        "canonical_id": "P013",
+        "title": "V-JEPA 2: Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+        "retrieval_score": 13.069
+      },
+      {
+        "canonical_id": "P075",
+        "title": "Flow Matching Guide and Code",
+        "retrieval_score": 9.5609
+      },
+      {
+        "canonical_id": "P078",
+        "title": "FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models",
+        "retrieval_score": 9.4454
+      },
+      {
+        "canonical_id": "P088",
+        "title": "A natural language fMRI dataset for voxelwise encoding models",
+        "retrieval_score": 9.033
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P008",
+      "P046",
+      "P066"
+    ],
+    "difference_claim": "영상모델 적용 자체가 아니라 현재 내용·복원·과거 상태를 분리하고 독립 정서 대비에서 필요한 정보를 규정하는 실험적 대립이다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=affective+neural+encoding+future+prediction+versus+past+memory+matched+causal+video+objectives&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ21",
+    "query_en": "emotion neural representations metadata suppression selective information loss visual semantic context controls",
+    "executed_at": "2026-11-12T16:04:54.171669+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P050",
+        "title": "Who Needs Labels? Adapting Vision Foundation Models With the Metadata You Already Have",
+        "retrieval_score": 15.7217
+      },
+      {
+        "canonical_id": "P051",
+        "title": "Similarity of Neural Network Representations Revisited",
+        "retrieval_score": 9.7412
+      },
+      {
+        "canonical_id": "P009",
+        "title": "Common and stimulus-type-specific brain representations of negative affect",
+        "retrieval_score": 9.333
+      },
+      {
+        "canonical_id": "P049",
+        "title": "Invariant Risk Minimization",
+        "retrieval_score": 9.1635
+      },
+      {
+        "canonical_id": "P034",
+        "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+        "retrieval_score": 8.7291
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P049",
+      "P050",
+      "P007"
+    ],
+    "difference_claim": "일반화 점수의 최대화 대신 제거 가능한 환경과 유지되어야 하는 맥락의 비대칭 신경 손실을 설명 대상으로 삼는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=emotion+neural+representations+metadata+suppression+selective+information+loss+visual+semantic+context+controls&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ22",
+    "query_en": "sparse autoencoder brain alignment functional equivalence basis rotation residual preserving interventions",
+    "executed_at": "2026-11-12T16:04:54.383589+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P093",
+        "title": "Scaling Vision with Sparse Mixture of Experts",
+        "retrieval_score": 10.2543
+      },
+      {
+        "canonical_id": "P022",
+        "title": "Seeing Beyond the Brain: Masked Modeling Conditioned Diffusion Model for Human Vision Decoding",
+        "retrieval_score": 10.0428
+      },
+      {
+        "canonical_id": "P039",
+        "title": "MERT: Acoustic Music Understanding Model with Large-Scale Self-supervised Training",
+        "retrieval_score": 9.5012
+      },
+      {
+        "canonical_id": "P096",
+        "title": "Predictive Coding Approximates Backprop along Arbitrary Computation Graphs",
+        "retrieval_score": 9.4381
+      },
+      {
+        "canonical_id": "P036",
+        "title": "Contrastive Audio-Visual Masked Autoencoder",
+        "retrieval_score": 9.438
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P083",
+      "DOC-SAE",
+      "DOC-TRANSCODER"
+    ],
+    "difference_claim": "희소 특징을 뇌지도에 붙이는 것에서 벗어나 분해의 비유일성·계산 사용·신경 대비·잔차의 충분성을 동시에 반박 가능한 기준으로 나눈다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=sparse+autoencoder+brain+alignment+functional+equivalence+basis+rotation+residual+preserving+interventions&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ23",
+    "query_en": "compositional emotion neural encoding unseen combinations shared bilinear interaction identifiability additive baseline",
+    "executed_at": "2026-11-12T16:04:54.595510+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P008",
+        "title": "Emotion schemas are embedded in the human visual system",
+        "retrieval_score": 10.9661
+      },
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 9.3963
+      },
+      {
+        "canonical_id": "P099",
+        "title": "In Search of Lost Domain Generalization",
+        "retrieval_score": 7.5695
+      },
+      {
+        "canonical_id": "P037",
+        "title": "Factorized Contrastive Learning: Going Beyond Multi-view Redundancy",
+        "retrieval_score": 7.473
+      },
+      {
+        "canonical_id": "P063",
+        "title": "Comparing spatial null models for brain maps",
+        "retrieval_score": 6.8699
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P001",
+      "P008",
+      "P083"
+    ],
+    "difference_claim": "범주 수나 비선형 정확도를 비교하는 대신 성분은 관측했지만 관계는 보지 못한 평가에서 재사용 가능한 신경 연산의 충분성을 판별한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=compositional+emotion+neural+encoding+unseen+combinations+shared+bilinear+interaction+identifiability+additive+baseline&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ24",
+    "query_en": "emotion cortical gradient temporal context hemodynamic convolution neural filter identifiability",
+    "executed_at": "2026-11-12T16:04:54.816515+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P086",
+        "title": "Scaling laws for language encoding models in fMRI",
+        "retrieval_score": 11.2226
+      },
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 9.5316
+      },
+      {
+        "canonical_id": "P092",
+        "title": "Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-based optimization to spiking neural networks",
+        "retrieval_score": 7.7071
+      },
+      {
+        "canonical_id": "P061",
+        "title": "BrainSpace: a toolbox for the analysis of macroscale gradients in neuroimaging and connectomics datasets",
+        "retrieval_score": 7.6038
+      },
+      {
+        "canonical_id": "P024",
+        "title": "Cinematic Mindscapes: High-quality Video Reconstruction from Brain Activity",
+        "retrieval_score": 7.5222
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P066",
+      "P068",
+      "P028"
+    ],
+    "difference_claim": "원래 신경 통합시간 지도 주장을 철회하고 명시된 주석 입력범위의 문맥 상호작용과 관측모형 동치류를 평가한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=emotion+cortical+gradient+temporal+context+hemodynamic+convolution+neural+filter+identifiability&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ25",
+    "query_en": "mixture experts routing brain alignment gate content information equivalence",
+    "executed_at": "2026-11-12T16:04:55.030897+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P093",
+        "title": "Scaling Vision with Sparse Mixture of Experts",
+        "retrieval_score": 30.1431
+      },
+      {
+        "canonical_id": "P035",
+        "title": "ImageBind: One Embedding Space To Bind Them All",
+        "retrieval_score": 10.1182
+      },
+      {
+        "canonical_id": "P089",
+        "title": "Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning",
+        "retrieval_score": 8.518
+      },
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 7.8231
+      },
+      {
+        "canonical_id": "P028",
+        "title": "Brain-Mamba: Encoding Brain Activity via Selective State Space Models",
+        "retrieval_score": 7.5289
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P093",
+      "P037"
+    ],
+    "difference_claim": "원안의 gate 고유정보를 철회하고 완전 입력 아래 기능적 좌표의 접근성·동등 재routing 안정성으로 수정했다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=mixture+experts+routing+brain+alignment+gate+content+information+equivalence&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ26",
+    "query_en": "emotion dynamic connectivity hidden Markov continuous volatility covariance diagonal variance",
+    "executed_at": "2026-11-12T16:04:55.254948+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P067",
+        "title": "Brain network dynamics are hierarchically organized in time",
+        "retrieval_score": 19.4528
+      },
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 12.6097
+      },
+      {
+        "canonical_id": "P041",
+        "title": "Audio-Visual Event Localization in Unconstrained Videos",
+        "retrieval_score": 10.5821
+      },
+      {
+        "canonical_id": "P087",
+        "title": "Semantic reconstruction of continuous language from non-invasive brain recordings",
+        "retrieval_score": 9.8928
+      },
+      {
+        "canonical_id": "P075",
+        "title": "Flow Matching Guide and Code",
+        "retrieval_score": 9.2294
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P067",
+      "P066"
+    ],
+    "difference_claim": "비대각 구조와 진폭을 분리하고 같은 관측 공간기하를 갖는 서로 다른 시간과정으로 상태 존재 해석을 직접 공격한다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=emotion+dynamic+connectivity+hidden+Markov+continuous+volatility+covariance+diagonal+variance&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ27",
+    "query_en": "semantic preserving stimulus edits affective neural contrast selection bias acceptance overlap controls",
+    "executed_at": "2026-11-12T16:04:55.472847+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P069",
+        "title": "SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations",
+        "retrieval_score": 16.0271
+      },
+      {
+        "canonical_id": "P071",
+        "title": "Null-text Inversion for Editing Real Images using Guided Diffusion Models",
+        "retrieval_score": 14.2105
+      },
+      {
+        "canonical_id": "P087",
+        "title": "Semantic reconstruction of continuous language from non-invasive brain recordings",
+        "retrieval_score": 11.0046
+      },
+      {
+        "canonical_id": "P097",
+        "title": "On over-fitting in model selection and subsequent selection bias in performance evaluation",
+        "retrieval_score": 9.2392
+      },
+      {
+        "canonical_id": "P078",
+        "title": "FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models",
+        "retrieval_score": 8.8296
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P070",
+      "P078"
+    ],
+    "difference_claim": "편집 모델 성능이 아닌 조작 타당성 기준을 통과하면서 살아남는 신경 대비를 연구 대상으로 설정.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=semantic+preserving+stimulus+edits+affective+neural+contrast+selection+bias+acceptance+overlap+controls&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ28",
+    "query_en": "language bottleneck selective affective neural prediction loss nonlinear probes semantic controls",
+    "executed_at": "2026-11-12T16:04:55.747781+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P085",
+        "title": "The neural architecture of language: Integrative modeling converges on predictive processing",
+        "retrieval_score": 16.3518
+      },
+      {
+        "canonical_id": "P087",
+        "title": "Semantic reconstruction of continuous language from non-invasive brain recordings",
+        "retrieval_score": 14.2976
+      },
+      {
+        "canonical_id": "P081",
+        "title": "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models",
+        "retrieval_score": 12.5783
+      },
+      {
+        "canonical_id": "P046",
+        "title": "Revisiting Feature Prediction for Learning Visual Representations from Video",
+        "retrieval_score": 11.8411
+      },
+      {
+        "canonical_id": "P092",
+        "title": "Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-based optimization to spiking neural networks",
+        "retrieval_score": 11.6655
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P081",
+      "P015",
+      "P051"
+    ],
+    "difference_claim": "고정된 실제 신경 대비의 예측손실에 대한 병목 종류×대비 종류의 상호작용으로 좁혔다. 단계 성능 차이를 인간 뇌의 정보 소실로 해석하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=language+bottleneck+selective+affective+neural+prediction+loss+nonlinear+probes+semantic+controls&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ29",
+    "query_en": "narrative order recency weighted event representations affective brain encoding temporal controls",
+    "executed_at": "2026-11-12T16:04:55.981535+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 22.5706
+      },
+      {
+        "canonical_id": "P018",
+        "title": "The Wisdom of a Crowd of Brains: A Universal Brain Encoder",
+        "retrieval_score": 12.9079
+      },
+      {
+        "canonical_id": "P086",
+        "title": "Scaling laws for language encoding models in fMRI",
+        "retrieval_score": 11.6292
+      },
+      {
+        "canonical_id": "P076",
+        "title": "Diffusion Posterior Sampling for General Noisy Inverse Problems",
+        "retrieval_score": 9.7862
+      },
+      {
+        "canonical_id": "P047",
+        "title": "DINOv3",
+        "retrieval_score": 9.3359
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P085",
+      "P086",
+      "P066"
+    ],
+    "difference_claim": "같은 사건집합의 원순서 우위를 recency·OOD·시간관측과 경쟁시키도록 좁혔다. 순서 자체와 순서의 의미를 완전히 분리했다는 주장은 하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=narrative+order+recency+weighted+event+representations+affective+brain+encoding+temporal+controls&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ30",
+    "query_en": "signed prediction error neural encoding emotional stimuli nonlinear readout efficiency",
+    "executed_at": "2026-11-12T16:04:56.191797+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P054",
+        "title": "Nonlinear ICA Using Auxiliary Variables and Generalized Contrastive Learning",
+        "retrieval_score": 12.581
+      },
+      {
+        "canonical_id": "P089",
+        "title": "Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning",
+        "retrieval_score": 12.4191
+      },
+      {
+        "canonical_id": "P055",
+        "title": "Variational Autoencoders and Nonlinear ICA: A Unifying Framework",
+        "retrieval_score": 11.7303
+      },
+      {
+        "canonical_id": "P102",
+        "title": "Conditional independence testing based on a nearest-neighbor estimator of conditional mutual information",
+        "retrieval_score": 9.5406
+      },
+      {
+        "canonical_id": "P096",
+        "title": "Predictive Coding Approximates Backprop along Arbitrary Computation Graphs",
+        "retrieval_score": 8.4233
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P089",
+      "P046"
+    ],
+    "difference_claim": "원안의 추가정보 주장을 폐기하고 동일정보 재매개화의 표본효율×정서대비 선택성으로 실질적으로 변경했다. 신경 error unit의 실재 검증은 아니다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=signed+prediction+error+neural+encoding+emotional+stimuli+nonlinear+readout+efficiency&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ31",
+    "query_en": "weight tying recurrent neural networks brain encoding sample efficiency generalization",
+    "executed_at": "2026-11-12T16:04:56.498664+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P092",
+        "title": "Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-based optimization to spiking neural networks",
+        "retrieval_score": 12.7449
+      },
+      {
+        "canonical_id": "P075",
+        "title": "Flow Matching Guide and Code",
+        "retrieval_score": 12.5086
+      },
+      {
+        "canonical_id": "P066",
+        "title": "Discovering event structure in continuous narrative perception and memory",
+        "retrieval_score": 12.4521
+      },
+      {
+        "canonical_id": "P091",
+        "title": "A solution to the learning dilemma for recurrent networks of spiking neurons",
+        "retrieval_score": 10.5469
+      },
+      {
+        "canonical_id": "P096",
+        "title": "Predictive Coding Approximates Backprop along Arbitrary Computation Graphs",
+        "retrieval_score": 9.7849
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P090",
+      "P042"
+    ],
+    "difference_claim": "재귀의 뇌 구현 판별에서 공유제약의 학습/길이 전이 효율로 핵심 주장을 바꿨다. exact-unroll 통제는 결과가 아니라 미실행 검증 절차다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=weight+tying+recurrent+neural+networks+brain+encoding+sample+efficiency+generalization&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  },
+  {
+    "rq_id": "RQ32",
+    "query_en": "brain guided learning semantic predicted neural targets cross subject generalization",
+    "executed_at": "2026-11-12T16:04:56.710986+09:00",
+    "local_corpus_size": 103,
+    "local_method": "제목·원질문·발견·한계·전이·모델 필드의 문서빈도 가중 토큰 겹침; 전수103편 점수화",
+    "local_top5": [
+      {
+        "canonical_id": "P054",
+        "title": "Nonlinear ICA Using Auxiliary Variables and Generalized Contrastive Learning",
+        "retrieval_score": 10.1196
+      },
+      {
+        "canonical_id": "P024",
+        "title": "Cinematic Mindscapes: High-quality Video Reconstruction from Brain Activity",
+        "retrieval_score": 9.9571
+      },
+      {
+        "canonical_id": "P071",
+        "title": "Null-text Inversion for Editing Real Images using Guided Diffusion Models",
+        "retrieval_score": 9.8752
+      },
+      {
+        "canonical_id": "P085",
+        "title": "The neural architecture of language: Integrative modeling converges on predictive processing",
+        "retrieval_score": 9.0935
+      },
+      {
+        "canonical_id": "P089",
+        "title": "Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning",
+        "retrieval_score": 9.0776
+      }
+    ],
+    "expert_closest_prior_ids": [
+      "P050",
+      "P049"
+    ],
+    "difference_claim": "신경 대 무작위 감독 비교를 실제 측정 대 자극으로 예측한 대체 신경 교사의 추가 효용 질문으로 변경했다. 잔차를 순수 정서나 자극과 독립인 뇌 정보로 명명하지 않는다.",
+    "github_supplement": {
+      "url": "https://github.com/search?q=brain+guided+learning+semantic+predicted+neural+targets+cross+subject+generalization&type=repositories",
+      "status": "접근 실패",
+      "error_type": "HTTPError"
+    },
+    "verdict": "제한된 근접 선행연구 대조 완료; 차별 가설 E3; 전체 문헌의 부재·세계 최초 미확정",
+    "external_limits": "Crossref/arXiv CONNECT403; 현재 검색 범위로 최신 문헌 전체의 비중복을 확정하지 않음"
+  }
+]

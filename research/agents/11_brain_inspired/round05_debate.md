@@ -1,0 +1,299 @@
+# Agent 11 Round 5 실제 입장
+
+2026-11-12. RP03 회의적 비판자와 RP08 데이터통계 검토자의 독립 입장이다. 새 신경실험은 수행하지 않았고, 피험자5명의 exact sign-flip 분해능만 실제 열거로 검산했다.
+
+## RP03 / RQ18 · 회의적비판자 · 수정
+
+### 핵심 입장
+
+현재 설계는 경계 부호화와 명시적 forgetting 연산의 예측 효용을 비교하는 유망한 조건부 모델 연구다. 경계 입력의 접근 경로를 일치시키고 관측 후 모형 복구를 통과하기 전에는 과거 소거의 신경적 필요성 또는 뇌 reset 기전으로 추진해서는 안 된다.
+
+### 가장 약한 가정
+
+readout에 boundary indicator를 똑같이 제공하면 state update 단계의 정보 접근도 같아진다는 가정이다. 명시적 reset 모델은 경계를 상태 갱신에 사용하므로, 대조 상태모형에는 경계를 readout에만 제공하면 비교가 비대칭이다.
+
+### 가장 강한 대안
+
+경계 자체가 제공하는 사건 내용·시간 위치 정보와 더 적합한 유효 시간필터가 이득을 만든다. 또한 충분히 유연한 비명시-reset 상태모형은 경계 입력으로 동일한 forgetting 함수를 내부적으로 구현할 수 있다. 이는 독립적인 인간 기억 초기화 없이도 관측 예측을 재현하는 대안이다.
+
+### 모형 동등성
+
+**identity:** h_t=F_theta((1−b_t)h_(t−1)+b_t*h0,x_t)라면 F_tilde(h,x,b)=F_theta((1−b)h+b*h0,x)인 boundary-input 상태 업데이트는 같은 함수를 구현할 수 있다. soft rho도 동일하게 업데이트 함수에 흡수될 수 있다.
+
+**implication:** 명시적 reset 유무라는 구현 차이는 같은 입력과 충분한 함수족에서 관측적으로 식별되지 않을 수 있다. never-reset 대신 no-explicit-reset이라 부르고, 실제로 어떤 내부 gating을 제한했는지 명시해야 한다.
+
+**what_can_be_tested:** 사전 제한한 함수족·학습예산에서 명시적 경계 forgetting 좌표가 독립 정서 신경 대비의 일반화 위험을 줄이는지, 단순 관측필터 설명을 넘어서는지를 검정할 수 있다. 그 결과는 미시 회로 구현의 고유 식별이 아니다.
+
+### 판별 예측
+
+과거-only 특징·경계 time_available·상태 업데이트의 경계 접근·초기상태·reset 학습 노출을 맞춘 뒤, 경계 forgetting이 boundary-input no-explicit-reset, 유한창, generic decay 및 조건부 random 위치 forgetting보다 보류 영화의 사전 정서 신경 대비 손실을 줄여야 한다. 그 이득은 공통 HRF와 후보별 동일 자유도의 HRF/FIR 재적합 양쪽에서 재현되어야 한다.
+
+### 필수 수정
+
+- 주 비교에서는 경계 b_t를 대조 F_theta의 상태 업데이트와 readout에도 같은 시점에 제공한다. 현재 indicator-readout×forgetting의 2×2는 입력정보 동일성을 자동 보장하지 않으므로 보조 ablation으로 구분한다.
+
+- 명시적 forgetting을 흡수한 exact functional control을 만들고 같은 상태/출력 예측인지 점검한다. 동등 구현에서 다른 신경 점수가 나오면 readout·최적화·구현 차이를 먼저 조사한다.
+
+- 한 정서 대비 z_A=u_AᵀY와 그 u_A 선택규칙을 개발 영화에서 고정하고, 전체 BOLD 손실과 별도 보고한다. non-affective 대비와의 차이까지 있어야 정서 선택성으로 확장한다.
+
+- 경계 검출은 신경 Y·정서 A를 사용하지 않고 자극만으로 정의한다. 사람의 사후 경계 주석은 online 즉시 가용성의 증거가 아니므로 검출 지연과 time_available을 기록한다.
+
+- 내용량·컷·음향 onset·경계밀도·구간길이를 맞춘 forgetting 위치 대조를 유지한다. norm/예상오차 matching은 공통 비개입 reference 모델의 사전 상태로 계산해 treatment 후 변수에 조건화하지 않는다.
+
+- 상태모형 학습은 비정서 자극 예측, BOLD readout 적합은 독립 내부 분할로 분리한다. 각 후보의 파라미터 수·초기상태·reset 노출·seed·탐색 예산을 기록한다.
+
+- 신경 기전 표현은 관측상 효율적인 제한된 상태 갱신 규칙으로 좁힌다. P066과의 직접 차이는 경계 단서와 명시적 forgetting의 동일정보 비교이며 새 모델 이름이 아니다.
+
+### HRF·시간 통제
+
+- 원 물리시간에서 자극 feature, film onset, BOLD, 외부 1Hz consensus를 정렬한다. annotation lag와 HRF는 개발 자료에서 따로 추정하되 높은 공선성에 따른 민감도 범위를 보고한다.
+
+- 각 후보에게 동일한 nuisance family·탐색 예산을 허용하되 test에는 고정한다. 공통 고정 관측모형 결과와 후보별 재적합 결과를 둘 다 보존한다.
+
+- 상태 reset은 과거 입력을 줄여 HRF/FIR·유한창의 변화와 같은 예측을 낼 수 있다. 두 생성세계에 관측 잡음·film 구조를 붙이고 상대 모형의 nuisance 재적합까지 포함한 복구표를 먼저 만든다.
+
+- zero-phase smoothing, 미래 프레임을 포함한 clip feature, 사후 caption, 미래를 이용한 경계 검출이 causal 경로에 섞이지 않도록 한다. buffer는 최대 feature 과거창과 HRF/FIR support 및 검출 지연을 기준으로 정한다.
+
+- 영화/run 시작의 실험적 초기화와 자연 사건경계를 분리한다. 경계 직후 동일 자극 특성의 잔류 BOLD와 latent state 효과가 독립적으로 구별되지 않으면 미결정으로 남긴다.
+
+### null·일반화
+
+**unit:** Emo-FilM은 공식 요약상 fMRI 30명·consensus 14영화다. 실제 참가자×영화 가용행렬을 확인하고 시점 수를 독립 표본수로 삼지 않는다.
+
+**split:** 영화 전체 외부 홀드아웃, 훈련/개발에서 모든 lag·u_A·boundary rule·head tuning 고정. 새 참가자 일반화와 같은 참가자/새 영화 일반화는 별도 estimand다.
+
+**null:** 같은 연산을 가진 조건부 random schedule을 자극의 공통 관측 covariate로 맞춘다. 단순 시점 shuffle은 자기상관을 파괴하므로 주 null로 쓰지 않는다. random 위치는 실제 경계가 임의 배정됐다는 실험적 null이 아니라 모형 특이성 대조다.
+
+**uncertainty:** 참가자와 영화의 교차 의존성을 반영하고 실제 관측된 조합만 사용한다. 30×14×시점으로 N을 과장하지 않는다. 외부 consensus는 참가자별 연속 정답이 아니다.
+
+### 양성 결과의 범위
+
+강한 동일정보·관측 대조 후 보류 정서 대비에서 이득이 남으면, 지정한 함수족/예산에서 경계 위치에 정렬된 forgetting 규칙이 유용한 모델 제약임을 지지한다. 뇌가 상태를 영으로 초기화한다거나 회로가 해당 gate를 구현한다는 증거는 아니다.
+
+### 음성 결과의 범위
+
+**indicator_sufficient:** 경계 입력을 받은 no-explicit-reset이 동등하면 추가 explicit reset parameterization의 필요성을 지지하지 않는다.
+
+**finite_window_sufficient:** 유한창/decay로 충분하면 위치 특이 소거보다 일반 기억길이 조절 설명을 유지한다.
+
+**exposure_effect:** reset-aware 훈련 후 차이 소멸이면 test-time 분포 이탈 또는 초기상태 prior가 원인일 수 있다.
+
+**non_identifiable:** 생성세계 복구가 실패하거나 CI가 넓으면 두 신경 계산의 동일성·부재가 아니라 현재 설계의 미결정이다.
+
+### 판단을 바꿀 증거
+
+- 모든 대조에 state-level 경계 접근을 일치시킨 후에도 여러 held-out 영화·참가자에서 사전 대비 방향과 효과가 유지됨.
+
+- 동등 구현은 동등하게, 실제 다른 생성기전은 nuisance 재적합 후에도 구분하는 복구 검정과 거짓양성 보정이 통과함.
+
+- 내용·경계·HRF의 공유 예측으로 설명되지 않는 새 자극 대비가 제시되고 독립 신경 측정에서 재현됨. 이 경우 수정에서 조건부 추진으로 바꿀 수 있음.
+
+- 효과가 경계정보의 불균형, 단일 HRF, 사후 경계 또는 전체 BOLD 향상에만 의존하면 과학 RQ 범위를 축소하거나 방법 후보로 내림.
+
+### 미해결 의견 차이
+
+관측상 forgetting parameterization의 효율을 상태 갱신의 필요성이라고 부를 수 있는 범위가 남는다. 제안자와 기본 모델 비교 가치는 공유하지만, 미시적 기억 소거 해석에는 반대한다. 전체 함수족에서의 필요성은 현재 자료로 식별할 수 없다.
+
+### 자원·실현성
+
+**plan:** 현재 환경 관측은 약4 CPU quota·32GiB이며 GPU 추론 성공은 없다. 이미 추출한 특징과 작은 causal head를 쓰는 1차 검정은 계획 가능하다. VideoPrism은 frozen clip encoder일 뿐 recurrent state를 제공하는 모델로 간주하지 않는다.
+
+**checkpoint:** CLIP ViT-B/32 공식 링크·해시 확인은 되었으나 load 미검증이다. 기존 cache가 있으면 해시·한 입력 shape를 확인하고, 없으면 기존 특징으로 작은 baseline부터 진행한다. CLIP은 필요한 시간 state의 대체재가 아니라 feature 기준이다.
+
+**conditional_start:** Emo-FilM의 실제 film-to-scanner 정렬·feature time_available·독립 boundary와 정서 대비의 개발 규칙을 확인하면 작은 자료로 시행한다. 스키마 확인을 이 토론 완료의 조건으로 두지 않는다.
+
+**stop_rule:** 동등 통제·생성모형 복구가 실패하면 큰 모델/GPU 확장 전에 중단하고 식별 가능한 경계 단서의 예측 충분성만 보고한다.
+
+### 기존 근거
+
+- [P066 · Discovering event structure in continuous narrative perception and memory](https://github.com/brainiak/brainiak/blob/master/src/brainiak/eventseg/event.py) — 본문: 아니오; 공식 문서/코드만 확인; Discussion: 아니오; 근거: E1-공식 코드 및 tutorial; 논문 본문·Discussion 미확인
+
+- [P089 · Deep Predictive Coding Networks for Video Prediction and Unsupervised Learning](https://github.com/coxlab/prednet) — 본문: 논문 본문 미열람; 공식 코드·문서 직접 확인; Discussion: 아니오; 근거: E1: 직접 열람한 공식 코드/문서에 한정; E2: 서지·README 논문요약; E3: transfer_idea; 본문/Discussion 미확인
+
+- [P044 · VideoPrism: A Foundational Visual Encoder for Video Understanding](https://github.com/google-deepmind/videoprism) — 본문: 예: 공식PMLR PDF27쪽 확보;§1–2.3,§3.5–3.6,§5 직접읽음;전문 전체 정독은 아님; Discussion: 전용 Discussion 절 없음;§3.6 Limitations,p8와§5 Conclusion,p9 직접읽음; 근거: E1(논문 방법·Limitations 직접+공식코드);신경전이는E3
+
+- [P042 · Temporal Cycle-Consistency Learning](https://github.com/google-research/google-research/tree/master/tcc) — 본문: 아니오: 논문 본문 미접근; 공식 코드·문서만 직접확인; Discussion: 아니오: 저자 Discussion·논문 future work 미확인; 근거: E1(공식코드·README 범위);논문본문 미검증;신경전이는E3
+
+- [P002 · Emo-FilM: A multimodal dataset for affective neuroscience using naturalistic stimuli](https://raw.githubusercontent.com/OpenNeuroDatasets/ds004892/cdf68fe448ad180a476fa2371473a1a6ed063774/dataset_description.json) — 본문: 아니오; 프록시 403; Discussion: 아니오; 근거: E2
+
+- [P100 · Statistical inference on representational geometries](https://elifesciences.org/articles/82566) — 본문: 예: 공식 XML 저장·본문 검토; Discussion: 예: Discussion s3-1–s3-6; 근거: E1
+
+- [P101 · Representational models: A common framework for understanding encoding, pattern-component, and representational-similarity analysis](https://github.com/rsagroup/rsaModelComparison) — 본문: 아니오; Discussion: 아니오; 근거: E1
+
+## RP08 / RQ14 · 데이터통계검토자 · 조건부
+
+### 핵심 입장
+
+고정된 선형 집계의 null-space를 재추가하는 첫 검정은 checkpoint 없이 가능하며 조건부 추진할 수 있다. 다만 Horikawa의 5명으로 피험자 모집단 유의성을 강하게 주장하거나, 확인되지 않은 동일 자극 개인 내 반복을 가정하는 현재의 신뢰도 문구는 수정해야 한다.
+
+### 가장 약한 가정
+
+Horikawa의 이벤트 수가 많다는 사실이 충분한 피험자 수와 독립 반복 신뢰도를 보장한다는 가정이다. 공식 감사에서는 각 참가자의 2,196개 이벤트 ID가 모두 달라 동일 자극 개인 내 독립 반복을 확인한 것으로 볼 수 없다.
+
+### 가장 강한 대안
+
+parcel 내부 residual은 정서 특이 코드가 아니라 모든 표적에 유용한 미세 공간 정보·등록 오차·안정된 혈관/측정 패턴·더 많은 readout 자유도를 제공한다. 그 추가 정보가 자극 의미를 전달하면 정서 주석 예측도 함께 증가할 수 있다.
+
+### 판별 예측
+
+같은 보류 자극·피험자·정서 target에서 parcel mean+r_k가 mean-only 및 rank/공간대역 대조보다 예측손실을 줄이는 H1, 실제 atlas와 random contiguous atlas의 H1 차이 H2, 신뢰도·척도를 맞춘 비정서 target 대비 선택적 이득 H3를 별도로 평가한다. H2 또는 H3 실패를 H1 실패로 바꾸지 않는다.
+
+### 필수 수정
+
+- 일차 estimand를 H1으로 고정한다. H2 atlas 특이성과 H3 정서 선택성은 별도 사전 순서/검정 가족으로 두고, H1만 통과했을 때에는 일반 spatial-pattern 접근성으로 보고한다.
+
+- Horikawa는 5명이며 2,196 events/인·61런/인은 참가자 모집단 N을 늘리지 않는다. 피험자 효과 5개를 모두 표시하고, 참가자 조건부 자극 일반화와 피험자 모집단 주장을 구분한다.
+
+- 동일 ID 반복이 확인되지 않았으므로 개인 내 반복 noise ceiling을 가정하지 않는다. 다른 ID의 내용 중복은 독립 반복이 아니며 데이터/세션 변환에서 생긴 복사도 반복으로 세지 않는다.
+
+- 실제 독립 반복이 없으면 정적 자극 홀드아웃의 예측 가능성 파일럿은 진행 가능하나 반복 재현 witness라는 강한 주장은 추가 반복 자료 또는 명시적인 모델 기반 오차추정 조건으로 남긴다.
+
+- 모든 차원축소·whitening·신뢰도·공간대역 matching·atlas 선택·ridge alpha·k 선택은 inner train/development에서 수행한다. test A/Y로 residual 방향이나 잘 맞는 atlas를 고르지 않는다.
+
+- rank 일치를 정보량 일치라 부르지 않는다. mean+r_k의 증가한 접근성과 effective degrees of freedom, random/중복 좌표 증가에 따른 ridge 규제 효과를 분리한다.
+
+- 표준화·측정단위·공변량·loss를 고정한 paired loss를 사용하고 여러 atlas/k/주석 대비 중 가장 큰 결과만 주효과로 택하지 않는다.
+
+### 관측 단위와 추정량
+
+**unit:** 기본 관측은 참가자 i의 자극 s에 대한 dense 피질 신경반응 y_is와 자극 수준 정서 주석 A_s다. 공간 parcel, voxel, model seed, random atlas는 독립 사람 표본이 아니다. A_s가 집계이면 개인 정서 상태를 측정한 것으로 읽지 않는다.
+
+**linear_operator:** 서로 겹치지 않는 고정 parcel 평균 G에서 P=Gᵀ(GGᵀ)⁻¹G, m=Py, r=(I−P)y이며 Gr=0이다. 고정 P의 null-space라는 대수적 사실과 r의 예측/생물학적 의미를 구분한다.
+
+**H1:** train에서 정한 공통 척도의 A_s에 대해 d_is=ell(A_s,f_mean(m_is))−ell(A_s,f_plus(m_is,r_k,is)). 같은 보류 s에서 d를 짝지어 평균한다. ell은 사전 고정한 MSE 등이며 condition마다 정규화 분모를 바꾸지 않는다.
+
+**H2:** 같은 i,s의 d_actual−평균_j d_random,j를 비교한다. random atlas 수는 Monte Carlo 정밀도를 높일 뿐 신경 표본수를 늘리지 않는다.
+
+**H3:** 사전 정의하고 training variance로 표준화한 A 대비와 비정서 B 대비의 예측 개선을 비교한다. 차원·척도·신뢰도·공간대역이 충분히 비교 가능한 경우에만 개선의 상호작용을 해석하고, 총 효과를 함께 보고한다.
+
+**conditioning:** V,S 미포함 총 예측량과 V,S 포함 조건부 예측량은 별개의 estimand다. 조건화 집합을 고정하고 결과가 유리한 버전만 선택하지 않는다. 잔차는 정서 고유 정보량이 아니다.
+
+### 분할과 누수
+
+- 같은 영상/내용 중복군은 같은 outer fold로 묶고 run/session 경계와 GLM 추정의 공유 오차를 고려한다. 실제 stim_index와 내용 중복 mapping을 감사한다.
+
+- 원 코드의 2,196−15=2,181과 소개 2,185 차이 및 제외 ID를 사전에 해결/기록한다. label 키가 다르다고 독립 자극으로 세지 않는다.
+
+- 각 참가자에서 새 자극 일반화 효과를 산출하고, 새 참가자 전이는 별도 split으로 보고한다. 같은 참가자 test Y로 정렬/feature selection을 수행하지 않는다.
+
+- 같은 참가자의 반복이 존재하면 모든 같은 자극 반복을 train/test 사이에 누수 없이 배치한다. repeat reliability용 분할과 모델 선택용 분할의 공유 여부를 기록한다.
+
+- 자극×사람에 걸친 의존성을 보존하며 test loss의 임의 시점/voxel bootstrap은 사용하지 않는다.
+
+### 유한 표본 통계 한계
+
+**exact_sign_flip:** 독립 참가자 차이 d_i가 null에서 부호 대칭이라는 가정 아래 n=5의 전수 sign-flip은 2^5=32개다. 절댓값 통계의 양측 exact p 최소치는 2/32=0.0625이므로 이 검정만으로 alpha=.05를 달성할 수 없다. 단측 최소치는 1/32=.03125지만 방향 사전등록이 필요하며 사후 단측 전환으로 해결하지 않는다.
+
+**actual_arithmetic_check:** Python itertools로 다섯 ±1 부호의 32개 조합을 실제 열거하고 평균 통계의 최소 분해능만 검산했다. 신경 데이터 검정이나 검정력 실험을 실행한 것은 아니다.
+
+**multiplicity:** H1/H2/H3·ROI·atlas·k·주석차원의 탐색을 포함하면 유효 p 분해능과 검정력이 더 제한된다. 예컨대 단측 최소 .03125도 세 개 독립 가설의 단순 Bonferroni .0167 문턱을 넘지 못한다. 방향/검정 가족을 결과 보고 후 변경하지 않는다.
+
+**bootstrap:** 5명 cluster bootstrap 또는 수천 자극의 bootstrap이 새로운 사람의 변이를 만들어 주지는 않는다. 소수 참가자의 모집단 CI는 불안정할 수 있어 개인별 추정치·범위와 가정 민감도를 함께 보고한다.
+
+**conditional_inference:** 참가자 5명에 조건부인 새 자극 일반화는 내용군/run 의존성을 보존한 resampling 또는 타당한 exchangeability 가정 아래 평가할 수 있다. 이는 피험자 모집단 유의성과 다른 결론이다.
+
+**parametric_option:** t 또는 계층 모형은 연속 p/CI를 줄 수 있으나 작은 n에서 정규성·분포·prior에 강하게 의존한다. exact 검정의 해상도를 우회한 비모수 확증으로 제시하지 않고 가정 민감도 결과로 한정한다.
+
+**power_plan:** 표본수/자극군 수/신뢰도·개인차 범위를 개발 또는 독립 자료에서 정하고 실제 반복 구조를 가진 simulation으로 H1 최소 의미효과의 power와 CI coverage를 평가하도록 계획한다. 효과크기 숫자는 아직 지정하거나 검증하지 않았다.
+
+**equivalence:** 비유의성은 동등성 증거가 아니다. 최소 의미효과는 과학적 기준과 독립 측정 정밀도로 test 전에 정하고, CI가 그 범위 안에 들어올 때에만 해당 readout/관측 범위의 실질적 동등성을 논한다.
+
+### null·대조
+
+**null:** H1의 residual 추가효과를 겨냥한 조건부 null이 필요하다. 무조건 A label permutation은 mean의 실제 신호까지 지우므로 H1의 정확 null을 자동 구현하지 않는다. train-only reduced-model residual 재표본화는 exchangeability와 reduced-model 적합 조건을 검토한 계획으로만 사용하며 전 pipeline을 다시 적합한다.
+
+**spatial:** 공간 연속·parcel 크기·좌표·표면 mask·공간대역을 보존한 random atlas를 사용하고 하나의 lucky atlas를 고르지 않는다. 이는 특정 atlas의 선택성을 묻는 공간 대조이며 뇌 과정의 무작위 배정을 의미하지 않는다.
+
+**capacity:** mean+k zero-mean residual, mean+k spectrum-matched noise, mean의 중복/가역 재표현, rank-matched 전체 표현을 비교해 추가 열수·ridge penalty 형식의 효과를 감사한다.
+
+**reliability:** SNR/신뢰도 matching은 압축이 만든 실효 손실도 제거할 수 있으므로 원 총 효과와 matching 후 효과를 함께 보존한다. 신뢰도를 결과에 맞춰 정규화하지 않는다.
+
+**HRF:** 정적 beta 비교라도 같은 GLM·HRF 추정·시간 요약을 모든 공간조건에 사용한다. 조건마다 신경요약을 다시 최적화하면 공간 병목 효과와 시간 추정 효과가 섞인다. clip 길이와 인접 시행 오차가 정서 label과 결합하는지도 점검한다.
+
+### 양성 결과의 범위
+
+H1이 재현되면 지정한 피질 관측과 readout에서 parcel mean만으로 A 접근성이 충분하지 않다는 결과다. H2가 추가되면 검토한 random spatial family 대비 경계 특이성이, H3가 추가되면 비교한 표적들 사이 정서 대비 선택성이 지지된다. 인간 뇌가 parcel 평균을 계산하거나 null-space가 순수 정서 코드라는 뜻은 아니다.
+
+### 음성 결과의 범위
+
+**H1_null:** 신뢰도와 검출력이 충분하고 CI가 사전 동등성 범위 안이면 제한된 readout에서 평균의 충분성을 지지한다. 넓은 CI는 미결정이다.
+
+**H2_null:** 실제/random atlas가 같아도 일반 평균 상쇄 H1은 남는다.
+
+**H3_null:** 비정서 대비도 같은 이득이면 정서 선택성만 철회하고 일반 공간정보 회수로 보고한다.
+
+**no_repeat:** 독립 반복이 없으면 반복 안정성 주장은 하지 않는다. 자극 홀드아웃 결과가 있어도 같은 관측의 잡음 천장과 동일시하지 않는다.
+
+### 판단을 바꿀 증거
+
+- 실제 dense 피질 배열·고정 G·A·내용 중복·개인 내 반복 또는 명시적인 대체 오차모형이 확인되고 작은 분석 계약 검증이 통과하면 조건부에서 제한적 파일럿 추진으로 바꾼다.
+
+- 독립 반복에서 r_k가 안정적이고 새로운 내용군에서 H1이 회수되며 H3의 비교가능성이 확보되면 과학적 우선순위를 높인다.
+
+- 참가자 모집단을 주장하려면 독립 참가자 확장 또는 별도 자료 재현과 power 검토가 필요하다. n=6이면 양측 이론 최소 p=.03125가 되지만 그 사실 자체는 충분한 검정력을 보장하지 않는다.
+
+- 효과가 특정 atlas/k 선택·등록 오차·의미 누락·추가 차원/규제에만 의존하면 정서 RQ에서 일반 방법 진단으로 낮춘다.
+
+### 미해결 의견 차이
+
+checkpoint 없이 가능한 H1 파일럿의 가치는 인정한다. 그러나 독립 반복과 피험자 모집단 검정력이 확인되지 않은 상태에서 반복 가능한 정서 코드라는 강한 표현을 유지하는 데 반대한다. 참가자 조건부의 관측적 접근성 결과는 별도 가치가 있다.
+
+### 자원·실현성
+
+**first_pass:** CortexMAE는 필수 실행 모델이 아니다. 고정 G의 mean과 within-parcel residual, train-only 저차원 projection, ridge 대조를 보유 dense 신호의 작은 subset으로 수행하는 CPU 첫 검정이 가능하다.
+
+**memory:** P를 V×V dense 행렬로 만들지 않는다. parcel별 평균과 broadcast subtraction으로 m/r를 계산하고 voxel/자극 block을 사용한다. V=100,000이면 float32 P만 약40GB여서 32GiB 제한을 넘는다. N=2,196,V=100,000의 원행렬 한 개는 약878.4MB(약838MiB)이며 복사본·fold·5명 전체를 추가하면 별도 예산이 필요하다. 이는 가정한 V의 산술 예시이지 실제 배열 크기 확인이 아니다.
+
+**low_rank:** 작은 k의 train-only randomized/incremental projection 또는 blockwise matrix product를 사용하고 test를 포함한 PCA를 금지한다. k를 늘리는 비용과 효과가 유의미한지 먼저 측정한다.
+
+**fallback:** dense 피질 y가 없고 parcel 평균만 있으면 r를 복원해 만들 수 없다. 그 경우 실제 dense 처리본을 확인하거나 독립 자료의 방법 검증으로 분기하며 가상의 null-space 신경 자료를 생성하지 않는다.
+
+**checkpoint_gate:** 향후 CortexMAE를 추가할 때에만 실제 config·피질 mask·입출력 shape·license·checkpoint load를 별도 검증한다. CLIP 의미 feature도 공식 링크 확인과 추론 성공을 구분한다.
+
+**current_environment:** 공통 자원계획의 약4 CPU quota·32GiB·GPU 실행 미확인을 기준으로 한다. 대규모 GPU 학습을 첫 검정의 전제로 두지 않는다.
+
+### 기존 근거
+
+- [P001 · The neural representation of visually evoked emotion is high-dimensional, categorical, and distributed across transmodal brain regions](https://raw.githubusercontent.com/OpenNeuroDatasets/ds002425/3f94b2bf9a75ddb62637c529d30dc40dd4ab5ba1/dataset_description.json) — 본문: 아니오; 프록시 403; Discussion: 아니오; 근거: E2
+
+- [P026 · Scaling Vision Transformers for Functional MRI with Flat Maps](https://github.com/MedARC-AI/CortexMAE) — 본문: 아니오; 공식 README/코드만 확인; Discussion: 아니오; 근거: E1(공식 README/코드 범위; 논문 결과 검증과 구분)
+
+- [P051 · Similarity of Neural Network Representations Revisited](https://proceedings.mlr.press/v97/kornblith19a.html) — 본문: 예; 공식 PDF 직접 열람; Discussion: 예; 결론/한계 해당 절 직접 확인; 근거: E1(본문); 정서·뇌 전이는 E3
+
+- [P060 · A Python Toolbox for Representational Similarity Analysis](https://github.com/rsagroup/rsatoolbox) — 본문: 아니오; E1은 공식 코드·문서만; Discussion: 아니오; 근거: E1(공식 코드/문서만); E2(서지); E3(전이)
+
+- [P100 · Statistical inference on representational geometries](https://elifesciences.org/articles/82566) — 본문: 예: 공식 XML 저장·본문 검토; Discussion: 예: Discussion s3-1–s3-6; 근거: E1
+
+- [P101 · Representational models: A common framework for understanding encoding, pattern-component, and representational-similarity analysis](https://github.com/rsagroup/rsaModelComparison) — 본문: 아니오; Discussion: 아니오; 근거: E1
+
+## 한계
+
+- 배정된 RP03 비판자·RP08 데이터통계검토자 입장만 작성했다. 타 역할의 Round5 발언을 읽거나 합의했다고 주장하지 않는다.
+
+- 실제 신경 데이터·모델·checkpoint를 실행하지 않았다. 5명 sign-flip의 32개 부호 조합과 최소 p 분해능만 표준 Python으로 검산했다.
+
+- 참조 문헌의 본문/코드 수준은 기존 reference catalog와 역할 보고에서 계승한다. 이번 새 원문/Discussion 검증은 없다. P066은 직접 근접 선행으로 코퍼스가 선정했지만 이번 확인은 공식 코드/문서 범위다.
+
+- 데이터 보유 진술과 메타데이터 감사를 인정하며 보유본 전체 schema/숫자 신호를 확인했다고 하지 않는다. 미확인은 실제 분석 분기 조건이고 본 토론의 중단 사유가 아니다.
+
+- P081/P076은 RP08의 전이 원리 자료이지 fMRI 공간 평균의 직접 선행연구라고 제시하지 않는다. 정서/공간 병목 최신 신규성 검색은 미완료다.
+
+- 자기 round05_debate.json/md만 작성하고 공통 파일·Git·다른 역할 파일은 수정하지 않았다.
+
+## 읽기 기록
+
+- discussions/ROUND05_PROTOCOL.md
+
+- discussions/round05_assignments.json
+
+- research_questions/shortlist.json
+
+- literature/novelty/TOP10_REVIEW.md
+
+- datasets/DATASET_INTELLIGENCE_REPORT.md
+
+- datasets/horikawa/verified_spec.md
+
+- pilots/RESOURCE_AND_MODEL_PLAN.md
+
+- axis_map/reference_catalog.csv

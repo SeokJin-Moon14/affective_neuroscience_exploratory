@@ -1,0 +1,107 @@
+{
+  "role": "06_frontier_ai",
+  "round": 5,
+  "verified_on": "2026-11-12",
+  "read_files": ["discussions/ROUND05_PROTOCOL.md", "discussions/round05_assignments.json", "research_questions/shortlist.json", "datasets/DATASET_INTELLIGENCE_REPORT.md", "pilots/RESOURCE_AND_MODEL_PLAN.md", "axis_map/reference_catalog.csv"],
+  "positions": [
+    {
+      "proposal_id": "RP04",
+      "rq_id": "RQ16",
+      "candidate_id": "C05-01",
+      "debate_role": "회의적비판자",
+      "claim": "조건부로 추진할 가치가 있으나 결과의 범위는 검토한 공유 압축·입력·readout 함수족에서의 정서 대비 예측 충분성이다. 큰 병목에서 잔차가 유용해도 인간 뇌에 생물학적 private 경로나 멀티모달 통합기전이 필요하다는 결론은 나오지 않는다.",
+      "best_evidence": ["P035", "P037", "P038", "P053", "P051", "P100", "P101"],
+      "evidence_scope": "P035/P037/P038은 기존 공식 코드·문서 범위다. P053/P051/P100은 기존 선택 본문 검증, P101은 공식 코드 범위다. 이 문헌은 표현·분해·추론의 원리를 뒷받침하지만 본 정서 대비의 양성 결과를 제공하지 않는다. 이번에 새 원문·모델·뇌 분석을 실행하지 않았다.",
+      "already_known": "공유공간이 모든 task-relevant 정보를 보존하지 않을 수 있고 추가 정보원이 제한 모델의 예측을 개선할 수 있다는 점은 일반적인 표현학습 문제다. 신규 질문은 동일 시청각 정보·학습 예산에서 병목/판독 접근성만으로 설명되지 않는 독립 정서 신경 대비의 손실이 실제로 있는가다.",
+      "strongest_alternative": "잔차의 이득은 감각·사건 의미·시간 정합 정보를 shared projection이 버린 탓이거나, 같은 정보를 비선형적으로 풀어내기 쉬운 좌표를 잔차 경로가 추가한 탓이다. 생물학적으로 다른 정보원 없이도 제한된 분해와 readout으로 같은 결과가 나온다. 큰 k에서 성능이 포화된 현상도 공유표현의 충분성이 아니라 작은 표본·최적화·regularization의 한계일 수 있다.",
+      "weakest_assumption": "유한한 k·모델·표본 범위에서 shared readout을 넓히면 공유정보가 충분히 활용되었다고 판단할 수 있다는 가정이다. 파라미터 수를 맞추는 것만으로 동일한 유효 함수족·최적화 난도·정보량을 보장하지 못한다.",
+      "discriminating_prediction": "같은 동결 V,A와 같은 train/test에서 readout 함수족·선택 예산을 고정하고 k×학습량을 늘렸을 때, 단순 압축/좌표 대안은 잔차 이득 D_k의 감소 및 전체 정보 대조로의 접근을 예측한다. 검토한 공유표현이 부족하다는 가설은 독립 정서 대비에서 사전 최소효과보다 큰 D_k가 남고, injective 좌표변환 control에서는 이득이 생기지 않을 것을 예측한다. 어느 결과도 보편 공유표현의 존재/부재를 판정하지 않는다.",
+      "judgment": "조건부",
+      "required_change": [
+        "제목과 결론의 '공유 병목의 용량을 넘어'를 무한 용량 주장으로 읽지 않도록 사전 고정한 k·readout 함수족·표본량 범위를 명시한다. token 수나 rank를 정보량 bit 또는 생물학적 차원으로 치환하지 않는다.",
+        "같은 원 V,A로 만든 S_k, S_k+residual, full V,A에 동일한 readout 클래스·폭/깊이 또는 kernel family·정규화 탐색 예산·초기화 수를 적용한다. 입력차원 증가에 따른 자유도는 별도 기록하고 동일 함수족과 동일 파라미터 수를 구별한다.",
+        "원안의 좌표변환 대조를 보존한다. 전체 정보를 유지하는 알려진 가역 변환과 의도적 rank 절단에서 readout 재적합·표본량 learning curve를 비교해 좌표 난도와 정보 접근 제한을 교정한다.",
+        "운영적 잔차의 정의를 고정한다. 예를 들어 train-only predictor로 full features에서 S_k가 예측하는 부분을 뺀 잔차는 그 predictor에 대한 잔차일 뿐 독립·private 정보가 아니다. 분해를 바꾸어도 같은 주장 범위가 유지되는지 보고한다.",
+        "정서 특수성까지 주장하려면 같은 자극·같은 참가자에서 신뢰도·난도를 맞춘 비정서 대비 z_C를 추가하고 D_k,A−D_k,C를 공통 손실 단위로 검정한다. 이 선택성이 없으면 '정서 관련 대비에서도 관찰되는 일반 압축 손실'로 제한한다.",
+        "Horikawa 실제 제공 오디오뿐 아니라 스캐너 내 실제 재생 모달리티를 확인한다. 오디오가 재생되지 않았거나 시각-only 보유본이면 그 자료의 시청각 검정을 생략하고 재생조건이 확인된 Emo-FilM으로 옮긴다. 기존 데이터 보유 사실을 부정하거나 전체 연구를 중단할 사유로 쓰지 않는다.",
+        "u_A·주석 대비·k·HRF·분해·정규화·readout 선택을 train/development에 한정하고 참가자·내용군/영화 유보 및 버퍼를 유지한다. 시계열 sample 수를 독립 자극 수로 세지 않는다."
+      ],
+      "same_function_family_check": {
+        "shared_inputs": "동일한 동결 encoder V,A, 동일 시간창·sampling·audio-video 정합·전처리·train 자료를 사용한다.",
+        "readout_family": "고정 ridge와 사전 지정 제한 비선형 family를 각각 모든 표현조건에 적용해 family 내 비교를 한다. shared는 선형, full은 비선형처럼 바꾸지 않는다. 입력 rank와 함수 자유도를 별도 표로 보고한다.",
+        "selection_budget": "같은 hyperparameter grid·inner split·early stopping·initialization 횟수와 전체 학습량 곡선을 사용한다. oracle test 선택은 제외한다.",
+        "control": "가역 좌표변환에서도 같은 재적합 예측에 도달하는지와 비가역 절단에서 주입 신호를 검출하는지를 회복 simulation으로 확인한다.",
+        "limit": "유한 비교에서 남는 D_k는 시험한 함수족의 한계이지 Shannon 정보의 비존재·private latent 식별의 증거가 아니다."
+      },
+      "positive_result_interpretation": "reliability·내용·표현좌표·동일 함수족 검사를 통과한 D_k>최소효과는 시험한 공유표현이 해당 정서 신경 대비의 예측에 충분하지 않다는 근거다. 같은 자극의 비정서 대비보다 이득이 크면 제한된 선택성 근거가 추가된다. 고유 신경경로나 시청각 시너지·인과 결합은 별도 주장이다.",
+      "negative_result_interpretation": "큰 k·유연한 같은 함수족에서 D_k의 신뢰상한이 최소효과보다 낮고 전체 모형이 신뢰 가능한 대비를 예측하면 operational residual의 추가 필요성을 제한한다. 전체 모형부터 실패하거나 낮은 신뢰도 때문에 구분 못 하면 식별불가이며 공유 충분성을 확인한 결과가 아니다.",
+      "evidence_that_changes_my_judgment": {
+        "upgrade_to_proceed": "실제 시청각 재생·정렬 확인, 신뢰 가능한 독립 정서 대비, 가역/절단 simulation의 예상 회복, 공통 함수족과 학습량곡선, 외부 영화/내용군에서 재현되는 최소효과 이상의 D_k가 있으면 추진으로 상향한다.",
+        "downgrade_or_redirect": "readout 재적합 또는 shared 학습량 증가만으로 D_k가 사라지면 접근성/표본효율 방법결과로 변경한다. 시청각 입력이 없으면 해당 자료 분기는 삭제한다. 독립 정서 대비가 성립하지 않으면 정서 RQ 지지를 철회한다."
+      },
+      "additional_neural_measurement": "기존 자료에서 입력·주석·BOLD가 확인되면 표현 충분성의 관찰 검정에 새 신경 측정이 필수는 아니다. 모달리티별 신경 필요성, 선택 전달, 실제 통합을 주장하려면 같은 원본의 시각-only/청각-only/시청각 또는 내용 보존 비동기 조작을 새로 제시하고 BOLD를 측정하는 별도 설계가 필요하다. 현재 영상의 오디오를 계산상 제거한 효과를 이미 측정된 인간 뇌의 모달리티 제거 효과로 읽지 않는다.",
+      "resource_feasibility": {
+        "observed_environment": "공통 문서의 관측 범위는 cgroup 4 CPU 상당·32GiB RAM·nvidia-smi 없음이며 GPU 사용을 확인하지 않았다.",
+        "near_term": "보유 캐시 V,A가 있으면 작은 block의 train-only projection·ridge·제한 nonlinear readout·회복 simulation을 우선한다. 실제 shape·반복·feature provenance 확인 뒤 메모리를 산정한다.",
+        "model_support": "공식 CLIP ViT-B/32 링크·hash는 확인됐지만 load 성공은 미확인이고 시각 baseline만 제공한다. 이것으로 청각 특징 가용성을 대체하지 않는다. ImageBind/FactorCL의 코드·가중치·supervision·시점별 출력 호환을 별도로 확인해야 한다.",
+        "fallback": "신뢰할 수 있는 동결 시청각 특징 캐시와 cross-fitted projection으로 operational 충분성부터 평가한다. 기존 오디오 특징이 없으면 적합한 공식 checkpoint의 1개 입력 smoke test 이후 추출 계획을 확정한다. 대규모 multimodal 재학습을 첫 단계 필수로 두지 않는다.",
+        "stop_gate": "전체 정보 baseline이 대비를 설명하지 못하거나 회복 simulation이 최소효과를 구분 못 하면 더 큰 모델 학습으로 자동 확장하지 않는다."
+      },
+      "unresolved_disagreement": "제안자가 선택한 유한 shared family를 충분히 강하다고 볼 기준은 아직 합의되지 않았다. 나는 양성 결과를 해당 family의 예측 불충분성으로만 인정하며 생물학적 고유 정보원 필요성이라는 더 강한 언어에는 반대한다. 정서 선택성 없이도 일반 압축 손실이 독립 정서 대비에서 나타난다는 제한된 결과는 보존할 수 있다."
+    },
+    {
+      "proposal_id": "RP10",
+      "rq_id": "RQ27",
+      "candidate_id": "C09-03",
+      "debate_role": "회의적비판자",
+      "claim": "장기 발견 경로로 조건부 유지한다. 사전 허용집합과 family별 paired 설계는 선별 편향을 명시하는 개선이지만, 관찰되는 효과는 정서·의미·자연성·생성 흔적을 함께 바꿀 수 있는 실제 자극 묶음의 효과다. 현재 보유 BOLD만으로 편집물의 신경 대비를 검정할 수 없으며 새 독립 주석과 새 신경 측정이 필수다.",
+      "best_evidence": ["P070", "P078", "P051", "P100", "P102", "P098", "P099"],
+      "evidence_scope": "P070은 기존 선택 본문·Limitations, P078은 기존 공식 구현 범위로 원문 미열람이다. P100/P102의 선택 본문은 추론의 근거이며 특정 편집의 의미 보존이나 정서 단일 조작을 보장하지 않는다. 새 생성·주석·인간 실험은 수행하지 않았다.",
+      "already_known": "통제 자극의 주석 확인, 무작위 제시, paired contrast는 기존 실험 원리다. 생성모델을 썼다는 사실은 신규성이 아니다. 남는 질문은 명시한 측정 차원에서 감각/관계 의미를 보존하며 정서 주석을 바꾸는 자극군이 실제로 있고 그 범위에서 사전 신경 대비가 재현되는가다.",
+      "strongest_alternative": "목표 편집이 정서 주석뿐 아니라 사건관계·위협 단서·자연성·국소 텍스처를 바꾸고 그 변화가 일반 시각/의미 신경반응을 일으킨다. 독립 평정과 높은 CLIP 유사도를 모두 통과해도 미측정 관계 의미가 남을 수 있다. 같은 생성기의 artifact가 목표 편집에서 체계적으로 강하면 paired family도 이를 제거하지 못한다.",
+      "weakest_assumption": "목표/비목표 편집을 '동강도'로 맞추면 정서 변화를 제외한 모든 관련 정보가 충분히 같다는 가정이다. pixel norm·latent distance·semantic embedding·사람의 제한된 질문 중 어느 하나도 이 가정을 단독으로 보장하지 않는다. 정서 단서와 사건 의미가 구성적으로 겹치면 완전 분리는 원리상 목표가 아닐 수 있다.",
+      "discriminating_prediction": "정서 관련 대비 가설은 사전 허용집합 안에서 여러 editor/seed realization·원본 family·제시 순서를 바꿔도 사전 정한 신경 대비 방향이 재현되고, 동강도 비목표 및 무편집 왕복보다 강할 것을 예측한다. artifact/일반 내용 대안은 효과가 generator·seed·비목표 의미 변화·자연성 손실에 따라 바뀌거나 독립 자연 matched 자극으로 전이하지 않을 것을 예측한다. 재현되어도 정서 단일 요인의 인과효과는 확정하지 않는다.",
+      "judgment": "조건부",
+      "required_change": [
+        "결과 명칭을 '정서만의 인과효과'가 아닌 '사전 허용집합 내 실제 목표–비목표 자극 대비'로 고정한다. 정서 주석 변화와 신경 대비가 연결된다는 제한된 주장과 자극 할당의 인과효과를 구별한다.",
+        "의미 보존 허용 차원을 구체적으로 적는다. 객체·행동·관계·사건 결과·자연성·시각/청각 저수준 변화를 독립 평가하고, 목표 정서 조작량은 별도로 유지한다. 목표·비목표의 정서 변화를 같게 매칭해 조작 자체를 제거하지 않는다.",
+        "family 전체가 원본·목표·비목표·무편집의 공통 지지를 만족하는 family-level 허용규칙을 개발에서 고정한다. 개별 통과 자극만 남겨 한쪽 조건이 선택적으로 빠지면 paired 모집단이 달라짐을 기록한다.",
+        "뇌결과를 보기 전에 개발/검증 주석과 선별규칙을 고정하고 모든 생성시도·prompt·seed·실패·자극 누락·원본별 통과율을 보존한다. dropout/failed family를 성공한 family로 조용히 대체하지 않는다.",
+        "최소 두 독립 realization 또는 가능하면 서로 다른 editor 경로를 포함해 edit family와 generator 흔적을 분리한다. 서로 다른 editor를 반드시 동일 성능으로 간주하지 말고 paired 일반화와 편집기 의존성을 보고한다.",
+        "새 측정 전 brain-independent 기준으로 frozen encoder와 비정서 내용변화 모형을 고정한다. 실제 신경 자료에서는 같은 함수족·용량·선택 예산의 감각/관계 의미 기준과 목표 편집 대비를 비교하며 학습/시험 family를 분리한다.",
+        "새 참가자에게 자극 순서·조건 할당을 무작위화하고 원본/여러 편집물의 반복 제시가 만드는 기억·순서 효과를 counterbalance한다. family와 참가자를 교차한 추론 및 사전 최소효과 기반 검정력 계획을 사용한다.",
+        "coverage를 별도 성과로 보고하고 S=0 영역의 효과를 역확률 가중으로 자동 복구하지 않는다. 독립 평가에서 overlap나 조작 타당성이 실패하면 신경 분석 확대 전에 자극설계 실패로 분류한다."
+      ],
+      "same_function_family_check": {
+        "relevance": "일차 목표–비목표 무작위 자극 대비는 모델 family 경쟁과 독립적으로 정의한다. 모델은 대안 설명의 예측 비교에만 사용한다.",
+        "encoding_comparison": "동일한 실제 Y 또는 사전 projection, 동일 family/participant split, 같은 ridge 또는 제한 비선형 family·regularization budget에서 감각 기준, 감각+관계 의미, 감각+관계 의미+목표 대비의 외부 위험을 비교한다.",
+        "information_budget": "목표 편집 모델만 더 긴 영상·prompt·미래맥락을 읽게 하지 않는다. 모든 baseline의 자극·시간 접근을 명시하고 생성에 쓴 prompt를 독립 인간 정서 정답으로 취급하지 않는다.",
+        "causal_limit": "강한 의미 기준을 넘어서는 추가 위험 감소도 미측정 의미를 제거한 정서 고유성의 증명은 아니다. 원래 주석과 공유된 의미 성분의 total 효과와 조건부 효과를 각각 보고한다."
+      },
+      "positive_result_interpretation": "독립 조작 확인·공통지지·무작위 제시·새 신경 측정에서 목표 대비가 재현되면 선택된 실제 자극군에서 목표 편집 묶음이 신경반응을 바꾸고 그 차이가 확인된 정서 주석 변화와 함께 나타난다는 결론이 가능하다. 여러 editor와 자연 matched 자극에 전이하면 특정 생성 흔적 대안은 약해지지만 의미 완전 보존이나 정서 단일 메커니즘을 입증하지 않는다.",
+      "negative_result_interpretation": "독립 주석에서 목표 변화가 재현되고 신뢰도·검정력이 충분한데 신경 대비의 상한이 최소효과보다 낮으면 사전 허용범위에서 지정 신경 효과를 제한한다. 편집이 정서를 바꾸지 못했거나 공통지지·자연성이 부족하면 조작 실패다. 낮은 BOLD 신뢰도나 family 수 부족이면 판별불가이며 인간의 정서 신경정보 부재로 쓰지 않는다.",
+      "evidence_that_changes_my_judgment": {
+        "upgrade_to_proceed": "독립 검증 주석에서 목표 변화와 보존 조건이 동시에 재현되고 family-level 통과율이 충분하며, 무편집·비목표·자연 matched 대조가 확보되고 새 신경측정의 표본·무작위화·검정력 계획이 구체화되면 실제 수집 추진으로 상향한다.",
+        "strengthen_scientific_claim": "새 family·새 참가자·다른 editor에서도 같은 사전 신경 대비 방향이 남고 artifact-only 대안과 관계 의미 기준이 이를 충분히 설명하지 못하면 제한된 정서 관련 편집 가설의 지지가 강해진다.",
+        "downgrade_or_reject_branch": "통과율이 극소수 family에 편중되거나 목표와 비목표의 의미/자연성 지지가 겹치지 않으면 해당 편집 경로를 수정한다. 충분한 조건에서 사전 효과가 동등 범위이고 다른 자극 경로에서도 반복되면 해당 신경 가설을 기각한다. 보유 BOLD를 편집물에 재사용하는 계획은 기각한다."
+      },
+      "additional_neural_measurement": "필수다. Horikawa·Emo-FilM·NSD·Spacetop 등의 기존 BOLD는 원래 제시된 자극에 대한 반응이다. 새 편집물의 모델 예측, 원본의 BOLD 복사, feature alignment는 새 실제 신경 측정을 대체할 수 없다. 기존 자료는 원본 pool·자연 matched 대조·효과 크기 범위·ROI/분석절차 개발에만 사용할 수 있으며 새 편집 효과의 측정으로 계산하지 않는다.",
+      "resource_feasibility": {
+        "observed_environment": "공통 문서 기준 CPU quota 4·32GiB이고 GPU가 관측되지 않았다. 기존 환경에서 대규모 flow/diffusion 생성 속도·VRAM·checkpoint load는 미확인이다.",
+        "near_term": "허용집합·주석 도구·family/seed 로그·원본/자연 matched 후보 목록과 mock 분석을 문서/작은 캐시로 구체화할 수 있다. 생성 성공이나 사람 평정을 했다고 보고하지 않는다.",
+        "model_support": "P070/P078 공식 방법 근거는 있으나 사용자 보유 가중치·실행경로·비용을 확인하지 않았다. CLIP ViT-B/32는 후보 유사도 screening 보조이며 의미 보존·정서 조작의 독립 검증을 대체하지 않는다.",
+        "staged_plan": "소규모 생성 smoke test와 자극 검증 후 독립 주석에서 family-level 통과율을 추정한다. 이 단계가 통과해야 검정력·새 fMRI 수집 규모를 정한다. 기존 5종 보유만으로 새 편집 신경실험이 즉시 가능하다고 표시하지 않는다.",
+        "fallback": "생성 경로가 불안정하면 기존 자연 자극의 matched family 비교로 관찰적 대안을 검토할 수 있다. 이는 생성 편집의 무작위 자극 효과와 다른 estimand로 별도 표기한다.",
+        "status": "장기 새 측정 경로; 단기 기존자료 분석 파일럿과 구분"
+      },
+      "unresolved_disagreement": "나는 독립 평정과 여러 의미 측정을 통과하더라도 목표 정서 단서와 미측정 사건 의미의 완전 분리를 인정하지 않는다. 제안이 이 제한을 수용하면 조건부 유지하며, '의미가 모두 같은데 정서만 바꾼 신경 인과효과'라는 표현에는 반대한다. 생성모델이 자연 matched 자극보다 필요한지 역시 통과율·대비크기·비용을 보기 전 미결이다."
+    }
+  ],
+  "limitations": [
+    "배정된 RP04/RP10의 회의적비판자 입장을 실제 shortlist와 공통 자료·자원 문서를 읽고 독립 작성했다. 다른 역할의 Round5 발언을 아직 받은 것이 아니므로 합의 또는 반박 완료를 주장하지 않는다.",
+    "실제 양성·음성 결과가 아니라 판별 예측과 판단 변경 조건을 기록했다. 모델 다운로드·추론·생성·주석 수집·신경 분석·새 인간 실험은 수행하지 않았다.",
+    "모든 문헌 ID는 기존 catalog와 대조했고 근거 범위를 승계했다. 신규 외부 검색·원문 재검증을 실행하지 않았다. 문서/코드의 존재를 신경 전이 결과나 모델 현재 호환성의 증거로 읽지 않는다.",
+    "사용자의 데이터5종 보유를 인정하되 실제 보유본의 모달리티 재생·형식·반복·label 신뢰도는 분석 조건이다. 이를 전체 문헌 작업의 선행 차단 조건으로 쓰지 않는다.",
+    "조건부 판정은 실행 승인 요청이 아니라 연구 범위와 증거 게이트에 대한 과학적 판단이다. 원본·공유 문서·Git을 수정하지 않고 전용 round05_debate.json/md만 작성했다."
+  ]
+}

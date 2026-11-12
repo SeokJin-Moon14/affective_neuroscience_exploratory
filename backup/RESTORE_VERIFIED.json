@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-11-12T04:36:51.002285+00:00",
+  "source": "새 HTTPS GitHub clone에서 복원",
+  "github_repository": "SeokJin-Moon14/affective_neuroscience_exploratory",
+  "branch": "research/independent-exploration-20261112",
+  "cloned_head": "47f4aa4e179bbf542547e520a4f617481c02c9fb",
+  "data_commit": "e4423e7ca0298cad26c7223bb86b2675006e0521",
+  "snapshot_id": "df4a445a84462e7c3eda5f5c3b9122f5f10cb0ee0acfe5aedd2467e47a91b3c1",
+  "restored_files": 1240,
+  "total_bytes": 193101451,
+  "all_file_sha256_verified": true,
+  "public_receipt_http_status": 200,
+  "user_computer_storage_used": false
+}

@@ -1,0 +1,14 @@
+{
+  "checked_at_utc": "2026-11-12T15:46:09.837840+00:00",
+  "scope": "A·C 집중 검토의 파일·선호 기록·로컬 링크·저장 출처 해시. 과학적 타당성이나 모델 실험의 검증 아님.",
+  "local_links_checked": 19,
+  "local_link_errors": [],
+  "json_files_checked": 4,
+  "source_hash_checks": 8,
+  "user_selection": [
+    "A",
+    "C"
+  ],
+  "brain_experiments_run": false,
+  "historical_v4_checks_rerun": false
+}

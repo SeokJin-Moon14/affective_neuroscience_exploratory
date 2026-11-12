@@ -1,6 +1,6 @@
 {
   "recorded_utc": "2026-11-12T14:28:01.891569+00:00",
-  "status": "interest_discussion_before_new_proposals",
+  "status": "selected_interests_ac_focused_review",
   "prior_snapshot_commit": "b36835dfd915f876234cd47553c312b45a31644c",
   "user_assessment": {
     "V4-01": "별로라고 평가",
@@ -16,7 +16,15 @@
     "C",
     "D"
   ],
-  "user_preference_received": false,
+  "user_preference_received": true,
   "emobrain_contents_inspected": false,
-  "brain_experiments_run": false
+  "brain_experiments_run": false,
+  "updated_utc": "2026-11-12T15:45:08.491709+00:00",
+  "selected_interests": [
+    "A",
+    "C"
+  ],
+  "user_reply_verbatim": "a, c",
+  "focused_review": "interest_review/ac/README.md",
+  "coordinator_recommendation": "C의 도구를 A의 질문에 사용하는 한 연구를 우선 검토. 사용자 최종 RQ 승인이나 두 논문 확정 아님."
 }

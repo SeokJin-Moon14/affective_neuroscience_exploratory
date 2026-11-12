@@ -1,0 +1,72 @@
+{
+  "reviewed_on": "2026-11-13",
+  "timezone": "Asia/Seoul",
+  "network_fetches_this_task": 0,
+  "brain_analysis_run": false,
+  "sources": [
+    {
+      "id": "mission",
+      "path": "RESEARCH_MISSION.md",
+      "url": null,
+      "scope": "§1 범위·연구 독립성 읽음",
+      "sha256": "b1f332b1087eda5a9997ff77e834a9e39c6adc0735a24540d50df9393471d823"
+    },
+    {
+      "id": "instructions",
+      "path": "AGENTS.md",
+      "url": null,
+      "scope": "최신 사용자 조건·보유 자료·관심 확인 단계 읽음",
+      "sha256": "eab0b4fdf1225070153b5d9edc5ac9a09b24098778eb13bd68937e6743638708"
+    },
+    {
+      "id": "P008",
+      "path": "agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt",
+      "url": "https://doi.org/10.1126/sciadv.aaw4358",
+      "scope": "저장된 본문 Discussion 445–480행을 이번에 읽음. 복잡한 시각 정서 특징과 imagery 가능성; 새 후속 문헌 검색은 아님",
+      "sha256": "7c287a9ab154bbdcd5f374145c0b2a6c2ddb8f2256d68447eae6912cd24165c3"
+    },
+    {
+      "id": "U002-doc",
+      "path": "datasets/mind_captioning/evidence/data_README.md",
+      "url": "https://github.com/horikawa-t/MindCaptioning/blob/main/data/README.md",
+      "scope": "영상별 TimeSformer/DeBERTa 특징 구조·문서상 반복 확인. MAT 본체·원문 전체 미열람",
+      "sha256": "58195eb202514b0f3fbe68950fd2f39805f08001284a53ee4d3ee6fc5812254b"
+    },
+    {
+      "id": "U002-code",
+      "path": "revision_v4/evidence/mc_code/mcap_setParams.m",
+      "url": "https://github.com/horikawa-t/MindCaptioning/blob/main/code/matlab/util/mcap_setParams.m",
+      "scope": "ROI·모델 설정과 timesformer decoding skip 직접 읽음. 실제 실행/다운로드 결과 범위 검증 아님",
+      "sha256": "dd2ae0636c6e2d9284cfe94bf0a3590ebbb051ef4d26f8c513489e5323a2f59d"
+    },
+    {
+      "id": "U002-feature-code",
+      "path": "revision_v4/evidence/mc_code/mcap_get_feature_params.m",
+      "url": "https://github.com/horikawa-t/MindCaptioning/blob/main/code/matlab/util/mcap_get_feature_params.m",
+      "scope": "layer feature 경로를 읽는 코드 확인; dense token 제공 증거 아님",
+      "sha256": "1b4b8c625a64046cbb26a4ed17ca66cbe37f1607ecb1ce97f00182a0b2a0b097"
+    },
+    {
+      "id": "U002-readme",
+      "path": "datasets/mind_captioning/evidence/official_README.md",
+      "url": "https://github.com/horikawa-t/MindCaptioning",
+      "scope": "공식 서지·데이터·자극 출처 확인. 논문 본문 검증 아님",
+      "sha256": "8ab94eb26e9ef648cd56a4eae3a1db71b134d09d7ffd99ddb5a389a208025a3f"
+    },
+    {
+      "id": "dataset-audit",
+      "path": "agents/01_dataset/revision_v4_data_common.md",
+      "url": null,
+      "scope": "기존 담당의 ID·반복·window 검산 범위와 제한 읽음. 원 BOLD 재분석 아님",
+      "sha256": "2e9a1eee7f6bb12dc8a3fd45986c89c5f81b34805ac0c5ca88e08fc121ad54a6"
+    }
+  ],
+  "peer_exchange": {
+    "read": "agents/selected_c/readout.md",
+    "received_from": "/root/selected_c",
+    "response_sent_to": "/root/selected_c",
+    "response_method": "collaboration.send_message",
+    "agreed": "지각 보정의 심상 타당성은 보장되지 않음; 원영상으로 심상 보정 재학습 금지; C 도구+A 발견 통합 우선 검토; 두 논문 자동 집계 안 함",
+    "direct_source_scope_unchanged": true
+  }
+}

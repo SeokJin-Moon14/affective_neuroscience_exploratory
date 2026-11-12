@@ -1,15 +1,15 @@
 {
   "format": 1,
-  "stage": "user_feedback_and_interest_options_before_new_rqs",
-  "snapshot_id": "3dde2e4b6da8ea9d33df0e216d561c858541bf55da7107ebfc8cf16f22dc07af",
-  "prepared_at_utc": "2026-11-12T14:28:55.452611+00:00",
-  "file_count": 1934,
-  "total_bytes": 212784576,
+  "stage": "selected_interests_ac_focused_review",
+  "snapshot_id": "9a7b99d29cd43f45e1443f76d89f8d4b10b41684bfc0fc1555e26410049271b1",
+  "prepared_at_utc": "2026-11-12T15:46:11.148150+00:00",
+  "file_count": 1948,
+  "total_bytes": 212863975,
   "files": [
     {
       "path": "AGENTS.md",
-      "size": 19070,
-      "sha256": "eab0b4fdf1225070153b5d9edc5ac9a09b24098778eb13bd68937e6743638708",
+      "size": 20197,
+      "sha256": "d06b593b912f0dfd6357a15cbf5012257702b02df181f7e372c0c990b3320cd8",
       "stored_path": "research/AGENTS.md"
     },
     {
@@ -26,8 +26,8 @@
     },
     {
       "path": "CHATGPT_PROJECT_BRIEF.md",
-      "size": 3978,
-      "sha256": "eb8712baf10c4f5c61fabc669951fc5cdfbd3040c8ce7353d814a4412e62483c",
+      "size": 4148,
+      "sha256": "1de02147c8ffcc6d453c974fd79b08abdbc04368406b2632644e672067680316",
       "stored_path": "research/CHATGPT_PROJECT_BRIEF.md"
     },
     {
@@ -38,14 +38,14 @@
     },
     {
       "path": "RESEARCH_STATUS.md",
-      "size": 2065,
-      "sha256": "624b0ac9805690443704d3c6b879fe72493b8bde64415bc12006892a7cbd61c3",
+      "size": 3272,
+      "sha256": "be76a304a42a7aa6ce6c502c3872989d50291c6d6cf435186b1fe2b72f8c4dc9",
       "stored_path": "research/RESEARCH_STATUS.md"
     },
     {
       "path": "START_HERE.md",
-      "size": 641,
-      "sha256": "875d1fa865b0025e97a4249c0389e4aaaae8b178606c3afbb5db4351347e7387",
+      "size": 885,
+      "sha256": "a3e2d1969d192d869a999e5970df12298760463fd92b378e6ad98598e2f56993",
       "stored_path": "research/START_HERE.md"
     },
     {
@@ -9239,6 +9239,30 @@
       "stored_path": "research/agents/interest_science/interest_menu.md"
     },
     {
+      "path": "agents/selected_a/readout.md",
+      "size": 6567,
+      "sha256": "779b611cb93342188ba964b8bbc02b268fde982ab7ec6f524839c5d0c1da5372",
+      "stored_path": "research/agents/selected_a/readout.md"
+    },
+    {
+      "path": "agents/selected_a/sources.json",
+      "size": 3398,
+      "sha256": "d1c30c2ba2eb7ae381f528ac179dd3ee8859d56167ef10c81e521bb16049a79b",
+      "stored_path": "research/agents/selected_a/sources.json"
+    },
+    {
+      "path": "agents/selected_c/readout.md",
+      "size": 8465,
+      "sha256": "76c7b5d2f3682184c771b99f1b6f0ce5b1008d0b1b9fa588eaa37dece955c64e",
+      "stored_path": "research/agents/selected_c/readout.md"
+    },
+    {
+      "path": "agents/selected_c/sources.json",
+      "size": 5600,
+      "sha256": "0cff7c406963edf24dfe27dfb974ecc9cdba0dcc21c9f5dedda3727ede8bb740",
+      "stored_path": "research/agents/selected_c/sources.json"
+    },
+    {
       "path": "archive/v1/BUNDLE_CONTENTS.md",
       "size": 1205,
       "sha256": "7bc71d92ad95a130547e94ef14da0d6d6204fea7e16557a3f30c4f536a4152bd",
@@ -10458,15 +10482,75 @@
     },
     {
       "path": "interest_review/README.md",
-      "size": 6434,
-      "sha256": "1e20952bf8e4be3be03206a5739e3be1066c01322816a69c7a39f7bc11fd99a7",
+      "size": 6674,
+      "sha256": "413a301d23b3b4dc7a7064b73998458ebba71cb4082005923518f9ad754dbcb3",
       "stored_path": "research/interest_review/README.md"
     },
     {
       "path": "interest_review/USER_FEEDBACK.json",
-      "size": 986,
-      "sha256": "c0925fcf350853fb6b2576b3ce136acb45f0f565c9bd6ffa8cc55d11390bd681",
+      "size": 1333,
+      "sha256": "ee34fa890a9f7db59fe9f5b6feb2b99dfba945f2f51b213f288b1338683e464b",
       "stored_path": "research/interest_review/USER_FEEDBACK.json"
+    },
+    {
+      "path": "interest_review/ac/DESIGN.md",
+      "size": 5048,
+      "sha256": "424d19b7568d0136dac5d999268e488f33f8a657d73851eafbe9ccf42d8915fc",
+      "stored_path": "research/interest_review/ac/DESIGN.md"
+    },
+    {
+      "path": "interest_review/ac/README.md",
+      "size": 9701,
+      "sha256": "8146d379dec546b04c65c4333c4e7aa71c990f9eb522571b4d8e7d2d702cc023",
+      "stored_path": "research/interest_review/ac/README.md"
+    },
+    {
+      "path": "interest_review/ac/SOURCES.json",
+      "size": 4826,
+      "sha256": "4d1923be28c062730210cef5a9cbba2c3cbcf4ede31e939a049bef007c96e1f1",
+      "stored_path": "research/interest_review/ac/SOURCES.json"
+    },
+    {
+      "path": "interest_review/ac/VALIDATION.json",
+      "size": 440,
+      "sha256": "9f6630f1ab8dda081d6f90c1738bda1f1f5879edb1092f5bf3dc00bab31120e2",
+      "stored_path": "research/interest_review/ac/VALIDATION.json"
+    },
+    {
+      "path": "interest_review/ac/evidence/BASIC_README.md",
+      "size": 9499,
+      "sha256": "02b768f35703fe3f78304516c48c1dce828edc49c4b1d4cd921c2ecac3912a06",
+      "stored_path": "research/interest_review/ac/evidence/BASIC_README.md"
+    },
+    {
+      "path": "interest_review/ac/evidence/BASIC_fetch.json",
+      "size": 314,
+      "sha256": "2c2c2b61c7b53838362789249c208fe3f14700b2fa9e711da695033705c4afb4",
+      "stored_path": "research/interest_review/ac/evidence/BASIC_fetch.json"
+    },
+    {
+      "path": "interest_review/ac/evidence/UMBRAE_README.md",
+      "size": 10099,
+      "sha256": "f6e96ededab3490195e577b28885b9801802bfda97814e019434683f5d53340e",
+      "stored_path": "research/interest_review/ac/evidence/UMBRAE_README.md"
+    },
+    {
+      "path": "interest_review/ac/evidence/UMBRAE_fetch.json",
+      "size": 316,
+      "sha256": "3238c5ff81283a646172d5e2c61295155a4ec858df96d31136d191f988349338",
+      "stored_path": "research/interest_review/ac/evidence/UMBRAE_fetch.json"
+    },
+    {
+      "path": "interest_review/ac/evidence/VINDEX_README.md",
+      "size": 11475,
+      "sha256": "fb7e6d9ed4ccf05fd00521d9f6c83688e440461db321e6bc10aec9129d97c28d",
+      "stored_path": "research/interest_review/ac/evidence/VINDEX_README.md"
+    },
+    {
+      "path": "interest_review/ac/evidence/VINDEX_fetch.json",
+      "size": 316,
+      "sha256": "a2b321671a5f60303f97bd36a1a956a293606b23ada219054bb6603a467b6c7a",
+      "stored_path": "research/interest_review/ac/evidence/VINDEX_fetch.json"
     },
     {
       "path": "literature/COVERAGE_AND_GAPS.md",

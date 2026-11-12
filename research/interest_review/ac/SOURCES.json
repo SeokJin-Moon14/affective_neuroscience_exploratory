@@ -1,0 +1,96 @@
+{
+  "recorded_utc": "2026-11-12T15:45:41.192251+00:00",
+  "purpose": "사용자가 선택한 A·C 관심 방향의 집중 검토",
+  "sources": [
+    {
+      "id": "UMBRAE",
+      "title": "UMBRAE: Unified Multimodal Brain Decoding",
+      "year": 2024,
+      "arxiv": "2404.07202",
+      "url": "https://github.com/weihaox/UMBRAE",
+      "local_file": "interest_review/ac/evidence/UMBRAE_README.md",
+      "sha256": "f6e96ededab3490195e577b28885b9801802bfda97814e019434683f5d53340e",
+      "access": "공식 README 전체 확인. 논문 본문 전체와 실제 성능은 이번 검토에서 검증하지 않음.",
+      "fetch_record": "interest_review/ac/evidence/UMBRAE_fetch.json"
+    },
+    {
+      "id": "VINDEX",
+      "title": "Exploring The Visual Feature Space for Multimodal Neural Decoding",
+      "year": 2025,
+      "arxiv": "2505.15755",
+      "url": "https://github.com/weihaox/VINDEX",
+      "local_file": "interest_review/ac/evidence/VINDEX_README.md",
+      "sha256": "fb7e6d9ed4ccf05fd00521d9f6c83688e440461db321e6bc10aec9129d97c28d",
+      "access": "공식 README 전체 확인. 논문 본문 전체와 실제 성능은 이번 검토에서 검증하지 않음.",
+      "fetch_record": "interest_review/ac/evidence/VINDEX_fetch.json"
+    },
+    {
+      "id": "BASIC",
+      "title": "Multigranular Evaluation for Brain Visual Decoding",
+      "year": 2026,
+      "arxiv": "2507.07993",
+      "url": "https://github.com/weihaox/BASIC",
+      "local_file": "interest_review/ac/evidence/BASIC_README.md",
+      "sha256": "02b768f35703fe3f78304516c48c1dce828edc49c4b1d4cd921c2ecac3912a06",
+      "access": "공식 README 전체 확인. 논문 본문 전체와 실제 성능은 이번 검토에서 검증하지 않음.",
+      "fetch_record": "interest_review/ac/evidence/BASIC_fetch.json"
+    },
+    {
+      "id": "P008",
+      "local_file": "agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt",
+      "url": "https://doi.org/10.1126/sciadv.aaw4358",
+      "access": "이번에는 저장 원문의 Results 285–322행, Discussion 455–470행을 직접 읽음. 뇌→EmoNet 정서 출력층 PLS와 imagery 시각 정서 코드 논의 확인.",
+      "sha256": "7c287a9ab154bbdcd5f374145c0b2a6c2ddb8f2256d68447eae6912cd24165c3"
+    },
+    {
+      "id": "MC-data",
+      "local_file": "datasets/mind_captioning/evidence/data_README.md",
+      "url": "https://github.com/horikawa-t/MindCaptioning/blob/main/data/README.md",
+      "access": "공식 data README의 영상별 특징 구조와 문서상 반복. 실제 MAT 배열은 읽지 않음.",
+      "sha256": "58195eb202514b0f3fbe68950fd2f39805f08001284a53ee4d3ee6fc5812254b"
+    },
+    {
+      "id": "MC-config",
+      "local_file": "revision_v4/evidence/mc_code/mcap_setParams.m",
+      "url": "https://github.com/horikawa-t/MindCaptioning/blob/main/code/matlab/util/mcap_setParams.m",
+      "access": "공식 보존 코드의 timesformer skip 설정. 실행된 결과가 제공되는지는 별도.",
+      "sha256": "dd2ae0636c6e2d9284cfe94bf0a3590ebbb051ef4d26f8c513489e5323a2f59d"
+    },
+    {
+      "id": "MC-ID-audit",
+      "local_file": "agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+      "url": null,
+      "access": "기존 공개 sub01 이벤트 검산 JSON 재확인. 모든 참가자 처리본 검산이나 BOLD 분석 아님.",
+      "sha256": "79aff9e9c4c7d2a81a745b6b86330ec91fb62826676734e457c61003790b5085"
+    },
+    {
+      "id": "MC-Horikawa-bridge",
+      "local_file": "agents/01_dataset/revision_v4_data_bridge.md",
+      "url": null,
+      "access": "기존 원ID·캡션·평정 연결 보고 읽음. 원영상 중복을 D/H/T 분리에 반영.",
+      "sha256": "5ac67a6761d286a14a2ba399bea83158dcaa0fcf2692587bd2514d6d2614939b"
+    },
+    {
+      "id": "GOD2017",
+      "title": "Generic decoding of seen and imagined objects using hierarchical visual features",
+      "doi": "10.1038/ncomms15037",
+      "url": "https://github.com/KamitaniLab/GenericObjectDecoding",
+      "access": "C 담당이 공식 README·Python README·analysis_FeaturePrediction.py·analysis_CategoryIdentification.py를 직접 읽음. 이번 논문 전체 열람·코드 실행 아님.",
+      "agent_source_record": "agents/selected_c/sources.json"
+    },
+    {
+      "id": "U001",
+      "title": "Human and Machine Annotations Predict Brain Responses to Naturalistic Movies Across Development",
+      "url": "https://arxiv.org/abs/2611.13637",
+      "access": "사용자 제공 요약. 이전 직접 접근 403; 이번에 원문 검증을 추가하지 않음."
+    }
+  ],
+  "agent_records": [
+    "agents/selected_a/sources.json",
+    "agents/selected_c/sources.json"
+  ],
+  "actual_agent_exchange": true,
+  "brain_analysis_run": false,
+  "novelty_confirmed": false,
+  "canonical_literature_table_expanded": false
+}

@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "selected_interests_ac_focused_review",
+  "snapshot_id": "9a7b99d29cd43f45e1443f76d89f8d4b10b41684bfc0fc1555e26410049271b1",
+  "prepared_at_utc": "2026-11-12T15:46:11.148150+00:00",
+  "file_count": 1948,
+  "total_bytes": 212863975,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

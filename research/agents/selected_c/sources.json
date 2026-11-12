@@ -1,0 +1,95 @@
+{
+  "recorded_utc": "2026-11-12T15:32:55.896151+00:00",
+  "sources": [
+    {
+      "id": "GOD2017",
+      "title": "Generic decoding of seen and imagined objects using hierarchical visual features",
+      "url": "https://www.nature.com/articles/ncomms15037",
+      "accessed_url": "https://raw.githubusercontent.com/KamitaniLab/GenericObjectDecoding/master/README.md",
+      "scope": "공식 README 직접 확인. 논문 전체·Discussion 미확인.",
+      "sha256": "bbd46574c01ccf642d5b4b6fdd5535d962fe66dc97d3494ca1bc2f87a3a2204b",
+      "finding": "학습에 쓰지 않은 임의 물체 범주 판독을 공식 문서가 명시"
+    },
+    {
+      "id": "GOD2017-code-readme",
+      "url": "https://raw.githubusercontent.com/KamitaniLab/GenericObjectDecoding/master/code/python/README.md",
+      "scope": "공식 Python README 직접 확인",
+      "sha256": "51eb2cdb3c9e003e307110107723767f59e4ac9cf72861969de0a1a77131a1c2"
+    },
+    {
+      "id": "GOD2017-feature",
+      "url": "https://raw.githubusercontent.com/KamitaniLab/GenericObjectDecoding/master/code/python/analysis_FeaturePrediction.py",
+      "scope": "공식 구현 직접 읽음. 124–180행 지각학습/지각·심상시험과 특징예측, 199–278행 단위별예측. 실행하지 않음.",
+      "sha256": "ac5af75a2a6c45dde8951889ea70cc1a4e49c86eeb199a96c4f7817a85d5e5d1"
+    },
+    {
+      "id": "GOD2017-category",
+      "url": "https://raw.githubusercontent.com/KamitaniLab/GenericObjectDecoding/master/code/python/analysis_CategoryIdentification.py",
+      "scope": "공식 구현 직접 읽음. 예측 특징과 범주 평균 특징·추가 후보의 상관 기반 식별. 실행하지 않음.",
+      "sha256": "6c5ff0391bd41b51e88ffe32051dc1c5626d3a20cfa84251498961d8eb2446ec"
+    },
+    {
+      "id": "P008",
+      "url": "https://doi.org/10.1126/sciadv.aaw4358",
+      "local_source": "agents/02_affective_neuroscience/evidence/kragel2019_fulltext.txt",
+      "scope": "저장 원문 Results 285–322행과 Discussion 455–470행 직접 재독. 본문 전체 신규 확인이라고 하지 않음.",
+      "finding": "뇌→EmoNet 정서출력층 PLS 예측; 심상 시각정서코드 가능성 선행 논의"
+    },
+    {
+      "id": "MindEye2",
+      "url": "https://github.com/MedARC-AI/MindEyeV2",
+      "local_source": "agents/03_vision_decoding/sources/mindeye2_readme.txt",
+      "scope": "보존된 공식 README 재독. 이번 논문 본문·후속 문헌 검색 없음."
+    },
+    {
+      "id": "EmoNet-pytorch",
+      "url": "https://github.com/ecco-laboratory/emonet-pytorch",
+      "local_source": "agents/02_affective_neuroscience/evidence/emonet_readme.source",
+      "scope": "후속 PyTorch 변환 저장소 README 확인. 원논문 저자의 공식 구현이라고 주장하지 않음. 접근 위치를 찾는 보조자료."
+    },
+    {
+      "id": "Horikawa-data",
+      "local_source": "agents/01_dataset/revision_v4_data_common.md",
+      "scope": "기존 프로젝트 데이터 판정 사용. 이 메모에서 실제 BOLD·feature 본체를 읽지 않음."
+    },
+    {
+      "id": "UMBRAE2024",
+      "url": "https://github.com/weihaox/UMBRAE",
+      "local_source": "interest_review/ac/evidence/UMBRAE_README.md",
+      "sha256": "f6e96ededab3490195e577b28885b9801802bfda97814e019434683f5d53340e",
+      "scope": "Coordinator가 보존한 공식 README 전체 직접 읽음. brain→imagefeature 뒤 taskprompt 변경과 task-specific training 없는 사용을 명시. 논문본문·실제실험·정서특화검정은 미확인."
+    }
+  ],
+  "failed_nonblocking_lookup": {
+    "url": "https://raw.githubusercontent.com/KamitaniLab/GenericObjectDecoding/master/analysis/README.md",
+    "status": 404
+  },
+  "experiments_run": false,
+  "novelty_confirmed": false,
+  "actual_agent_exchange": {
+    "agent": "/root/selected_a",
+    "read_file": "agents/selected_a/readout.md",
+    "scope": "독립 메모 전체 직접 읽음. C 메모를 전송하고 A의 회신을 실제 수신함.",
+    "agreements": [
+      "원영상의 모델 근거와 뇌에서 읽힌 성분을 구분한다.",
+      "지각의 오차 보정을 심상에 적용해도 calibration이 보장되지 않는다.",
+      "심상에서는 무보정·지각 고정 보정 결과를 함께 살피되 한 보정에서만 나온 효과로 선택적 재현을 주장하지 않는다.",
+      "현재 C 도구와 A 발견의 한 연구가 자연스럽다."
+    ],
+    "agent_reported_not_direct_source_read": [
+      "MC TimeSformer 특징은 영상별 요약이며 공식 설정 decSkipModels에 timesformer가 포함된다. 제공 시각 decoding 결과나 patch/frame 지도가 준비되어 있다고 가정할 수 없다."
+    ]
+  },
+  "existing_id_bridge_recheck": {
+    "local_file": "agents/01_dataset/evidence/revision_v4/mc_sub01_id_checks.json",
+    "second_file": "agents/01_dataset/evidence/revision_v4/caption_horikawa_join.json",
+    "scope": "기존 검산 JSON을 읽어 집합 수와 원ID 대응을 재확인. 새 BOLD 또는 feature 배열은 읽지 않음. MC 검산은 sub-01 범위.",
+    "mc_all_ids": 2180,
+    "mc_official_train_ids_before_head_holdout": 2108,
+    "mc_test_ids": 72,
+    "intersection_after_horikawa_15_exclusions": 2172,
+    "test_ids_after_horikawa_exclusions": 71,
+    "common_non_test_ids_for_D_H": 2101,
+    "consequence": "공통 원ID를 D/H/T로 먼저 나눈다. MC 2108개 전체로 decoder를 학습하고 같은 영상의 Horikawa 평정으로 head를 학습하면 D/H가 독립적이지 않다. 공유영상 작동 확인은 별도 탐색으로 구분한다."
+  }
+}

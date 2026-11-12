@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "stage": "stage03-axis-integration",
-  "snapshot_id": "c9e7423449e5003a00a003824d1a0d3bcebd2740a46af7847b97d74c75537474",
-  "prepared_at_utc": "2026-11-12T05:43:14.642344+00:00",
-  "file_count": 1260,
-  "total_bytes": 193544033,
+  "stage": "round02-exchange",
+  "snapshot_id": "e86379ebbdf4dbb3bd7c206a8cf0ca7c7065ff829b816d898decd9963cfce5cb",
+  "prepared_at_utc": "2026-11-12T06:14:33.474599+00:00",
+  "file_count": 1302,
+  "total_bytes": 194850718,
   "files": [
     {
       "path": "AGENTS.md",
@@ -3661,6 +3661,18 @@
       "stored_path": "research/agents/01_dataset/papers.csv"
     },
     {
+      "path": "agents/01_dataset/round02_exchange.json",
+      "size": 35393,
+      "sha256": "2e2991e3cfbf2936c47192eac688c2e56f82f54e76f3d244cb2559ac90451a35",
+      "stored_path": "research/agents/01_dataset/round02_exchange.json"
+    },
+    {
+      "path": "agents/01_dataset/round02_exchange.md",
+      "size": 26806,
+      "sha256": "73f5647e0494f9b054eb0312dd1f0cd426bd4bef320a4e305cb7ebbaa9499116",
+      "stored_path": "research/agents/01_dataset/round02_exchange.md"
+    },
+    {
       "path": "agents/01_dataset/round1_independent_report.md",
       "size": 10591,
       "sha256": "0b47984ea7f5dde2e7dc1456f3bc88fc67040a91542ec58b5bf92f4d58c4ff33",
@@ -4345,6 +4357,18 @@
       "stored_path": "research/agents/02_affective_neuroscience/report.md"
     },
     {
+      "path": "agents/02_affective_neuroscience/round02_exchange.json",
+      "size": 44837,
+      "sha256": "38917e302953cd3c809a04a454302145570cdb5c12f15b2f6a01fc7740aeed27",
+      "stored_path": "research/agents/02_affective_neuroscience/round02_exchange.json"
+    },
+    {
+      "path": "agents/02_affective_neuroscience/round02_exchange.md",
+      "size": 32720,
+      "sha256": "244400673ed7acfb32ec741e250e728ae6b9dff55d3d099cd8c83eb3c1124f10",
+      "stored_path": "research/agents/02_affective_neuroscience/round02_exchange.md"
+    },
+    {
       "path": "agents/02_affective_neuroscience/sources_index.csv",
       "size": 13541,
       "sha256": "0aab0ca56cf0678d89f397c5b7ee14c61dd64d63fff4ea089f8c3fcd428ca66e",
@@ -4409,6 +4433,18 @@
       "size": 20794,
       "sha256": "d2f72809ddebd98ce57eebb585402383cd44fe5dbc2e05d28c14810ec42f5e7c",
       "stored_path": "research/agents/03_vision_decoding/papers.csv"
+    },
+    {
+      "path": "agents/03_vision_decoding/round02_exchange.json",
+      "size": 31423,
+      "sha256": "65cf8f82ecd41437a2f08848b717b43d1eb825edaf3abf14f6f3b43d9b9ad6dc",
+      "stored_path": "research/agents/03_vision_decoding/round02_exchange.json"
+    },
+    {
+      "path": "agents/03_vision_decoding/round02_exchange.md",
+      "size": 33870,
+      "sha256": "6223224650b088f46eecbbfb90a9dfb5fcb6da141dd030d40d67931c7134180f",
+      "stored_path": "research/agents/03_vision_decoding/round02_exchange.md"
     },
     {
       "path": "agents/03_vision_decoding/sources/README.md",
@@ -4667,6 +4703,18 @@
       "size": 20616,
       "sha256": "ae7ef15c3342d99a8e112c6c99e1f43a87111dec60d3d09be8012f2f37b06cb7",
       "stored_path": "research/agents/04_brain_foundation/papers.csv"
+    },
+    {
+      "path": "agents/04_brain_foundation/round02_exchange.json",
+      "size": 42818,
+      "sha256": "0fa0722f5c08141b6089e9c34634e5b97fae54738a642c686ab3cccadf4c103d",
+      "stored_path": "research/agents/04_brain_foundation/round02_exchange.json"
+    },
+    {
+      "path": "agents/04_brain_foundation/round02_exchange.md",
+      "size": 35106,
+      "sha256": "d536a1329342fb879aaa87f21efae8d9a92facefc203c8c3bf84986a83b97514",
+      "stored_path": "research/agents/04_brain_foundation/round02_exchange.md"
     },
     {
       "path": "agents/04_brain_foundation/round1_report.md",
@@ -5329,6 +5377,18 @@
       "stored_path": "research/agents/05_multimodal_dynamics/report.md"
     },
     {
+      "path": "agents/05_multimodal_dynamics/round02_exchange.json",
+      "size": 38445,
+      "sha256": "b20c4eabf885b8548536f2a22e7dc4cb2ea2afb73869921e61f49429d8cf8aca",
+      "stored_path": "research/agents/05_multimodal_dynamics/round02_exchange.json"
+    },
+    {
+      "path": "agents/05_multimodal_dynamics/round02_exchange.md",
+      "size": 34536,
+      "sha256": "f373eb4c7043189b6c1346bdfd6c295a14c46a33d70afcab6088ca21f4e574bb",
+      "stored_path": "research/agents/05_multimodal_dynamics/round02_exchange.md"
+    },
+    {
       "path": "agents/06_frontier_ai/RESEARCH_STATUS.md",
       "size": 1330,
       "sha256": "34b6a7786d7739a1c9d0da6a07eb511668d783a6ce4c30d30f316e452b9a0d48",
@@ -5479,6 +5539,18 @@
       "stored_path": "research/agents/06_frontier_ai/report.md"
     },
     {
+      "path": "agents/06_frontier_ai/round02_exchange.json",
+      "size": 30894,
+      "sha256": "3132d65f80fcfd66ccaaed1cae82eb480a2ed949fe5031327e12cff5695415bb",
+      "stored_path": "research/agents/06_frontier_ai/round02_exchange.json"
+    },
+    {
+      "path": "agents/06_frontier_ai/round02_exchange.md",
+      "size": 35773,
+      "sha256": "556389426f47d68bedeb11293956a631109b6ca7f400936d6949a93254b984c4",
+      "stored_path": "research/agents/06_frontier_ai/round02_exchange.md"
+    },
+    {
       "path": "agents/06_frontier_ai/subaxes.csv",
       "size": 2227,
       "sha256": "6f329e6680b1793f713ba0b3902fbd747beb78b4e5aa0eaff4fc160989277a9c",
@@ -5525,6 +5597,18 @@
       "size": 26357,
       "sha256": "e9cd60a5f421671b8d16d7545617817cbe97ed94f49eef0cfbb5758af8fbb659",
       "stored_path": "research/agents/07_geometry_information/report.md"
+    },
+    {
+      "path": "agents/07_geometry_information/round02_exchange.json",
+      "size": 29406,
+      "sha256": "d8a81c552ba30a612d1658464e5ed5f0568cc260ce09ce229e725992f652cb37",
+      "stored_path": "research/agents/07_geometry_information/round02_exchange.json"
+    },
+    {
+      "path": "agents/07_geometry_information/round02_exchange.md",
+      "size": 30748,
+      "sha256": "be6d8aea5ba29be43f9135e96c568256f212be611b4d94f50a2e8ea69e15c637",
+      "stored_path": "research/agents/07_geometry_information/round02_exchange.md"
     },
     {
       "path": "agents/07_geometry_information/sources/facco_code.txt",
@@ -5765,6 +5849,18 @@
       "size": 21340,
       "sha256": "4df8b9849dc3f1bd493d65854f550b603e9e6699610a1a371c95f0c8ccb2a530",
       "stored_path": "research/agents/08_systems_neuroscience/report.md"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round02_exchange.json",
+      "size": 39243,
+      "sha256": "8cb1e05f1d2c7f2caace2ac83447352076d2bc593f7364bb0aeed1d3d7b576f0",
+      "stored_path": "research/agents/08_systems_neuroscience/round02_exchange.json"
+    },
+    {
+      "path": "agents/08_systems_neuroscience/round02_exchange.md",
+      "size": 29103,
+      "sha256": "7f8ba34317af55894daf4f5ad67f0ffdd080e88afc0b9b8bc1848fd41d559299",
+      "stored_path": "research/agents/08_systems_neuroscience/round02_exchange.md"
     },
     {
       "path": "agents/08_systems_neuroscience/source_manifest.json",
@@ -6263,6 +6359,18 @@
       "stored_path": "research/agents/09_generative_ai/report.md"
     },
     {
+      "path": "agents/09_generative_ai/round02_exchange.json",
+      "size": 30305,
+      "sha256": "4a54d7d26fd9fbf13036f1065d167516207f247927408fe815cbcee8369590d0",
+      "stored_path": "research/agents/09_generative_ai/round02_exchange.json"
+    },
+    {
+      "path": "agents/09_generative_ai/round02_exchange.md",
+      "size": 25049,
+      "sha256": "62e6fbcd01837c02295b48065b44aa80979ff4e8d54c4b39092d7aecba0aa41d",
+      "stored_path": "research/agents/09_generative_ai/round02_exchange.md"
+    },
+    {
       "path": "agents/09_generative_ai/subaxes.csv",
       "size": 3753,
       "sha256": "961d89d722fd6e3e461a692b2bd38b94501e7c4f043120f04e73a262cc00476f",
@@ -6297,6 +6405,18 @@
       "size": 30518,
       "sha256": "b50f2d5b541982c19a66bf1eefaf0ec02819399093eec7be3dc68e06aa97324c",
       "stored_path": "research/agents/10_llm_semantics/report.md"
+    },
+    {
+      "path": "agents/10_llm_semantics/round02_exchange.json",
+      "size": 28227,
+      "sha256": "34b1aa8674241acb725ce904f0e9a5ef0ad9be3a9f0989aa7015f838190e69a2",
+      "stored_path": "research/agents/10_llm_semantics/round02_exchange.json"
+    },
+    {
+      "path": "agents/10_llm_semantics/round02_exchange.md",
+      "size": 30317,
+      "sha256": "a407609293ea6ba348cb99ca0d06d9afebced0788f606e9953bfd5e4f46d557b",
+      "stored_path": "research/agents/10_llm_semantics/round02_exchange.md"
     },
     {
       "path": "agents/10_llm_semantics/source_manifest.csv",
@@ -6549,6 +6669,18 @@
       "size": 28253,
       "sha256": "adafd78b2a57915deb5bb87d187b672a10cbe65022c5a0cbe98c685e37021cdd",
       "stored_path": "research/agents/11_brain_inspired/report.md"
+    },
+    {
+      "path": "agents/11_brain_inspired/round02_exchange.json",
+      "size": 39486,
+      "sha256": "971d26da86b3ce1cd13e155af84a23b1dde72276f8345e534695c447c376e027",
+      "stored_path": "research/agents/11_brain_inspired/round02_exchange.json"
+    },
+    {
+      "path": "agents/11_brain_inspired/round02_exchange.md",
+      "size": 28244,
+      "sha256": "5ac1ca0030bdb48d2db235c8778d2dbb2e8891d9ebbe3a9e70c9a8c1964e080c",
+      "stored_path": "research/agents/11_brain_inspired/round02_exchange.md"
     },
     {
       "path": "agents/11_brain_inspired/source_manifest.csv",
@@ -6831,6 +6963,18 @@
       "size": 26940,
       "sha256": "ae4a96a0f688abaf230d0c8d3b5906d700eea5e300ae9e169ac4220ca5ccd5c6",
       "stored_path": "research/agents/12_adversarial_review/report.md"
+    },
+    {
+      "path": "agents/12_adversarial_review/round02_exchange.json",
+      "size": 43484,
+      "sha256": "9cc13fb5e543b8e7eec6b35caa42d173946c164b6343ea45082030c0431e18ad",
+      "stored_path": "research/agents/12_adversarial_review/round02_exchange.json"
+    },
+    {
+      "path": "agents/12_adversarial_review/round02_exchange.md",
+      "size": 35195,
+      "sha256": "1b2b5aa66a628ad39c17c67ecfd41733f646e579292a646bf4ddb1ef289a98ca",
+      "stored_path": "research/agents/12_adversarial_review/round02_exchange.md"
     },
     {
       "path": "agents/12_adversarial_review/source_manifest.csv",
@@ -7289,6 +7433,24 @@
       "stored_path": "research/combinations/README.md"
     },
     {
+      "path": "combinations/random_draws.json",
+      "size": 20452,
+      "sha256": "8e0a3fb56d693cd823d44ca4a929220a3479a8797caa654c8bf8a41e1587f785",
+      "stored_path": "research/combinations/random_draws.json"
+    },
+    {
+      "path": "combinations/random_evaluated.csv",
+      "size": 38725,
+      "sha256": "6d96cbaf01759123a7831a9a48a4b9a350dedf9b2a9088d706870378e9055ef2",
+      "stored_path": "research/combinations/random_evaluated.csv"
+    },
+    {
+      "path": "combinations/random_evaluated.json",
+      "size": 58563,
+      "sha256": "7687c3cb5d768ffc65e561e947bc1a581be1e20a7296239a207599157137d0d1",
+      "stored_path": "research/combinations/random_evaluated.json"
+    },
+    {
       "path": "datasets/README.md",
       "size": 1520,
       "sha256": "7b6f8c049d3ddd0ab1d144b3db25918dee452da9bb4f51d373dfdd06236910fc",
@@ -7415,16 +7577,64 @@
       "stored_path": "research/datasets/spacetop/verified_spec.md"
     },
     {
+      "path": "discussions/AGENT_REGISTRY.json",
+      "size": 934,
+      "sha256": "58a42e74a6fd630d8bb55d106c1a341038bf7477c653bb094700f58466ba9f22",
+      "stored_path": "research/discussions/AGENT_REGISTRY.json"
+    },
+    {
+      "path": "discussions/CONTINUATION_PROTOCOL.md",
+      "size": 3266,
+      "sha256": "37c8be11486bd67505694aad6999979ec6af1a2715788b20d4d9559109e63ab4",
+      "stored_path": "research/discussions/CONTINUATION_PROTOCOL.md"
+    },
+    {
       "path": "discussions/EXECUTION_LOG.md",
       "size": 2998,
       "sha256": "4217596421564dbbe138d0a6974b5152b0830d8a5fe3595b33c6340538468009",
       "stored_path": "research/discussions/EXECUTION_LOG.md"
     },
     {
+      "path": "discussions/ROUND03_PROTOCOL.md",
+      "size": 1713,
+      "sha256": "8c3a265890a609c2eb7ebfa8a6851f60bc6a4c9d65017b2a9f09276acf5f992c",
+      "stored_path": "research/discussions/ROUND03_PROTOCOL.md"
+    },
+    {
+      "path": "discussions/ROUND04_PROTOCOL.md",
+      "size": 2507,
+      "sha256": "c08b93c8f4f18570a5b73e07efc1fca7cc17cab252356d60d87f11a1dbcdff1d",
+      "stored_path": "research/discussions/ROUND04_PROTOCOL.md"
+    },
+    {
+      "path": "discussions/round03_assignments.json",
+      "size": 1011,
+      "sha256": "26f1da8d49a0f57d66722c1d2ba60349baca14b19927c04ca4b9da1ad56eb0dd",
+      "stored_path": "research/discussions/round03_assignments.json"
+    },
+    {
       "path": "discussions/round_01/index.md",
       "size": 1660,
       "sha256": "72d671e88fc22bc50b32b626a19aa710060d1f449ca4557d7ecec88c1063cb47",
       "stored_path": "research/discussions/round_01/index.md"
+    },
+    {
+      "path": "discussions/round_02/collected.json",
+      "size": 337558,
+      "sha256": "bb302ec0482d18eb2cf570082e675aa5aee7dd57e28616d61f79d6056feca2af",
+      "stored_path": "research/discussions/round_02/collected.json"
+    },
+    {
+      "path": "discussions/round_02/index.md",
+      "size": 2168,
+      "sha256": "d49e5af4ebcfa7c0d9254e70d5c93245df38c82199f924c05594584754e00065",
+      "stored_path": "research/discussions/round_02/index.md"
+    },
+    {
+      "path": "literature/COVERAGE_AND_GAPS.md",
+      "size": 2327,
+      "sha256": "de00a19852b074da3b243365cb5c67cfa68c8e849117617182965488f79fdd8a",
+      "stored_path": "research/literature/COVERAGE_AND_GAPS.md"
     },
     {
       "path": "literature/README.md",
@@ -7455,6 +7665,18 @@
       "size": 230,
       "sha256": "aad55b8a5f336758cdff3fb1ddcdb3ff8c8e561d1251adacb809eca614267059",
       "stored_path": "research/literature/merge_audit.json"
+    },
+    {
+      "path": "literature/novelty/curl_access_check.json",
+      "size": 666,
+      "sha256": "b0d5888808e7dc13968819608c60b86ed1921b412bf0db210220f18d489b15c2",
+      "stored_path": "research/literature/novelty/curl_access_check.json"
+    },
+    {
+      "path": "literature/novelty/external_access_check.json",
+      "size": 851,
+      "sha256": "d38b7a9a6c3e8a7c1c1d4d5b6e608849bf46c4b01023703a86291597b6a08957",
+      "stored_path": "research/literature/novelty/external_access_check.json"
     },
     {
       "path": "literature/nsd_bibliography_evidence.json",
@@ -7523,6 +7745,18 @@
       "stored_path": "research/logs/network_draft.json"
     },
     {
+      "path": "pilots/environment_observation.json",
+      "size": 180,
+      "sha256": "877fba722324e0f61282c65bc7f20b62c8b1734d5fc2032c16f47b4da6f5d916",
+      "stored_path": "research/pilots/environment_observation.json"
+    },
+    {
+      "path": "research_questions/EVALUATION_RUBRIC.md",
+      "size": 2326,
+      "sha256": "4f0410ba7bae9d35ea1600699397a10ac37de80f5884ff88341d714901849033",
+      "stored_path": "research/research_questions/EVALUATION_RUBRIC.md"
+    },
+    {
       "path": "research_questions/README.md",
       "size": 503,
       "sha256": "cd2e15fd0fa964b259a45f578e22ebb917ba84cc08edad86d804e12e1dd522db",
@@ -7545,6 +7779,24 @@
       "size": 12522,
       "sha256": "1f3747ad7dacb49a49a80eef0f9b59130f0a5488ca98811da2023af768991b86",
       "stored_path": "research/scripts/checkpoint_backup.py"
+    },
+    {
+      "path": "scripts/collect_rounds.py",
+      "size": 2750,
+      "sha256": "8db7e84804af3e3d37759003ae80c2329468932faeefaa093af993cc519c20e3",
+      "stored_path": "research/scripts/collect_rounds.py"
+    },
+    {
+      "path": "scripts/draw_research_combinations.py",
+      "size": 2190,
+      "sha256": "41ad6451c14ac95e742c73e66d99d0152674fd3422587be6624adcfb87741f3a",
+      "stored_path": "research/scripts/draw_research_combinations.py"
+    },
+    {
+      "path": "scripts/evaluate_random_combinations.py",
+      "size": 17070,
+      "sha256": "61de546a28908443b1f7ea89a136f9925502812bc443d84227be77c77dbe3a0e",
+      "stored_path": "research/scripts/evaluate_random_combinations.py"
     },
     {
       "path": "scripts/finalize_inventory.py",

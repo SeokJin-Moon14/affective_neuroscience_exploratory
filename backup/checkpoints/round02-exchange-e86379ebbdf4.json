@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "stage": "round02-exchange",
+  "snapshot_id": "e86379ebbdf4dbb3bd7c206a8cf0ca7c7065ff829b816d898decd9963cfce5cb",
+  "prepared_at_utc": "2026-11-12T06:14:33.474599+00:00",
+  "file_count": 1302,
+  "total_bytes": 194850718,
+  "excluded_components": [
+    ".agents",
+    ".aws",
+    ".codex",
+    ".git",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__"
+  ]
+}

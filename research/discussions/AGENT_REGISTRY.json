@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-12",
+  "session_scope": "이 세션의 실제 역할 배치; 새 세션에서는 Agent ID 지속을 가정하지 않음",
+  "roles": {
+    "01_dataset": "/root/dataset_continuation",
+    "02_affective_neuroscience": "/root/affective_continuation",
+    "03_vision_decoding": "/root/vision",
+    "04_brain_foundation": "/root/foundation_continuation",
+    "05_multimodal_dynamics": "/root/dynamics_continuation",
+    "06_frontier_ai": "/root/frontier_continuation",
+    "07_geometry_information": "/root/geometry",
+    "08_systems_neuroscience": "/root/systems_continuation",
+    "09_generative_ai": "/root/generative",
+    "10_llm_semantics": "/root/semantics",
+    "11_brain_inspired": "/root/brain_inspired",
+    "12_adversarial_review": "/root/auditor"
+  },
+  "continuation": "01/02/04/05/06/08은 새 Agent가 자기 역할 원본 보고서를 읽어 재개; 03/07/09/10/11/12는 기존 Agent 후속 호출"
+}

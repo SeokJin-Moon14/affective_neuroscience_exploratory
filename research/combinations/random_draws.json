@@ -1,0 +1,994 @@
+{
+  "seed": 20261112,
+  "executed_at": "2026-11-12T15:02:59.930407+09:00",
+  "taxonomy_sha256": "5edb112146ac2c9fac0767958b5ab5512805ee6d7582c8027676ac4efb307f70",
+  "algorithm": "Python random.Random; sample(types,3); choice(type_pool)",
+  "pools": {
+    "Construct / Stimulus": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "U",
+      "W"
+    ],
+    "Neural": [
+      "E",
+      "F",
+      "H",
+      "N",
+      "O"
+    ],
+    "Model / Method": [
+      "B",
+      "G",
+      "H",
+      "I",
+      "J",
+      "L",
+      "M",
+      "N",
+      "P",
+      "R",
+      "V"
+    ],
+    "Structure / Dynamics": [
+      "C",
+      "D",
+      "F",
+      "K",
+      "M",
+      "R",
+      "U",
+      "V",
+      "W",
+      "X"
+    ],
+    "Inference / Measurement": [
+      "A",
+      "D",
+      "G",
+      "K",
+      "L",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "X"
+    ]
+  },
+  "redraw_rule": "동일 Axis 중복 또는 동일3축집합만 재추첨. 과학적 부적합·U/W 공백은 재추첨하지 않고 판정으로 보존.",
+  "semantically_duplicate_rule": "의미상 중복은 사후 판정하여 RQ 집계에서 병합; 결과를 보고 난수를 다시 뽑지 않음",
+  "attempts": [
+    {
+      "attempt": 1,
+      "sampled_types": [
+        "Neural",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "F",
+        "S",
+        "D"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 2,
+      "sampled_types": [
+        "Neural",
+        "Structure / Dynamics",
+        "Inference / Measurement"
+      ],
+      "sampled_axes": [
+        "F",
+        "V",
+        "R"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 3,
+      "sampled_types": [
+        "Neural",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "N",
+        "P",
+        "C"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 4,
+      "sampled_types": [
+        "Inference / Measurement",
+        "Model / Method",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "R",
+        "I",
+        "W"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 5,
+      "sampled_types": [
+        "Construct / Stimulus",
+        "Model / Method",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "U",
+        "B",
+        "D"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 6,
+      "sampled_types": [
+        "Inference / Measurement",
+        "Model / Method",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "P",
+        "M",
+        "C"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 7,
+      "sampled_types": [
+        "Construct / Stimulus",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "W",
+        "T",
+        "H"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 8,
+      "sampled_types": [
+        "Neural",
+        "Structure / Dynamics",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "F",
+        "W",
+        "A"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 9,
+      "sampled_types": [
+        "Model / Method",
+        "Structure / Dynamics",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "I",
+        "M",
+        "F"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 10,
+      "sampled_types": [
+        "Neural",
+        "Construct / Stimulus",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "O",
+        "U",
+        "K"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 11,
+      "sampled_types": [
+        "Inference / Measurement",
+        "Structure / Dynamics",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "Q",
+        "C",
+        "N"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 12,
+      "sampled_types": [
+        "Neural",
+        "Model / Method",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "E",
+        "P",
+        "D"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 13,
+      "sampled_types": [
+        "Structure / Dynamics",
+        "Neural",
+        "Inference / Measurement"
+      ],
+      "sampled_axes": [
+        "F",
+        "F",
+        "T"
+      ],
+      "redraw_reason": "동일 Axis 중복"
+    },
+    {
+      "attempt": 14,
+      "sampled_types": [
+        "Structure / Dynamics",
+        "Neural",
+        "Model / Method"
+      ],
+      "sampled_axes": [
+        "F",
+        "E",
+        "G"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 15,
+      "sampled_types": [
+        "Inference / Measurement",
+        "Neural",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "K",
+        "H",
+        "C"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 16,
+      "sampled_types": [
+        "Structure / Dynamics",
+        "Model / Method",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "U",
+        "B",
+        "D"
+      ],
+      "redraw_reason": "이미 추출한 조합"
+    },
+    {
+      "attempt": 17,
+      "sampled_types": [
+        "Neural",
+        "Inference / Measurement",
+        "Model / Method"
+      ],
+      "sampled_axes": [
+        "E",
+        "G",
+        "P"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 18,
+      "sampled_types": [
+        "Construct / Stimulus",
+        "Model / Method",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "D",
+        "R",
+        "H"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 19,
+      "sampled_types": [
+        "Model / Method",
+        "Structure / Dynamics",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "V",
+        "D",
+        "D"
+      ],
+      "redraw_reason": "동일 Axis 중복"
+    },
+    {
+      "attempt": 20,
+      "sampled_types": [
+        "Neural",
+        "Construct / Stimulus",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "H",
+        "D",
+        "M"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 21,
+      "sampled_types": [
+        "Model / Method",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "L",
+        "G",
+        "C"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 22,
+      "sampled_types": [
+        "Inference / Measurement",
+        "Structure / Dynamics",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "R",
+        "F",
+        "O"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 23,
+      "sampled_types": [
+        "Construct / Stimulus",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "C",
+        "K",
+        "N"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 24,
+      "sampled_types": [
+        "Structure / Dynamics",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "R",
+        "O",
+        "H"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 25,
+      "sampled_types": [
+        "Inference / Measurement",
+        "Model / Method",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "L",
+        "P",
+        "R"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 26,
+      "sampled_types": [
+        "Model / Method",
+        "Neural",
+        "Inference / Measurement"
+      ],
+      "sampled_axes": [
+        "V",
+        "O",
+        "A"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 27,
+      "sampled_types": [
+        "Model / Method",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "P",
+        "K",
+        "E"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 28,
+      "sampled_types": [
+        "Structure / Dynamics",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampled_axes": [
+        "D",
+        "K",
+        "F"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 29,
+      "sampled_types": [
+        "Structure / Dynamics",
+        "Inference / Measurement",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "V",
+        "T",
+        "A"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 30,
+      "sampled_types": [
+        "Neural",
+        "Inference / Measurement",
+        "Construct / Stimulus"
+      ],
+      "sampled_axes": [
+        "N",
+        "A",
+        "D"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 31,
+      "sampled_types": [
+        "Model / Method",
+        "Neural",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "B",
+        "E",
+        "V"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 32,
+      "sampled_types": [
+        "Construct / Stimulus",
+        "Structure / Dynamics",
+        "Model / Method"
+      ],
+      "sampled_axes": [
+        "W",
+        "W",
+        "P"
+      ],
+      "redraw_reason": "동일 Axis 중복"
+    },
+    {
+      "attempt": 33,
+      "sampled_types": [
+        "Construct / Stimulus",
+        "Structure / Dynamics",
+        "Model / Method"
+      ],
+      "sampled_axes": [
+        "A",
+        "F",
+        "L"
+      ],
+      "redraw_reason": null
+    },
+    {
+      "attempt": 34,
+      "sampled_types": [
+        "Model / Method",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampled_axes": [
+        "I",
+        "A",
+        "F"
+      ],
+      "redraw_reason": null
+    }
+  ],
+  "accepted": [
+    {
+      "combination_id": "R01",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "D",
+        "F",
+        "S"
+      ],
+      "type_tags": [
+        "Neural",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 1
+    },
+    {
+      "combination_id": "R02",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "F",
+        "R",
+        "V"
+      ],
+      "type_tags": [
+        "Neural",
+        "Structure / Dynamics",
+        "Inference / Measurement"
+      ],
+      "sampling_attempt": 2
+    },
+    {
+      "combination_id": "R03",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "C",
+        "N",
+        "P"
+      ],
+      "type_tags": [
+        "Neural",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 3
+    },
+    {
+      "combination_id": "R04",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "I",
+        "R",
+        "W"
+      ],
+      "type_tags": [
+        "Inference / Measurement",
+        "Model / Method",
+        "Construct / Stimulus"
+      ],
+      "sampling_attempt": 4
+    },
+    {
+      "combination_id": "R05",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "B",
+        "D",
+        "U"
+      ],
+      "type_tags": [
+        "Construct / Stimulus",
+        "Model / Method",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 5
+    },
+    {
+      "combination_id": "R06",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "C",
+        "M",
+        "P"
+      ],
+      "type_tags": [
+        "Inference / Measurement",
+        "Model / Method",
+        "Construct / Stimulus"
+      ],
+      "sampling_attempt": 6
+    },
+    {
+      "combination_id": "R07",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "H",
+        "T",
+        "W"
+      ],
+      "type_tags": [
+        "Construct / Stimulus",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampling_attempt": 7
+    },
+    {
+      "combination_id": "R08",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "A",
+        "F",
+        "W"
+      ],
+      "type_tags": [
+        "Neural",
+        "Structure / Dynamics",
+        "Construct / Stimulus"
+      ],
+      "sampling_attempt": 8
+    },
+    {
+      "combination_id": "R09",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "F",
+        "I",
+        "M"
+      ],
+      "type_tags": [
+        "Model / Method",
+        "Structure / Dynamics",
+        "Neural"
+      ],
+      "sampling_attempt": 9
+    },
+    {
+      "combination_id": "R10",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "K",
+        "O",
+        "U"
+      ],
+      "type_tags": [
+        "Neural",
+        "Construct / Stimulus",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 10
+    },
+    {
+      "combination_id": "R11",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "C",
+        "N",
+        "Q"
+      ],
+      "type_tags": [
+        "Inference / Measurement",
+        "Structure / Dynamics",
+        "Neural"
+      ],
+      "sampling_attempt": 11
+    },
+    {
+      "combination_id": "R12",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "D",
+        "E",
+        "P"
+      ],
+      "type_tags": [
+        "Neural",
+        "Model / Method",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 12
+    },
+    {
+      "combination_id": "R13",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "E",
+        "F",
+        "G"
+      ],
+      "type_tags": [
+        "Structure / Dynamics",
+        "Neural",
+        "Model / Method"
+      ],
+      "sampling_attempt": 14
+    },
+    {
+      "combination_id": "R14",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "C",
+        "H",
+        "K"
+      ],
+      "type_tags": [
+        "Inference / Measurement",
+        "Neural",
+        "Construct / Stimulus"
+      ],
+      "sampling_attempt": 15
+    },
+    {
+      "combination_id": "R15",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "E",
+        "G",
+        "P"
+      ],
+      "type_tags": [
+        "Neural",
+        "Inference / Measurement",
+        "Model / Method"
+      ],
+      "sampling_attempt": 17
+    },
+    {
+      "combination_id": "R16",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "D",
+        "H",
+        "R"
+      ],
+      "type_tags": [
+        "Construct / Stimulus",
+        "Model / Method",
+        "Neural"
+      ],
+      "sampling_attempt": 18
+    },
+    {
+      "combination_id": "R17",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "D",
+        "H",
+        "M"
+      ],
+      "type_tags": [
+        "Neural",
+        "Construct / Stimulus",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 20
+    },
+    {
+      "combination_id": "R18",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "C",
+        "G",
+        "L"
+      ],
+      "type_tags": [
+        "Model / Method",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 21
+    },
+    {
+      "combination_id": "R19",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "F",
+        "O",
+        "R"
+      ],
+      "type_tags": [
+        "Inference / Measurement",
+        "Structure / Dynamics",
+        "Neural"
+      ],
+      "sampling_attempt": 22
+    },
+    {
+      "combination_id": "R20",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "C",
+        "K",
+        "N"
+      ],
+      "type_tags": [
+        "Construct / Stimulus",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampling_attempt": 23
+    },
+    {
+      "combination_id": "R21",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "H",
+        "O",
+        "R"
+      ],
+      "type_tags": [
+        "Structure / Dynamics",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampling_attempt": 24
+    },
+    {
+      "combination_id": "R22",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "L",
+        "P",
+        "R"
+      ],
+      "type_tags": [
+        "Inference / Measurement",
+        "Model / Method",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 25
+    },
+    {
+      "combination_id": "R23",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "A",
+        "O",
+        "V"
+      ],
+      "type_tags": [
+        "Model / Method",
+        "Neural",
+        "Inference / Measurement"
+      ],
+      "sampling_attempt": 26
+    },
+    {
+      "combination_id": "R24",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "E",
+        "K",
+        "P"
+      ],
+      "type_tags": [
+        "Model / Method",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampling_attempt": 27
+    },
+    {
+      "combination_id": "R25",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "D",
+        "F",
+        "K"
+      ],
+      "type_tags": [
+        "Structure / Dynamics",
+        "Inference / Measurement",
+        "Neural"
+      ],
+      "sampling_attempt": 28
+    },
+    {
+      "combination_id": "R26",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "A",
+        "T",
+        "V"
+      ],
+      "type_tags": [
+        "Structure / Dynamics",
+        "Inference / Measurement",
+        "Construct / Stimulus"
+      ],
+      "sampling_attempt": 29
+    },
+    {
+      "combination_id": "R27",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "A",
+        "D",
+        "N"
+      ],
+      "type_tags": [
+        "Neural",
+        "Inference / Measurement",
+        "Construct / Stimulus"
+      ],
+      "sampling_attempt": 30
+    },
+    {
+      "combination_id": "R28",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "B",
+        "E",
+        "V"
+      ],
+      "type_tags": [
+        "Model / Method",
+        "Neural",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 31
+    },
+    {
+      "combination_id": "R29",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "A",
+        "F",
+        "L"
+      ],
+      "type_tags": [
+        "Construct / Stimulus",
+        "Structure / Dynamics",
+        "Model / Method"
+      ],
+      "sampling_attempt": 33
+    },
+    {
+      "combination_id": "R30",
+      "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+      "axis_ids": [
+        "A",
+        "F",
+        "I"
+      ],
+      "type_tags": [
+        "Model / Method",
+        "Inference / Measurement",
+        "Structure / Dynamics"
+      ],
+      "sampling_attempt": 34
+    }
+  ]
+}

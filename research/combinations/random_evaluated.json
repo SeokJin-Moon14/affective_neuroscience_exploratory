@@ -1,0 +1,1663 @@
+[
+  {
+    "combination_id": "R01",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "D",
+      "F",
+      "S"
+    ],
+    "type_tags": [
+      "Neural",
+      "Inference / Measurement",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 1,
+    "scientific_construct": "내용 밖으로 일반화하는 정서 전이",
+    "external_field_concept": "도메인 밖 잠재동역학",
+    "ai_model_or_method": [
+      "EmoNet",
+      "V-JEPA2/2.1",
+      "미래 입력 차단 encoder 비교",
+      "I-JEPA",
+      "VideoMAE",
+      "V-JEPA",
+      "V-JEPA2",
+      "DreamerV3",
+      "2-factor cross-validation",
+      "corrected bootstrap",
+      "domain-aware model selection"
+    ],
+    "neural_target": "시간별 분산 신경표상",
+    "available_dataset": "Emo-FilM 연속자료·외부 consensus; 독립 영화 split",
+    "measurable_contrast": "영화 내부·외부에서 같은 전이모형의 정서 대비 설명력",
+    "falsifiable_prediction": "외부 영화에서 현재내용 기준을 넘지 못하면 공유 전이법칙을 축소",
+    "baseline": "현재 프레임+HRF; 동일 문맥 길이",
+    "source_papers": [
+      "P008",
+      "P013",
+      "P014",
+      "P033",
+      "P045",
+      "P046",
+      "P048",
+      "P098",
+      "P099",
+      "P100",
+      "P060"
+    ],
+    "missing_assumptions": "Emo-FilM 연속자료·외부 consensus; 독립 영화 split",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "시간상태와 일반화 단위를 결합한 판별 가능 질문",
+    "supporting_subaxes": [
+      "AS02",
+      "AS10",
+      "AS28"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R02",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "F",
+      "R",
+      "V"
+    ],
+    "type_tags": [
+      "Neural",
+      "Structure / Dynamics",
+      "Inference / Measurement"
+    ],
+    "sampling_attempt": 2,
+    "scientific_construct": "예측에 쓰이는 잠재 특징",
+    "external_field_concept": "희소 분해와 예측상태의 기능적 사용",
+    "ai_model_or_method": [
+      "I-JEPA",
+      "VideoMAE",
+      "V-JEPA",
+      "V-JEPA2",
+      "DreamerV3",
+      "SAE TopK",
+      "transcoder",
+      "feature intervention",
+      "보조변수 nonlinear ICA",
+      "iVAE",
+      "GW",
+      "PID"
+    ],
+    "neural_target": "예측상태와 대응되는 신경 부분공간",
+    "available_dataset": "Horikawa 또는 Emo-FilM; 모델 activation 접근·독립 정서 대비",
+    "measurable_contrast": "seed가 다른 개별 feature와 부분공간의 상태전이 예측 보존",
+    "falsifiable_prediction": "feature 편집이 모델 계산을 바꾸지 않으면 해당 feature의 기능 주장 약화",
+    "baseline": "무작위 방향·rank 일치·동일 readout",
+    "source_papers": [
+      "P033",
+      "P045",
+      "P046",
+      "P013",
+      "P048",
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT",
+      "P053",
+      "P054",
+      "P055",
+      "P057",
+      "P058"
+    ],
+    "missing_assumptions": "Horikawa 또는 Emo-FilM; 모델 activation 접근·독립 정서 대비",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "모델 내 기능 검정을 인간 신경 필요조건으로 확대하지 않도록 범위를 제한",
+    "supporting_subaxes": [
+      "AS10",
+      "AS11",
+      "AS15"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R03",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "C",
+      "N",
+      "P"
+    ],
+    "type_tags": [
+      "Neural",
+      "Inference / Measurement",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 3,
+    "scientific_construct": "사건 순서에 따른 경로 선택",
+    "external_field_concept": "MoE gate와 내용의 교차 개입",
+    "ai_model_or_method": [
+      "문맥 LLM",
+      "사건집합 기준 모델",
+      "FIR encoding",
+      "V-MoE",
+      "CORnet",
+      "새 시간 gate 확장은 E3",
+      "foldwise residualization",
+      "CMIknn",
+      "joint encoding",
+      "conditional latent prior"
+    ],
+    "neural_target": "맥락별 정서 관련 뇌 대비",
+    "available_dataset": "Emo-FilM 관찰비교; 실제 순서개입의 뇌효과는 새 측정",
+    "measurable_contrast": "같은 사건집합의 순서를 바꾸고 gate 교환 대 expert 교환 비교",
+    "falsifiable_prediction": "gate 효과가 expert 내용이나 계산량으로 모두 설명되면 독립 routing 필요성 약화",
+    "baseline": "고정 gate·부하 일치·bag of events",
+    "source_papers": [
+      "P085",
+      "P086",
+      "P087",
+      "P093",
+      "P090",
+      "P089",
+      "PENDING-A12-P02",
+      "P102",
+      "P055"
+    ],
+    "missing_assumptions": "Emo-FilM 관찰비교; 실제 순서개입의 뇌효과는 새 측정",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "관찰자료에서는 조건부 계산 비교만 유지",
+    "supporting_subaxes": [
+      "AS23",
+      "AS26",
+      "AS29"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R04",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "I",
+      "R",
+      "W"
+    ],
+    "type_tags": [
+      "Inference / Measurement",
+      "Model / Method",
+      "Construct / Stimulus"
+    ],
+    "sampling_attempt": 4,
+    "scientific_construct": "계산적 salience의 희소 특징",
+    "external_field_concept": "SAE로 salience 축 발견",
+    "ai_model_or_method": [
+      "SAE TopK",
+      "transcoder",
+      "feature intervention",
+      "CBM",
+      "LF-CBM",
+      "독립 concept probe",
+      "교차검증 encoding"
+    ],
+    "neural_target": "독립 salience 대비에 반응하는 신경표상",
+    "available_dataset": "다섯 보유자료에서 독립 salience 조작·측정 존재 미확인",
+    "measurable_contrast": "정서 관련 특징과 독립 salience 조작의 일반화 분리",
+    "falsifiable_prediction": "정서 평정만 설명하고 독립 salience 조작을 설명하지 못하면 salience 가설 기각",
+    "baseline": "감각 대비·예측오차·정서 주석 별도모형",
+    "source_papers": [
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT",
+      "P083",
+      "P084",
+      "P086"
+    ],
+    "missing_assumptions": "다섯 보유자료에서 독립 salience 조작·측정 존재 미확인",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "보류",
+    "rejection_reason": "W축을 정서 점수나 주의라는 이름으로 대체하지 않음; 필수 측정 근거 공백",
+    "review_reason": "W축을 정서 점수나 주의라는 이름으로 대체하지 않음; 필수 측정 근거 공백",
+    "supporting_subaxes": [
+      "AS11",
+      "AS24"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R05",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "B",
+      "D",
+      "U"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 5,
+    "scientific_construct": "외부 영상과 내부 재현의 시간 구조",
+    "external_field_concept": "지각–심상 전이모형",
+    "ai_model_or_method": [
+      "EmoNet",
+      "V-JEPA2/2.1",
+      "미래 입력 차단 encoder 비교",
+      "H0 persistent homology",
+      "TWO-NN 및 대안 ID",
+      "noise ceiling"
+    ],
+    "neural_target": "지각과 내부 재현의 신경 궤적",
+    "available_dataset": "Mind Captioning 포함 보유자료의 실제 심상·기억 조건 미확인",
+    "measurable_contrast": "같은 내용의 외부지각·내부재현에서 전이 좌표 보존",
+    "falsifiable_prediction": "행동·시간 일치 뒤 교차조건 일반화가 없으면 공통 동역학 축소",
+    "baseline": "내용·시간·지시 차이 통제",
+    "source_papers": [
+      "P008",
+      "P013",
+      "P014",
+      "P056",
+      "P059",
+      "P060"
+    ],
+    "missing_assumptions": "Mind Captioning 포함 보유자료의 실제 심상·기억 조건 미확인",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "보류",
+    "rejection_reason": "U 조건을 데이터 이름이나 긴 문맥에서 추정하지 않음",
+    "review_reason": "U 조건을 데이터 이름이나 긴 문맥에서 추정하지 않음",
+    "supporting_subaxes": [
+      "AS02",
+      "AS14"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R06",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "C",
+      "M",
+      "P"
+    ],
+    "type_tags": [
+      "Inference / Measurement",
+      "Model / Method",
+      "Construct / Stimulus"
+    ],
+    "sampling_attempt": 6,
+    "scientific_construct": "멀티모달 맥락 변화의 추가 정보",
+    "external_field_concept": "공유/고유 분해와 반사실",
+    "ai_model_or_method": [
+      "ImageBind",
+      "CAV-MAE",
+      "FactorCL",
+      "MBT",
+      "Prompt-to-Prompt",
+      "Null-text Inversion",
+      "InstructPix2Pix",
+      "FateZero",
+      "AudioLDM",
+      "FlowEdit",
+      "foldwise residualization",
+      "CMIknn",
+      "joint encoding",
+      "conditional latent prior"
+    ],
+    "neural_target": "정서 관련 비가산 신경 대비",
+    "available_dataset": "Emo-FilM 실제 제시 스트림; 진짜 불일치 자극 뇌효과는 새 측정",
+    "measurable_contrast": "영상·비음성음향의 의미 일치 대 불일치에서 joint 이득",
+    "falsifiable_prediction": "같은 의미량의 nonlinear additive가 충분하면 상호작용 필요성 약화",
+    "baseline": "영상만·음향만·가산·공통원인 null",
+    "source_papers": [
+      "P035",
+      "P036",
+      "P037",
+      "P038",
+      "P069",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P078",
+      "PENDING-A12-P02",
+      "P102",
+      "P055"
+    ],
+    "missing_assumptions": "Emo-FilM 실제 제시 스트림; 진짜 불일치 자극 뇌효과는 새 측정",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "기존자료 재조합의 계산 결과와 실제 재조합 자극의 뇌결과를 구별",
+    "supporting_subaxes": [
+      "AS34",
+      "AS19",
+      "AS29"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R07",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "H",
+      "T",
+      "W"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "sampling_attempt": 7,
+    "scientific_construct": "보상가치의 정서 encoding",
+    "external_field_concept": "가치 회귀와 외적 검증",
+    "ai_model_or_method": [
+      "foldwise residualization",
+      "CMIknn",
+      "joint encoding",
+      "conditional latent prior",
+      "nested CV",
+      "fixed/flexible RSA",
+      "dimension-matched readout",
+      "model disagreement"
+    ],
+    "neural_target": "가치와 관계된 신경반응",
+    "available_dataset": "보유자료에 확인된 가치 조작·보상변수 없음",
+    "measurable_contrast": "독립 보상가치가 정서 평정을 넘어 신경반응을 설명하는지",
+    "falsifiable_prediction": "가치 변수 없이는 이 대비를 구성할 수 없음",
+    "baseline": "정서·감각·의미 baseline",
+    "source_papers": [
+      "PENDING-A12-P02",
+      "P102",
+      "P055",
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "missing_assumptions": "보유자료에 확인된 가치 조작·보상변수 없음",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "기각",
+    "rejection_reason": "현재 조합을 정서 회귀로 치환하면 W가 사라지므로 별도 가치자료 없이 성립하지 않음",
+    "review_reason": "현재 조합을 정서 회귀로 치환하면 W가 사라지므로 별도 가치자료 없이 성립하지 않음",
+    "supporting_subaxes": [
+      "AS29",
+      "AS30"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R08",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "A",
+      "F",
+      "W"
+    ],
+    "type_tags": [
+      "Neural",
+      "Structure / Dynamics",
+      "Construct / Stimulus"
+    ],
+    "sampling_attempt": 8,
+    "scientific_construct": "정서 차원과 salience 차원의 분리",
+    "external_field_concept": "측정 불변성과 잠재요인 경쟁",
+    "ai_model_or_method": [
+      "공식 Horikawa 선형기준",
+      "조건부 kernel 비교",
+      "CLIP",
+      "계층 측정모형",
+      "measurement invariance"
+    ],
+    "neural_target": "독립 구성개념에 대응되는 분산표상",
+    "available_dataset": "독립 salience 측정은 현재 미확인",
+    "measurable_contrast": "공통 척도에서 정서와 salience가 분리되는지",
+    "falsifiable_prediction": "독립 측정 없이 두 latent에 이름만 붙이면 식별되지 않음",
+    "baseline": "한 요인·두 요인·측정오차 모형",
+    "source_papers": [
+      "P001",
+      "P007",
+      "P010",
+      "P002",
+      "P003"
+    ],
+    "missing_assumptions": "독립 salience 측정은 현재 미확인",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "보류",
+    "rejection_reason": "고각성 주석을 salience ground truth로 대신하지 않음",
+    "review_reason": "고각성 주석을 salience ground truth로 대신하지 않음",
+    "supporting_subaxes": [
+      "AS01",
+      "AS33"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R09",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "F",
+      "I",
+      "M"
+    ],
+    "type_tags": [
+      "Model / Method",
+      "Structure / Dynamics",
+      "Neural"
+    ],
+    "sampling_attempt": 9,
+    "scientific_construct": "공유 공간 밖 모달리티 정보",
+    "external_field_concept": "공유/고유 통로",
+    "ai_model_or_method": [
+      "ImageBind",
+      "CAV-MAE",
+      "FactorCL",
+      "MBT",
+      "PINES",
+      "MPA2",
+      "용량맞춤 결합모델",
+      "정보분해 추정기는 후속검증"
+    ],
+    "neural_target": "지역·분산 신경정보",
+    "available_dataset": "Emo-FilM 실제 영상·음악/환경음 및 정서주석 대응",
+    "measurable_contrast": "공유-only 대 공유+고유; joint 대 복잡도 일치 가산",
+    "falsifiable_prediction": "고유 성분 이득이 용량·저수준 정보로 소실되면 필요성 축소",
+    "baseline": "단일모달·비선형 가산·공통원인 null",
+    "source_papers": [
+      "P035",
+      "P036",
+      "P037",
+      "P038",
+      "P005",
+      "P009",
+      "P010"
+    ],
+    "missing_assumptions": "Emo-FilM 실제 영상·음악/환경음 및 정서주석 대응",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "입력원 분해와 뇌표상 비교를 연결; 정확한 PID 주장은 별도",
+    "supporting_subaxes": [
+      "AS34",
+      "AS03"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R10",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "K",
+      "O",
+      "U"
+    ],
+    "type_tags": [
+      "Neural",
+      "Construct / Stimulus",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 10,
+    "scientific_construct": "개인별 내부 재현의 공통 기하",
+    "external_field_concept": "정렬과 내부재현 교차일반화",
+    "ai_model_or_method": [
+      "MindEye2",
+      "Brain-IT",
+      "MinD-Vis",
+      "MindBridge",
+      "CKA",
+      "crossnobis RSA",
+      "공유 저차원 정렬"
+    ],
+    "neural_target": "개인별 기억·심상 표상",
+    "available_dataset": "실제 내부재현 태스크·측정은 보유명만으로 확인되지 않음",
+    "measurable_contrast": "지각 정렬을 내부재현에 적용했을 때 독립 의미·정서 대비 보존",
+    "falsifiable_prediction": "조건부 신뢰도를 넘는 교차조건 정보가 없으면 공유 기하 축소",
+    "baseline": "비정렬·가역변환·독립 신뢰도",
+    "source_papers": [
+      "P015",
+      "P017",
+      "P022",
+      "P023",
+      "P051",
+      "P052",
+      "P060"
+    ],
+    "missing_assumptions": "실제 내부재현 태스크·측정은 보유명만으로 확인되지 않음",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "보류",
+    "rejection_reason": "U 측정이 확인될 때 열리는 미래 경로로 남김",
+    "review_reason": "U 측정이 확인될 때 열리는 미래 경로로 남김",
+    "supporting_subaxes": [
+      "AS05",
+      "AS13"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R11",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "C",
+      "N",
+      "Q"
+    ],
+    "type_tags": [
+      "Inference / Measurement",
+      "Structure / Dynamics",
+      "Neural"
+    ],
+    "sampling_attempt": 11,
+    "scientific_construct": "맥락의 예측오차와 관측 지연",
+    "external_field_concept": "predictive coding의 관측모형",
+    "ai_model_or_method": [
+      "PredNet",
+      "PCNet",
+      "selective SSM",
+      "고정 SSM",
+      "CortexMAE",
+      "TRIBE v2",
+      "상태공간 관측모형",
+      "FIR/HRF"
+    ],
+    "neural_target": "부호별 오차와 신경변동",
+    "available_dataset": "Emo-FilM 연속 자극·BOLD·주석 정렬",
+    "measurable_contrast": "상태·내용·HRF를 맞춘 뒤 양음 오차 추가설명 비교",
+    "falsifiable_prediction": "관측모형이나 상태만으로 설명되면 오차 코드 필요성 축소",
+    "baseline": "현재내용·상태·signed/unsigned error·HRF",
+    "source_papers": [
+      "P089",
+      "P096",
+      "P026",
+      "P027",
+      "P028",
+      "P034",
+      "P002"
+    ],
+    "missing_assumptions": "Emo-FilM 연속 자극·BOLD·주석 정렬",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "오차와 BOLD 지연의 대안설명을 분리",
+    "supporting_subaxes": [
+      "AS25",
+      "AS09",
+      "AS32"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R12",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "D",
+      "E",
+      "P"
+    ],
+    "type_tags": [
+      "Neural",
+      "Model / Method",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 12,
+    "scientific_construct": "네트워크 전이의 인과 방향",
+    "external_field_concept": "동적 연결성에서 방향 추론",
+    "ai_model_or_method": [
+      "matched temporal-horizon features",
+      "FIR/HRF family",
+      "event segmentation",
+      "spatial surrogate",
+      "run-constrained temporal surrogate",
+      "stationary generative null",
+      "foldwise residualization",
+      "CMIknn",
+      "joint encoding",
+      "conditional latent prior"
+    ],
+    "neural_target": "정서 관련 네트워크 switching",
+    "available_dataset": "관찰 fMRI만으로 개입 방향성 확인 불가",
+    "measurable_contrast": "관찰적 BOLD 선후관계만으로 영역 간 원인방향 결정",
+    "falsifiable_prediction": "서로 다른 HRF·공통입력이 같은 선후관계를 만들면 식별 불가",
+    "baseline": "HRF 계열·공통입력 null",
+    "source_papers": [
+      "P061",
+      "P062",
+      "P065",
+      "P066",
+      "P068",
+      "P063",
+      "P064",
+      "P067",
+      "PENDING-A12-P02",
+      "P102",
+      "P055"
+    ],
+    "missing_assumptions": "관찰 fMRI만으로 개입 방향성 확인 불가",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "기각",
+    "rejection_reason": "현재 조합의 인과방향 주장은 관찰 등가를 깨지 못함; 기술적 선후관계로 낮추면 별도 질문",
+    "review_reason": "현재 조합의 인과방향 주장은 관찰 등가를 깨지 못함; 기술적 선후관계로 낮추면 별도 질문",
+    "supporting_subaxes": [
+      "AS17",
+      "AS18",
+      "AS29"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R13",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "E",
+      "F",
+      "G"
+    ],
+    "type_tags": [
+      "Structure / Dynamics",
+      "Neural",
+      "Model / Method"
+    ],
+    "sampling_attempt": 14,
+    "scientific_construct": "지역·분산 코드의 복원 충분성",
+    "external_field_concept": "영역 제한 decoding 경쟁",
+    "ai_model_or_method": [
+      "nested regularized encoding/decoding",
+      "mean-only HMM",
+      "covariance HMM",
+      "PINES",
+      "MPA2",
+      "용량맞춤 결합모델",
+      "정보분해 추정기는 후속검증",
+      "MindEye2",
+      "MindEye",
+      "Brain-Diffuser",
+      "ridge latent decoding"
+    ],
+    "neural_target": "ROI와 분산표상",
+    "available_dataset": "Horikawa 시행 단위; NSD는 시각 대조",
+    "measurable_contrast": "ROI-only·분산가산·분산joint에서 독립 정서 대비 보존",
+    "falsifiable_prediction": "ROI 크기·신뢰도·용량 통제 뒤 차이가 사라지면 분산 계산 필요성 축소",
+    "baseline": "일치 voxel수·비선형 가산·prior-only",
+    "source_papers": [
+      "P066",
+      "P067",
+      "P005",
+      "P009",
+      "P010",
+      "P015",
+      "P016",
+      "P019",
+      "P021"
+    ],
+    "missing_assumptions": "Horikawa 시행 단위; NSD는 시각 대조",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "단순 위치분류보다 정보원 충분성을 검정",
+    "supporting_subaxes": [
+      "AS16",
+      "AS03",
+      "AS04"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R14",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "C",
+      "H",
+      "K"
+    ],
+    "type_tags": [
+      "Inference / Measurement",
+      "Neural",
+      "Construct / Stimulus"
+    ],
+    "sampling_attempt": 15,
+    "scientific_construct": "의미 확장에 따른 정서 기하 잔차",
+    "external_field_concept": "개념 집합 확장과 기하 경쟁",
+    "ai_model_or_method": [
+      "CBM",
+      "LF-CBM",
+      "독립 concept probe",
+      "교차검증 encoding",
+      "H0 persistent homology",
+      "TWO-NN 및 대안 ID",
+      "noise ceiling",
+      "CLIP",
+      "BLIP",
+      "BLIP-2"
+    ],
+    "neural_target": "신경 거리·조건부 잔차",
+    "available_dataset": "Horikawa 주석·자극; Mind Captioning은 독립 설명 출처 확인",
+    "measurable_contrast": "객체→관계→사건 특징을 추가할 때 신뢰 가능한 정서 대비 변화",
+    "falsifiable_prediction": "개념 추가로 효과가 사라지면 정서 독립성을 주장하지 않음",
+    "baseline": "여러 의미모형·용량 일치·noise ceiling",
+    "source_papers": [
+      "P083",
+      "P084",
+      "P086",
+      "P056",
+      "P059",
+      "P060",
+      "P079",
+      "P080",
+      "P081"
+    ],
+    "missing_assumptions": "Horikawa 주석·자극; Mind Captioning은 독립 설명 출처 확인",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "개념 누락과 새로운 신경정보의 구별",
+    "supporting_subaxes": [
+      "AS24",
+      "AS14",
+      "AS22"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R15",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "E",
+      "G",
+      "P"
+    ],
+    "type_tags": [
+      "Neural",
+      "Inference / Measurement",
+      "Model / Method"
+    ],
+    "sampling_attempt": 17,
+    "scientific_construct": "디코딩되는 영역의 신경적 필요성",
+    "external_field_concept": "decoder 성능으로 causal localization",
+    "ai_model_or_method": [
+      "nested regularized encoding/decoding",
+      "mean-only HMM",
+      "covariance HMM",
+      "MindEye2",
+      "MindEye",
+      "Brain-Diffuser",
+      "ridge latent decoding"
+    ],
+    "neural_target": "ROI별 정서정보",
+    "available_dataset": "기존 관찰자료에는 실제 영역 개입 없음",
+    "measurable_contrast": "어떤 ROI에서 잘 복원된다는 사실로 그 ROI의 필요성을 판정",
+    "falsifiable_prediction": "중복 코드·공통입력만으로도 decoding 가능",
+    "baseline": "ROI ablation은 모델 내부 제거로만 해석",
+    "source_papers": [
+      "P066",
+      "P067",
+      "P015",
+      "P016",
+      "P019",
+      "P021"
+    ],
+    "missing_assumptions": "기존 관찰자료에는 실제 영역 개입 없음",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "기각",
+    "rejection_reason": "decodability를 인간 신경 필요조건으로 바꾸는 논리 도약",
+    "review_reason": "decodability를 인간 신경 필요조건으로 바꾸는 논리 도약",
+    "supporting_subaxes": [
+      "AS16",
+      "AS04"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R16",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "D",
+      "H",
+      "R"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Model / Method",
+      "Neural"
+    ],
+    "sampling_attempt": 18,
+    "scientific_construct": "시간 특징의 기능적 사용",
+    "external_field_concept": "시간 SAE와 모델 feature intervention",
+    "ai_model_or_method": [
+      "SAE TopK",
+      "transcoder",
+      "feature intervention",
+      "EmoNet",
+      "V-JEPA2/2.1",
+      "미래 입력 차단 encoder 비교",
+      "nested CV",
+      "fixed/flexible RSA",
+      "dimension-matched readout",
+      "model disagreement"
+    ],
+    "neural_target": "정서 관련 시간창 신경정보",
+    "available_dataset": "Emo-FilM; 모델 activation과 시간 정렬 필요",
+    "measurable_contrast": "feature의 시간적 안정성·모델 필요성·신경 대응을 따로 평가",
+    "falsifiable_prediction": "안정된 신경 대응이 있으나 모델 개입 효과가 없으면 단일 mechanism 해석 축소",
+    "baseline": "임의 방향·동일 과거 창·오류 노드",
+    "source_papers": [
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT",
+      "P008",
+      "P013",
+      "P014",
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "missing_assumptions": "Emo-FilM; 모델 activation과 시간 정렬 필요",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "세 증거를 하나의 인과 점수로 합산하지 않음",
+    "supporting_subaxes": [
+      "AS11",
+      "AS02",
+      "AS30"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R17",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "D",
+      "H",
+      "M"
+    ],
+    "type_tags": [
+      "Neural",
+      "Construct / Stimulus",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 20,
+    "scientific_construct": "모달리티별 정서 통합시간",
+    "external_field_concept": "공유/고유 상태공간",
+    "ai_model_or_method": [
+      "ImageBind",
+      "CAV-MAE",
+      "FactorCL",
+      "MBT",
+      "VideoMamba",
+      "V-JEPA2",
+      "VideoPrism",
+      "selective SSM",
+      "고정 SSM",
+      "CortexMAE",
+      "TRIBE v2"
+    ],
+    "neural_target": "시간별 분산표상",
+    "available_dataset": "Emo-FilM 연속자료·실제 스트림 동기화",
+    "measurable_contrast": "영상과 비음성음향의 과거 창을 독립 변화해 추가 정서정보 곡선 비교",
+    "falsifiable_prediction": "신뢰도·HRF 일치 후 창 차이가 사라지면 통합시간 차이 축소",
+    "baseline": "단일모달·동일 창·FIR·future mask",
+    "source_papers": [
+      "P035",
+      "P036",
+      "P037",
+      "P038",
+      "P043",
+      "P013",
+      "P044",
+      "P026",
+      "P027",
+      "P028",
+      "P034"
+    ],
+    "missing_assumptions": "Emo-FilM 연속자료·실제 스트림 동기화",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "고유 경로 필요성과 시간 통합을 교차 비교",
+    "supporting_subaxes": [
+      "AS34",
+      "AS35",
+      "AS09"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R18",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "C",
+      "G",
+      "L"
+    ],
+    "type_tags": [
+      "Model / Method",
+      "Inference / Measurement",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 21,
+    "scientific_construct": "생성된 사건 의미의 정보 출처",
+    "external_field_concept": "brain-to-text와 다중 prior",
+    "ai_model_or_method": [
+      "MindEye2",
+      "MindEye",
+      "Brain-Diffuser",
+      "ridge latent decoding",
+      "Diffusion Posterior Sampling",
+      "검증된 brain encoding likelihood",
+      "복수 생성 prior",
+      "CLIP",
+      "BLIP",
+      "BLIP-2",
+      "CBM"
+    ],
+    "neural_target": "신경 조건이 제한하는 의미 대비",
+    "available_dataset": "Mind Captioning이 실제 신경 조건 생성이면 적용; Horikawa 원자극 설명으로 대조",
+    "measurable_contrast": "뇌 조건 교환·prior 교체에도 외부 참조의 사건 의미가 보존되는지",
+    "falsifiable_prediction": "자연스러움만 유지되고 독립 내용 일치가 늘지 않으면 신경 정보 주장 축소",
+    "baseline": "prior-only·교환조건 OOD·직접latent",
+    "source_papers": [
+      "P015",
+      "P016",
+      "P019",
+      "P021",
+      "P071",
+      "P076",
+      "P075",
+      "P079",
+      "P080",
+      "P081",
+      "P083"
+    ],
+    "missing_assumptions": "Mind Captioning이 실제 신경 조건 생성이면 적용; Horikawa 원자극 설명으로 대조",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "출력의 유창함과 관측이 제한한 내용을 구별",
+    "supporting_subaxes": [
+      "AS04",
+      "AS20",
+      "AS22"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R19",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "F",
+      "O",
+      "R"
+    ],
+    "type_tags": [
+      "Inference / Measurement",
+      "Structure / Dynamics",
+      "Neural"
+    ],
+    "sampling_attempt": 22,
+    "scientific_construct": "개인 정렬에서 축과 부분공간의 안정성",
+    "external_field_concept": "basis non-identifiability",
+    "ai_model_or_method": [
+      "MindEye2",
+      "Brain-IT",
+      "MinD-Vis",
+      "MindBridge",
+      "CKA",
+      "crossnobis RSA",
+      "공유 저차원 정렬",
+      "SAE TopK",
+      "transcoder",
+      "feature intervention"
+    ],
+    "neural_target": "개인·공유 신경표상",
+    "available_dataset": "Horikawa/NSD 공유 자극; NSD는 정서 ground truth 별도",
+    "measurable_contrast": "사람·seed별로 개별 축은 바뀌어도 정서 부분공간의 외적 예측은 유지되는지",
+    "falsifiable_prediction": "독립 자극·개인에서 부분공간도 재현되지 않으면 안정 코드 축소",
+    "baseline": "가역 회전·rank 일치·개인별 신뢰도",
+    "source_papers": [
+      "P015",
+      "P017",
+      "P022",
+      "P023",
+      "P051",
+      "P052",
+      "P060",
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT"
+    ],
+    "missing_assumptions": "Horikawa/NSD 공유 자극; NSD는 정서 ground truth 별도",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "축 해석과 예측정보 불변성을 분리",
+    "supporting_subaxes": [
+      "AS05",
+      "AS13",
+      "AS11"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R20",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "C",
+      "K",
+      "N"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "sampling_attempt": 23,
+    "scientific_construct": "재귀 상태의 의미 기하",
+    "external_field_concept": "재귀 계산과 사건 좌표",
+    "ai_model_or_method": [
+      "PredNet",
+      "PCNet",
+      "H0 persistent homology",
+      "TWO-NN 및 대안 ID",
+      "noise ceiling",
+      "AVE",
+      "TCC",
+      "VideoPrism"
+    ],
+    "neural_target": "맥락별 신경 기하",
+    "available_dataset": "Emo-FilM 연속자료; 내부 상태 관측은 모델 수준",
+    "measurable_contrast": "같은 유효 과거 범위의 재귀·비재귀모델이 사건 대비를 다르게 설명하는지",
+    "falsifiable_prediction": "유효깊이·문맥량 일치 후 차이 없으면 재귀 구현 필요성 축소",
+    "baseline": "feedforward unroll·같은 input horizon·HRF",
+    "source_papers": [
+      "P089",
+      "P096",
+      "P056",
+      "P059",
+      "P060",
+      "P041",
+      "P042",
+      "P044"
+    ],
+    "missing_assumptions": "Emo-FilM 연속자료; 내부 상태 관측은 모델 수준",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "재귀 구조 이름 자체를 신경 계산 증거로 쓰지 않음",
+    "supporting_subaxes": [
+      "AS25",
+      "AS14",
+      "AS36"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R21",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "H",
+      "O",
+      "R"
+    ],
+    "type_tags": [
+      "Structure / Dynamics",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "sampling_attempt": 24,
+    "scientific_construct": "개인 encoding의 설명 가능한 차이",
+    "external_field_concept": "공유 readout와 개인 residual",
+    "ai_model_or_method": [
+      "TRIBE v2",
+      "CortexMAE",
+      "Brain-JEPA",
+      "MindEye2",
+      "Brain-IT",
+      "MinD-Vis",
+      "MindBridge",
+      "nested CV",
+      "fixed/flexible RSA",
+      "dimension-matched readout",
+      "model disagreement"
+    ],
+    "neural_target": "개인별 반복 가능한 신경 차이",
+    "available_dataset": "Horikawa 반복·공유 자극; 각 보유 처리본의 신뢰도 조건",
+    "measurable_contrast": "공유모형에 개인 residual을 더할 때 독립 정서 대비가 유지되는지",
+    "falsifiable_prediction": "개인차가 신뢰도·처리공간·자극 빈도로 소실되면 개인 코드 축소",
+    "baseline": "공유/개인 용량 일치·두 수준 보류",
+    "source_papers": [
+      "P026",
+      "P027",
+      "P029",
+      "P015",
+      "P017",
+      "P022",
+      "P023",
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "missing_assumptions": "Horikawa 반복·공유 자극; 각 보유 처리본의 신뢰도 조건",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "개인차를 정렬 실패와 분리",
+    "supporting_subaxes": [
+      "AS08",
+      "AS05",
+      "AS30"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R22",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "L",
+      "P",
+      "R"
+    ],
+    "type_tags": [
+      "Inference / Measurement",
+      "Model / Method",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 25,
+    "scientific_construct": "희소 특징 편집의 선택성",
+    "external_field_concept": "생성 편집과 mechanistic probe",
+    "ai_model_or_method": [
+      "Prompt-to-Prompt",
+      "Null-text Inversion",
+      "InstructPix2Pix",
+      "FateZero",
+      "AudioLDM",
+      "FlowEdit",
+      "SAE TopK",
+      "transcoder",
+      "feature intervention",
+      "Deep Adaptive Design",
+      "encoding ensemble",
+      "validity-constrained 생성 candidate pool"
+    ],
+    "neural_target": "선택적 정서 관련 신경 대비의 예측",
+    "available_dataset": "기존자료로 후보 검증; 실제 편집 뇌효과는 새 주석·측정",
+    "measurable_contrast": "같은 feature 개입을 다른 생성기로 옮겨 비표적 의미 보존을 평가",
+    "falsifiable_prediction": "생성기별로 의미가 달라지면 공통 선택적 개입 주장 축소",
+    "baseline": "sham edit·비표적 특징·외부 평정",
+    "source_papers": [
+      "P069",
+      "P070",
+      "P071",
+      "P072",
+      "P073",
+      "P074",
+      "P078",
+      "DOC-SAE",
+      "DOC-TRANSCODER",
+      "DOC-CIRCUIT",
+      "P076",
+      "P077"
+    ],
+    "missing_assumptions": "기존자료로 후보 검증; 실제 편집 뇌효과는 새 주석·측정",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "모델 내부 편집과 실제 자극 개입의 두 검증 단계 분리",
+    "supporting_subaxes": [
+      "AS19",
+      "AS11",
+      "AS21"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R23",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "A",
+      "O",
+      "V"
+    ],
+    "type_tags": [
+      "Model / Method",
+      "Neural",
+      "Inference / Measurement"
+    ],
+    "sampling_attempt": 26,
+    "scientific_construct": "개인 공통 정서 전이법칙",
+    "external_field_concept": "subject alignment와 state dynamics",
+    "ai_model_or_method": [
+      "EmoNet",
+      "V-JEPA2/2.1",
+      "미래 입력 차단 encoder 비교",
+      "MindEye2",
+      "Brain-IT",
+      "MinD-Vis",
+      "MindBridge",
+      "I-JEPA",
+      "VideoMAE",
+      "V-JEPA",
+      "V-JEPA2",
+      "DreamerV3"
+    ],
+    "neural_target": "개인별 신경 상태 전이",
+    "available_dataset": "Emo-FilM 공통 자극·개인 시계열; 외부 consensus는 개인 정답 아님",
+    "measurable_contrast": "정적 표상 정렬이 전이법칙도 정렬하는지 별도 검정",
+    "falsifiable_prediction": "정적 정렬은 좋아도 전이 일반화가 없으면 공통 동역학 충분성 기각",
+    "baseline": "정적현재·개인별상태·HRF·공통자극",
+    "source_papers": [
+      "P008",
+      "P013",
+      "P014",
+      "P015",
+      "P017",
+      "P022",
+      "P023",
+      "P033",
+      "P045",
+      "P046",
+      "P048"
+    ],
+    "missing_assumptions": "Emo-FilM 공통 자극·개인 시계열; 외부 consensus는 개인 정답 아님",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "정적 대응과 계산 법칙의 공유를 구별",
+    "supporting_subaxes": [
+      "AS02",
+      "AS05",
+      "AS10"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R24",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "E",
+      "K",
+      "P"
+    ],
+    "type_tags": [
+      "Model / Method",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "sampling_attempt": 27,
+    "scientific_construct": "네트워크 기하의 원인 구조",
+    "external_field_concept": "기하와 인과 그래프",
+    "ai_model_or_method": [
+      "H0 persistent homology",
+      "TWO-NN 및 대안 ID",
+      "noise ceiling",
+      "spatial surrogate",
+      "run-constrained temporal surrogate",
+      "stationary generative null"
+    ],
+    "neural_target": "네트워크 간 거리·경로",
+    "available_dataset": "관찰자료에 직접 경로 개입 근거 없음",
+    "measurable_contrast": "낮은 geodesic 거리를 직접 신경정보 흐름 원인으로 해석",
+    "falsifiable_prediction": "공간·공통입력 null이 같은 기하를 만들면 인과구조 식별 불가",
+    "baseline": "공간구조 보존 null",
+    "source_papers": [
+      "P056",
+      "P059",
+      "P060",
+      "P062",
+      "P063",
+      "P064",
+      "P067"
+    ],
+    "missing_assumptions": "관찰자료에 직접 경로 개입 근거 없음",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "기각",
+    "rejection_reason": "기하학적 이웃과 신경적 인과 경로를 혼동하는 조합",
+    "review_reason": "기하학적 이웃과 신경적 인과 경로를 혼동하는 조합",
+    "supporting_subaxes": [
+      "AS14",
+      "AS18"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R25",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "D",
+      "F",
+      "K"
+    ],
+    "type_tags": [
+      "Structure / Dynamics",
+      "Inference / Measurement",
+      "Neural"
+    ],
+    "sampling_attempt": 28,
+    "scientific_construct": "신경 궤적 차원의 관측척도 안정성",
+    "external_field_concept": "multiscale geometry",
+    "ai_model_or_method": [
+      "H0 persistent homology",
+      "TWO-NN 및 대안 ID",
+      "noise ceiling",
+      "selective SSM",
+      "고정 SSM",
+      "CortexMAE",
+      "TRIBE v2",
+      "spatial surrogate",
+      "run-constrained temporal surrogate",
+      "stationary generative null"
+    ],
+    "neural_target": "정서 관련 신경 궤적",
+    "available_dataset": "Emo-FilM/시간자료 있는 Horikawa; 반복·시간주석 조건",
+    "measurable_contrast": "표본수·시간창·잡음을 바꿀 때 차원·연결과 정서 대비가 유지되는지",
+    "falsifiable_prediction": "같은 관측왜곡을 준 null에서 재현되면 신경 특이 구조 주장 축소",
+    "baseline": "noise matched null·거리계열·독립 자극",
+    "source_papers": [
+      "P056",
+      "P059",
+      "P060",
+      "P026",
+      "P027",
+      "P028",
+      "P034",
+      "P062",
+      "P063",
+      "P064",
+      "P067"
+    ],
+    "missing_assumptions": "Emo-FilM/시간자료 있는 Horikawa; 반복·시간주석 조건",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "새 그림이 아닌 관측척도에 대한 반증 질문",
+    "supporting_subaxes": [
+      "AS14",
+      "AS09",
+      "AS18"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R26",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "A",
+      "T",
+      "V"
+    ],
+    "type_tags": [
+      "Structure / Dynamics",
+      "Inference / Measurement",
+      "Construct / Stimulus"
+    ],
+    "sampling_attempt": 29,
+    "scientific_construct": "정서 상태 발견의 독립 검증",
+    "external_field_concept": "label-free latent state discovery",
+    "ai_model_or_method": [
+      "I-JEPA",
+      "VideoMAE",
+      "V-JEPA",
+      "V-JEPA2",
+      "DreamerV3",
+      "공식 Horikawa 선형기준",
+      "조건부 kernel 비교",
+      "CLIP",
+      "nested CV",
+      "fixed/flexible RSA",
+      "dimension-matched readout",
+      "model disagreement"
+    ],
+    "neural_target": "독립 정서 대비를 예측하는 상태",
+    "available_dataset": "Emo-FilM 연속자료; 상태수 선택은 training 내부",
+    "measurable_contrast": "정서 라벨 없이 학습한 상태가 보류 자극의 주석 관련 신경변동을 설명하는지",
+    "falsifiable_prediction": "현재 내용·사건 경계만으로 같으면 정서 상태 필요성 축소",
+    "baseline": "현재프레임·사건segmentation·상태수 일치",
+    "source_papers": [
+      "P033",
+      "P045",
+      "P046",
+      "P013",
+      "P048",
+      "P001",
+      "P007",
+      "P010",
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "missing_assumptions": "Emo-FilM 연속자료; 상태수 선택은 training 내부",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "사후 이름 붙이기를 피하고 발견과 검증을 분리",
+    "supporting_subaxes": [
+      "AS10",
+      "AS01",
+      "AS30"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R27",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "A",
+      "D",
+      "N"
+    ],
+    "type_tags": [
+      "Neural",
+      "Inference / Measurement",
+      "Construct / Stimulus"
+    ],
+    "sampling_attempt": 30,
+    "scientific_construct": "정서 예측오차의 시간 비대칭",
+    "external_field_concept": "signed predictive coding",
+    "ai_model_or_method": [
+      "PredNet",
+      "PCNet",
+      "상태공간 관측모형",
+      "FIR/HRF",
+      "계층 측정모형",
+      "measurement invariance"
+    ],
+    "neural_target": "정서 주석과 관련된 부호별 오차 신경반응",
+    "available_dataset": "Emo-FilM 연속주석·신경 정렬; AI 예측오차는 측정 주석과 별개",
+    "measurable_contrast": "내용·상태·오차크기를 맞춘 양음오차의 시간 반응 차이",
+    "falsifiable_prediction": "HRF·크기·주석불확실성 조정 후 동일하면 부호 비대칭 축소",
+    "baseline": "unsigned error·matched magnitude·FIR",
+    "source_papers": [
+      "P089",
+      "P096",
+      "P002",
+      "P003"
+    ],
+    "missing_assumptions": "Emo-FilM 연속주석·신경 정렬; AI 예측오차는 측정 주석과 별개",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "오차 부호의 구성법·모델 교체 안정성 명시 필요",
+    "supporting_subaxes": [
+      "AS25",
+      "AS32",
+      "AS33"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R28",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "B",
+      "E",
+      "V"
+    ],
+    "type_tags": [
+      "Model / Method",
+      "Neural",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 31,
+    "scientific_construct": "감각계층의 예측상태 충분성",
+    "external_field_concept": "prediction vs reconstruction",
+    "ai_model_or_method": [
+      "SwiFT",
+      "CortexMAE",
+      "Brain-JEPA",
+      "I-JEPA",
+      "VideoMAE",
+      "V-JEPA",
+      "V-JEPA2",
+      "DreamerV3",
+      "matched temporal-horizon features",
+      "FIR/HRF family",
+      "event segmentation"
+    ],
+    "neural_target": "sensory–transmodal 위치별 신경표상",
+    "available_dataset": "Emo-FilM 및 호환 보유 신경공간; Horikawa는 가능한 시간단위",
+    "measurable_contrast": "동일 과거·용량에서 복원과 예측 목표의 정서 대비 설명 차이",
+    "falsifiable_prediction": "HRF·사건길이·공간null 조정 후 차이 없으면 계층별 목적 분화 축소",
+    "baseline": "matched objectives·동일readout·공간null",
+    "source_papers": [
+      "P025",
+      "P026",
+      "P029",
+      "P032",
+      "P033",
+      "P045",
+      "P046",
+      "P013",
+      "P048",
+      "P061",
+      "P062",
+      "P065",
+      "P066",
+      "P068"
+    ],
+    "missing_assumptions": "Emo-FilM 및 호환 보유 신경공간; Horikawa는 가능한 시간단위",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "수정 필요",
+    "rejection_reason": "",
+    "review_reason": "서로 다른 공개모델 비교만으로 학습목표 원인을 식별하지 않도록 설계 강화",
+    "supporting_subaxes": [
+      "AS07",
+      "AS10",
+      "AS17"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R29",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "A",
+      "F",
+      "L"
+    ],
+    "type_tags": [
+      "Construct / Stimulus",
+      "Structure / Dynamics",
+      "Model / Method"
+    ],
+    "sampling_attempt": 33,
+    "scientific_construct": "신경 관측과 양립하는 정서 자극 집합",
+    "external_field_concept": "inverse problem uncertainty",
+    "ai_model_or_method": [
+      "Diffusion Posterior Sampling",
+      "검증된 brain encoding likelihood",
+      "복수 생성 prior",
+      "MindEye2",
+      "MindEye",
+      "Brain-Diffuser",
+      "ridge latent decoding",
+      "Deep Adaptive Design",
+      "encoding ensemble",
+      "validity-constrained 생성 candidate pool"
+    ],
+    "neural_target": "관측이 제한하는 정서 특징",
+    "available_dataset": "Horikawa 원자극·주석·신경; 새 후보의 실제 정서는 외부 검증 조건",
+    "measurable_contrast": "같은 신경 적합도 후보들의 정서 주석 관련 특징이 prior별로 변하는지",
+    "falsifiable_prediction": "동등 적합 후보가 반대 특징을 가지면 단일 정서 복원 주장을 축소",
+    "baseline": "prior 교체·held-out encoding·후보폭 보정",
+    "source_papers": [
+      "P071",
+      "P076",
+      "P075",
+      "P015",
+      "P016",
+      "P019",
+      "P021",
+      "P070",
+      "P074",
+      "P077",
+      "P078"
+    ],
+    "missing_assumptions": "Horikawa 원자극·주석·신경; 새 후보의 실제 정서는 외부 검증 조건",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "발전",
+    "rejection_reason": "",
+    "review_reason": "관측등가의 정의·모형오차를 사전에 명시",
+    "supporting_subaxes": [
+      "AS20",
+      "AS04",
+      "AS21"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  },
+  {
+    "combination_id": "R30",
+    "generation_path": "실제 무작위: 유형3개 균등추출→유형별 Axis 균등추출",
+    "axis_ids": [
+      "A",
+      "F",
+      "I"
+    ],
+    "type_tags": [
+      "Model / Method",
+      "Inference / Measurement",
+      "Structure / Dynamics"
+    ],
+    "sampling_attempt": 34,
+    "scientific_construct": "최신 모델의 정서 예측 순위",
+    "external_field_concept": "모델 family benchmark",
+    "ai_model_or_method": [
+      "SwiFT",
+      "CortexMAE",
+      "Brain-JEPA",
+      "nested CV",
+      "fixed/flexible RSA",
+      "dimension-matched readout",
+      "model disagreement"
+    ],
+    "neural_target": "분산 신경표상",
+    "available_dataset": "보유자료에서 기술 benchmark는 가능",
+    "measurable_contrast": "같은 타깃에서 여러 최신 모델의 최고 정확도 순위 비교",
+    "falsifiable_prediction": "순위만으로 어떤 신경 계산 가정도 구별하지 못함",
+    "baseline": "동일 readout·튜닝 예산",
+    "source_papers": [
+      "P025",
+      "P026",
+      "P029",
+      "P032",
+      "P033",
+      "P097",
+      "P100",
+      "P101",
+      "P053"
+    ],
+    "missing_assumptions": "보유자료에서 기술 benchmark는 가능",
+    "novelty_risk": "E3 연결; 기존 질문과 의미 중복 여부를 최종 RQ 대응표에서 병합; 세계 최초 미확정",
+    "decision": "기각",
+    "rejection_reason": "현재 형태는 단순 모델 교체. 목표/정보접근/구조를 조작하는 다른 발전 후보로 흡수",
+    "review_reason": "현재 형태는 단순 모델 교체. 목표/정보접근/구조를 조작하는 다른 발전 후보로 흡수",
+    "supporting_subaxes": [
+      "AS07",
+      "AS30"
+    ],
+    "evidence_boundary": "인용은 계산 원리·주변 근거이며 이 새 조합의 실증 결과가 아님; U/W 직접 근거는 미확인"
+  }
+]

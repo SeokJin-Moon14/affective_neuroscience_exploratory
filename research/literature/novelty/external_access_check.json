@@ -1,0 +1,24 @@
+[
+  {
+    "source": "Crossref",
+    "url": "https://api.crossref.org/works?query=emotion+fMRI+representation+alignment+information+preservation&rows=5",
+    "error": "URLError"
+  },
+  {
+    "source": "arXiv",
+    "url": "https://export.arxiv.org/api/query?search_query=all%3Aemotion+AND+all%3Afmri&max_results=5",
+    "error": "URLError"
+  },
+  {
+    "source": "GitHub repositories",
+    "query": {
+      "q": "emotion fMRI representation alignment information preservation",
+      "type": "repositories"
+    },
+    "url": "https://github.com/search?q=emotion+fMRI+representation+alignment+information+preservation&type=repositories",
+    "http_status": 200,
+    "bytes": 133935,
+    "response_excerpt": "HTTP200 페이지. 검색 결과의 문헌 실재·내용은 별도 확인 필요.",
+    "retrieved_at": "2026-11-12T15:09:48.414819+09:00"
+  }
+]

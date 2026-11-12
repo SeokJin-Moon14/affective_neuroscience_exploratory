@@ -1,0 +1,50 @@
+{
+  "01_dataset": [
+    "02_affective_neuroscience",
+    "06_frontier_ai"
+  ],
+  "02_affective_neuroscience": [
+    "03_vision_decoding",
+    "07_geometry_information"
+  ],
+  "03_vision_decoding": [
+    "04_brain_foundation",
+    "08_systems_neuroscience"
+  ],
+  "04_brain_foundation": [
+    "05_multimodal_dynamics",
+    "09_generative_ai"
+  ],
+  "05_multimodal_dynamics": [
+    "06_frontier_ai",
+    "10_llm_semantics"
+  ],
+  "06_frontier_ai": [
+    "07_geometry_information",
+    "11_brain_inspired"
+  ],
+  "07_geometry_information": [
+    "08_systems_neuroscience",
+    "12_adversarial_review"
+  ],
+  "08_systems_neuroscience": [
+    "09_generative_ai",
+    "01_dataset"
+  ],
+  "09_generative_ai": [
+    "10_llm_semantics",
+    "02_affective_neuroscience"
+  ],
+  "10_llm_semantics": [
+    "11_brain_inspired",
+    "03_vision_decoding"
+  ],
+  "11_brain_inspired": [
+    "12_adversarial_review",
+    "04_brain_foundation"
+  ],
+  "12_adversarial_review": [
+    "01_dataset",
+    "05_multimodal_dynamics"
+  ]
+}
